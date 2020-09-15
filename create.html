@@ -56,9 +56,6 @@
                                 2. Добавить обложку/баннер опроса
                                 <div class="clip upload-file"></div>
                             </div>
-                            <div class="inputfile-wrapper">
-                                <input type="file" name="file">
-                            </div>
                             <div class="dropzone dropzone-file">
                                 <div class="fallback">
                                     <!-- input for plugins -->
@@ -88,7 +85,7 @@
             $('.dz-button').click();
         });
         var myDropzone = new Dropzone('.dropzone', {
-            url: "#",
+            url: "#urlforfile",
             dictDefaultMessage: 'Перетащите картинку сюда, либо нажмите на скрепку',
             previewTemplate: drop,
             thumbnailWidth: 416,
