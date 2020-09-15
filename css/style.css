@@ -1030,11 +1030,30 @@ table {
   height: calc(100vh - 160px);
 }
 
+.construcot-container .leftside::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+          box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}
+
+.construcot-container .leftside::-webkit-scrollbar {
+  width: 5px;
+  background-color: #F5F5F5;
+}
+
+.construcot-container .leftside::-webkit-scrollbar-thumb {
+  border-radius: 0px 2px 2px 0px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+          box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #4449DB;
+}
+
 .construcot-container .centerbox {
   background: #FEFDFD;
   -webkit-box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.1);
           box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.1);
-  width: calc(100% - 440px);
+  width: calc(100% - 540px);
   height: calc(100vh - 160px);
   overflow: auto;
 }
@@ -1222,16 +1241,40 @@ table {
   background: #FEFDFD;
   -webkit-box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.1);
           box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.1);
-  width: 200px;
-  min-width: 200px;
+  width: 300px;
+  min-width: 300px;
   min-height: 100px;
   height: calc(100vh - 160px);
   overflow: auto;
 }
 
+.construcot-container .rightside::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+          box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}
+
+.construcot-container .rightside::-webkit-scrollbar {
+  width: 5px;
+  background-color: #F5F5F5;
+}
+
+.construcot-container .rightside::-webkit-scrollbar-thumb {
+  border-radius: 0px 2px 2px 0px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+          box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #4449DB;
+}
+
+.construcot-container .rightside .optionsblock {
+  width: 100%;
+}
+
 .construcot-container .rightside .default,
 .construcot-container .rightside .optionbox {
   display: none;
+  width: 100%;
 }
 
 .construcot-container .rightside .default.active,
@@ -1269,6 +1312,7 @@ table {
   border-bottom: 1px solid #EEEFF3;
   border-right: none;
   border-left: none;
+  width: 100%;
 }
 
 .construcot-container .rightside .default .text-aside .spinner-wrapper .ui-spinner-input,
@@ -1591,6 +1635,18 @@ table {
   .page-content {
     padding-left: 50px;
     padding-right: 50px;
+  }
+  .construcot-container .rightside .default .text-aside .form-group textarea, .construcot-container .rightside .optionbox .text-aside .form-group textarea,
+  .construcot-container .rightside .default .text-aside .spinner-wrapper .ui-spinner-input, .construcot-container .rightside .optionbox .text-aside .spinner-wrapper .ui-spinner-input,
+  .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint input, .construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint input,
+  .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint label, .construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint label {
+    font-size: 12px;
+    line-height: 14px;
+  }
+  .construcot-container .rightside .default .text-aside .form-group label, .construcot-container .rightside .optionbox .text-aside .form-group label,
+  .construcot-container .rightside .default .header-aside, .construcot-container .rightside .optionbox .header-aside {
+    font-size: 14px;
+    line-height: 16px;
   }
 }
 

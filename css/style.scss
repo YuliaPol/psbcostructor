@@ -745,11 +745,26 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
         box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.1);
         overflow: auto;
         height: calc(100vh - 160px);
+        &::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            background-color: #F5F5F5;
+        }
+        &::-webkit-scrollbar {
+            width: 5px;
+            background-color: #F5F5F5;
+        }
+        &::-webkit-scrollbar-thumb
+        {
+            border-radius: 0px 2px 2px 0px;
+            box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: #4449DB;
+        }
     }
     .centerbox {
         background: #FEFDFD;
         box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.1);
-        width: calc(100% - 440px);
+        width: calc(100% - 540px);
         height: calc(100vh - 160px);
         overflow: auto;
         &::-webkit-scrollbar-track {
@@ -870,14 +885,33 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     .rightside {
         background: #FEFDFD;
         box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.1);
-        width: 200px;
-        min-width: 200px;
+        width: 300px;
+        min-width: 300px;
         min-height: 100px;
         height: calc(100vh - 160px);
         overflow: auto;
+        &::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            background-color: #F5F5F5;
+        }
+        &::-webkit-scrollbar {
+            width: 5px;
+            background-color: #F5F5F5;
+        }
+        &::-webkit-scrollbar-thumb
+        {
+            border-radius: 0px 2px 2px 0px;
+            box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: #4449DB;
+        }
+        .optionsblock {
+            width: 100%;
+        }
         .default,
         .optionbox {
             display: none;
+            width: 100%;
             &.active {
                 display: block;
             }
@@ -906,6 +940,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                         border-bottom: 1px solid #EEEFF3;;
                         border-right: none;
                         border-left: none;
+                        width: 100%;
                     }
                     .ui-spinner-input {
                         border: none;
@@ -1149,6 +1184,18 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     .page-content {
         padding-left: 50px;
         padding-right: 50px;
+    }
+    .construcot-container .rightside .default .text-aside .form-group textarea, .construcot-container .rightside .optionbox .text-aside .form-group textarea,
+    .construcot-container .rightside .default .text-aside .spinner-wrapper .ui-spinner-input, .construcot-container .rightside .optionbox .text-aside .spinner-wrapper .ui-spinner-input,
+    .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint input, .construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint input,
+    .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint label, .construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint label {
+        font-size: 12px;
+        line-height: 14px;
+    }
+    .construcot-container .rightside .default .text-aside .form-group label, .construcot-container .rightside .optionbox .text-aside .form-group label,
+    .construcot-container .rightside .default .header-aside, .construcot-container .rightside .optionbox .header-aside {
+        font-size: 14px;
+        line-height: 16px;
     }
 
 }

@@ -35,11 +35,21 @@ jQuery(function ($) {
             });
         };
 
-        $(".question_number").inputFilter(function(value) {
+        $(".spinner").inputFilter(function(value) {
             return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 15);
         });
 
-        var spinner = $( ".spinner" ).spinner({
+        $( ".freeanswer_number" ).spinner({
+            min: 0,
+            max: 15,
+            spin: function( event, ui ) {
+                var id = $(event.target).attr('name').split('_')[1];
+                var number = ui.value;
+                SetPointOfFreeQuestion(id, number);
+            }
+        });
+
+        $( ".question_number" ).spinner({
             min: 0,
             max: 15,
             spin: function( event, ui ) {
@@ -92,6 +102,13 @@ jQuery(function ($) {
             SetPointOfQuestion(id, number);
         });
 
+        //change points of free question
+        $('.rightside').on('change', '.freeanswer_number', function(e){
+            var id = $(this).attr('name').split('_')[1];
+            var number = $(this).val();
+            SetPointOfFreeQuestion(id, number);
+        });
+        
         //set points of question
         function SetPointOfQuestion(id, number) {
             var questionPoints = $('#questionAnswers_' + id).find('.form-group');
@@ -108,6 +125,27 @@ jQuery(function ($) {
                     '<div class="form-group" id="questionformAnswer_'+ id + '_' + currentId +'">'
                     +'    <input type="radio" name="questionAnswer_'+ id + '" id="questionAnswer_'+ id + '_' + currentId +'">'
                     +'    <label id="questionpointsanswer_'+ id + '_' + currentId +'" for="questionAnswer_'+ id + '_' + currentId +'">Вариант ответа</label>'
+                    +'</div>';
+                    $(newQuestion).appendTo($('#questionAnswers_' + id));
+                }
+            }
+        }
+
+        //set points of question
+        function SetPointOfFreeQuestion(id, number) {
+            var questionPoints = $('#questionAnswers_' + id).find('.form-group');
+            questionPoints.each(function (index, question) {
+                if((index + 1) > number) {
+                    $(question).remove();
+                }
+            });
+            var currentId = questionPoints.length
+            if(number > questionPoints.length){
+                while (currentId != number){
+                    currentId++;
+                    var newQuestion = 
+                    '<div class="form-group" id="questionformAnswer_'+ id + '_' + currentId +'">'
+                    +'    <input type="text" name="questionAnswer_'+ id + '_' + currentId +'" id="questionAnswer_'+ id + '_' + currentId +'" placeholder="Ваш ответ">'
                     +'</div>';
                     $(newQuestion).appendTo($('#questionAnswers_' + id));
                 }
@@ -204,8 +242,40 @@ jQuery(function ($) {
                     +'</div>' ;
                 }
                 else if (type === "listfree"){
-                    el ='listfree'
-                    ;
+                    el =
+                    '<div class="question active" data-optionid="'+ id +'">'
+                    +'    <div class="close-question"></div>'
+                    +'    <div class="name" id="questionName_'+ id +'">'
+                    +'        Вопрос'
+                    +'    </div>'
+                    +'    <div class="answer freeanswer" id="questionAnswers_'+ id +'">'
+                    +'        <div class="form-group" id="questionformAnswer_'+ id +'_1">'
+                    +'            <input type="text" name="questionAnswer_'+ id +'_1" id="questionAnswer_'+ id +'_1" placeholder="Ваш ответ">'
+                    +'        </div>'
+                    +'        <div class="form-group" id="questionformAnswer_'+ id +'_2">'
+                    +'            <input type="text" name="questionAnswer_'+ id +'_2" id="questionAnswer_'+ id +'_2" placeholder="Ваш ответ">'
+                    +'        </div>'
+                    +'        <div class="form-group" id="questionformAnswer_'+ id +'_3">'
+                    +'            <input type="text" name="questionAnswer_'+ id +'_3" id="questionAnswer_'+ id +'_3" placeholder="Ваш ответ">'
+                    +'        </div>'
+                    +'    </div>'
+                    +'</div>';
+                    option =
+                    '<div class="optionbox active" id="option_'+ id +'">'
+                    +'    <div class="header-aside">'
+                    +'        Настройки'
+                    +'    </div>'
+                    +'    <div class="text-aside">'
+                    +'        <div class="form-group">'
+                    +'            <label for="question_'+ id +'">Вопрос</label>'
+                    +'            <textarea class="question_name" name="question_'+ id +'" id="question_3" placeholder="Введите вопрос"></textarea>'
+                    +'        </div>'
+                    +'        <div class="form-group spinner-wrapper">'
+                    +'            <label for="number_'+ id +'">Колличество пунктов </label>'
+                    +'            <input  class="freeanswer_number spinner" name="number_'+ id +'" id="number_'+ id +'" type="text" value="3">'
+                    +'        </div>'
+                    +'    </div>'
+                    +'</div>';
                 }
                 else if (type === 'branching') {
                     el ='branching'
@@ -268,7 +338,7 @@ jQuery(function ($) {
                     $(childrenOptions[appendInde]).after(option);
                 }
                 var children = $('.questions-box').children();
-                $( ".spinner" ).spinner({
+                $( ".question_number" ).spinner({
                     min: 0,
                     max: 15,
                     spin: function( event, ui ) {
@@ -295,6 +365,17 @@ jQuery(function ($) {
                         SetPointOfQuestion(id, number);
                     }
                 });
+
+                $( ".freeanswer_number" ).spinner({
+                    min: 0,
+                    max: 15,
+                    spin: function( event, ui ) {
+                        var id = $(event.target).attr('name').split('_')[1];
+                        var number = ui.value;
+                        SetPointOfFreeQuestion(id, number);
+                    }
+                });
+
                 RefreshItems();
                 $('.questions-box').attr('data-count', i);
             }
@@ -451,7 +532,7 @@ jQuery(function ($) {
 
             });
 
-            $(".question_number").inputFilter(function(value) {
+            $(".spinner").inputFilter(function(value) {
                 return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 15);
             });
         }
