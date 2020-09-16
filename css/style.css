@@ -622,7 +622,6 @@ table {
 
 .page-content .content-wrapper .table-wrapper table tbody tr td:last-child {
   padding-right: 40px;
-  position: relative;
 }
 
 .page-content .content-wrapper .table-wrapper table tbody tr td .user {
@@ -663,13 +662,12 @@ table {
 }
 
 .page-content .content-wrapper .table-wrapper table tbody tr td .edit-menu {
-  position: relative;
   opacity: 0;
   -webkit-transition: opacity 0.3s ease-in;
   -o-transition: opacity 0.3s ease-in;
   transition: opacity 0.3s ease-in;
   position: absolute;
-  top: 18px;
+  margin-top: -18px;
   right: 20px;
 }
 
@@ -1204,6 +1202,146 @@ table {
   color: #A4A2A2;
 }
 
+.construcot-container .centerbox .questions-box .question .answer.answer-scale {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  max-width: 1000px;
+  margin: auto;
+  padding-left: 0px;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-scale input[type='radio'] {
+  opacity: 0;
+  display: none;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-scale label {
+  cursor: pointer;
+  outline: none;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-scale label .digit {
+  width: 37px;
+  min-width: 37px;
+  height: 37px;
+  min-height: 37px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 35px;
+  color: #483D3D;
+  text-align: center;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  -webkit-transition: background 0.5s;
+  -o-transition: background 0.5s;
+  transition: background 0.5s;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-scale label .color0 {
+  border: 2px solid #BA1417;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-scale label .color1 {
+  border: 2px solid #CD0800;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-scale label .color2 {
+  border: 2px solid #F40200;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-scale label .color3 {
+  border: 2px solid #FF4A05;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-scale label .color4 {
+  border: 2px solid #FF7500;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-scale label .color5 {
+  border: 2px solid #FFA400;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-scale label .color6 {
+  border: 2px solid #E7F600;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-scale label .color7 {
+  border: 2px solid #00E355;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-scale label .color8 {
+  border: 2px solid #00D086;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-scale label .color9 {
+  border: 2px solid #00AB23;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-scale label .color10 {
+  border: 2px solid #008811;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-scale label .error {
+  background-color: #e60028;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-scale input[type='radio']:checked + label .digit {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-scale input[type='radio']:checked + label .color0 {
+  background-color: #BA1417;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-scale input[type='radio']:checked + label .color1 {
+  background-color: #CD0800;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-scale input[type='radio']:checked + label .color2 {
+  background-color: #F40200;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-scale input[type='radio']:checked + label .color3 {
+  background-color: #FF4A05;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-scale input[type='radio']:checked + label .color4 {
+  background-color: #FF7500;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-scale input[type='radio']:checked + label .color5 {
+  background-color: #FFA400;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-scale input[type='radio']:checked + label .color6 {
+  background-color: #E7F600;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-scale input[type='radio']:checked + label .color7 {
+  background-color: #00E355;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-scale input[type='radio']:checked + label .color8 {
+  background-color: #00D086;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-scale input[type='radio']:checked + label .color9 {
+  background-color: #00AB23;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-scale input[type='radio']:checked + label .color10 {
+  background-color: #008811;
+}
+
 .construcot-container .centerbox .questions-box .question .form-group,
 .construcot-container .centerbox .questions-box .question .form-group label {
   font-family: "Montserrat";
@@ -1407,11 +1545,130 @@ table {
   border-top: 1px solid #EEEFF3;
   border-left: 1px solid #EEEFF3;
   border-right: 1px solid #EEEFF3;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  position: relative;
 }
 
 .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint:last-child,
 .construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint:last-child {
   border-bottom: 1px solid #EEEFF3;
+}
+
+.construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint .branching-btn,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .branching-btn {
+  position: absolute;
+  top: 12px;
+  right: 6px;
+  width: 8px;
+  height: 8px;
+  background: url(./../img/branching.svg);
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+
+.construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint .branching-btn.active, .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint .branching-btn:hover,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .branching-btn.active,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .branching-btn:hover {
+  background: url(./../img/branching-active.svg);
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint .branching-list,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .branching-list {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-bottom: 5px;
+}
+
+.construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group {
+  width: calc(100% - 35px);
+  margin-left: 35px;
+  position: relative;
+  padding-bottom: 3px;
+  padding-top: 6px;
+  padding-right: 20px;
+  border-bottom: 1px solid #EEEFF3;
+}
+
+.construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group::before,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group::before {
+  content: "";
+  width: 4px;
+  height: 4px;
+  background: url(./../img/circle.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+          background-size: contain;
+  position: absolute;
+  bottom: 7px;
+}
+
+.construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group:hover .deleteSubPoint,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group:hover .deleteSubPoint {
+  opacity: 1;
+}
+
+.construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group .deleteSubPoint,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group .deleteSubPoint {
+  position: absolute;
+  bottom: 5px;
+  right: 8px;
+  background: url(./../img/close-grey.svg);
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-position: center;
+  width: 5px;
+  height: 5px;
+  cursor: pointer;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease-in;
+  -o-transition: opacity 0.3s ease-in;
+  transition: opacity 0.3s ease-in;
+}
+
+.construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group input,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group input {
+  padding: 0px 12px;
+  border-bottom: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  outline: none;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 8px;
+  line-height: 10px;
+  color: #37353F;
+  width: 100%;
+  background: transparent;
 }
 
 .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint label,
@@ -1432,6 +1689,7 @@ table {
 .construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint input {
   display: inline-block;
   padding: 10px 5px 5px;
+  padding-right: 20px;
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
@@ -1650,7 +1908,67 @@ table {
   }
 }
 
+@media screen and (max-width: 1200px) {
+  .construcot-container .centerbox .questions-box .question .answer.answer-scale label .digit {
+    width: 25px;
+    height: 25px;
+    min-width: 25px;
+    min-height: 25px;
+    line-height: 22px;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .construcot-container .rightside {
+    width: 200px;
+    min-width: 200px;
+  }
+  .construcot-container .centerbox {
+    width: calc(100% - 420px);
+  }
+  .page-content {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .construcot-container .centerbox .questions-box .question .answer {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .construcot-container .centerbox .questions-box .question {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .construcot-container .centerbox .questions-box .question .form-group, .construcot-container .centerbox .questions-box .question .form-group label {
+    font-size: 10px;
+  }
+  .construcot-container .centerbox .questions-box .question .name {
+    padding-right: 30px;
+  }
+}
+
 @media screen and (max-width: 768px) {
+  .construcot-container {
+    min-width: 700px;
+    width: auto;
+    background: #EEEFF3;
+  }
+  .page-content {
+    max-width: 100%;
+    width: auto;
+    overflow: auto;
+  }
+  .construcot-container .leftside {
+    width: 150px;
+    min-width: 150px;
+  }
+  .construcot-container .rightside {
+    width: 150px;
+    min-width: 150px;
+  }
+  .construcot-container .centerbox {
+    width: calc(100% - 320px);
+  }
   .page-content .box-wrapper .box-form {
     max-width: 100%;
     padding-left: 15px;
@@ -1666,6 +1984,21 @@ table {
 }
 
 @media screen and (max-width: 500px) {
+  .header .header-bottom .bottom-menu ul {
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .header .header-bottom .bottom-menu ul li a {
+    padding-bottom: 5px;
+    padding-top: 10px;
+    font-size: 10px;
+    line-height: 12px;
+  }
   .page-content,
   .header.sm-header {
     padding-left: 15px;

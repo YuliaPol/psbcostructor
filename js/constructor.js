@@ -77,6 +77,54 @@ jQuery(function ($) {
             }
         });
 
+        //add subpoints
+        $('.rightside').on('click', '.branching-btn', function(e){
+            var subPoints = $(this).next('.branching-list').children();
+            var prevNameInput = $(this).prev('.question_points').attr('id').split('_');
+            var questionId =  prevNameInput[1];
+            var questionPointsId =  prevNameInput[2];
+            var questionSubPointsId =  subPoints.length + 1;
+            var el = 
+            '<div class="branching-group">'
+            +'    <input type="text" name="subpoint_'+ questionId + '_' + questionPointsId +'_' + questionSubPointsId + '" id="subpoint_'+ questionId + '_' + questionPointsId +'_' + questionSubPointsId + '">'
+            +'    <div class="deleteSubPoint"></div>'
+            +'</div>';
+            $(this).next('.branching-list').append(el);
+            if(!$(this).hasClass('active')){
+                $(this).addClass('active');
+            }
+        });
+
+        //delete subpoints
+        $('.rightside').on('click', '.deleteSubPoint', function(e){
+            var parents = $(this).parents('.branching-list');
+            $(this).parents('.branching-group').remove();
+            var Subpoints = parents.children();
+            if(Subpoints.length>0){
+                Subpoints.each(function (index, subpoint) {
+                    var id = index + 1;
+                    var inputs = $(subpoint).find('input');
+                    inputs.each(function (index, input) {
+                        if($(input).attr('name')){
+                            prevId = $(input).attr('name').split("_");
+                            prevId[3] = id;
+                            newId = prevId.join('_');
+                            $(input).attr('name', newId);
+                        }
+                        if($(input).attr('id')){
+                            prevId = $(input).attr('id').split("_");
+                            prevId[3] = id;
+                            newId = prevId.join('_');
+                            $(input).attr('id', newId);
+                        }
+                    });
+                });
+            }
+            else {
+                parents.prev('.branching-btn').removeClass('active');
+            }
+        });
+
         //change points of question
         $('.rightside').on('change', '.question_number', function(e){
             var id = $(this).attr('name').split('_')[1];
@@ -278,8 +326,58 @@ jQuery(function ($) {
                     +'</div>';
                 }
                 else if (type === 'branching') {
-                    el ='branching'
-                    ;
+                    el =
+                    '<div class="question" data-optionid="'+ id +'">'
+                    +'    <div class="close-question"></div>'
+                    +'    <div class="name " id="questionName_'+ id +'">'
+                    +'        Вопрос'
+                    +'    </div>'
+                    +'    <div class="answer flex-50" id="questionAnswers_'+ id +'">'
+                    +'        <div class="form-group" id="questionformAnswer_'+ id +'_1">'
+                    +'            <input type="radio" name="questionAnswer_'+ id +'" id="questionAnswer_'+ id +'_1">'
+                    +'            <label id="questionpointsanswer_'+ id +'_1" for="questionAnswer_'+ id +'_1">Вариант ответа</label>'
+                    +'        </div>'
+                    +'        <div class="form-group" id="questionformAnswer_'+ id +'_2">'
+                    +'            <input type="radio" name="questionAnswer_'+ id +'" id="questionAnswer_'+ id +'_2">'
+                    +'            <label  id="questionpointsanswer_'+ id +'_2" for="questionAnswer_'+ id +'_2">Вариант ответа</label>'
+                    +'        </div>'
+                    +'    </div>'
+                    +'</div>';
+                    option =
+                    '<div class="optionbox" id="option_'+ id +'">'
+                    +'    <div class="header-aside">'
+                    +'        Настройки'
+                    +'    </div>'
+                    +'    <div class="text-aside">'
+                    +'        <div class="form-group">'
+                    +'            <label for="question_'+ id +'">Вопрос</label>'
+                    +'            <textarea class="question_name" name="question_'+ id +'" id="question_'+ id +'" placeholder="Введите вопрос"></textarea>'
+                    +'        </div>'
+                    +'        <div class="form-group spinner-wrapper">'
+                    +'            <label for="number_'+ id +'">Колличество пунктов </label>'
+                    +'            <input  class="question_number spinner" name="number_'+ id +'" id="number_'+ id +'" type="text" value="2">'
+                    +'        </div>'
+                    +'        <div class="form-group">'
+                    +'            <p>Варианты ответов</p>'
+                    +'            <div class="inputtables" id="inputtables_'+ id +'">'
+                    +'                <div class="questionPoint" id="questionPoint_'+ id +'_1">'
+                    +'                    <label for="inputPoint_'+ id +'_1">1</label>'
+                    +'                    <input class="question_points" name="inputPoint_'+ id +'_1" id="inputPoint_'+ id +'_1" type="text" placeholder="Вариант ответа">'
+                    +'                    <div class="branching-btn"></div>'
+                    +'                    <div class="branching-list">'
+                    +'                    </div>'
+                    +'                </div>'
+                    +'                <div class="questionPoint" id="questionPoint_'+ id +'_2">'
+                    +'                    <label for="inputPoint_'+ id +'_2">2</label>'
+                    +'                    <input class="question_points" name="inputPoint_'+ id +'_2" id="inputPoint_'+ id +'_2" type="text" placeholder="Вариант ответа">'
+                    +'                    <div class="branching-btn"></div>'
+                    +'                    <div class="branching-list">'
+                    +'                    </div>'
+                    +'                </div>'
+                    +'           </div>'
+                    +'        </div>'
+                    +'    </div>'
+                    +'</div>';
                 }
                 else if (type === "scale"){
                     el ='scale'

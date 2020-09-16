@@ -31,7 +31,7 @@ jQuery(function ($) {
         });
 
         $('.modal').click(function (e) {
-            if (!$(event.target).closest('.modal-content').length && !$(event.target).is('.modal-content')) {
+            if (!$(e.target).closest('.modal-content').length && !$(e.target).is('.modal-content')) {
                 $('.modal').fadeOut(300);
             }
         });

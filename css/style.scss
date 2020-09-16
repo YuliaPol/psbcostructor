@@ -4,6 +4,19 @@ $darkblue: #323242;
 $voilet: #563BC2;
 $blue: #4A52F7;
 
+
+$color0:#BA1417;
+$color1:#CD0800;
+$color2:#F40200;
+$color3:#FF4A05;
+$color4:#FF7500;
+$color5:#FFA400;
+$color6:#E7F600;
+$color7:#00E355;
+$color8:#00D086;
+$color9:#00AB23;
+$color10:#008811;
+
 @import url("../font/Montserrat/stylesheet.css");
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
@@ -478,7 +491,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                             }
                             &:last-child {
                                 padding-right: 40px;
-                                position: relative;
+                                // position: relative;
                             }
                             .user {
                                 display: inline-flex;
@@ -504,11 +517,11 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                 }
                             }
                             .edit-menu {
-                                position: relative;
                                 opacity: 0;
                                 transition: opacity 0.3s ease-in;
                                 position: absolute;
-                                top: 18px;
+                                // top: 18px;
+                                margin-top: -18px;
                                 right: 20px;
                                 &.active {
                                     .showhide {
@@ -859,6 +872,112 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                             }
                         }
                     }
+                    &.answer-scale {
+                        display: flex;
+                        justify-content: space-between;
+                        max-width: 1000px;
+                        margin: auto;
+                        padding-left: 0px;
+                        input[type='radio'] {
+                          opacity: 0;
+                          display: none;
+                        }
+                        label {
+                          cursor: pointer;
+                          outline: none;
+                          .digit {
+                            width: 37px;
+                            min-width: 37px;
+                            height: 37px;
+                            min-height: 37px;
+                            font-family: $fontpage;
+                            font-style: normal;
+                            font-weight: normal;
+                            font-size: 15px;
+                            line-height: 35px;
+                            color: #483D3D;
+                            text-align: center;
+                            border-radius: 50%;
+                            border: 2px solid #ffffff;
+                            transition: background 0.5s;
+                          }
+                          .color0{
+                            border: 2px solid $color0;
+                          }
+                          .color1{
+                           border: 2px solid $color1;
+                          }
+                          .color2{
+                            border: 2px solid $color2;
+                          }
+                          .color3{
+                            border: 2px solid $color3;
+                          }
+                          .color4{
+                            border: 2px solid $color4;
+                          }
+                          .color5{
+                            border: 2px solid $color5;
+                          }
+                          .color6{
+                            border: 2px solid $color6;
+                          }
+                          .color7{
+                            border: 2px solid $color7;
+                          }
+                          .color8{
+                            border: 2px solid $color8;
+                          }
+                          .color9{
+                            border: 2px solid $color9;
+                          }
+                          .color10{
+                            border: 2px solid $color10;
+                          }
+                          .error{
+                            background-color: #e60028;
+                          }
+                        }
+                        input[type='radio']:checked + label {
+                          .digit {
+                            color: #ffffff;
+                            font-weight: 500;
+                          }
+                          .color0{
+                            background-color: $color0;
+                          }
+                          .color1{
+                            background-color: $color1;
+                          }
+                          .color2{
+                            background-color: $color2;
+                          }
+                          .color3{
+                            background-color: $color3;
+                          }
+                          .color4{
+                            background-color:$color4;
+                          }
+                          .color5{
+                            background-color: $color5;
+                          }
+                          .color6{
+                            background-color: $color6;
+                          }
+                          .color7{
+                            background-color: $color7;
+                          }
+                          .color8{
+                            background-color: $color8;
+                          }
+                          .color9{
+                            background-color: $color9;
+                          }
+                          .color10{
+                            background-color: $color10;
+                          }
+                        }
+                    }
                 }
                 .form-group,
                 .form-group label {
@@ -1005,8 +1124,92 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                             border-top: 1px solid #EEEFF3;
                             border-left: 1px solid #EEEFF3;
                             border-right: 1px solid #EEEFF3;
+                            flex-wrap: wrap;
+                            position: relative;
                             &:last-child {
                                 border-bottom: 1px solid #EEEFF3;;
+                            }
+                            .branching-btn {
+                                position: absolute;
+                                top: 12px;
+                                right: 6px;
+                                width: 8px;
+                                height: 8px;
+                                background: url(./../img/branching.svg);
+                                background-size: contain;
+                                background-repeat: no-repeat;
+                                background-position: center;
+                                cursor: pointer;
+                                &.active,
+                                &:hover {
+                                    background: url(./../img/branching-active.svg);
+                                    background-size: contain;
+                                    background-repeat: no-repeat;
+                                    background-position: center;
+                                }
+                            }
+                            .branching-list {
+                                width: 100%;
+                                display: flex;
+                                flex-direction: column;
+                                align-items: flex-start;
+                                justify-content: center;
+                                padding-bottom: 5px;
+                                .branching-group {
+                                    width: calc(100% - 35px);
+                                    margin-left: 35px;
+                                    position: relative;
+                                    padding-bottom: 3px;
+                                    padding-top: 6px;
+                                    padding-right: 20px;
+                                    border-bottom: 1px solid #EEEFF3;
+                                    &::before {
+                                        content: "";
+                                        width: 4px;
+                                        height: 4px;
+                                        background: url(./../img/circle.svg);
+                                        background-position: center;
+                                        background-repeat: no-repeat;
+                                        background-size: contain;
+                                        position: absolute;
+                                        bottom: 7px;
+                                    }
+                                    &:hover {
+                                        .deleteSubPoint {
+                                            opacity: 1;
+                                        }
+                                    }
+                                    .deleteSubPoint {
+                                        position: absolute;
+                                        bottom: 5px;
+                                        right: 8px;
+                                        background: url(./../img/close-grey.svg);
+                                        background-repeat: no-repeat;
+                                        background-size: contain;
+                                        background-position: center;
+                                        width: 5px;
+                                        height: 5px;
+                                        cursor: pointer;
+                                        opacity: 0;
+                                        transition: opacity 0.3s ease-in;
+                                    }
+                                    input {
+                                        padding: 0px 12px;
+                                        border-bottom: none;
+                                        border-top: none;
+                                        border-left: none;
+                                        border-right: none;
+                                        outline: none;
+                                        font-family: $fontpage;
+                                        font-style: normal;
+                                        font-weight: 500;
+                                        font-size: 8px;
+                                        line-height: 10px;
+                                        color: #37353F;
+                                        width: 100%;
+                                        background: transparent;
+                                    }
+                                }
                             }
                             label {
                                 display: block;
@@ -1023,6 +1226,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                             input {
                                 display: inline-block;
                                 padding: 10px 5px 5px;
+                                padding-right: 20px;
                                 font-family: $fontpage;
                                 font-style: normal;
                                 font-weight: 500;
@@ -1199,7 +1403,65 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     }
 
 }
+@media screen and (max-width: 1200px) {
+    .construcot-container .centerbox .questions-box .question .answer.answer-scale label .digit {
+        width: 25px;
+        height: 25px;
+        min-width: 25px;
+        min-height: 25px;
+        line-height: 22px;
+        font-size: 12px;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .construcot-container .rightside {
+        width: 200px;
+        min-width: 200px;
+    }
+    .construcot-container .centerbox {
+        width: calc(100% - 420px);
+    }
+    .page-content {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .construcot-container .centerbox .questions-box .question .answer {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .construcot-container .centerbox .questions-box .question {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .construcot-container .centerbox .questions-box .question .form-group, .construcot-container .centerbox .questions-box .question .form-group label {
+        font-size: 10px;
+    }
+    .construcot-container .centerbox .questions-box .question .name {
+        padding-right: 30px;
+    }
+}
 @media screen and (max-width: 768px) {
+    .construcot-container {
+        min-width: 700px;
+        width: auto;
+        background: #EEEFF3;
+    }
+    .page-content {
+        max-width: 100%;
+        width: auto;
+        overflow: auto;
+    }
+    .construcot-container .leftside {
+        width: 150px;
+        min-width: 150px;
+    }
+    .construcot-container .rightside {
+        width: 150px;
+        min-width: 150px;
+    }
+    .construcot-container .centerbox {
+        width: calc(100% - 320px);
+    }
     .page-content .box-wrapper .box-form {
         max-width: 100%;
         padding-left: 15px;
@@ -1214,6 +1476,16 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     }
 }
 @media screen and (max-width: 500px) {
+    .header .header-bottom .bottom-menu ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .header .header-bottom .bottom-menu ul li a {
+        padding-bottom: 5px;
+        padding-top: 10px;
+        font-size: 10px;
+        line-height: 12px;
+    }
     .page-content,
     .header.sm-header {
         padding-left: 15px;
