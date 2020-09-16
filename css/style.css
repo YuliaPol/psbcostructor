@@ -1164,15 +1164,15 @@ table {
   padding-bottom: 10px;
 }
 
-.construcot-container .centerbox .filter-block .filter-list .filter-box .dropdownfilter .filter-group input[type=radio] {
+.construcot-container .centerbox .filter-block .filter-list .filter-box .dropdownfilter .filter-group input[type=checkbox] {
   display: none;
 }
 
-.construcot-container .centerbox .filter-block .filter-list .filter-box .dropdownfilter .filter-group input[type=radio]:checked + label::before {
+.construcot-container .centerbox .filter-block .filter-list .filter-box .dropdownfilter .filter-group input[type=checkbox]:checked + label::before {
   background: #563BC2;
 }
 
-.construcot-container .centerbox .filter-block .filter-list .filter-box .dropdownfilter .filter-group input[type=radio] + label::before {
+.construcot-container .centerbox .filter-block .filter-list .filter-box .dropdownfilter .filter-group input[type=checkbox] + label::before {
   content: "";
   display: inline-block;
   width: 8px;

@@ -50,11 +50,11 @@ jQuery(function ($) {
             }
         });
 
-        $('.filter-box').on('change', 'input[type=radio]', function(e){
-            if($(this).next('label').html()){
-                $(this).parents('.filter-box').find('.filter-name').html($(this).next('label').html());
-            }
-        });
+        // $('.filter-box').on('change', 'input[type=radio]', function(e){
+        //     if($(this).next('label').html()){
+        //         $(this).parents('.filter-box').find('.filter-name').html($(this).next('label').html());
+        //     }
+        // });
 
 
         //validation
