@@ -36,6 +36,27 @@ jQuery(function ($) {
             }
         });
 
+        //filter
+        $('.filter-box .filter-name').click(function(e){
+            if(!$(this).hasClass('active')){
+                $('.filter-box .filter-name').removeClass('active');
+                $('.dropdownfilter').fadeOut(300);
+                $(this).addClass('active');
+                $(this).next('.dropdownfilter').fadeIn(300);
+            }
+            else {
+                $(this).removeClass('active');
+                $(this).next('.dropdownfilter').fadeOut(300);
+            }
+        });
+
+        $('.filter-box').on('change', 'input[type=radio]', function(e){
+            if($(this).next('label').html()){
+                $(this).parents('.filter-box').find('.filter-name').html($(this).next('label').html());
+            }
+        });
+
+
         //validation
         var formValid = document.getElementsByClassName('form-valid')[0];
         $('.valid-form-send').click(function () {
