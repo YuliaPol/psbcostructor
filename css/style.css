@@ -1096,6 +1096,7 @@ table {
   background-repeat: no-repeat;
   right: 20px;
   top: 15px;
+  cursor: pointer;
 }
 
 .construcot-container .centerbox .questions-box .question::before {
@@ -1202,7 +1203,7 @@ table {
   color: #A4A2A2;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-scale {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1216,17 +1217,17 @@ table {
   padding-left: 0px;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-scale input[type='radio'] {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio'] {
   opacity: 0;
   display: none;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-scale label {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label {
   cursor: pointer;
   outline: none;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-scale label .digit {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .digit {
   width: 37px;
   min-width: 37px;
   height: 37px;
@@ -1245,101 +1246,488 @@ table {
   transition: background 0.5s;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-scale label .color0 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color0 {
   border: 2px solid #BA1417;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-scale label .color1 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color1 {
   border: 2px solid #CD0800;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-scale label .color2 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color2 {
   border: 2px solid #F40200;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-scale label .color3 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color3 {
   border: 2px solid #FF4A05;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-scale label .color4 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color4 {
   border: 2px solid #FF7500;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-scale label .color5 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color5 {
   border: 2px solid #FFA400;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-scale label .color6 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color6 {
   border: 2px solid #E7F600;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-scale label .color7 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color7 {
   border: 2px solid #00E355;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-scale label .color8 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color8 {
   border: 2px solid #00D086;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-scale label .color9 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color9 {
   border: 2px solid #00AB23;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-scale label .color10 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color10 {
   border: 2px solid #008811;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-scale label .error {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .error {
   background-color: #e60028;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-scale input[type='radio']:checked + label .digit {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .digit {
   color: #ffffff;
   font-weight: 500;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-scale input[type='radio']:checked + label .color0 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color0 {
   background-color: #BA1417;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-scale input[type='radio']:checked + label .color1 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color1 {
   background-color: #CD0800;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-scale input[type='radio']:checked + label .color2 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color2 {
   background-color: #F40200;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-scale input[type='radio']:checked + label .color3 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color3 {
   background-color: #FF4A05;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-scale input[type='radio']:checked + label .color4 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color4 {
   background-color: #FF7500;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-scale input[type='radio']:checked + label .color5 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color5 {
   background-color: #FFA400;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-scale input[type='radio']:checked + label .color6 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color6 {
   background-color: #E7F600;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-scale input[type='radio']:checked + label .color7 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color7 {
   background-color: #00E355;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-scale input[type='radio']:checked + label .color8 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color8 {
   background-color: #00D086;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-scale input[type='radio']:checked + label .color9 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color9 {
   background-color: #00AB23;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-scale input[type='radio']:checked + label .color10 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color10 {
   background-color: #008811;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  overflow: hidden;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -webkit-flex-direction: row-reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  position: relative;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating-0 {
+  -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input {
+  display: none;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  margin-top: auto;
+  background-image: url("./../img/star.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-background-size: 76% 76%;
+          background-size: 76%;
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
+  outline: none;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(20) {
+  background-image: url("./../img/star-1.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(18) {
+  background-image: url("./../img/star-2.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(16) {
+  background-image: url("./../img/star-3.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(14) {
+  background-image: url("./../img/star-4.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(12) {
+  background-image: url("./../img/star-5.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(10) {
+  background-image: url("./../img/star-6.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(8) {
+  background-image: url("./../img/star-7.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(6) {
+  background-image: url("./../img/star-8.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(4) {
+  background-image: url("./../img/star-9.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(2) {
+  background-image: url("./../img/star-10.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label,
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label {
+  background-image: url("./../img/star-active.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label:nth-child(20),
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(20) {
+  background-image: url("./../img/star-a-1.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label:nth-child(18),
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(18) {
+  background-image: url("./../img/star-a-2.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label:nth-child(16),
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(16) {
+  background-image: url("./../img/star-a-3.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label:nth-child(14),
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(14) {
+  background-image: url("./../img/star-a-4.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label:nth-child(12),
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(12) {
+  background-image: url("./../img/star-a-5.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label:nth-child(10),
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(10) {
+  background-image: url("./../img/star-a-6.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label:nth-child(8),
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(8) {
+  background-image: url("./../img/star-a-7.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label:nth-child(6),
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(6) {
+  background-image: url("./../img/star-a-8.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label:nth-child(4),
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(4) {
+  background-image: url("./../img/star-a-9.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label:nth-child(2),
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(2) {
+  background-image: url("./../img/star-a-10.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover,
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label {
+  background-image: url("./..//img/star-hover.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(20),
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(20) {
+  background-image: url("./../img/star-a-1.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(18),
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(18) {
+  background-image: url("./../img/star-a-2.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(16),
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(16) {
+  background-image: url("./../img/star-a-3.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(14),
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(14) {
+  background-image: url("./../img/star-a-4.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(12),
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(12) {
+  background-image: url("./../img/star-a-5.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(10),
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(10) {
+  background-image: url("./../img/star-a-6.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(8),
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(8) {
+  background-image: url("./../img/star-a-7.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(6),
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(6) {
+  background-image: url("./../img/star-a-8.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(4),
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(4) {
+  background-image: url("./../img/star-a-9.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(2),
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(2) {
+  background-image: url("./../img/star-a-10.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-star5 .rating, .construcot-container .centerbox .questions-box .question .answer.answer-star10 .rating {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  overflow: hidden;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -webkit-flex-direction: row-reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  position: relative;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-star5 .rating-0, .construcot-container .centerbox .questions-box .question .answer.answer-star10 .rating-0 {
+  -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-star5 .rating > input, .construcot-container .centerbox .questions-box .question .answer.answer-star10 .rating > input {
+  display: none;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-star5 .rating > label, .construcot-container .centerbox .questions-box .question .answer.answer-star10 .rating > label {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  margin-top: auto;
+  background-image: url("./../img/star.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-background-size: 76% 76%;
+          background-size: 76%;
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
+  outline: none;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-star5 .rating > input:checked ~ label,
+.construcot-container .centerbox .questions-box .question .answer.answer-star5 .rating > input:checked ~ label ~ label, .construcot-container .centerbox .questions-box .question .answer.answer-star10 .rating > input:checked ~ label,
+.construcot-container .centerbox .questions-box .question .answer.answer-star10 .rating > input:checked ~ label ~ label {
+  background-image: url("./../img/star-active.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-star5 .rating > input:not(:checked) ~ label:hover,
+.construcot-container .centerbox .questions-box .question .answer.answer-star5 .rating > input:not(:checked) ~ label:hover ~ label, .construcot-container .centerbox .questions-box .question .answer.answer-star10 .rating > input:not(:checked) ~ label:hover,
+.construcot-container .centerbox .questions-box .question .answer.answer-star10 .rating > input:not(:checked) ~ label:hover ~ label {
+  background-image: url("./..//img/star-hover.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont {
+  max-width: 20%;
+  width: 20%;
+  padding: 5px;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont input[type=radio] {
+  display: none;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont label {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont label .number {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 22px;
+  width: 35px;
+  height: 35px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-content: center;
+      -ms-flex-line-pack: center;
+          align-content: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  padding: 5px;
+  -webkit-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont label .text {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  color: #4D4D4D;
+  padding-top: 10px;
+  max-width: 220px;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(1) input[type=radio]:checked + label .number {
+  border-color: #CD0800;
+  color: #ffffff;
+  background-color: #CD0800;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(1) label .number {
+  border-color: #CD0800;
+  color: #CD0800;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(2) input[type=radio]:checked + label .number {
+  border-color: #FFA400;
+  color: #ffffff;
+  background-color: #FFA400;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(2) label .number {
+  border-color: #FFA400;
+  color: #FFA400;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(3) input[type=radio]:checked + label .number {
+  border-color: #E7F600;
+  color: #ffffff;
+  background-color: #E7F600;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(3) label .number {
+  border-color: #E7F600;
+  color: #E7F600;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(4) input[type=radio]:checked + label .number {
+  border-color: #00E355;
+  color: #ffffff;
+  background-color: #00E355;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(4) label .number {
+  border-color: #00E355;
+  color: #00E355;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(5) input[type=radio]:checked + label .number {
+  border-color: #008811;
+  color: #ffffff;
+  background-color: #008811;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(5) label .number {
+  border-color: #008811;
+  color: #008811;
 }
 
 .construcot-container .centerbox .questions-box .question .form-group,
@@ -1441,6 +1829,315 @@ table {
   line-height: 12px;
   color: #563BC2;
   padding: 10px;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option,
+.construcot-container .rightside .optionbox .text-aside .scale-option {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option p,
+.construcot-container .rightside .optionbox .text-aside .scale-option p {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #563BC2;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option .scalelabel,
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel {
+  width: 100%;
+  padding: 10px;
+  display: inline-block;
+  position: relative;
+  -webkit-transition: background 0.3s ease-in;
+  -o-transition: background 0.3s ease-in;
+  transition: background 0.3s ease-in;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option .scalelabel::before,
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel::before {
+  content: "";
+  background: #4449DB;
+  border-radius: 0px 2px 2px 0px;
+  width: 5px;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease-in;
+  -o-transition: opacity 0.3s ease-in;
+  transition: opacity 0.3s ease-in;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option .scalelabel .colorstars,
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .colorstars {
+  background: url(./../img/colorstar.svg);
+  background-position-x: left;
+  background-position-y: center;
+  background-repeat: no-repeat;
+  height: 20px;
+  -webkit-background-size: contain;
+          background-size: contain;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option .scalelabel .stars5,
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .stars5 {
+  background: url(./../img/star5.svg);
+  background-position-x: left;
+  background-position-y: center;
+  background-repeat: no-repeat;
+  height: 20px;
+  -webkit-background-size: contain;
+          background-size: contain;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option .scalelabel .stars10,
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .stars10 {
+  background: url(./../img/star10.svg);
+  background-position-x: left;
+  background-position-y: center;
+  background-repeat: no-repeat;
+  height: 20px;
+  -webkit-background-size: contain;
+          background-size: contain;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings10,
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings10 {
+  background: url(./../img/ratings10.svg);
+  background-position-x: left;
+  background-position-y: center;
+  background-repeat: no-repeat;
+  height: 30px;
+  -webkit-background-size: contain;
+          background-size: contain;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .circles,
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .circles {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  max-width: 100px;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .circles .cirle,
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .circles .cirle {
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 8px;
+  color: #483D3D;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(1),
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(1) {
+  border: 1px solid #CD0800;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(2),
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(2) {
+  border: 1px solid #FFA400;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(3),
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(3) {
+  border: 1px solid #E7F600;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(4),
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(4) {
+  border: 1px solid #00E355;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(5),
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(5) {
+  border: 1px solid #008811;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .ratinstables,
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables {
+  padding-left: 30px;
+  padding-top: 10px;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group,
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group {
+  padding-bottom: 5px;
+  padding-top: 5px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-bottom: 1px solid #EEEFF3;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(1) .circle,
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(1) .circle {
+  border: 1px solid #CD0800;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(2) .circle,
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(2) .circle {
+  border: 1px solid #FFA400;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(3) .circle,
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(3) .circle {
+  border: 1px solid #E7F600;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(4) .circle,
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(4) .circle {
+  border: 1px solid #00E355;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(5) .circle,
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(5) .circle {
+  border: 1px solid #008811;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group .circle,
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group .circle {
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 8px;
+  color: #483D3D;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-right: 5px;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input,
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input {
+  width: calc(100% - 20px);
+  border: none;
+  outline: none;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #37353F;
+  background: transparent;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input::-webkit-input-placeholder,
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input::-webkit-input-placeholder {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #A4A2A2;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input::-moz-placeholder,
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input::-moz-placeholder {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #A4A2A2;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input:-ms-input-placeholder,
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input:-ms-input-placeholder {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #A4A2A2;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input::-ms-input-placeholder,
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input::-ms-input-placeholder {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #A4A2A2;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input::placeholder,
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input::placeholder {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #A4A2A2;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option input[type='radio'],
+.construcot-container .rightside .optionbox .text-aside .scale-option input[type='radio'] {
+  display: none;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option input[type='radio']:checked + label,
+.construcot-container .rightside .optionbox .text-aside .scale-option input[type='radio']:checked + label {
+  background: #F9F9F9;
+}
+
+.construcot-container .rightside .default .text-aside .scale-option input[type='radio']:checked + label::before,
+.construcot-container .rightside .optionbox .text-aside .scale-option input[type='radio']:checked + label::before {
+  opacity: 1;
 }
 
 .construcot-container .rightside .default .text-aside .spinner-wrapper .ui-spinner,
@@ -1637,15 +2334,15 @@ table {
 .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group .deleteSubPoint,
 .construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group .deleteSubPoint {
   position: absolute;
-  bottom: 5px;
+  bottom: 3px;
   right: 8px;
   background: url(./../img/close-grey.svg);
   background-repeat: no-repeat;
   -webkit-background-size: contain;
           background-size: contain;
   background-position: center;
-  width: 5px;
-  height: 5px;
+  width: 8px;
+  height: 8px;
   cursor: pointer;
   opacity: 0;
   -webkit-transition: opacity 0.3s ease-in;
@@ -1897,7 +2594,8 @@ table {
   .construcot-container .rightside .default .text-aside .form-group textarea, .construcot-container .rightside .optionbox .text-aside .form-group textarea,
   .construcot-container .rightside .default .text-aside .spinner-wrapper .ui-spinner-input, .construcot-container .rightside .optionbox .text-aside .spinner-wrapper .ui-spinner-input,
   .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint input, .construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint input,
-  .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint label, .construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint label {
+  .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint label, .construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint label,
+  .construcot-container .rightside .optionbox .text-aside .scale-option p {
     font-size: 12px;
     line-height: 14px;
   }
