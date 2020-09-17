@@ -50,6 +50,17 @@ jQuery(function ($) {
             }
         });
 
+        $(document).mouseup(function (e){
+            var div = $('.filter-box .filter-name'); 
+            var div2 = $('.filter-box .dropdownfilter'); 
+            var div3 = $('.filter-box .filter-group'); 
+            var div4 = $('.filter-box label'); 
+            if (!div.is(e.target) && !div2.is(e.target) && !div3.is(e.target) && !div4.is(e.target)) {
+                $('.filter-box .filter-name').removeClass('active');
+                $('.dropdownfilter').fadeOut(300);
+            }
+        });
+
         // $('.filter-box').on('change', 'input[type=radio]', function(e){
         //     if($(this).next('label').html()){
         //         $(this).parents('.filter-box').find('.filter-name').html($(this).next('label').html());

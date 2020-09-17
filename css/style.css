@@ -633,10 +633,11 @@ table {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
 }
 
 .page-content .content-wrapper .table-wrapper table tbody tr td .user .user-icon {
@@ -645,10 +646,12 @@ table {
 }
 
 .page-content .content-wrapper .table-wrapper table tbody tr td .user .user-icon img {
+  width: 100%;
+  height: 100%;
   max-width: 100%;
   border-radius: 50%;
-  -o-object-fit: contain;
-     object-fit: contain;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .page-content .content-wrapper .table-wrapper table tbody tr td .user .name {
@@ -659,6 +662,7 @@ table {
   font-size: 12px;
   line-height: 15px;
   color: #563BC2;
+  width: calc(100% - 27px);
 }
 
 .page-content .content-wrapper .table-wrapper table tbody tr td .edit-menu {
@@ -943,6 +947,10 @@ table {
   display: none;
 }
 
+.page-content .box-wrapper .box-form .realfileinput {
+  display: none;
+}
+
 .page-content .box-wrapper .box-form .dropzone-file {
   width: 100%;
   height: 180px;
@@ -955,7 +963,23 @@ table {
   position: relative;
 }
 
-.page-content .box-wrapper .box-form .dropzone-file .dz-image-preview {
+.page-content .box-wrapper .box-form .dropzone-file .preview-picture {
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease-in;
+  -o-transition: opacity 0.3s ease-in;
+  transition: opacity 0.3s ease-in;
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+          background-size: contain;
+}
+
+.page-content .box-wrapper .box-form .dropzone-file .preview-picture.active {
+  opacity: 1;
+}
+
+.page-content .box-wrapper .box-form .dropzone-file .dz-image-preview,
+.page-content .box-wrapper .box-form .dropzone-file .preview-picture {
   position: absolute;
   top: 0px;
   left: 0px;
@@ -966,14 +990,15 @@ table {
   z-index: 100;
 }
 
-.page-content .box-wrapper .box-form .dropzone-file .dz-image-preview img {
+.page-content .box-wrapper .box-form .dropzone-file .dz-image-preview img,
+.page-content .box-wrapper .box-form .dropzone-file .preview-picture img {
   width: 100%;
   height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
 }
 
-.page-content .box-wrapper .box-form .dropzone-file .dz-button {
+.page-content .box-wrapper .box-form .dropzone-file .file-btn {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -1849,6 +1874,91 @@ table {
   color: #008811;
 }
 
+.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block {
+  padding: 8px 10px;
+  position: relative;
+  background: #FFFFFF;
+  margin-bottom: 10px;
+}
+
+.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block.active .dropdown-arrow {
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+       -o-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block .dropdown-arrow {
+  position: absolute;
+  background-image: url(./../img/arrow-dropdown.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+          background-size: contain;
+  width: 16px;
+  height: 8px;
+  right: 14px;
+  top: 11px;
+  -webkit-transition: -webkit-transform 0.3s ease-in;
+  transition: -webkit-transform 0.3s ease-in;
+  -o-transition: -o-transform 0.3s ease-in;
+  transition: transform 0.3s ease-in;
+  transition: transform 0.3s ease-in, -webkit-transform 0.3s ease-in, -o-transform 0.3s ease-in;
+}
+
+.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block .question-name {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 18px;
+  color: #37353F;
+  padding-right: 20px;
+  padding-bottom: 5px;
+}
+
+.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block .dropdown-content {
+  display: none;
+  padding-left: 15px;
+}
+
+.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block .dropdown-content .input-group {
+  padding-bottom: 6px;
+}
+
+.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block .dropdown-content .input-group input[type=checkbox],
+.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block .dropdown-content .input-group input[type=radio] {
+  display: none;
+}
+
+.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block .dropdown-content .input-group input[type=checkbox]:checked + label::before,
+.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block .dropdown-content .input-group input[type=radio]:checked + label::before {
+  background: #563BC2;
+}
+
+.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block .dropdown-content .input-group input[type=checkbox] + label::before,
+.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block .dropdown-content .input-group input[type=radio] + label::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border: 0.5px solid #563BC2;
+  border-radius: 50%;
+  margin-right: 5px;
+  -webkit-transition: background 0.3s ease-in;
+  -o-transition: background 0.3s ease-in;
+  transition: background 0.3s ease-in;
+}
+
+.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block .dropdown-content .input-group label {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #37353F;
+}
+
 .construcot-container .centerbox .questions-box .question .form-group,
 .construcot-container .centerbox .questions-box .question .form-group label {
   font-family: "Montserrat";
@@ -1948,6 +2058,272 @@ table {
   line-height: 12px;
   color: #563BC2;
   padding: 10px;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .top-row,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .top-row {
+  position: relative;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .top-row .namelabel,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .top-row .namelabel {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #563BC2;
+  padding-right: 15px;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .top-row .add-dropdown,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .top-row .add-dropdown {
+  position: absolute;
+  top: calc(50% - 4px);
+  right: 0px;
+  width: 8px;
+  height: 8px;
+  background-image: url(./../img/plus.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group {
+  padding-top: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  position: relative;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .adddropdownsubpoints,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .adddropdownsubpoints {
+  width: 8px;
+  height: 8px;
+  background: url(./../img/grey-plus.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  right: 25px;
+  bottom: 5px;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .arrowshow,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .arrowshow {
+  width: 10px;
+  height: 6px;
+  background: url(./../img/arrow-dropdown.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  -webkit-transition: -webkit-transform 0.3s ease-in;
+  transition: -webkit-transform 0.3s ease-in;
+  -o-transition: -o-transform 0.3s ease-in;
+  transition: transform 0.3s ease-in;
+  transition: transform 0.3s ease-in, -webkit-transform 0.3s ease-in, -o-transform 0.3s ease-in;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .arrowshow.active,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .arrowshow.active {
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+       -o-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables {
+  border: 1px solid #EEEFF3;
+  padding: 8px;
+  padding-bottom: 15px;
+  width: calc(100% - 15px);
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 8px;
+  line-height: 10px;
+  color: #37353F;
+  outline: none;
+  border: none;
+  width: 100%;
+  resize: none;
+  padding-right: 15px;
+  min-height: 20px;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-input-placeholder,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-input-placeholder {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 10px;
+  line-height: 12px;
+  color: #A4A2A2;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-moz-placeholder,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-moz-placeholder {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 10px;
+  line-height: 12px;
+  color: #A4A2A2;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question:-ms-input-placeholder,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question:-ms-input-placeholder {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 10px;
+  line-height: 12px;
+  color: #A4A2A2;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-ms-input-placeholder,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-ms-input-placeholder {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 10px;
+  line-height: 12px;
+  color: #A4A2A2;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question::placeholder,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::placeholder {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 10px;
+  line-height: 12px;
+  color: #A4A2A2;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar-track,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar-track {
+  width: 0px;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar {
+  width: 0px;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar-thumb,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar-thumb {
+  width: 0px;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-list,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-list {
+  width: 100%;
+  padding-bottom: 5px;
+  display: none;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group {
+  width: calc(100% - 35px);
+  margin-left: 35px;
+  position: relative;
+  padding-bottom: 3px;
+  padding-top: 6px;
+  padding-right: 20px;
+  border-bottom: 1px solid #EEEFF3;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group::before,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group::before {
+  content: "";
+  width: 4px;
+  height: 4px;
+  background: url(./../img/circle.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+          background-size: contain;
+  position: absolute;
+  bottom: 7px;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group:hover .removedropdownsub,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group:hover .removedropdownsub {
+  opacity: 1;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group .removedropdownsub,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group .removedropdownsub {
+  position: absolute;
+  bottom: 3px;
+  right: 8px;
+  background: url(./../img/minus-grey.svg);
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-position: center;
+  width: 8px;
+  height: 8px;
+  cursor: pointer;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease-in;
+  -o-transition: opacity 0.3s ease-in;
+  transition: opacity 0.3s ease-in;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group input,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group input {
+  padding: 0px 12px;
+  border-bottom: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  outline: none;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 8px;
+  line-height: 10px;
+  color: #37353F;
+  width: 100%;
+  background: transparent;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .remove-dropdown,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .remove-dropdown {
+  width: 8px;
+  height: 8px;
+  background-image: url(./../img/minus.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
 }
 
 .construcot-container .rightside .default .text-aside .scale-option,
@@ -2737,6 +3113,57 @@ table {
 }
 
 @media screen and (max-width: 1000px) {
+  .construcot-container .centerbox .filter-block .filter-list .filter-box {
+    padding-top: 10px;
+  }
+  .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(1) {
+    z-index: 120;
+  }
+  .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(2) {
+    z-index: 121;
+  }
+  .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(3) {
+    z-index: 122;
+  }
+  .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(4) {
+    z-index: 123;
+  }
+  .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(5) {
+    z-index: 124;
+  }
+  .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(6) {
+    z-index: 125;
+  }
+  .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(7) {
+    z-index: 126;
+  }
+  .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(8) {
+    z-index: 127;
+  }
+  .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(9) {
+    z-index: 128;
+  }
+  .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(10) {
+    z-index: 129;
+  }
+  .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(11) {
+    z-index: 130;
+  }
+  .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(12) {
+    z-index: 131;
+  }
+  .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(13) {
+    z-index: 132;
+  }
+  .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(14) {
+    z-index: 133;
+  }
+  .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(15) {
+    z-index: 134;
+  }
+  .construcot-container .centerbox .filter-block .filter-list .filter-box .dropdownfilter {
+    top: 38px;
+  }
   .construcot-container .rightside {
     width: 200px;
     min-width: 200px;
