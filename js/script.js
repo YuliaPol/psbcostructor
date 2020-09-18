@@ -9,8 +9,7 @@ jQuery(function ($) {
                 $('.dropdown-user').fadeIn(300)
             }
         });
-
-        $('.edit-menu .showhide').click( function(e){
+        $('.page-content').on('click', '.edit-menu .showhide', function(e){
             if(!$(this).parents('.edit-menu').hasClass('active')){
                 $(this).parents('.edit-menu').addClass('active');
                 $(this).parents('.edit-menu').find('.dropdownmenu').fadeIn(300);

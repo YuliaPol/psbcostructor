@@ -108,8 +108,129 @@
                 </ul>
             </aside>
             <div class="centerbox">
+                <div class="filter-block">
+                    <form action="#">
+                        <div class="filter-list">
+                            <div class="filter-box">
+                                <div class="filter-name">
+                                    Пол
+                                </div>
+                                <div class="dropdownfilter">
+                                    <div class="filter-group">
+                                        <input type="checkbox" name="filter_1" id="filter_1_1">
+                                        <label for="filter_1_1">Мужской</label>
+                                    </div>
+                                    <div class="filter-group">
+                                        <input type="checkbox" name="filter_2" id="filter_1_2">
+                                        <label for="filter_1_2">Женский</label>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="filter-box">
+                                <div class="filter-name">
+                                    Возраст 
+                                </div>
+                                <div class="dropdownfilter">
+                                    <div class="filter-group">
+                                        <input type="checkbox" name="filter_3" id="filter_2_1">
+                                        <label for="filter_2_1">18-25 лет</label>
+                                    </div>
+                                    <div class="filter-group">
+                                        <input type="checkbox" name="filter_4" id="filter_2_2">
+                                        <label for="filter_2_2">25-35 лет</label>
+                                    </div>
+                                    <div class="filter-group">
+                                        <input type="checkbox" name="filter_5" id="filter_2_3">
+                                        <label for="filter_2_3">35-45 лет</label>
+                                    </div>
+                                    <div class="filter-group">
+                                        <input type="checkbox" name="filter_6" id="filter_2_4">
+                                        <label for="filter_2_4">45-60 лет</label>
+                                    </div>
+                                    <div class="filter-group">
+                                        <input type="checkbox" name="filter_7" id="filter_2_5">
+                                        <label for="filter_2_5">Старше 60 лет </label>
+                                    </div>
+                                </div>
+                            </div>
+    
+    
+                            <div class="filter-box">
+                                <div class="filter-name">
+                                    ГЕО 
+                                </div>
+                                <div class="dropdownfilter">
+                                    <div class="filter-group">
+                                        <input type="checkbox" name="filter_8" id="filter_3_1">
+                                        <label for="filter_3_1">Украина</label>
+                                    </div>
+                                    <div class="filter-group">
+                                        <input type="checkbox" name="filter_9" id="filter_3_2">
+                                        <label for="filter_3_2">Россия</label>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="filter-box">
+                                <div class="filter-name">
+                                    Город 
+                                </div>
+                                <div class="dropdownfilter">
+                                    <div class="filter-group">
+                                        <input type="checkbox" name="filter_10" id="filter_4_1">
+                                        <label for="filter_4_1">Москва</label>
+                                    </div>
+                                    <div class="filter-group">
+                                        <input type="checkbox" name="filter_11" id="filter_4_2">
+                                        <label for="filter_4_2">Санкт-Петербург</label>
+                                    </div>
+                                </div>
+                            </div>
+    
+                        </div>
+                </div>
                 <!-- data-count - summary of question -->
-                <div class="questions-box" data-count="0">
+                <div class="questions-box" data-count="1">
+                    <div class="question" data-optionid="1">
+                        <div class="close-question"></div>
+                        <div class="answer" id="questionanswers_1">
+                            <div class="dropdown-list">
+                                <div class="dropdown-block">
+                                    <div class="dropdown-arrow"></div>
+                                    <div class="question-name">
+                                        Как Вы оцените работу нашего банка?
+                                    </div>
+                                    <div class="dropdown-content">
+                                    </div>
+                                </div>
+                                <div class="dropdown-block">
+                                    <div class="dropdown-arrow"></div>
+                                    <div class="question-name">
+                                        Какие специальные предложения от застройщиков  Вас заинтересовали?
+                                    </div>
+                                    <div class="dropdown-content">
+                                        <div class="input-group">
+                                            <input type="checkbox" name="questionanswers_1_2" id="questionanswers_1_2_1" value="ЖК RED7">
+                                            <label for="questionanswers_1_2_1">ЖК RED7</label>
+                                        </div>
+                                        <div class="input-group">
+                                            <input type="checkbox" name="questionanswers_1_2" id="questionanswers_1_2_2" value="ЖК MainStreet">
+                                            <label for="questionanswers_1_2_2">ЖК MainStreet</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dropdown-block">
+                                    <div class="dropdown-arrow"></div>
+                                    <div class="question-name">
+                                        Выберите лучший вариант
+                                    </div>
+                                    <div class="dropdown-content">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <aside class="rightside">
@@ -124,6 +245,74 @@
                             </div>
                         </div>
                         <div class="eloptions">
+                            <div class="optionbox" id="option_1">
+                                <input type="hidden" name="questiontype_1" value="dropdownmultiple" >
+                                <input type="hidden"  class="orderinput" name="questionorder_1" value="1" >
+                                <div class="header-aside">
+                                    Настройки
+                                </div>
+                                <div class="text-aside ">
+                                    <div class="dropdown-options">
+                                        <div class="multityperow">
+                                            <div class="namelabel">
+                                                Множественный выбор
+                                            </div>
+                                            <label class="switch" for="dropdownmultiple_1">
+                                                <input type="checkbox" class="dropdownmultiple" name="dropdownmultiple_1" id="dropdownmultiple_1" checked="">
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                        <div class="top-row">
+                                            <div class="namelabel">Вопросы</div>
+                                            <div class="add-dropdown"></div>
+                                        </div>
+                                        <div class="optionsdropdownlist">
+                                            <div class="option-group">
+                                                <div class="inputstables">
+                                                    <textarea class="dropdown-question" name="inputpoint_1_1" id="inputpoint_1_1">Как Вы оцените работу нашего банка?</textarea>
+                                                    <div class="dropdown-list">
+                                                        <div class="dropdown-group">
+                                                            <input type="text" name="subpoint_1_1_1" id="subpoint_1_1_1" placeholder="Введите текст">
+                                                            <div class="removedropdownsub"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="adddropdownsubpoints"></div>
+                                                <div class="remove-dropdown"></div>
+                                                <div class="arrowshow"></div>
+                                            </div>
+                                            <div class="option-group">
+                                                <div class="inputstables">
+                                                    <textarea class="dropdown-question" name="inputpoint_1_2" id="inputpoint_1_2">Какие специальные предложения от застройщиков Вас заинтересовало?</textarea>
+                                                    <div class="dropdown-list">
+                                                        <div class="dropdown-group">
+                                                            <input type="text" name="subpoint_1_2_1" id="subpoint_1_2_1" placeholder="Введите текст" value="ЖК RED7">
+                                                            <div class="removedropdownsub"></div>
+                                                        </div>
+                                                        <div class="dropdown-group">
+                                                            <input type="text" name="subpoint_1_2_2" id="subpoint_1_2_2" placeholder="Введите текст" value="ЖК MainStreet">
+                                                            <div class="removedropdownsub"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="adddropdownsubpoints"></div>
+                                                <div class="remove-dropdown"></div>
+                                                <div class="arrowshow"></div>
+                                            </div>
+                                            <div class="option-group">
+                                                <div class="inputstables">
+                                                    <textarea class="dropdown-question" name="inputpoint_1_3" id="inputpoint_1_3">Как Вы оцените работу нашего банка?</textarea>
+                                                    <div class="dropdown-list">
+                                                    </div>
+                                                </div>
+                                                <div class="adddropdownsubpoints"></div>
+                                                <div class="remove-dropdown"></div>
+                                                <div class="arrowshow"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="btn-wrapper">

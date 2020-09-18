@@ -63,6 +63,20 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     border-spacing: 0; }
 * {
     box-sizing: border-box;
+    &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #F5F5F5;
+    }
+    &::-webkit-scrollbar {
+        width: 5px;
+        background-color: #F5F5F5;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 0px 2px 2px 0px;
+        box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #4449DB;
+    }
 }
 .header {
     padding: 25px 30px;
@@ -581,7 +595,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                     display: none;
                                     position: absolute;
                                     z-index: 100;
-                                    width: 115px;
+                                    width: 130px;
                                     padding: 10px;
                                     background: #FFFFFF;
                                     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
@@ -774,7 +788,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     align-items: flex-start;
     justify-content: space-between;
     padding-top: 20px;
-    padding-bottom: 35px;
+    height: calc(100vh - 145px);
     width: 100%;
     .leftside {
         width: 200px;
@@ -905,7 +919,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
         }
         .questions-box {
             width: 100%;
-            min-height: 100%;
+            min-height: calc(100% - 104px);
             .question {
                 padding: 15px 20px;
                 position: relative;
@@ -1526,6 +1540,21 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                             background-size: contain;
                             background-repeat: no-repeat;
                             cursor: pointer;
+                        }
+                    }
+                    .multityperow {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding-bottom: 15px;
+                        .namelabel {
+                            width: calc(100% - 25px);
+                            font-family: $fontpage;
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 10px;
+                            line-height: 12px;
+                            color: $fontcolor;
                         }
                     }
                     .option-group {
