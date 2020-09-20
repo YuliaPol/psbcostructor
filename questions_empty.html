@@ -59,267 +59,168 @@
         </div>
     </header>
     <div class="page-content">
-        <div class="construcot-container">
-            <aside class="leftside">
-                <ul class="listbox">
-                    <li class="icon icon-single" data-type="single">
-                        Выбор из списка
-                    </li>
-                    <li class="icon icon-free" data-type="free">
-                        Свободный ответ
-                    </li>
-                    <li class="icon icon-listfree" data-type="listfree">
-                        Група свободных ответов
-                    </li>
-                    <li class="icon icon-branching" data-type="branching">
-                        Ветвление ответа
-                    </li>
-                    <li class="grey-line"></li>
-                    <li class="icon icon-scale" data-type="scale">
-                        Шкала оценок
-                    </li>
-                    <li class="icon icon-dropdown" data-type="dropdown">
-                        Выпадающий список
-                    </li>
-                    <li class="icon icon-dropdownmt" data-type="dropdownmt">
-                        Множ. выпадающий список
-                    </li>
-                    <li class="icon icon-matrix" data-type="matrix">
-                        Матрица
-                    </li>
-                    <li class="icon icon-ranging" data-type="ranging">
-                        Ранжирование
-                    </li>
-                    <li class="icon icon-name" data-type="name">
-                        ФИО
-                    </li>
-                    <li class="icon icon-date" data-type="date">
-                        Дата
-                    </li>
-                    <li class="icon icon-email" data-type="email">
-                        E-mail
-                    </li>
-                    <li class="icon icon-phone" data-type="phone">
-                        Номер телефона
-                    </li>
-                    <li class="icon icon-file" data-type="file">
-                        Загрузить файл
-                    </li>
-                </ul>
-            </aside>
-            <div class="centerbox">
-                <div class="filter-block">
-                    <form action="#">
-                        <div class="filter-list">
-                            <div class="filter-box">
-                                <div class="filter-name">
-                                    Пол
-                                </div>
-                                <div class="dropdownfilter">
-                                    <div class="filter-group">
-                                        <input type="checkbox" name="filter_1" id="filter_1_1">
-                                        <label for="filter_1_1">Мужской</label>
+        <form action="#">
+            <table>
+                <div class="construcot-container">
+                    <aside class="leftside">
+                        <ul class="listbox">
+                            <li class="icon icon-single" data-type="single">
+                                Выбор из списка
+                            </li>
+                            <li class="icon icon-free" data-type="free">
+                                Свободный ответ
+                            </li>
+                            <li class="icon icon-listfree" data-type="listfree">
+                                Група свободных ответов
+                            </li>
+                            <li class="icon icon-branching" data-type="branching">
+                                Ветвление ответа
+                            </li>
+                            <li class="grey-line"></li>
+                            <li class="icon icon-scale" data-type="scale">
+                                Шкала оценок
+                            </li>
+                            <li class="icon icon-dropdown" data-type="dropdown">
+                                Выпадающий список
+                            </li>
+                            <li class="icon icon-dropdownmt" data-type="dropdownmt">
+                                Множ. выпадающий список
+                            </li>
+                            <li class="icon icon-matrix" data-type="matrix">
+                                Матрица
+                            </li>
+                            <li class="icon icon-ranging" data-type="ranging">
+                                Ранжирование
+                            </li>
+                            <li class="icon icon-name" data-type="name">
+                                ФИО
+                            </li>
+                            <li class="icon icon-date" data-type="date">
+                                Дата
+                            </li>
+                            <li class="icon icon-email" data-type="email">
+                                E-mail
+                            </li>
+                            <li class="icon icon-phone" data-type="phone">
+                                Номер телефона
+                            </li>
+                            <li class="icon icon-file" data-type="file">
+                                Загрузить файл
+                            </li>
+                        </ul>
+                    </aside>
+                    <div class="centerbox">
+                        <div class="filter-block">
+                            <div class="filter-list">
+                                <div class="filter-box">
+                                    <div class="filter-name">
+                                        Пол
                                     </div>
-                                    <div class="filter-group">
-                                        <input type="checkbox" name="filter_2" id="filter_1_2">
-                                        <label for="filter_1_2">Женский</label>
+                                    <div class="dropdownfilter">
+                                        <div class="filter-group">
+                                            <input type="checkbox" name="filter_1" id="filter_1_1">
+                                            <label for="filter_1_1">Мужской</label>
+                                        </div>
+                                        <div class="filter-group">
+                                            <input type="checkbox" name="filter_2" id="filter_1_2">
+                                            <label for="filter_1_2">Женский</label>
+                                        </div>
                                     </div>
                                 </div>
+
+                                <div class="filter-box">
+                                    <div class="filter-name">
+                                        Возраст
+                                    </div>
+                                    <div class="dropdownfilter">
+                                        <div class="filter-group">
+                                            <input type="checkbox" name="filter_3" id="filter_2_1">
+                                            <label for="filter_2_1">18-25 лет</label>
+                                        </div>
+                                        <div class="filter-group">
+                                            <input type="checkbox" name="filter_4" id="filter_2_2">
+                                            <label for="filter_2_2">25-35 лет</label>
+                                        </div>
+                                        <div class="filter-group">
+                                            <input type="checkbox" name="filter_5" id="filter_2_3">
+                                            <label for="filter_2_3">35-45 лет</label>
+                                        </div>
+                                        <div class="filter-group">
+                                            <input type="checkbox" name="filter_6" id="filter_2_4">
+                                            <label for="filter_2_4">45-60 лет</label>
+                                        </div>
+                                        <div class="filter-group">
+                                            <input type="checkbox" name="filter_7" id="filter_2_5">
+                                            <label for="filter_2_5">Старше 60 лет </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="filter-box">
+                                    <div class="filter-name">
+                                        ГЕО
+                                    </div>
+                                    <div class="dropdownfilter">
+                                        <div class="filter-group">
+                                            <input type="checkbox" name="filter_8" id="filter_3_1">
+                                            <label for="filter_3_1">Украина</label>
+                                        </div>
+                                        <div class="filter-group">
+                                            <input type="checkbox" name="filter_9" id="filter_3_2">
+                                            <label for="filter_3_2">Россия</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="filter-box">
+                                    <div class="filter-name">
+                                        Город
+                                    </div>
+                                    <div class="dropdownfilter">
+                                        <div class="filter-group">
+                                            <input type="checkbox" name="filter_10" id="filter_4_1">
+                                            <label for="filter_4_1">Москва</label>
+                                        </div>
+                                        <div class="filter-group">
+                                            <input type="checkbox" name="filter_11" id="filter_4_2">
+                                            <label for="filter_4_2">Санкт-Петербург</label>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
-    
-                            <div class="filter-box">
-                                <div class="filter-name">
-                                    Возраст 
-                                </div>
-                                <div class="dropdownfilter">
-                                    <div class="filter-group">
-                                        <input type="checkbox" name="filter_3" id="filter_2_1">
-                                        <label for="filter_2_1">18-25 лет</label>
-                                    </div>
-                                    <div class="filter-group">
-                                        <input type="checkbox" name="filter_4" id="filter_2_2">
-                                        <label for="filter_2_2">25-35 лет</label>
-                                    </div>
-                                    <div class="filter-group">
-                                        <input type="checkbox" name="filter_5" id="filter_2_3">
-                                        <label for="filter_2_3">35-45 лет</label>
-                                    </div>
-                                    <div class="filter-group">
-                                        <input type="checkbox" name="filter_6" id="filter_2_4">
-                                        <label for="filter_2_4">45-60 лет</label>
-                                    </div>
-                                    <div class="filter-group">
-                                        <input type="checkbox" name="filter_7" id="filter_2_5">
-                                        <label for="filter_2_5">Старше 60 лет </label>
-                                    </div>
-                                </div>
-                            </div>
-    
-    
-                            <div class="filter-box">
-                                <div class="filter-name">
-                                    ГЕО 
-                                </div>
-                                <div class="dropdownfilter">
-                                    <div class="filter-group">
-                                        <input type="checkbox" name="filter_8" id="filter_3_1">
-                                        <label for="filter_3_1">Украина</label>
-                                    </div>
-                                    <div class="filter-group">
-                                        <input type="checkbox" name="filter_9" id="filter_3_2">
-                                        <label for="filter_3_2">Россия</label>
-                                    </div>
-                                </div>
-                            </div>
-    
-                            <div class="filter-box">
-                                <div class="filter-name">
-                                    Город 
-                                </div>
-                                <div class="dropdownfilter">
-                                    <div class="filter-group">
-                                        <input type="checkbox" name="filter_10" id="filter_4_1">
-                                        <label for="filter_4_1">Москва</label>
-                                    </div>
-                                    <div class="filter-group">
-                                        <input type="checkbox" name="filter_11" id="filter_4_2">
-                                        <label for="filter_4_2">Санкт-Петербург</label>
-                                    </div>
-                                </div>
-                            </div>
-    
                         </div>
-                </div>
-                <!-- data-count - summary of question -->
-                <div class="questions-box" data-count="1">
-                    <div class="question" data-optionid="1">
-                        <div class="close-question"></div>
-                        <div class="answer" id="questionanswers_1">
-                            <div class="dropdown-list">
-                                <div class="dropdown-block">
-                                    <div class="dropdown-arrow"></div>
-                                    <div class="question-name">
-                                        Как Вы оцените работу нашего банка?
-                                    </div>
-                                    <div class="dropdown-content">
-                                    </div>
-                                </div>
-                                <div class="dropdown-block">
-                                    <div class="dropdown-arrow"></div>
-                                    <div class="question-name">
-                                        Какие специальные предложения от застройщиков  Вас заинтересовали?
-                                    </div>
-                                    <div class="dropdown-content">
-                                        <div class="input-group">
-                                            <input type="checkbox" name="questionanswers_1_2" id="questionanswers_1_2_1" value="ЖК RED7">
-                                            <label for="questionanswers_1_2_1">ЖК RED7</label>
-                                        </div>
-                                        <div class="input-group">
-                                            <input type="checkbox" name="questionanswers_1_2" id="questionanswers_1_2_2" value="ЖК MainStreet">
-                                            <label for="questionanswers_1_2_2">ЖК MainStreet</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="dropdown-block">
-                                    <div class="dropdown-arrow"></div>
-                                    <div class="question-name">
-                                        Выберите лучший вариант
-                                    </div>
-                                    <div class="dropdown-content">
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="questions-box" data-count="0">
                         </div>
                     </div>
-                </div>
-            </div>
-            <aside class="rightside">
-                <form action="#" class="rightsidefrom">
-                    <div class="optionsblock">
-                        <div class="default optionbox active">
-                            <div class="header-aside">
-                                Настройки вопроса
-                            </div>
-                            <div class="text-aside">
-                                Нажмите на вопрос, чтобы обновить его настройки здесь.
-                            </div>
-                        </div>
-                        <div class="eloptions">
-                            <div class="optionbox" id="option_1">
-                                <input type="hidden" name="questiontype_1" value="dropdownmultiple" >
-                                <input type="hidden"  class="orderinput" name="questionorder_1" value="1" >
+                    <aside class="rightside">
+                        <div class="optionsblock">
+                            <div class="default optionbox active">
                                 <div class="header-aside">
-                                    Настройки
+                                    Настройки вопроса
                                 </div>
-                                <div class="text-aside ">
-                                    <div class="dropdown-options">
-                                        <div class="multityperow">
-                                            <div class="namelabel">
-                                                Множественный выбор
-                                            </div>
-                                            <label class="switch" for="dropdownmultiple_1">
-                                                <input type="checkbox" class="dropdownmultiple" name="dropdownmultiple_1" id="dropdownmultiple_1" checked="">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </div>
-                                        <div class="top-row">
-                                            <div class="namelabel">Вопросы</div>
-                                            <div class="add-dropdown"></div>
-                                        </div>
-                                        <div class="optionsdropdownlist">
-                                            <div class="option-group">
-                                                <div class="inputstables">
-                                                    <textarea class="dropdown-question" name="inputpoint_1_1" id="inputpoint_1_1">Как Вы оцените работу нашего банка?</textarea>
-                                                    <div class="dropdown-list">
-                                                        <div class="dropdown-group">
-                                                            <input type="text" name="subpoint_1_1_1" id="subpoint_1_1_1" placeholder="Введите текст">
-                                                            <div class="removedropdownsub"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="adddropdownsubpoints"></div>
-                                                <div class="remove-dropdown"></div>
-                                                <div class="arrowshow"></div>
-                                            </div>
-                                            <div class="option-group">
-                                                <div class="inputstables">
-                                                    <textarea class="dropdown-question" name="inputpoint_1_2" id="inputpoint_1_2">Какие специальные предложения от застройщиков Вас заинтересовало?</textarea>
-                                                    <div class="dropdown-list">
-                                                        <div class="dropdown-group">
-                                                            <input type="text" name="subpoint_1_2_1" id="subpoint_1_2_1" placeholder="Введите текст" value="ЖК RED7">
-                                                            <div class="removedropdownsub"></div>
-                                                        </div>
-                                                        <div class="dropdown-group">
-                                                            <input type="text" name="subpoint_1_2_2" id="subpoint_1_2_2" placeholder="Введите текст" value="ЖК MainStreet">
-                                                            <div class="removedropdownsub"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="adddropdownsubpoints"></div>
-                                                <div class="remove-dropdown"></div>
-                                                <div class="arrowshow"></div>
-                                            </div>
-                                            <div class="option-group">
-                                                <div class="inputstables">
-                                                    <textarea class="dropdown-question" name="inputpoint_1_3" id="inputpoint_1_3">Как Вы оцените работу нашего банка?</textarea>
-                                                    <div class="dropdown-list">
-                                                    </div>
-                                                </div>
-                                                <div class="adddropdownsubpoints"></div>
-                                                <div class="remove-dropdown"></div>
-                                                <div class="arrowshow"></div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="text-aside">
+                                    Нажмите на вопрос, чтобы обновить его настройки здесь.
                                 </div>
                             </div>
+                            <div class="eloptions">
+                            </div>
                         </div>
-                    </div>
-                    <div class="btn-wrapper">
-                        <button class="btn-default" type="submit"> Сохранить</button>
-                    </div>
-                </form>
-            </aside>
+                        <div class="btn-wrapper">
+                            <input class="btn-default" type='submit' value=" Сохранить">
+                        </div>
+                    </aside>
+                </div>
+            </table>
+        </form>
+    </div>
+    <!-- The Modal -->
+    <div id="modal-error" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="text">
+                <p>Выберете, пожалуйста, ответ.</p>
+            </div>
         </div>
     </div>
     <script src="./js/jquery-ui.js"></script>

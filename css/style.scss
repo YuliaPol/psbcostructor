@@ -783,6 +783,55 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
         }
     }
 }
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+  
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    border-radius: 10px;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 600px;
+    padding: 15px;
+    .text {
+        padding: 40px 30px;
+        font-family: $fontpage;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 33px;
+        line-height: 45px;
+        text-align: center;
+        color: #000000;
+    }
+}
+  
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+  
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
 .construcot-container {
     display: flex;
     align-items: flex-start;
@@ -832,6 +881,168 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
             border-radius: 0px 2px 2px 0px;
             box-shadow: inset 0 0 6px rgba(0,0,0,.3);
             background-color: #4449DB;
+        }
+        .mediablock {
+            padding-top: 25px;
+            .imageblock {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-grow: 1;
+                flex-wrap: wrap;
+                .image {
+                    max-width: 33%;
+                    padding: 7px;
+                    flex-grow: 1;
+                    min-width: 33%;
+                    img {
+                        max-width: 100%;
+                        width: 100%;
+                    }
+                    &:nth-child(1){
+                        max-width: 100%;
+                    }
+                    &:nth-child(2){
+                        max-width: 50%;
+                    }
+                }
+            }
+            .videoblock {
+                width: 100%;
+                position: relative;
+                video {
+                    width: 100%;
+                    height: auto;
+                }
+                .play {
+                    background:url(./../img/play.svg);
+                    background-repeat:no-repeat;
+                    width:70px;
+                    height:70px;
+                    position:absolute;
+                    left:0%;
+                    right:0%;
+                    top:0%;
+                    bottom:0%;
+                    margin:auto;
+                    background-size:contain;
+                    background-position: center;
+                    transition: transform 0.3s ease-in;
+                    &:hover {
+                        transform: scale(1.1);
+                    }
+                }
+            }
+            .audioblock {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 270px;
+                background: #DEE1E9;
+                box-shadow: inset 0px 0px 10px 2px rgba(144, 141, 150, 0.2);
+                border-radius: 30px;
+                .playaudio {
+                    width: 53px;
+                    height: 53px;
+                    background-image: url(./../img/play.svg);
+                    background-repeat: no-repeat;
+                    background-size: 100%;
+                    background-position: center;
+                    border-radius: 50%;
+                    &:hover {
+                        box-shadow: 0px 0px 2px 2px rgba(34.1, 13.3, 87.1, 0.3);
+                    }
+                }
+                .audio {
+                    width: calc(100% - 53px);
+                    background: transparent !important;
+                }
+            }
+            .textblock {
+                background: #FFFFFF;
+                border: 1px solid #F2F2F2;
+                padding: 25px;
+                .uploadtextinput {
+                    font-family: $fontpage;
+                    font-style: italic;
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 24px;
+                    color: #5722DE;
+                    width: 100%;
+                    resize: none;
+                    border: none;
+                    outline: none;
+                    height: 28px;
+                    &::-webkit-scrollbar-track {
+                        border-radius: 0px;
+                    }
+                    &::-webkit-scrollbar {
+                        width: 0px;
+                    }
+                }
+            }
+            .bottom-row {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .addmorepictures {
+                font-family: $fontpage;
+                font-style: normal;
+                font-weight: 300;
+                font-size: 10px;
+                line-height: 12px;
+                color: $fontcolor;
+                cursor: pointer;
+            }
+            .inputsimage {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                .inputgroup {
+                    width: 150px;
+                    padding: 7px;
+                    input[type=radio] {
+                        display: none;
+                        & + label {
+                            display: flex;
+                            align-items: center;
+                            &::before {
+                                content: "";
+                                width: 13px;
+                                height: 13px;
+                                border: 1px solid #C4C4C4;
+                                margin-right: 10px;
+                                transition: all 0.3s ease-in;
+                                border-radius: 50%;
+                                display: inline-block;
+                            }
+                        }
+                        &:checked + label {
+                            &::before {
+                                content: "";
+                                width: 13px;
+                                height: 13px;
+                                border: 1px solid #563BC2;
+                                margin-right: 10px; 
+                                background: #563BC2;
+                                border-radius: 50%;
+                                display: inline-block;
+                            }
+                        }
+                    }
+                    label {
+                        font-family: $fontpage;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 10px;
+                        line-height: 12px;
+                        color: $fontcolor;
+                    }
+                }
+            }
         }
         .filter-block {
             padding: 10px;
@@ -953,6 +1164,47 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                     box-shadow: 0px 2px 13px rgba(0, 0, 0, 0.05);
                     &::before {
                         opacity: 1;
+                    }
+                }
+                .hidden-question-group {
+                    display: none;
+                }
+                .hidden-question {
+                    padding: 10px;
+                    .name {
+                        font-family: $fontpage;
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 15px;
+                        line-height: 18px;
+                        color: #000000;
+                    }
+                    .hidden-question-answer {
+                        input {
+                            border-top: 0px;
+                            border-left: 0px;
+                            border-right: 0px;
+                            border-bottom: 1px solid #A4A2A2;
+                            width: 100%;
+                            padding-bottom: 10px;
+                            padding-top: 10px;
+                            outline: none;
+                            background: transparent;
+                            font-family: $fontpage;
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 12px;
+                            line-height: 15px;
+                            color: $fontcolor;
+                            &::placeholder {
+                                font-family: $fontpage;
+                                font-style: normal;
+                                font-weight: 300;
+                                font-size: 10px;
+                                line-height: 12px;
+                                color: #A4A2A2;
+                            }
+                        }
                     }
                 }
                 .name {
@@ -1498,6 +1750,88 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
             width: 100%;
             &.active {
                 display: block;
+            }
+            .filerow {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                padding-bottom: 10px;
+                input {
+                    display: none;
+                }
+                .uploadpicture {
+                    width: 15px;
+                    height: 14px;
+                    background: url(./../img/uploadimage.svg);
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    cursor: pointer;
+                    transition: background 0.3s ease-in;
+                    margin-right: 15px;
+                    &.active,
+                    &:hover {
+                        background: url(./../img/uploadimage-a.svg);
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                    }
+                }
+                .uploadvideo {
+                    width: 15px;
+                    height: 15px;
+                    background: url(./../img/uploadvideo.svg);
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    cursor: pointer;
+                    transition: background 0.3s ease-in;
+                    margin-right: 15px;
+                    &.active,
+                    &:hover {
+                        background: url(./../img/uploadvideo-a.svg);
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                    }
+                }
+                .uploadaudio {
+                    width: 15px;
+                    height: 15px;
+                    background: url(./../img/uploadaudio.svg);
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    cursor: pointer;
+                    transition: background 0.3s ease-in;
+                    margin-right: 15px;
+                    &.active,
+                    &:hover {
+                        background: url(./../img/uploadaudio-a.svg);
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                    }
+                }
+                .uploadtext {
+                    width: 15px;
+                    height: 15px;
+                    background: url(./../img/uploadtext.svg);
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    cursor: pointer;
+                    margin-right: 15px;
+                    transition: background 0.3s ease-in;
+                    &.active,
+                    &:hover {
+                        background: url(./../img/uploadtext-a.svg);
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                    }
+                }
             }
             .header-aside {
                 font-family: $fontpage;

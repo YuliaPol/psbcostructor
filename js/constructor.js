@@ -5,6 +5,7 @@ jQuery(function ($) {
             cursor: "move",
         });
 
+
         $( ".listbox li" ).toggleClass('dragged');
         // dropdownlist
 
@@ -20,11 +21,236 @@ jQuery(function ($) {
                 $(this).parents('.dropdown-block').find('.dropdown-content').fadeIn(300);
             }
         });
+
+        //fille upload 
+
+        //uploadpicture
+        $('.rightside').on('click', '.uploadpicture', function(e){
+            $(this).parents('.filerow').children().removeClass('active');
+            $(this).addClass('active');
+            $(this).find('input[type=radio]').prop('checked', true);
+            $(this).next('input[type=file]').val('');
+            $(this).next('input[type=file]').click();
+        });
+
+        $('.centerbox').on('click', '.addmorepictures', function(e){
+            var idQuestion = parseInt($(this).parents('.question').find('input').attr('name').split('_')[1]);
+            $('#uploadimage_' + idQuestion).click();
+        });
+
+        $('.rightside').on('change', '.uploadpictureinput', function(e){
+            var files = e.target.files;
+            var idQuestion = parseInt($(this).attr('name').split('_')[1]);
+            var child = $('#questionanswers_'+idQuestion);
+            if(!child.parents('.question').find('.mediablock').length>0){
+                var mideablock = '<div class="mediablock"></div>';
+                $(child.parents('.question')).prepend(mideablock);
+            }
+            child.parents('.question').find('.mediablock').html(' ');
+            if(!child.parents('.question').find('.imageblock').length>0){
+                var imageblock = '<div class="imageblock"></div>';
+                var settingsImage = 
+                '<div class="bottom-row">'
+                +'   <div class="inputsimage">'
+                +'        <div class="inputgroup">'
+                +'            <input type="radio" name="clickforimage_' + idQuestion + '" id="clickforimage_' + idQuestion + '_1"'
+                +'                value="50">'
+                +'            <label for="clickforimage_' + idQuestion + '_1">50 на картинку</label>'
+                +'        </div>'
+                +'        <div class="inputgroup">'
+                +'            <input type="radio" name="clickforimage_' + idQuestion + '" id="clickforimage_' + idQuestion + '_2"'
+                +'                value="100">'
+                +'            <label for="clickforimage_' + idQuestion + '_2">100 на картинку</label>'
+                +'        </div>'
+                +'        <div class="inputgroup">'
+                +'            <input type="radio" name="clickforimage_' + idQuestion + '" id="clickforimage_' + idQuestion + '_3"'
+                +'                value="200">'
+                +'            <label for="clickforimage_' + idQuestion + '_3">200 на картинку</label>'
+                +'        </div>'
+                +'    </div>'
+                +'    <div class="addmorepictures">Добавить до 10 фото</div>'
+                +'</div>';
+                $(child.parents('.question')).find('.mediablock').prepend(settingsImage);
+                $(child.parents('.question')).find('.mediablock').prepend(imageblock);
+
+
+            }
+
+            var image;
+            if(files.length > 9 ) {
+                $('#modal-error').find('.text').html('Выберете, пожалуйста, не больше 10 файлов');
+                $('.modal').fadeIn(300);
+            }
+            for (var i = 0; i < files.length; i++) {
+                if(i>9){
+                    break;
+                }
+                else {
+                    if (files && files[i]) {
+                        var reader = new FileReader();
+                        var width = Math.round(100 / files.length);
+                        reader.onload = function (e) {
+                            image = 
+                            '<div class="image" style="width: '+ width + '%"><img src ="'+ e.target.result + '" alt="Image"></div>';
+                            child.parents('.question').find('.imageblock').append(image);
+                        }
+                        reader.readAsDataURL(files[i]);
+                    }
+                }
+            }
+        });
+
+
+        //uploadvideo
+        $('.rightside').on('click', '.uploadvideo', function(e){
+            $(this).parents('.filerow').children().removeClass('active');
+            $(this).addClass('active');
+            $(this).find('input[type=radio]').prop('checked', true);
+            $(this).next('input[type=file]').val('');
+            $(this).next('input[type=file]').click();
+        });
+
+        $('.rightside').on('change', '.uploadvideoinput', function(e){
+            var idQuestion = parseInt($(this).attr('name').split('_')[1]);
+            var child = $('#questionanswers_'+idQuestion);
+            if(!child.parents('.question').find('.mediablock').length>0){
+                var mideablock = '<div class="mediablock"></div>';
+                $(child.parents('.question')).prepend(mideablock);
+            }
+            child.parents('.question').find('.mediablock').html(' ');
+            if(!child.parents('.question').find('.videoblock').length>0){
+                var videoblock = '<div class="videoblock"></div>';
+                $(child.parents('.question')).find('.mediablock').prepend(videoblock);
+            }
+
+            var files = !!this.files ? this.files : [];
+            var filename = files[0].name;
+            if (!files.length || !window.FileReader) return; 
+            if(filename.split('.').pop().toUpperCase()!="MP4"){
+                $('#modal-error').find('.text').html('Пожалуйста, загрузите видеофайл в формате MP4');
+                $('.modal').fadeIn(300);
+            }
+            else {
+
+                if (/^video/.test( files[0].type)){ // only video file
+                    var reader = new FileReader(); // instance of the FileReader
+                    reader.readAsDataURL(files[0]); // read the local file
+                    reader.onloadend = function(){ // set video data as background of div
+                        var video = 
+                        '<video width="400" >'
+                        +'    <source src="'+ this.result + '">'
+                        +'    Your browser does not support HTML5 video.'
+                        +'</video>';
+                        var play ='<div class="play"></div>';
+                        child.parents('.question').find('.videoblock').append(video);
+                        child.parents('.question').find('.videoblock').append(play);
+                    }
+                }
+            }
+        });
+
+            
+        //video play
+        $('.centerbox').on('click', '.videoblock', function(e){
+            if($(this).children('video').get(0).paused){
+                $(this).children('video').get(0).play();
+                $(this).children('.play').fadeOut();
+            }else{
+               $(this).children('video').get(0).pause();
+                $(this).children('.play').fadeIn();
+            }
+        });
+        
+
+        //uploadaudio
+
+        $('.rightside').on('click', '.uploadaudio', function(e){
+            $(this).parents('.filerow').children().removeClass('active');
+            $(this).addClass('active');
+            $(this).find('input[type=radio]').prop('checked', true);
+            $(this).next('input[type=file]').val('');
+            $(this).next('input[type=file]').click();
+        });
+
+        $('.rightside').on('change', '.uploadaudioinput', function(e){
+            var idQuestion = parseInt($(this).attr('name').split('_')[1]);
+            var child = $('#questionanswers_'+idQuestion);
+            if(!child.parents('.question').find('.mediablock').length>0){
+                var mideablock = '<div class="mediablock"></div>';
+                $(child.parents('.question')).prepend(mideablock);
+            }
+            child.parents('.question').find('.mediablock').html(' ');
+            if(!child.parents('.question').find('.audioblock').length>0){
+                var audioblock = 
+                '<div class="audioblock">'
+                +'    <div class="playaudio"></div>'
+                +'    <div class="audio" id="audiowave_' + idQuestion + '"> </div>'
+                +'</div>';
+                $(child.parents('.question')).find('.mediablock').prepend(audioblock);
+            }
+
+            var files = !!this.files ? this.files : [];
+            var filename = files[0].name;
+            var container = '#audiowave_' + idQuestion;
+            if (!files.length || !window.FileReader) return; 
+            if (/^audio/.test( files[0].type)){ 
+                var reader = new FileReader(); // instance of the FileReader
+                reader.readAsDataURL(files[0]); // read the local file
+                reader.onloadend = function(){ // set  
+                    var wavesurfer = WaveSurfer.create({
+                        container: container,
+                        scrollParent: true,
+                        backgroundColor: '#DEE1E9',
+                        height: 40,
+                        cursorWidth: 0,
+                        waveColor: 'rgba(87, 34, 222, 0.2)',
+                        hideScrollbar: true,
+                        progressColor: "#5722DE"
+                    });
+                    wavesurfer.load(this.result);
+                    wavesurfer.on('ready', function () {
+                        //playaudio
+                        $('.centerbox').on('click', '.playaudio', function(e){
+                            wavesurfer.playPause();
+                        });
+                    });
+                }
+            }
+        });
+        
+        //upload text
+        $('.rightside').on('click', '.uploadtext', function(e){
+            if(!$(this).find('input[type=radio]').prop("checked")){
+                $(this).parents('.filerow').children().removeClass('active');
+                $(this).addClass('active');    
+                $(this).find('input[type=radio]').prop('checked', true);
+                var idQuestion = parseInt($(this).find('input[type=radio]').attr('name').split('_')[1]);
+                var child = $('#questionanswers_'+idQuestion);
+                if(!child.parents('.question').find('.mediablock').length>0){
+                    var mideablock = '<div class="mediablock"></div>';
+                    $(child.parents('.question')).prepend(mideablock);
+                }
+                child.parents('.question').find('.mediablock').html(' ');
+                if(!child.parents('.question').find('.textblock').length>0){
+                    var textblock = 
+                    '<div class="textblock">'
+                    +'    <textarea class="uploadtextinput" name="uploadtextinput_1" id="uploadtextinput_1" placeholder="Введите текст"></textarea>'
+                    +'</div>';
+                    $(child.parents('.question')).find('.mediablock').prepend(textblock);
+                }
+            }
+        });
+        auto_grow(document.getElementsByClassName('uploadtextinput')[0]);
+        $('.centerbox').on('change, keypress, keydown, keyup', '.uploadtextinput', function(e){
+            auto_grow(this);
+        });
+
         //change name of question
         $('.rightside').on('change, keypress, keydown, keyup', '.question_name', function(e){
             var id = parseInt($(this).attr('name').split('_')[1]);
             $('#questionName_' + id).html($(this).val());
         });
+
         $('.rightside').on('change, keypress, keydown, keyup', '.dropdown-question', function(e){
             auto_grow(this);
             var name = $(this).attr('name').split('_');
@@ -103,7 +329,6 @@ jQuery(function ($) {
             var idQuestion = parseInt($(this).attr('name').split('_')[1]);
             if($(this).is(':checked')){
                 var inputs = $('#questionanswers_' + idQuestion).find('input');
-                console.log(inputs);
                 inputs.each(function (index, input) {
                     if($(input).attr('type') == 'radio'){
                         $(input).attr('type', 'checkbox');
@@ -125,6 +350,27 @@ jQuery(function ($) {
                         $(input).attr('name', prevName.join('_'));
                     }
                 });
+            }
+        });
+        //branching hidden question show
+        $('.centerbox').on('change', '.branchingquestion input[type=radio]', function(e){
+            var idQuestion = parseInt($(this).attr('id').split('_')[1]);
+            var idPoint = parseInt($(this).attr('id').split('_')[2]);
+            if($(this).is(':checked')){
+                $(this).parents('.question').find('.hidden-question-group').fadeOut(300);
+                $('#hiddenquestion_' + idQuestion + '_' + idPoint).fadeIn(300);
+            }
+        });
+
+        //hidden question input 
+        $('.rightside').on('change , keypress, keydown, keyup', '.branching-group input[type=text]', function(e){
+            var idQuestion = parseInt($(this).attr('name').split('_')[1]);
+            var idPoint = parseInt($(this).attr('name').split('_')[2]);
+            var idSubPoint = parseInt($(this).attr('name').split('_')[3]);
+            if(idQuestion && idPoint && idSubPoint){
+                if($('#hiddenquestion_'+ idQuestion + '_' + idPoint).find('.hidden-question:nth-child('+ idSubPoint + ')').find('.name').length>0){
+                    $('#hiddenquestion_'+ idQuestion + '_' + idPoint).find('.hidden-question:nth-child('+ idSubPoint + ')').find('.name').html($(this).val());
+                }
             }
         });
 
@@ -364,6 +610,7 @@ jQuery(function ($) {
                 }
             }
         });
+
         $('.rightside').on('change', '.scale-radio input[type=radio]', function(e){
             var el = '';
             var id = parseInt($(this).attr('name').split('_')[1]);
@@ -640,6 +887,7 @@ jQuery(function ($) {
                 questionPoints.each(function (index, question) {
                     if((index + 1) > number) {
                         $(question).remove();
+                        $('#hiddenquestion_' + id + '_' + index).remove();
                     }
                 });
                 var currentId = questionPoints.length
@@ -678,6 +926,26 @@ jQuery(function ($) {
                 if(!$(this).hasClass('active')){
                     $(this).addClass('active');
                 }
+
+                var hiddenquestion = 
+                '<div class="hidden-question">'
+                +'    <div class="name">'
+                +'        Вопрос'
+                +'    </div>'
+                +'    <div class="hidden-question-answer">'
+                +'        <div class="form-group">'
+                +'            <input type="text" name="hiddenquestionanswer_'+ questionId + '_' + questionPointsId +'_' + questionSubPointsId + '" id="hiddenquestionanswer_'+ questionId + '_' + questionPointsId +'_' + questionSubPointsId + '" placeholder="Ваш ответ">'
+                +'        </div>'
+                +'    </div>'
+                +'</div>';
+
+                if($('#hiddenquestion_' + questionId + '_' + questionPointsId).length>0){
+                   $(hiddenquestion).appendTo($('#hiddenquestion_' + questionId + '_' + questionPointsId));
+                }
+                else {
+                    var newHiddenGroup = '<div class="hidden-question-group" id="hiddenquestion_' + questionId + '_' + questionPointsId + '">'+ hiddenquestion +'</div>'
+                    $(newHiddenGroup).appendTo($('#questionanswers_' + questionId).next('.hidden-question-list'));
+                }
             }
         });
 
@@ -685,6 +953,36 @@ jQuery(function ($) {
         $('.rightside').on('click', '.deleteSubPoint', function(e){
             var parents = $(this).parents('.branching-list');
             $(this).parents('.branching-group').remove();
+            var idQuestion = parseInt($(this).parents('.branching-group').find('input').attr('name').split('_')[1]);
+            var idPoint = parseInt($(this).parents('.branching-group').find('input').attr('name').split('_')[2]);
+            var idSubPoint = parseInt($(this).parents('.branching-group').find('input').attr('name').split('_')[3]);
+            if(idQuestion && idPoint && idSubPoint){
+                if($('#hiddenquestion_'+ idQuestion + '_' + idPoint).find('.hidden-question:nth-child('+ idSubPoint + ')').length>0){
+                    $('#hiddenquestion_'+ idQuestion + '_' + idPoint).find('.hidden-question:nth-child('+ idSubPoint + ')').remove();
+                }
+                var SubpointsAnswer = $('#hiddenquestion_'+ idQuestion + '_' + idPoint).children();
+                if(SubpointsAnswer.length>0){
+                    SubpointsAnswer.each(function (index, subpoint) {
+                        var id = index + 1;
+                        var inputs = $(subpoint).find('input');
+                        inputs.each(function (index, input) {
+                            if($(input).attr('name')){
+                                prevId = $(input).attr('name').split("_");
+                                prevId[3] = id;
+                                newId = prevId.join('_');
+                                $(input).attr('name', newId);
+                            }
+                            if($(input).attr('id')){
+                                prevId = $(input).attr('id').split("_");
+                                prevId[3] = id;
+                                newId = prevId.join('_');
+                                $(input).attr('id', newId);
+                            }
+                        });
+                    });
+                }
+            }
+
             var Subpoints = parents.children();
             if(Subpoints.length>0){
                 Subpoints.each(function (index, subpoint) {
@@ -744,6 +1042,7 @@ jQuery(function ($) {
             questionPoints.each(function (index, question) {
                 if((index + 1) > number) {
                     $(question).remove();
+                    $('#hiddenquestion_' + id + '_' + index).remove();
                 }
             });
             var currentId = questionPoints.length
@@ -946,7 +1245,7 @@ jQuery(function ($) {
                 }
                 else if (type === 'branching') {
                     el =
-                    '<div class="question active" data-optionid="'+ id +'">'
+                    '<div class="question branchingquestion active" data-optionid="'+ id +'">'
                     +'    <div class="close-question"></div>'
                     +'    <div class="name " id="questionName_'+ id +'">'
                     +'        Ветвление'
@@ -961,6 +1260,7 @@ jQuery(function ($) {
                     +'            <label  id="questionpointsanswer_'+ id +'_2" for="questionanswer_'+ id +'_2">Вариант ответа</label>'
                     +'        </div>'
                     +'    </div>'
+                    +'    <div class="hidden-question-list"></div>'
                     +'</div>';
                     option =
                     '<div class="optionbox active" id="option_'+ id +'">'
@@ -1048,24 +1348,24 @@ jQuery(function ($) {
                     +'            <div class="form-group">'
                     +'                <p>Шкала оценок</p>'
                     +'                <div class="scale-radio">'
-                    +'                    <input type="radio" name="scale_'+ id +'" id="scale_'+ id +'_1" value="1" checked>'
-                    +'                    <label for="scale_'+ id +'_1" class="scalelabel">'
+                    +'                    <input type="radio" name="typescale_'+ id +'" id="typescale_'+ id +'_1" value="1" checked>'
+                    +'                    <label for="typescale_'+ id +'_1" class="scalelabel">'
                     +'                        <div class="colorstars"></div>'
                     +'                    </label>'
-                    +'                    <input type="radio" name="scale_'+ id +'" id="scale_'+ id +'_2" value="2">'
-                    +'                    <label for="scale_'+ id +'_2" class="scalelabel ">'
+                    +'                    <input type="radio" name="typescale_'+ id +'" id="typescale_'+ id +'_2" value="2">'
+                    +'                    <label for="typescale_'+ id +'_2" class="scalelabel ">'
                     +'                        <div class="stars5"></div>'
                     +'                   </label>'
-                    +'                    <input type="radio" name="scale_'+ id +'" id="scale_'+ id +'_3" value="3">'
-                    +'                    <label for="scale_'+ id +'_3" class="scalelabel">'
+                    +'                    <input type="radio" name="typescale_'+ id +'" id="typescale_'+ id +'_3" value="3">'
+                    +'                    <label for="typescale_'+ id +'_3" class="scalelabel">'
                     +'                        <div class="stars10"></div>'
                     +'                    </label>'
-                    +'                    <input type="radio" name="scale_'+ id +'" id="scale_'+ id +'_4" value="4">'
-                    +'                    <label for="scale_'+ id +'_4" class="scalelabel">'
+                    +'                    <input type="radio" name="typescale_'+ id +'" id="typescale_'+ id +'_4" value="4">'
+                    +'                    <label for="typescale_'+ id +'_4" class="scalelabel">'
                     +'                        <div class="ratings10"></div>'
                     +'                    </label>'
-                    +'                    <input type="radio" name="scale_'+ id +'" id="scale_'+ id +'_5" value="5">'
-                    +'                    <label for="scale_'+ id +'_5" class="scalelabel">'
+                    +'                    <input type="radio" name="typescale_'+ id +'" id="typescale_'+ id +'_5" value="5">'
+                    +'                    <label for="typescale_'+ id +'_5" class="scalelabel">'
                     +'                        <div class="ratings5">'
                     +'                            <div class="circles">'
                     +'                                <div class="cirle">1</div>'
@@ -1077,23 +1377,23 @@ jQuery(function ($) {
                     +'                            <div class="ratinstables">'
                     +'                                <div class="cirlce-group">'
                     +'                                    <div class="circle">1</div>'
-                    +'                                    <input type="text" name="scaleRating5_'+ id +'_1" id="scaleRating5_'+ id +'_2" placeholder="Введите текст">'
+                    +'                                    <input type="text" name="inputpoint_'+ id +'_1" id="scaleRating5_'+ id +'_1" placeholder="Введите текст">'
                     +'                               </div>'
                     +'                                <div class="cirlce-group">'
                     +'                                    <div class="circle">2</div>'
-                    +'                                    <input type="text" name="scaleRating5_'+ id +'_2" id="scaleRating5_'+ id +'_2" placeholder="Введите текст">'
+                    +'                                    <input type="text" name="inputpoint_'+ id +'_2" id="scaleRating5_'+ id +'_2" placeholder="Введите текст">'
                     +'                                </div>'
                     +'                                <div class="cirlce-group">'
                     +'                                    <div class="circle">3</div>'
-                    +'                                    <input type="text" name="scaleRating5_'+ id +'_3" id="scaleRating5_'+ id +'_3" placeholder="Введите текст">'
+                    +'                                    <input type="text" name="inputpoint_'+ id +'_3" id="scaleRating5_'+ id +'_3" placeholder="Введите текст">'
                     +'                                </div>'
                     +'                                <div class="cirlce-group">'
                     +'                                    <div class="circle">4</div>'
-                    +'                                    <input type="text" name="scaleRating5_'+ id +'_4" id="scaleRating5_'+ id +'_4" placeholder="Введите текст">'
+                    +'                                    <input type="text" name="inputpoint_'+ id +'_4" id="scaleRating5_'+ id +'_4" placeholder="Введите текст">'
                     +'                                </div>'
                     +'                                <div class="cirlce-group">'
                     +'                                    <div class="circle">5</div>'
-                    +'                                    <input type="text" name="scaleRating5_'+ id +'_5" id="scaleRating5_'+ id +'_5" placeholder="Введите текст">'
+                    +'                                    <input type="text" name="inputpoint_'+ id +'_5" id="scaleRating5_'+ id +'_5" placeholder="Введите текст">'
                     +'                                </div>'
                     +'                           </div>'
                     +'                       </div>'
@@ -1360,6 +1660,7 @@ jQuery(function ($) {
                         var questionPoints = $('#inputtables_' + id).find('.questionPoint');
                         questionPoints.each(function (index, question) {
                             if((index + 1) > number) {
+                                $('#hiddenquestion_' + id + '_' + index).remove();
                                 $(question).remove();
                             }
                         });
@@ -1527,6 +1828,17 @@ jQuery(function ($) {
                         $(label).attr('id', newId);
                     }
                 });
+                var hiddenQuestion = $(question).find('.hidden-question-list').children();
+                if(hiddenQuestion.length>0){
+                    hiddenQuestion.each(function (indexanswer, hidden) {
+                        if($(hidden).attr('id')){
+                            prevId = $(hidden).attr('id').split("_");
+                            prevId[1] = id;
+                            newId = prevId.join('_');
+                            $(hidden).attr('id', newId);
+                        }
+                    });
+                }
                 if($(question).find('.answer').length>0){
                     prevId = $(question).find('.answer').attr('id').split("_");
                     prevId[1] = id;
@@ -1576,23 +1888,24 @@ jQuery(function ($) {
 
             var nodeList = childrenOptions;
             var itemsArray = [];
-            var parent = nodeList[0].parentNode;
-            for (var i = 0; i < nodeList.length; i++) {    
-                itemsArray.push(parent.removeChild(nodeList[i]));
+            if(nodeList[0]){
+                var parent = nodeList[0].parentNode;
+                for (var i = 0; i < nodeList.length; i++) {    
+                    itemsArray.push(parent.removeChild(nodeList[i]));
+                }
+                itemsArray.sort(function(nodeA, nodeB) {
+                    var idA = parseInt($(nodeA).attr('id').split("_")[1]);
+                    var idB = parseInt($(nodeB).attr('id').split("_")[1]);
+                    var numberA = parseInt(idA);
+                    var numberB = parseInt(idB);
+                    if (numberA < numberB) return -1;
+                    if (numberA > numberB) return 1;
+                    return 0;
+                })
+                    .forEach(function(node) {
+                    parent.appendChild(node)
+                });
             }
-            itemsArray.sort(function(nodeA, nodeB) {
-                var idA = parseInt($(nodeA).attr('id').split("_")[1]);
-                var idB = parseInt($(nodeB).attr('id').split("_")[1]);
-                var numberA = parseInt(idA);
-                var numberB = parseInt(idB);
-                if (numberA < numberB) return -1;
-                if (numberA > numberB) return 1;
-                return 0;
-            })
-                .forEach(function(node) {
-                parent.appendChild(node)
-            });
-
             $(".spinner").inputFilter(function(value) {
                 return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 15);
             });

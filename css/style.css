@@ -1044,6 +1044,66 @@ table {
   text-align: center;
 }
 
+/* The Modal (background) */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1000;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  /* 15% from the top and centered */
+  border-radius: 10px;
+  width: 80%;
+  /* Could be more or less, depending on screen size */
+  max-width: 600px;
+  padding: 15px;
+}
+
+.modal-content .text {
+  padding: 40px 30px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 33px;
+  line-height: 45px;
+  text-align: center;
+  color: #000000;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .construcot-container {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1117,6 +1177,258 @@ table {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
           box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #4449DB;
+}
+
+.construcot-container .centerbox .mediablock {
+  padding-top: 25px;
+}
+
+.construcot-container .centerbox .mediablock .imageblock {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+
+.construcot-container .centerbox .mediablock .imageblock .image {
+  max-width: 33%;
+  padding: 7px;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  min-width: 33%;
+}
+
+.construcot-container .centerbox .mediablock .imageblock .image img {
+  max-width: 100%;
+  width: 100%;
+}
+
+.construcot-container .centerbox .mediablock .imageblock .image:nth-child(1) {
+  max-width: 100%;
+}
+
+.construcot-container .centerbox .mediablock .imageblock .image:nth-child(2) {
+  max-width: 50%;
+}
+
+.construcot-container .centerbox .mediablock .videoblock {
+  width: 100%;
+  position: relative;
+}
+
+.construcot-container .centerbox .mediablock .videoblock video {
+  width: 100%;
+  height: auto;
+}
+
+.construcot-container .centerbox .mediablock .videoblock .play {
+  background: url(./../img/play.svg);
+  background-repeat: no-repeat;
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+  margin: auto;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-position: center;
+  -webkit-transition: -webkit-transform 0.3s ease-in;
+  transition: -webkit-transform 0.3s ease-in;
+  -o-transition: -o-transform 0.3s ease-in;
+  transition: transform 0.3s ease-in;
+  transition: transform 0.3s ease-in, -webkit-transform 0.3s ease-in, -o-transform 0.3s ease-in;
+}
+
+.construcot-container .centerbox .mediablock .videoblock .play:hover {
+  -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+       -o-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.construcot-container .centerbox .mediablock .audioblock {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 270px;
+  background: #DEE1E9;
+  -webkit-box-shadow: inset 0px 0px 10px 2px rgba(144, 141, 150, 0.2);
+          box-shadow: inset 0px 0px 10px 2px rgba(144, 141, 150, 0.2);
+  border-radius: 30px;
+}
+
+.construcot-container .centerbox .mediablock .audioblock .playaudio {
+  width: 53px;
+  height: 53px;
+  background-image: url(./../img/play.svg);
+  background-repeat: no-repeat;
+  -webkit-background-size: 100% 100%;
+          background-size: 100%;
+  background-position: center;
+  border-radius: 50%;
+}
+
+.construcot-container .centerbox .mediablock .audioblock .playaudio:hover {
+  -webkit-box-shadow: 0px 0px 2px 2px rgba(34, 13, 87, 0.3);
+          box-shadow: 0px 0px 2px 2px rgba(34, 13, 87, 0.3);
+}
+
+.construcot-container .centerbox .mediablock .audioblock .audio {
+  width: calc(100% - 53px);
+  background: transparent !important;
+}
+
+.construcot-container .centerbox .mediablock .textblock {
+  background: #FFFFFF;
+  border: 1px solid #F2F2F2;
+  padding: 25px;
+}
+
+.construcot-container .centerbox .mediablock .textblock .uploadtextinput {
+  font-family: "Montserrat";
+  font-style: italic;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  color: #5722DE;
+  width: 100%;
+  resize: none;
+  border: none;
+  outline: none;
+  height: 28px;
+}
+
+.construcot-container .centerbox .mediablock .textblock .uploadtextinput::-webkit-scrollbar-track {
+  border-radius: 0px;
+}
+
+.construcot-container .centerbox .mediablock .textblock .uploadtextinput::-webkit-scrollbar {
+  width: 0px;
+}
+
+.construcot-container .centerbox .mediablock .bottom-row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.construcot-container .centerbox .mediablock .addmorepictures {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 10px;
+  line-height: 12px;
+  color: #37353F;
+  cursor: pointer;
+}
+
+.construcot-container .centerbox .mediablock .inputsimage {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+
+.construcot-container .centerbox .mediablock .inputsimage .inputgroup {
+  width: 150px;
+  padding: 7px;
+}
+
+.construcot-container .centerbox .mediablock .inputsimage .inputgroup input[type=radio] {
+  display: none;
+}
+
+.construcot-container .centerbox .mediablock .inputsimage .inputgroup input[type=radio] + label {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.construcot-container .centerbox .mediablock .inputsimage .inputgroup input[type=radio] + label::before {
+  content: "";
+  width: 13px;
+  height: 13px;
+  border: 1px solid #C4C4C4;
+  margin-right: 10px;
+  -webkit-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.construcot-container .centerbox .mediablock .inputsimage .inputgroup input[type=radio]:checked + label::before {
+  content: "";
+  width: 13px;
+  height: 13px;
+  border: 1px solid #563BC2;
+  margin-right: 10px;
+  background: #563BC2;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.construcot-container .centerbox .mediablock .inputsimage .inputgroup label {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #37353F;
 }
 
 .construcot-container .centerbox .filter-block {
@@ -1285,6 +1597,86 @@ table {
 
 .construcot-container .centerbox .questions-box .question.active::before, .construcot-container .centerbox .questions-box .question:hover::before {
   opacity: 1;
+}
+
+.construcot-container .centerbox .questions-box .question .hidden-question-group {
+  display: none;
+}
+
+.construcot-container .centerbox .questions-box .question .hidden-question {
+  padding: 10px;
+}
+
+.construcot-container .centerbox .questions-box .question .hidden-question .name {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 18px;
+  color: #000000;
+}
+
+.construcot-container .centerbox .questions-box .question .hidden-question .hidden-question-answer input {
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 1px solid #A4A2A2;
+  width: 100%;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  outline: none;
+  background: transparent;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #37353F;
+}
+
+.construcot-container .centerbox .questions-box .question .hidden-question .hidden-question-answer input::-webkit-input-placeholder {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 10px;
+  line-height: 12px;
+  color: #A4A2A2;
+}
+
+.construcot-container .centerbox .questions-box .question .hidden-question .hidden-question-answer input::-moz-placeholder {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 10px;
+  line-height: 12px;
+  color: #A4A2A2;
+}
+
+.construcot-container .centerbox .questions-box .question .hidden-question .hidden-question-answer input:-ms-input-placeholder {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 10px;
+  line-height: 12px;
+  color: #A4A2A2;
+}
+
+.construcot-container .centerbox .questions-box .question .hidden-question .hidden-question-answer input::-ms-input-placeholder {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 10px;
+  line-height: 12px;
+  color: #A4A2A2;
+}
+
+.construcot-container .centerbox .questions-box .question .hidden-question .hidden-question-answer input::placeholder {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 10px;
+  line-height: 12px;
+  color: #A4A2A2;
 }
 
 .construcot-container .centerbox .questions-box .question .name {
@@ -2054,6 +2446,135 @@ table {
 .construcot-container .rightside .default.active,
 .construcot-container .rightside .optionbox.active {
   display: block;
+}
+
+.construcot-container .rightside .default .filerow,
+.construcot-container .rightside .optionbox .filerow {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  padding-bottom: 10px;
+}
+
+.construcot-container .rightside .default .filerow input,
+.construcot-container .rightside .optionbox .filerow input {
+  display: none;
+}
+
+.construcot-container .rightside .default .filerow .uploadpicture,
+.construcot-container .rightside .optionbox .filerow .uploadpicture {
+  width: 15px;
+  height: 14px;
+  background: url(./../img/uploadimage.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+          background-size: contain;
+  cursor: pointer;
+  -webkit-transition: background 0.3s ease-in;
+  -o-transition: background 0.3s ease-in;
+  transition: background 0.3s ease-in;
+  margin-right: 15px;
+}
+
+.construcot-container .rightside .default .filerow .uploadpicture.active, .construcot-container .rightside .default .filerow .uploadpicture:hover,
+.construcot-container .rightside .optionbox .filerow .uploadpicture.active,
+.construcot-container .rightside .optionbox .filerow .uploadpicture:hover {
+  background: url(./../img/uploadimage-a.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+          background-size: contain;
+}
+
+.construcot-container .rightside .default .filerow .uploadvideo,
+.construcot-container .rightside .optionbox .filerow .uploadvideo {
+  width: 15px;
+  height: 15px;
+  background: url(./../img/uploadvideo.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+          background-size: contain;
+  cursor: pointer;
+  -webkit-transition: background 0.3s ease-in;
+  -o-transition: background 0.3s ease-in;
+  transition: background 0.3s ease-in;
+  margin-right: 15px;
+}
+
+.construcot-container .rightside .default .filerow .uploadvideo.active, .construcot-container .rightside .default .filerow .uploadvideo:hover,
+.construcot-container .rightside .optionbox .filerow .uploadvideo.active,
+.construcot-container .rightside .optionbox .filerow .uploadvideo:hover {
+  background: url(./../img/uploadvideo-a.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+          background-size: contain;
+}
+
+.construcot-container .rightside .default .filerow .uploadaudio,
+.construcot-container .rightside .optionbox .filerow .uploadaudio {
+  width: 15px;
+  height: 15px;
+  background: url(./../img/uploadaudio.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+          background-size: contain;
+  cursor: pointer;
+  -webkit-transition: background 0.3s ease-in;
+  -o-transition: background 0.3s ease-in;
+  transition: background 0.3s ease-in;
+  margin-right: 15px;
+}
+
+.construcot-container .rightside .default .filerow .uploadaudio.active, .construcot-container .rightside .default .filerow .uploadaudio:hover,
+.construcot-container .rightside .optionbox .filerow .uploadaudio.active,
+.construcot-container .rightside .optionbox .filerow .uploadaudio:hover {
+  background: url(./../img/uploadaudio-a.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+          background-size: contain;
+}
+
+.construcot-container .rightside .default .filerow .uploadtext,
+.construcot-container .rightside .optionbox .filerow .uploadtext {
+  width: 15px;
+  height: 15px;
+  background: url(./../img/uploadtext.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+          background-size: contain;
+  cursor: pointer;
+  margin-right: 15px;
+  -webkit-transition: background 0.3s ease-in;
+  -o-transition: background 0.3s ease-in;
+  transition: background 0.3s ease-in;
+}
+
+.construcot-container .rightside .default .filerow .uploadtext.active, .construcot-container .rightside .default .filerow .uploadtext:hover,
+.construcot-container .rightside .optionbox .filerow .uploadtext.active,
+.construcot-container .rightside .optionbox .filerow .uploadtext:hover {
+  background: url(./../img/uploadtext-a.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+          background-size: contain;
 }
 
 .construcot-container .rightside .default .header-aside,
