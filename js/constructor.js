@@ -174,6 +174,7 @@ jQuery(function ($) {
 
         $('.rightside').on('change', '.uploadaudioinput', function(e){
             var idQuestion = parseInt($(this).attr('name').split('_')[1]);
+            var wavesurfer;
             var child = $('#questionanswers_'+idQuestion);
             if(!child.parents('.question').find('.mediablock').length>0){
                 var mideablock = '<div class="mediablock"></div>';
@@ -184,7 +185,7 @@ jQuery(function ($) {
                 var audioblock = 
                 '<div class="audioblock">'
                 +'    <div class="playaudio"></div>'
-                +'    <div class="audio" id="audiowave_' + idQuestion + '"> </div>'
+                +'    <div class="audio audiowave"> </div>'
                 +'</div>';
                 $(child.parents('.question')).find('.mediablock').prepend(audioblock);
             }
@@ -197,25 +198,66 @@ jQuery(function ($) {
                 var reader = new FileReader(); // instance of the FileReader
                 reader.readAsDataURL(files[0]); // read the local file
                 reader.onloadend = function(){ // set  
-                    var wavesurfer = WaveSurfer.create({
-                        container: container,
-                        scrollParent: true,
-                        backgroundColor: '#DEE1E9',
-                        height: 40,
-                        cursorWidth: 0,
-                        waveColor: 'rgba(87, 34, 222, 0.2)',
-                        hideScrollbar: true,
-                        progressColor: "#5722DE"
-                    });
-                    wavesurfer.load(this.result);
-                    wavesurfer.on('ready', function () {
-                        //playaudio
-                        $('.centerbox').on('click', '.playaudio', function(e){
-                            wavesurfer.playPause();
-                        });
-                    });
+
+                        //Generate unic ud
+                var id = '_' + Math.random().toString(36).substr(2, 9);
+                var path = this.result;
+
+                //Set id to container
+                child.parents('.question').find('.mediablock').find('.audiowave').attr('id', id);
+
+                //Initialize WaveSurfer
+                var wavesurfer = WaveSurfer.create({
+                    container: '#' + id,
+                    scrollParent: true,
+                    backgroundColor: '#DEE1E9',
+                    height: 40,
+                    cursorWidth: 0,
+                    waveColor: 'rgba(87, 34, 222, 0.2)',
+                    hideScrollbar: true,
+                    progressColor: "#5722DE"
+                });
+
+                //Load audio file
+                wavesurfer.load(path);
+
+                //Add button event
+                child.parents('.question').find('.mediablock').find('.playaudio').click(function(){
+                    wavesurfer.playPause();
+                });
+
                 }
             }
+        });
+
+        $('.audiowave').each(function(){
+            //Generate unic ud
+            var path = $(this).attr('data-audiopath');//path for audio
+            var id = '_' + Math.random().toString(36).substr(2, 9);
+
+
+            //Set id to container
+            $(this).attr('id', id);
+        
+            //Initialize WaveSurfer
+            var wavesurfer = WaveSurfer.create({
+                container: '#' + id,
+                scrollParent: true,
+                backgroundColor: '#DEE1E9',
+                height: 40,
+                cursorWidth: 0,
+                waveColor: 'rgba(87, 34, 222, 0.2)',
+                hideScrollbar: true,
+                progressColor: "#5722DE"
+            });
+        
+            //Load audio file
+            wavesurfer.load(path);
+        
+            //Add button event
+            $(this).parents('.audioblock').find('.playaudio').click(function(){
+                wavesurfer.playPause();
+            });
         });
         
         //upload text
@@ -240,11 +282,12 @@ jQuery(function ($) {
                 }
             }
         });
-        auto_grow(document.getElementsByClassName('uploadtextinput')[0]);
+        if(document.getElementsByClassName('uploadtextinput')[0]){
+            auto_grow(document.getElementsByClassName('uploadtextinput')[0]);
+        }
         $('.centerbox').on('change, keypress, keydown, keyup', '.uploadtextinput', function(e){
             auto_grow(this);
         });
-
         //change name of question
         $('.rightside').on('change, keypress, keydown, keyup', '.question_name', function(e){
             var id = parseInt($(this).attr('name').split('_')[1]);
@@ -1152,6 +1195,31 @@ jQuery(function ($) {
                     +'        Настройки'
                     +'    </div>'
                     +'    <div class="text-aside">'
+                    +'        <div class="filerow">'
+                    +'            <div class="uploadpicture">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
+                    +'                    value="image">'
+                    +'            </div>'
+                    +'            <input class="uploadpictureinput" type="file"'
+                    +'                name="uploadimage_'+ id +'" id="uploadimage_'+ id +'" multiple'
+                    +'                accept="image/x-png,image/gif,image/jpeg">'
+                    +'            <div class="uploadvideo">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'" id="uploadvideo_'+ id +'"'
+                    +'            accept="video/mp4,video/x-m4v,video/*">'
+                    +'            <div class="uploadaudio">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
+                    +'            accept="audio/*">'
+                    +'            <div class="uploadtext">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_4"'
+                    +'                    value="text">'
+                    +'            </div>'
+                    +'        </div>'
                     +'        <div class="form-group">'
                     +'            <label for="question_'+ id +'">Вопрос</label>'
                     +'            <textarea class="question_name" name="question_'+ id +'" id="question_'+ id +'" placeholder="Введите вопрос"></textarea>'
@@ -1198,6 +1266,31 @@ jQuery(function ($) {
                     +'        Настройки'
                     +'    </div>'
                     +'    <div class="text-aside">'
+                    +'        <div class="filerow">'
+                    +'            <div class="uploadpicture">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
+                    +'                    value="image">'
+                    +'            </div>'
+                    +'            <input class="uploadpictureinput" type="file"'
+                    +'                name="uploadimage_'+ id +'" id="uploadimage_'+ id +'" multiple'
+                    +'                accept="image/x-png,image/gif,image/jpeg">'
+                    +'            <div class="uploadvideo">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'" id="uploadvideo_'+ id +'"'
+                    +'            accept="video/mp4,video/x-m4v,video/*">'
+                    +'            <div class="uploadaudio">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
+                    +'            accept="audio/*">'
+                    +'            <div class="uploadtext">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_4"'
+                    +'                    value="text">'
+                    +'            </div>'
+                    +'        </div>'
                     +'        <div class="form-group">'
                     +'            <label for="question_'+ id +'">Вопрос</label>'
                     +'            <textarea class="question_name" name="question_'+ id +'" id="question_'+ id +'" placeholder="Вопрос"></textarea>'
@@ -1232,6 +1325,31 @@ jQuery(function ($) {
                     +'        Настройки'
                     +'    </div>'
                     +'    <div class="text-aside">'
+                    +'        <div class="filerow">'
+                    +'            <div class="uploadpicture">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
+                    +'                    value="image">'
+                    +'            </div>'
+                    +'            <input class="uploadpictureinput" type="file"'
+                    +'                name="uploadimage_'+ id +'" id="uploadimage_'+ id +'" multiple'
+                    +'                accept="image/x-png,image/gif,image/jpeg">'
+                    +'            <div class="uploadvideo">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'" id="uploadvideo_'+ id +'"'
+                    +'            accept="video/mp4,video/x-m4v,video/*">'
+                    +'            <div class="uploadaudio">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
+                    +'            accept="audio/*">'
+                    +'            <div class="uploadtext">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_4"'
+                    +'                    value="text">'
+                    +'            </div>'
+                    +'        </div>'
                     +'        <div class="form-group">'
                     +'            <label for="question_'+ id +'">Вопрос</label>'
                     +'            <textarea class="question_name" name="question_'+ id +'" id="question_3" placeholder="Введите вопрос"></textarea>'
@@ -1270,6 +1388,31 @@ jQuery(function ($) {
                     +'        Настройки'
                     +'    </div>'
                     +'    <div class="text-aside">'
+                    +'        <div class="filerow">'
+                    +'            <div class="uploadpicture">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
+                    +'                    value="image">'
+                    +'            </div>'
+                    +'            <input class="uploadpictureinput" type="file"'
+                    +'                name="uploadimage_'+ id +'" id="uploadimage_'+ id +'" multiple'
+                    +'                accept="image/x-png,image/gif,image/jpeg">'
+                    +'            <div class="uploadvideo">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'" id="uploadvideo_'+ id +'"'
+                    +'            accept="video/mp4,video/x-m4v,video/*">'
+                    +'            <div class="uploadaudio">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
+                    +'            accept="audio/*">'
+                    +'            <div class="uploadtext">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_4"'
+                    +'                    value="text">'
+                    +'            </div>'
+                    +'        </div>'
                     +'        <div class="form-group">'
                     +'            <label for="question_'+ id +'">Вопрос</label>'
                     +'            <textarea class="question_name" name="question_'+ id +'" id="question_'+ id +'" placeholder="Введите вопрос"></textarea>'
@@ -1340,6 +1483,31 @@ jQuery(function ($) {
                     +'        Настройки'
                     +'    </div>'
                     +'    <div class="text-aside">'
+                    +'        <div class="filerow">'
+                    +'            <div class="uploadpicture">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
+                    +'                    value="image">'
+                    +'            </div>'
+                    +'            <input class="uploadpictureinput" type="file"'
+                    +'                name="uploadimage_'+ id +'" id="uploadimage_'+ id +'" multiple'
+                    +'                accept="image/x-png,image/gif,image/jpeg">'
+                    +'            <div class="uploadvideo">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'" id="uploadvideo_'+ id +'"'
+                    +'            accept="video/mp4,video/x-m4v,video/*">'
+                    +'            <div class="uploadaudio">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
+                    +'            accept="audio/*">'
+                    +'            <div class="uploadtext">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_4"'
+                    +'                    value="text">'
+                    +'            </div>'
+                    +'        </div>'
                     +'        <div class="form-group">'
                     +'            <label for="question_'+ id +'">Вопрос</label>'
                     +'            <textarea class="question_name" name="question_'+ id +'" id="question_'+ id +'" placeholder="Введите вопрос"></textarea>'
@@ -1445,6 +1613,31 @@ jQuery(function ($) {
                     +'        Настройки'
                     +'    </div>'
                     +'    <div class="text-aside ">'
+                    +'        <div class="filerow">'
+                    +'            <div class="uploadpicture">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
+                    +'                    value="image">'
+                    +'            </div>'
+                    +'            <input class="uploadpictureinput" type="file"'
+                    +'                name="uploadimage_'+ id +'" id="uploadimage_'+ id +'" multiple'
+                    +'                accept="image/x-png,image/gif,image/jpeg">'
+                    +'            <div class="uploadvideo">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'" id="uploadvideo_'+ id +'"'
+                    +'            accept="video/mp4,video/x-m4v,video/*">'
+                    +'            <div class="uploadaudio">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
+                    +'            accept="audio/*">'
+                    +'            <div class="uploadtext">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_4"'
+                    +'                    value="text">'
+                    +'            </div>'
+                    +'        </div>'
                     +'        <div class="dropdown-options">'
                     +'            <div class="top-row">'
                     +'                <div class="namelabel">Вопросы</div>'
@@ -1528,6 +1721,31 @@ jQuery(function ($) {
                     +'        Настройки'
                     +'    </div>'
                     +'    <div class="text-aside ">'
+                    +'        <div class="filerow">'
+                    +'            <div class="uploadpicture">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
+                    +'                    value="image">'
+                    +'            </div>'
+                    +'            <input class="uploadpictureinput" type="file"'
+                    +'                name="uploadimage_'+ id +'" id="uploadimage_'+ id +'" multiple'
+                    +'                accept="image/x-png,image/gif,image/jpeg">'
+                    +'            <div class="uploadvideo">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'" id="uploadvideo_'+ id +'"'
+                    +'            accept="video/mp4,video/x-m4v,video/*">'
+                    +'            <div class="uploadaudio">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
+                    +'            accept="audio/*">'
+                    +'            <div class="uploadtext">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_4"'
+                    +'                    value="text">'
+                    +'            </div>'
+                    +'        </div>'
                     +'        <div class="dropdown-options">'
                     +'            <div class="multityperow">'
                     +'                <div class="namelabel">'
