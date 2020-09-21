@@ -288,18 +288,30 @@ jQuery(function ($) {
                 child.parents('.question').find('.mediablock').html(' ');
                 if(!child.parents('.question').find('.textblock').length>0){
                     var textblock = 
-                    '<div class="textblock">'
-                    +'    <textarea class="uploadtextinput" name="uploadtextinput_1" id="uploadtextinput_1" placeholder="Введите текст"></textarea>'
+                    '<div class="textblock"> Рекламный текст'
                     +'</div>';
                     $(child.parents('.question')).find('.mediablock').prepend(textblock);
                 }
+                var inputtext = 
+                '<div class="inser-text">'
+                +'    <label for="uploadtextinput_'+ idQuestion + '">Рекламный текст</label>'
+                +'    <textarea class="uploadtextinput" name="uploadtextinput_'+ idQuestion + '" id="uploadtextinput_' + idQuestion + '" placeholder="Введите текст"></textarea>'
+                +'</div>';
+                $(inputtext).insertAfter($(this));
+                $(this).next('.inser-text').fadeIn(300);
             }
         });
+        
         if(document.getElementsByClassName('uploadtextinput')[0]){
             auto_grow(document.getElementsByClassName('uploadtextinput')[0]);
         }
 
-        $('.centerbox').on('change, keypress, keydown, keyup', '.uploadtextinput', function(e){
+        $('.rightside').on('change, keypress, keydown, keyup', '.uploadtextinput', function(e){
+            var idQuestion = parseInt($(this).attr('name').split('_')[1]);
+            var child = $('#questionanswers_'+idQuestion);
+            if(child.parents('.question').find('.mediablock .textblock').length>0){
+                child.parents('.question').find('.mediablock .textblock').html($(this).val());
+            }
             auto_grow(this);
         });
 
@@ -1025,9 +1037,9 @@ jQuery(function ($) {
         });
         
         //autoheight textarea
-        function auto_grow(element) {
-            element.style.height = "5px";
-            element.style.height = (element.scrollHeight)+"px";
+        function auto_grow(el) {
+            el.style.height = "auto";
+            el.style.height = (el.scrollHeight > el.clientHeight) ? (el.scrollHeight) + 15 +"px" : "30px";
         }
         //change name of points of question
         $('.rightside').on('change , keypress, keydown, keyup', '.question_points', function(e){

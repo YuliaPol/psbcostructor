@@ -1322,9 +1322,6 @@ table {
   background: #FFFFFF;
   border: 1px solid #F2F2F2;
   padding: 25px;
-}
-
-.construcot-container .centerbox .mediablock .textblock .uploadtextinput {
   font-family: "Montserrat";
   font-style: italic;
   font-weight: 500;
@@ -1332,18 +1329,6 @@ table {
   line-height: 24px;
   color: #5722DE;
   width: 100%;
-  resize: none;
-  border: none;
-  outline: none;
-  height: 28px;
-}
-
-.construcot-container .centerbox .mediablock .textblock .uploadtextinput::-webkit-scrollbar-track {
-  border-radius: 0px;
-}
-
-.construcot-container .centerbox .mediablock .textblock .uploadtextinput::-webkit-scrollbar {
-  width: 0px;
 }
 
 .construcot-container .centerbox .mediablock .bottom-row {
@@ -2800,6 +2785,43 @@ table {
   background-repeat: no-repeat;
   -webkit-background-size: contain;
           background-size: contain;
+}
+
+.construcot-container .rightside .default .filerow .inser-text,
+.construcot-container .rightside .optionbox .filerow .inser-text {
+  display: none;
+  width: 100%;
+  padding-top: 10px;
+}
+
+.construcot-container .rightside .default .filerow .inser-text label,
+.construcot-container .rightside .optionbox .filerow .inser-text label {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #563BC2;
+  padding-bottom: 10px;
+  display: block;
+  width: 100%;
+}
+
+.construcot-container .rightside .default .filerow .inser-text textarea,
+.construcot-container .rightside .optionbox .filerow .inser-text textarea {
+  border: 1px solid #EEEFF3;
+  padding: 5px;
+  font-family: "Montserrat";
+  font-style: italic;
+  font-weight: 500;
+  font-size: 8px;
+  line-height: 10px;
+  color: #563BC2;
+  width: 100%;
+  min-height: 28px;
+  outline: none;
+  resize: none;
+  min-height: 50px;
 }
 
 .construcot-container .rightside .default .header-aside,

@@ -972,25 +972,13 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                 background: #FFFFFF;
                 border: 1px solid #F2F2F2;
                 padding: 25px;
-                .uploadtextinput {
-                    font-family: $fontpage;
-                    font-style: italic;
-                    font-weight: 500;
-                    font-size: 18px;
-                    line-height: 24px;
-                    color: #5722DE;
-                    width: 100%;
-                    resize: none;
-                    border: none;
-                    outline: none;
-                    height: 28px;
-                    &::-webkit-scrollbar-track {
-                        border-radius: 0px;
-                    }
-                    &::-webkit-scrollbar {
-                        width: 0px;
-                    }
-                }
+                font-family: $fontpage;
+                font-style: italic;
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 24px;
+                color: #5722DE;
+                width: 100%;
             }
             .bottom-row {
                 display: flex;
@@ -1974,6 +1962,37 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                         background-position: center;
                         background-repeat: no-repeat;
                         background-size: contain;
+                    }
+                }
+                .inser-text {
+                    display: none;
+                    width: 100%;
+                    padding-top: 10px;
+                    label {
+                        font-family: $fontpage;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 10px;
+                        line-height: 12px;
+                        color: #563BC2;
+                        padding-bottom: 10px;
+                        display: block;
+                        width: 100%;
+                    }
+                    textarea {
+                        border: 1px solid #EEEFF3;
+                        padding: 5px;
+                        font-family: $fontpage;
+                        font-style: italic;
+                        font-weight: 500;
+                        font-size: 8px;
+                        line-height: 10px;
+                        color: #563BC2;
+                        width: 100%;
+                        min-height: 28px;
+                        outline: none;
+                        resize: none;
+                        min-height: 50px;
                     }
                 }
             }

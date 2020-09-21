@@ -1,11 +1,65 @@
-<div class="question" data-optionid="1">
-    <div class="close-question"></div>
-    <div class="name " id="questionName_1">
-        Какие кредиты Вам больше всего подходят?
+<div class="optionbox" id="option_1">
+    <input type="hidden" name="questiontype_1" value="dropdownmultiple">
+    <input type="hidden" class="orderinput" name="questionorder_1" value="1">
+    <div class="header-aside">
+        Настройки
     </div>
-    <div class="description " id="questiondescription_1">
-        Выберите один или несколько ответов в каждой строке
-    </div>
-    <div class="answer" id="questionanswers_1">
+    <div class="text-aside ">
+        <div class="filerow">
+            <div class="uploadpicture">
+                <input type="radio" name="typeuploadfile_1" id="typeuploadfile_1_1"
+                    value="image">
+            </div>
+            <input class="uploadpictureinput" type="file" name="uploadimage_1"
+                id="uploadimage_1" multiple accept="image/x-png,image/gif,image/jpeg">
+            <div class="uploadvideo">
+                <input type="radio" name="typeuploadfile_1" id="typeuploadfile_1_2"
+                    value="video">
+            </div>
+            <input class="uploadvideoinput" type="file" name="uploadvideo_1"
+                id="uploadvideo_1" accept="video/mp4,video/x-m4v,video/*">
+            <div class="uploadaudio">
+                <input type="radio" name="typeuploadfile_1" id="typeuploadfile_1_2"
+                    value="audio">
+            </div>
+            <input class="uploadaudioinput" type="file" name="uploadaudio_1"
+                id="uploadaudio_1" accept="audio/*">
+            <div class="uploadtext">
+                <input type="radio" name="typeuploadfile_1" id="typeuploadfile_1_2"
+                    value="text">
+            </div>
+        </div>
+        <div class="ranging-options">
+            <div class="form-group">
+                <label for="question_1">Вопрос</label>
+                <textarea class="question_name" name="question_1" id="question_1" placeholder="Введите вопрос"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="questiondescription_1">Доп. описание</label>
+                <textarea class="question_description" name="questiondescription_1" id="questiondescription_1" placeholder="Введите описание"></textarea>
+            </div>
+            <div class="form-group">
+                <p>Ответы</p>
+                <div class="rowslist">
+                    <div class="row-item">
+                        <input type="text" name="inputpoint_1_1" id="inputpoint_1_1" placeholder="Введите текст">
+                        <div class="edit-menu">
+                            <div class="menu-dots"></div>
+                            <div class="menu-list">
+                                <div class="add-row addrangingrow"></div>
+                                <div class="delete-row deleterangingrow"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ranging-btn-row">
+                <div class="addrangingrow add-btn">
+                    <div class="icon-add">
+                    </div>
+                    Добавить строку
+                </div>
+            </div>
+        </div>
     </div>
 </div>
