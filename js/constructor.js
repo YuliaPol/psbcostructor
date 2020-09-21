@@ -188,7 +188,6 @@ jQuery(function ($) {
 
         $('.rightside').on('change', '.uploadaudioinput', function(e){
             var idQuestion = parseInt($(this).attr('name').split('_')[1]);
-            var wavesurfer;
             var child = $('#questionanswers_'+idQuestion);
             if(!child.parents('.question').find('.mediablock').length>0){
                 var mideablock = '<div class="mediablock"></div>';
@@ -224,7 +223,7 @@ jQuery(function ($) {
                 var wavesurfer = WaveSurfer.create({
                     container: '#' + id,
                     scrollParent: true,
-                    backgroundColor: '#DEE1E9',
+                    backgroundColor: '#FFFFFF',
                     height: 40,
                     cursorWidth: 0,
                     waveColor: 'rgba(87, 34, 222, 0.2)',
@@ -257,7 +256,7 @@ jQuery(function ($) {
             var wavesurfer = WaveSurfer.create({
                 container: '#' + id,
                 scrollParent: true,
-                backgroundColor: '#DEE1E9',
+                backgroundColor: '#FFFFFF',
                 height: 40,
                 cursorWidth: 0,
                 waveColor: 'rgba(87, 34, 222, 0.2)',
@@ -299,6 +298,7 @@ jQuery(function ($) {
         if(document.getElementsByClassName('uploadtextinput')[0]){
             auto_grow(document.getElementsByClassName('uploadtextinput')[0]);
         }
+
         $('.centerbox').on('change, keypress, keydown, keyup', '.uploadtextinput', function(e){
             auto_grow(this);
         });
@@ -529,6 +529,134 @@ jQuery(function ($) {
             });
         }
 
+        //ranging up 
+        $('.centerbox').on('click', '.ranging-list .item-up', function(e){
+            var idQuestion = parseInt($(this).parents('.rangint-item').find('input').attr('name').split('_')[1]);
+            if($(this).parents('.rangint-item').prev().length>0){
+                $(this).parents('.rangint-item').insertBefore($(this).parents('.rangint-item').prev());
+            }
+            RefreshRanginItems(idQuestion);
+        });
+
+        //ranging down 
+        $('.centerbox').on('click', '.ranging-list .item-down', function(e){
+            var idQuestion = parseInt($(this).parents('.rangint-item').find('input').attr('name').split('_')[1]);
+            if($(this).parents('.rangint-item').next().length>0){
+                $(this).parents('.rangint-item').insertAfter($(this).parents('.rangint-item').next());
+            }
+            RefreshRanginItems(idQuestion);
+        });
+
+        //Refresh items answer ranging
+        function RefreshRanginItems(idQuestion) {
+            var parents = $('#questionanswers_' + idQuestion).find('.ranging-list');
+            var Subpoints = parents.children();
+            console.log(idQuestion);
+            Subpoints.each(function (index, subpoint) {
+                var id = index + 1;
+                var inputs = $(subpoint).find('input');
+                inputs.each(function (index, input) {
+                    if($(input).attr('name')){
+                        prevId = $(input).attr('name').split("_");
+                        prevId[2] = id;
+                        newId = prevId.join('_');
+                        $(input).attr('name', newId);
+                    }
+                    if($(input).attr('id')){
+                        prevId = $(input).attr('id').split("_");
+                        prevId[2] = id;
+                        newId = prevId.join('_');
+                        $(input).attr('id', newId);
+                    }
+                });
+            });
+        }
+        
+
+        
+        //add ranging item
+        $('.rightside').on('click', '.addrangingrow', function(e){
+            if($(this).parents('.ranging-options').find('.rowslist .row-item:last-child input').length>0)
+            {
+                var name =  $(this).parents('.ranging-options').find('.rowslist .row-item:last-child input').attr('name');
+                var idQuestion = parseInt(name.split('_')[1]);
+                var idPoints = parseInt(name.split('_')[2]) + 1;
+            }
+            else {
+                var name =  $(this).parents('.ranging-options').find('input').attr('name');
+                var idQuestion = parseInt(name.split('_')[1]);
+                var idPoints = 1;
+            }
+            if(idQuestion && idPoints) {
+                var newoptionrow = 
+                '<div class="row-item">'
+                +'    <input type="text" name="inputpoint_' + idQuestion + '_'+ idPoints + '" id="inputpoint_' + idQuestion + '_'+ idPoints + '" placeholder="Строка '+ idPoints + '">'
+                +'    <div class="edit-menu">'
+                +'        <div class="menu-dots"></div>'
+                +'        <div class="menu-list">'
+                +'            <div class="add-row addrangingrow"></div>'
+                +'            <div class="delete-row deleterangingrow"></div>'
+                +'        </div>'
+                +'    </div>'
+                +'</div>';
+                $(this).parents('.ranging-options').find('.rowslist').append(newoptionrow);
+
+                var newrowanswer =
+                '<div class="rangint-item">'
+                +'     <input type="hidden" name="rangingorder_' + idQuestion + '_'+ idPoints + '" value="' + idPoints + '">'
+                +'     <div class="arrows">'
+                +'         <div class="item-up"></div>'
+                +'         <div class="item-down"></div>'
+                +'     </div>'
+                +'     <div class="text">'
+                +'         Текст'
+                +'     </div>'
+                +' </div>';
+                $('#questionanswers_' + idQuestion + ' .ranging-list').append(newrowanswer);
+            }
+        });
+
+        
+        //delete ranging row
+        $('.rightside').on('click', '.deleterangingrow', function(e){
+            var name =  $(this).parents('.row-item').find('input').attr('name');
+            var idQuestion = parseInt(name.split('_')[1]);
+            var idPoints = parseInt(name.split('_')[2]);
+            var parents =  $(this).parents('.rowslist');
+            $(this).parents('.row-item').remove();
+            $('#questionanswers_' + idQuestion + ' .ranging-list .rangint-item:nth-child(' + idPoints + ')').remove();
+            var Subpoints = parents.children();
+            Subpoints.each(function (index, subpoint) {
+                var id = index + 1;
+                var inputs = $(subpoint).find('input');
+                inputs.each(function (index, input) {
+                    if($(input).attr('name')){
+                        prevId = $(input).attr('name').split("_");
+                        prevId[2] = id;
+                        newId = prevId.join('_');
+                        $(input).attr('name', newId);
+                    }
+                    if($(input).attr('id')){
+                        prevId = $(input).attr('id').split("_");
+                        prevId[2] = id;
+                        newId = prevId.join('_');
+                        $(input).attr('id', newId);
+                    }
+                });
+            });
+
+            RefreshRanginItems(idQuestion);
+        });
+
+        //change rangin item text 
+        $('.rightside').on('change, keypress, keydown, keyup', '.ranging-options .rowslist .row-item input', function(e){
+            var name =  $(this).attr('name');
+            var idQuestion = parseInt(name.split('_')[1]);
+            var idPoints = parseInt(name.split('_')[2]);
+            var value = $(this).val();
+            $('#questionanswers_' + idQuestion + ' .ranging-list .rangint-item:nth-child(' + idPoints + ') .text').html(value);
+        });
+        
         $('.rightside').on('change, keypress, keydown, keyup', '.dropdown-question', function(e){
             auto_grow(this);
             var name = $(this).attr('name').split('_');
@@ -2082,7 +2210,7 @@ jQuery(function ($) {
                 }
                 if (type === 'matrix') {
                     el =
-                    '<div class="question" data-optionid="'+ id +'">'
+                    '<div class="question active" data-optionid="'+ id +'">'
                     +'    <div class="close-question"></div>'
                     +'    <div class="name " id="questionName_'+ id +'">'
                     +'        Вопрос'
@@ -2135,7 +2263,7 @@ jQuery(function ($) {
                     +'   </div>'
                     +'</div>';
                     option =
-                    '<div class="optionbox" id="option_'+ id +'">'
+                    '<div class="optionbox active" id="option_'+ id +'">'
                     +'    <input type="hidden" name="questiontype_'+ id +'" value="matrix">'
                     +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                     +'    <div class="header-aside">'
@@ -2233,8 +2361,96 @@ jQuery(function ($) {
                     +'</div>';
                 }
                 if (type === 'ranging') {
-                    el ='ranging'
-                    ;
+                    el =
+                    '<div class="question" data-optionid="'+ id +'">'
+                    +'    <div class="close-question"></div>'
+                    +'    <div class="name " id="questionName_'+ id +'">'
+                    +'        Вопрос'
+                    +'    </div>'
+                    +'    <div class="description " id="questiondescription_'+ id +'">'
+                    +'        Описание'
+                    +'    </div>'
+                    +'    <div class="answer" id="questionanswers_'+ id +'">'
+                    +'        <div class="ranging-list">'
+                    +'            <div class="rangint-item">'
+                    +'                <input type="hidden" name="rangingorder_'+ id +'_1" value="1">'
+                    +'                <div class="arrows">'
+                    +'                    <div class="item-up"></div>'
+                    +'                    <div class="item-down"></div>'
+                    +'                </div>'
+                    +'                <div class="text">'
+                    +'                    Текст'
+                    +'                </div>'
+                    +'            </div>'
+                    +'        </div>'
+                    +'    </div>'
+                    +'</div>';
+                    option = 
+                    '<div class="optionbox" id="option_'+ id +'">'
+                    +'   <input type="hidden" name="questiontype_'+ id +'" value="ranging">'
+                    +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
+                    +'    <div class="header-aside">'
+                    +'      Настройки'
+                    +'  </div>'
+                    +'  <div class="text-aside ">'
+                    +'      <div class="filerow">'
+                    +'          <div class="uploadpicture">'
+                    +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
+                    +'                  value="image">'
+                    +'          </div>'
+                    +'          <input class="uploadpictureinput" type="file" name="uploadimage_'+ id +'"'
+                    +'              id="uploadimage_'+ id +'" multiple accept="image/x-png,image/gif,image/jpeg">'
+                    +'          <div class="uploadvideo">'
+                    +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                  value="video">'
+                    +'          </div>'
+                    +'          <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'"'
+                    +'              id="uploadvideo_'+ id +'" accept="video/mp4,video/x-m4v,video/*">'
+                    +'          <div class="uploadaudio">'
+                    +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                  value="audio">'
+                    +'          </div>'
+                    +'          <input class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'"'
+                    +'              id="uploadaudio_'+ id +'" accept="audio/*">'
+                    +'          <div class="uploadtext">'
+                    +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                  value="text">'
+                    +'          </div>'
+                    +'      </div>'
+                    +'      <div class="ranging-options">'
+                    +'          <div class="form-group">'
+                    +'              <label for="question_'+ id +'">Вопрос</label>'
+                    +'              <textarea class="question_name" name="question_'+ id +'" id="question_'+ id +'" placeholder="Введите вопрос"></textarea>'
+                    +'          </div>'
+                    +'          <div class="form-group">'
+                    +'              <label for="questiondescription_'+ id +'">Доп. описание</label>'
+                    +'              <textarea class="question_description" name="questiondescription_'+ id +'" id="questiondescription_'+ id +'" placeholder="Введите описание"></textarea>'
+                    +'          </div>'
+                    +'          <div class="form-group">'
+                    +'              <p>Ответы</p>'
+                    +'              <div class="rowslist">'
+                    +'                  <div class="row-item">'
+                    +'                      <input type="text" name="inputpoint_'+ id +'_1" id="inputpoint_'+ id +'_1" placeholder="Введите текст">'
+                    +'                      <div class="edit-menu">'
+                    +'                          <div class="menu-dots"></div>'
+                    +'                          <div class="menu-list">'
+                    +'                              <div class="add-row addrangingrow"></div>'
+                    +'                              <div class="delete-row deleterangingrow"></div>'
+                    +'                          </div>'
+                    +'                      </div>'
+                    +'                  </div>'
+                    +'              </div>'
+                    +'          </div>'
+                    +'          <div class="ranging-btn-row">'
+                    +'              <div class="addrangingrow add-btn">'
+                    +'                  <div class="icon-add">'
+                    +'                  </div>'
+                    +'                  Добавить строку'
+                    +'              </div>'
+                    +'          </div>'
+                    +'      </div>'
+                    +'  </div>'
+                    +'</div>';
                 }
                 if (type === 'name') {
                     el ='name'

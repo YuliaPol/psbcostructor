@@ -1292,7 +1292,6 @@ table {
       -ms-flex-pack: justify;
           justify-content: space-between;
   width: 270px;
-  background: #DEE1E9;
   -webkit-box-shadow: inset 0px 0px 10px 2px rgba(144, 141, 150, 0.2);
           box-shadow: inset 0px 0px 10px 2px rgba(144, 141, 150, 0.2);
   border-radius: 30px;
@@ -2513,6 +2512,89 @@ table {
   color: #37353F;
 }
 
+.construcot-container .centerbox .questions-box .question .answer .ranging-list {
+  margin-top: 15px;
+}
+
+.construcot-container .centerbox .questions-box .question .answer .ranging-list .rangint-item {
+  margin-bottom: 10px;
+  border: 1px solid #EEEFF3;
+  border-radius: 3px;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  padding: 10px;
+}
+
+.construcot-container .centerbox .questions-box .question .answer .ranging-list .rangint-item .arrows {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-height: 13px;
+}
+
+.construcot-container .centerbox .questions-box .question .answer .ranging-list .rangint-item .arrows .item-up {
+  width: 10px;
+  height: 5px;
+  padding: 3px;
+  background: url(./../img/arrow-dropdown.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+          background-size: contain;
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+       -o-transform: rotate(180deg);
+          transform: rotate(180deg);
+  cursor: pointer;
+}
+
+.construcot-container .centerbox .questions-box .question .answer .ranging-list .rangint-item .arrows .item-down {
+  width: 10px;
+  height: 5px;
+  padding: 3px;
+  background: url(./../img/arrow-dropdown.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+          background-size: contain;
+  cursor: pointer;
+}
+
+.construcot-container .centerbox .questions-box .question .answer .ranging-list .rangint-item .text {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #37353F;
+  padding-left: 10px;
+}
+
 .construcot-container .centerbox .questions-box .question .form-group,
 .construcot-container .centerbox .questions-box .question .form-group label {
   font-family: "Montserrat";
@@ -2888,6 +2970,162 @@ table {
 
 .construcot-container .rightside .default .text-aside .matrix-options .matrix-btn-row .add-btn .icon-add,
 .construcot-container .rightside .optionbox .text-aside .matrix-options .matrix-btn-row .add-btn .icon-add {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: url(./../img/matric-add-btn.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+  margin-right: 5px;
+}
+
+.construcot-container .rightside .default .text-aside .ranging-options .rowslist .row-item,
+.construcot-container .rightside .optionbox .text-aside .ranging-options .rowslist .row-item {
+  margin: 5px 0px;
+  border: 1px solid #EEEFF3;
+  padding: 7px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.construcot-container .rightside .default .text-aside .ranging-options .rowslist .row-item:hover .edit-menu .menu-list,
+.construcot-container .rightside .optionbox .text-aside .ranging-options .rowslist .row-item:hover .edit-menu .menu-list {
+  width: 45px;
+  height: 35px;
+  opacity: 1;
+}
+
+.construcot-container .rightside .default .text-aside .ranging-options .rowslist .row-item input[type=text],
+.construcot-container .rightside .optionbox .text-aside .ranging-options .rowslist .row-item input[type=text] {
+  display: block;
+  border: none;
+  outline: none;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 8px;
+  line-height: 10px;
+  color: #37353F;
+  width: calc(100% - 20px);
+}
+
+.construcot-container .rightside .default .text-aside .ranging-options .rowslist .row-item .edit-menu,
+.construcot-container .rightside .optionbox .text-aside .ranging-options .rowslist .row-item .edit-menu {
+  position: relative;
+}
+
+.construcot-container .rightside .default .text-aside .ranging-options .rowslist .row-item .edit-menu .menu-dots,
+.construcot-container .rightside .optionbox .text-aside .ranging-options .rowslist .row-item .edit-menu .menu-dots {
+  width: 10px;
+  height: 10px;
+  background: url(./../img/matrix-dots.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.construcot-container .rightside .default .text-aside .ranging-options .rowslist .row-item .edit-menu .menu-list,
+.construcot-container .rightside .optionbox .text-aside .ranging-options .rowslist .row-item .edit-menu .menu-list {
+  position: absolute;
+  background: url(./../img/matrix-menubg.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+  top: -30px;
+  left: -18px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 5px;
+  opacity: 0;
+  width: 0px;
+  height: 0px;
+  -webkit-transition: opacity 0.3s ease-in;
+  -o-transition: opacity 0.3s ease-in;
+  transition: opacity 0.3s ease-in;
+}
+
+.construcot-container .rightside .default .text-aside .ranging-options .rowslist .row-item .edit-menu .menu-list .add-row,
+.construcot-container .rightside .optionbox .text-aside .ranging-options .rowslist .row-item .edit-menu .menu-list .add-row {
+  width: 50%;
+  height: 12px;
+  background: url(./../img/matrix-addrow.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.construcot-container .rightside .default .text-aside .ranging-options .rowslist .row-item .edit-menu .menu-list .delete-row,
+.construcot-container .rightside .optionbox .text-aside .ranging-options .rowslist .row-item .edit-menu .menu-list .delete-row {
+  width: 50%;
+  height: 12px;
+  background: url(./../img/matrix-deleterow.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.construcot-container .rightside .default .text-aside .ranging-options .ranging-btn-row,
+.construcot-container .rightside .optionbox .text-aside .ranging-options .ranging-btn-row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.construcot-container .rightside .default .text-aside .ranging-options .ranging-btn-row .add-btn,
+.construcot-container .rightside .optionbox .text-aside .ranging-options .ranging-btn-row .add-btn {
+  width: calc(50% - 5px);
+  border: 0.5px solid #F26126;
+  border-radius: 2px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 8px;
+  line-height: 10px;
+  color: #F26126;
+  padding: 7px 8px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.construcot-container .rightside .default .text-aside .ranging-options .ranging-btn-row .add-btn .icon-add,
+.construcot-container .rightside .optionbox .text-aside .ranging-options .ranging-btn-row .add-btn .icon-add {
   display: inline-block;
   width: 6px;
   height: 6px;
