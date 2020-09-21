@@ -966,8 +966,19 @@ table {
   display: none;
 }
 
-.page-content .box-wrapper .box-form .realfileinput {
+.page-content .box-wrapper .box-form .realfileinput,
+.page-content .box-wrapper .box-form .realfileinputtest {
   display: none;
+}
+
+.page-content .box-wrapper .box-form .file-name {
+  padding: 5px 0px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  color: #37353F;
 }
 
 .page-content .box-wrapper .box-form .dropzone-file {
@@ -1689,6 +1700,16 @@ table {
   color: #000000;
 }
 
+.construcot-container .centerbox .questions-box .question .description {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  color: #37353F;
+  padding-top: 5px;
+}
+
 .construcot-container .centerbox .questions-box .question .answer {
   padding-top: 20px;
   padding-bottom: 10px;
@@ -2286,6 +2307,127 @@ table {
   color: #008811;
 }
 
+.construcot-container .centerbox .questions-box .question .answer .matrix-table .first-row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.construcot-container .centerbox .questions-box .question .answer .matrix-table .first-row .col {
+  width: 100%;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+.construcot-container .centerbox .questions-box .question .answer .matrix-table .first-row .col .value {
+  width: calc(100% - 10px);
+  margin: auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 5px;
+  border: 1px solid #EEEFF3;
+  border-radius: 3px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #37353F;
+  min-height: 28px;
+}
+
+.construcot-container .centerbox .questions-box .question .answer .matrix-table .matrix-row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.construcot-container .centerbox .questions-box .question .answer .matrix-table .matrix-row .first-col .value {
+  width: calc(100% - 10px);
+  margin: auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 5px;
+  border: 1px solid #EEEFF3;
+  border-radius: 3px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #37353F;
+  min-height: 28px;
+}
+
+.construcot-container .centerbox .questions-box .question .answer .matrix-table .matrix-row .col {
+  width: 100%;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+.construcot-container .centerbox .questions-box .question .answer .matrix-table .matrix-row .col input {
+  display: none;
+}
+
+.construcot-container .centerbox .questions-box .question .answer .matrix-table .matrix-row .col input + label {
+  width: calc(100% - 10px);
+  background: rgba(255, 164, 0, 0.05);
+  border: 0.5px solid #FFA400;
+  border-radius: 3px;
+  min-height: 28px;
+  display: block;
+  margin: auto;
+}
+
+.construcot-container .centerbox .questions-box .question .answer .matrix-table .matrix-row .col input:checked + label {
+  background: rgba(86, 59, 194, 0.05);
+  border: 0.5px solid #563BC2;
+}
+
 .construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block {
   padding: 8px 10px;
   position: relative;
@@ -2601,6 +2743,190 @@ table {
   padding: 10px;
 }
 
+.construcot-container .rightside .default .text-aside .matrix-options .rowslist .row-item,
+.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item {
+  margin: 5px 0px;
+  border: 1px solid #EEEFF3;
+  padding: 7px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.construcot-container .rightside .default .text-aside .matrix-options .rowslist .row-item:hover .edit-menu .menu-list,
+.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item:hover .edit-menu .menu-list {
+  width: 45px;
+  height: 35px;
+  opacity: 1;
+}
+
+.construcot-container .rightside .default .text-aside .matrix-options .rowslist .row-item input[type=text],
+.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item input[type=text] {
+  display: block;
+  border: none;
+  outline: none;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 8px;
+  line-height: 10px;
+  color: #37353F;
+  width: calc(100% - 20px);
+}
+
+.construcot-container .rightside .default .text-aside .matrix-options .rowslist .row-item .edit-menu,
+.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item .edit-menu {
+  position: relative;
+}
+
+.construcot-container .rightside .default .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-dots,
+.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-dots {
+  width: 10px;
+  height: 10px;
+  background: url(./../img/matrix-dots.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.construcot-container .rightside .default .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list,
+.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list {
+  position: absolute;
+  background: url(./../img/matrix-menubg.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+  top: -30px;
+  left: -18px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 5px;
+  opacity: 0;
+  width: 0px;
+  height: 0px;
+  -webkit-transition: opacity 0.3s ease-in;
+  -o-transition: opacity 0.3s ease-in;
+  transition: opacity 0.3s ease-in;
+}
+
+.construcot-container .rightside .default .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list .add-row,
+.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list .add-row {
+  width: 50%;
+  height: 12px;
+  background: url(./../img/matrix-addrow.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.construcot-container .rightside .default .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list .delete-row,
+.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list .delete-row {
+  width: 50%;
+  height: 12px;
+  background: url(./../img/matrix-deleterow.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.construcot-container .rightside .default .text-aside .matrix-options .matrix-btn-row,
+.construcot-container .rightside .optionbox .text-aside .matrix-options .matrix-btn-row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.construcot-container .rightside .default .text-aside .matrix-options .matrix-btn-row .add-btn,
+.construcot-container .rightside .optionbox .text-aside .matrix-options .matrix-btn-row .add-btn {
+  width: calc(50% - 5px);
+  border: 0.5px solid #F26126;
+  border-radius: 2px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 8px;
+  line-height: 10px;
+  color: #F26126;
+  padding: 7px 8px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.construcot-container .rightside .default .text-aside .matrix-options .matrix-btn-row .add-btn .icon-add,
+.construcot-container .rightside .optionbox .text-aside .matrix-options .matrix-btn-row .add-btn .icon-add {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: url(./../img/matric-add-btn.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+  margin-right: 5px;
+}
+
+.construcot-container .rightside .default .text-aside .multityperow,
+.construcot-container .rightside .optionbox .text-aside .multityperow {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-bottom: 15px;
+}
+
+.construcot-container .rightside .default .text-aside .multityperow .namelabel,
+.construcot-container .rightside .optionbox .text-aside .multityperow .namelabel {
+  width: calc(100% - 25px);
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #37353F;
+}
+
 .construcot-container .rightside .default .text-aside .dropdown-options .top-row,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .top-row {
   position: relative;
@@ -2630,34 +2956,6 @@ table {
           background-size: contain;
   background-repeat: no-repeat;
   cursor: pointer;
-}
-
-.construcot-container .rightside .default .text-aside .dropdown-options .multityperow,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .multityperow {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  padding-bottom: 15px;
-}
-
-.construcot-container .rightside .default .text-aside .dropdown-options .multityperow .namelabel,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .multityperow .namelabel {
-  width: calc(100% - 25px);
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 10px;
-  line-height: 12px;
-  color: #37353F;
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group,
@@ -3499,6 +3797,7 @@ table {
   -webkit-transition: background 0.3s ease-in;
   -o-transition: background 0.3s ease-in;
   transition: background 0.3s ease-in;
+  cursor: pointer;
 }
 
 .construcot-container .listbox li.icon::before {

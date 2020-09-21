@@ -5,6 +5,19 @@ jQuery(function ($) {
             cursor: "move",
         });
 
+        if($('#modal-error').length==0){
+            var modal = 
+            '<div id="modal-error" class="modal">'
+            +'    <div class="modal-content">'
+            +'        <span class="close">&times;</span>'
+            +'        <div class="text">'
+            +'            <p>Выберете, пожалуйста, ответ.</p>'
+            +'        </div>'
+            +'    </div>'
+            +'</div>';
+            $('body').append(modal);
+        }
+
 
         $( ".listbox li" ).toggleClass('dragged');
         // dropdownlist
@@ -77,6 +90,7 @@ jQuery(function ($) {
             }
 
             var image;
+
             if(files.length > 9 ) {
                 $('#modal-error').find('.text').html('Выберете, пожалуйста, не больше 10 файлов');
                 $('.modal').fadeIn(300);
@@ -288,11 +302,232 @@ jQuery(function ($) {
         $('.centerbox').on('change, keypress, keydown, keyup', '.uploadtextinput', function(e){
             auto_grow(this);
         });
+
         //change name of question
         $('.rightside').on('change, keypress, keydown, keyup', '.question_name', function(e){
             var id = parseInt($(this).attr('name').split('_')[1]);
             $('#questionName_' + id).html($(this).val());
         });
+
+        //change description of question
+        $('.rightside').on('change, keypress, keydown, keyup', '.question_description', function(e){
+            var id = parseInt($(this).attr('name').split('_')[1]);
+            $('#questiondescription_' + id).html($(this).val());
+        });
+        
+        //change matrix row
+        $('.rightside').on('change, keypress, keydown, keyup', '.matrix-options .rowslist .row-item input', function(e){
+            var name =  $(this).attr('name');
+            var idQuestion = parseInt(name.split('_')[1]);
+            var idPoints = parseInt(name.split('_')[2]) + 1;
+            var value = $(this).val();
+            $('#questionanswers_' + idQuestion + ' .matrix-table .matrix-row:nth-child(' + idPoints + ') .first-col .value').html(value);
+        });
+
+        //add matrix row
+        $('.rightside').on('click', '.addmatrixrow', function(e){
+            if($(this).parents('.matrix-options').find('.rowslist .row-item:last-child input').length>0)
+            {
+                var name =  $(this).parents('.matrix-options').find('.rowslist .row-item:last-child input').attr('name');
+                var idQuestion = parseInt(name.split('_')[1]);
+                var idPoints = parseInt(name.split('_')[2]) + 1;
+            }
+            else {
+                var name =  $(this).parents('.matrix-options').find('input').attr('name');
+                var idQuestion = parseInt(name.split('_')[1]);
+                var idPoints = 1;
+            }
+            var numberCols = parseInt($(this).parents('.matrix-options').find('.matrix_number').val());
+            if(idQuestion && idPoints) {
+                var newoptionrow = 
+                '<div class="row-item">'
+                +'    <input type="text" name="inputpoint_' + idQuestion + '_'+ idPoints + '" id="inputpoint_' + idQuestion + '_'+ idPoints + '" placeholder="Строка '+ idPoints + '">'
+                +'    <div class="edit-menu">'
+                +'        <div class="menu-dots"></div>'
+                +'        <div class="menu-list">'
+                +'            <div class="add-row addmatrixrow"></div>'
+                +'            <div class="delete-row deletematrixrow"></div>'
+                +'        </div>'
+                +'    </div>'
+                +'</div>';
+                $(this).parents('.matrix-options').find('.rowslist').append(newoptionrow);
+                var newrowanswer =
+                '<div class="matrix-row">'
+                +'    <div class="col first-col">'
+                +'        <div class="value">Строка '+ idPoints + '</div>'
+                +'    </div>';
+
+                if($(this).parents('.matrix-options').find('.matrixtype').is(':checked')){
+                    for (let i = 0; i < numberCols; i++){
+                        var newCol =
+                        '<div class="col">'
+                        +'    <input type="checkbox" name="answermatrix_' + idQuestion + '_' + idPoints +  '_' + i + '"  id="answermatrix_' + idQuestion + '_' + idPoints + '_' + i + '">'
+                        +'    <label for="answermatrix_' + idQuestion + '_' + idPoints + '_' + i + '">'
+                        +'    </label>'
+                        +'</div>';
+                        newrowanswer = newrowanswer + newCol;
+                    }
+                }
+                else {
+                    for (let i = 0; i < numberCols; i++){
+                        var newCol =
+                        '<div class="col">'
+                        +'    <input type="radio" name="answermatrix_' + idQuestion + '_' + idPoints  + '"  id="answermatrix_' + idQuestion + '_' + idPoints + '_' + i + '">'
+                        +'    <label for="answermatrix_' + idQuestion + '_' + idPoints + '_' + i + '">'
+                        +'    </label>'
+                        +'</div>';
+                        newrowanswer = newrowanswer + newCol;
+                    }
+                }
+                newrowanswer = newrowanswer +'    </div>'
+                +'</div>';
+                $('#questionanswers_' + idQuestion + ' .matrix-table').append(newrowanswer);
+            }
+        });
+        // add matric col
+        $('.rightside').on('click', '.addcolmatrix', function(e){
+            var colls = parseInt($(this).parents('.matrix-options').find('.matrix_number').val()) + 1;
+            $(this).parents('.matrix-options').find('.matrix_number').val(colls);
+            $(this).parents('.matrix-options').find('.matrix_number').change();
+        });
+
+        //delete matrix row
+        $('.rightside').on('click', '.deletematrixrow', function(e){
+            var name =  $(this).parents('.row-item').find('input').attr('name');
+            var idQuestion = parseInt(name.split('_')[1]);
+            var idPoints = parseInt(name.split('_')[2]) + 1;
+            var parents =  $(this).parents('.rowslist');
+            $(this).parents('.row-item').remove();
+            $('#questionanswers_' + idQuestion + ' .matrix-table .matrix-row:nth-child(' + idPoints + ')').remove();
+            var Subpoints = parents.children();
+            Subpoints.each(function (index, subpoint) {
+                var id = index + 1;
+                var inputs = $(subpoint).find('input');
+                inputs.each(function (index, input) {
+                    if($(input).attr('name')){
+                        prevId = $(input).attr('name').split("_");
+                        prevId[2] = id;
+                        newId = prevId.join('_');
+                        $(input).attr('name', newId);
+                    }
+                    if($(input).attr('id')){
+                        prevId = $(input).attr('id').split("_");
+                        prevId[2] = id;
+                        newId = prevId.join('_');
+                        $(input).attr('id', newId);
+                    }
+                });
+            });
+
+            var SubpointsAnswer = $('#questionanswers_' + idQuestion + ' .matrix-table').children();
+            SubpointsAnswer.each(function (index, subpoint) {
+                var id = index;
+                var inputs = $(subpoint).find('input');
+                inputs.each(function (index, input) {
+                    if($(input).attr('name')){
+                        prevId = $(input).attr('name').split("_");
+                        prevId[2] = id;
+                        newId = prevId.join('_');
+                        $(input).attr('name', newId);
+                    }
+                    if($(input).attr('id')){
+                        prevId = $(input).attr('id').split("_");
+                        prevId[2] = id;
+                        newId = prevId.join('_');
+                        $(input).attr('id', newId);
+                    }
+                });
+                
+                var labels = $(subpoint).find('label');
+                labels.each(function (index, label) {
+                    if($(label).attr('for')){
+                        prevId = $(label).attr('for').split("_");
+                        prevId[2] = id;
+                        newId = prevId.join('_');
+                        $(label).attr('for', newId);
+                    }
+                    if($(label).attr('id')){
+                        prevId = $(label).attr('id').split("_");
+                        prevId[2] = id;
+                        newId = prevId.join('_');
+                        $(label).attr('id', newId);
+                    }
+                });
+            });
+        });
+
+
+        //change points of matrix col
+        $('.rightside').on('change', '.matrix_number', function(e){
+            var id = parseInt($(this).attr('name').split('_')[1]);
+            var number = $(this).val();
+            MatrixColChange(id, number);
+        });
+
+        $( ".matrix_number" ).spinner({
+            min: 0,
+            max: 15,
+            spin: function( event, ui ) {
+                var id = parseInt($(event.target).attr('name').split('_')[1]);
+                var number = ui.value;
+                MatrixColChange(id, number);
+            }
+        });
+
+        //set colls of matrix
+        function MatrixColChange(id, number) {
+            number = parseInt(number) + 1;
+            var answerRows = $('#questionanswers_' + id + ' .matrix-table').children();
+            answerRows.each(function (i_row, row) {
+                var answerCols = $(row).children();
+                if(answerCols.length > number){
+                    answerCols.each(function (i_col, col) {
+                        var index = i_col + 1;
+                        if(index > number) {
+                            $(col).remove();
+                        }
+                    });
+                }
+                else if(answerCols.length < number){
+                    var name = $('#option_' + id).find('.matrix_number').attr('name');
+                    var idQuestion = parseInt(name.split('_')[1]);
+                    var idPoints = i_row;
+                    if(i_row == 0){
+                        for (let i =  answerCols.length; i < number; i++){
+                            var newCol =
+                            '<div class="col">'
+                            +'    <div class="value">' + i + '</div>'
+                            +'</div>';
+                            $(row).append(newCol);
+                        }
+                    }
+                    else {
+                        if($('#option_' + id).find('.matrixtype').is(':checked')){
+                            for (let i =  answerCols.length; i < number; i++){
+                                var newCol =
+                                '<div class="col">'
+                                +'    <input type="checkbox" name="answermatrix_' + idQuestion + '_' + idPoints +  '_' + i + '"  id="answermatrix_' + idQuestion + '_' + idPoints + '_' + i + '">'
+                                +'    <label for="answermatrix_' + idQuestion + '_' + idPoints + '_' + i + '">'
+                                +'    </label>'
+                                +'</div>';
+                                $(row).append(newCol);
+                            }
+                        }
+                        else {
+                            for (let i =  answerCols.length; i < number; i++){
+                                var newCol =
+                                '<div class="col">'
+                                +'    <input type="radio" name="answermatrix_' + idQuestion + '_' + idPoints  + '"  id="answermatrix_' + idQuestion + '_' + idPoints + '_' + i + '">'
+                                +'    <label for="answermatrix_' + idQuestion + '_' + idPoints + '_' + i + '">'
+                                +'    </label>'
+                                +'</div>';
+                                $(row).append(newCol);
+                            }
+                        }
+                    }
+                }
+            });
+        }
 
         $('.rightside').on('change, keypress, keydown, keyup', '.dropdown-question', function(e){
             auto_grow(this);
@@ -369,6 +604,35 @@ jQuery(function ($) {
 
         //dropdown  multiple change
         $('.rightside').on('click', '.dropdown-options .dropdownmultiple', function(e){
+            var idQuestion = parseInt($(this).attr('name').split('_')[1]);
+            if($(this).is(':checked')){
+                var inputs = $('#questionanswers_' + idQuestion).find('input');
+                inputs.each(function (index, input) {
+                    if($(input).attr('type') == 'radio'){
+                        $(input).attr('type', 'checkbox');
+                    }
+                    if($(input).attr('name')){
+                        $(input).attr('name', $(input).attr('id'));
+                    }
+                });
+            }
+            else {
+                var inputs = $('#questionanswers_' + idQuestion).find('input');
+                inputs.each(function (index, input) {
+                    if($(input).attr('type') == 'checkbox'){
+                        $(input).attr('type', 'radio');
+                    }
+                    if($(input).attr('name')){
+                        var prevName = $(input).attr('name').split('_');
+                        prevName.splice(3 ,1);
+                        $(input).attr('name', prevName.join('_'));
+                    }
+                });
+            }
+        });
+
+        //matrix  multiple change
+        $('.rightside').on('click', '.matrix-options .matrixtype', function(e){
             var idQuestion = parseInt($(this).attr('name').split('_')[1]);
             if($(this).is(':checked')){
                 var inputs = $('#questionanswers_' + idQuestion).find('input');
@@ -1201,7 +1465,7 @@ jQuery(function ($) {
                     +'                    value="image">'
                     +'            </div>'
                     +'            <input class="uploadpictureinput" type="file"'
-                    +'                name="uploadimage_'+ id +'" id="uploadimage_'+ id +'" multiple'
+                    +'                name="uploadimage_'+ id +'[]" id="uploadimage_'+ id +'" multiple="multiple"'
                     +'                accept="image/x-png,image/gif,image/jpeg">'
                     +'            <div class="uploadvideo">'
                     +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
@@ -1272,7 +1536,7 @@ jQuery(function ($) {
                     +'                    value="image">'
                     +'            </div>'
                     +'            <input class="uploadpictureinput" type="file"'
-                    +'                name="uploadimage_'+ id +'" id="uploadimage_'+ id +'" multiple'
+                    +'                name="uploadimage_'+ id +'[]" id="uploadimage_'+ id +'" multiple="multiple"'
                     +'                accept="image/x-png,image/gif,image/jpeg">'
                     +'            <div class="uploadvideo">'
                     +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
@@ -1331,7 +1595,7 @@ jQuery(function ($) {
                     +'                    value="image">'
                     +'            </div>'
                     +'            <input class="uploadpictureinput" type="file"'
-                    +'                name="uploadimage_'+ id +'" id="uploadimage_'+ id +'" multiple'
+                    +'                name="uploadimage_'+ id +'[]" id="uploadimage_'+ id +'" multiple="multiple"'
                     +'                accept="image/x-png,image/gif,image/jpeg">'
                     +'            <div class="uploadvideo">'
                     +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
@@ -1394,7 +1658,7 @@ jQuery(function ($) {
                     +'                    value="image">'
                     +'            </div>'
                     +'            <input class="uploadpictureinput" type="file"'
-                    +'                name="uploadimage_'+ id +'" id="uploadimage_'+ id +'" multiple'
+                    +'                name="uploadimage_'+ id +'[]" id="uploadimage_'+ id +'" multiple="multiple"'
                     +'                accept="image/x-png,image/gif,image/jpeg">'
                     +'            <div class="uploadvideo">'
                     +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
@@ -1448,32 +1712,52 @@ jQuery(function ($) {
                     '<div class="question active" data-optionid="'+ id +'">'
                     +'    <div class="close-question"></div>'
                     +'    <div class="name " id="questionName_'+ id +'">'
-                    +'        Как Вы оцените работу нашего банка?'
+                    +'        Вопрос'
                     +'    </div>'
-                    +'    <div class="answer answer-colorstar" id="questionanswers_'+ id +'">'
-                    +'        <div class="rating">'
-                    +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_10" value="10">'
-                    +'            <label for="questionanswer_'+ id +'_10"></label>'
-                    +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_9" value="9">'
-                    +'            <label for="questionanswer_'+ id +'_9"></label>'
-                    +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_8" value="8">'
-                    +'            <label for="questionanswer_'+ id +'_8"></label>'
-                    +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_7" value="7">'
-                    +'            <label for="questionanswer_'+ id +'_7"></label>'
-                    +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_6" value="6">'
-                    +'            <label for="questionanswer_'+ id +'_6"></label>'
-                    +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_5" value="5">'
-                    +'            <label for="questionanswer_'+ id +'_5"></label>'
-                    +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_4" value="4">'
-                    +'            <label for="questionanswer_'+ id +'_4"></label>'
-                    +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_3" value="3">'
-                    +'            <label for="questionanswer_'+ id +'_3"></label>'
-                    +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_2" value="2">'
-                    +'            <label for="questionanswer_'+ id +'_2"></label>'
+                    +'<div class="answer answer-ratings5" id="questionanswers_'+ id +'">'
+                    +'    <div class="radio-wrapper">'
+                    +'        <div class="radio-cont">'
                     +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_1" value="1">'
-                    +'            <label for="questionanswer_'+ id +'_1"></label>'
+                    +'            <label for="questionanswer_'+ id +'_1">'
+                    +'                <div class="number">1</div>'
+                    +'               <div class="text"> '
+                    +'                </div>'
+                    +'            </label>'
+                    +'        </div>'
+                    +'        <div class="radio-cont">'
+                    +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_2" value="2">'
+                    +'            <label for="questionanswer_'+ id +'_2">'
+                    +'                <div class="number">2</div>'
+                    +'                <div class="text"> '
+                    +'                </div>'
+                    +'            </label>'
+                    +'        </div>'
+                    +'        <div class="radio-cont">'
+                    +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_3" value="3">'
+                    +'            <label for="questionanswer_'+ id +'_3">'
+                    +'                <div class="number">3</div>'
+                    +'                <div class="text"> '
+                    +'                </div>'
+                    +'            </label>'
+                    +'        </div>'
+                    +'        <div class="radio-cont">'
+                    +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_4" value="4">'
+                    +'            <label for="questionanswer_'+ id +'_4">'
+                    +'                <div class="number">4</div>'
+                    +'                <div class="text"> '
+                    +'                </div>'
+                    +'            </label>'
+                    +'        </div>'
+                    +'        <div class="radio-cont">'
+                    +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_5" value="5">'
+                    +'            <label for="questionanswer_'+ id +'_5">'
+                    +'                <div class="number">5</div>'
+                    +'                <div class="text"> '
+                    +'                </div>'
+                    +'            </label>'
                     +'        </div>'
                     +'    </div>'
+                    +'</div>'
                     +'</div> ';
                     option = 
                     '<div class="optionbox active" id="option_'+ id +'">'
@@ -1489,7 +1773,7 @@ jQuery(function ($) {
                     +'                    value="image">'
                     +'            </div>'
                     +'            <input class="uploadpictureinput" type="file"'
-                    +'                name="uploadimage_'+ id +'" id="uploadimage_'+ id +'" multiple'
+                    +'                name="uploadimage_'+ id +'[]" id="uploadimage_'+ id +'" multiple="multiple"'
                     +'                accept="image/x-png,image/gif,image/jpeg">'
                     +'            <div class="uploadvideo">'
                     +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
@@ -1516,7 +1800,7 @@ jQuery(function ($) {
                     +'            <div class="form-group">'
                     +'                <p>Шкала оценок</p>'
                     +'                <div class="scale-radio">'
-                    +'                    <input type="radio" name="typescale_'+ id +'" id="typescale_'+ id +'_1" value="1" checked>'
+                    +'                    <input type="radio" name="typescale_'+ id +'" id="typescale_'+ id +'_1" value="1">'
                     +'                    <label for="typescale_'+ id +'_1" class="scalelabel">'
                     +'                        <div class="colorstars"></div>'
                     +'                    </label>'
@@ -1532,7 +1816,7 @@ jQuery(function ($) {
                     +'                    <label for="typescale_'+ id +'_4" class="scalelabel">'
                     +'                        <div class="ratings10"></div>'
                     +'                    </label>'
-                    +'                    <input type="radio" name="typescale_'+ id +'" id="typescale_'+ id +'_5" value="5">'
+                    +'                    <input type="radio" name="typescale_'+ id +'" id="typescale_'+ id +'_5" value="5" checked>'
                     +'                    <label for="typescale_'+ id +'_5" class="scalelabel">'
                     +'                        <div class="ratings5">'
                     +'                            <div class="circles">'
@@ -1619,7 +1903,7 @@ jQuery(function ($) {
                     +'                    value="image">'
                     +'            </div>'
                     +'            <input class="uploadpictureinput" type="file"'
-                    +'                name="uploadimage_'+ id +'" id="uploadimage_'+ id +'" multiple'
+                    +'                name="uploadimage_'+ id +'[]" id="uploadimage_'+ id +'" multiple="multiple"'
                     +'                accept="image/x-png,image/gif,image/jpeg">'
                     +'            <div class="uploadvideo">'
                     +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
@@ -1727,7 +2011,7 @@ jQuery(function ($) {
                     +'                    value="image">'
                     +'            </div>'
                     +'            <input class="uploadpictureinput" type="file"'
-                    +'                name="uploadimage_'+ id +'" id="uploadimage_'+ id +'" multiple'
+                    +'                name="uploadimage_'+ id +'[]" id="uploadimage_'+ id +'" multiple'
                     +'                accept="image/x-png,image/gif,image/jpeg">'
                     +'            <div class="uploadvideo">'
                     +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
@@ -1797,8 +2081,156 @@ jQuery(function ($) {
                     +'</div>';
                 }
                 if (type === 'matrix') {
-                    el ='matrix'
-                    ;
+                    el =
+                    '<div class="question" data-optionid="'+ id +'">'
+                    +'    <div class="close-question"></div>'
+                    +'    <div class="name " id="questionName_'+ id +'">'
+                    +'        Вопрос'
+                    +'    </div>'
+                    +'    <div class="description " id="questiondescription_'+ id +'">'
+                    +'        Описание'
+                    +'    </div>'
+                    +'    <div class="answer" id="questionanswers_'+ id +'">'
+                    +'        <div class="matrix-table">'
+                    +'            <div class="first-row">'
+                    +'                <div class="empty col"></div>'
+                    +'                <div class="col">'
+                    +'                    <div class="value">1</div>'
+                    +'               </div>'
+                    +'               <div class="col">'
+                    +'                    <div class="value">2</div>'
+                    +'               </div>'
+                    +'           </div>'
+                    +'           <div class="matrix-row">'
+                    +'               <div class="col first-col">'
+                    +'                   <div class="value">Текст</div>'
+                    +'               </div>'
+                    +'               <div class="col">'
+                    +'                   <input type="radio" name="answermatrix_'+ id +'_1"  id="answermatrix_'+ id +'_1_1">'
+                    +'                   <label for="answermatrix_'+ id +'_1_1">'
+                    +'                   </label>'
+                    +'               </div>'
+                    +'               <div class="col">'
+                    +'                   <input type="radio" name="answermatrix_'+ id +'_1"  id="answermatrix_'+ id +'_1_2">'
+                    +'                   <label for="answermatrix_'+ id +'_1_2">'
+                    +'                   </label>'
+                    +'               </div>'
+                    +'           </div>'
+                    +'           <div class="matrix-row">'
+                    +'                <div class="col first-col">'
+                    +'                   <div class="value">Текст</div>'
+                    +'               </div>'
+                    +'               <div class="col">'
+                    +'                   <input type="radio" name="answermatrix_'+ id +'_2"  id="answermatrix_'+ id +'_2_1">'
+                    +'                   <label for="answermatrix_'+ id +'_2_1">'
+                    +'                   </label>'
+                    +'                </div>'
+                    +'               <div class="col">'
+                    +'                   <input type="radio" name="answermatrix_'+ id +'_2"  id="answermatrix_'+ id +'_2_2">'
+                    +'                   <label for="answermatrix_'+ id +'_2_2">'
+                    +'                   </label>'
+                    +'               </div>'
+                    +'           </div>'
+                    +'       </div>'
+                    +'   </div>'
+                    +'</div>';
+                    option =
+                    '<div class="optionbox" id="option_'+ id +'">'
+                    +'    <input type="hidden" name="questiontype_'+ id +'" value="matrix">'
+                    +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
+                    +'    <div class="header-aside">'
+                    +'       Настройки'
+                    +'   </div>'
+                    +'   <div class="text-aside ">'
+                    +'        <div class="filerow">'
+                    +'            <div class="uploadpicture">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
+                    +'                    value="image">'
+                    +'            </div>'
+                    +'            <input class="uploadpictureinput" type="file"'
+                    +'                name="uploadimage_'+ id +'[]" id="uploadimage_'+ id +'" multiple'
+                    +'                accept="image/x-png,image/gif,image/jpeg">'
+                    +'            <div class="uploadvideo">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'" id="uploadvideo_'+ id +'"'
+                    +'            accept="video/mp4,video/x-m4v,video/*">'
+                    +'            <div class="uploadaudio">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
+                    +'            accept="audio/*">'
+                    +'            <div class="uploadtext">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_4"'
+                    +'                    value="text">'
+                    +'            </div>'
+                    +'        </div>'
+                    +'      <div class="matrix-options">'
+                    +'          <div class="multityperow">'
+                    +'              <div class="namelabel">'
+                    +'                  Множественный выбор'
+                    +'              </div>'
+                    +'              <label class="switch" for="matrix_'+ id +'">'
+                    +'                  <input type="checkbox" class="matrixtype"'
+                    +'                      name="matrix_'+ id +'" id="matrix_'+ id +'">'
+                    +'                  <span class="slider round"></span>'
+                    +'              </label>'
+                    +'          </div>'
+                    +'          <div class="form-group">'
+                    +'              <label for="question_'+ id +'">Вопрос</label>'
+                    +'              <textarea class="question_name" name="question_'+ id +'" id="question_'+ id +'" placeholder="Введите вопрос"></textarea>'
+                    +'          </div>'
+                    +'          <div class="form-group">'
+                    +'              <label for="questiondescription_'+ id +'">Доп. описание</label>'
+                    +'              <textarea class="question_description" name="questiondescription_'+ id +'" id="questiondescription_'+ id +'" placeholder="Введите описание"></textarea>'
+                    +'          </div>'
+                    +'          <div class="form-group">'
+                    +'              <p>Ответы</p>'
+                    +'              <div class="rowslist">'
+                    +'                  <div class="row-item">'
+                    +'                      <input type="text" name="inputpoint_'+ id +'_1" id="inputpoint_'+ id +'_1" placeholder="Введите текст">'
+                    +'                      <div class="edit-menu">'
+                    +'                          <div class="menu-dots"></div>'
+                    +'                          <div class="menu-list">'
+                    +'                              <div class="add-row addmatrixrow"></div>'
+                    +'                              <div class="delete-row deletematrixrow"></div>'
+                    +'                          </div>'
+                    +'                      </div>'
+                    +'                  </div>'
+                    +'                  <div class="row-item">'
+                    +'                      <input type="text" name="inputpoint_'+ id +'_2" id="inputpoint_'+ id +'_2" placeholder="Введите текст">'
+                    +'                      <div class="edit-menu">'
+                    +'                          <div class="menu-dots"></div>'
+                    +'                          <div class="menu-list">'
+                    +'                              <div class="add-row addmatrixrow"></div>'
+                    +'                              <div class="delete-row deletematrixrow"></div>'
+                    +'                          </div>'
+                    +'                      </div>'
+                    +'                  </div>'
+                    +'              </div>'
+                    +'          </div>'
+                    +'          <div class="form-group spinner-wrapper">'
+                    +'              <label for="number_'+ id +'">Колонки</label>'
+                    +'              <input class="matrix_number spinner" name="number_'+ id +'" id="number_'+ id +'" type="text"'
+                    +'                  value="2">'
+                    +'          </div>'
+                    +'          <div class="matrix-btn-row">'
+                    +'              <div class="addmatrixrow add-btn">'
+                    +'                  <div class="icon-add">'
+                    +'                  </div>'
+                    +'                  Добавить строку'
+                    +'              </div>'
+                    +'              <div class="addcolmatrix add-btn">'
+                    +'                  <div class="icon-add">'
+                    +'                  </div>'
+                    +'                  Добавить колонки'
+                    +'              </div>'
+                    +'          </div>'
+                    +'      </div>'
+                    +'  </div>'
+                    +'</div>';
                 }
                 if (type === 'ranging') {
                     el ='ranging'
@@ -1866,6 +2298,16 @@ jQuery(function ($) {
                             }
                         }
                         SetPointOfQuestion(id, number);
+                    }
+                });
+
+                $( ".matrix_number" ).spinner({
+                    min: 0,
+                    max: 15,
+                    spin: function( event, ui ) {
+                        var id = parseInt($(event.target).attr('name').split('_')[1]);
+                        var number = ui.value;
+                        MatrixColChange(id, number);
                     }
                 });
 
@@ -1965,10 +2407,19 @@ jQuery(function ($) {
                     var inputs = optionBox.find('input');
                     inputs.each(function (index, input) {
                         if($(input).attr('name')){
-                            prevId = $(input).attr('name').split("_");
-                            prevId[1] = id;
-                            newId = prevId.join('_');
-                            $(input).attr('name', newId);
+                            if($(input).attr('name').includes('[]')){
+                                var name = $(input).attr('name').replace('[]','')
+                                prevId = name.split("_");
+                                prevId[1] = id;
+                                newId = prevId.join('_') + '[]';
+                                $(input).attr('name', newId);
+                            }
+                            else {
+                                prevId = $(input).attr('name').split("_");
+                                prevId[1] = id;
+                                newId = prevId.join('_');
+                                $(input).attr('name', newId);
+                            }
                         }
                         if($(input).attr('id')){
                             prevId = $(input).attr('id').split("_");
@@ -2015,6 +2466,12 @@ jQuery(function ($) {
                     prevId[1] = id;
                     newId = prevId.join('_');
                     $(question).find('.name').attr('id', newId);
+                }
+                if($(question).find('.description').length>0){
+                    prevId = $(question).find('.description').attr('id').split("_");
+                    prevId[1] = id;
+                    newId = prevId.join('_');
+                    $(question).find('.description').attr('id', newId);
                 }
                 var inputs = $(question).find('input');
                 inputs.each(function (index, input) {

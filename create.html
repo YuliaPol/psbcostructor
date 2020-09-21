@@ -79,6 +79,15 @@
                             </div> -->
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="file-upload-froup">
+                            <div class="question question-file">
+                                4. Добавить файл для опроса
+                                <div class="clip upload-file-test"></div>
+                            </div>
+                            <input type="file" id="test_fileInput" class="realfileinputtest" name="test_file"/>
+                        </div>
+                    </div>
                 </div>
                 <div class="btn-wrapper">
                     <button type="submit" id="sendfile" class="btn-default sendfile valid-form-send">Далее</button>
@@ -87,6 +96,19 @@
         </form>
     </div>
     <script>
+
+        $('.upload-file-test').click(function () {
+            $('.realfileinputtest').click();
+        });
+
+        $('.realfileinputtest').change(function(e){
+            var fileName = e.target.files[0].name;
+            if($(this).parents('.file-upload-froup').find('.file-name').length>0){
+                $(this).parents('.file-upload-froup').find('.file-name').remove();
+            }
+            var filenameblock = '<div class="file-name">'+ fileName +'</div>';
+            $(this).parents('.file-upload-froup').append(filenameblock);
+        });
 
         // Dropzone.autoDiscover = false;
         var drop = $('#dz-preview-template').html();
