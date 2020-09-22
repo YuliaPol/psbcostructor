@@ -44,6 +44,9 @@ jQuery(function ($) {
             $(this).find('input[type=radio]').prop('checked', true);
             $(this).next('input[type=file]').val('');
             $(this).next('input[type=file]').click();
+            if($(this).parents('.filerow').find('.inser-text').length>0){
+                $(this).parents('.filerow').find('.inser-text').remove();
+            }
         });
 
         $('.centerbox').on('click', '.addmorepictures', function(e){
@@ -122,6 +125,9 @@ jQuery(function ($) {
             $(this).find('input[type=radio]').prop('checked', true);
             $(this).next('input[type=file]').val('');
             $(this).next('input[type=file]').click();
+            if($(this).parents('.filerow').find('.inser-text').length>0){
+                $(this).parents('.filerow').find('.inser-text').remove();
+            }
         });
 
         $('.rightside').on('change', '.uploadvideoinput', function(e){
@@ -184,6 +190,9 @@ jQuery(function ($) {
             $(this).find('input[type=radio]').prop('checked', true);
             $(this).next('input[type=file]').val('');
             $(this).next('input[type=file]').click();
+            if($(this).parents('.filerow').find('.inser-text').length>0){
+                $(this).parents('.filerow').find('.inser-text').remove();
+            }
         });
 
         $('.rightside').on('change', '.uploadaudioinput', function(e){
@@ -305,7 +314,6 @@ jQuery(function ($) {
         if(document.getElementsByClassName('uploadtextinput')[0]){
             auto_grow(document.getElementsByClassName('uploadtextinput')[0]);
         }
-
         $('.rightside').on('change, keypress, keydown, keyup', '.uploadtextinput', function(e){
             var idQuestion = parseInt($(this).attr('name').split('_')[1]);
             var child = $('#questionanswers_'+idQuestion);
@@ -595,7 +603,7 @@ jQuery(function ($) {
                 var idPoints = parseInt(name.split('_')[2]) + 1;
             }
             else {
-                var name =  $(this).parents('.ranging-options').find('input').attr('name');
+                var name =  $(this).parents('.ranging-options').find('textarea').attr('name');
                 var idQuestion = parseInt(name.split('_')[1]);
                 var idPoints = 1;
             }
