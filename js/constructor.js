@@ -18,8 +18,40 @@ jQuery(function ($) {
             $('body').append(modal);
         }
 
+        var Questions = $('.questions-box').children();
+        Questions.each(function (index, question) {
+            var id = index + 1;
+            if($(question).find('.mediablock').length>0){
+                if($(question).find('.imageblock').length>0){
+                    $('#option_' + id).find('.uploadpicture').addClass('active');
+                    $('#option_' + id).find('.uploadpicture').next('input').prop( "checked", true );
+                }
+                else if($(question).find('.audioblock').length>0){
+                    $('#option_' + id).find('.uploadaudio').addClass('active');
+                    $('#option_' + id).find('.uploadaudio').next('input').prop( "checked", true );
+                }
+                else if($(question).find('.videoblock').length>0){
+                    $('#option_' + id).find('.uploadvideo').addClass('active');
+                    $('#option_' + id).find('.uploadvideo').next('input').prop( "checked", true );
+                }
+                else if($(question).find('.textblock').length>0){
+                    $('#option_' + id).find('.uploadtext').addClass('active');
+                    $('#option_' + id).find('.uploadtext').next('input').prop( "checked", true );
+
+                    var inputtext = 
+                    '<div class="inser-text">'
+                    +'    <label for="uploadtextinput_'+ id + '">Рекламный текст</label>'
+                    +'    <textarea class="uploadtextinput" name="uploadtextinput_'+ id + '" id="uploadtextinput_' + id + '" placeholder="Введите текст">' + $(question).find('.textblock').html() + '</textarea>'
+                    +'</div>';
+                    $(inputtext).insertAfter($('#option_' + id).find('.uploadtext').next('input'));
+                    $('#option_' + id).find('.uploadtext').next('input').next('.inser-text').fadeIn(300);
+                }
+
+            }
+        });
 
         $( ".listbox li" ).toggleClass('dragged');
+
         // dropdownlist
 
         $('.centerbox').on('click', '.dropdown-list .question-name', function(e){
@@ -233,8 +265,11 @@ jQuery(function ($) {
                     container: '#' + id,
                     scrollParent: true,
                     backgroundColor: '#FFFFFF',
+                    barWidth: 1.5,
                     height: 40,
+                    barMinHeight: 1,
                     cursorWidth: 0,
+                    barGap: 2,
                     waveColor: 'rgba(87, 34, 222, 0.2)',
                     hideScrollbar: true,
                     progressColor: "#5722DE"
@@ -267,7 +302,10 @@ jQuery(function ($) {
                 scrollParent: true,
                 backgroundColor: '#FFFFFF',
                 height: 40,
+                barMinHeight: 1,
+                barWidth: 1.5,
                 cursorWidth: 0,
+                barGap: 2,
                 waveColor: 'rgba(87, 34, 222, 0.2)',
                 hideScrollbar: true,
                 progressColor: "#5722DE"
@@ -322,7 +360,9 @@ jQuery(function ($) {
             }
             auto_grow(this);
         });
-
+        $('body').on('change, keypress, keydown, keyup', 'textarea', function(e){
+            auto_grow(this);
+        });
         //change name of question
         $('.rightside').on('change, keypress, keydown, keyup', '.question_name', function(e){
             var id = parseInt($(this).attr('name').split('_')[1]);
@@ -358,57 +398,69 @@ jQuery(function ($) {
                 var idPoints = 1;
             }
             var numberCols = parseInt($(this).parents('.matrix-options').find('.matrix_number').val());
-            if(idQuestion && idPoints) {
-                var newoptionrow = 
-                '<div class="row-item">'
-                +'    <input type="text" name="inputpoint_' + idQuestion + '_'+ idPoints + '" id="inputpoint_' + idQuestion + '_'+ idPoints + '" placeholder="Строка '+ idPoints + '">'
-                +'    <div class="edit-menu">'
-                +'        <div class="menu-dots"></div>'
-                +'        <div class="menu-list">'
-                +'            <div class="add-row addmatrixrow"></div>'
-                +'            <div class="delete-row deletematrixrow"></div>'
-                +'        </div>'
-                +'    </div>'
-                +'</div>';
-                $(this).parents('.matrix-options').find('.rowslist').append(newoptionrow);
-                var newrowanswer =
-                '<div class="matrix-row">'
-                +'    <div class="col first-col">'
-                +'        <div class="value">Строка '+ idPoints + '</div>'
-                +'    </div>';
-
-                if($(this).parents('.matrix-options').find('.matrixtype').is(':checked')){
-                    for (let i = 0; i < numberCols; i++){
-                        var newCol =
-                        '<div class="col">'
-                        +'    <input type="checkbox" name="answermatrix_' + idQuestion + '_' + idPoints +  '_' + i + '"  id="answermatrix_' + idQuestion + '_' + idPoints + '_' + i + '">'
-                        +'    <label for="answermatrix_' + idQuestion + '_' + idPoints + '_' + i + '">'
-                        +'    </label>'
-                        +'</div>';
-                        newrowanswer = newrowanswer + newCol;
+            if(idPoints<21) {
+                if(idQuestion && idPoints) {
+                    var newoptionrow = 
+                    '<div class="row-item">'
+                    +'    <input type="text" name="inputpoint_' + idQuestion + '_'+ idPoints + '" id="inputpoint_' + idQuestion + '_'+ idPoints + '" placeholder="Строка '+ idPoints + '">'
+                    +'    <div class="edit-menu">'
+                    +'        <div class="menu-dots"></div>'
+                    +'        <div class="menu-list">'
+                    +'            <div class="add-row addmatrixrow"></div>'
+                    +'            <div class="delete-row deletematrixrow"></div>'
+                    +'        </div>'
+                    +'    </div>'
+                    +'</div>';
+                    $(this).parents('.matrix-options').find('.rowslist').append(newoptionrow);
+                    var newrowanswer =
+                    '<div class="matrix-row">'
+                    +'    <div class="col first-col">'
+                    +'        <div class="value">Строка '+ idPoints + '</div>'
+                    +'    </div>';
+    
+                    if($(this).parents('.matrix-options').find('.matrixtype').is(':checked')){
+                        for (let i = 0; i < numberCols; i++){
+                            var newCol =
+                            '<div class="col">'
+                            +'    <input type="checkbox" name="answermatrix_' + idQuestion + '_' + idPoints +  '_' + i + '"  id="answermatrix_' + idQuestion + '_' + idPoints + '_' + i + '">'
+                            +'    <label for="answermatrix_' + idQuestion + '_' + idPoints + '_' + i + '">'
+                            +'    </label>'
+                            +'</div>';
+                            newrowanswer = newrowanswer + newCol;
+                        }
                     }
-                }
-                else {
-                    for (let i = 0; i < numberCols; i++){
-                        var newCol =
-                        '<div class="col">'
-                        +'    <input type="radio" name="answermatrix_' + idQuestion + '_' + idPoints  + '"  id="answermatrix_' + idQuestion + '_' + idPoints + '_' + i + '">'
-                        +'    <label for="answermatrix_' + idQuestion + '_' + idPoints + '_' + i + '">'
-                        +'    </label>'
-                        +'</div>';
-                        newrowanswer = newrowanswer + newCol;
+                    else {
+                        for (let i = 0; i < numberCols; i++){
+                            var newCol =
+                            '<div class="col">'
+                            +'    <input type="radio" name="answermatrix_' + idQuestion + '_' + idPoints  + '"  id="answermatrix_' + idQuestion + '_' + idPoints + '_' + i + '">'
+                            +'    <label for="answermatrix_' + idQuestion + '_' + idPoints + '_' + i + '">'
+                            +'    </label>'
+                            +'</div>';
+                            newrowanswer = newrowanswer + newCol;
+                        }
                     }
+                    newrowanswer = newrowanswer +'    </div>'
+                    +'</div>';
+                    $('#questionanswers_' + idQuestion + ' .matrix-table').append(newrowanswer);
                 }
-                newrowanswer = newrowanswer +'    </div>'
-                +'</div>';
-                $('#questionanswers_' + idQuestion + ' .matrix-table').append(newrowanswer);
+            }
+            else {
+                $('#modal-error').find('.text').html('Вы можете задать не более 20 строк');
+                $('.modal').fadeIn(300);
             }
         });
         // add matric col
         $('.rightside').on('click', '.addcolmatrix', function(e){
             var colls = parseInt($(this).parents('.matrix-options').find('.matrix_number').val()) + 1;
-            $(this).parents('.matrix-options').find('.matrix_number').val(colls);
-            $(this).parents('.matrix-options').find('.matrix_number').change();
+            if(colls<16){
+                $(this).parents('.matrix-options').find('.matrix_number').val(colls);
+                $(this).parents('.matrix-options').find('.matrix_number').change();
+            }
+            else {
+                $('#modal-error').find('.text').html('Вы можете задать не более 15 колонок');
+                $('.modal').fadeIn(300);
+            }
         });
 
         //delete matrix row
@@ -571,7 +623,6 @@ jQuery(function ($) {
         function RefreshRanginItems(idQuestion) {
             var parents = $('#questionanswers_' + idQuestion).find('.ranging-list');
             var Subpoints = parents.children();
-            console.log(idQuestion);
             Subpoints.each(function (index, subpoint) {
                 var id = index + 1;
                 var inputs = $(subpoint).find('input');
@@ -607,33 +658,40 @@ jQuery(function ($) {
                 var idQuestion = parseInt(name.split('_')[1]);
                 var idPoints = 1;
             }
-            if(idQuestion && idPoints) {
-                var newoptionrow = 
-                '<div class="row-item">'
-                +'    <input type="text" name="inputpoint_' + idQuestion + '_'+ idPoints + '" id="inputpoint_' + idQuestion + '_'+ idPoints + '" placeholder="Строка '+ idPoints + '">'
-                +'    <div class="edit-menu">'
-                +'        <div class="menu-dots"></div>'
-                +'        <div class="menu-list">'
-                +'            <div class="add-row addrangingrow"></div>'
-                +'            <div class="delete-row deleterangingrow"></div>'
-                +'        </div>'
-                +'    </div>'
-                +'</div>';
-                $(this).parents('.ranging-options').find('.rowslist').append(newoptionrow);
-
-                var newrowanswer =
-                '<div class="rangint-item">'
-                +'     <input type="hidden" name="rangingorder_' + idQuestion + '_'+ idPoints + '" value="' + idPoints + '">'
-                +'     <div class="arrows">'
-                +'         <div class="item-up"></div>'
-                +'         <div class="item-down"></div>'
-                +'     </div>'
-                +'     <div class="text">'
-                +'         Текст'
-                +'     </div>'
-                +' </div>';
-                $('#questionanswers_' + idQuestion + ' .ranging-list').append(newrowanswer);
+            if(idPoints<21){
+                if(idQuestion && idPoints) {
+                    var newoptionrow = 
+                    '<div class="row-item">'
+                    +'    <input type="text" name="inputpoint_' + idQuestion + '_'+ idPoints + '" id="inputpoint_' + idQuestion + '_'+ idPoints + '" placeholder="Строка '+ idPoints + '">'
+                    +'    <div class="edit-menu">'
+                    +'        <div class="menu-dots"></div>'
+                    +'        <div class="menu-list">'
+                    +'            <div class="add-row addrangingrow"></div>'
+                    +'            <div class="delete-row deleterangingrow"></div>'
+                    +'        </div>'
+                    +'    </div>'
+                    +'</div>';
+                    $(this).parents('.ranging-options').find('.rowslist').append(newoptionrow);
+    
+                    var newrowanswer =
+                    '<div class="rangint-item">'
+                    +'     <input type="hidden" name="rangingorder_' + idQuestion + '_'+ idPoints + '" value="' + idPoints + '">'
+                    +'     <div class="arrows">'
+                    +'         <div class="item-up"></div>'
+                    +'         <div class="item-down"></div>'
+                    +'     </div>'
+                    +'     <div class="text">'
+                    +'         Текст'
+                    +'     </div>'
+                    +' </div>';
+                    $('#questionanswers_' + idQuestion + ' .ranging-list').append(newrowanswer);
+                }
             }
+            else {
+                $('#modal-error').find('.text').html('Вы можете задать не более 20 строк');
+                $('.modal').fadeIn(300);
+            }
+
         });
 
         
@@ -1043,12 +1101,37 @@ jQuery(function ($) {
             
 
         });
-        
+        var minRows = 5;
+        var maxRows = 26;
         //autoheight textarea
-        function auto_grow(el) {
-            el.style.height = "auto";
-            el.style.height = (el.scrollHeight > el.clientHeight) ? (el.scrollHeight) + 15 +"px" : "30px";
+        function auto_grow(id) {
+            var t = id;
+            if (t.scrollTop == 0)   t.scrollTop=1;
+            while (t.scrollTop == 0) {
+                if (t.rows > minRows)
+                        t.rows--; else
+                    break;
+                t.scrollTop = 1;
+                if (t.rows < maxRows)
+                        t.style.overflowY = "hidden";
+                if (t.scrollTop > 0) {
+                    t.rows++;
+                    break;
+                }
+            }
+            while(t.scrollTop > 0) {
+                if (t.rows < maxRows) {
+                    t.rows++;
+                    if (t.scrollTop == 0) t.scrollTop=1;
+                } else {
+                    t.style.overflowY = "auto";
+                    break;
+                }
+            }
+            // el.style.height = "auto";
+            // el.style.height = (el.scrollHeight > el.clientHeight) ? (el.scrollHeight) + 15 +"px" : "30px";
         }
+        $('textarea').change();
         //change name of points of question
         $('.rightside').on('change , keypress, keydown, keyup', '.question_points', function(e){
             var id = $(this).attr('name').split('_');
@@ -1401,6 +1484,10 @@ jQuery(function ($) {
                     var newHiddenGroup = '<div class="hidden-question-group" id="hiddenquestion_' + questionId + '_' + questionPointsId + '">'+ hiddenquestion +'</div>'
                     $(newHiddenGroup).appendTo($('#questionanswers_' + questionId).next('.hidden-question-list'));
                 }
+            }
+            else {
+                $('#modal-error').find('.text').html('Вы можете добавить не более 2 ветвление');
+                $('.modal').fadeIn(300);
             }
         });
 

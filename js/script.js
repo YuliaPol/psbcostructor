@@ -66,7 +66,6 @@ jQuery(function ($) {
         //     }
         // });
 
-
         //validation
         var formValid = document.getElementsByClassName('form-valid')[0];
         $('.valid-form-send').click(function () {
