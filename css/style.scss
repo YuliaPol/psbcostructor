@@ -3104,7 +3104,13 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     }
 }
 /* datepicker css */
-
+.ui-state-default, .ui-widget-content .ui-state-default, 
+.ui-widget-header .ui-state-default,
+.ui-button, html .ui-button.ui-state-disabled:hover,
+html .ui-button.ui-state-disabled:active {
+    border: none !important;
+    background-color: #fff !important;
+}
 .ui-datepicker {
     text-align: center;
 }
@@ -3140,7 +3146,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 
 .ui-datepicker-header {
-    background-color: $blue !important;
+    background-color: $voilet !important;
     background-image: none !important;
     border-radius: 0;
 }
@@ -3219,10 +3225,10 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 .ui-datepicker-month {
     border-radius: 2px;
-    background-color: $blue;
+    background-color: $voilet;
     width: 110px !important;
     height: 22px;
-    font-family: Open Sans !important;
+    font-family: $fontpage;
     color: #fff;
     font-size: 14px !important;
     font-weight: 600;
@@ -3243,11 +3249,11 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 .ui-datepicker-year {
     border-radius: 2px;
-    background-color: $blue;
+    background-color: $voilet;
     width: 61px !important;
     height: 22px;
     border: none !important;
-    font-family: Open Sans !important;
+    font-family: $fontpage;
     color: #fff;
     font-size: 14px !important;
     font-weight: 600;
@@ -3268,7 +3274,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 .ui-datepicker-year option {
     color: #3985a0 !important;
     background-color: #fff !important;
-    font-family: Open Sans !important;
+    font-family: $fontpage;
     font-size: 14px !important;
     font-weight: 600;
 }
@@ -3379,7 +3385,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 .ui-datepicker-buttonpane.ui-widget-content {
     text-align: center;
-    background-color: #3e9aba;
+    background-color: $voilet;
     margin: 0 !important;
     height: 28px;
     padding: 0 !important;

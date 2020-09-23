@@ -4631,6 +4631,14 @@ table {
 }
 
 /* datepicker css */
+.ui-state-default, .ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default,
+.ui-button, html .ui-button.ui-state-disabled:hover,
+html .ui-button.ui-state-disabled:active {
+  border: none !important;
+  background-color: #fff !important;
+}
+
 .ui-datepicker {
   text-align: center;
 }
@@ -4666,7 +4674,7 @@ table {
 }
 
 .ui-datepicker-header {
-  background-color: #4A52F7 !important;
+  background-color: #563BC2 !important;
   background-image: none !important;
   border-radius: 0;
 }
@@ -4745,10 +4753,10 @@ table {
 
 .ui-datepicker-month {
   border-radius: 2px;
-  background-color: #4A52F7;
+  background-color: #563BC2;
   width: 110px !important;
   height: 22px;
-  font-family: Open Sans !important;
+  font-family: "Montserrat";
   color: #fff;
   font-size: 14px !important;
   font-weight: 600;
@@ -4772,11 +4780,11 @@ table {
 
 .ui-datepicker-year {
   border-radius: 2px;
-  background-color: #4A52F7;
+  background-color: #563BC2;
   width: 61px !important;
   height: 22px;
   border: none !important;
-  font-family: Open Sans !important;
+  font-family: "Montserrat";
   color: #fff;
   font-size: 14px !important;
   font-weight: 600;
@@ -4800,7 +4808,7 @@ table {
 .ui-datepicker-year option {
   color: #3985a0 !important;
   background-color: #fff !important;
-  font-family: Open Sans !important;
+  font-family: "Montserrat";
   font-size: 14px !important;
   font-weight: 600;
 }
@@ -4912,7 +4920,7 @@ table {
 
 .ui-datepicker-buttonpane.ui-widget-content {
   text-align: center;
-  background-color: #3e9aba;
+  background-color: #563BC2;
   margin: 0 !important;
   height: 28px;
   padding: 0 !important;
