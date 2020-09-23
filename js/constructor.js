@@ -2,6 +2,19 @@ jQuery(function ($) {
     $(document).ready(function () {
 
 
+        // $('form').submit(function(e){
+        //     console.log( $( this ).serializeArray() );
+        //     e.preventDefault();
+        //     var filelist = document.getElementById("uploadimage_1").files || [];
+        //         for (var i = 0; i < filelist.length; i++) {
+        //             console.log('found file ' + i + ' = ' + filelist[i].name);
+        //         }
+        //     var filelist = $("#uploadimage_1").val() || [];
+        //         $.each(filelist, function(i, myfile) {
+        //         console.log('found file '+i+' ='+myfile);
+        //     });
+        // });
+
         $.datepicker.setDefaults(
             {
             closeText: 'Закрыть',
@@ -121,14 +134,13 @@ jQuery(function ($) {
             $('#uploadimage_' + idQuestion).click();
         });
         var _URL = window.URL || window.webkitURL;
-        var imagefiles = new Array(0);
         $('.rightside').on('change', '.uploadpictureinput', function(e){
 
-            var tempFiles = $(this);
-            if(tempFiles.val()){
-                tempFiles.clone().insertAfter(tempFiles);
-            }
-            imagefiles.push(e.target.files);
+            // var tempFiles = $(this);
+            // if(tempFiles.val()){
+            //     tempFiles.clone().insertAfter(tempFiles);
+            // }
+
             var files = e.target.files;
             var idQuestion = parseInt($(this).attr('name').split('_')[1]);
             var child = $('#questionanswers_'+idQuestion);
@@ -1807,7 +1819,7 @@ jQuery(function ($) {
                     +'                    value="image">'
                     +'            </div>'
                     +'            <input class="uploadpictureinput" type="file"'
-                    +'                name="uploadimage_'+ id +'[]" id="uploadimage_'+ id +'" multiple="multiple"'
+                    +'                name="uploadimage_'+ id +'[]" multiple="multiple"'
                     +'                accept="image/x-png,image/gif,image/jpeg">'
                     +'            <div class="uploadvideo">'
                     +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
@@ -1878,7 +1890,7 @@ jQuery(function ($) {
                     +'                    value="image">'
                     +'            </div>'
                     +'            <input class="uploadpictureinput" type="file"'
-                    +'                name="uploadimage_'+ id +'[]" id="uploadimage_'+ id +'" multiple="multiple"'
+                    +'                name="uploadimage_'+ id +'[]" multiple="multiple"'
                     +'                accept="image/x-png,image/gif,image/jpeg">'
                     +'            <div class="uploadvideo">'
                     +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
@@ -1937,7 +1949,7 @@ jQuery(function ($) {
                     +'                    value="image">'
                     +'            </div>'
                     +'            <input class="uploadpictureinput" type="file"'
-                    +'                name="uploadimage_'+ id +'[]" id="uploadimage_'+ id +'" multiple="multiple"'
+                    +'                name="uploadimage_'+ id +'[]" multiple="multiple"'
                     +'                accept="image/x-png,image/gif,image/jpeg">'
                     +'            <div class="uploadvideo">'
                     +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
@@ -2000,7 +2012,7 @@ jQuery(function ($) {
                     +'                    value="image">'
                     +'            </div>'
                     +'            <input class="uploadpictureinput" type="file"'
-                    +'                name="uploadimage_'+ id +'[]" id="uploadimage_'+ id +'" multiple="multiple"'
+                    +'                name="uploadimage_'+ id +'[]" multiple="multiple"'
                     +'                accept="image/x-png,image/gif,image/jpeg">'
                     +'            <div class="uploadvideo">'
                     +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
@@ -2115,7 +2127,7 @@ jQuery(function ($) {
                     +'                    value="image">'
                     +'            </div>'
                     +'            <input class="uploadpictureinput" type="file"'
-                    +'                name="uploadimage_'+ id +'[]" id="uploadimage_'+ id +'" multiple="multiple"'
+                    +'                name="uploadimage_'+ id +'[]"  multiple="multiple"'
                     +'                accept="image/x-png,image/gif,image/jpeg">'
                     +'            <div class="uploadvideo">'
                     +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
@@ -2245,7 +2257,7 @@ jQuery(function ($) {
                     +'                    value="image">'
                     +'            </div>'
                     +'            <input class="uploadpictureinput" type="file"'
-                    +'                name="uploadimage_'+ id +'[]" id="uploadimage_'+ id +'" multiple="multiple"'
+                    +'                name="uploadimage_'+ id +'[]"  multiple="multiple"'
                     +'                accept="image/x-png,image/gif,image/jpeg">'
                     +'            <div class="uploadvideo">'
                     +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
@@ -2353,7 +2365,7 @@ jQuery(function ($) {
                     +'                    value="image">'
                     +'            </div>'
                     +'            <input class="uploadpictureinput" type="file"'
-                    +'                name="uploadimage_'+ id +'[]" id="uploadimage_'+ id +'" multiple'
+                    +'                name="uploadimage_'+ id +'[]" multiple'
                     +'                accept="image/x-png,image/gif,image/jpeg">'
                     +'            <div class="uploadvideo">'
                     +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
@@ -2490,7 +2502,7 @@ jQuery(function ($) {
                     +'                    value="image">'
                     +'            </div>'
                     +'            <input class="uploadpictureinput" type="file"'
-                    +'                name="uploadimage_'+ id +'[]" id="uploadimage_'+ id +'" multiple'
+                    +'                name="uploadimage_'+ id +'[]"  multiple'
                     +'                accept="image/x-png,image/gif,image/jpeg">'
                     +'            <div class="uploadvideo">'
                     +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
@@ -2613,7 +2625,7 @@ jQuery(function ($) {
                     +'                  value="image">'
                     +'          </div>'
                     +'          <input class="uploadpictureinput" type="file" name="uploadimage_'+ id +'"'
-                    +'              id="uploadimage_'+ id +'" multiple accept="image/x-png,image/gif,image/jpeg">'
+                    +'              multiple accept="image/x-png,image/gif,image/jpeg">'
                     +'          <div class="uploadvideo">'
                     +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
                     +'                  value="video">'
@@ -2702,7 +2714,7 @@ jQuery(function ($) {
                     +'                  value="image">'
                     +'          </div>'
                     +'          <input class="uploadpictureinput" type="file" name="uploadimage_'+ id +'"'
-                    +'              id="uploadimage_'+ id +'" multiple accept="image/x-png,image/gif,image/jpeg">'
+                    +'              multiple accept="image/x-png,image/gif,image/jpeg">'
                     +'          <div class="uploadvideo">'
                     +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
                     +'                  value="video">'
@@ -2753,7 +2765,7 @@ jQuery(function ($) {
                     +'                  value="image">'
                     +'          </div>'
                     +'          <input class="uploadpictureinput" type="file" name="uploadimage_'+ id +'"'
-                    +'              id="uploadimage_'+ id +'" multiple accept="image/x-png,image/gif,image/jpeg">'
+                    +'               multiple accept="image/x-png,image/gif,image/jpeg">'
                     +'          <div class="uploadvideo">'
                     +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
                     +'                  value="video">'
@@ -2803,7 +2815,7 @@ jQuery(function ($) {
                     +'                  value="image">'
                     +'          </div>'
                     +'          <input class="uploadpictureinput" type="file" name="uploadimage_'+ id +'"'
-                    +'              id="uploadimage_'+ id +'" multiple accept="image/x-png,image/gif,image/jpeg">'
+                    +'               multiple accept="image/x-png,image/gif,image/jpeg">'
                     +'          <div class="uploadvideo">'
                     +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
                     +'                  value="video">'
@@ -2861,7 +2873,7 @@ jQuery(function ($) {
                     +'                  value="image">'
                     +'          </div>'
                     +'          <input class="uploadpictureinput" type="file" name="uploadimage_'+ id +'"'
-                    +'              id="uploadimage_'+ id +'" multiple accept="image/x-png,image/gif,image/jpeg">'
+                    +'               multiple accept="image/x-png,image/gif,image/jpeg">'
                     +'          <div class="uploadvideo">'
                     +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
                     +'                  value="video">'
