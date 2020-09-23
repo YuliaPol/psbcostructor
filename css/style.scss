@@ -913,6 +913,11 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                     padding: 7px;
                     flex-grow: 1;
                     min-width: 33%;
+                    .bottom-row {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                    }
                     img {
                         max-width: 100%;
                         width: 100%;
@@ -990,7 +995,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
             .bottom-row {
                 display: flex;
                 align-items: center;
-                justify-content: space-between;
+                justify-content: flex-end;
             }
             .addmorepictures {
                 font-family: $fontpage;
@@ -1665,6 +1670,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                 padding-bottom: 12px;
                                 border-bottom: 1px solid #A4A2A2;
                                 outline: none;
+                                width: 100%;
                                 &::placeholder {
                                     font-family: $fontpage;
                                     font-style: normal;
@@ -1729,6 +1735,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                 color: #0F0F0F;
                                 outline: none;
                                 padding-left: 65px;
+                                width: 100%;
                                 &::placeholder {
                                     font-family: $fontpage;
                                     font-style: normal;
@@ -1770,6 +1777,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                 padding-bottom: 12px;
                                 border-bottom: 1px solid #A4A2A2;
                                 outline: none;
+                                width: 100%;
                                 &::placeholder {
                                     font-family: $fontpage;
                                     font-style: normal;
@@ -1801,6 +1809,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                 padding-bottom: 12px;
                                 border-bottom: 1px solid #A4A2A2;
                                 outline: none;
+                                width: 100%;
                                 &::placeholder {
                                     font-family: $fontpage;
                                     font-style: normal;
@@ -3456,6 +3465,12 @@ html .ui-button.ui-state-disabled:active {
     }
 }
 @media screen and (max-width: 1000px) {
+    .construcot-container .centerbox .questions-box .question .answer .email-answer .col-email {
+        width: 100%;
+    }
+    .construcot-container .centerbox .questions-box .question .answer .date-answer .col-date {
+        width: 50%;
+    }
     .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group,
     .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group {
         margin-left: 10px;

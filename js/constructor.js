@@ -1,5 +1,7 @@
 jQuery(function ($) {
     $(document).ready(function () {
+
+
         $.datepicker.setDefaults(
             {
             closeText: 'Закрыть',
@@ -102,7 +104,6 @@ jQuery(function ($) {
         });
 
         //fille upload 
-
         //uploadpicture
         $('.rightside').on('click', '.uploadpicture', function(e){
             $(this).parents('.filerow').children().removeClass('active');
@@ -119,8 +120,15 @@ jQuery(function ($) {
             var idQuestion = parseInt($(this).parents('.question').find('input').attr('name').split('_')[1]);
             $('#uploadimage_' + idQuestion).click();
         });
-
+        var _URL = window.URL || window.webkitURL;
+        var imagefiles = new Array(0);
         $('.rightside').on('change', '.uploadpictureinput', function(e){
+
+            var tempFiles = $(this);
+            if(tempFiles.val()){
+                tempFiles.clone().insertAfter(tempFiles);
+            }
+            imagefiles.push(e.target.files);
             var files = e.target.files;
             var idQuestion = parseInt($(this).attr('name').split('_')[1]);
             var child = $('#questionanswers_'+idQuestion);
@@ -133,37 +141,51 @@ jQuery(function ($) {
                 var imageblock = '<div class="imageblock"></div>';
                 var settingsImage = 
                 '<div class="bottom-row">'
-                +'   <div class="inputsimage">'
-                +'        <div class="inputgroup">'
-                +'            <input type="radio" name="clickforimage_' + idQuestion + '" id="clickforimage_' + idQuestion + '_1"'
-                +'                value="50">'
-                +'            <label for="clickforimage_' + idQuestion + '_1">50 на картинку</label>'
-                +'        </div>'
-                +'        <div class="inputgroup">'
-                +'            <input type="radio" name="clickforimage_' + idQuestion + '" id="clickforimage_' + idQuestion + '_2"'
-                +'                value="100">'
-                +'            <label for="clickforimage_' + idQuestion + '_2">100 на картинку</label>'
-                +'        </div>'
-                +'        <div class="inputgroup">'
-                +'            <input type="radio" name="clickforimage_' + idQuestion + '" id="clickforimage_' + idQuestion + '_3"'
-                +'                value="200">'
-                +'            <label for="clickforimage_' + idQuestion + '_3">200 на картинку</label>'
-                +'        </div>'
-                +'    </div>'
                 +'    <div class="addmorepictures">Добавить до 10 фото</div>'
                 +'</div>';
                 $(child.parents('.question')).find('.mediablock').prepend(settingsImage);
                 $(child.parents('.question')).find('.mediablock').prepend(imageblock);
-
-
             }
 
             var image;
-
             if(files.length > 9 ) {
                 $('#modal-error').find('.text').html('Выберете, пожалуйста, не больше 10 файлов');
                 $('.modal').fadeIn(300);
             }
+            var prop = 1;
+            var height = 0;
+            var index = 1;
+            var lendth = files.length;
+            for (var i = 0; i < files.length; i++) {
+                if (files && files[i]) {
+                    var reader = new FileReader();
+                    reader.readAsDataURL(files[i]);
+                    reader.onload = function (e) {
+                        var image = new Image();
+                        image.src = e.target.result;
+                        image.onload = function () {
+                            index++;
+                            var heightImg = this.height;
+                            var widthImf = this.width;
+                            prop = widthImf/heightImg;
+                            if(files.length % 2 == 0){
+                                height = height +  300/prop;
+                            }
+                            else {
+                                height =  height + 250/prop;
+                            }
+                            if(index > files.length) {
+                                height = height/files.length + 90;
+                                SetImage(files, height, idQuestion, child);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        function SetImage(files, height, idQuestion ,child) {
+            var index = 1;
             for (var i = 0; i < files.length; i++) {
                 if(i>9){
                     break;
@@ -172,18 +194,69 @@ jQuery(function ($) {
                     if (files && files[i]) {
                         var reader = new FileReader();
                         var width = Math.round(100 / files.length);
-                        reader.onload = function (e) {
-                            image = 
-                            '<div class="image" style="width: '+ width + '%"><img src ="'+ e.target.result + '" alt="Image"></div>';
-                            child.parents('.question').find('.imageblock').append(image);
+                            reader.onload = function (e) {
+                            var settingsImage = 
+                            '<div class="bottom-row">'
+                            +'   <div class="inputsimage">'
+                            +'        <div class="inputgroup">'
+                            +'            <input type="radio" name="clickforimage_' + idQuestion + '_' + index +'" id="clickforimage_' + idQuestion + '_' + index +'_1"'
+                            +'                value="50">'
+                            +'            <label for="clickforimage_' + idQuestion + '_' + index + '_1">50 на картинку</label>'
+                            +'        </div>'
+                            +'        <div class="inputgroup">'
+                            +'            <input type="radio" name="clickforimage_' + idQuestion + '_' + index + '" id="clickforimage_' + idQuestion + '_' + index + '_2"'
+                            +'                value="100">'
+                            +'            <label for="clickforimage_' + idQuestion + '_' + index + '_2">100 на картинку</label>'
+                            +'        </div>'
+                            +'        <div class="inputgroup">'
+                            +'            <input type="radio" name="clickforimage_' + idQuestion  + '_' + index + '" id="clickforimage_'  + idQuestion + '_' + index + '_3"'
+                            +'                value="200">'
+                            +'            <label for="clickforimage_' + idQuestion  + '_' + index + '_3">200 на картинку</label>'
+                            +'        </div>'
+                            +'    </div>'
+                            +'</div>';
+                            if(files.length>1){
+                                if(files.length % 2 == 0){
+                                    image = 
+                                    '<div class="image" style="max-width: 100%; min-width: 50%; width: '+ width + '%;height:  ' + height + 'px;"><img style="height: calc(100% - 90px); object-fit: cover;" src ="'+ e.target.result + '" alt="Image">' + settingsImage + ' </div>';    
+                                }
+                                else {
+                                    image = 
+                                    '<div class="image" style="width: '+ width + '%;height: ' + height + 'px;"><img style="height: calc(100% - 90px); object-fit: cover;" src ="'+ e.target.result + '" alt="Image">' + settingsImage + ' </div>';    
+                                }
+                            }
+                            else {
+                                '<div class="bottom-row">'
+                                +'   <div class="inputsimage">'
+                                +'        <div class="inputgroup">'
+                                +'            <input type="radio" name="clickforimage_' + idQuestion + '_' + index +'" id="clickforimage_' + idQuestion + '_' + index +'_1"'
+                                +'                value="50">'
+                                +'            <label for="clickforimage_' + idQuestion + '_' + index + '_1">50 на картинку</label>'
+                                +'        </div>'
+                                +'        <div class="inputgroup">'
+                                +'            <input type="radio" name="clickforimage_' + idQuestion + '_' + index + '" id="clickforimage_' + idQuestion + '_' + index + '_2"'
+                                +'                value="100">'
+                                +'            <label for="clickforimage_' + idQuestion + '_' + index + '_2">100 на картинку</label>'
+                                +'        </div>'
+                                +'        <div class="inputgroup">'
+                                +'            <input type="radio" name="clickforimage_' + idQuestion  + '_' + index + '" id="clickforimage_'  + idQuestion + '_' + index + '_3"'
+                                +'                value="200">'
+                                +'            <label for="clickforimage_' + idQuestion  + '_' + index + '_3">200 на картинку</label>'
+                                +'        </div>'
+                                +'    </div>'
+                                +'</div>';
+                                image = 
+                                '<div class="image" style="width: '+ width + '%"><img src ="'+ e.target.result + '" alt="Image"> ' + settingsImage + '</div>';
+                            }
+                            index++;
+                                child.parents('.question').find('.imageblock').append(image);
+
                         }
                         reader.readAsDataURL(files[i]);
                     }
                 }
             }
-        });
-
-
+        }
         //uploadvideo
         $('.rightside').on('click', '.uploadvideo', function(e){
             $(this).parents('.filerow').children().removeClass('active');
@@ -1187,7 +1260,6 @@ jQuery(function ($) {
             var el = '';
             var id = parseInt($(this).attr('name').split('_')[1]);
             var type = $(this).val();
-            console.log(type);
             if(type == 1){
                 el = 
                 '<div class="answer answer-colorstar" id="questionanswers_'+ id +'">'
@@ -2909,11 +2981,11 @@ jQuery(function ($) {
                         SetPointOfFreeQuestion(id, number);
                     }
                 });
+                RefreshItems();
                 $('.date-answer input').datepicker();
                 $('.phone-answer input.code').intlTelInput({
                     initialCountry: "ru",
                 });
-                RefreshItems();
                 $('.questions-box').attr('data-count', i);
             }
         });
@@ -3169,6 +3241,7 @@ jQuery(function ($) {
         $('.questions-box').sortable({
             deactivate: function (event, ui) {
                 RefreshItems();
+                $('.optionsblock .default').addClass('active');
             }
         });
     });
