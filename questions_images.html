@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="./css/datepicker.min.css">
     <link rel="stylesheet" href="./css/intlTelInput.css">
 
+    <script src="./js/jquery-3.5.1.min.js"></script>
+    <script src="./js/wavesurfer.js"></script>
+    <script src="./js/datepicker.min.js"></script>
+    <script src="./js/intlTelInput.js"></script>
 </head>
 
 <body>
@@ -191,70 +195,105 @@
 
                             </div>
                         </div>
-                        <div class="questions-box" data-count="2">
-                            <div class="question " data-optionid="1">
+                        <div class="questions-box" data-count="1">
+                            <div class="question" data-optionid="1">
+                                <div class="mediablock">
+                                    <div class="imageblock">
+                                        <div class="image">
+                                            <img src="./img/picture.png" alt="Image">
+                                            <div class="remove-picture"></div>
+                                            <input type="hidden" name="imageId_1_1"value="1">
+                                            <div class="bottom-row">
+                                                <div class="inputsimage">
+                                                    <div class="inputgroup">
+                                                        <input type="radio" name="clickforimage_1_1" id="clickforimage_1_1_1" value="50">
+                                                        <label for="clickforimage_1_1_1">50 на картинку</label>
+                                                    </div>
+                                                    <div class="inputgroup">
+                                                        <input type="radio" name="clickforimage_1_1" id="clickforimage_1_1_2" value="100">
+                                                        <label for="clickforimage_1_1_2">100 на картинку</label>
+                                                    </div>
+                                                    <div class="inputgroup">
+                                                        <input type="radio" name="clickforimage_1_1" id="clickforimage_1_1_3" value="200">
+                                                        <label for="clickforimage_1_1_3">200 на картинку</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="image">
+                                            <img src="./img/picture.png" alt="Image">
+                                            <div class="remove-picture"></div>
+                                            <input type="hidden" name="imageId_1_2" value="1">
+                                            <div class="bottom-row">
+                                                <div class="inputsimage">
+                                                    <div class="inputgroup">
+                                                        <input type="radio" name="clickforimage_1_2" id="clickforimage_1_2_1" value="50">
+                                                        <label for="clickforimage_1_2_1">50 на картинку</label>
+                                                    </div>
+                                                    <div class="inputgroup">
+                                                        <input type="radio" name="clickforimage_1_2" id="clickforimage_1_2_2" value="100">
+                                                        <label for="clickforimage_1_2_2">100 на картинку</label>
+                                                    </div>
+                                                    <div class="inputgroup">
+                                                        <input type="radio" name="clickforimage_1_2" id="clickforimage_1_2_3" value="200">
+                                                        <label for="clickforimage_1_2_3">200 на картинку</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bottom-row">
+                                        <div class="removeallpictures">Удалить все</div>
+                                        <div class="addmorepictures">Добавить до 10 фото</div>
+                                    </div>
+                                </div>
                                 <div class="close-question"></div>
                                 <div class="name " id="questionName_1">
-                                    Введите Ваше имя
+                                    Какие кредиты Вам больше всего подходят?
+                                </div>
+                                <div class="description " id="questiondescription_1">
+                                    Выберите один или несколько ответов в каждой строке
                                 </div>
                                 <div class="answer" id="questionanswers_1">
-                                    <div class="name-answer">
-                                        <div class="col-name">
-                                            <label for="anwername_1">Имя</label>
-                                            <input type="text" name="anwername_1" id="anwername_1" value="Имя" placeholder="Имя">
-                                        </div>
-                                        <div class="col-name">
-                                            <input type="text" name="anwername_1" id="anwername_1" placeholder="Отчество">
-                                        </div>
-                                        <div class="col-name">
-                                            <input type="text" name="anwername_1" id="anwername_1"  placeholder="Фамилия">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="question " data-optionid="2">
-                                <div class="close-question"></div>
-                                <div class="name " id="questionName_2">
-                                    Дата
-                                </div>
-                                <div class="answer" id="questionanswers_2">
-                                    <div class="date-answer">
-                                        <div class="col-date">
-                                            <input type="text" name="anwerdate_2" id="anwerdate_2" value="01.01.2020" placeholder="01.01.2020">
-                                            <div class="icon-date"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="question " data-optionid="3">
-                                <div class="close-question"></div>
-                                <div class="name " id="questionName_3">
-                                    Введите Ваш E-mail
-                                </div>
-                                <div class="answer" id="questionanswers_3">
-                                    <div class="email-answer">
-                                        <div class="col-email">
-                                            <input type="email" name="answeremail_3" id="answeremail_3" placeholder="E-mail">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="question " data-optionid="4">
-                                <div class="close-question"></div>
-                                <div class="name " id="questionName_4">
-                                    Введите Ваш номер телефона
-                                </div>
-                                <div class="answer" id="questionanswers_4">
-                                    <div class="phone-answer">
-                                        <div class="col-phone">
-                                            <div class="inputs">
-                                                <input class="code" type="text" name="answerphonecode_4" id="answerphonecode_4" value="+7">
-                                                <input class="phone" type="tel" name="answerphone_4" id="answerphone_4" maxlength="9">
+                                    <div class="ranging-list">
+                                        <div class="rangint-item">
+                                            <input type="hidden" name="rangingorder_1_1" value="1">
+                                            <div class="arrows">
+                                                <div class="item-up"></div>
+                                                <div class="item-down"></div>
                                             </div>
-                                            <div class="lines">
-                                                <div class="line"></div>
-                                                <div class="line"></div>
-                                                <div class="line"></div>
+                                            <div class="text">
+                                                Отрицательно
+                                            </div>
+                                        </div>
+                                        <div class="rangint-item">
+                                            <input type="hidden" name="rangingorder_1_2" value="2">
+                                            <div class="arrows">
+                                                <div class="item-up"></div>
+                                                <div class="item-down"></div>
+                                            </div>
+                                            <div class="text">
+                                                Ровно
+                                            </div>
+                                        </div>
+                                        <div class="rangint-item">
+                                            <input type="hidden" name="rangingorder_1_3" value="3">
+                                            <div class="arrows">
+                                                <div class="item-up"></div>
+                                                <div class="item-down"></div>
+                                            </div>
+                                            <div class="text">
+                                                Положительно
+                                            </div>
+                                        </div>
+                                        <div class="rangint-item">
+                                            <input type="hidden" name="rangingorder_1_4" value="4">
+                                            <div class="arrows">
+                                                <div class="item-up"></div>
+                                                <div class="item-down"></div>
+                                            </div>
+                                            <div class="text">
+                                                Отлично!
                                             </div>
                                         </div>
                                     </div>
@@ -273,17 +312,17 @@
                                 </div>
                             </div>
                             <div class="eloptions">
-                                <div class="optionbox " id="option_1">
-                                    <input type="hidden" name="questiontype_1" value="name">
+                                <div class="optionbox" id="option_1">
+                                    <input type="hidden" name="questiontype_1" value="ranging">
                                     <input type="hidden" class="orderinput" name="questionorder_1" value="1">
                                     <div class="header-aside">
                                         Настройки
                                     </div>
                                     <div class="text-aside ">
                                         <div class="filerow">
-                                            <div class="uploadpicture">
+                                            <div class="uploadpicture active">
                                                 <input type="radio" name="typeuploadfile_1" id="typeuploadfile_1_1"
-                                                    value="image">
+                                                    value="image" checked>
                                             </div>
                                             <input class="uploadpictureinput" type="file" name="uploadimage_1"
                                                 id="uploadimage_1" multiple accept="image/x-png,image/gif,image/jpeg">
@@ -294,113 +333,82 @@
                                             <input class="uploadvideoinput" type="file" name="uploadvideo_1"
                                                 id="uploadvideo_1" accept="video/mp4,video/x-m4v,video/*">
                                             <div class="uploadaudio">
-                                                <input type="radio" name="typeuploadfile_1" id="typeuploadfile_1_3"
+                                                <input type="radio" name="typeuploadfile_1" id="typeuploadfile_1_2"
                                                     value="audio">
                                             </div>
                                             <input class="uploadaudioinput" type="file" name="uploadaudio_1"
                                                 id="uploadaudio_1" accept="audio/*">
                                             <div class="uploadtext">
-                                                <input type="radio" name="typeuploadfile_1" id="typeuploadfile_1_4"
+                                                <input type="radio" name="typeuploadfile_1" id="typeuploadfile_1_2"
                                                     value="text">
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="optionbox " id="option_2">
-                                    <input type="hidden" name="questiontype_2" value="name">
-                                    <input type="hidden" class="orderinput" name="questionorder_2" value="2">
-                                    <div class="header-aside">
-                                        Настройки
-                                    </div>
-                                    <div class="text-aside ">
-                                        <div class="filerow">
-                                            <div class="uploadpicture">
-                                                <input type="radio" name="typeuploadfile_2" id="typeuploadfile_2_1"
-                                                    value="image">
+                                        <div class="ranging-options">
+                                            <div class="form-group">
+                                                <label for="question_1">Вопрос</label>
+                                                <textarea class="question_name" name="question_1"
+                                                    id="question_1">Как Вы оцените работу нашего банка?</textarea>
                                             </div>
-                                            <input class="uploadpictureinput" type="file" name="uploadimage_2"
-                                                id="uploadimage_2" multiple accept="image/x-png,image/gif,image/jpeg">
-                                            <div class="uploadvideo">
-                                                <input type="radio" name="typeuploadfile_2" id="typeuploadfile_2_2"
-                                                    value="video">
+                                            <div class="form-group">
+                                                <label for="questiondescription_1">Доп. описание</label>
+                                                <textarea class="question_description" name="questiondescription_1"
+                                                    id="questiondescription_1">Измените порядок в соответствии с вашими предпочтениями (1. - самый важный, последний - наименее важный)</textarea>
                                             </div>
-                                            <input class="uploadvideoinput" type="file" name="uploadvideo_2"
-                                                id="uploadvideo_2" accept="video/mp4,video/x-m4v,video/*">
-                                            <div class="uploadaudio">
-                                                <input type="radio" name="typeuploadfile_2" id="typeuploadfile_2_3"
-                                                    value="audio">
+                                            <div class="form-group">
+                                                <p>Ответы</p>
+                                                <div class="rowslist">
+                                                    <div class="row-item">
+                                                        <input type="text" name="inputpoint_1_1" id="inputpoint_1_1"
+                                                            value="Отрицательно">
+                                                        <div class="edit-menu">
+                                                            <div class="menu-dots"></div>
+                                                            <div class="menu-list">
+                                                                <div class="add-row addrangingrow"></div>
+                                                                <div class="delete-row deleterangingrow"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row-item">
+                                                        <input type="text" name="inputpoint_1_2" id="inputpoint_1_2"
+                                                            value="Ровно">
+                                                        <div class="edit-menu">
+                                                            <div class="menu-dots"></div>
+                                                            <div class="menu-list">
+                                                                <div class="add-row addrangingrow"></div>
+                                                                <div class="delete-row deleterangingrow"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row-item">
+                                                        <input type="text" name="inputpoint_1_3" id="inputpoint_1_3"
+                                                            value="Положительно">
+                                                        <div class="edit-menu">
+                                                            <div class="menu-dots"></div>
+                                                            <div class="menu-list">
+                                                                <div class="add-row addrangingrow"></div>
+                                                                <div class="delete-row deleterangingrow"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row-item">
+                                                        <input type="text" name="inputpoint_1_3" id="inputpoint_1_3"
+                                                            value="Отлично!">
+                                                        <div class="edit-menu">
+                                                            <div class="menu-dots"></div>
+                                                            <div class="menu-list">
+                                                                <div class="add-row addrangingrow"></div>
+                                                                <div class="delete-row deleterangingrow"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <input class="uploadaudioinput" type="file" name="uploadaudio_2"
-                                                id="uploadaudio_2" accept="audio/*">
-                                            <div class="uploadtext">
-                                                <input type="radio" name="typeuploadfile_2" id="typeuploadfile_2_4"
-                                                    value="text">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="optionbox " id="option_3">
-                                    <input type="hidden" name="questiontype_3" value="email">
-                                    <input type="hidden" class="orderinput" name="questionorder_3" value="3">
-                                    <div class="header-aside">
-                                        Настройки
-                                    </div>
-                                    <div class="text-aside ">
-                                        <div class="filerow">
-                                            <div class="uploadpicture">
-                                                <input type="radio" name="typeuploadfile_3" id="typeuploadfile_3_1"
-                                                    value="image">
-                                            </div>
-                                            <input class="uploadpictureinput" type="file" name="uploadimage_3"
-                                                id="uploadimage_3" multiple accept="image/x-png,image/gif,image/jpeg">
-                                            <div class="uploadvideo">
-                                                <input type="radio" name="typeuploadfile_3" id="typeuploadfile_3_2"
-                                                    value="video">
-                                            </div>
-                                            <input class="uploadvideoinput" type="file" name="uploadvideo_3"
-                                                id="uploadvideo_3" accept="video/mp4,video/x-m4v,video/*">
-                                            <div class="uploadaudio">
-                                                <input type="radio" name="typeuploadfile_3" id="typeuploadfile_3_3"
-                                                    value="audio">
-                                            </div>
-                                            <input class="uploadaudioinput" type="file" name="uploadaudio_3"
-                                                id="uploadaudio_3" accept="audio/*">
-                                            <div class="uploadtext">
-                                                <input type="radio" name="typeuploadfile_3" id="typeuploadfile_3_4"
-                                                    value="text">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="optionbox " id="option_4">
-                                    <input type="hidden" name="questiontype_4" value="email">
-                                    <input type="hidden" class="orderinput" name="questionorder_4" value="4">
-                                    <div class="header-aside">
-                                        Настройки
-                                    </div>
-                                    <div class="text-aside ">
-                                        <div class="filerow">
-                                            <div class="uploadpicture">
-                                                <input type="radio" name="typeuploadfile_4" id="typeuploadfile_4_1"
-                                                    value="image">
-                                            </div>
-                                            <input class="uploadpictureinput" type="file" name="uploadimage_4"
-                                                id="uploadimage_4" multiple accept="image/x-png,image/gif,image/jpeg">
-                                            <div class="uploadvideo">
-                                                <input type="radio" name="typeuploadfile_4" id="typeuploadfile_4_2"
-                                                    value="video">
-                                            </div>
-                                            <input class="uploadvideoinput" type="file" name="uploadvideo_4"
-                                                id="uploadvideo_4" accept="video/mp4,video/x-m4v,video/*">
-                                            <div class="uploadaudio">
-                                                <input type="radio" name="typeuploadfile_4" id="typeuploadfile_4_3"
-                                                    value="audio">
-                                            </div>
-                                            <input class="uploadaudioinput" type="file" name="uploadaudio_4"
-                                                id="uploadaudio_4" accept="audio/*">
-                                            <div class="uploadtext">
-                                                <input type="radio" name="typeuploadfile_4" id="typeuploadfile_4_4"
-                                                    value="text">
+                                            <div class="ranging-btn-row">
+                                                <div class="addrangingrow add-btn">
+                                                    <div class="icon-add">
+                                                    </div>
+                                                    Добавить строку
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -425,10 +433,6 @@
             </div>
         </div>
     </div>
-    <script src="./js/jquery-3.5.1.min.js"></script>
-    <script src="./js/wavesurfer.js"></script>
-    <script src="./js/datepicker.min.js"></script>
-    <script src="./js/intlTelInput.js"></script>
     <script src="./js/jquery-ui.js"></script>
     <script src="./js/constructor.js?6876546"></script>
     <script src="./js/script.js?87654"></script>

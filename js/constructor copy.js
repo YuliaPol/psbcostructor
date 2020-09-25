@@ -201,42 +201,26 @@ jQuery(function ($) {
             for (var pair of formData.entries()) {
                 console.log(pair[0]+ ', ' + pair[1]); 
             }
-
-            $.ajax({
-                type:'POST', // Тип запроса
-                url: '/admin/poll/image-upload', // Скрипт обработчика
-                data: formData, // Данные которые мы передаем
-                cache:false, // В запросах POST отключено по умолчанию, но перестрахуемся
-                contentType: false, // Тип кодирования данных мы задали в форме, это отключим
-                processData: false, // Отключаем, так как передаем файл
-                success:function(data){
-                  printMessage('#result', data);
+            $.ajax ({
+                type: 'POST',
+                url: "/admin/poll/image-upload",
+                dataType: "json",
+                data: {
+                    formData
+                    // quiz_id: idQuuiz,
+                    // question_id: QuestionId
                 },
-                error:function(data){
-                  console.log(data);
-                }
+                processData: false,
+                contentType: false, 
+                cache: false,
+            }).done(function (data) {
+                // данные сохранены
+                console.log('Фото загружены');
+                console.log(data);
+            }).fail(function () {
+                // не удалось выполнить запрос к серверу
+                console.log('Запрос не принят');
             });
-
-            // $.ajax ({
-            //     type: 'POST',
-            //     url: "/admin/poll/image-upload",
-            //     dataType: "json",
-            //     data: {
-            //         formData
-            //         // quiz_id: idQuuiz,
-            //         // question_id: QuestionId
-            //     },
-            //     processData: false,
-            //     contentType: false, 
-            //     cache: false,
-            // }).done(function (data) {
-            //     // данные сохранены
-            //     console.log('Фото загружены');
-            //     console.log(data);
-            // }).fail(function () {
-            //     // не удалось выполнить запрос к серверу
-            //     console.log('Запрос не принят');
-            // });
         }));
 
         //upload picture
@@ -280,7 +264,6 @@ jQuery(function ($) {
                 var idQuuiz = $('#quiz-id').val();
                 console.log( $('#quiz-id'));
                 input.attr('data-questionid', idQuestion);
-                input.attr('name', 'uploadimage_1');
                 var inputquestion = '<input type="hidden" name="question_id" value="' + idQuestion + '">';
                 var inputquiz = '<input type="hidden" name="quiz_id" value="'+ idQuuiz + '">';
                 $('.uploadimageform').append(input);

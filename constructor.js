@@ -65,7 +65,7 @@ jQuery(function ($) {
 
         var Questions = $('.questions-box').children();
         Questions.each(function (index, question) {
-            var id = $(question).attr('data-optionid');
+            var id = index + 1;
             if($(question).find('.mediablock').length>0){
                 if($(question).find('.imageblock').length>0){
                     $('#option_' + id).find('.uploadpicture').addClass('active');
@@ -126,7 +126,7 @@ jQuery(function ($) {
         });
 
         $('.centerbox').on('click', '.addmorepictures', function(e){
-            var idQuestion = $(this).parents('.question').find('input').attr('name').split('_')[1];
+            var idQuestion = parseInt($(this).parents('.question').find('input').attr('name').split('_')[1]);
             $('#uploadimage_' + idQuestion).click();
         });
 
@@ -138,49 +138,71 @@ jQuery(function ($) {
             ImageBlock.each(function (index, block) {
                 var images = $(block).children();
                 var prop;
-                // images.each(function (index2, img) {
-                //     var widthImg= $(img).find('img').get(0).naturalWidth;
-                //     var heightImg= $(img).find('img').get(0).naturalHeight;
-                //     prop = widthImg/heightImg;
-                //     if(heightImg && widthImg){
-                //         if(images.length == 1){
-                //             heightImgBlock = heightImg;
-                //         }
-                //         else {
-                //             if(images.length % 2 == 0){
-                //                 heightImgBlock = heightImgBlock +  300/prop;
-                //             }
-                //             else {
-                //                 heightImgBlock =  heightImgBlock + 250/prop;
-                //             }
-                //             if(parseInt(index2)+1 == parseInt(images.length)) {
-                //                 heightImgBlock = heightImgBlock/images.length + 90;
-                //             }
-                //         }
-                //     }
-                //     if(heightImgBlock == 0 || heightImgBlock == NaN){
-                //         if(images.length>1){
-                //             heightImgBlock = 300;
-                //         }
-                //         else {
-                //             heightImgBlock = 500;
-                //         }
-                //     }
-                // });
                 images.each(function (index2, img) {
+                    var widthImg= $(img).find('img').get(0).naturalWidth;
+                    var heightImg= $(img).find('img').get(0).naturalHeight;
+                    prop = widthImg/heightImg;
+                    if(heightImg && widthImg){
+                        if(images.length == 1){
+                            heightImgBlock = heightImg;
+                        }
+                        else {
+                            if(images.length % 2 == 0){
+                                heightImgBlock = heightImgBlock +  300/prop;
+                            }
+                            else {
+                                heightImgBlock =  heightImgBlock + 250/prop;
+                            }
+                            if(parseInt(index2)+1 == parseInt(images.length)) {
+                                heightImgBlock = heightImgBlock/images.length + 90;
+                            }
+                        }
+                    }
+                    if(heightImgBlock == 0 || heightImgBlock == NaN){
+                        if(images.length>1){
+                            heightImgBlock = 300;
+                        }
+                        else {
+                            heightImgBlock = 500;
+                        }
+                    }
+                });
+                images.each(function (index2, img) {
+                    var widthImg= $(img).find('img').get(0).naturalWidth;
+                    var heightImg= $(img).find('img').get(0).naturalHeight ;
+                    var width = Math.round(100 / images.length) + '%';
+                    prop = widthImg/heightImg;
                     if(images.length>1){
-                        $(img).css('min-width', '33%');
-                        $(img).css('max-width', '33%');
-                        $(img).css('height', '300px');
-                        $(img).css('width', '33%');
-                        $(img).find('img').css('height', 'calc(100% - 90px)');
-                        $(img).find('img').css('object-fit', 'cover');
+                        if(images.length % 3 == 0){
+                            $(img).css('min-width', '33%');
+                            $(img).css('max-width', '33%');
+                            $(img).css('height', heightImgBlock);
+                            $(img).css('width', '33%');
+                            $(img).find('img').css('height', 'calc(100% - 90px)');
+                            $(img).find('img').css('object-fit', 'cover');
+                        }
+                        else if(images.length % 2 == 0){
+                            $(img).css('min-width', '50%');
+                            $(img).css('max-width', '50%');
+                            $(img).css('width', '50%');
+                            $(img).css('height', heightImgBlock);
+                            $(img).find('img').css('height', 'calc(100% - 90px)');
+                            $(img).find('img').css('object-fit', 'cover');
+                        }
+                        else {
+                            $(img).css('min-width', '33%');
+                            $(img).css('max-width', '33%');
+                            $(img).css('height', heightImgBlock);
+                            $(img).css('width', '33%');
+                            $(img).find('img').css('height', 'calc(100% - 90px)');
+                            $(img).find('img').css('object-fit', 'cover');
+                        }
                     }
                     else {
                         $(img).css('min-width', '100%');
                         $(img).css('max-width', '100%');
                         $(img).css('width', '100%');
-                        $(img).css('height', '400px');
+                        $(img).css('height', heightImgBlock);
                         $(img).find('img').css('height', 'calc(100% - 90px)');
                         $(img).find('img').css('object-fit', 'cover');
                     }
@@ -189,66 +211,14 @@ jQuery(function ($) {
         }
 
         var _URL = window.URL || window.webkitURL;
-
-        $('body').on('submit', '.uploadimageform' ,(function(e) {
-            e.preventDefault();
-            var QuestionId = $(this).find('input').attr('data-questionid');
-            var idQuuiz = $('#quiz-id').val();
-            console.log(QuestionId);
-            console.log(idQuuiz);
-            var formData = new FormData(this);
-            // Display the key/value pairs
-            for (var pair of formData.entries()) {
-                console.log(pair[0]+ ', ' + pair[1]); 
-            }
-
-            $.ajax({
-                type:'POST', // Тип запроса
-                url: '/admin/poll/image-upload', // Скрипт обработчика
-                data: formData, // Данные которые мы передаем
-                cache:false, // В запросах POST отключено по умолчанию, но перестрахуемся
-                contentType: false, // Тип кодирования данных мы задали в форме, это отключим
-                processData: false, // Отключаем, так как передаем файл
-                success:function(data){
-                  printMessage('#result', data);
-                },
-                error:function(data){
-                  console.log(data);
-                }
-            });
-
-            // $.ajax ({
-            //     type: 'POST',
-            //     url: "/admin/poll/image-upload",
-            //     dataType: "json",
-            //     data: {
-            //         formData
-            //         // quiz_id: idQuuiz,
-            //         // question_id: QuestionId
-            //     },
-            //     processData: false,
-            //     contentType: false, 
-            //     cache: false,
-            // }).done(function (data) {
-            //     // данные сохранены
-            //     console.log('Фото загружены');
-            //     console.log(data);
-            // }).fail(function () {
-            //     // не удалось выполнить запрос к серверу
-            //     console.log('Запрос не принят');
-            // });
-        }));
-
-        //upload picture
         $('.rightside').on('change', '.uploadpictureinput', function(e){
-            var idQuestion = $(this).prev('.uploadpicture').find('input').attr('name').split('_')[1];
             var tempFiles = 
             '<input class="uploadpictureinput" type="file" name="'+ $(this).attr('name') +'" multiple="" accept="image/x-png,image/gif,image/jpeg">';
             if(tempFiles){
                $(tempFiles).insertBefore($(this));
-            }            
+            }
             var files = e.target.files;
-            console.log(idQuestion);
+            var idQuestion = parseInt($(this).attr('name').split('_')[1]);
             var child = $('#questionanswers_'+idQuestion);
             if(!child.parents('.question').find('.mediablock').length>0){
                 var mideablock = '<div class="mediablock"></div>';
@@ -272,20 +242,6 @@ jQuery(function ($) {
             }
             else {
                 SetImage(files, idQuestion ,child);
-                if($('.uploadimage').length==0){
-                    var testform = '<form style="display: none;" class="uploadimageform" enctype="multipart/form-data"></form>';
-                    $('body').append(testform);
-                }
-                var input = $(this).clone();
-                var idQuuiz = $('#quiz-id').val();
-                console.log( $('#quiz-id'));
-                input.attr('data-questionid', idQuestion);
-                input.attr('name', 'uploadimage_1');
-                var inputquestion = '<input type="hidden" name="question_id" value="' + idQuestion + '">';
-                var inputquiz = '<input type="hidden" name="quiz_id" value="'+ idQuuiz + '">';
-                $('.uploadimageform').append(input);
-                $('.uploadimageform').append(inputquestion);
-                $('.uploadimageform').append(inputquiz);
             }
         });
 
@@ -296,61 +252,106 @@ jQuery(function ($) {
             }
             var index2 = 1;
             var image;
-
             for (var i = 0; i < files.length; i++) {
-                if (files && files[i]) {
-                    var reader = new FileReader();
-                    reader.fileName = files[i].name;
-                    reader.idFile = i;
-                    var width = Math.round(100 / files.length);
-                        reader.onload = function (e) {
-                        var filename = e.target.fileName;
-                        var redIdFile = e.target.idFile;
-                        var settingsImage =
-                        '<div class="remove-picture"></div>'
-                        +'<input class="newimg" type="hidden" name="imageId_' + idQuestion + '_' + index +'" value="' + filename + '">'
-                        +'<div class="bottom-row">'
-                        +'   <div class="inputsimage">'
-                        +'        <div class="inputgroup">'
-                        +'            <input type="radio" name="clickforimage_' + idQuestion + '_' + index +'" id="clickforimage_' + idQuestion + '_' + index +'_1"'
-                        +'                value="50">'
-                        +'            <label for="clickforimage_' + idQuestion + '_' + index + '_1">50 на картинку</label>'
-                        +'        </div>'
-                        +'        <div class="inputgroup">'
-                        +'            <input type="radio" name="clickforimage_' + idQuestion + '_' + index + '" id="clickforimage_' + idQuestion + '_' + index + '_2"'
-                        +'                value="100">'
-                        +'            <label for="clickforimage_' + idQuestion + '_' + index + '_2">100 на картинку</label>'
-                        +'        </div>'
-                        +'        <div class="inputgroup">'
-                        +'            <input type="radio" name="clickforimage_' + idQuestion  + '_' + index + '" id="clickforimage_'  + idQuestion + '_' + index + '_3"'
-                        +'                value="200">'
-                        +'            <label for="clickforimage_' + idQuestion  + '_' + index + '_3">200 на картинку</label>'
-                        +'        </div>'
-                        +'    </div>'
-                        +'</div>';
-                        if(files.length>1){
-                            if(files.length % 2 == 0){
-                                image = 
-                                '<div class="image" style="max-width: 100%; min-width: 50%;"><img style="height: calc(100% - 90px); object-fit: cover;" src ="'+ e.target.result + '" alt="Image">' + settingsImage + ' </div>';    
+                if(i>9){
+                    break;
+                }
+                else {
+                    if (files && files[i]) {
+                        
+                        //ajax
+                        console.log(files[i]);
+                        var myFormData = new FormData();
+                        myFormData.append('pictureFile', files[i]);
+
+                        for (var pair of myFormData.entries()) {
+                            console.log(pair[0]+ ', ' + pair[1]); 
+                        }
+
+                        $.ajax({ 
+                            type: 'POST',
+                            url: '/admin/poll/image-upload',
+                            data: 
+                            {
+                                myFormData,
+                            },  
+                            cache: false,
+                            success: function (data) {
+                                console.log(data);
+                            },
+                            dataType: 'json',
+                            contentType: false,
+                            processData: false,
+                        });
+
+                        var reader = new FileReader();
+                        var width = Math.round(100 / files.length);
+                            reader.onload = function (e) {
+                            var settingsImage =
+                            '<div class="remove-picture"></div>'
+                            +'<input type="hidden" name="imageId_' + idQuestion + '_' + index +'" value="1">'
+                            +'<div class="bottom-row">'
+                            +'   <div class="inputsimage">'
+                            +'        <div class="inputgroup">'
+                            +'            <input type="radio" name="clickforimage_' + idQuestion + '_' + index +'" id="clickforimage_' + idQuestion + '_' + index +'_1"'
+                            +'                value="50">'
+                            +'            <label for="clickforimage_' + idQuestion + '_' + index + '_1">50 на картинку</label>'
+                            +'        </div>'
+                            +'        <div class="inputgroup">'
+                            +'            <input type="radio" name="clickforimage_' + idQuestion + '_' + index + '" id="clickforimage_' + idQuestion + '_' + index + '_2"'
+                            +'                value="100">'
+                            +'            <label for="clickforimage_' + idQuestion + '_' + index + '_2">100 на картинку</label>'
+                            +'        </div>'
+                            +'        <div class="inputgroup">'
+                            +'            <input type="radio" name="clickforimage_' + idQuestion  + '_' + index + '" id="clickforimage_'  + idQuestion + '_' + index + '_3"'
+                            +'                value="200">'
+                            +'            <label for="clickforimage_' + idQuestion  + '_' + index + '_3">200 на картинку</label>'
+                            +'        </div>'
+                            +'    </div>'
+                            +'</div>';
+                            if(files.length>1){
+                                if(files.length % 2 == 0){
+                                    image = 
+                                    '<div class="image" style="max-width: 100%; min-width: 50%;"><img style="height: calc(100% - 90px); object-fit: cover;" src ="'+ e.target.result + '" alt="Image">' + settingsImage + ' </div>';    
+                                }
+                                else {
+                                    image = 
+                                    '<div class="image"><img style="height: calc(100% - 90px); object-fit: cover;" src ="'+ e.target.result + '" alt="Image">' + settingsImage + ' </div>';    
+                                }
                             }
                             else {
+                                '<div class="bottom-row">'
+                                +'<input type="hidden" name="imageId_' + idQuestion + '_' + index +'" value="1">'
+                                +'   <div class="inputsimage">'
+                                +'        <div class="inputgroup">'
+                                +'            <input type="radio" name="clickforimage_' + idQuestion + '_' + index +'" id="clickforimage_' + idQuestion + '_' + index +'_1"'
+                                +'                value="50">'
+                                +'            <label for="clickforimage_' + idQuestion + '_' + index + '_1">50 на картинку</label>'
+                                +'        </div>'
+                                +'        <div class="inputgroup">'
+                                +'            <input type="radio" name="clickforimage_' + idQuestion + '_' + index + '" id="clickforimage_' + idQuestion + '_' + index + '_2"'
+                                +'                value="100">'
+                                +'            <label for="clickforimage_' + idQuestion + '_' + index + '_2">100 на картинку</label>'
+                                +'        </div>'
+                                +'        <div class="inputgroup">'
+                                +'            <input type="radio" name="clickforimage_' + idQuestion  + '_' + index + '" id="clickforimage_'  + idQuestion + '_' + index + '_3"'
+                                +'                value="200">'
+                                +'            <label for="clickforimage_' + idQuestion  + '_' + index + '_3">200 на картинку</label>'
+                                +'        </div>'
+                                +'    </div>'
+                                +'</div>';
                                 image = 
-                                '<div class="image"><img style="height: calc(100% - 90px); object-fit: cover;" src ="'+ e.target.result + '" alt="Image">' + settingsImage + ' </div>';    
+                                '<div class="image" style="width: '+ width + '%"><img src ="'+ e.target.result + '" alt="Image"> ' + settingsImage + '</div>';
                             }
+                            child.parents('.question').find('.imageblock').append(image);
+                            if(parseInt(index2)==parseInt(files.length)){
+                                ResizeImg();
+                            }
+                            index++;
+                            index2++;
                         }
-                        else {
-                            image = 
-                            '<div class="image" style="width: '+ width + '%"><img src ="'+ e.target.result + '" alt="Image"> ' + settingsImage + '</div>';
-                        }
-                        child.parents('.question').find('.imageblock').append(image);
-                        if(parseInt(redIdFile)==parseInt(files.length - 1)){
-                            ResizeImg();
-                            $('.uploadimageform').submit();
-                        }
-                        index++;
-                        index2++;
+                        reader.readAsDataURL(files[i]);
                     }
-                    reader.readAsDataURL(files[i]);
                 }
             }
         }
@@ -358,22 +359,22 @@ jQuery(function ($) {
             var parents = $(this).parents('.imageblock');
             var pictureId = $(this).parents('.image').find('input[type=hidden]').val();
             $(this).parents('.image').remove();
-            var myFormData = new FormData();
-            myFormData.append('pictureId', pictureId);
-            $.ajax({ 
-                type: 'POST',
-                url: '/admin/poll/delete-image',
-                data: 
-                {
-                    pictureFile: myFormData,
-                },  
-                cache: false,
-                success: function (data) {
-                    console.log(data)
-                },
-                processData: false,
-                contentType: false, 
-            });
+            // var myFormData = new FormData();
+            // myFormData.append('pictureId', pictureId);
+            // $.ajax({ 
+            //     type: 'POST',
+            //     url: '/admin/poll/delete-image',
+            //     data: 
+            //     {
+            //         pictureFile: myFormData,
+            //     },  
+            //     cache: false,
+            //     success: function (data) {
+            //         console.log(data);
+            //     },
+            //     processData: false,
+            //     contentType: false, 
+            // });
             var Images = parents.children();
             Images.each(function (index, image) {
                 var id = index + 1;
@@ -419,22 +420,22 @@ jQuery(function ($) {
             Images.each(function (index, image) {
                 var pictureId = $(image).find('input[type=hidden]').val();
                 $(image).remove();
-                var myFormData = new FormData();
-                    myFormData.append('pictureId', pictureId);
-                    $.ajax({ 
-                        type: 'POST',
-                        url: '/admin/poll/delete-image',
-                        data: 
-                        {
-                            pictureFile: myFormData,
-                        },  
-                        cache: false,
-                        success: function (data) {
-                            console.log(data);
-                        },
-                        processData: false,
-                        contentType: false, 
-                });
+                // var myFormData = new FormData();
+                    // myFormData.append('pictureId', pictureId);
+                    // $.ajax({ 
+                    //     type: 'POST',
+                    //     url: '/admin/poll/delete-image',
+                    //     data: 
+                    //     {
+                    //         pictureFile: myFormData,
+                    //     },  
+                    //     cache: false,
+                    //     success: function (data) {
+                    //         console.log(data);
+                    //     },
+                    //     processData: false,
+                    //     contentType: false, 
+                // });
             });
         });
         
@@ -451,7 +452,7 @@ jQuery(function ($) {
         });
 
         $('.rightside').on('change', '.uploadvideoinput', function(e){
-            var idQuestion = $(this).attr('name').split('_')[1];
+            var idQuestion = parseInt($(this).attr('name').split('_')[1]);
             var child = $('#questionanswers_'+idQuestion);
             if(!child.parents('.question').find('.mediablock').length>0){
                 var mideablock = '<div class="mediablock"></div>';
@@ -516,7 +517,7 @@ jQuery(function ($) {
         });
 
         $('.rightside').on('change', '.uploadaudioinput', function(e){
-            var idQuestion = $(this).attr('name').split('_')[1];
+            var idQuestion = parseInt($(this).attr('name').split('_')[1]);
             var child = $('#questionanswers_'+idQuestion);
             if(!child.parents('.question').find('.mediablock').length>0){
                 var mideablock = '<div class="mediablock"></div>';
@@ -614,7 +615,7 @@ jQuery(function ($) {
                 $(this).parents('.filerow').children().removeClass('active');
                 $(this).addClass('active');    
                 $(this).find('input[type=radio]').prop('checked', true);
-                var idQuestion = $(this).find('input[type=radio]').attr('name').split('_')[1];
+                var idQuestion = parseInt($(this).find('input[type=radio]').attr('name').split('_')[1]);
                 var child = $('#questionanswers_'+idQuestion);
                 if(!child.parents('.question').find('.mediablock').length>0){
                     var mideablock = '<div class="mediablock"></div>';
@@ -641,7 +642,7 @@ jQuery(function ($) {
             auto_grow(document.getElementsByClassName('uploadtextinput')[0]);
         }
         $('.rightside').on('change, keypress, keydown, keyup', '.uploadtextinput', function(e){
-            var idQuestion = $(this).attr('name').split('_')[1];
+            var idQuestion = parseInt($(this).attr('name').split('_')[1]);
             var child = $('#questionanswers_'+idQuestion);
             if(child.parents('.question').find('.mediablock .textblock').length>0){
                 child.parents('.question').find('.mediablock .textblock').html($(this).val());
@@ -653,20 +654,20 @@ jQuery(function ($) {
         });
         //change name of question
         $('.rightside').on('change, keypress, keydown, keyup', '.question_name', function(e){
-            var id = $(this).attr('name').split('_')[1];
+            var id = parseInt($(this).attr('name').split('_')[1]);
             $('#questionName_' + id).html($(this).val());
         });
 
         //change description of question
         $('.rightside').on('change, keypress, keydown, keyup', '.question_description', function(e){
-            var id = $(this).attr('name').split('_')[1];
+            var id = parseInt($(this).attr('name').split('_')[1]);
             $('#questiondescription_' + id).html($(this).val());
         });
         
         //change matrix row
         $('.rightside').on('change, keypress, keydown, keyup', '.matrix-options .rowslist .row-item input', function(e){
             var name =  $(this).attr('name');
-            var idQuestion = name.split('_')[1];
+            var idQuestion = parseInt(name.split('_')[1]);
             var idPoints = parseInt(name.split('_')[2]) + 1;
             var value = $(this).val();
             $('#questionanswers_' + idQuestion + ' .matrix-table .matrix-row:nth-child(' + idPoints + ') .first-col .value').html(value);
@@ -677,12 +678,12 @@ jQuery(function ($) {
             if($(this).parents('.matrix-options').find('.rowslist .row-item:last-child input').length>0)
             {
                 var name =  $(this).parents('.matrix-options').find('.rowslist .row-item:last-child input').attr('name');
-                var idQuestion = name.split('_')[1];
+                var idQuestion = parseInt(name.split('_')[1]);
                 var idPoints = parseInt(name.split('_')[2]) + 1;
             }
             else {
                 var name =  $(this).parents('.matrix-options').find('input').attr('name');
-                var idQuestion = name.split('_')[1];
+                var idQuestion = parseInt(name.split('_')[1]);
                 var idPoints = 1;
             }
             var numberCols = parseInt($(this).parents('.matrix-options').find('.matrix_number').val());
@@ -754,7 +755,7 @@ jQuery(function ($) {
         //delete matrix row
         $('.rightside').on('click', '.deletematrixrow', function(e){
             var name =  $(this).parents('.row-item').find('input').attr('name');
-            var idQuestion = name.split('_')[1];
+            var idQuestion = parseInt(name.split('_')[1]);
             var idPoints = parseInt(name.split('_')[2]) + 1;
             var parents =  $(this).parents('.rowslist');
             $(this).parents('.row-item').remove();
@@ -819,7 +820,7 @@ jQuery(function ($) {
 
         //change points of matrix col
         $('.rightside').on('change', '.matrix_number', function(e){
-            var id = $(this).attr('name').split('_')[1];
+            var id = parseInt($(this).attr('name').split('_')[1]);
             var number = $(this).val();
             MatrixColChange(id, number);
         });
@@ -828,7 +829,7 @@ jQuery(function ($) {
             min: 0,
             max: 15,
             spin: function( event, ui ) {
-                var id = $(event.target).attr('name').split('_')[1];
+                var id = parseInt($(event.target).attr('name').split('_')[1]);
                 var number = ui.value;
                 MatrixColChange(id, number);
             }
@@ -850,7 +851,7 @@ jQuery(function ($) {
                 }
                 else if(answerCols.length < number){
                     var name = $('#option_' + id).find('.matrix_number').attr('name');
-                    var idQuestion = name.split('_')[1];
+                    var idQuestion = parseInt(name.split('_')[1]);
                     var idPoints = i_row;
                     if(i_row == 0){
                         for (let i =  answerCols.length; i < number; i++){
@@ -938,7 +939,7 @@ jQuery(function ($) {
             if($(this).parents('.ranging-options').find('.rowslist .row-item:last-child input').length>0)
             {
                 var name =  $(this).parents('.ranging-options').find('.rowslist .row-item:last-child input').attr('name');
-                var idQuestion = name.split('_')[1];
+                var idQuestion = parseInt(name.split('_')[1]);
                 var idPoints = parseInt(name.split('_')[2]) + 1;
             }
             else {
@@ -986,7 +987,7 @@ jQuery(function ($) {
         //delete ranging row
         $('.rightside').on('click', '.deleterangingrow', function(e){
             var name =  $(this).parents('.row-item').find('input').attr('name');
-            var idQuestion = name.split('_')[1];
+            var idQuestion = parseInt(name.split('_')[1]);
             var idPoints = parseInt(name.split('_')[2]);
             var parents =  $(this).parents('.rowslist');
             $(this).parents('.row-item').remove();
@@ -1017,7 +1018,7 @@ jQuery(function ($) {
         //change rangin item text 
         $('.rightside').on('change, keypress, keydown, keyup', '.ranging-options .rowslist .row-item input', function(e){
             var name =  $(this).attr('name');
-            var idQuestion = name.split('_')[1];
+            var idQuestion = parseInt(name.split('_')[1]);
             var idPoints = parseInt(name.split('_')[2]);
             var value = $(this).val();
             $('#questionanswers_' + idQuestion + ' .ranging-list .rangint-item:nth-child(' + idPoints + ') .text').html(value);
@@ -1155,7 +1156,7 @@ jQuery(function ($) {
         });
         //branching hidden question show
         $('.centerbox').on('change', '.branchingquestion input[type=radio]', function(e){
-            var idQuestion = $(this).attr('id').split('_')[1];
+            var idQuestion = parseInt($(this).attr('id').split('_')[1]);
             var idPoint = parseInt($(this).attr('id').split('_')[2]);
             if($(this).is(':checked')){
                 $(this).parents('.question').find('.hidden-question-group').fadeOut(300);
@@ -1192,10 +1193,10 @@ jQuery(function ($) {
                 $(this).parents('.option-group').find('.arrowshow').click();
             }
             if(namequestion[1]){
-                idQuestion = namequestion[1];
+                idQuestion = parseInt(namequestion[1]);
             }
             else {
-                idQuestion = $(this).parents('.optionbox').find('input:first-child').attr('name').split('_')[1];
+                idQuestion = parseInt($(this).parents('.optionbox').find('input:first-child').attr('name').split('_')[1]);
             }
 
             if(namequestion[2]){
@@ -1428,7 +1429,7 @@ jQuery(function ($) {
         });
 
         $('.rightside').on('change , keypress, keydown, keyup', '.ratinstables input[type=text]', function(e){
-            var idQuestion = $(this).attr('name').split('_')[1];
+            var idQuestion = parseInt($(this).attr('name').split('_')[1]);
             var idPoint = parseInt($(this).attr('name').split('_')[2]);
             if(idQuestion && idPoint){
                 if($('#questionanswer_'+ idQuestion +'_' + idPoint).next ('label').find('.text').length>0){
@@ -1439,7 +1440,7 @@ jQuery(function ($) {
 
         $('.rightside').on('change', '.scale-radio input[type=radio]', function(e){
             var el = '';
-            var id = $(this).attr('name').split('_')[1];
+            var id = parseInt($(this).attr('name').split('_')[1]);
             var type = $(this).val();
             if(type == 1){
                 el = 
@@ -1679,7 +1680,7 @@ jQuery(function ($) {
             min: 0,
             max: 15,
             spin: function( event, ui ) {
-                var id = $(event.target).attr('name').split('_')[1];
+                var id = parseInt($(event.target).attr('name').split('_')[1]);
                 var number = ui.value;
                 var questionPoints = $('#inputtables_' + id).find('.questionPoint');
                 questionPoints.each(function (index, question) {
@@ -1707,7 +1708,7 @@ jQuery(function ($) {
             min: 0,
             max: 15,
             spin: function( event, ui ) {
-                var id = $(event.target).attr('name').split('_')[1];
+                var id = parseInt($(event.target).attr('name').split('_')[1]);
                 var number = ui.value;
                 var questionPoints = $('#inputtables_' + id).find('.questionPoint');
                 questionPoints.each(function (index, question) {
@@ -1738,7 +1739,7 @@ jQuery(function ($) {
         $('.rightside').on('click', '.branching-btn', function(e){
             var subPoints = $(this).next('.branching-list').children();
             var prevNameInput = $(this).prev('.question_points').attr('id').split('_');
-            var questionId =  prevNameInput[1];
+            var questionId =  parseInt(prevNameInput[1]);
             var questionPointsId =  parseInt(prevNameInput[2]);
             var questionSubPointsId =  parseInt(subPoints.length) + 1;
             if(questionSubPointsId<3)
@@ -1841,7 +1842,7 @@ jQuery(function ($) {
 
         //change points of question
         $('.rightside').on('change', '.question_number', function(e){
-            var id = $(this).attr('name').split('_')[1];
+            var id = parseInt($(this).attr('name').split('_')[1]);
             var number = $(this).val();
             var questionPoints = $('#inputtables_' + id).find('.questionPoint');
             questionPoints.each(function (index, question) {
@@ -1866,7 +1867,7 @@ jQuery(function ($) {
 
         //change points of question
         $('.rightside').on('change', '.question_number_branching', function(e){
-            var id = $(this).attr('name').split('_')[1];
+            var id = parseInt($(this).attr('name').split('_')[1]);
             var number = $(this).val();
             var questionPoints = $('#inputtables_' + id).find('.questionPoint');
             questionPoints.each(function (index, question) {
@@ -1944,7 +1945,7 @@ jQuery(function ($) {
 
         var i = parseInt($('.questions-box').attr('data-count')) + 1;
         $(".questions-box").droppable({
-        drop: function(event, ui) {
+            drop: function(event, ui) {
                 var item = $(ui.draggable).html();
                 var fieldId = 'question'+'_'+i;
                 var eventTop = event.pageY;
@@ -1952,1250 +1953,1225 @@ jQuery(function ($) {
                 var appendInde = getAppendIndex(children, eventTop);
                 var el = '';
                 var option = '';
-                // var id = parseInt($('.questions-box').attr('data-count')) + 1;
-                var id;
+                var id = parseInt($('.questions-box').attr('data-count')) + 1;
+
                 var type = $(ui.draggable).attr('data-type');
-                var pollid = $('#quiz-id').val();
-                // AddQuestion(type, 25, appendInde);
-                if(type && pollid){
-                    $.ajax ({
-                        type: 'POST',
-                        url: "/admin/poll/create-question",
-                        dataType: "json",
-                        data: { 
-                            questiontype: type,
-                            quizid: pollid
-                        },
-                    }).done(function (data) {
-                        // данные сохранены
-                        AddQuestion(type, data, appendInde);
-                    }).fail(function () {
-                        // не удалось выполнить запрос к серверу
-                        console.log('Запрос не принят');
-                    });
+                if (type === "single"){
+                    el =
+                    '<div class="question active"  data-optionId="'+ id +'">'
+                    +'    <div class="close-question"></div>'
+                    +'    <div class="name" id="questionName_'+ id +'">'
+                    +'        Вопрос '
+                    +'    </div>'
+                    +'    <div class="answer flex-50" id="questionanswers_'+ id +'">'
+                    +'        <div class="form-group" id="questionformAnswer_'+ id +'_1">'
+                    +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_1">'
+                    +'            <label id="questionpointsanswer_'+ id +'_1" for="questionanswer_'+ id +'_1">Вариант ответа</label>'
+                    +'        </div>'
+                    +'        <div class="form-group" id="questionformAnswer_'+ id + '_2">'
+                    +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_2">'
+                    +'            <label  id="questionpointsanswer_'+ id +'_2" for="questionanswer_'+ id +'_2">Вариант ответа</label>'
+                    +'       </div>'
+                    +'    </div>'
+                    +'</div>'
+                    ;
+                    option = 
+                    '<div class="optionbox active option_single" id="option_'+ id +'">'
+                    +'<input type="hidden" name="questiontype_'+ id +'" value="single" >'
+                    +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
+                    +'    <div class="header-aside">'
+                    +'        Настройки'
+                    +'    </div>'
+                    +'    <div class="text-aside">'
+                    +'        <div class="filerow">'
+                    +'            <div class="uploadpicture">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
+                    +'                    value="image">'
+                    +'            </div>'
+                    +'            <input class="uploadpictureinput" type="file"'
+                    +'                name="uploadimage_'+ id +'[]" multiple="multiple"'
+                    +'                accept="image/x-png,image/gif,image/jpeg">'
+                    +'            <div class="uploadvideo">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'" id="uploadvideo_'+ id +'"'
+                    +'            accept="video/mp4,video/x-m4v,video/*">'
+                    +'            <div class="uploadaudio">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
+                    +'            accept="audio/*">'
+                    +'            <div class="uploadtext">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_4"'
+                    +'                    value="text">'
+                    +'            </div>'
+                    +'        </div>'
+                    +'        <div class="form-group">'
+                    +'            <label for="question_'+ id +'">Вопрос</label>'
+                    +'            <textarea class="question_name" name="question_'+ id +'" id="question_'+ id +'" placeholder="Введите вопрос"></textarea>'
+                    +'        </div>'
+                    +'        <div class="form-group spinner-wrapper">'
+                    +'           <label for="number_'+ id +'">Колличество пунктов </label>'
+                    +'           <input  class="question_number spinner" name="number_'+ id +'" id="number_'+ id +'" type="text" value="2">'
+                    +'       </div>'
+                    +'       <div class="form-group">'
+                    +'           <p>Варианты ответов</p>'
+                    +'           <div class="inputtables" id="inputtables_'+ id +'">'
+                    +'               <div class="questionPoint" id="questionPoint_'+ id +'_1">'
+                    +'                   <label for="inputpoint_'+ id +'_1">1</label>'
+                    +'                   <input class="question_points" name="inputpoint_'+ id +'_1" id="inputpoint_'+ id +'_1" type="text" placeholder="Вариант ответа">'
+                    +'               </div>'
+                    +'               <div class="questionPoint" id=" questionPoint_'+ id +'_2">'
+                    +'                   <label for="inputpoint_'+ id +'_2">2</label>'
+                    +'                   <input class="question_points" name="inputpoint_'+ id +'_2" id="inputpoint_'+ id +'_2" type="text" placeholder="Вариант ответа">'
+                    +'               </div>'
+                    +'           </div>'
+                    +'       </div>'
+                    +'   </div>'
+                    +'</div>'
+                    ;
                 }
+                else if (type === "free"){
+                    el = 
+                    '<div class="question active"   data-optionid="'+ id +'">'
+                    +'    <div class="close-question"></div>'
+                    +'    <div class="name " id="questionName_'+ id +'">'
+                    +'        Вопрос'
+                    +'    </div>'
+                    +'    <div class="answer freeanswer" id="questionanswers_'+ id +'">'
+                    +'        <div class="form-group" id="questionformAnswer_'+ id +'_1">'
+                    +'            <input type="text" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_1" placeholder="Ваш ответ">'
+                    +'        </div>'
+                    +'    </div>'
+                    +'</div> ';
+                    option =
+                    '<div class="optionbox active option_single" id="option_'+ id +'">'
+                    +'<input type="hidden" name="questiontype_'+ id +'" value="free" >'
+                    +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
+                    +'    <div class="header-aside">'
+                    +'        Настройки'
+                    +'    </div>'
+                    +'    <div class="text-aside">'
+                    +'        <div class="filerow">'
+                    +'            <div class="uploadpicture">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
+                    +'                    value="image">'
+                    +'            </div>'
+                    +'            <input class="uploadpictureinput" type="file"'
+                    +'                name="uploadimage_'+ id +'[]" multiple="multiple"'
+                    +'                accept="image/x-png,image/gif,image/jpeg">'
+                    +'            <div class="uploadvideo">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'" id="uploadvideo_'+ id +'"'
+                    +'            accept="video/mp4,video/x-m4v,video/*">'
+                    +'            <div class="uploadaudio">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
+                    +'            accept="audio/*">'
+                    +'            <div class="uploadtext">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_4"'
+                    +'                    value="text">'
+                    +'            </div>'
+                    +'        </div>'
+                    +'        <div class="form-group">'
+                    +'            <label for="question_'+ id +'">Вопрос</label>'
+                    +'            <textarea class="question_name" name="question_'+ id +'" id="question_'+ id +'" placeholder="Вопрос"></textarea>'
+                    +'        </div>'
+                    +'    </div>'
+                    +'</div>' ;
+                }
+                else if (type === "listfree"){
+                    el =
+                    '<div class="question active" data-optionid="'+ id +'">'
+                    +'    <div class="close-question"></div>'
+                    +'    <div class="name" id="questionName_'+ id +'">'
+                    +'        Вопрос'
+                    +'    </div>'
+                    +'    <div class="answer freeanswer" id="questionanswers_'+ id +'">'
+                    +'        <div class="form-group" id="questionformAnswer_'+ id +'_1">'
+                    +'            <input type="text" name="questionanswer_'+ id +'_1" id="questionanswer_'+ id +'_1" placeholder="Ваш ответ">'
+                    +'        </div>'
+                    +'        <div class="form-group" id="questionformAnswer_'+ id +'_2">'
+                    +'            <input type="text" name="questionanswer_'+ id +'_2" id="questionanswer_'+ id +'_2" placeholder="Ваш ответ">'
+                    +'        </div>'
+                    +'        <div class="form-group" id="questionformAnswer_'+ id +'_3">'
+                    +'            <input type="text" name="questionanswer_'+ id +'_3" id="questionanswer_'+ id +'_3" placeholder="Ваш ответ">'
+                    +'        </div>'
+                    +'    </div>'
+                    +'</div>';
+                    option =
+                    '<div class="optionbox active" id="option_'+ id +'">'
+                    +'<input type="hidden" name="questiontype_'+ id +'" value="listfree" >'
+                    +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
+                    +'    <div class="header-aside">'
+                    +'        Настройки'
+                    +'    </div>'
+                    +'    <div class="text-aside">'
+                    +'        <div class="filerow">'
+                    +'            <div class="uploadpicture">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
+                    +'                    value="image">'
+                    +'            </div>'
+                    +'            <input class="uploadpictureinput" type="file"'
+                    +'                name="uploadimage_'+ id +'[]" multiple="multiple"'
+                    +'                accept="image/x-png,image/gif,image/jpeg">'
+                    +'            <div class="uploadvideo">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'" id="uploadvideo_'+ id +'"'
+                    +'            accept="video/mp4,video/x-m4v,video/*">'
+                    +'            <div class="uploadaudio">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
+                    +'            accept="audio/*">'
+                    +'            <div class="uploadtext">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_4"'
+                    +'                    value="text">'
+                    +'            </div>'
+                    +'        </div>'
+                    +'        <div class="form-group">'
+                    +'            <label for="question_'+ id +'">Вопрос</label>'
+                    +'            <textarea class="question_name" name="question_'+ id +'" id="question_3" placeholder="Введите вопрос"></textarea>'
+                    +'        </div>'
+                    +'        <div class="form-group spinner-wrapper">'
+                    +'            <label for="number_'+ id +'">Колличество пунктов </label>'
+                    +'            <input  class="freeanswer_number spinner" name="number_'+ id +'" id="number_'+ id +'" type="text" value="3">'
+                    +'        </div>'
+                    +'    </div>'
+                    +'</div>';
+                }
+                else if (type === 'branching') {
+                    el =
+                    '<div class="question branchingquestion active" data-optionid="'+ id +'">'
+                    +'    <div class="close-question"></div>'
+                    +'    <div class="name " id="questionName_'+ id +'">'
+                    +'        Ветвление'
+                    +'    </div>'
+                    +'    <div class="answer flex-50" id="questionanswers_'+ id +'">'
+                    +'        <div class="form-group" id="questionformAnswer_'+ id +'_1">'
+                    +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_1">'
+                    +'            <label id="questionpointsanswer_'+ id +'_1" for="questionanswer_'+ id +'_1">Вариант ответа</label>'
+                    +'        </div>'
+                    +'        <div class="form-group" id="questionformAnswer_'+ id +'_2">'
+                    +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_2">'
+                    +'            <label  id="questionpointsanswer_'+ id +'_2" for="questionanswer_'+ id +'_2">Вариант ответа</label>'
+                    +'        </div>'
+                    +'    </div>'
+                    +'    <div class="hidden-question-list"></div>'
+                    +'</div>';
+                    option =
+                    '<div class="optionbox active" id="option_'+ id +'">'
+                    +'<input type="hidden" name="questiontype_'+ id +'" value="branching" >'
+                    +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
+                    +'    <div class="header-aside">'
+                    +'        Настройки'
+                    +'    </div>'
+                    +'    <div class="text-aside">'
+                    +'        <div class="filerow">'
+                    +'            <div class="uploadpicture">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
+                    +'                    value="image">'
+                    +'            </div>'
+                    +'            <input class="uploadpictureinput" type="file"'
+                    +'                name="uploadimage_'+ id +'[]" multiple="multiple"'
+                    +'                accept="image/x-png,image/gif,image/jpeg">'
+                    +'            <div class="uploadvideo">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'" id="uploadvideo_'+ id +'"'
+                    +'            accept="video/mp4,video/x-m4v,video/*">'
+                    +'            <div class="uploadaudio">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
+                    +'            accept="audio/*">'
+                    +'            <div class="uploadtext">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_4"'
+                    +'                    value="text">'
+                    +'            </div>'
+                    +'        </div>'
+                    +'        <div class="form-group">'
+                    +'            <label for="question_'+ id +'">Вопрос</label>'
+                    +'            <textarea class="question_name" name="question_'+ id +'" id="question_'+ id +'" placeholder="Введите вопрос"></textarea>'
+                    +'        </div>'
+                    +'        <div class="form-group spinner-wrapper">'
+                    +'            <label for="number_'+ id +'">Колличество пунктов </label>'
+                    +'            <input  class="question_number_branching spinner" name="number_'+ id +'" id="number_'+ id +'" type="text" value="2">'
+                    +'        </div>'
+                    +'        <div class="form-group">'
+                    +'            <p>Варианты ответов</p>'
+                    +'            <div class="inputtables" id="inputtables_'+ id +'">'
+                    +'                <div class="questionPoint" id="questionPoint_'+ id +'_1">'
+                    +'                    <label for="inputpoint_'+ id +'_1">1</label>'
+                    +'                    <input class="question_points" name="inputpoint_'+ id +'_1" id="inputpoint_'+ id +'_1" type="text" placeholder="Вариант ответа">'
+                    +'                    <div class="branching-btn"></div>'
+                    +'                    <div class="branching-list">'
+                    +'                    </div>'
+                    +'                </div>'
+                    +'                <div class="questionPoint" id="questionPoint_'+ id +'_2">'
+                    +'                    <label for="inputpoint_'+ id +'_2">2</label>'
+                    +'                    <input class="question_points" name="inputpoint_'+ id +'_2" id="inputpoint_'+ id +'_2" type="text" placeholder="Вариант ответа">'
+                    +'                    <div class="branching-btn"></div>'
+                    +'                    <div class="branching-list">'
+                    +'                    </div>'
+                    +'                </div>'
+                    +'           </div>'
+                    +'        </div>'
+                    +'    </div>'
+                    +'</div>';
+                }
+                else if (type === "scale"){
+                    el =
+                    '<div class="question active" data-optionid="'+ id +'">'
+                    +'    <div class="close-question"></div>'
+                    +'    <div class="name " id="questionName_'+ id +'">'
+                    +'        Вопрос'
+                    +'    </div>'
+                    +'<div class="answer answer-ratings5" id="questionanswers_'+ id +'">'
+                    +'    <div class="radio-wrapper">'
+                    +'        <div class="radio-cont">'
+                    +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_1" value="1">'
+                    +'            <label for="questionanswer_'+ id +'_1">'
+                    +'                <div class="number">1</div>'
+                    +'               <div class="text"> '
+                    +'                </div>'
+                    +'            </label>'
+                    +'        </div>'
+                    +'        <div class="radio-cont">'
+                    +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_2" value="2">'
+                    +'            <label for="questionanswer_'+ id +'_2">'
+                    +'                <div class="number">2</div>'
+                    +'                <div class="text"> '
+                    +'                </div>'
+                    +'            </label>'
+                    +'        </div>'
+                    +'        <div class="radio-cont">'
+                    +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_3" value="3">'
+                    +'            <label for="questionanswer_'+ id +'_3">'
+                    +'                <div class="number">3</div>'
+                    +'                <div class="text"> '
+                    +'                </div>'
+                    +'            </label>'
+                    +'        </div>'
+                    +'        <div class="radio-cont">'
+                    +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_4" value="4">'
+                    +'            <label for="questionanswer_'+ id +'_4">'
+                    +'                <div class="number">4</div>'
+                    +'                <div class="text"> '
+                    +'                </div>'
+                    +'            </label>'
+                    +'        </div>'
+                    +'        <div class="radio-cont">'
+                    +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_5" value="5">'
+                    +'            <label for="questionanswer_'+ id +'_5">'
+                    +'                <div class="number">5</div>'
+                    +'                <div class="text"> '
+                    +'                </div>'
+                    +'            </label>'
+                    +'        </div>'
+                    +'    </div>'
+                    +'</div>'
+                    +'</div> ';
+                    option = 
+                    '<div class="optionbox active" id="option_'+ id +'">'
+                    +'<input type="hidden" name="questiontype_'+ id +'" value="scale" >'
+                    +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
+                    +'    <div class="header-aside">'
+                    +'        Настройки'
+                    +'    </div>'
+                    +'    <div class="text-aside">'
+                    +'        <div class="filerow">'
+                    +'            <div class="uploadpicture">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
+                    +'                    value="image">'
+                    +'            </div>'
+                    +'            <input class="uploadpictureinput" type="file"'
+                    +'                name="uploadimage_'+ id +'[]"  multiple="multiple"'
+                    +'                accept="image/x-png,image/gif,image/jpeg">'
+                    +'            <div class="uploadvideo">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'" id="uploadvideo_'+ id +'"'
+                    +'            accept="video/mp4,video/x-m4v,video/*">'
+                    +'            <div class="uploadaudio">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
+                    +'            accept="audio/*">'
+                    +'            <div class="uploadtext">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_4"'
+                    +'                    value="text">'
+                    +'            </div>'
+                    +'        </div>'
+                    +'        <div class="form-group">'
+                    +'            <label for="question_'+ id +'">Вопрос</label>'
+                    +'            <textarea class="question_name" name="question_'+ id +'" id="question_'+ id +'" placeholder="Введите вопрос"></textarea>'
+                    +'        </div>'
+                    +'        <div class="scale-option">'
+                    +'            <div class="form-group">'
+                    +'                <p>Шкала оценок</p>'
+                    +'                <div class="scale-radio">'
+                    +'                    <input type="radio" name="typescale_'+ id +'" id="typescale_'+ id +'_1" value="1">'
+                    +'                    <label for="typescale_'+ id +'_1" class="scalelabel">'
+                    +'                        <div class="colorstars"></div>'
+                    +'                    </label>'
+                    +'                    <input type="radio" name="typescale_'+ id +'" id="typescale_'+ id +'_2" value="2">'
+                    +'                    <label for="typescale_'+ id +'_2" class="scalelabel ">'
+                    +'                        <div class="stars5"></div>'
+                    +'                   </label>'
+                    +'                    <input type="radio" name="typescale_'+ id +'" id="typescale_'+ id +'_3" value="3">'
+                    +'                    <label for="typescale_'+ id +'_3" class="scalelabel">'
+                    +'                        <div class="stars10"></div>'
+                    +'                    </label>'
+                    +'                    <input type="radio" name="typescale_'+ id +'" id="typescale_'+ id +'_4" value="4">'
+                    +'                    <label for="typescale_'+ id +'_4" class="scalelabel">'
+                    +'                        <div class="ratings10"></div>'
+                    +'                    </label>'
+                    +'                    <input type="radio" name="typescale_'+ id +'" id="typescale_'+ id +'_5" value="5" checked="checked">'
+                    +'                    <label for="typescale_'+ id +'_5" class="scalelabel">'
+                    +'                        <div class="ratings5">'
+                    +'                            <div class="circles">'
+                    +'                                <div class="cirle">1</div>'
+                    +'                                <div class="cirle">2</div>'
+                    +'                                <div class="cirle">3</div>'
+                    +'                                <div class="cirle">4</div>'
+                    +'                                <div class="cirle">5</div>'
+                    +'                            </div>'
+                    +'                            <div class="ratinstables">'
+                    +'                                <div class="cirlce-group">'
+                    +'                                    <div class="circle">1</div>'
+                    +'                                    <input type="text" name="inputpoint_'+ id +'_1" id="scaleRating5_'+ id +'_1" placeholder="Введите текст">'
+                    +'                               </div>'
+                    +'                                <div class="cirlce-group">'
+                    +'                                    <div class="circle">2</div>'
+                    +'                                    <input type="text" name="inputpoint_'+ id +'_2" id="scaleRating5_'+ id +'_2" placeholder="Введите текст">'
+                    +'                                </div>'
+                    +'                                <div class="cirlce-group">'
+                    +'                                    <div class="circle">3</div>'
+                    +'                                    <input type="text" name="inputpoint_'+ id +'_3" id="scaleRating5_'+ id +'_3" placeholder="Введите текст">'
+                    +'                                </div>'
+                    +'                                <div class="cirlce-group">'
+                    +'                                    <div class="circle">4</div>'
+                    +'                                    <input type="text" name="inputpoint_'+ id +'_4" id="scaleRating5_'+ id +'_4" placeholder="Введите текст">'
+                    +'                                </div>'
+                    +'                                <div class="cirlce-group">'
+                    +'                                    <div class="circle">5</div>'
+                    +'                                    <input type="text" name="inputpoint_'+ id +'_5" id="scaleRating5_'+ id +'_5" placeholder="Введите текст">'
+                    +'                                </div>'
+                    +'                           </div>'
+                    +'                       </div>'
+                    +'                    </label>'
+                    +'                </div>'
+                    +'            </div>'
+                    +'        </div>'
+                    +'    </div>'
+                    +'</div>';
+                }
+                else if (type === "dropdown"){
+                    el = 
+                    '<div class="question active" data-optionid="'+ id +'">'
+                    +'    <div class="close-question"></div>'
+                    +'    <div class="answer" id="questionanswers_'+ id +'">'
+                    +'        <div class="dropdown-list">'
+                    +'            <div class="dropdown-block">'
+                    +'                <div class="dropdown-arrow"></div>'
+                    +'                <div class="question-name">'
+                    +'                    Вопрос'
+                    +'                </div>'
+                    +'                <div class="dropdown-content">'
+                    +'                </div>'
+                    +'            </div>'
+                    +'            <div class="dropdown-block">'
+                    +'                <div class="dropdown-arrow"></div>'
+                    +'                <div class="question-name">'
+                    +'                    Вопрос'
+                    +'                </div>'
+                    +'                <div class="dropdown-content">'
+                    +'               </div>'
+                    +'           </div>'
+                    +'           <div class="dropdown-block">'
+                    +'               <div class="dropdown-arrow"></div>'
+                    +'               <div class="question-name">'
+                    +'                   Вопрос'
+                    +'               </div>'
+                    +'               <div class="dropdown-content">'
+                    +'               </div>'
+                    +'           </div>'
+                    +'       </div>'
+                    +'   </div>'
+                    +'</div>';
+                    option =
+                    '<div class="optionbox active" id="option_'+ id +'">'
+                    +'    <input type="hidden" name="questiontype_'+ id +'" value="dropdown" >'
+                    +'    <input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
+                    +'    <div class="header-aside">'
+                    +'        Настройки'
+                    +'    </div>'
+                    +'    <div class="text-aside ">'
+                    +'        <div class="filerow">'
+                    +'            <div class="uploadpicture">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
+                    +'                    value="image">'
+                    +'            </div>'
+                    +'            <input class="uploadpictureinput" type="file"'
+                    +'                name="uploadimage_'+ id +'[]"  multiple="multiple"'
+                    +'                accept="image/x-png,image/gif,image/jpeg">'
+                    +'            <div class="uploadvideo">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'" id="uploadvideo_'+ id +'"'
+                    +'            accept="video/mp4,video/x-m4v,video/*">'
+                    +'            <div class="uploadaudio">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
+                    +'            accept="audio/*">'
+                    +'            <div class="uploadtext">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_4"'
+                    +'                    value="text">'
+                    +'            </div>'
+                    +'        </div>'
+                    +'        <div class="dropdown-options">'
+                    +'            <div class="top-row">'
+                    +'                <div class="namelabel">Вопросы</div>'
+                    +'                <div class="add-dropdown"></div>'
+                    +'            </div>'
+                    +'            <div class="optionsdropdownlist">'
+                    +'                <div class="option-group">'
+                    +'                    <div class="inputstables">'
+                    +'                        <textarea class="dropdown-question" name="inputpoint_'+ id +'_1" id="inputpoint_'+ id +'_1" placeholder="Введите вопрос"></textarea>'
+                    +'                        <div class="dropdown-list">'
+                    +'                        </div>'
+                    +'                    </div>'
+                    +'                    <div class="adddropdownsubpoints"></div>'
+                    +'                    <div class="remove-dropdown"></div>'
+                    +'                    <div class="arrowshow"></div>'
+                    +'                </div>'
+                    +'                <div class="option-group">'
+                    +'                    <div class="inputstables">'
+                    +'                        <textarea class="dropdown-question" name="inputpoint_'+ id +'_2" id="inputpoint_'+ id +'_2"  placeholder="Введите вопрос"></textarea>'
+                    +'                        <div class="dropdown-list">'
+                    +'                        </div>'
+                    +'                    </div>'
+                    +'                    <div class="adddropdownsubpoints"></div>'
+                    +'                    <div class="remove-dropdown"></div>'
+                    +'                    <div class="arrowshow"></div>'
+                    +'                </div>'
+                    +'                <div class="option-group">'
+                    +'                    <div class="inputstables">'
+                    +'                        <textarea class="dropdown-question" name="inputpoint_'+ id +'_3" id="inputpoint_'+ id +'_3"  placeholder="Введите вопрос"></textarea>'
+                    +'                        <div class="dropdown-list">'
+                    +'                        </div>'
+                    +'                    </div>'
+                    +'                    <div class="adddropdownsubpoints"></div>'
+                    +'                    <div class="remove-dropdown"></div>'
+                    +'                    <div class="arrowshow"></div>'
+                    +'                </div>'
+                    +'            </div>'
+                    +'        </div>'
+                    +'    </div>'
+                    +'</div>'
+                    ;
+                }
+                else if (type === "dropdownmt"){
+                    el =
+                    '<div class="question active" data-optionid="'+ id +'">'
+                    +'    <div class="close-question"></div>'
+                    +'    <div class="answer" id="questionanswers_'+ id +'">'
+                    +'        <div class="dropdown-list">'
+                    +'            <div class="dropdown-block">'
+                    +'                <div class="dropdown-arrow"></div>'
+                    +'                <div class="question-name">'
+                    +'                    Вопрос'
+                    +'                </div>'
+                    +'                <div class="dropdown-content">'
+                    +'                </div>'
+                    +'            </div>'
+                    +'            <div class="dropdown-block">'
+                    +'                <div class="dropdown-arrow"></div>'
+                    +'                <div class="question-name">'
+                    +'                    Вопрос'
+                    +'                </div>'
+                    +'                <div class="dropdown-content">'
+                    +'                </div>'
+                    +'            </div>'
+                    +'            <div class="dropdown-block">'
+                    +'                <div class="dropdown-arrow"></div>'
+                    +'                <div class="question-name">'
+                    +'                    Вопрос'
+                    +'                </div>'
+                    +'                <div class="dropdown-content">'
+                    +'                </div>'
+                    +'            </div>'
+                    +'        </div>'
+                    +'    </div>'
+                    +'</div>';
+                    option = 
+                    '<div class="optionbox active" id="option_'+ id +'">'
+                    +'    <input type="hidden" name="questiontype_'+ id +'" value="dropdownmultiple" >'
+                    +'    <input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
+                    +'    <div class="header-aside">'
+                    +'        Настройки'
+                    +'    </div>'
+                    +'    <div class="text-aside ">'
+                    +'        <div class="filerow">'
+                    +'            <div class="uploadpicture">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
+                    +'                    value="image">'
+                    +'            </div>'
+                    +'            <input class="uploadpictureinput" type="file"'
+                    +'                name="uploadimage_'+ id +'[]" multiple'
+                    +'                accept="image/x-png,image/gif,image/jpeg">'
+                    +'            <div class="uploadvideo">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'" id="uploadvideo_'+ id +'"'
+                    +'            accept="video/mp4,video/x-m4v,video/*">'
+                    +'            <div class="uploadaudio">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
+                    +'            accept="audio/*">'
+                    +'            <div class="uploadtext">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_4"'
+                    +'                    value="text">'
+                    +'            </div>'
+                    +'        </div>'
+                    +'        <div class="dropdown-options">'
+                    +'            <div class="multityperow">'
+                    +'                <div class="namelabel">'
+                    +'                    Множественный выбор'
+                    +'                </div>'
+                    +'                <label class="switch" for="dropdownmultiple_'+ id +'">'
+                    +'                    <input type="checkbox" class="dropdownmultiple" name="dropdownmultiple_'+ id +'" id="dropdownmultiple_'+ id +'" checked="">'
+                    +'                    <span class="slider round"></span>'
+                    +'                </label>'
+                    +'            </div>'
+                    +'            <div class="top-row">'
+                    +'                <div class="namelabel">Вопросы</div>'
+                    +'                <div class="add-dropdown"></div>'
+                    +'            </div>'
+                    +'            <div class="optionsdropdownlist">'
+                    +'                <div class="option-group">'
+                    +'                    <div class="inputstables">'
+                    +'                        <textarea class="dropdown-question" name="inputpoint_'+ id +'_1" id="inputpoint_'+ id +'_1" placeholder="Введите вопрос"></textarea>'
+                    +'                        <div class="dropdown-list">'
+                    +'                        </div>'
+                    +'                    </div>'
+                    +'                    <div class="adddropdownsubpoints"></div>'
+                    +'                    <div class="remove-dropdown"></div>'
+                    +'                    <div class="arrowshow"></div>'
+                    +'                </div>'
+                    +'                <div class="option-group">'
+                    +'                    <div class="inputstables">'
+                    +'                        <textarea class="dropdown-question" name="inputpoint_'+ id +'_2" id="inputpoint_'+ id +'_2"  placeholder="Введите вопрос"></textarea>'
+                    +'                        <div class="dropdown-list">'
+                    +'                        </div>'
+                    +'                    </div>'
+                    +'                    <div class="adddropdownsubpoints"></div>'
+                    +'                    <div class="remove-dropdown"></div>'
+                    +'                    <div class="arrowshow"></div>'
+                    +'                </div>'
+                    +'                <div class="option-group">'
+                    +'                    <div class="inputstables">'
+                    +'                        <textarea class="dropdown-question" name="inputpoint_'+ id +'_3" id="inputpoint_'+ id +'_3"  placeholder="Введите вопрос"></textarea>'
+                    +'                        <div class="dropdown-list">'
+                    +'                        </div>'
+                    +'                    </div>'
+                    +'                    <div class="adddropdownsubpoints"></div>'
+                    +'                    <div class="remove-dropdown"></div>'
+                    +'                    <div class="arrowshow"></div>'
+                    +'                </div>'
+                    +'            </div>'
+                    +'        </div>'
+                    +'    </div>'
+                    +'</div>';
+                }
+                if (type === 'matrix') {
+                    el =
+                    '<div class="question active" data-optionid="'+ id +'">'
+                    +'    <div class="close-question"></div>'
+                    +'    <div class="name " id="questionName_'+ id +'">'
+                    +'        Вопрос'
+                    +'    </div>'
+                    +'    <div class="description " id="questiondescription_'+ id +'">'
+                    +'        Описание'
+                    +'    </div>'
+                    +'    <div class="answer" id="questionanswers_'+ id +'">'
+                    +'        <div class="matrix-table">'
+                    +'            <div class="first-row">'
+                    +'                <div class="empty col"></div>'
+                    +'                <div class="col">'
+                    +'                    <div class="value">1</div>'
+                    +'               </div>'
+                    +'               <div class="col">'
+                    +'                    <div class="value">2</div>'
+                    +'               </div>'
+                    +'           </div>'
+                    +'           <div class="matrix-row">'
+                    +'               <div class="col first-col">'
+                    +'                   <div class="value">Текст</div>'
+                    +'               </div>'
+                    +'               <div class="col">'
+                    +'                   <input type="radio" name="answermatrix_'+ id +'_1"  id="answermatrix_'+ id +'_1_1">'
+                    +'                   <label for="answermatrix_'+ id +'_1_1">'
+                    +'                   </label>'
+                    +'               </div>'
+                    +'               <div class="col">'
+                    +'                   <input type="radio" name="answermatrix_'+ id +'_1"  id="answermatrix_'+ id +'_1_2">'
+                    +'                   <label for="answermatrix_'+ id +'_1_2">'
+                    +'                   </label>'
+                    +'               </div>'
+                    +'           </div>'
+                    +'           <div class="matrix-row">'
+                    +'                <div class="col first-col">'
+                    +'                   <div class="value">Текст</div>'
+                    +'               </div>'
+                    +'               <div class="col">'
+                    +'                   <input type="radio" name="answermatrix_'+ id +'_2"  id="answermatrix_'+ id +'_2_1">'
+                    +'                   <label for="answermatrix_'+ id +'_2_1">'
+                    +'                   </label>'
+                    +'                </div>'
+                    +'               <div class="col">'
+                    +'                   <input type="radio" name="answermatrix_'+ id +'_2"  id="answermatrix_'+ id +'_2_2">'
+                    +'                   <label for="answermatrix_'+ id +'_2_2">'
+                    +'                   </label>'
+                    +'               </div>'
+                    +'           </div>'
+                    +'       </div>'
+                    +'   </div>'
+                    +'</div>';
+                    option =
+                    '<div class="optionbox active" id="option_'+ id +'">'
+                    +'    <input type="hidden" name="questiontype_'+ id +'" value="matrix">'
+                    +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
+                    +'    <div class="header-aside">'
+                    +'       Настройки'
+                    +'   </div>'
+                    +'   <div class="text-aside ">'
+                    +'        <div class="filerow">'
+                    +'            <div class="uploadpicture">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
+                    +'                    value="image">'
+                    +'            </div>'
+                    +'            <input class="uploadpictureinput" type="file"'
+                    +'                name="uploadimage_'+ id +'[]"  multiple'
+                    +'                accept="image/x-png,image/gif,image/jpeg">'
+                    +'            <div class="uploadvideo">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'" id="uploadvideo_'+ id +'"'
+                    +'            accept="video/mp4,video/x-m4v,video/*">'
+                    +'            <div class="uploadaudio">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
+                    +'            accept="audio/*">'
+                    +'            <div class="uploadtext">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_4"'
+                    +'                    value="text">'
+                    +'            </div>'
+                    +'        </div>'
+                    +'      <div class="matrix-options">'
+                    +'          <div class="multityperow">'
+                    +'              <div class="namelabel">'
+                    +'                  Множественный выбор'
+                    +'              </div>'
+                    +'              <label class="switch" for="matrix_'+ id +'">'
+                    +'                  <input type="checkbox" class="matrixtype"'
+                    +'                      name="matrix_'+ id +'" id="matrix_'+ id +'">'
+                    +'                  <span class="slider round"></span>'
+                    +'              </label>'
+                    +'          </div>'
+                    +'          <div class="form-group">'
+                    +'              <label for="question_'+ id +'">Вопрос</label>'
+                    +'              <textarea class="question_name" name="question_'+ id +'" id="question_'+ id +'" placeholder="Введите вопрос"></textarea>'
+                    +'          </div>'
+                    +'          <div class="form-group">'
+                    +'              <label for="questiondescription_'+ id +'">Доп. описание</label>'
+                    +'              <textarea class="question_description" name="questiondescription_'+ id +'" id="questiondescription_'+ id +'" placeholder="Введите описание"></textarea>'
+                    +'          </div>'
+                    +'          <div class="form-group">'
+                    +'              <p>Ответы</p>'
+                    +'              <div class="rowslist">'
+                    +'                  <div class="row-item">'
+                    +'                      <input type="text" name="inputpoint_'+ id +'_1" id="inputpoint_'+ id +'_1" placeholder="Введите текст">'
+                    +'                      <div class="edit-menu">'
+                    +'                          <div class="menu-dots"></div>'
+                    +'                          <div class="menu-list">'
+                    +'                              <div class="add-row addmatrixrow"></div>'
+                    +'                              <div class="delete-row deletematrixrow"></div>'
+                    +'                          </div>'
+                    +'                      </div>'
+                    +'                  </div>'
+                    +'                  <div class="row-item">'
+                    +'                      <input type="text" name="inputpoint_'+ id +'_2" id="inputpoint_'+ id +'_2" placeholder="Введите текст">'
+                    +'                      <div class="edit-menu">'
+                    +'                          <div class="menu-dots"></div>'
+                    +'                          <div class="menu-list">'
+                    +'                              <div class="add-row addmatrixrow"></div>'
+                    +'                              <div class="delete-row deletematrixrow"></div>'
+                    +'                          </div>'
+                    +'                      </div>'
+                    +'                  </div>'
+                    +'              </div>'
+                    +'          </div>'
+                    +'          <div class="form-group spinner-wrapper">'
+                    +'              <label for="number_'+ id +'">Колонки</label>'
+                    +'              <input class="matrix_number spinner" name="number_'+ id +'" id="number_'+ id +'" type="text"'
+                    +'                  value="2">'
+                    +'          </div>'
+                    +'          <div class="matrix-btn-row">'
+                    +'              <div class="addmatrixrow add-btn">'
+                    +'                  <div class="icon-add">'
+                    +'                  </div>'
+                    +'                  Добавить строку'
+                    +'              </div>'
+                    +'              <div class="addcolmatrix add-btn">'
+                    +'                  <div class="icon-add">'
+                    +'                  </div>'
+                    +'                  Добавить колонки'
+                    +'              </div>'
+                    +'          </div>'
+                    +'      </div>'
+                    +'  </div>'
+                    +'</div>';
+                }
+                if (type === 'ranging') {
+                    el =
+                    '<div class="question" data-optionid="'+ id +'">'
+                    +'    <div class="close-question"></div>'
+                    +'    <div class="name " id="questionName_'+ id +'">'
+                    +'        Вопрос'
+                    +'    </div>'
+                    +'    <div class="description " id="questiondescription_'+ id +'">'
+                    +'        Описание'
+                    +'    </div>'
+                    +'    <div class="answer" id="questionanswers_'+ id +'">'
+                    +'        <div class="ranging-list">'
+                    +'            <div class="rangint-item">'
+                    +'                <input type="hidden" name="rangingorder_'+ id +'_1" value="1">'
+                    +'                <div class="arrows">'
+                    +'                    <div class="item-up"></div>'
+                    +'                    <div class="item-down"></div>'
+                    +'                </div>'
+                    +'                <div class="text">'
+                    +'                    Текст'
+                    +'                </div>'
+                    +'            </div>'
+                    +'        </div>'
+                    +'    </div>'
+                    +'</div>';
+                    option = 
+                    '<div class="optionbox" id="option_'+ id +'">'
+                    +'   <input type="hidden" name="questiontype_'+ id +'" value="ranging">'
+                    +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
+                    +'    <div class="header-aside">'
+                    +'      Настройки'
+                    +'  </div>'
+                    +'  <div class="text-aside ">'
+                    +'      <div class="filerow">'
+                    +'          <div class="uploadpicture">'
+                    +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
+                    +'                  value="image">'
+                    +'          </div>'
+                    +'          <input class="uploadpictureinput" type="file" name="uploadimage_'+ id +'"'
+                    +'              multiple accept="image/x-png,image/gif,image/jpeg">'
+                    +'          <div class="uploadvideo">'
+                    +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                  value="video">'
+                    +'          </div>'
+                    +'          <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'"'
+                    +'              id="uploadvideo_'+ id +'" accept="video/mp4,video/x-m4v,video/*">'
+                    +'          <div class="uploadaudio">'
+                    +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                  value="audio">'
+                    +'          </div>'
+                    +'          <input class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'"'
+                    +'              id="uploadaudio_'+ id +'" accept="audio/*">'
+                    +'          <div class="uploadtext">'
+                    +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                  value="text">'
+                    +'          </div>'
+                    +'      </div>'
+                    +'      <div class="ranging-options">'
+                    +'          <div class="form-group">'
+                    +'              <label for="question_'+ id +'">Вопрос</label>'
+                    +'              <textarea class="question_name" name="question_'+ id +'" id="question_'+ id +'" placeholder="Введите вопрос"></textarea>'
+                    +'          </div>'
+                    +'          <div class="form-group">'
+                    +'              <label for="questiondescription_'+ id +'">Доп. описание</label>'
+                    +'              <textarea class="question_description" name="questiondescription_'+ id +'" id="questiondescription_'+ id +'" placeholder="Введите описание"></textarea>'
+                    +'          </div>'
+                    +'          <div class="form-group">'
+                    +'              <p>Ответы</p>'
+                    +'              <div class="rowslist">'
+                    +'                  <div class="row-item">'
+                    +'                      <input type="text" name="inputpoint_'+ id +'_1" id="inputpoint_'+ id +'_1" placeholder="Введите текст">'
+                    +'                      <div class="edit-menu">'
+                    +'                          <div class="menu-dots"></div>'
+                    +'                          <div class="menu-list">'
+                    +'                              <div class="add-row addrangingrow"></div>'
+                    +'                              <div class="delete-row deleterangingrow"></div>'
+                    +'                          </div>'
+                    +'                      </div>'
+                    +'                  </div>'
+                    +'              </div>'
+                    +'          </div>'
+                    +'          <div class="ranging-btn-row">'
+                    +'              <div class="addrangingrow add-btn">'
+                    +'                  <div class="icon-add">'
+                    +'                  </div>'
+                    +'                  Добавить строку'
+                    +'              </div>'
+                    +'          </div>'
+                    +'      </div>'
+                    +'  </div>'
+                    +'</div>';
+                }
+                if (type === 'name') {
+                    el = 
+                    '<div class="question active" data-optionid="'+ id +'">'
+                    +'    <div class="close-question"></div>'
+                    +'    <div class="name " id="questionName_'+ id +'">'
+                    +'        Введите Ваше имя'
+                    +'    </div>'
+                    +'    <div class="answer" id="questionanswers_'+ id +'">'
+                    +'        <div class="name-answer">'
+                    +'            <div class="col-name">'
+                    +'                <label for="anwername_'+ id +'">Имя</label>'
+                    +'                <input type="text" name="anwername_'+ id +'" id="anwername_'+ id +'" value="Имя" placeholder="Имя">'
+                    +'            </div>'
+                    +'            <div class="col-name">'
+                    +'                <input type="text" name="anwername_'+ id +'" id="anwername_'+ id +'" placeholder="Отчество">'
+                    +'            </div>'
+                    +'            <div class="col-name">'
+                    +'                <input type="text" name="anwername_'+ id +'" id="anwername_'+ id +'"  placeholder="Фамилия">'
+                    +'            </div>'
+                    +'        </div>'
+                    +'    </div>'
+                    +'</div>';
+                    option =
+                    '<div class="optionbox active" id="option_'+ id +'">'
+                    +'    <input type="hidden" name="questiontype_'+ id +'" value="name">'
+                    +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
+                    +'    <div class="header-aside">'
+                    +'        Настройки'
+                    +'    </div>'
+                    +'    <div class="text-aside ">'
+                    +'      <div class="filerow">'
+                    +'          <div class="uploadpicture">'
+                    +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
+                    +'                  value="image">'
+                    +'          </div>'
+                    +'          <input class="uploadpictureinput" type="file" name="uploadimage_'+ id +'"'
+                    +'              multiple accept="image/x-png,image/gif,image/jpeg">'
+                    +'          <div class="uploadvideo">'
+                    +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                  value="video">'
+                    +'          </div>'
+                    +'          <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'"'
+                    +'              id="uploadvideo_'+ id +'" accept="video/mp4,video/x-m4v,video/*">'
+                    +'          <div class="uploadaudio">'
+                    +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                  value="audio">'
+                    +'          </div>'
+                    +'          <input class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'"'
+                    +'              id="uploadaudio_'+ id +'" accept="audio/*">'
+                    +'          <div class="uploadtext">'
+                    +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                  value="text">'
+                    +'          </div>'
+                    +'      </div>'
+                    +'    </div>'
+                    +'</div>';
+                }
+                if (type === 'date') {
+                    el = 
+                    '<div class="question active" data-optionid="'+ id +'">'
+                    +'    <div class="close-question"></div>'
+                    +'    <div class="name " id="questionName_'+ id +'">'
+                    +'        Дата'
+                    +'    </div>'
+                    +'    <div class="answer" id="questionanswers_'+ id +'">'
+                    +'        <div class="date-answer">'
+                    +'            <div class="col-date">'
+                    +'                <input type="text" name="anwerdate_'+ id +'" id="anwerdate_'+ id +'"  placeholder="01.01.2020">'
+                    +'                <div class="icon-date"></div>'
+                    +'            </div>'
+                    +'        </div>'
+                    +'    </div>'
+                    +'</div>';
+                    option =
+                    '<div class="optionbox active" id="option_'+ id +'">'
+                    +'    <input type="hidden" name="questiontype_'+ id +'" value="date">'
+                    +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
+                    +'    <div class="header-aside">'
+                    +'        Настройки'
+                    +'    </div>'
+                    +'    <div class="text-aside ">'
+                    +'      <div class="filerow">'
+                    +'          <div class="uploadpicture">'
+                    +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
+                    +'                  value="image">'
+                    +'          </div>'
+                    +'          <input class="uploadpictureinput" type="file" name="uploadimage_'+ id +'"'
+                    +'               multiple accept="image/x-png,image/gif,image/jpeg">'
+                    +'          <div class="uploadvideo">'
+                    +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                  value="video">'
+                    +'          </div>'
+                    +'          <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'"'
+                    +'              id="uploadvideo_'+ id +'" accept="video/mp4,video/x-m4v,video/*">'
+                    +'          <div class="uploadaudio">'
+                    +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                  value="audio">'
+                    +'          </div>'
+                    +'          <input class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'"'
+                    +'              id="uploadaudio_'+ id +'" accept="audio/*">'
+                    +'          <div class="uploadtext">'
+                    +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                  value="text">'
+                    +'          </div>'
+                    +'      </div>'
+                    +'    </div>'
+                    +'</div>';
+                }
+                if (type === 'email') {
+                    el = 
+                    '<div class="question active" data-optionid="'+ id +'">'
+                    +'    <div class="close-question"></div>'
+                    +'    <div class="name " id="questionName_'+ id +'">'
+                    +'        Введите Ваш E-mail'
+                    +'    </div>'
+                    +'    <div class="answer" id="questionanswers_'+ id +'">'
+                    +'        <div class="email-answer">'
+                    +'            <div class="col-email">'
+                    +'                <input type="text" name="answeremail_'+ id +'" id="answeremail_'+ id +'" placeholder="Email">'
+                    +'            </div>'
+                    +'        </div>'
+                    +'    </div>'
+                    +'</div>';
+                    option =
+                    '<div class="optionbox active" id="option_'+ id +'">'
+                    +'    <input type="hidden" name="questiontype_'+ id +'" value="email">'
+                    +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
+                    +'    <div class="header-aside">'
+                    +'        Настройки'
+                    +'    </div>'
+                    +'    <div class="text-aside ">'
+                    +'      <div class="filerow">'
+                    +'          <div class="uploadpicture">'
+                    +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
+                    +'                  value="image">'
+                    +'          </div>'
+                    +'          <input class="uploadpictureinput" type="file" name="uploadimage_'+ id +'"'
+                    +'               multiple accept="image/x-png,image/gif,image/jpeg">'
+                    +'          <div class="uploadvideo">'
+                    +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                  value="video">'
+                    +'          </div>'
+                    +'          <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'"'
+                    +'              id="uploadvideo_'+ id +'" accept="video/mp4,video/x-m4v,video/*">'
+                    +'          <div class="uploadaudio">'
+                    +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                  value="audio">'
+                    +'          </div>'
+                    +'          <input class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'"'
+                    +'              id="uploadaudio_'+ id +'" accept="audio/*">'
+                    +'          <div class="uploadtext">'
+                    +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                  value="text">'
+                    +'          </div>'
+                    +'      </div>'
+                    +'    </div>'
+                    +'</div>';
+                }
+                if (type === 'phone') {
+                    el = 
+                    '<div class="question active" data-optionid="'+ id +'">'
+                    +'    <div class="close-question"></div>'
+                    +'    <div class="name " id="questionName_'+ id +'">'
+                    +'        Введите Ваш номер телефона'
+                    +'    </div>'
+                    +'    <div class="answer" id="questionanswers_'+ id +'">'
+                    +'        <div class="phone-answer">'
+                    +'          <div class="col-phone">'
+                    +'                <div class="inputs">'
+                    +'                    <input class="code" type="text" name="answerphonecode_'+ id +'" id="answerphonecode_'+ id +'" value="+70">'
+                    +'                    <input class="phone" type="tel" name="answerphone_'+ id +'" id="answerphone_'+ id +'" maxlength="9">'
+                    +'               </div>'
+                    +'              <div class="lines">'
+                    +'                  <div class="line"></div>'
+                    +'                  <div class="line"></div>'
+                    +'                  <div class="line"></div>'
+                    +'              </div>'
+                    +'          </div>'
+                    +'      </div>'
+                    +'  </div>'
+                    +'</div>';
+                    option =
+                    '<div class="optionbox active" id="option_'+ id +'">'
+                    +'    <input type="hidden" name="questiontype_'+ id +'" value="email">'
+                    +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
+                    +'    <div class="header-aside">'
+                    +'        Настройки'
+                    +'    </div>'
+                    +'    <div class="text-aside ">'
+                    +'      <div class="filerow">'
+                    +'          <div class="uploadpicture">'
+                    +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
+                    +'                  value="image">'
+                    +'          </div>'
+                    +'          <input class="uploadpictureinput" type="file" name="uploadimage_'+ id +'"'
+                    +'               multiple accept="image/x-png,image/gif,image/jpeg">'
+                    +'          <div class="uploadvideo">'
+                    +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                  value="video">'
+                    +'          </div>'
+                    +'          <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'"'
+                    +'              id="uploadvideo_'+ id +'" accept="video/mp4,video/x-m4v,video/*">'
+                    +'          <div class="uploadaudio">'
+                    +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                  value="audio">'
+                    +'          </div>'
+                    +'          <input class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'"'
+                    +'              id="uploadaudio_'+ id +'" accept="audio/*">'
+                    +'          <div class="uploadtext">'
+                    +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                  value="text">'
+                    +'          </div>'
+                    +'      </div>'
+                    +'    </div>'
+                    +'</div>';
+                }
+                if (type === 'file') {
+                    el ='file'
+                    ;
+                }
+                var childrenOptions = $('.optionsblock .eloptions').children();
+                $('.questions-box .question').removeClass('active');
+                $('.optionsblock .optionbox').removeClass('active');
+
+                if( appendInde === 'last' ){
+                    $('.questions-box').append(el);
+                    $('.optionsblock .eloptions').append(option);
+                }
+                else if ( appendInde < 0 ) {
+                    $('.questions-box').prepend(el);
+                    $('.optionsblock .eloptions').prepend(option);
+                }
+                else {
+                    $(children[appendInde]).after( el );
+                    $(childrenOptions[appendInde]).after(option);
+                }
+                var children = $('.questions-box').children();
+                $( ".question_number" ).spinner({
+                    min: 0,
+                    max: 15,
+                    spin: function( event, ui ) {
+                        var id = parseInt($(event.target).attr('name').split('_')[1]);
+                        var number = ui.value;
+                        var questionPoints = $('#inputtables_' + id).find('.questionPoint');
+                        questionPoints.each(function (index, question) {
+                            if((index + 1) > number) {
+                                $(question).remove();
+                            }
+                        });
+                        var currentId = questionPoints.length
+                        if(number > questionPoints.length){
+                            while (currentId != number){
+                                currentId++;
+                                var newQuestion = 
+                                '<div class="questionPoint" id="questionPoint_'+ id + '_' + currentId +'">'
+                                +'    <label for="inputpoint_'+ id + '_' + currentId +'">'+ currentId +'</label>'
+                                +'    <input class="question_points" name="inputpoint_'+ id + '_' + currentId +'" id="inputpoint_'+ id + '_' + currentId +'" type="text" placeholder="Вариант ответа">'
+                                +'</div>';
+                                $(newQuestion).appendTo($('#inputtables_' + id));
+                            }
+                        }
+                        SetPointOfQuestion(id, number);
+                    }
+                });
+
+                $( ".matrix_number" ).spinner({
+                    min: 0,
+                    max: 15,
+                    spin: function( event, ui ) {
+                        var id = parseInt($(event.target).attr('name').split('_')[1]);
+                        var number = ui.value;
+                        MatrixColChange(id, number);
+                    }
+                });
+
+                $( ".question_number_branching" ).spinner({
+                    min: 0,
+                    max: 15,
+                    spin: function( event, ui ) {
+                        var id = parseInt($(event.target).attr('name').split('_')[1]);
+                        var number = ui.value;
+                        var questionPoints = $('#inputtables_' + id).find('.questionPoint');
+                        questionPoints.each(function (index, question) {
+                            if((index + 1) > number) {
+                                $('#hiddenquestion_' + id + '_' + index).remove();
+                                $(question).remove();
+                            }
+                        });
+                        var currentId = questionPoints.length
+                        if(number > questionPoints.length){
+                            while (currentId != number){
+                                currentId++;
+                                var newQuestion = 
+                                '<div class="questionPoint" id="questionPoint_'+ id + '_' + currentId +'">'
+                                +'    <label for="inputpoint_'+ id + '_' + currentId +'">'+ currentId +'</label>'
+                                +'    <input class="question_points" name="inputpoint_'+ id + '_' + currentId +'" id="inputpoint_'+ id + '_' + currentId +'" type="text" placeholder="Вариант ответа">'
+                                +'    <div class="branching-btn"></div>'
+                                +'    <div class="branching-list"> </div>'
+                                +'</div>';
+                                $(newQuestion).appendTo($('#inputtables_' + id));
+                            }
+                        }
+                        SetPointOfQuestion(id, number);
+                    }
+                });
+
+                $( ".freeanswer_number" ).spinner({
+                    min: 0,
+                    max: 15,
+                    spin: function( event, ui ) {
+                        var id = parseInt($(event.target).attr('name').split('_')[1]);
+                        var number = ui.value;
+                        SetPointOfFreeQuestion(id, number);
+                    }
+                });
+                RefreshItems();
+                $('.date-answer input').datepicker();
+                $('.phone-answer input.code').intlTelInput({
+                    initialCountry: "ru",
+                });
+                $('.questions-box').attr('data-count', i);
             }
         });
         
-
-        function AddQuestion(type, id, appendInde){
-            if (type === "single"){
-                el =
-                '<div class="question active"  data-optionId="'+ id +'">'
-                +'    <div class="close-question"></div>'
-                +'    <div class="name" id="questionName_'+ id +'">'
-                +'        Вопрос '
-                +'    </div>'
-                +'    <div class="answer flex-50" id="questionanswers_'+ id +'">'
-                +'        <div class="form-group" id="questionformAnswer_'+ id +'_1">'
-                +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_1">'
-                +'            <label id="questionpointsanswer_'+ id +'_1" for="questionanswer_'+ id +'_1">Вариант ответа</label>'
-                +'        </div>'
-                +'        <div class="form-group" id="questionformAnswer_'+ id + '_2">'
-                +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_2">'
-                +'            <label  id="questionpointsanswer_'+ id +'_2" for="questionanswer_'+ id +'_2">Вариант ответа</label>'
-                +'       </div>'
-                +'    </div>'
-                +'</div>'
-                ;
-                option = 
-                '<div class="optionbox active option_single" id="option_'+ id +'">'
-                +'<input type="hidden" name="questiontype_'+ id +'" value="single" >'
-                +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
-                +'    <div class="header-aside">'
-                +'        Настройки'
-                +'    </div>'
-                +'    <div class="text-aside">'
-                +'        <div class="filerow">'
-                +'            <div class="uploadpicture">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
-                +'                    value="image">'
-                +'            </div>'
-                +'            <input class="uploadpictureinput" type="file"'
-                +'                name="uploadimage_'+ id +'[]" multiple="multiple"'
-                +'                accept="image/x-png,image/gif,image/jpeg">'
-                +'            <div class="uploadvideo">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
-                +'                    value="video">'
-                +'            </div>'
-                +'            <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'" id="uploadvideo_'+ id +'"'
-                +'            accept="video/mp4,video/x-m4v,video/*">'
-                +'            <div class="uploadaudio">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
-                +'                    value="video">'
-                +'            </div>'
-                +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
-                +'            accept="audio/*">'
-                +'            <div class="uploadtext">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_4"'
-                +'                    value="text">'
-                +'            </div>'
-                +'        </div>'
-                +'        <div class="form-group">'
-                +'            <label for="question_'+ id +'">Вопрос</label>'
-                +'            <textarea class="question_name" name="question_'+ id +'" id="question_'+ id +'" placeholder="Введите вопрос"></textarea>'
-                +'        </div>'
-                +'        <div class="form-group spinner-wrapper">'
-                +'           <label for="number_'+ id +'">Колличество пунктов </label>'
-                +'           <input  class="question_number spinner" name="number_'+ id +'" id="number_'+ id +'" type="text" value="2">'
-                +'       </div>'
-                +'       <div class="form-group">'
-                +'           <p>Варианты ответов</p>'
-                +'           <div class="inputtables" id="inputtables_'+ id +'">'
-                +'               <div class="questionPoint" id="questionPoint_'+ id +'_1">'
-                +'                   <label for="inputpoint_'+ id +'_1">1</label>'
-                +'                   <input class="question_points" name="inputpoint_'+ id +'_1" id="inputpoint_'+ id +'_1" type="text" placeholder="Вариант ответа">'
-                +'               </div>'
-                +'               <div class="questionPoint" id=" questionPoint_'+ id +'_2">'
-                +'                   <label for="inputpoint_'+ id +'_2">2</label>'
-                +'                   <input class="question_points" name="inputpoint_'+ id +'_2" id="inputpoint_'+ id +'_2" type="text" placeholder="Вариант ответа">'
-                +'               </div>'
-                +'           </div>'
-                +'       </div>'
-                +'   </div>'
-                +'</div>'
-                ;
-            }
-            else if (type === "free"){
-                el = 
-                '<div class="question active"   data-optionid="'+ id +'">'
-                +'    <div class="close-question"></div>'
-                +'    <div class="name " id="questionName_'+ id +'">'
-                +'        Вопрос'
-                +'    </div>'
-                +'    <div class="answer freeanswer" id="questionanswers_'+ id +'">'
-                +'        <div class="form-group" id="questionformAnswer_'+ id +'_1">'
-                +'            <input type="text" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_1" placeholder="Ваш ответ">'
-                +'        </div>'
-                +'    </div>'
-                +'</div> ';
-                option =
-                '<div class="optionbox active option_single" id="option_'+ id +'">'
-                +'<input type="hidden" name="questiontype_'+ id +'" value="free" >'
-                +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
-                +'    <div class="header-aside">'
-                +'        Настройки'
-                +'    </div>'
-                +'    <div class="text-aside">'
-                +'        <div class="filerow">'
-                +'            <div class="uploadpicture">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
-                +'                    value="image">'
-                +'            </div>'
-                +'            <input class="uploadpictureinput" type="file"'
-                +'                name="uploadimage_'+ id +'[]" multiple="multiple"'
-                +'                accept="image/x-png,image/gif,image/jpeg">'
-                +'            <div class="uploadvideo">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
-                +'                    value="video">'
-                +'            </div>'
-                +'            <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'" id="uploadvideo_'+ id +'"'
-                +'            accept="video/mp4,video/x-m4v,video/*">'
-                +'            <div class="uploadaudio">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
-                +'                    value="video">'
-                +'            </div>'
-                +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
-                +'            accept="audio/*">'
-                +'            <div class="uploadtext">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_4"'
-                +'                    value="text">'
-                +'            </div>'
-                +'        </div>'
-                +'        <div class="form-group">'
-                +'            <label for="question_'+ id +'">Вопрос</label>'
-                +'            <textarea class="question_name" name="question_'+ id +'" id="question_'+ id +'" placeholder="Вопрос"></textarea>'
-                +'        </div>'
-                +'    </div>'
-                +'</div>' ;
-            }
-            else if (type === "listfree"){
-                el =
-                '<div class="question active" data-optionid="'+ id +'">'
-                +'    <div class="close-question"></div>'
-                +'    <div class="name" id="questionName_'+ id +'">'
-                +'        Вопрос'
-                +'    </div>'
-                +'    <div class="answer freeanswer" id="questionanswers_'+ id +'">'
-                +'        <div class="form-group" id="questionformAnswer_'+ id +'_1">'
-                +'            <input type="text" name="questionanswer_'+ id +'_1" id="questionanswer_'+ id +'_1" placeholder="Ваш ответ">'
-                +'        </div>'
-                +'        <div class="form-group" id="questionformAnswer_'+ id +'_2">'
-                +'            <input type="text" name="questionanswer_'+ id +'_2" id="questionanswer_'+ id +'_2" placeholder="Ваш ответ">'
-                +'        </div>'
-                +'        <div class="form-group" id="questionformAnswer_'+ id +'_3">'
-                +'            <input type="text" name="questionanswer_'+ id +'_3" id="questionanswer_'+ id +'_3" placeholder="Ваш ответ">'
-                +'        </div>'
-                +'    </div>'
-                +'</div>';
-                option =
-                '<div class="optionbox active" id="option_'+ id +'">'
-                +'<input type="hidden" name="questiontype_'+ id +'" value="listfree" >'
-                +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
-                +'    <div class="header-aside">'
-                +'        Настройки'
-                +'    </div>'
-                +'    <div class="text-aside">'
-                +'        <div class="filerow">'
-                +'            <div class="uploadpicture">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
-                +'                    value="image">'
-                +'            </div>'
-                +'            <input class="uploadpictureinput" type="file"'
-                +'                name="uploadimage_'+ id +'[]" multiple="multiple"'
-                +'                accept="image/x-png,image/gif,image/jpeg">'
-                +'            <div class="uploadvideo">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
-                +'                    value="video">'
-                +'            </div>'
-                +'            <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'" id="uploadvideo_'+ id +'"'
-                +'            accept="video/mp4,video/x-m4v,video/*">'
-                +'            <div class="uploadaudio">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
-                +'                    value="video">'
-                +'            </div>'
-                +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
-                +'            accept="audio/*">'
-                +'            <div class="uploadtext">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_4"'
-                +'                    value="text">'
-                +'            </div>'
-                +'        </div>'
-                +'        <div class="form-group">'
-                +'            <label for="question_'+ id +'">Вопрос</label>'
-                +'            <textarea class="question_name" name="question_'+ id +'" id="question_3" placeholder="Введите вопрос"></textarea>'
-                +'        </div>'
-                +'        <div class="form-group spinner-wrapper">'
-                +'            <label for="number_'+ id +'">Колличество пунктов </label>'
-                +'            <input  class="freeanswer_number spinner" name="number_'+ id +'" id="number_'+ id +'" type="text" value="3">'
-                +'        </div>'
-                +'    </div>'
-                +'</div>';
-            }
-            else if (type === 'branching') {
-                el =
-                '<div class="question branchingquestion active" data-optionid="'+ id +'">'
-                +'    <div class="close-question"></div>'
-                +'    <div class="name " id="questionName_'+ id +'">'
-                +'        Ветвление'
-                +'    </div>'
-                +'    <div class="answer flex-50" id="questionanswers_'+ id +'">'
-                +'        <div class="form-group" id="questionformAnswer_'+ id +'_1">'
-                +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_1">'
-                +'            <label id="questionpointsanswer_'+ id +'_1" for="questionanswer_'+ id +'_1">Вариант ответа</label>'
-                +'        </div>'
-                +'        <div class="form-group" id="questionformAnswer_'+ id +'_2">'
-                +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_2">'
-                +'            <label  id="questionpointsanswer_'+ id +'_2" for="questionanswer_'+ id +'_2">Вариант ответа</label>'
-                +'        </div>'
-                +'    </div>'
-                +'    <div class="hidden-question-list"></div>'
-                +'</div>';
-                option =
-                '<div class="optionbox active" id="option_'+ id +'">'
-                +'<input type="hidden" name="questiontype_'+ id +'" value="branching" >'
-                +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
-                +'    <div class="header-aside">'
-                +'        Настройки'
-                +'    </div>'
-                +'    <div class="text-aside">'
-                +'        <div class="filerow">'
-                +'            <div class="uploadpicture">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
-                +'                    value="image">'
-                +'            </div>'
-                +'            <input class="uploadpictureinput" type="file"'
-                +'                name="uploadimage_'+ id +'[]" multiple="multiple"'
-                +'                accept="image/x-png,image/gif,image/jpeg">'
-                +'            <div class="uploadvideo">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
-                +'                    value="video">'
-                +'            </div>'
-                +'            <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'" id="uploadvideo_'+ id +'"'
-                +'            accept="video/mp4,video/x-m4v,video/*">'
-                +'            <div class="uploadaudio">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
-                +'                    value="video">'
-                +'            </div>'
-                +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
-                +'            accept="audio/*">'
-                +'            <div class="uploadtext">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_4"'
-                +'                    value="text">'
-                +'            </div>'
-                +'        </div>'
-                +'        <div class="form-group">'
-                +'            <label for="question_'+ id +'">Вопрос</label>'
-                +'            <textarea class="question_name" name="question_'+ id +'" id="question_'+ id +'" placeholder="Введите вопрос"></textarea>'
-                +'        </div>'
-                +'        <div class="form-group spinner-wrapper">'
-                +'            <label for="number_'+ id +'">Колличество пунктов </label>'
-                +'            <input  class="question_number_branching spinner" name="number_'+ id +'" id="number_'+ id +'" type="text" value="2">'
-                +'        </div>'
-                +'        <div class="form-group">'
-                +'            <p>Варианты ответов</p>'
-                +'            <div class="inputtables" id="inputtables_'+ id +'">'
-                +'                <div class="questionPoint" id="questionPoint_'+ id +'_1">'
-                +'                    <label for="inputpoint_'+ id +'_1">1</label>'
-                +'                    <input class="question_points" name="inputpoint_'+ id +'_1" id="inputpoint_'+ id +'_1" type="text" placeholder="Вариант ответа">'
-                +'                    <div class="branching-btn"></div>'
-                +'                    <div class="branching-list">'
-                +'                    </div>'
-                +'                </div>'
-                +'                <div class="questionPoint" id="questionPoint_'+ id +'_2">'
-                +'                    <label for="inputpoint_'+ id +'_2">2</label>'
-                +'                    <input class="question_points" name="inputpoint_'+ id +'_2" id="inputpoint_'+ id +'_2" type="text" placeholder="Вариант ответа">'
-                +'                    <div class="branching-btn"></div>'
-                +'                    <div class="branching-list">'
-                +'                    </div>'
-                +'                </div>'
-                +'           </div>'
-                +'        </div>'
-                +'    </div>'
-                +'</div>';
-            }
-            else if (type === "scale"){
-                el =
-                '<div class="question active" data-optionid="'+ id +'">'
-                +'    <div class="close-question"></div>'
-                +'    <div class="name " id="questionName_'+ id +'">'
-                +'        Вопрос'
-                +'    </div>'
-                +'<div class="answer answer-ratings5" id="questionanswers_'+ id +'">'
-                +'    <div class="radio-wrapper">'
-                +'        <div class="radio-cont">'
-                +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_1" value="1">'
-                +'            <label for="questionanswer_'+ id +'_1">'
-                +'                <div class="number">1</div>'
-                +'               <div class="text"> '
-                +'                </div>'
-                +'            </label>'
-                +'        </div>'
-                +'        <div class="radio-cont">'
-                +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_2" value="2">'
-                +'            <label for="questionanswer_'+ id +'_2">'
-                +'                <div class="number">2</div>'
-                +'                <div class="text"> '
-                +'                </div>'
-                +'            </label>'
-                +'        </div>'
-                +'        <div class="radio-cont">'
-                +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_3" value="3">'
-                +'            <label for="questionanswer_'+ id +'_3">'
-                +'                <div class="number">3</div>'
-                +'                <div class="text"> '
-                +'                </div>'
-                +'            </label>'
-                +'        </div>'
-                +'        <div class="radio-cont">'
-                +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_4" value="4">'
-                +'            <label for="questionanswer_'+ id +'_4">'
-                +'                <div class="number">4</div>'
-                +'                <div class="text"> '
-                +'                </div>'
-                +'            </label>'
-                +'        </div>'
-                +'        <div class="radio-cont">'
-                +'            <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_5" value="5">'
-                +'            <label for="questionanswer_'+ id +'_5">'
-                +'                <div class="number">5</div>'
-                +'                <div class="text"> '
-                +'                </div>'
-                +'            </label>'
-                +'        </div>'
-                +'    </div>'
-                +'</div>'
-                +'</div> ';
-                option = 
-                '<div class="optionbox active" id="option_'+ id +'">'
-                +'<input type="hidden" name="questiontype_'+ id +'" value="scale" >'
-                +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
-                +'    <div class="header-aside">'
-                +'        Настройки'
-                +'    </div>'
-                +'    <div class="text-aside">'
-                +'        <div class="filerow">'
-                +'            <div class="uploadpicture">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
-                +'                    value="image">'
-                +'            </div>'
-                +'            <input class="uploadpictureinput" type="file"'
-                +'                name="uploadimage_'+ id +'[]"  multiple="multiple"'
-                +'                accept="image/x-png,image/gif,image/jpeg">'
-                +'            <div class="uploadvideo">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
-                +'                    value="video">'
-                +'            </div>'
-                +'            <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'" id="uploadvideo_'+ id +'"'
-                +'            accept="video/mp4,video/x-m4v,video/*">'
-                +'            <div class="uploadaudio">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
-                +'                    value="video">'
-                +'            </div>'
-                +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
-                +'            accept="audio/*">'
-                +'            <div class="uploadtext">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_4"'
-                +'                    value="text">'
-                +'            </div>'
-                +'        </div>'
-                +'        <div class="form-group">'
-                +'            <label for="question_'+ id +'">Вопрос</label>'
-                +'            <textarea class="question_name" name="question_'+ id +'" id="question_'+ id +'" placeholder="Введите вопрос"></textarea>'
-                +'        </div>'
-                +'        <div class="scale-option">'
-                +'            <div class="form-group">'
-                +'                <p>Шкала оценок</p>'
-                +'                <div class="scale-radio">'
-                +'                    <input type="radio" name="typescale_'+ id +'" id="typescale_'+ id +'_1" value="1">'
-                +'                    <label for="typescale_'+ id +'_1" class="scalelabel">'
-                +'                        <div class="colorstars"></div>'
-                +'                    </label>'
-                +'                    <input type="radio" name="typescale_'+ id +'" id="typescale_'+ id +'_2" value="2">'
-                +'                    <label for="typescale_'+ id +'_2" class="scalelabel ">'
-                +'                        <div class="stars5"></div>'
-                +'                   </label>'
-                +'                    <input type="radio" name="typescale_'+ id +'" id="typescale_'+ id +'_3" value="3">'
-                +'                    <label for="typescale_'+ id +'_3" class="scalelabel">'
-                +'                        <div class="stars10"></div>'
-                +'                    </label>'
-                +'                    <input type="radio" name="typescale_'+ id +'" id="typescale_'+ id +'_4" value="4">'
-                +'                    <label for="typescale_'+ id +'_4" class="scalelabel">'
-                +'                        <div class="ratings10"></div>'
-                +'                    </label>'
-                +'                    <input type="radio" name="typescale_'+ id +'" id="typescale_'+ id +'_5" value="5" checked="checked">'
-                +'                    <label for="typescale_'+ id +'_5" class="scalelabel">'
-                +'                        <div class="ratings5">'
-                +'                            <div class="circles">'
-                +'                                <div class="cirle">1</div>'
-                +'                                <div class="cirle">2</div>'
-                +'                                <div class="cirle">3</div>'
-                +'                                <div class="cirle">4</div>'
-                +'                                <div class="cirle">5</div>'
-                +'                            </div>'
-                +'                            <div class="ratinstables">'
-                +'                                <div class="cirlce-group">'
-                +'                                    <div class="circle">1</div>'
-                +'                                    <input type="text" name="inputpoint_'+ id +'_1" id="scaleRating5_'+ id +'_1" placeholder="Введите текст">'
-                +'                               </div>'
-                +'                                <div class="cirlce-group">'
-                +'                                    <div class="circle">2</div>'
-                +'                                    <input type="text" name="inputpoint_'+ id +'_2" id="scaleRating5_'+ id +'_2" placeholder="Введите текст">'
-                +'                                </div>'
-                +'                                <div class="cirlce-group">'
-                +'                                    <div class="circle">3</div>'
-                +'                                    <input type="text" name="inputpoint_'+ id +'_3" id="scaleRating5_'+ id +'_3" placeholder="Введите текст">'
-                +'                                </div>'
-                +'                                <div class="cirlce-group">'
-                +'                                    <div class="circle">4</div>'
-                +'                                    <input type="text" name="inputpoint_'+ id +'_4" id="scaleRating5_'+ id +'_4" placeholder="Введите текст">'
-                +'                                </div>'
-                +'                                <div class="cirlce-group">'
-                +'                                    <div class="circle">5</div>'
-                +'                                    <input type="text" name="inputpoint_'+ id +'_5" id="scaleRating5_'+ id +'_5" placeholder="Введите текст">'
-                +'                                </div>'
-                +'                           </div>'
-                +'                       </div>'
-                +'                    </label>'
-                +'                </div>'
-                +'            </div>'
-                +'        </div>'
-                +'    </div>'
-                +'</div>';
-            }
-            else if (type === "dropdown"){
-                el = 
-                '<div class="question active" data-optionid="'+ id +'">'
-                +'    <div class="close-question"></div>'
-                +'    <div class="answer" id="questionanswers_'+ id +'">'
-                +'        <div class="dropdown-list">'
-                +'            <div class="dropdown-block">'
-                +'                <div class="dropdown-arrow"></div>'
-                +'                <div class="question-name">'
-                +'                    Вопрос'
-                +'                </div>'
-                +'                <div class="dropdown-content">'
-                +'                </div>'
-                +'            </div>'
-                +'            <div class="dropdown-block">'
-                +'                <div class="dropdown-arrow"></div>'
-                +'                <div class="question-name">'
-                +'                    Вопрос'
-                +'                </div>'
-                +'                <div class="dropdown-content">'
-                +'               </div>'
-                +'           </div>'
-                +'           <div class="dropdown-block">'
-                +'               <div class="dropdown-arrow"></div>'
-                +'               <div class="question-name">'
-                +'                   Вопрос'
-                +'               </div>'
-                +'               <div class="dropdown-content">'
-                +'               </div>'
-                +'           </div>'
-                +'       </div>'
-                +'   </div>'
-                +'</div>';
-                option =
-                '<div class="optionbox active" id="option_'+ id +'">'
-                +'    <input type="hidden" name="questiontype_'+ id +'" value="dropdown" >'
-                +'    <input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
-                +'    <div class="header-aside">'
-                +'        Настройки'
-                +'    </div>'
-                +'    <div class="text-aside ">'
-                +'        <div class="filerow">'
-                +'            <div class="uploadpicture">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
-                +'                    value="image">'
-                +'            </div>'
-                +'            <input class="uploadpictureinput" type="file"'
-                +'                name="uploadimage_'+ id +'[]"  multiple="multiple"'
-                +'                accept="image/x-png,image/gif,image/jpeg">'
-                +'            <div class="uploadvideo">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
-                +'                    value="video">'
-                +'            </div>'
-                +'            <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'" id="uploadvideo_'+ id +'"'
-                +'            accept="video/mp4,video/x-m4v,video/*">'
-                +'            <div class="uploadaudio">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
-                +'                    value="video">'
-                +'            </div>'
-                +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
-                +'            accept="audio/*">'
-                +'            <div class="uploadtext">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_4"'
-                +'                    value="text">'
-                +'            </div>'
-                +'        </div>'
-                +'        <div class="dropdown-options">'
-                +'            <div class="top-row">'
-                +'                <div class="namelabel">Вопросы</div>'
-                +'                <div class="add-dropdown"></div>'
-                +'            </div>'
-                +'            <div class="optionsdropdownlist">'
-                +'                <div class="option-group">'
-                +'                    <div class="inputstables">'
-                +'                        <textarea class="dropdown-question" name="inputpoint_'+ id +'_1" id="inputpoint_'+ id +'_1" placeholder="Введите вопрос"></textarea>'
-                +'                        <div class="dropdown-list">'
-                +'                        </div>'
-                +'                    </div>'
-                +'                    <div class="adddropdownsubpoints"></div>'
-                +'                    <div class="remove-dropdown"></div>'
-                +'                    <div class="arrowshow"></div>'
-                +'                </div>'
-                +'                <div class="option-group">'
-                +'                    <div class="inputstables">'
-                +'                        <textarea class="dropdown-question" name="inputpoint_'+ id +'_2" id="inputpoint_'+ id +'_2"  placeholder="Введите вопрос"></textarea>'
-                +'                        <div class="dropdown-list">'
-                +'                        </div>'
-                +'                    </div>'
-                +'                    <div class="adddropdownsubpoints"></div>'
-                +'                    <div class="remove-dropdown"></div>'
-                +'                    <div class="arrowshow"></div>'
-                +'                </div>'
-                +'                <div class="option-group">'
-                +'                    <div class="inputstables">'
-                +'                        <textarea class="dropdown-question" name="inputpoint_'+ id +'_3" id="inputpoint_'+ id +'_3"  placeholder="Введите вопрос"></textarea>'
-                +'                        <div class="dropdown-list">'
-                +'                        </div>'
-                +'                    </div>'
-                +'                    <div class="adddropdownsubpoints"></div>'
-                +'                    <div class="remove-dropdown"></div>'
-                +'                    <div class="arrowshow"></div>'
-                +'                </div>'
-                +'            </div>'
-                +'        </div>'
-                +'    </div>'
-                +'</div>'
-                ;
-            }
-            else if (type === "dropdownmt"){
-                el =
-                '<div class="question active" data-optionid="'+ id +'">'
-                +'    <div class="close-question"></div>'
-                +'    <div class="answer" id="questionanswers_'+ id +'">'
-                +'        <div class="dropdown-list">'
-                +'            <div class="dropdown-block">'
-                +'                <div class="dropdown-arrow"></div>'
-                +'                <div class="question-name">'
-                +'                    Вопрос'
-                +'                </div>'
-                +'                <div class="dropdown-content">'
-                +'                </div>'
-                +'            </div>'
-                +'            <div class="dropdown-block">'
-                +'                <div class="dropdown-arrow"></div>'
-                +'                <div class="question-name">'
-                +'                    Вопрос'
-                +'                </div>'
-                +'                <div class="dropdown-content">'
-                +'                </div>'
-                +'            </div>'
-                +'            <div class="dropdown-block">'
-                +'                <div class="dropdown-arrow"></div>'
-                +'                <div class="question-name">'
-                +'                    Вопрос'
-                +'                </div>'
-                +'                <div class="dropdown-content">'
-                +'                </div>'
-                +'            </div>'
-                +'        </div>'
-                +'    </div>'
-                +'</div>';
-                option = 
-                '<div class="optionbox active" id="option_'+ id +'">'
-                +'    <input type="hidden" name="questiontype_'+ id +'" value="dropdownmultiple" >'
-                +'    <input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
-                +'    <div class="header-aside">'
-                +'        Настройки'
-                +'    </div>'
-                +'    <div class="text-aside ">'
-                +'        <div class="filerow">'
-                +'            <div class="uploadpicture">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
-                +'                    value="image">'
-                +'            </div>'
-                +'            <input class="uploadpictureinput" type="file"'
-                +'                name="uploadimage_'+ id +'[]" multiple'
-                +'                accept="image/x-png,image/gif,image/jpeg">'
-                +'            <div class="uploadvideo">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
-                +'                    value="video">'
-                +'            </div>'
-                +'            <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'" id="uploadvideo_'+ id +'"'
-                +'            accept="video/mp4,video/x-m4v,video/*">'
-                +'            <div class="uploadaudio">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
-                +'                    value="video">'
-                +'            </div>'
-                +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
-                +'            accept="audio/*">'
-                +'            <div class="uploadtext">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_4"'
-                +'                    value="text">'
-                +'            </div>'
-                +'        </div>'
-                +'        <div class="dropdown-options">'
-                +'            <div class="multityperow">'
-                +'                <div class="namelabel">'
-                +'                    Множественный выбор'
-                +'                </div>'
-                +'                <label class="switch" for="dropdownmultiple_'+ id +'">'
-                +'                    <input type="checkbox" class="dropdownmultiple" name="dropdownmultiple_'+ id +'" id="dropdownmultiple_'+ id +'" checked="">'
-                +'                    <span class="slider round"></span>'
-                +'                </label>'
-                +'            </div>'
-                +'            <div class="top-row">'
-                +'                <div class="namelabel">Вопросы</div>'
-                +'                <div class="add-dropdown"></div>'
-                +'            </div>'
-                +'            <div class="optionsdropdownlist">'
-                +'                <div class="option-group">'
-                +'                    <div class="inputstables">'
-                +'                        <textarea class="dropdown-question" name="inputpoint_'+ id +'_1" id="inputpoint_'+ id +'_1" placeholder="Введите вопрос"></textarea>'
-                +'                        <div class="dropdown-list">'
-                +'                        </div>'
-                +'                    </div>'
-                +'                    <div class="adddropdownsubpoints"></div>'
-                +'                    <div class="remove-dropdown"></div>'
-                +'                    <div class="arrowshow"></div>'
-                +'                </div>'
-                +'                <div class="option-group">'
-                +'                    <div class="inputstables">'
-                +'                        <textarea class="dropdown-question" name="inputpoint_'+ id +'_2" id="inputpoint_'+ id +'_2"  placeholder="Введите вопрос"></textarea>'
-                +'                        <div class="dropdown-list">'
-                +'                        </div>'
-                +'                    </div>'
-                +'                    <div class="adddropdownsubpoints"></div>'
-                +'                    <div class="remove-dropdown"></div>'
-                +'                    <div class="arrowshow"></div>'
-                +'                </div>'
-                +'                <div class="option-group">'
-                +'                    <div class="inputstables">'
-                +'                        <textarea class="dropdown-question" name="inputpoint_'+ id +'_3" id="inputpoint_'+ id +'_3"  placeholder="Введите вопрос"></textarea>'
-                +'                        <div class="dropdown-list">'
-                +'                        </div>'
-                +'                    </div>'
-                +'                    <div class="adddropdownsubpoints"></div>'
-                +'                    <div class="remove-dropdown"></div>'
-                +'                    <div class="arrowshow"></div>'
-                +'                </div>'
-                +'            </div>'
-                +'        </div>'
-                +'    </div>'
-                +'</div>';
-            }
-            if (type === 'matrix') {
-                el =
-                '<div class="question active" data-optionid="'+ id +'">'
-                +'    <div class="close-question"></div>'
-                +'    <div class="name " id="questionName_'+ id +'">'
-                +'        Вопрос'
-                +'    </div>'
-                +'    <div class="description " id="questiondescription_'+ id +'">'
-                +'        Описание'
-                +'    </div>'
-                +'    <div class="answer" id="questionanswers_'+ id +'">'
-                +'        <div class="matrix-table">'
-                +'            <div class="first-row">'
-                +'                <div class="empty col"></div>'
-                +'                <div class="col">'
-                +'                    <div class="value">1</div>'
-                +'               </div>'
-                +'               <div class="col">'
-                +'                    <div class="value">2</div>'
-                +'               </div>'
-                +'           </div>'
-                +'           <div class="matrix-row">'
-                +'               <div class="col first-col">'
-                +'                   <div class="value">Текст</div>'
-                +'               </div>'
-                +'               <div class="col">'
-                +'                   <input type="radio" name="answermatrix_'+ id +'_1"  id="answermatrix_'+ id +'_1_1">'
-                +'                   <label for="answermatrix_'+ id +'_1_1">'
-                +'                   </label>'
-                +'               </div>'
-                +'               <div class="col">'
-                +'                   <input type="radio" name="answermatrix_'+ id +'_1"  id="answermatrix_'+ id +'_1_2">'
-                +'                   <label for="answermatrix_'+ id +'_1_2">'
-                +'                   </label>'
-                +'               </div>'
-                +'           </div>'
-                +'           <div class="matrix-row">'
-                +'                <div class="col first-col">'
-                +'                   <div class="value">Текст</div>'
-                +'               </div>'
-                +'               <div class="col">'
-                +'                   <input type="radio" name="answermatrix_'+ id +'_2"  id="answermatrix_'+ id +'_2_1">'
-                +'                   <label for="answermatrix_'+ id +'_2_1">'
-                +'                   </label>'
-                +'                </div>'
-                +'               <div class="col">'
-                +'                   <input type="radio" name="answermatrix_'+ id +'_2"  id="answermatrix_'+ id +'_2_2">'
-                +'                   <label for="answermatrix_'+ id +'_2_2">'
-                +'                   </label>'
-                +'               </div>'
-                +'           </div>'
-                +'       </div>'
-                +'   </div>'
-                +'</div>';
-                option =
-                '<div class="optionbox active" id="option_'+ id +'">'
-                +'    <input type="hidden" name="questiontype_'+ id +'" value="matrix">'
-                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
-                +'    <div class="header-aside">'
-                +'       Настройки'
-                +'   </div>'
-                +'   <div class="text-aside ">'
-                +'        <div class="filerow">'
-                +'            <div class="uploadpicture">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
-                +'                    value="image">'
-                +'            </div>'
-                +'            <input class="uploadpictureinput" type="file"'
-                +'                name="uploadimage_'+ id +'[]"  multiple'
-                +'                accept="image/x-png,image/gif,image/jpeg">'
-                +'            <div class="uploadvideo">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
-                +'                    value="video">'
-                +'            </div>'
-                +'            <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'" id="uploadvideo_'+ id +'"'
-                +'            accept="video/mp4,video/x-m4v,video/*">'
-                +'            <div class="uploadaudio">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
-                +'                    value="video">'
-                +'            </div>'
-                +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
-                +'            accept="audio/*">'
-                +'            <div class="uploadtext">'
-                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_4"'
-                +'                    value="text">'
-                +'            </div>'
-                +'        </div>'
-                +'      <div class="matrix-options">'
-                +'          <div class="multityperow">'
-                +'              <div class="namelabel">'
-                +'                  Множественный выбор'
-                +'              </div>'
-                +'              <label class="switch" for="matrix_'+ id +'">'
-                +'                  <input type="checkbox" class="matrixtype"'
-                +'                      name="matrix_'+ id +'" id="matrix_'+ id +'">'
-                +'                  <span class="slider round"></span>'
-                +'              </label>'
-                +'          </div>'
-                +'          <div class="form-group">'
-                +'              <label for="question_'+ id +'">Вопрос</label>'
-                +'              <textarea class="question_name" name="question_'+ id +'" id="question_'+ id +'" placeholder="Введите вопрос"></textarea>'
-                +'          </div>'
-                +'          <div class="form-group">'
-                +'              <label for="questiondescription_'+ id +'">Доп. описание</label>'
-                +'              <textarea class="question_description" name="questiondescription_'+ id +'" id="questiondescription_'+ id +'" placeholder="Введите описание"></textarea>'
-                +'          </div>'
-                +'          <div class="form-group">'
-                +'              <p>Ответы</p>'
-                +'              <div class="rowslist">'
-                +'                  <div class="row-item">'
-                +'                      <input type="text" name="inputpoint_'+ id +'_1" id="inputpoint_'+ id +'_1" placeholder="Введите текст">'
-                +'                      <div class="edit-menu">'
-                +'                          <div class="menu-dots"></div>'
-                +'                          <div class="menu-list">'
-                +'                              <div class="add-row addmatrixrow"></div>'
-                +'                              <div class="delete-row deletematrixrow"></div>'
-                +'                          </div>'
-                +'                      </div>'
-                +'                  </div>'
-                +'                  <div class="row-item">'
-                +'                      <input type="text" name="inputpoint_'+ id +'_2" id="inputpoint_'+ id +'_2" placeholder="Введите текст">'
-                +'                      <div class="edit-menu">'
-                +'                          <div class="menu-dots"></div>'
-                +'                          <div class="menu-list">'
-                +'                              <div class="add-row addmatrixrow"></div>'
-                +'                              <div class="delete-row deletematrixrow"></div>'
-                +'                          </div>'
-                +'                      </div>'
-                +'                  </div>'
-                +'              </div>'
-                +'          </div>'
-                +'          <div class="form-group spinner-wrapper">'
-                +'              <label for="number_'+ id +'">Колонки</label>'
-                +'              <input class="matrix_number spinner" name="number_'+ id +'" id="number_'+ id +'" type="text"'
-                +'                  value="2">'
-                +'          </div>'
-                +'          <div class="matrix-btn-row">'
-                +'              <div class="addmatrixrow add-btn">'
-                +'                  <div class="icon-add">'
-                +'                  </div>'
-                +'                  Добавить строку'
-                +'              </div>'
-                +'              <div class="addcolmatrix add-btn">'
-                +'                  <div class="icon-add">'
-                +'                  </div>'
-                +'                  Добавить колонки'
-                +'              </div>'
-                +'          </div>'
-                +'      </div>'
-                +'  </div>'
-                +'</div>';
-            }
-            if (type === 'ranging') {
-                el =
-                '<div class="question" data-optionid="'+ id +'">'
-                +'    <div class="close-question"></div>'
-                +'    <div class="name " id="questionName_'+ id +'">'
-                +'        Вопрос'
-                +'    </div>'
-                +'    <div class="description " id="questiondescription_'+ id +'">'
-                +'        Описание'
-                +'    </div>'
-                +'    <div class="answer" id="questionanswers_'+ id +'">'
-                +'        <div class="ranging-list">'
-                +'            <div class="rangint-item">'
-                +'                <input type="hidden" name="rangingorder_'+ id +'_1" value="1">'
-                +'                <div class="arrows">'
-                +'                    <div class="item-up"></div>'
-                +'                    <div class="item-down"></div>'
-                +'                </div>'
-                +'                <div class="text">'
-                +'                    Текст'
-                +'                </div>'
-                +'            </div>'
-                +'        </div>'
-                +'    </div>'
-                +'</div>';
-                option = 
-                '<div class="optionbox" id="option_'+ id +'">'
-                +'   <input type="hidden" name="questiontype_'+ id +'" value="ranging">'
-                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
-                +'    <div class="header-aside">'
-                +'      Настройки'
-                +'  </div>'
-                +'  <div class="text-aside ">'
-                +'      <div class="filerow">'
-                +'          <div class="uploadpicture">'
-                +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
-                +'                  value="image">'
-                +'          </div>'
-                +'          <input class="uploadpictureinput" type="file" name="uploadimage_'+ id +'"'
-                +'              multiple accept="image/x-png,image/gif,image/jpeg">'
-                +'          <div class="uploadvideo">'
-                +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
-                +'                  value="video">'
-                +'          </div>'
-                +'          <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'"'
-                +'              id="uploadvideo_'+ id +'" accept="video/mp4,video/x-m4v,video/*">'
-                +'          <div class="uploadaudio">'
-                +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
-                +'                  value="audio">'
-                +'          </div>'
-                +'          <input class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'"'
-                +'              id="uploadaudio_'+ id +'" accept="audio/*">'
-                +'          <div class="uploadtext">'
-                +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
-                +'                  value="text">'
-                +'          </div>'
-                +'      </div>'
-                +'      <div class="ranging-options">'
-                +'          <div class="form-group">'
-                +'              <label for="question_'+ id +'">Вопрос</label>'
-                +'              <textarea class="question_name" name="question_'+ id +'" id="question_'+ id +'" placeholder="Введите вопрос"></textarea>'
-                +'          </div>'
-                +'          <div class="form-group">'
-                +'              <label for="questiondescription_'+ id +'">Доп. описание</label>'
-                +'              <textarea class="question_description" name="questiondescription_'+ id +'" id="questiondescription_'+ id +'" placeholder="Введите описание"></textarea>'
-                +'          </div>'
-                +'          <div class="form-group">'
-                +'              <p>Ответы</p>'
-                +'              <div class="rowslist">'
-                +'                  <div class="row-item">'
-                +'                      <input type="text" name="inputpoint_'+ id +'_1" id="inputpoint_'+ id +'_1" placeholder="Введите текст">'
-                +'                      <div class="edit-menu">'
-                +'                          <div class="menu-dots"></div>'
-                +'                          <div class="menu-list">'
-                +'                              <div class="add-row addrangingrow"></div>'
-                +'                              <div class="delete-row deleterangingrow"></div>'
-                +'                          </div>'
-                +'                      </div>'
-                +'                  </div>'
-                +'              </div>'
-                +'          </div>'
-                +'          <div class="ranging-btn-row">'
-                +'              <div class="addrangingrow add-btn">'
-                +'                  <div class="icon-add">'
-                +'                  </div>'
-                +'                  Добавить строку'
-                +'              </div>'
-                +'          </div>'
-                +'      </div>'
-                +'  </div>'
-                +'</div>';
-            }
-            if (type === 'name') {
-                el = 
-                '<div class="question active" data-optionid="'+ id +'">'
-                +'    <div class="close-question"></div>'
-                +'    <div class="name " id="questionName_'+ id +'">'
-                +'        Введите Ваше имя'
-                +'    </div>'
-                +'    <div class="answer" id="questionanswers_'+ id +'">'
-                +'        <div class="name-answer">'
-                +'            <div class="col-name">'
-                +'                <label for="anwername_'+ id +'">Имя</label>'
-                +'                <input type="text" name="anwername_'+ id +'" id="anwername_'+ id +'" value="Имя" placeholder="Имя">'
-                +'            </div>'
-                +'            <div class="col-name">'
-                +'                <input type="text" name="anwername_'+ id +'" id="anwername_'+ id +'" placeholder="Отчество">'
-                +'            </div>'
-                +'            <div class="col-name">'
-                +'                <input type="text" name="anwername_'+ id +'" id="anwername_'+ id +'"  placeholder="Фамилия">'
-                +'            </div>'
-                +'        </div>'
-                +'    </div>'
-                +'</div>';
-                option =
-                '<div class="optionbox active" id="option_'+ id +'">'
-                +'    <input type="hidden" name="questiontype_'+ id +'" value="name">'
-                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
-                +'    <div class="header-aside">'
-                +'        Настройки'
-                +'    </div>'
-                +'    <div class="text-aside ">'
-                +'      <div class="filerow">'
-                +'          <div class="uploadpicture">'
-                +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
-                +'                  value="image">'
-                +'          </div>'
-                +'          <input class="uploadpictureinput" type="file" name="uploadimage_'+ id +'"'
-                +'              multiple accept="image/x-png,image/gif,image/jpeg">'
-                +'          <div class="uploadvideo">'
-                +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
-                +'                  value="video">'
-                +'          </div>'
-                +'          <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'"'
-                +'              id="uploadvideo_'+ id +'" accept="video/mp4,video/x-m4v,video/*">'
-                +'          <div class="uploadaudio">'
-                +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
-                +'                  value="audio">'
-                +'          </div>'
-                +'          <input class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'"'
-                +'              id="uploadaudio_'+ id +'" accept="audio/*">'
-                +'          <div class="uploadtext">'
-                +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
-                +'                  value="text">'
-                +'          </div>'
-                +'      </div>'
-                +'    </div>'
-                +'</div>';
-            }
-            if (type === 'date') {
-                el = 
-                '<div class="question active" data-optionid="'+ id +'">'
-                +'    <div class="close-question"></div>'
-                +'    <div class="name " id="questionName_'+ id +'">'
-                +'        Дата'
-                +'    </div>'
-                +'    <div class="answer" id="questionanswers_'+ id +'">'
-                +'        <div class="date-answer">'
-                +'            <div class="col-date">'
-                +'                <input type="text" name="anwerdate_'+ id +'" id="anwerdate_'+ id +'"  placeholder="01.01.2020">'
-                +'                <div class="icon-date"></div>'
-                +'            </div>'
-                +'        </div>'
-                +'    </div>'
-                +'</div>';
-                option =
-                '<div class="optionbox active" id="option_'+ id +'">'
-                +'    <input type="hidden" name="questiontype_'+ id +'" value="date">'
-                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
-                +'    <div class="header-aside">'
-                +'        Настройки'
-                +'    </div>'
-                +'    <div class="text-aside ">'
-                +'      <div class="filerow">'
-                +'          <div class="uploadpicture">'
-                +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
-                +'                  value="image">'
-                +'          </div>'
-                +'          <input class="uploadpictureinput" type="file" name="uploadimage_'+ id +'"'
-                +'               multiple accept="image/x-png,image/gif,image/jpeg">'
-                +'          <div class="uploadvideo">'
-                +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
-                +'                  value="video">'
-                +'          </div>'
-                +'          <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'"'
-                +'              id="uploadvideo_'+ id +'" accept="video/mp4,video/x-m4v,video/*">'
-                +'          <div class="uploadaudio">'
-                +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
-                +'                  value="audio">'
-                +'          </div>'
-                +'          <input class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'"'
-                +'              id="uploadaudio_'+ id +'" accept="audio/*">'
-                +'          <div class="uploadtext">'
-                +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
-                +'                  value="text">'
-                +'          </div>'
-                +'      </div>'
-                +'    </div>'
-                +'</div>';
-            }
-            if (type === 'email') {
-                el = 
-                '<div class="question active" data-optionid="'+ id +'">'
-                +'    <div class="close-question"></div>'
-                +'    <div class="name " id="questionName_'+ id +'">'
-                +'        Введите Ваш E-mail'
-                +'    </div>'
-                +'    <div class="answer" id="questionanswers_'+ id +'">'
-                +'        <div class="email-answer">'
-                +'            <div class="col-email">'
-                +'                <input type="text" name="answeremail_'+ id +'" id="answeremail_'+ id +'" placeholder="Email">'
-                +'            </div>'
-                +'        </div>'
-                +'    </div>'
-                +'</div>';
-                option =
-                '<div class="optionbox active" id="option_'+ id +'">'
-                +'    <input type="hidden" name="questiontype_'+ id +'" value="email">'
-                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
-                +'    <div class="header-aside">'
-                +'        Настройки'
-                +'    </div>'
-                +'    <div class="text-aside ">'
-                +'      <div class="filerow">'
-                +'          <div class="uploadpicture">'
-                +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
-                +'                  value="image">'
-                +'          </div>'
-                +'          <input class="uploadpictureinput" type="file" name="uploadimage_'+ id +'"'
-                +'               multiple accept="image/x-png,image/gif,image/jpeg">'
-                +'          <div class="uploadvideo">'
-                +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
-                +'                  value="video">'
-                +'          </div>'
-                +'          <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'"'
-                +'              id="uploadvideo_'+ id +'" accept="video/mp4,video/x-m4v,video/*">'
-                +'          <div class="uploadaudio">'
-                +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
-                +'                  value="audio">'
-                +'          </div>'
-                +'          <input class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'"'
-                +'              id="uploadaudio_'+ id +'" accept="audio/*">'
-                +'          <div class="uploadtext">'
-                +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
-                +'                  value="text">'
-                +'          </div>'
-                +'      </div>'
-                +'    </div>'
-                +'</div>';
-            }
-            if (type === 'phone') {
-                el = 
-                '<div class="question active" data-optionid="'+ id +'">'
-                +'    <div class="close-question"></div>'
-                +'    <div class="name " id="questionName_'+ id +'">'
-                +'        Введите Ваш номер телефона'
-                +'    </div>'
-                +'    <div class="answer" id="questionanswers_'+ id +'">'
-                +'        <div class="phone-answer">'
-                +'          <div class="col-phone">'
-                +'                <div class="inputs">'
-                +'                    <input class="code" type="text" name="answerphonecode_'+ id +'" id="answerphonecode_'+ id +'" value="+70">'
-                +'                    <input class="phone" type="tel" name="answerphone_'+ id +'" id="answerphone_'+ id +'" maxlength="9">'
-                +'               </div>'
-                +'              <div class="lines">'
-                +'                  <div class="line"></div>'
-                +'                  <div class="line"></div>'
-                +'                  <div class="line"></div>'
-                +'              </div>'
-                +'          </div>'
-                +'      </div>'
-                +'  </div>'
-                +'</div>';
-                option =
-                '<div class="optionbox active" id="option_'+ id +'">'
-                +'    <input type="hidden" name="questiontype_'+ id +'" value="email">'
-                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
-                +'    <div class="header-aside">'
-                +'        Настройки'
-                +'    </div>'
-                +'    <div class="text-aside ">'
-                +'      <div class="filerow">'
-                +'          <div class="uploadpicture">'
-                +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
-                +'                  value="image">'
-                +'          </div>'
-                +'          <input class="uploadpictureinput" type="file" name="uploadimage_'+ id +'"'
-                +'               multiple accept="image/x-png,image/gif,image/jpeg">'
-                +'          <div class="uploadvideo">'
-                +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
-                +'                  value="video">'
-                +'          </div>'
-                +'          <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'"'
-                +'              id="uploadvideo_'+ id +'" accept="video/mp4,video/x-m4v,video/*">'
-                +'          <div class="uploadaudio">'
-                +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
-                +'                  value="audio">'
-                +'          </div>'
-                +'          <input class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'"'
-                +'              id="uploadaudio_'+ id +'" accept="audio/*">'
-                +'          <div class="uploadtext">'
-                +'              <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
-                +'                  value="text">'
-                +'          </div>'
-                +'      </div>'
-                +'    </div>'
-                +'</div>';
-            }
-            if (type === 'file') {
-                el ='file'
-                ;
-            }
-            var children = $('.questions-box').children();
-
-            var childrenOptions = $('.optionsblock .eloptions').children();
-            $('.questions-box .question').removeClass('active');
-            $('.optionsblock .optionbox').removeClass('active');
-
-            if( appendInde === 'last' ){
-                $('.questions-box').append(el);
-                $('.optionsblock .eloptions').append(option);
-            }
-            else if ( appendInde < 0 ) {
-                $('.questions-box').prepend(el);
-                $('.optionsblock .eloptions').prepend(option);
-            }
-            else {
-                $(children[appendInde]).after( el );
-                $(childrenOptions[appendInde]).after(option);
-            }
-            
-            $( ".matrix_number" ).spinner({
-                min: 0,
-                max: 15,
-                spin: function( event, ui ) {
-                    var id = $(event.target).attr('name').split('_')[1];
-                    var number = ui.value;
-                    MatrixColChange(id, number);
-                }
-            });
-
-            $( ".question_number" ).spinner({
-                min: 0,
-                max: 15,
-                spin: function( event, ui ) {
-                    var id = $(event.target).attr('name').split('_')[1];
-                    var number = ui.value;
-                    var questionPoints = $('#inputtables_' + id).find('.questionPoint');
-                    questionPoints.each(function (index, question) {
-                        if((index + 1) > number) {
-                            $(question).remove();
-                        }
-                    });
-                    var currentId = questionPoints.length
-                    if(number > questionPoints.length){
-                        while (currentId != number){
-                            currentId++;
-                            var newQuestion = 
-                            '<div class="questionPoint" id="questionPoint_'+ id + '_' + currentId +'">'
-                            +'    <label for="inputpoint_'+ id + '_' + currentId +'">'+ currentId +'</label>'
-                            +'    <input class="question_points" name="inputpoint_'+ id + '_' + currentId +'" id="inputpoint_'+ id + '_' + currentId +'" type="text" placeholder="Вариант ответа">'
-                            +'</div>';
-                            $(newQuestion).appendTo($('#inputtables_' + id));
-                        }
-                    }
-                    SetPointOfQuestion(id, number);
-                }
-            });
-
-
-            $( ".question_number_branching" ).spinner({
-                min: 0,
-                max: 15,
-                spin: function( event, ui ) {
-                    var id = $(event.target).attr('name').split('_')[1];
-                    var number = ui.value;
-                    var questionPoints = $('#inputtables_' + id).find('.questionPoint');
-                    questionPoints.each(function (index, question) {
-                        if((index + 1) > number) {
-                            $('#hiddenquestion_' + id + '_' + index).remove();
-                            $(question).remove();
-                        }
-                    });
-                    var currentId = questionPoints.length
-                    if(number > questionPoints.length){
-                        while (currentId != number){
-                            currentId++;
-                            var newQuestion = 
-                            '<div class="questionPoint" id="questionPoint_'+ id + '_' + currentId +'">'
-                            +'    <label for="inputpoint_'+ id + '_' + currentId +'">'+ currentId +'</label>'
-                            +'    <input class="question_points" name="inputpoint_'+ id + '_' + currentId +'" id="inputpoint_'+ id + '_' + currentId +'" type="text" placeholder="Вариант ответа">'
-                            +'    <div class="branching-btn"></div>'
-                            +'    <div class="branching-list"> </div>'
-                            +'</div>';
-                            $(newQuestion).appendTo($('#inputtables_' + id));
-                        }
-                    }
-                    SetPointOfQuestion(id, number);
-                }
-            });
-
-            $( ".freeanswer_number" ).spinner({
-                min: 0,
-                max: 15,
-                spin: function( event, ui ) {
-                    var id = parseInt($(event.target).attr('name').split('_')[1]);
-                    var number = ui.value;
-                    SetPointOfFreeQuestion(id, number);
-                }
-            });
-            // RefreshItems();
-            $('.date-answer input').datepicker();
-            $('.phone-answer input.code').intlTelInput({
-                initialCountry: "ru",
-            });
-            $('.questions-box').attr('data-count', i);
-        }
         // delete question
         $('.questions-box').on('click', '.close-question', function(e){
             var optionId = '#option_' + $(this).parents('.question').attr('data-optionid');
@@ -3206,35 +3182,16 @@ jQuery(function ($) {
             }
             $(this).parents('.question').remove();
             $('.questions-box').attr('data-count', id);
-
-            var deleteID = $(this).parents('.question').attr('data-optionid');
-            console.log(deleteID);
-            $.ajax ({
-                type: 'POST',
-                url: "/admin/poll/delete-question",
-                dataType: "json",
-                data: { 
-                    id: deleteID,
-                }
-            }).done(function (data) {
-                // данные удалени
-                console.log('Вопрос удален');
-            }).fail(function () {
-                // не удалось выполнить запрос к серверу
-                console.log('Запрос не принят');
-            });
-
-            // RefreshItems();
+            RefreshItems();
         });
         
         //activating question
         $('.questions-box').on('click', '.question', function(e){
             if(!$(e.target).hasClass('close-question')){
-                var id = $(this).attr('data-optionid');
+                var id = parseInt($(this).attr('data-optionid'));
                 $('.questions-box .question').removeClass('active');
                 $('.optionsblock .optionbox').removeClass('active');
                 $(this).addClass('active');
-                console.log($('.optionsblock #option_' + id ));
                 $('.optionsblock #option_' + id ).addClass('active');
             }
         });
@@ -3419,26 +3376,26 @@ jQuery(function ($) {
                 }
             });
 
-            // var nodeList = childrenOptions;
-            // var itemsArray = [];
-            // if(nodeList[0]){
-            //     var parent = nodeList[0].parentNode;
-            //     for (var i = 0; i < nodeList.length; i++) {    
-            //         itemsArray.push(parent.removeChild(nodeList[i]));
-            //     }
-            //     itemsArray.sort(function(nodeA, nodeB) {
-            //         var idA = parseInt($(nodeA).attr('id').split("_")[1]);
-            //         var idB = parseInt($(nodeB).attr('id').split("_")[1]);
-            //         var numberA = parseInt(idA);
-            //         var numberB = parseInt(idB);
-            //         if (numberA < numberB) return -1;
-            //         if (numberA > numberB) return 1;
-            //         return 0;
-            //     })
-            //         .forEach(function(node) {
-            //         parent.appendChild(node)
-            //     });
-            // }
+            var nodeList = childrenOptions;
+            var itemsArray = [];
+            if(nodeList[0]){
+                var parent = nodeList[0].parentNode;
+                for (var i = 0; i < nodeList.length; i++) {    
+                    itemsArray.push(parent.removeChild(nodeList[i]));
+                }
+                itemsArray.sort(function(nodeA, nodeB) {
+                    var idA = parseInt($(nodeA).attr('id').split("_")[1]);
+                    var idB = parseInt($(nodeB).attr('id').split("_")[1]);
+                    var numberA = parseInt(idA);
+                    var numberB = parseInt(idB);
+                    if (numberA < numberB) return -1;
+                    if (numberA > numberB) return 1;
+                    return 0;
+                })
+                    .forEach(function(node) {
+                    parent.appendChild(node)
+                });
+            }
             $(".spinner").inputFilter(function(value) {
                 return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 15);
             });
@@ -3465,7 +3422,7 @@ jQuery(function ($) {
 
         $('.questions-box').sortable({
             deactivate: function (event, ui) {
-                // RefreshItems();
+                RefreshItems();
                 $('.optionsblock .default').addClass('active');
             }
         });

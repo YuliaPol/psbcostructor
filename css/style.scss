@@ -905,7 +905,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
             .imageblock {
                 display: flex;
                 align-items: center;
-                justify-content: center;
+                justify-content: flex-start;
                 flex-grow: 1;
                 flex-wrap: wrap;
                 .image {
@@ -913,6 +913,27 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                     padding: 7px;
                     flex-grow: 1;
                     min-width: 33%;
+                    max-height: 600px;
+                    position: relative;
+                    &:hover {
+                        .remove-picture {
+                            opacity: 1;
+                        }
+                    }
+                    .remove-picture {
+                        position: absolute;
+                        top: 10px;
+                        right: 10px;
+                        width: 15px;
+                        height: 15px;
+                        background: url('./../img/close-grey.svg');
+                        background-position: center;
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                        cursor: pointer;
+                        opacity: 0;
+                        transition: opacity 0.3s ease-in;
+                    }
                     .bottom-row {
                         display: flex;
                         align-items: center;
@@ -995,9 +1016,10 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
             .bottom-row {
                 display: flex;
                 align-items: center;
-                justify-content: flex-end;
+                justify-content: space-between;
             }
-            .addmorepictures {
+            .addmorepictures,
+            .removeallpictures {
                 font-family: $fontpage;
                 font-style: normal;
                 font-weight: 300;

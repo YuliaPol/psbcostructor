@@ -1209,10 +1209,10 @@ table {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
       -ms-flex-positive: 1;
@@ -1230,6 +1230,30 @@ table {
       -ms-flex-positive: 1;
           flex-grow: 1;
   min-width: 33%;
+  max-height: 600px;
+  position: relative;
+}
+
+.construcot-container .centerbox .mediablock .imageblock .image:hover .remove-picture {
+  opacity: 1;
+}
+
+.construcot-container .centerbox .mediablock .imageblock .image .remove-picture {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 15px;
+  height: 15px;
+  background: url("./../img/close-grey.svg");
+  background-position: center;
+  -webkit-background-size: cover;
+          background-size: cover;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease-in;
+  -o-transition: opacity 0.3s ease-in;
+  transition: opacity 0.3s ease-in;
 }
 
 .construcot-container .centerbox .mediablock .imageblock .image .bottom-row {
@@ -1360,13 +1384,14 @@ table {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
-.construcot-container .centerbox .mediablock .addmorepictures {
+.construcot-container .centerbox .mediablock .addmorepictures,
+.construcot-container .centerbox .mediablock .removeallpictures {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
