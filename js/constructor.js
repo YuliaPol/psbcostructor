@@ -114,7 +114,7 @@ jQuery(function ($) {
 
         //fille upload 
         //uploadpicture
-        $('.rightside').on('click', '.uploadpicture', function(e){
+        $('.rightside').on('click', '.eloptions .uploadpicture', function(e){
             $(this).parents('.filerow').children().removeClass('active');
             $(this).addClass('active');
             $(this).find('input[type=radio]').prop('checked', true);
@@ -137,53 +137,13 @@ jQuery(function ($) {
             var heightImgBlock = 0;
             ImageBlock.each(function (index, block) {
                 var images = $(block).children();
-                var prop;
-                // images.each(function (index2, img) {
-                //     var widthImg= $(img).find('img').get(0).naturalWidth;
-                //     var heightImg= $(img).find('img').get(0).naturalHeight;
-                //     prop = widthImg/heightImg;
-                //     if(heightImg && widthImg){
-                //         if(images.length == 1){
-                //             heightImgBlock = heightImg;
-                //         }
-                //         else {
-                //             if(images.length % 2 == 0){
-                //                 heightImgBlock = heightImgBlock +  300/prop;
-                //             }
-                //             else {
-                //                 heightImgBlock =  heightImgBlock + 250/prop;
-                //             }
-                //             if(parseInt(index2)+1 == parseInt(images.length)) {
-                //                 heightImgBlock = heightImgBlock/images.length + 90;
-                //             }
-                //         }
-                //     }
-                //     if(heightImgBlock == 0 || heightImgBlock == NaN){
-                //         if(images.length>1){
-                //             heightImgBlock = 300;
-                //         }
-                //         else {
-                //             heightImgBlock = 500;
-                //         }
-                //     }
-                // });
                 images.each(function (index2, img) {
-                    if(images.length>1){
-                        $(img).css('min-width', '33%');
-                        $(img).css('max-width', '33%');
-                        $(img).css('height', '300px');
-                        $(img).css('width', '33%');
-                        $(img).find('img').css('height', 'calc(100% - 90px)');
-                        $(img).find('img').css('object-fit', 'cover');
-                    }
-                    else {
-                        $(img).css('min-width', '100%');
-                        $(img).css('max-width', '100%');
-                        $(img).css('width', '100%');
-                        $(img).css('height', '400px');
-                        $(img).find('img').css('height', 'calc(100% - 90px)');
-                        $(img).find('img').css('object-fit', 'cover');
-                    }
+                    $(img).css('min-width', '33%');
+                    $(img).css('max-width', '33%');
+                    $(img).css('height', '300px');
+                    $(img).css('width', '33%');
+                    $(img).find('img').css('height', 'calc(100% - 90px)');
+                    $(img).find('img').css('object-fit', 'cover');
                 });
             });
         }
@@ -193,15 +153,10 @@ jQuery(function ($) {
         $('body').on('submit', '.uploadimageform' ,(function(e) {
             e.preventDefault();
             var QuestionId = $(this).find('input').attr('data-questionid');
-            var idQuuiz = $('#quiz-id').val();
-            console.log(QuestionId);
-            console.log(idQuuiz);
+            var idQuuiz = $(this).find('input').attr('data-quizid');
             var formData = new FormData(this);
-            // Display the key/value pairs
-            for (var pair of formData.entries()) {
-                console.log(pair[0]+ ', ' + pair[1]); 
-            }
-
+            // SetImageFromAjax(formData, QuestionId);
+            console.log($(this).find('input[type=file]').val());
             $.ajax({
                 type:'POST', // Тип запроса
                 url: '/admin/poll/image-upload', // Скрипт обработчика
@@ -210,34 +165,61 @@ jQuery(function ($) {
                 contentType: false, // Тип кодирования данных мы задали в форме, это отключим
                 processData: false, // Отключаем, так как передаем файл
                 success:function(data){
-                  printMessage('#result', data);
+                    console.log('Файлы загружены');
+                    const objfiles = JSON.parse(data);
+                    console.log(objfiles);
+                    SetImageFromAjax(objfiles, QuestionId);
                 },
                 error:function(data){
                   console.log(data);
                 }
             });
-
-            // $.ajax ({
-            //     type: 'POST',
-            //     url: "/admin/poll/image-upload",
-            //     dataType: "json",
-            //     data: {
-            //         formData
-            //         // quiz_id: idQuuiz,
-            //         // question_id: QuestionId
-            //     },
-            //     processData: false,
-            //     contentType: false, 
-            //     cache: false,
-            // }).done(function (data) {
-            //     // данные сохранены
-            //     console.log('Фото загружены');
-            //     console.log(data);
-            // }).fail(function () {
-            //     // не удалось выполнить запрос к серверу
-            //     console.log('Запрос не принят');
-            // });
         }));
+
+        function SetImageFromAjax(files, idQuestion) {
+            var child = $('#questionanswers_'+idQuestion);
+            var index = 1;
+            if(child.parents('.question').find('.imageblock').children().length>0){
+                index = child.parents('.question').find('.imageblock').children().length + 1;
+            }
+            var index2 = 1;
+            var image;
+            // for (var i = 0; i < files.length; i++) {
+            // files.forEach(function(item, i, arr) {
+            $.each( files, function( i, item ) {
+                var image;
+                var settingsImage =
+                '<div class="remove-picture"></div>'
+                +'<div class="bottom-row">'
+                +'   <div class="inputsimage">'
+                +'        <div class="inputgroup">'
+                +'            <input type="radio" name="clickforimage_' + idQuestion + '_' + index +'" id="clickforimage_' + idQuestion + '_' + index +'_1"'
+                +'                value="50">'
+                +'            <label for="clickforimage_' + idQuestion + '_' + index + '_1">50 на картинку</label>'
+                +'        </div>'
+                +'        <div class="inputgroup">'
+                +'            <input type="radio" name="clickforimage_' + idQuestion + '_' + index + '" id="clickforimage_' + idQuestion + '_' + index + '_2"'
+                +'                value="100">'
+                +'            <label for="clickforimage_' + idQuestion + '_' + index + '_2">100 на картинку</label>'
+                +'        </div>'
+                +'        <div class="inputgroup">'
+                +'            <input type="radio" name="clickforimage_' + idQuestion  + '_' + index + '" id="clickforimage_'  + idQuestion + '_' + index + '_3"'
+                +'                value="200">'
+                +'            <label for="clickforimage_' + idQuestion  + '_' + index + '_3">200 на картинку</label>'
+                +'        </div>'
+                +'    </div>'
+                +'</div>';
+                image = 
+                '<div class="image" style="width:33%">'
+                +'<input type="hidden" value="'+ i +'" name="imageId_' + idQuestion + '_' + i + '">'
+                +'<img src ="/admin/uploads/'+ item + '" alt="Image"> ' + settingsImage + '</div>';
+                console.log(item);
+                child.parents('.question').find('.imageblock').append(image);
+                ResizeImg();
+                index++;
+                index2++;
+            });
+        }
 
         //upload picture
         $('.rightside').on('change', '.uploadpictureinput', function(e){
@@ -248,7 +230,6 @@ jQuery(function ($) {
                $(tempFiles).insertBefore($(this));
             }            
             var files = e.target.files;
-            console.log(idQuestion);
             var child = $('#questionanswers_'+idQuestion);
             if(!child.parents('.question').find('.mediablock').length>0){
                 var mideablock = '<div class="mediablock"></div>';
@@ -271,92 +252,32 @@ jQuery(function ($) {
                 $('.modal').fadeIn(300);
             }
             else {
-                SetImage(files, idQuestion ,child);
-                if($('.uploadimage').length==0){
+                // SetImage(files, idQuestion ,child);
+                if($('.uploadimageform').length==0){
                     var testform = '<form style="display: none;" class="uploadimageform" enctype="multipart/form-data"></form>';
                     $('body').append(testform);
                 }
+                else {
+                    $('.uploadimageform').html(' ');
+                }
                 var input = $(this).clone();
                 var idQuuiz = $('#quiz-id').val();
-                console.log( $('#quiz-id'));
                 input.attr('data-questionid', idQuestion);
-                input.attr('name', 'uploadimage_1');
+                input.attr('data-quizid', idQuuiz);
+                input.attr('name', 'uploadimage_1[]');
                 var inputquestion = '<input type="hidden" name="question_id" value="' + idQuestion + '">';
                 var inputquiz = '<input type="hidden" name="quiz_id" value="'+ idQuuiz + '">';
                 $('.uploadimageform').append(input);
                 $('.uploadimageform').append(inputquestion);
                 $('.uploadimageform').append(inputquiz);
+                $('.uploadimageform').submit();
             }
         });
 
-        function SetImage(files, idQuestion ,child) {
-            var index = 1;
-            if(child.parents('.question').find('.imageblock').children().length>0){
-                index = child.parents('.question').find('.imageblock').children().length + 1;
-            }
-            var index2 = 1;
-            var image;
-
-            for (var i = 0; i < files.length; i++) {
-                if (files && files[i]) {
-                    var reader = new FileReader();
-                    reader.fileName = files[i].name;
-                    reader.idFile = i;
-                    var width = Math.round(100 / files.length);
-                        reader.onload = function (e) {
-                        var filename = e.target.fileName;
-                        var redIdFile = e.target.idFile;
-                        var settingsImage =
-                        '<div class="remove-picture"></div>'
-                        +'<input class="newimg" type="hidden" name="imageId_' + idQuestion + '_' + index +'" value="' + filename + '">'
-                        +'<div class="bottom-row">'
-                        +'   <div class="inputsimage">'
-                        +'        <div class="inputgroup">'
-                        +'            <input type="radio" name="clickforimage_' + idQuestion + '_' + index +'" id="clickforimage_' + idQuestion + '_' + index +'_1"'
-                        +'                value="50">'
-                        +'            <label for="clickforimage_' + idQuestion + '_' + index + '_1">50 на картинку</label>'
-                        +'        </div>'
-                        +'        <div class="inputgroup">'
-                        +'            <input type="radio" name="clickforimage_' + idQuestion + '_' + index + '" id="clickforimage_' + idQuestion + '_' + index + '_2"'
-                        +'                value="100">'
-                        +'            <label for="clickforimage_' + idQuestion + '_' + index + '_2">100 на картинку</label>'
-                        +'        </div>'
-                        +'        <div class="inputgroup">'
-                        +'            <input type="radio" name="clickforimage_' + idQuestion  + '_' + index + '" id="clickforimage_'  + idQuestion + '_' + index + '_3"'
-                        +'                value="200">'
-                        +'            <label for="clickforimage_' + idQuestion  + '_' + index + '_3">200 на картинку</label>'
-                        +'        </div>'
-                        +'    </div>'
-                        +'</div>';
-                        if(files.length>1){
-                            if(files.length % 2 == 0){
-                                image = 
-                                '<div class="image" style="max-width: 100%; min-width: 50%;"><img style="height: calc(100% - 90px); object-fit: cover;" src ="'+ e.target.result + '" alt="Image">' + settingsImage + ' </div>';    
-                            }
-                            else {
-                                image = 
-                                '<div class="image"><img style="height: calc(100% - 90px); object-fit: cover;" src ="'+ e.target.result + '" alt="Image">' + settingsImage + ' </div>';    
-                            }
-                        }
-                        else {
-                            image = 
-                            '<div class="image" style="width: '+ width + '%"><img src ="'+ e.target.result + '" alt="Image"> ' + settingsImage + '</div>';
-                        }
-                        child.parents('.question').find('.imageblock').append(image);
-                        if(parseInt(redIdFile)==parseInt(files.length - 1)){
-                            ResizeImg();
-                            $('.uploadimageform').submit();
-                        }
-                        index++;
-                        index2++;
-                    }
-                    reader.readAsDataURL(files[i]);
-                }
-            }
-        }
         $('.centerbox').on('click', '.remove-picture', function(e){
             var parents = $(this).parents('.imageblock');
             var pictureId = $(this).parents('.image').find('input[type=hidden]').val();
+            console.log(pictureId);
             $(this).parents('.image').remove();
             var myFormData = new FormData();
             myFormData.append('pictureId', pictureId);
@@ -3234,7 +3155,6 @@ jQuery(function ($) {
                 $('.questions-box .question').removeClass('active');
                 $('.optionsblock .optionbox').removeClass('active');
                 $(this).addClass('active');
-                console.log($('.optionsblock #option_' + id ));
                 $('.optionsblock #option_' + id ).addClass('active');
             }
         });
