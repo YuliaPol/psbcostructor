@@ -439,11 +439,13 @@ jQuery(function ($) {
                 else {
                     $('.uploadvideoform').html(' ');
                 }
+
+                //videо ajax
                 var input = $(this).clone();
                 var idQuuiz = $('#quiz-id').val();
                 input.attr('data-questionid', idQuestion);
                 input.attr('data-quizid', idQuuiz);
-                input.attr('name', 'uploadvideo_1[]');
+                input.attr('name', 'uploadvideo_1');
                 var inputquestion = '<input type="hidden" name="question_id" value="' + idQuestion + '">';
                 var inputquiz = '<input type="hidden" name="quiz_id" value="'+ idQuuiz + '">';
                 $('.uploadvideoform').append(input);
@@ -451,20 +453,20 @@ jQuery(function ($) {
                 $('.uploadvideoform').append(inputquiz);
                 $('.uploadvideoform').submit();
 
-                if (/^video/.test( files[0].type)){ // only video file
-                    var reader = new FileReader(); // instance of the FileReader
-                    reader.readAsDataURL(files[0]); // read the local file
-                    reader.onloadend = function(){ // set video data as background of div
-                        var video = 
-                        '<video width="400" >'
-                        +'    <source src="'+ this.result + '">'
-                        +'    Your browser does not support HTML5 video.'
-                        +'</video>';
-                        var play ='<div class="play"></div>';
-                        child.parents('.question').find('.videoblock').append(video);
-                        child.parents('.question').find('.videoblock').append(play);
-                    }
-                }
+                // if (/^video/.test( files[0].type)){ // only video file
+                //     var reader = new FileReader(); // instance of the FileReader
+                //     reader.readAsDataURL(files[0]); // read the local file
+                //     reader.onloadend = function(){ // set video data as background of div
+                //         var video = 
+                //         '<video width="400" >'
+                //         +'    <source src="'+ this.result + '">'
+                //         +'    Your browser does not support HTML5 video.'
+                //         +'</video>';
+                //         var play ='<div class="play"></div>';
+                //         child.parents('.question').find('.videoblock').append(video);
+                //         child.parents('.question').find('.videoblock').append(play);
+                //     }
+                // }
             }
         });
 
@@ -493,7 +495,9 @@ jQuery(function ($) {
         }));
 
         
-        function SetImageFromAjax(files, idQuestion) {
+        function SetVideoFromAjax(files, idQuestion) {
+            console.log(files);
+            console.log(idQuestion);
             var child = $('#questionanswers_'+idQuestion);
             $.each( files, function( i, item ) {
                 var video;
@@ -503,7 +507,9 @@ jQuery(function ($) {
                 +'    <source src="/admin/uploads/'+ item + '">'
                 +'    Your browser does not support HTML5 video.'
                 +'</video>';
+                var play ='<div class="play"></div>';
                 child.parents('.question').find('.videoblock').html(video);
+                child.parents('.question').find('.videoblock').append(play);
             });
         }
 
@@ -558,7 +564,7 @@ jQuery(function ($) {
                 reader.readAsDataURL(files[0]); // read the local file
                 reader.onloadend = function(){ // set  
 
-                        //Generate unic ud
+                // Generate unic ud
                 var id = '_' + Math.random().toString(36).substr(2, 9);
                 var path = this.result;
 
@@ -590,7 +596,59 @@ jQuery(function ($) {
 
                 }
             }
+            if($('.uploadaudioform').length==0){
+                var testform = '<form style="display: none;" class="uploadaudioform" enctype="multipart/form-data"></form>';
+                $('body').append(testform);
+            }
+            else {
+                $('.uploadvideoform').html(' ');
+            }
+            //audio ajax
+            var input = $(this).clone();
+            var idQuuiz = $('#quiz-id').val();
+            input.attr('data-questionid', idQuestion);
+            input.attr('data-quizid', idQuuiz);
+            input.attr('name', 'uploadaudio_1');
+            var inputquestion = '<input type="hidden" name="question_id" value="' + idQuestion + '">';
+            var inputquiz = '<input type="hidden" name="quiz_id" value="'+ idQuuiz + '">';
+            $('.uploadaudioform').append(input);
+            $('.uploadaudioform').append(inputquestion);
+            $('.uploadaudioform').append(inputquiz);
+            $('.uploadaudioform').submit();
         });
+
+        $('body').on('submit', '.uploadaudioform' ,(function(e) {
+            e.preventDefault();
+            var QuestionId = $(this).find('input').attr('data-questionid');
+            var idQuuiz = $(this).find('input').attr('data-quizid');
+            var formData = new FormData(this);
+            $.ajax({
+                type:'POST', // Тип запроса
+                url: '/admin/poll/image-upload', // Скрипт обработчика
+                data: formData, // Данные которые мы передаем
+                cache:false, // В запросах POST отключено по умолчанию, но перестрахуемся
+                contentType: false, // Тип кодирования данных мы задали в форме, это отключим
+                processData: false, // Отключаем, так как передаем файл
+                success:function(data){
+                    console.log('Файлы загружены');
+                    const objfiles = JSON.parse(data);
+                    SetAudioFromAjax(objfiles, QuestionId);
+                },
+                error:function(data){
+                  console.log(data);
+                }
+            });
+        }));
+
+        function SetAudioFromAjax(files, idQuestion) {
+            console.log(files);
+            console.log(idQuestion);
+            var child = $('#questionanswers_'+idQuestion);
+            $.each( files, function( i, item ) {
+                var hiddenInput = '<input type="hidden" value="'+ i +'" name="audioId_' + idQuestion + '_' + i + '">';
+                child.parents('.question').find('.mediablock').append(hiddenInput);
+            });
+        }
 
         $('.audiowave').each(function(){
             //Generate unic ud
@@ -2003,8 +2061,6 @@ jQuery(function ($) {
                 el =
                 '<div class="question active"  data-optionId="'+ id +'">'
                 +'    <div class="close-question"></div>'
-                +'<input type="hidden" name="questiontype_'+ id +'" value="single" >'
-                +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
                 +'    <div class="name" id="questionName_'+ id +'">'
                 +'        Вопрос '
                 +'    </div>'
@@ -2022,6 +2078,8 @@ jQuery(function ($) {
                 ;
                 option = 
                 '<div class="optionbox active option_single" id="option_'+ id +'">'
+                +'<input type="hidden" name="questiontype_'+ id +'" value="single" >'
+                +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
                 +'    <div class="header-aside">'
                 +'        Настройки'
                 +'    </div>'
@@ -2080,8 +2138,6 @@ jQuery(function ($) {
                 el = 
                 '<div class="question active"   data-optionid="'+ id +'">'
                 +'    <div class="close-question"></div>'
-                +'<input type="hidden" name="questiontype_'+ id +'" value="free" >'
-                +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
                 +'    <div class="name " id="questionName_'+ id +'">'
                 +'        Вопрос'
                 +'    </div>'
@@ -2093,6 +2149,8 @@ jQuery(function ($) {
                 +'</div> ';
                 option =
                 '<div class="optionbox active option_single" id="option_'+ id +'">'
+                +'<input type="hidden" name="questiontype_'+ id +'" value="free" >'
+                +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
                 +'    <div class="header-aside">'
                 +'        Настройки'
                 +'    </div>'
@@ -2133,8 +2191,6 @@ jQuery(function ($) {
                 el =
                 '<div class="question active" data-optionid="'+ id +'">'
                 +'    <div class="close-question"></div>'
-                +'<input type="hidden" name="questiontype_'+ id +'" value="listfree" >'
-                +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
                 +'    <div class="name" id="questionName_'+ id +'">'
                 +'        Вопрос'
                 +'    </div>'
@@ -2152,6 +2208,8 @@ jQuery(function ($) {
                 +'</div>';
                 option =
                 '<div class="optionbox active" id="option_'+ id +'">'
+                +'<input type="hidden" name="questiontype_'+ id +'" value="listfree" >'
+                +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
                 +'    <div class="header-aside">'
                 +'        Настройки'
                 +'    </div>'
@@ -2196,8 +2254,6 @@ jQuery(function ($) {
                 el =
                 '<div class="question branchingquestion active" data-optionid="'+ id +'">'
                 +'    <div class="close-question"></div>'
-                +'<input type="hidden" name="questiontype_'+ id +'" value="branching" >'
-                +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
                 +'    <div class="name " id="questionName_'+ id +'">'
                 +'        Ветвление'
                 +'    </div>'
@@ -2215,6 +2271,8 @@ jQuery(function ($) {
                 +'</div>';
                 option =
                 '<div class="optionbox active" id="option_'+ id +'">'
+                +'<input type="hidden" name="questiontype_'+ id +'" value="branching" >'
+                +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
                 +'    <div class="header-aside">'
                 +'        Настройки'
                 +'    </div>'
@@ -2278,8 +2336,6 @@ jQuery(function ($) {
                 el =
                 '<div class="question active" data-optionid="'+ id +'">'
                 +'    <div class="close-question"></div>'
-                +'<input type="hidden" name="questiontype_'+ id +'" value="scale" >'
-                +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
                 +'    <div class="name " id="questionName_'+ id +'">'
                 +'        Вопрос'
                 +'    </div>'
@@ -2330,6 +2386,8 @@ jQuery(function ($) {
                 +'</div> ';
                 option = 
                 '<div class="optionbox active" id="option_'+ id +'">'
+                +'<input type="hidden" name="questiontype_'+ id +'" value="scale" >'
+                +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
                 +'    <div class="header-aside">'
                 +'        Настройки'
                 +'    </div>'
@@ -2427,8 +2485,6 @@ jQuery(function ($) {
                 el = 
                 '<div class="question active" data-optionid="'+ id +'">'
                 +'    <div class="close-question"></div>'
-                +'    <input type="hidden" name="questiontype_'+ id +'" value="dropdown" >'
-                +'    <input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
                 +'    <div class="answer" id="questionanswers_'+ id +'">'
                 +'        <div class="dropdown-list">'
                 +'            <div class="dropdown-block">'
@@ -2460,6 +2516,8 @@ jQuery(function ($) {
                 +'</div>';
                 option =
                 '<div class="optionbox active" id="option_'+ id +'">'
+                +'    <input type="hidden" name="questiontype_'+ id +'" value="dropdown" >'
+                +'    <input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
                 +'    <div class="header-aside">'
                 +'        Настройки'
                 +'    </div>'
@@ -2535,8 +2593,6 @@ jQuery(function ($) {
                 el =
                 '<div class="question active" data-optionid="'+ id +'">'
                 +'    <div class="close-question"></div>'
-                +'    <input type="hidden" name="questiontype_'+ id +'" value="dropdownmultiple" >'
-                +'    <input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
                 +'    <div class="answer" id="questionanswers_'+ id +'">'
                 +'        <div class="dropdown-list">'
                 +'            <div class="dropdown-block">'
@@ -2568,6 +2624,8 @@ jQuery(function ($) {
                 +'</div>';
                 option = 
                 '<div class="optionbox active" id="option_'+ id +'">'
+                +'    <input type="hidden" name="questiontype_'+ id +'" value="dropdownmultiple" >'
+                +'    <input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
                 +'    <div class="header-aside">'
                 +'        Настройки'
                 +'    </div>'
@@ -2651,8 +2709,6 @@ jQuery(function ($) {
                 el =
                 '<div class="question active" data-optionid="'+ id +'">'
                 +'    <div class="close-question"></div>'
-                +'    <input type="hidden" name="questiontype_'+ id +'" value="matrix">'
-                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="name " id="questionName_'+ id +'">'
                 +'        Вопрос'
                 +'    </div>'
@@ -2705,6 +2761,8 @@ jQuery(function ($) {
                 +'</div>';
                 option =
                 '<div class="optionbox active" id="option_'+ id +'">'
+                +'    <input type="hidden" name="questiontype_'+ id +'" value="matrix">'
+                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="header-aside">'
                 +'       Настройки'
                 +'   </div>'
@@ -2803,8 +2861,6 @@ jQuery(function ($) {
                 el =
                 '<div class="question" data-optionid="'+ id +'">'
                 +'    <div class="close-question"></div>'
-                +'   <input type="hidden" name="questiontype_'+ id +'" value="ranging">'
-                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="name " id="questionName_'+ id +'">'
                 +'        Вопрос'
                 +'    </div>'
@@ -2828,6 +2884,8 @@ jQuery(function ($) {
                 +'</div>';
                 option = 
                 '<div class="optionbox" id="option_'+ id +'">'
+                +'   <input type="hidden" name="questiontype_'+ id +'" value="ranging">'
+                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="header-aside">'
                 +'      Настройки'
                 +'  </div>'
@@ -2895,8 +2953,6 @@ jQuery(function ($) {
                 el = 
                 '<div class="question active" data-optionid="'+ id +'">'
                 +'    <div class="close-question"></div>'
-                +'   <input type="hidden" name="questiontype_'+ id +'" value="ranging">'
-                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="name " id="questionName_'+ id +'">'
                 +'        Введите Ваше имя'
                 +'    </div>'
@@ -2917,6 +2973,8 @@ jQuery(function ($) {
                 +'</div>';
                 option =
                 '<div class="optionbox active" id="option_'+ id +'">'
+                +'   <input type="hidden" name="questiontype_'+ id +'" value="ranging">'
+                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="header-aside">'
                 +'        Настройки'
                 +'    </div>'
@@ -2952,8 +3010,6 @@ jQuery(function ($) {
                 el = 
                 '<div class="question active" data-optionid="'+ id +'">'
                 +'    <div class="close-question"></div>'
-                +'    <input type="hidden" name="questiontype_'+ id +'" value="date">'
-                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="name " id="questionName_'+ id +'">'
                 +'        Дата'
                 +'    </div>'
@@ -2968,6 +3024,8 @@ jQuery(function ($) {
                 +'</div>';
                 option =
                 '<div class="optionbox active" id="option_'+ id +'">'
+                +'    <input type="hidden" name="questiontype_'+ id +'" value="date">'
+                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="header-aside">'
                 +'        Настройки'
                 +'    </div>'
@@ -3003,8 +3061,6 @@ jQuery(function ($) {
                 el = 
                 '<div class="question active" data-optionid="'+ id +'">'
                 +'    <div class="close-question"></div>'
-                +'    <input type="hidden" name="questiontype_'+ id +'" value="email">'
-                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="name " id="questionName_'+ id +'">'
                 +'        Введите Ваш E-mail'
                 +'    </div>'
@@ -3018,6 +3074,8 @@ jQuery(function ($) {
                 +'</div>';
                 option =
                 '<div class="optionbox active" id="option_'+ id +'">'
+                +'    <input type="hidden" name="questiontype_'+ id +'" value="email">'
+                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="header-aside">'
                 +'        Настройки'
                 +'    </div>'
@@ -3053,8 +3111,6 @@ jQuery(function ($) {
                 el = 
                 '<div class="question active" data-optionid="'+ id +'">'
                 +'    <div class="close-question"></div>'
-                +'    <input type="hidden" name="questiontype_'+ id +'" value="phone">'
-                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="name " id="questionName_'+ id +'">'
                 +'        Введите Ваш номер телефона'
                 +'    </div>'
@@ -3076,6 +3132,8 @@ jQuery(function ($) {
                 +'</div>';
                 option =
                 '<div class="optionbox active" id="option_'+ id +'">'
+                +'    <input type="hidden" name="questiontype_'+ id +'" value="phone">'
+                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="header-aside">'
                 +'        Настройки'
                 +'    </div>'
@@ -3111,8 +3169,6 @@ jQuery(function ($) {
                 el = 
                 '<div class="question" data-optionid="'+ id +'">'
                 +'    <div class="close-question"></div>'
-                +'    <input type="hidden" name="questiontype_'+ id +'" value="btn">'
-                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="answer" id="questionanswers_'+ id +'">'
                 +'        <div class="btn-answer"'
                 +'            style="text-align: center;">'
@@ -3129,6 +3185,8 @@ jQuery(function ($) {
                 +'</div>';
                 option = 
                 '<div class="optionbox" id="option_'+ id +'">'
+                +'    <input type="hidden" name="questiontype_'+ id +'" value="btn">'
+                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="header-aside">'
                 +'        Настройки'
                 +'    </div>'
@@ -3203,7 +3261,6 @@ jQuery(function ($) {
                 $(children[appendInde]).after( el );
                 $(childrenOptions[appendInde]).after(option);
             }
-            RefreshItems();
             $('.questions-box .ranging-list').sortable({});
             
             $( ".matrix_number" ).spinner({
@@ -3290,6 +3347,8 @@ jQuery(function ($) {
                 initialCountry: "ru",
             });
             $('.questions-box').attr('data-count', i);
+
+            RefreshItems();
         }
         // delete question
         $('.questions-box').on('click', '.close-question', function(e){
