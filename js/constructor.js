@@ -432,6 +432,25 @@ jQuery(function ($) {
             }
             else {
 
+                if($('.uploadvideoform').length==0){
+                    var testform = '<form style="display: none;" class="uploadvideoform" enctype="multipart/form-data"></form>';
+                    $('body').append(testform);
+                }
+                else {
+                    $('.uploadvideoform').html(' ');
+                }
+                var input = $(this).clone();
+                var idQuuiz = $('#quiz-id').val();
+                input.attr('data-questionid', idQuestion);
+                input.attr('data-quizid', idQuuiz);
+                input.attr('name', 'uploadvideo_1[]');
+                var inputquestion = '<input type="hidden" name="question_id" value="' + idQuestion + '">';
+                var inputquiz = '<input type="hidden" name="quiz_id" value="'+ idQuuiz + '">';
+                $('.uploadvideoform').append(input);
+                $('.uploadvideoform').append(inputquestion);
+                $('.uploadvideoform').append(inputquiz);
+                $('.uploadvideoform').submit();
+
                 if (/^video/.test( files[0].type)){ // only video file
                     var reader = new FileReader(); // instance of the FileReader
                     reader.readAsDataURL(files[0]); // read the local file
@@ -449,7 +468,45 @@ jQuery(function ($) {
             }
         });
 
-            
+        
+        $('body').on('submit', '.uploadvideoform' ,(function(e) {
+            e.preventDefault();
+            var QuestionId = $(this).find('input').attr('data-questionid');
+            var idQuuiz = $(this).find('input').attr('data-quizid');
+            var formData = new FormData(this);
+            $.ajax({
+                type:'POST', // Тип запроса
+                url: '/admin/poll/image-upload', // Скрипт обработчика
+                data: formData, // Данные которые мы передаем
+                cache:false, // В запросах POST отключено по умолчанию, но перестрахуемся
+                contentType: false, // Тип кодирования данных мы задали в форме, это отключим
+                processData: false, // Отключаем, так как передаем файл
+                success:function(data){
+                    console.log('Файлы загружены');
+                    const objfiles = JSON.parse(data);
+                    SetVideoFromAjax(objfiles, QuestionId);
+                },
+                error:function(data){
+                  console.log(data);
+                }
+            });
+        }));
+
+        
+        function SetImageFromAjax(files, idQuestion) {
+            var child = $('#questionanswers_'+idQuestion);
+            $.each( files, function( i, item ) {
+                var video;
+                video = 
+                '<video width="400" >'
+                +'<input type="hidden" value="'+ i +'" name="videoId_' + idQuestion + '_' + i + '">'
+                +'    <source src="/admin/uploads/'+ item + '">'
+                +'    Your browser does not support HTML5 video.'
+                +'</video>';
+                child.parents('.question').find('.videoblock').html(video);
+            });
+        }
+
         //video play
         $('.centerbox').on('click', '.videoblock', function(e){
             if($(this).children('video').get(0).paused){
