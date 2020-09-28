@@ -2344,6 +2344,35 @@ table {
   color: #008811;
 }
 
+.construcot-container .centerbox .questions-box .question .answer .btn-answer {
+  text-align: center;
+}
+
+.construcot-container .centerbox .questions-box .question .answer .btn-answer .btn {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  outline: none;
+  border: none;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 16px;
+  color: #FFFFFF;
+  cursor: pointer;
+  overflow: hidden;
+}
+
 .construcot-container .centerbox .questions-box .question .answer .email-answer {
   display: -webkit-box;
   display: -webkit-flex;
@@ -3315,6 +3344,266 @@ table {
   line-height: 12px;
   color: #563BC2;
   padding: 10px;
+}
+
+.construcot-container .rightside .default .text-aside .btn-options .position,
+.construcot-container .rightside .optionbox .text-aside .btn-options .position {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  padding-bottom: 10px;
+}
+
+.construcot-container .rightside .default .text-aside .btn-options .position .left,
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .left {
+  padding-right: 17px;
+}
+
+.construcot-container .rightside .default .text-aside .btn-options .position .left input,
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .left input {
+  display: none;
+}
+
+.construcot-container .rightside .default .text-aside .btn-options .position .left input:checked + label,
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .left input:checked + label {
+  background: url(./../img/positionleft-a.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.construcot-container .rightside .default .text-aside .btn-options .position .left label,
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .left label {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url(./../img/positionleft.svg);
+  background-position: center;
+  -webkit-background-size: cover;
+          background-size: cover;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  -webkit-transition: background 0.3s ease-in;
+  -o-transition: background 0.3s ease-in;
+  transition: background 0.3s ease-in;
+}
+
+.construcot-container .rightside .default .text-aside .btn-options .position .left label:hover,
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .left label:hover {
+  background: url(./../img/positionleft-a.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.construcot-container .rightside .default .text-aside .btn-options .position .center,
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .center {
+  padding-right: 17px;
+}
+
+.construcot-container .rightside .default .text-aside .btn-options .position .center input,
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .center input {
+  display: none;
+}
+
+.construcot-container .rightside .default .text-aside .btn-options .position .center input:checked + label,
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .center input:checked + label {
+  background: url(./../img/positioncenter-a.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.construcot-container .rightside .default .text-aside .btn-options .position .center label,
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .center label {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url(./../img/positioncenter.svg);
+  background-position: center;
+  -webkit-background-size: cover;
+          background-size: cover;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  -webkit-transition: background 0.3s ease-in;
+  -o-transition: background 0.3s ease-in;
+  transition: background 0.3s ease-in;
+}
+
+.construcot-container .rightside .default .text-aside .btn-options .position .center label:hover,
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .center label:hover {
+  background: url(./../img//positioncenter-a.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.construcot-container .rightside .default .text-aside .btn-options .position .right,
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .right {
+  padding-right: 17px;
+}
+
+.construcot-container .rightside .default .text-aside .btn-options .position .right input,
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .right input {
+  display: none;
+}
+
+.construcot-container .rightside .default .text-aside .btn-options .position .right input:checked + label,
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .right input:checked + label {
+  background: url(./../img/positionright-a.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.construcot-container .rightside .default .text-aside .btn-options .position .right label,
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .right label {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url(./../img/positionright.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  -webkit-transition: background 0.3s ease-in;
+  -o-transition: background 0.3s ease-in;
+  transition: background 0.3s ease-in;
+}
+
+.construcot-container .rightside .default .text-aside .btn-options .position .right label:hover,
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .right label:hover {
+  background: url(./../img/positionright-a.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.construcot-container .rightside .default .text-aside .btn-options .row-options,
+.construcot-container .rightside .optionbox .text-aside .btn-options .row-options {
+  padding-top: 10px;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.construcot-container .rightside .default .text-aside .btn-options .row-options .optionbtngroup,
+.construcot-container .rightside .optionbox .text-aside .btn-options .row-options .optionbtngroup {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: calc(50% - 5px);
+  border: 1px solid #EEEFF3;
+  padding: 7px 9px;
+}
+
+.construcot-container .rightside .default .text-aside .btn-options .row-options .optionbtngroup .hiddeninput,
+.construcot-container .rightside .optionbox .text-aside .btn-options .row-options .optionbtngroup .hiddeninput {
+  width: 0px;
+  height: 0px;
+  opacity: 0;
+}
+
+.construcot-container .rightside .default .text-aside .btn-options .row-options .optionbtngroup label,
+.construcot-container .rightside .optionbox .text-aside .btn-options .row-options .optionbtngroup label {
+  display: inline-block;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #9B9595;
+}
+
+.construcot-container .rightside .default .text-aside .btn-options .row-options .optionbtngroup label .radius,
+.construcot-container .rightside .optionbox .text-aside .btn-options .row-options .optionbtngroup label .radius {
+  width: 10px;
+  height: 10px;
+  border: 1px solid #9B9595;
+  border-top-left-radius: 3px;
+  border-bottom: none;
+  border-right: none;
+}
+
+.construcot-container .rightside .default .text-aside .btn-options .row-options .optionbtngroup label .color,
+.construcot-container .rightside .optionbox .text-aside .btn-options .row-options .optionbtngroup label .color {
+  width: 10px;
+  height: 10px;
+}
+
+.construcot-container .rightside .default .text-aside .btn-options .row-options .optionbtngroup input,
+.construcot-container .rightside .optionbox .text-aside .btn-options .row-options .optionbtngroup input {
+  width: calc(100% - 25px);
+  border: none;
+  outline: none;
+  padding: 0px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #000000;
+}
+
+.construcot-container .rightside .default .text-aside .btn-options .form-group,
+.construcot-container .rightside .optionbox .text-aside .btn-options .form-group {
+  padding-top: 20px;
+}
+
+.construcot-container .rightside .default .text-aside .btn-options .form-group label,
+.construcot-container .rightside .optionbox .text-aside .btn-options .form-group label {
+  display: inline-block;
+  padding-bottom: 7px;
+  width: 100%;
+}
+
+.construcot-container .rightside .default .text-aside .btn-options .form-group input,
+.construcot-container .rightside .optionbox .text-aside .btn-options .form-group input {
+  border: 1px solid #EEEFF3;
+  padding: 7px 9px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #37353F;
+  outline: none;
+  width: 100%;
 }
 
 .construcot-container .rightside .default .text-aside .matrix-options .rowslist .row-item,
@@ -4644,6 +4933,14 @@ table {
 
 .construcot-container .listbox li.icon-file::before {
   background: url(./../img/icon-file.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.construcot-container .listbox li.icon-btn::before {
+  background: url(./../img/icon-btn.svg);
   background-position: center;
   -webkit-background-size: contain;
           background-size: contain;

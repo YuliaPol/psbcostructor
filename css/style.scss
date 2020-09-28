@@ -1674,6 +1674,24 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                             }
                         }
                     }
+                    .btn-answer {
+                        text-align: center;
+                        .btn {
+                            display: inline-flex;
+                            align-items: center;
+                            justify-content: center;
+                            outline: none;
+                            border: none;
+                            font-family: $fontpage;
+                            font-style: normal;
+                            font-weight: bold;
+                            font-size: 13px;
+                            line-height: 16px;
+                            color: #FFFFFF;
+                            cursor: pointer;
+                            overflow: hidden;
+                        }
+                    }
                     .email-answer {
                         display: flex;
                         align-items: flex-end;
@@ -2231,6 +2249,174 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                 line-height: 12px;
                 color: #563BC2;
                 padding: 10px;
+                .btn-options {
+                    .position {
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
+                        padding-bottom: 10px;
+                        .left {
+                            padding-right: 17px;
+                            input {
+                                display: none;
+                                &:checked + label {
+                                    background: url(./../img/positionleft-a.svg);
+                                    background-position: center;
+                                    background-size: contain;
+                                    background-repeat: no-repeat;
+                                }
+                            }
+                            label {
+                                display: inline-block;
+                                width: 16px;
+                                height: 16px;
+                                background: url(./../img/positionleft.svg);
+                                background-position: center;
+                                background-size: cover;
+                                background-repeat: no-repeat;
+                                cursor: pointer;
+                                transition: background 0.3s ease-in;
+                                &:hover {
+                                    background: url(./../img/positionleft-a.svg);
+                                    background-position: center;
+                                    background-size: contain;
+                                    background-repeat: no-repeat;
+                                }
+                            }
+                        }
+                        .center {
+                            padding-right: 17px;
+                            input {
+                                display: none;
+                                &:checked + label {
+                                    background: url(./../img/positioncenter-a.svg);
+                                    background-position: center;
+                                    background-size: contain;
+                                    background-repeat: no-repeat;
+                                }
+                            }
+                            label {
+                                display: inline-block;
+                                width: 16px;
+                                height: 16px;
+                                background: url(./../img/positioncenter.svg);
+                                background-position: center;
+                                background-size: cover;
+                                background-repeat: no-repeat;
+                                cursor: pointer;
+                                transition: background 0.3s ease-in;
+                                &:hover {
+                                    background: url(./../img//positioncenter-a.svg);
+                                    background-position: center;
+                                    background-size: contain;
+                                    background-repeat: no-repeat;
+                                }
+                            }
+                        }
+                        .right {
+                            padding-right: 17px;
+                            input {
+                                display: none;
+                                &:checked + label {
+                                    background: url(./../img/positionright-a.svg);
+                                    background-position: center;
+                                    background-size: contain;
+                                    background-repeat: no-repeat;
+                                }
+                            }
+                            label {
+                                display: inline-block;
+                                width: 16px;
+                                height: 16px;
+                                background: url(./../img/positionright.svg);
+                                background-position: center;
+                                background-size: contain;
+                                background-repeat: no-repeat;
+                                cursor: pointer;
+                                transition: background 0.3s ease-in;
+                                &:hover {
+                                    background: url(./../img/positionright-a.svg);
+                                    background-position: center;
+                                    background-size: contain;
+                                    background-repeat: no-repeat;
+                                }
+                            }
+                        }
+                    }
+                    .row-options {
+                        padding-top: 10px;
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        .optionbtngroup {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            width: calc(50% - 5px);
+                            border: 1px solid #EEEFF3;
+                            padding: 7px 9px;
+                            .hiddeninput {
+                                width: 0px;
+                                height: 0px;
+                                opacity: 0;
+                            }
+                            label {
+                                display: inline-block;
+                                font-family: $fontpage;
+                                font-style: normal;
+                                font-weight: 500;
+                                font-size: 10px;
+                                line-height: 12px;
+                                color: #9B9595;
+                                .radius {
+                                    width: 10px;
+                                    height: 10px;
+                                    border: 1px solid #9B9595;
+                                    border-top-left-radius: 3px;
+                                    border-bottom: none;
+                                    border-right: none;
+                                }
+                                .color {
+                                    width: 10px;
+                                    height: 10px; 
+                                }
+                            }
+                            input {
+                                width: calc(100% - 25px);
+                                border: none;
+                                outline: none;
+                                padding: 0px;
+                                font-family: $fontpage;
+                                font-style: normal;
+                                font-weight: 500;
+                                font-size: 10px;
+                                line-height: 12px;
+                                color: #000000;
+                            }
+                        }
+                    }
+                    .form-group {
+                        padding-top: 20px;
+                        label {
+                            display: inline-block;
+                            padding-bottom: 7px;
+                            width: 100%;
+                        }
+                        input {
+                            border: 1px solid #EEEFF3;
+                            padding: 7px 9px;
+                            font-family: $fontpage;
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 10px;
+                            line-height: 12px;
+                            color: $fontcolor;
+                            outline: none;
+                            width: 100%;
+                        }
+                    }
+                }
                 .matrix-options {
                     .rowslist {
                         .row-item {
@@ -3106,6 +3292,12 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
             }
             &.icon-file::before {
                 background: url(./../img/icon-file.svg);
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+            &.icon-btn::before {
+                background: url(./../img/icon-btn.svg);
                 background-position: center;
                 background-size: contain;
                 background-repeat: no-repeat;

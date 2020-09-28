@@ -1,16 +1,6 @@
 jQuery(function ($) {
     $(document).ready(function () {
 
-
-        // $('form').submit(function(e){
-        //     console.log( $( this ).serializeArray() );
-        //     e.preventDefault();
-        //     var filelist = $('.uploadpictureinput').next('input').val() || [];
-        //         for (var i = 0; i < filelist.length; i++) {
-        //             console.log('found file ' + i + ' = ' + filelist[i].name);
-        //         }
-        // });
-
         $.datepicker.setDefaults(
             {
             closeText: 'Закрыть',
@@ -31,6 +21,54 @@ jQuery(function ($) {
             yearSuffix: ''
         });
 
+        //btnoptions
+        $('.rightside').on('change', '.position input[type=radio]', function(e){
+            var idQuestion =  $(this).attr('name').split('_')[1];
+            $('#questionanswers_' + idQuestion).find('.btn-answer').css('text-align', $(this).val());
+        });
+
+        $('.rightside').on('change', '.btnwidth', function(e){
+            var idQuestion =  $(this).attr('name').split('_')[1];
+            var value = $(this).val() + 'px';
+            $('#questionanswers_' + idQuestion).find('.btn-answer .btn').css('width', value);
+        });
+
+        $('.rightside').on('change', '.btnheight', function(e){
+            var idQuestion =  $(this).attr('name').split('_')[1];
+            var value = $(this).val() + 'px';
+            $('#questionanswers_' + idQuestion).find('.btn-answer .btn').css('height', value);
+        });
+
+        $('.rightside').on('change', '.btnradius', function(e){
+            var idQuestion =  $(this).attr('name').split('_')[1];
+            var value = $(this).val() + "px";
+            $('#questionanswers_' + idQuestion).find('.btn-answer .btn').css( {  borderRadius:   value });
+        });
+
+        $('.rightside').on('change', '.btncolor', function(e){
+            var idQuestion =  $(this).attr('name').split('_')[1];
+            var value = $(this).val();
+            $('#questionanswers_' + idQuestion).find('.btn-answer .btn').css( 'background', value);
+            $(this).parents('.optionbtngroup').find('.color').css( 'background', value);
+        });
+
+        $('.rightside').on('click', '.btncolor', function(e){
+            $(this).prev('input').click();
+        });
+
+        $('.rightside').on('change', '.hiddeninputcolor', function(e){
+            $(this).next('input').val($(this).val());
+            var idQuestion =  $(this).attr('name').split('_')[1];
+            var value = $(this).val();
+            $('#questionanswers_' + idQuestion).find('.btn-answer .btn').css( 'background', value);
+            $(this).parents('.optionbtngroup').find('.color').css( 'background', value);
+        });
+
+        $('.rightside').on('change, keypress, keydown, keyup', '.btn_name', function(e){
+            var idQuestion =  $(this).attr('name').split('_')[1];
+            var value = $(this).val();
+            $('#questionanswers_' + idQuestion).find('.btn-answer .btn').html(value);
+        });
         $( ".listbox li" ).draggable({
             helper: "clone",
             cursor: "move",
@@ -155,8 +193,6 @@ jQuery(function ($) {
             var QuestionId = $(this).find('input').attr('data-questionid');
             var idQuuiz = $(this).find('input').attr('data-quizid');
             var formData = new FormData(this);
-            // SetImageFromAjax(formData, QuestionId);
-            console.log($(this).find('input[type=file]').val());
             $.ajax({
                 type:'POST', // Тип запроса
                 url: '/admin/poll/image-upload', // Скрипт обработчика
@@ -167,7 +203,6 @@ jQuery(function ($) {
                 success:function(data){
                     console.log('Файлы загружены');
                     const objfiles = JSON.parse(data);
-                    console.log(objfiles);
                     SetImageFromAjax(objfiles, QuestionId);
                 },
                 error:function(data){
@@ -213,7 +248,6 @@ jQuery(function ($) {
                 '<div class="image" style="width:33%">'
                 +'<input type="hidden" value="'+ i +'" name="imageId_' + idQuestion + '_' + i + '">'
                 +'<img src ="/admin/uploads/'+ item + '" alt="Image"> ' + settingsImage + '</div>';
-                console.log(item);
                 child.parents('.question').find('.imageblock').append(image);
                 ResizeImg();
                 index++;
@@ -277,23 +311,20 @@ jQuery(function ($) {
         $('.centerbox').on('click', '.remove-picture', function(e){
             var parents = $(this).parents('.imageblock');
             var pictureId = $(this).parents('.image').find('input[type=hidden]').val();
-            console.log(pictureId);
             $(this).parents('.image').remove();
-            var myFormData = new FormData();
-            myFormData.append('pictureId', pictureId);
-            $.ajax({ 
+            $.ajax ({
                 type: 'POST',
-                url: '/admin/poll/delete-image',
-                data: 
-                {
-                    pictureFile: myFormData,
-                },  
-                cache: false,
-                success: function (data) {
-                    console.log(data)
-                },
-                processData: false,
-                contentType: false, 
+                url: "/admin/poll/delete-image",
+                dataType: "json",
+                data: {
+                    id: pictureId,
+                }
+            }).done(function (data) {
+                // данные удалени
+                console.log('Вопрос удален');
+            }).fail(function () {
+                // не удалось выполнить запрос к серверу
+                console.log('Запрос не принят');
             });
             var Images = parents.children();
             Images.each(function (index, image) {
@@ -340,14 +371,12 @@ jQuery(function ($) {
             Images.each(function (index, image) {
                 var pictureId = $(image).find('input[type=hidden]').val();
                 $(image).remove();
-                var myFormData = new FormData();
-                    myFormData.append('pictureId', pictureId);
                     $.ajax({ 
                         type: 'POST',
                         url: '/admin/poll/delete-image',
                         data: 
                         {
-                            pictureFile: myFormData,
+                            id: pictureId,
                         },  
                         cache: false,
                         success: function (data) {
@@ -1337,8 +1366,6 @@ jQuery(function ($) {
                     break;
                 }
             }
-            // el.style.height = "auto";
-            // el.style.height = (el.scrollHeight > el.clientHeight) ? (el.scrollHeight) + 15 +"px" : "30px";
         }
         $('textarea').change();
         //change name of points of question
@@ -1867,16 +1894,21 @@ jQuery(function ($) {
         $(".questions-box").droppable({
         drop: function(event, ui) {
                 var item = $(ui.draggable).html();
+                console.log(item);
                 var fieldId = 'question'+'_'+i;
                 var eventTop = event.pageY;
+                var offsetY = event.offsetY;
+                // console.log();
                 var children = $('.questions-box').children();
-                var appendInde = getAppendIndex(children, eventTop);
+                var appendInde = getAppendIndex(children, eventTop, offsetY);
                 var el = '';
                 var option = '';
                 // var id = parseInt($('.questions-box').attr('data-count')) + 1;
                 var id;
                 var type = $(ui.draggable).attr('data-type');
                 var pollid = $('#quiz-id').val();
+                console.log(type);
+                console.log(pollid);
                 // AddQuestion(type, 25, appendInde);
                 if(type && pollid){
                     $.ajax ({
@@ -1890,8 +1922,10 @@ jQuery(function ($) {
                     }).done(function (data) {
                         // данные сохранены
                         AddQuestion(type, data, appendInde);
-                    }).fail(function () {
+                        console.log('Вопрос создан');
+                    }).fail(function (data) {
                         // не удалось выполнить запрос к серверу
+                        console.log(data);
                         console.log('Запрос не принят');
                     });
                 }
@@ -3008,9 +3042,83 @@ jQuery(function ($) {
                 +'    </div>'
                 +'</div>';
             }
-            if (type === 'file') {
-                el ='file'
-                ;
+            if (type === 'btn') {
+                el = 
+                '<div class="question" data-optionid="'+ id +'">'
+                +'    <div class="close-question"></div>'
+                +'    <div class="answer" id="questionanswers_'+ id +'">'
+                +'        <div class="btn-answer"'
+                +'            style="text-align: center;">'
+                +'           <button class="btn" type="submit"'
+                +'                style="'
+                +'                background: #F26126;'
+                +'                width: 131px;'
+                +'                height: 36px;'
+                +'                border-radius: 30px;">'
+                +'                Отправить'
+                +'            </button>'
+                +'        </div>'
+                +'    </div>'
+                +'</div>';
+                option = 
+                '<div class="optionbox" id="option_'+ id +'">'
+                +'    <input type="hidden" name="questiontype_'+ id +'" value="btn">'
+                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
+                +'    <div class="header-aside">'
+                +'        Настройки'
+                +'    </div>'
+                +'    <div class="text-aside ">'
+                +'        <div class="btn-options">'
+                +'            <div class="position">'
+                +'                <div class="left">'
+                +'                    <input type="radio" value="left" name="inputpoint_'+ id +'_1" id="inputpointposition_'+ id +'_1">'
+                +'                    <label for="inputpointposition_'+ id +'_1">'
+                +'                    </label>'
+                +'                </div>'
+                +'                <div class="center">'
+                +'                    <input type="radio" value="center" name="inputpoint_'+ id +'_1" id="inputpointposition_'+ id +'_2" checked>'
+                +'                    <label for="inputpointposition_'+ id +'_2">'
+                +'                    </label>'
+                +'                </div>'
+                +'                <div class="right">'
+                +'                    <input type="radio" value="right" name="inputpoint_'+ id +'_1" id="inputpointposition_'+ id +'_3">'
+                +'                    <label for="inputpointposition_'+ id +'_3">'
+                +'                    </label>'
+                +'                </div>'
+                +'            </div>'
+                +'            <div class="row-options">'
+                +'                <div class="optionbtngroup">'
+                +'                    <label for="inputpoint_'+ id +'_2">W</label>'
+                +'                    <input class="btnwidth" type="text"  name="inputpoint_'+ id +'_2"  id="inputpoint_2" value="131">'
+                +'                </div>'
+                +'                <div class="optionbtngroup">'
+                +'                    <label for="inputpoint_'+ id +'_3">H</label>'
+                +'                    <input class="btnheight" type="text"  name="inputpoint_'+ id +'_3"  id="inputpoint_'+ id +'_3" value="36">'
+                +'                </div>'
+                +'            </div>'
+                +'            <div class="row-options">'
+                +'                <div class="optionbtngroup">'
+                +'                    <label for="inputpoint_'+ id +'_4">'
+                +'                        <div class="radius"></div>'
+                +'                    </label>'
+                +'                    <input class="btnradius" type="text"  name="inputpoint_'+ id +'_4"  id="inputpoint_'+ id +'_4" value="30">'
+                +'                </div>'
+                +'                <div class="optionbtngroup">'
+                +'                    <label for="inputpoint_'+ id +'_5">'
+                +'                        <div class="color"'
+                +'                        style="background: #F26126"></div>'
+                +'                    </label>'
+                +'                   <input type="color" class="hiddeninput hiddeninputcolor" name="hiddeninputcolor_'+ id +'_5" value="#F26126">'
+                +'                   <input class="btncolor" type="text"  name="inputpoint_'+ id +'_5"  id="inputpoint_'+ id +'_5" value="#F26126">'
+                +'               </div>'
+                +'           </div>'
+                +'           <div class="form-group">'
+                +'               <label for="question_'+ id +'">Текст кнопки</label>'
+                +'               <input class="btn_name" name="question_'+ id +'" id="question_'+ id +'" value="Отправить">'
+                +'           </div>'
+                +'       </div>'
+                +'   </div>'
+                +'</div>';``
             }
             var children = $('.questions-box').children();
 
@@ -3110,7 +3218,6 @@ jQuery(function ($) {
                     SetPointOfFreeQuestion(id, number);
                 }
             });
-            // RefreshItems();
             $('.date-answer input').datepicker();
             $('.phone-answer input.code').intlTelInput({
                 initialCountry: "ru",
@@ -3129,7 +3236,6 @@ jQuery(function ($) {
             $('.questions-box').attr('data-count', id);
 
             var deleteID = $(this).parents('.question').attr('data-optionid');
-            console.log(deleteID);
             $.ajax ({
                 type: 'POST',
                 url: "/admin/poll/delete-question",
@@ -3145,7 +3251,6 @@ jQuery(function ($) {
                 console.log('Запрос не принят');
             });
 
-            // RefreshItems();
         });
         
         //activating question
@@ -3159,211 +3264,7 @@ jQuery(function ($) {
             }
         });
 
-
-
-        function RefreshItems() {
-            var childrenQuestions = $('.questions-box').children();
-            var childrenOptions = $('.optionsblock .eloptions').children();
-            var prevId;
-            var newId;
-            childrenQuestions.each(function (index, question) {
-                var id = index + 1;
-                if($('#option_'+$(question).attr('data-optionid')).length>0){
-                    var optionBox = $('#option_'+$(question).attr('data-optionid'));
-                    if(optionBox.find('.inputtables').length>0){
-                        prevId = optionBox.find('.inputtables').attr('id').split("_");
-                        prevId[1] = id;
-                        newId = prevId.join('_');
-                        optionBox.find('.inputtables').attr('id', newId);
-                    }
-                    if(optionBox.find('.questionPoint').length>0){
-                        prevId = optionBox.find('.questionPoint').attr('id').split("_");
-                        prevId[1] = id;
-                        newId = prevId.join('_');
-                        optionBox.find('.questionPoint').attr('id', newId);
-                    }
-                    var inputs = optionBox.find('input');
-                    inputs.each(function (index, input) {
-                        if($(input).attr('name')){
-                            if($(input).attr('name').includes('[]')){
-                                var name = $(input).attr('name').replace('[]','')
-                                prevId = name.split("_");
-                                prevId[1] = id;
-                                newId = prevId.join('_') + '[]';
-                                $(input).attr('name', newId);
-                            }
-                            else {
-                                prevId = $(input).attr('name').split("_");
-                                prevId[1] = id;
-                                newId = prevId.join('_');
-                                $(input).attr('name', newId);
-                            }
-                        }
-                        if($(input).attr('id')){
-                            prevId = $(input).attr('id').split("_");
-                            prevId[1] = id;
-                            newId = prevId.join('_');
-                            $(input).attr('id', newId);
-                        }
-                    });
-                    var textareas = optionBox.find('textarea');
-                    textareas.each(function (index, textarea) {
-                        if($(textarea).attr('name')){
-                            prevId = $(textarea).attr('name').split("_");
-                            prevId[1] = id;
-                            newId = prevId.join('_');
-                            $(textarea).attr('name', newId);
-                        }
-                        if($(textarea).attr('id')){
-                            prevId = $(textarea).attr('id').split("_");
-                            prevId[1] = id;
-                            newId = prevId.join('_');
-                            $(textarea).attr('id', newId);
-                        }
-                    });
-                    var labels = optionBox.find('label');
-                    labels.each(function (index, label) {
-                        if($(label).attr('for')){
-                            prevId = $(label).attr('for').split("_");
-                            prevId[1] = id;
-                            newId = prevId.join('_');
-                            $(label).attr('for', newId);
-                        }
-                        if($(label).attr('id')){
-                            prevId = $(label).attr('id').split("_");
-                            prevId[1] = id;
-                            newId = prevId.join('_');
-                            $(label).attr('id', newId);
-                        }
-                    });
-                    $('#option_' + $(question).attr('data-optionid')).attr('id', '#optiontemplate_' + $(question).attr('data-optionid'));
-                }
-                $(question).attr('data-optionid', id);
-                if($(question).find('.name').length>0){
-                    prevId = $(question).find('.name').attr('id').split("_");
-                    prevId[1] = id;
-                    newId = prevId.join('_');
-                    $(question).find('.name').attr('id', newId);
-                }
-                if($(question).find('.description').length>0){
-                    prevId = $(question).find('.description').attr('id').split("_");
-                    prevId[1] = id;
-                    newId = prevId.join('_');
-                    $(question).find('.description').attr('id', newId);
-                }
-                var inputs = $(question).find('input');
-                inputs.each(function (index, input) {
-                    if($(input).attr('name')){
-                        prevId = $(input).attr('name').split("_");
-                        prevId[1] = id;
-                        newId = prevId.join('_');
-                        $(input).attr('name', newId);
-                    }
-                    if($(input).attr('id')){
-                        prevId = $(input).attr('id').split("_");
-                        prevId[1] = id;
-                        newId = prevId.join('_');
-                        $(input).attr('id', newId);
-                    }
-                });
-                var labels = $(question).find('label');
-                labels.each(function (index, label) {
-                    if($(label).attr('for')){
-                        prevId = $(label).attr('for').split("_");
-                        prevId[1] = id;
-                        newId = prevId.join('_');
-                        $(label).attr('for', newId);
-                    }
-                    if($(label).attr('id')){
-                        prevId = $(label).attr('id').split("_");
-                        prevId[1] = id;
-                        newId = prevId.join('_');
-                        $(label).attr('id', newId);
-                    }
-                });
-                var hiddenQuestion = $(question).find('.hidden-question-list').children();
-                if(hiddenQuestion.length>0){
-                    hiddenQuestion.each(function (indexanswer, hidden) {
-                        if($(hidden).attr('id')){
-                            prevId = $(hidden).attr('id').split("_");
-                            prevId[1] = id;
-                            newId = prevId.join('_');
-                            $(hidden).attr('id', newId);
-                        }
-                    });
-                }
-                if($(question).find('.answer').length>0){
-                    prevId = $(question).find('.answer').attr('id').split("_");
-                    prevId[1] = id;
-                    newId = prevId.join('_');
-                    $(question).find('.answer').attr('id', newId);
-                    var childrenAnswer = $(question).find('.answer').children();
-                    if(childrenAnswer.length>0){
-                        childrenAnswer.each(function (indexanswer, answer) {
-                            if($(answer).attr('id')){
-                                prevId = $(answer).attr('id').split("_");
-                                prevId[1] = id;
-                                newId = prevId.join('_');
-                                $(answer).attr('id', newId);
-                            }
-                        });
-                    }
-                }
-            });
-            
-            childrenOptions.each(function (index, question) {
-                var childrenid;
-                var prevId;
-                var newId;
-                if($(question).attr('id')){
-                    prevId = $(question).attr('id').split("_");
-                    if($(question).find('.question_name').length>0) {
-                        childrenid = $(question).find('.question_name').attr('id').split("_");
-                    }
-                    else {
-                        childrenid = $(question).find('input').attr('name').split("_");
-                    }
-                    prevId[1] = childrenid[1];
-                    prevId[0] = 'option';
-                    newId = prevId.join('_');
-                    $(question).attr('id', newId);
-                }
-                if($(question).find('.orderinput').length>0){
-                    if($(question).find('.question_name').length>0) {
-                        childrenid = $(question).find('.question_name').attr('id').split("_");
-                    }
-                    else {
-                        childrenid = $(question).find('input').attr('name').split("_");
-                    }
-                    $(question).find('.orderinput').val(childrenid[1]);
-                }
-            });
-
-            // var nodeList = childrenOptions;
-            // var itemsArray = [];
-            // if(nodeList[0]){
-            //     var parent = nodeList[0].parentNode;
-            //     for (var i = 0; i < nodeList.length; i++) {    
-            //         itemsArray.push(parent.removeChild(nodeList[i]));
-            //     }
-            //     itemsArray.sort(function(nodeA, nodeB) {
-            //         var idA = parseInt($(nodeA).attr('id').split("_")[1]);
-            //         var idB = parseInt($(nodeB).attr('id').split("_")[1]);
-            //         var numberA = parseInt(idA);
-            //         var numberB = parseInt(idB);
-            //         if (numberA < numberB) return -1;
-            //         if (numberA > numberB) return 1;
-            //         return 0;
-            //     })
-            //         .forEach(function(node) {
-            //         parent.appendChild(node)
-            //     });
-            // }
-            $(".spinner").inputFilter(function(value) {
-                return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 15);
-            });
-        }
-        function getAppendIndex(arr, top) {
+        function getAppendIndex(arr, top, offsetY) {
             if( arr.length === 0 ) {
                 return 'last';
             }
@@ -3372,20 +3273,22 @@ jQuery(function ($) {
                     var elTop = $(arr[i]).offset().top,
                         elBottom = $(arr[i]).offset().top + $(arr[i]).height(),
                         height = $(arr[i]).height();
-                    if( top > elTop + height && top < elBottom ) {
+                    if( top > elTop + height && top < elBottom +offsetY ) {
                         return i;
                     }
                     else if(top > elTop && top < elBottom) {
+                        console.log(i-1)
+                        console.log('i-1')
                         return ( i - 1 );
                     }
                 }
+                console.log('arr.length - 1')
                 return  arr.length - 1;
             }
         }
 
         $('.questions-box').sortable({
             deactivate: function (event, ui) {
-                // RefreshItems();
                 $('.optionsblock .default').addClass('active');
             }
         });
