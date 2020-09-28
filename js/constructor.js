@@ -1894,11 +1894,9 @@ jQuery(function ($) {
         $(".questions-box").droppable({
         drop: function(event, ui) {
                 var item = $(ui.draggable).html();
-                console.log(item);
                 var fieldId = 'question'+'_'+i;
                 var eventTop = event.pageY;
                 var offsetY = event.offsetY;
-                // console.log();
                 var children = $('.questions-box').children();
                 var appendInde = getAppendIndex(children, eventTop, offsetY);
                 var el = '';
@@ -1907,8 +1905,6 @@ jQuery(function ($) {
                 var id;
                 var type = $(ui.draggable).attr('data-type');
                 var pollid = $('#quiz-id').val();
-                console.log(type);
-                console.log(pollid);
                 // if(type && pollid){
                 //     AddQuestion(type, 25, appendInde);
                 // }
@@ -3141,6 +3137,7 @@ jQuery(function ($) {
                 $(childrenOptions[appendInde]).after(option);
             }
             RefreshItems();
+            $('.questions-box .ranging-list').sortable({});
             
             $( ".matrix_number" ).spinner({
                 min: 0,
@@ -3280,12 +3277,9 @@ jQuery(function ($) {
                         return i;
                     }
                     else if(top > elTop && top < elBottom) {
-                        console.log(i-1)
-                        console.log('i-1')
                         return ( i - 1 );
                     }
                 }
-                console.log('arr.length - 1')
                 return  arr.length - 1;
             }
         }
@@ -3325,7 +3319,8 @@ jQuery(function ($) {
                 }
             }
         }
-
+        $('.questions-box .ranging-list').sortable({});
+        
         $('.questions-box').sortable({
             deactivate: function (event, ui) {
                 RefreshItems();
