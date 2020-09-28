@@ -1893,43 +1893,42 @@ jQuery(function ($) {
         var i = parseInt($('.questions-box').attr('data-count')) + 1;
         $(".questions-box").droppable({
         drop: function(event, ui) {
-                var item = $(ui.draggable).html();
-                console.log(item);
-                var fieldId = 'question'+'_'+i;
-                var eventTop = event.pageY;
-                var offsetY = event.offsetY;
-                // console.log();
-                var children = $('.questions-box').children();
-                var appendInde = getAppendIndex(children, eventTop, offsetY);
-                var el = '';
-                var option = '';
-                // var id = parseInt($('.questions-box').attr('data-count')) + 1;
-                var id;
-                var type = $(ui.draggable).attr('data-type');
-                var pollid = $('#quiz-id').val();
-                console.log(type);
-                console.log(pollid);
-                // if(type && pollid){
-                //     AddQuestion(type, 25, appendInde);
-                // }
-                if(type && pollid){
-                    $.ajax ({
-                        type: 'POST',
-                        url: "/admin/poll/create-question",
-                        dataType: "json",
-                        data: { 
-                            questiontype: type,
-                            quizid: pollid
-                        },
-                    }).done(function (data) {
-                        // данные сохранены
-                        AddQuestion(type, data, appendInde);
-                        console.log('Вопрос создан');
-                    }).fail(function (data) {
-                        // не удалось выполнить запрос к серверу
-                        console.log(data);
-                        console.log('Запрос не принят');
-                    });
+                if($(ui.draggable).html()){
+                    var item = $(ui.draggable).html();
+                    var fieldId = 'question'+'_'+i;
+                    var eventTop = event.pageY;
+                    var offsetY = event.offsetY;
+                    // console.log();
+                    var children = $('.questions-box').children();
+                    var appendInde = getAppendIndex(children, eventTop, offsetY);
+                    var el = '';
+                    var option = '';
+                    // var id = parseInt($('.questions-box').attr('data-count')) + 1;
+                    var id;
+                    var type = $(ui.draggable).attr('data-type');
+                    var pollid = $('#quiz-id').val();
+                    console.log(type);
+                    console.log(pollid);
+                    AddQuestion(type, Math.random().toString(36).substr(2, 9), appendInde);
+                    if(type && pollid){
+                        $.ajax ({
+                            type: 'POST',
+                            url: "/admin/poll/create-question",
+                            dataType: "json",
+                            data: { 
+                                questiontype: type,
+                                quizid: pollid
+                            },
+                        }).done(function (data) {
+                            // данные сохранены
+                            AddQuestion(type, data, appendInde);
+                            console.log('Вопрос создан');
+                        }).fail(function (data) {
+                            // не удалось выполнить запрос к серверу
+                            console.log(data);
+                            console.log('Запрос не принят');
+                        });
+                    }
                 }
             }
         });
@@ -1940,8 +1939,6 @@ jQuery(function ($) {
                 el =
                 '<div class="question active"  data-optionId="'+ id +'">'
                 +'    <div class="close-question"></div>'
-                +'<input type="hidden" name="questiontype_'+ id +'" value="single" >'
-                +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
                 +'    <div class="name" id="questionName_'+ id +'">'
                 +'        Вопрос '
                 +'    </div>'
@@ -1959,6 +1956,8 @@ jQuery(function ($) {
                 ;
                 option = 
                 '<div class="optionbox active option_single" id="option_'+ id +'">'
+                +'<input type="hidden" name="questiontype_'+ id +'" value="single" >'
+                +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
                 +'    <div class="header-aside">'
                 +'        Настройки'
                 +'    </div>'
@@ -2017,8 +2016,6 @@ jQuery(function ($) {
                 el = 
                 '<div class="question active"   data-optionid="'+ id +'">'
                 +'    <div class="close-question"></div>'
-                +'<input type="hidden" name="questiontype_'+ id +'" value="free" >'
-                +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
                 +'    <div class="name " id="questionName_'+ id +'">'
                 +'        Вопрос'
                 +'    </div>'
@@ -2030,6 +2027,8 @@ jQuery(function ($) {
                 +'</div> ';
                 option =
                 '<div class="optionbox active option_single" id="option_'+ id +'">'
+                +'<input type="hidden" name="questiontype_'+ id +'" value="free" >'
+                +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
                 +'    <div class="header-aside">'
                 +'        Настройки'
                 +'    </div>'
@@ -2070,8 +2069,6 @@ jQuery(function ($) {
                 el =
                 '<div class="question active" data-optionid="'+ id +'">'
                 +'    <div class="close-question"></div>'
-                +'<input type="hidden" name="questiontype_'+ id +'" value="listfree" >'
-                +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
                 +'    <div class="name" id="questionName_'+ id +'">'
                 +'        Вопрос'
                 +'    </div>'
@@ -2089,6 +2086,8 @@ jQuery(function ($) {
                 +'</div>';
                 option =
                 '<div class="optionbox active" id="option_'+ id +'">'
+                +'<input type="hidden" name="questiontype_'+ id +'" value="listfree" >'
+                +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
                 +'    <div class="header-aside">'
                 +'        Настройки'
                 +'    </div>'
@@ -2133,8 +2132,6 @@ jQuery(function ($) {
                 el =
                 '<div class="question branchingquestion active" data-optionid="'+ id +'">'
                 +'    <div class="close-question"></div>'
-                +'<input type="hidden" name="questiontype_'+ id +'" value="branching" >'
-                +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
                 +'    <div class="name " id="questionName_'+ id +'">'
                 +'        Ветвление'
                 +'    </div>'
@@ -2152,6 +2149,8 @@ jQuery(function ($) {
                 +'</div>';
                 option =
                 '<div class="optionbox active" id="option_'+ id +'">'
+                +'<input type="hidden" name="questiontype_'+ id +'" value="branching" >'
+                +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
                 +'    <div class="header-aside">'
                 +'        Настройки'
                 +'    </div>'
@@ -2215,8 +2214,6 @@ jQuery(function ($) {
                 el =
                 '<div class="question active" data-optionid="'+ id +'">'
                 +'    <div class="close-question"></div>'
-                +'<input type="hidden" name="questiontype_'+ id +'" value="scale" >'
-                +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
                 +'    <div class="name " id="questionName_'+ id +'">'
                 +'        Вопрос'
                 +'    </div>'
@@ -2267,6 +2264,8 @@ jQuery(function ($) {
                 +'</div> ';
                 option = 
                 '<div class="optionbox active" id="option_'+ id +'">'
+                +'<input type="hidden" name="questiontype_'+ id +'" value="scale" >'
+                +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
                 +'    <div class="header-aside">'
                 +'        Настройки'
                 +'    </div>'
@@ -2364,8 +2363,6 @@ jQuery(function ($) {
                 el = 
                 '<div class="question active" data-optionid="'+ id +'">'
                 +'    <div class="close-question"></div>'
-                +'    <input type="hidden" name="questiontype_'+ id +'" value="dropdown" >'
-                +'    <input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
                 +'    <div class="answer" id="questionanswers_'+ id +'">'
                 +'        <div class="dropdown-list">'
                 +'            <div class="dropdown-block">'
@@ -2397,6 +2394,8 @@ jQuery(function ($) {
                 +'</div>';
                 option =
                 '<div class="optionbox active" id="option_'+ id +'">'
+                +'    <input type="hidden" name="questiontype_'+ id +'" value="dropdown" >'
+                +'    <input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
                 +'    <div class="header-aside">'
                 +'        Настройки'
                 +'    </div>'
@@ -2472,8 +2471,6 @@ jQuery(function ($) {
                 el =
                 '<div class="question active" data-optionid="'+ id +'">'
                 +'    <div class="close-question"></div>'
-                +'    <input type="hidden" name="questiontype_'+ id +'" value="dropdownmultiple" >'
-                +'    <input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
                 +'    <div class="answer" id="questionanswers_'+ id +'">'
                 +'        <div class="dropdown-list">'
                 +'            <div class="dropdown-block">'
@@ -2505,6 +2502,8 @@ jQuery(function ($) {
                 +'</div>';
                 option = 
                 '<div class="optionbox active" id="option_'+ id +'">'
+                +'    <input type="hidden" name="questiontype_'+ id +'" value="dropdownmultiple" >'
+                +'    <input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
                 +'    <div class="header-aside">'
                 +'        Настройки'
                 +'    </div>'
@@ -2588,8 +2587,6 @@ jQuery(function ($) {
                 el =
                 '<div class="question active" data-optionid="'+ id +'">'
                 +'    <div class="close-question"></div>'
-                +'    <input type="hidden" name="questiontype_'+ id +'" value="matrix">'
-                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="name " id="questionName_'+ id +'">'
                 +'        Вопрос'
                 +'    </div>'
@@ -2642,6 +2639,8 @@ jQuery(function ($) {
                 +'</div>';
                 option =
                 '<div class="optionbox active" id="option_'+ id +'">'
+                +'    <input type="hidden" name="questiontype_'+ id +'" value="matrix">'
+                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="header-aside">'
                 +'       Настройки'
                 +'   </div>'
@@ -2740,8 +2739,6 @@ jQuery(function ($) {
                 el =
                 '<div class="question" data-optionid="'+ id +'">'
                 +'    <div class="close-question"></div>'
-                +'   <input type="hidden" name="questiontype_'+ id +'" value="ranging">'
-                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="name " id="questionName_'+ id +'">'
                 +'        Вопрос'
                 +'    </div>'
@@ -2765,6 +2762,8 @@ jQuery(function ($) {
                 +'</div>';
                 option = 
                 '<div class="optionbox" id="option_'+ id +'">'
+                +'   <input type="hidden" name="questiontype_'+ id +'" value="ranging">'
+                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="header-aside">'
                 +'      Настройки'
                 +'  </div>'
@@ -2832,8 +2831,6 @@ jQuery(function ($) {
                 el = 
                 '<div class="question active" data-optionid="'+ id +'">'
                 +'    <div class="close-question"></div>'
-                +'   <input type="hidden" name="questiontype_'+ id +'" value="ranging">'
-                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="name " id="questionName_'+ id +'">'
                 +'        Введите Ваше имя'
                 +'    </div>'
@@ -2854,6 +2851,8 @@ jQuery(function ($) {
                 +'</div>';
                 option =
                 '<div class="optionbox active" id="option_'+ id +'">'
+                +'    <input type="hidden" name="questiontype_'+ id +'" value="name">'
+                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="header-aside">'
                 +'        Настройки'
                 +'    </div>'
@@ -2889,8 +2888,6 @@ jQuery(function ($) {
                 el = 
                 '<div class="question active" data-optionid="'+ id +'">'
                 +'    <div class="close-question"></div>'
-                +'    <input type="hidden" name="questiontype_'+ id +'" value="date">'
-                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="name " id="questionName_'+ id +'">'
                 +'        Дата'
                 +'    </div>'
@@ -2905,6 +2902,8 @@ jQuery(function ($) {
                 +'</div>';
                 option =
                 '<div class="optionbox active" id="option_'+ id +'">'
+                +'    <input type="hidden" name="questiontype_'+ id +'" value="date">'
+                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="header-aside">'
                 +'        Настройки'
                 +'    </div>'
@@ -2940,8 +2939,6 @@ jQuery(function ($) {
                 el = 
                 '<div class="question active" data-optionid="'+ id +'">'
                 +'    <div class="close-question"></div>'
-                +'    <input type="hidden" name="questiontype_'+ id +'" value="email">'
-                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="name " id="questionName_'+ id +'">'
                 +'        Введите Ваш E-mail'
                 +'    </div>'
@@ -2955,6 +2952,8 @@ jQuery(function ($) {
                 +'</div>';
                 option =
                 '<div class="optionbox active" id="option_'+ id +'">'
+                +'    <input type="hidden" name="questiontype_'+ id +'" value="email">'
+                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="header-aside">'
                 +'        Настройки'
                 +'    </div>'
@@ -2990,8 +2989,6 @@ jQuery(function ($) {
                 el = 
                 '<div class="question active" data-optionid="'+ id +'">'
                 +'    <div class="close-question"></div>'
-                +'    <input type="hidden" name="questiontype_'+ id +'" value="phone">'
-                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="name " id="questionName_'+ id +'">'
                 +'        Введите Ваш номер телефона'
                 +'    </div>'
@@ -3013,6 +3010,8 @@ jQuery(function ($) {
                 +'</div>';
                 option =
                 '<div class="optionbox active" id="option_'+ id +'">'
+                +'    <input type="hidden" name="questiontype_'+ id +'" value="phone">'
+                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="header-aside">'
                 +'        Настройки'
                 +'    </div>'
@@ -3048,8 +3047,6 @@ jQuery(function ($) {
                 el = 
                 '<div class="question" data-optionid="'+ id +'">'
                 +'    <div class="close-question"></div>'
-                +'    <input type="hidden" name="questiontype_'+ id +'" value="btn">'
-                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="answer" id="questionanswers_'+ id +'">'
                 +'        <div class="btn-answer"'
                 +'            style="text-align: center;">'
@@ -3066,6 +3063,8 @@ jQuery(function ($) {
                 +'</div>';
                 option = 
                 '<div class="optionbox" id="option_'+ id +'">'
+                +'    <input type="hidden" name="questiontype_'+ id +'" value="btn">'
+                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="header-aside">'
                 +'        Настройки'
                 +'    </div>'
@@ -3140,7 +3139,6 @@ jQuery(function ($) {
                 $(children[appendInde]).after( el );
                 $(childrenOptions[appendInde]).after(option);
             }
-            RefreshItems();
             
             $( ".matrix_number" ).spinner({
                 min: 0,
@@ -3226,6 +3224,7 @@ jQuery(function ($) {
                 initialCountry: "ru",
             });
             $('.questions-box').attr('data-count', i);
+            RefreshItems();
         }
         // delete question
         $('.questions-box').on('click', '.close-question', function(e){
@@ -3290,6 +3289,13 @@ jQuery(function ($) {
             }
         }
 
+        $('.questions-box').sortable({
+            deactivate: function (event, ui) {
+                RefreshItems();
+                $('.optionsblock .default').addClass('active');
+            }
+        });
+
         function RefreshItems() {
             var childrenQuestions = $('.questions-box').children();
             var childrenOptions = $('.optionsblock .eloptions').children();
@@ -3325,12 +3331,6 @@ jQuery(function ($) {
                 }
             }
         }
-
-        $('.questions-box').sortable({
-            deactivate: function (event, ui) {
-                RefreshItems();
-                $('.optionsblock .default').addClass('active');
-            }
-        });
+        
     });
 });
