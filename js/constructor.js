@@ -255,6 +255,7 @@ jQuery(function ($) {
             });
         }
 
+
         //upload picture
         $('.rightside').on('change', '.uploadpictureinput', function(e){
             var idQuestion = $(this).prev('.uploadpicture').find('input').attr('name').split('_')[1];
@@ -281,8 +282,17 @@ jQuery(function ($) {
                 $(child.parents('.question')).find('.mediablock').prepend(imageblock);
             }
 
+            var size = 0;
+            for( var i = 0; i < files.length; i++ ) {
+                size += files[i].size;
+            }
+            var maxsize = 1024*1024*20 - 1;
             if(files.length > 9 ) {
                 $('#modal-error').find('.text').html('Выберете, пожалуйста, не больше 10 файлов');
+                $('.modal').fadeIn(300);
+            }
+            else if (size > maxsize){
+                $('#modal-error').find('.text').html('Размер файлов не должен превышать 20 МБ. Выберете, пожалуйста, файлы меньшего размера.');
                 $('.modal').fadeIn(300);
             }
             else {
@@ -1906,7 +1916,7 @@ jQuery(function ($) {
                 var type = $(ui.draggable).attr('data-type');
                 var pollid = $('#quiz-id').val();
                 // if(type && pollid){
-                //     AddQuestion(type, 25, appendInde);
+                //     AddQuestion(type, Math.random().toString(36).substr(2, 9), appendInde);
                 // }
                 if(type && pollid){
                     $.ajax ({
