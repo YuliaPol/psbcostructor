@@ -331,7 +331,7 @@ jQuery(function ($) {
                 }
             }).done(function (data) {
                 // данные удалени
-                console.log('Вопрос удален');
+                console.log('Картинка удалена');
             }).fail(function () {
                 // не удалось выполнить запрос к серверу
                 console.log('Запрос не принят');
@@ -391,6 +391,7 @@ jQuery(function ($) {
                         cache: false,
                         success: function (data) {
                             console.log(data);
+                            console.log('Картинка удалена');
                         },
                         processData: false,
                         contentType: false, 
@@ -484,7 +485,7 @@ jQuery(function ($) {
                 contentType: false, // Тип кодирования данных мы задали в форме, это отключим
                 processData: false, // Отключаем, так как передаем файл
                 success:function(data){
-                    console.log('Файлы загружены');
+                    console.log('Видео загружено');
                     const objfiles = JSON.parse(data);
                     SetVideoFromAjax(objfiles, QuestionId);
                 },
@@ -496,14 +497,13 @@ jQuery(function ($) {
 
         
         function SetVideoFromAjax(files, idQuestion) {
-            console.log(files);
-            console.log(idQuestion);
             var child = $('#questionanswers_'+idQuestion);
             $.each( files, function( i, item ) {
                 var video;
                 video = 
-                '<video width="400" >'
-                +'<input type="hidden" value="'+ i +'" name="videoId_' + idQuestion + '_' + i + '">'
+                '<input type="hidden" value="'+ i +'" name="videoId_' + idQuestion + '_' + i + '">'
+                +'<div class="remove-video"></div>'
+                +'<video width="400" >'
                 +'    <source src="/admin/uploads/'+ item + '">'
                 +'    Your browser does not support HTML5 video.'
                 +'</video>';
@@ -512,6 +512,25 @@ jQuery(function ($) {
                 child.parents('.question').find('.videoblock').append(play);
             });
         }
+
+        $('.centerbox').on('click', '.remove-video', function(e){
+            var videoId = $(this).parents('.videoblock').find('input[type=hidden]').val();
+            $(this).parents('.videoblock').remove();
+            $.ajax ({
+                type: 'POST',
+                url: "/admin/poll/delete-image",
+                dataType: "json",
+                data: {
+                    id: videoId,
+                }
+            }).done(function (data) {
+                // данные удалени
+                console.log('Видео удалено');
+            }).fail(function () {
+                // не удалось выполнить запрос к серверу
+                console.log('Запрос не принят');
+            });
+        });
 
         //video play
         $('.centerbox').on('click', '.videoblock', function(e){
@@ -550,6 +569,8 @@ jQuery(function ($) {
                 var audioblock = 
                 '<div class="audioblock">'
                 +'    <div class="playaudio"></div>'
+                +'    <div class="remove-audio"></div>'
+                +'    <input type="hidden" name="audioId_' + idQuestion + '">'
                 +'    <div class="audio audiowave"> </div>'
                 +'</div>';
                 $(child.parents('.question')).find('.mediablock').prepend(audioblock);
@@ -601,7 +622,7 @@ jQuery(function ($) {
                 $('body').append(testform);
             }
             else {
-                $('.uploadvideoform').html(' ');
+                $('.uploadaudioform').html(' ');
             }
             //audio ajax
             var input = $(this).clone();
@@ -630,7 +651,7 @@ jQuery(function ($) {
                 contentType: false, // Тип кодирования данных мы задали в форме, это отключим
                 processData: false, // Отключаем, так как передаем файл
                 success:function(data){
-                    console.log('Файлы загружены');
+                    console.log('Аудио загружены');
                     const objfiles = JSON.parse(data);
                     SetAudioFromAjax(objfiles, QuestionId);
                 },
@@ -641,14 +662,62 @@ jQuery(function ($) {
         }));
 
         function SetAudioFromAjax(files, idQuestion) {
-            console.log(files);
-            console.log(idQuestion);
             var child = $('#questionanswers_'+idQuestion);
             $.each( files, function( i, item ) {
-                var hiddenInput = '<input type="hidden" value="'+ i +'" name="audioId_' + idQuestion + '_' + i + '">';
-                child.parents('.question').find('.mediablock').append(hiddenInput);
+                
+                // // Generate unic ud
+                // var id = '_' + Math.random().toString(36).substr(2, 9);
+                // var path = "/admin/uploads/"+ item ;
+
+                // //Set id to container
+                // child.parents('.question').find('.mediablock').find('.audiowave').attr('id', id);
+
+                // //Initialize WaveSurfer
+                // var wavesurfer = WaveSurfer.create({
+                //     container: '#' + id,
+                //     scrollParent: true,
+                //     backgroundColor: '#FFFFFF',
+                //     barWidth: 1.5,
+                //     height: 40,
+                //     barMinHeight: 1,
+                //     cursorWidth: 0,
+                //     barGap: 2,
+                //     waveColor: 'rgba(87, 34, 222, 0.2)',
+                //     hideScrollbar: true,
+                //     progressColor: "#5722DE"
+                // });
+
+                // //Load audio file
+                // wavesurfer.load(path);
+
+                // //Add button event
+                // child.parents('.question').find('.mediablock').find('.playaudio').click(function(){
+                //     wavesurfer.playPause();
+                // });
+
+                // var hiddenInput = '<input type="hidden" value="'+ i +'" name="audioId_' + idQuestion + '_' + i + '">';
+                child.parents('.question').find('.audioblock').find('input[type=hidden]').val(i);
             });
         }
+
+        $('.centerbox').on('click', '.remove-audio', function(e){
+            var audioId = $(this).parents('.question').find('.audioblock').find('input[type=hidden]').val();
+            $(this).parents('.audioblock').remove();
+            $.ajax ({
+                type: 'POST',
+                url: "/admin/poll/delete-image",
+                dataType: "json",
+                data: {
+                    id: audioId,
+                }
+            }).done(function (data) {
+                // данные удалени
+                console.log('Аудио удалено');
+            }).fail(function () {
+                // не удалось выполнить запрос к серверу
+                console.log('Запрос не принят');
+            });
+        });
 
         $('.audiowave').each(function(){
             //Generate unic ud
