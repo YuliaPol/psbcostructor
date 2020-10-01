@@ -720,10 +720,10 @@ jQuery(function ($) {
         });
 
         $('.audiowave').each(function(){
+
             //Generate unic ud
             var path = $(this).attr('data-audiopath');//path for audio
             var id = '_' + Math.random().toString(36).substr(2, 9);
-
 
             //Set id to container
             $(this).attr('id', id);
@@ -3042,7 +3042,7 @@ jQuery(function ($) {
                 +'</div>';
                 option =
                 '<div class="optionbox active" id="option_'+ id +'">'
-                +'   <input type="hidden" name="questiontype_'+ id +'" value="ranging">'
+                +'   <input type="hidden" name="questiontype_'+ id +'" value="name">'
                 +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="header-aside">'
                 +'        Настройки'
@@ -3237,6 +3237,8 @@ jQuery(function ($) {
             if (type === 'btn') {
                 el = 
                 '<div class="question" data-optionid="'+ id +'">'
+                +'    <input type="hidden" name="questiontype_'+ id +'" value="btn">'
+                +'    <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                 +'    <div class="close-question"></div>'
                 +'    <div class="answer" id="questionanswers_'+ id +'">'
                 +'        <div class="btn-answer"'
@@ -3300,8 +3302,8 @@ jQuery(function ($) {
                 +'                        <div class="color"'
                 +'                        style="background: #F26126"></div>'
                 +'                    </label>'
-                +'                   <input type="color" class="hiddeninput hiddeninputcolor" name="hiddeninputcolor_'+ id +'_5" value="#F26126">'
-                +'                   <input class="btncolor" type="text"  name="inputpoint_'+ id +'_5"  id="inputpoint_'+ id +'_5" value="#F26126">'
+                +'                   <input type="color" class="hiddeninput hiddeninputcolor" name="inputpoint_'+ id +'_5" value="#F26126">'
+                +'                   <input class="btncolor" type="text"  name="inputpoint_'+ id +'_6"  id="inputpoint_'+ id +'_6" value="#F26126">'
                 +'               </div>'
                 +'           </div>'
                 +'           <div class="form-group">'
@@ -3450,7 +3452,7 @@ jQuery(function ($) {
         
         //activating question
         $('.questions-box').on('click', '.question', function(e){
-            if(!$(e.target).hasClass('close-question')){
+            if(!$(e.target).hasClass('close-question') && !$(this).parents('.centerbox').hasClass('full-width')){
                 var id = $(this).attr('data-optionid');
                 $('.questions-box .question').removeClass('active');
                 $('.optionsblock .optionbox').removeClass('active');

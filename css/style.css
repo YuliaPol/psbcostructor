@@ -1,4 +1,5 @@
 @import url("../font/Montserrat/stylesheet.css");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&family=Oswald:wght@200;300;400;500;600;700&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Piazzolla:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   margin: 0;
   padding: 0;
@@ -1174,6 +1175,983 @@ table {
   width: calc(100% - 540px);
   height: calc(100vh - 160px);
   overflow: auto;
+  -webkit-transition: all 0.3 ease-in;
+  -o-transition: all 0.3 ease-in;
+  transition: all 0.3 ease-in;
+}
+
+.construcot-container .centerbox.full-width {
+  width: calc(100% - 340px);
+}
+
+.construcot-container .centerbox.full-width .questions-box .question:hover {
+  background: inherit;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.construcot-container .centerbox.full-width .questions-box .question:hover::before {
+  opacity: 0;
+}
+
+.construcot-container .centerbox.full-width .questions-box .question:hover .close-question {
+  opacity: 0;
+}
+
+.construcot-container .centerbox.alignleft {
+  text-align: left;
+}
+
+.construcot-container .centerbox.aligncenter {
+  text-align: center;
+}
+
+.construcot-container .centerbox.alignright {
+  text-align: right;
+}
+
+.construcot-container .centerbox.fontMontserrat {
+  font-family: "Montserrat" !important;
+}
+
+.construcot-container .centerbox.fontMontserrat div,
+.construcot-container .centerbox.fontMontserrat label,
+.construcot-container .centerbox.fontMontserrat input,
+.construcot-container .centerbox.fontMontserrat p,
+.construcot-container .centerbox.fontMontserrat textarea,
+.construcot-container .centerbox.fontMontserrat input::-webkit-input-placeholder,
+.construcot-container .centerbox.fontMontserrat textarea::-webkit-input-placeholder,
+.construcot-container .centerbox.fontMontserrat button {
+  font-family: "Montserrat" !important;
+}
+
+.construcot-container .centerbox.fontMontserrat div,
+.construcot-container .centerbox.fontMontserrat label,
+.construcot-container .centerbox.fontMontserrat input,
+.construcot-container .centerbox.fontMontserrat p,
+.construcot-container .centerbox.fontMontserrat textarea,
+.construcot-container .centerbox.fontMontserrat input::-moz-placeholder,
+.construcot-container .centerbox.fontMontserrat textarea::-moz-placeholder,
+.construcot-container .centerbox.fontMontserrat button {
+  font-family: "Montserrat" !important;
+}
+
+.construcot-container .centerbox.fontMontserrat div,
+.construcot-container .centerbox.fontMontserrat label,
+.construcot-container .centerbox.fontMontserrat input,
+.construcot-container .centerbox.fontMontserrat p,
+.construcot-container .centerbox.fontMontserrat textarea,
+.construcot-container .centerbox.fontMontserrat input:-ms-input-placeholder,
+.construcot-container .centerbox.fontMontserrat textarea:-ms-input-placeholder,
+.construcot-container .centerbox.fontMontserrat button {
+  font-family: "Montserrat" !important;
+}
+
+.construcot-container .centerbox.fontMontserrat div,
+.construcot-container .centerbox.fontMontserrat label,
+.construcot-container .centerbox.fontMontserrat input,
+.construcot-container .centerbox.fontMontserrat p,
+.construcot-container .centerbox.fontMontserrat textarea,
+.construcot-container .centerbox.fontMontserrat input::-ms-input-placeholder,
+.construcot-container .centerbox.fontMontserrat textarea::-ms-input-placeholder,
+.construcot-container .centerbox.fontMontserrat button {
+  font-family: "Montserrat" !important;
+}
+
+.construcot-container .centerbox.fontMontserrat div,
+.construcot-container .centerbox.fontMontserrat label,
+.construcot-container .centerbox.fontMontserrat input,
+.construcot-container .centerbox.fontMontserrat p,
+.construcot-container .centerbox.fontMontserrat textarea,
+.construcot-container .centerbox.fontMontserrat input::placeholder,
+.construcot-container .centerbox.fontMontserrat textarea::placeholder,
+.construcot-container .centerbox.fontMontserrat button {
+  font-family: "Montserrat" !important;
+}
+
+.construcot-container .centerbox.fontArial {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.construcot-container .centerbox.fontArial div,
+.construcot-container .centerbox.fontArial label,
+.construcot-container .centerbox.fontArial input,
+.construcot-container .centerbox.fontArial p,
+.construcot-container .centerbox.fontArial textarea,
+.construcot-container .centerbox.fontArial input::-webkit-input-placeholder,
+.construcot-container .centerbox.fontArial textarea::-webkit-input-placeholder,
+.construcot-container .centerbox.fontArial button {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.construcot-container .centerbox.fontArial div,
+.construcot-container .centerbox.fontArial label,
+.construcot-container .centerbox.fontArial input,
+.construcot-container .centerbox.fontArial p,
+.construcot-container .centerbox.fontArial textarea,
+.construcot-container .centerbox.fontArial input::-moz-placeholder,
+.construcot-container .centerbox.fontArial textarea::-moz-placeholder,
+.construcot-container .centerbox.fontArial button {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.construcot-container .centerbox.fontArial div,
+.construcot-container .centerbox.fontArial label,
+.construcot-container .centerbox.fontArial input,
+.construcot-container .centerbox.fontArial p,
+.construcot-container .centerbox.fontArial textarea,
+.construcot-container .centerbox.fontArial input:-ms-input-placeholder,
+.construcot-container .centerbox.fontArial textarea:-ms-input-placeholder,
+.construcot-container .centerbox.fontArial button {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.construcot-container .centerbox.fontArial div,
+.construcot-container .centerbox.fontArial label,
+.construcot-container .centerbox.fontArial input,
+.construcot-container .centerbox.fontArial p,
+.construcot-container .centerbox.fontArial textarea,
+.construcot-container .centerbox.fontArial input::-ms-input-placeholder,
+.construcot-container .centerbox.fontArial textarea::-ms-input-placeholder,
+.construcot-container .centerbox.fontArial button {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.construcot-container .centerbox.fontArial div,
+.construcot-container .centerbox.fontArial label,
+.construcot-container .centerbox.fontArial input,
+.construcot-container .centerbox.fontArial p,
+.construcot-container .centerbox.fontArial textarea,
+.construcot-container .centerbox.fontArial input::placeholder,
+.construcot-container .centerbox.fontArial textarea::placeholder,
+.construcot-container .centerbox.fontArial button {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.construcot-container .centerbox.fontLora {
+  font-family: 'Lora', serif !important;
+}
+
+.construcot-container .centerbox.fontLora div,
+.construcot-container .centerbox.fontLora label,
+.construcot-container .centerbox.fontLora input,
+.construcot-container .centerbox.fontLora p,
+.construcot-container .centerbox.fontLora textarea,
+.construcot-container .centerbox.fontLora input::-webkit-input-placeholder,
+.construcot-container .centerbox.fontLora textarea::-webkit-input-placeholder,
+.construcot-container .centerbox.fontLora button {
+  font-family: 'Lora', serif !important;
+}
+
+.construcot-container .centerbox.fontLora div,
+.construcot-container .centerbox.fontLora label,
+.construcot-container .centerbox.fontLora input,
+.construcot-container .centerbox.fontLora p,
+.construcot-container .centerbox.fontLora textarea,
+.construcot-container .centerbox.fontLora input::-moz-placeholder,
+.construcot-container .centerbox.fontLora textarea::-moz-placeholder,
+.construcot-container .centerbox.fontLora button {
+  font-family: 'Lora', serif !important;
+}
+
+.construcot-container .centerbox.fontLora div,
+.construcot-container .centerbox.fontLora label,
+.construcot-container .centerbox.fontLora input,
+.construcot-container .centerbox.fontLora p,
+.construcot-container .centerbox.fontLora textarea,
+.construcot-container .centerbox.fontLora input:-ms-input-placeholder,
+.construcot-container .centerbox.fontLora textarea:-ms-input-placeholder,
+.construcot-container .centerbox.fontLora button {
+  font-family: 'Lora', serif !important;
+}
+
+.construcot-container .centerbox.fontLora div,
+.construcot-container .centerbox.fontLora label,
+.construcot-container .centerbox.fontLora input,
+.construcot-container .centerbox.fontLora p,
+.construcot-container .centerbox.fontLora textarea,
+.construcot-container .centerbox.fontLora input::-ms-input-placeholder,
+.construcot-container .centerbox.fontLora textarea::-ms-input-placeholder,
+.construcot-container .centerbox.fontLora button {
+  font-family: 'Lora', serif !important;
+}
+
+.construcot-container .centerbox.fontLora div,
+.construcot-container .centerbox.fontLora label,
+.construcot-container .centerbox.fontLora input,
+.construcot-container .centerbox.fontLora p,
+.construcot-container .centerbox.fontLora textarea,
+.construcot-container .centerbox.fontLora input::placeholder,
+.construcot-container .centerbox.fontLora textarea::placeholder,
+.construcot-container .centerbox.fontLora button {
+  font-family: 'Lora', serif !important;
+}
+
+.construcot-container .centerbox.fontPTSans {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.construcot-container .centerbox.fontPTSans div,
+.construcot-container .centerbox.fontPTSans label,
+.construcot-container .centerbox.fontPTSans input,
+.construcot-container .centerbox.fontPTSans p,
+.construcot-container .centerbox.fontPTSans textarea,
+.construcot-container .centerbox.fontPTSans input::-webkit-input-placeholder,
+.construcot-container .centerbox.fontPTSans textarea::-webkit-input-placeholder,
+.construcot-container .centerbox.fontPTSans button {
+  font-family: 'PT Sans', sans-serif !important;
+}
+
+.construcot-container .centerbox.fontPTSans div,
+.construcot-container .centerbox.fontPTSans label,
+.construcot-container .centerbox.fontPTSans input,
+.construcot-container .centerbox.fontPTSans p,
+.construcot-container .centerbox.fontPTSans textarea,
+.construcot-container .centerbox.fontPTSans input::-moz-placeholder,
+.construcot-container .centerbox.fontPTSans textarea::-moz-placeholder,
+.construcot-container .centerbox.fontPTSans button {
+  font-family: 'PT Sans', sans-serif !important;
+}
+
+.construcot-container .centerbox.fontPTSans div,
+.construcot-container .centerbox.fontPTSans label,
+.construcot-container .centerbox.fontPTSans input,
+.construcot-container .centerbox.fontPTSans p,
+.construcot-container .centerbox.fontPTSans textarea,
+.construcot-container .centerbox.fontPTSans input:-ms-input-placeholder,
+.construcot-container .centerbox.fontPTSans textarea:-ms-input-placeholder,
+.construcot-container .centerbox.fontPTSans button {
+  font-family: 'PT Sans', sans-serif !important;
+}
+
+.construcot-container .centerbox.fontPTSans div,
+.construcot-container .centerbox.fontPTSans label,
+.construcot-container .centerbox.fontPTSans input,
+.construcot-container .centerbox.fontPTSans p,
+.construcot-container .centerbox.fontPTSans textarea,
+.construcot-container .centerbox.fontPTSans input::-ms-input-placeholder,
+.construcot-container .centerbox.fontPTSans textarea::-ms-input-placeholder,
+.construcot-container .centerbox.fontPTSans button {
+  font-family: 'PT Sans', sans-serif !important;
+}
+
+.construcot-container .centerbox.fontPTSans div,
+.construcot-container .centerbox.fontPTSans label,
+.construcot-container .centerbox.fontPTSans input,
+.construcot-container .centerbox.fontPTSans p,
+.construcot-container .centerbox.fontPTSans textarea,
+.construcot-container .centerbox.fontPTSans input::placeholder,
+.construcot-container .centerbox.fontPTSans textarea::placeholder,
+.construcot-container .centerbox.fontPTSans button {
+  font-family: 'PT Sans', sans-serif !important;
+}
+
+.construcot-container .centerbox.fontNotoSans {
+  font-family: 'Noto Sans', sans-serif !important;
+}
+
+.construcot-container .centerbox.fontNotoSans div,
+.construcot-container .centerbox.fontNotoSans label,
+.construcot-container .centerbox.fontNotoSans input,
+.construcot-container .centerbox.fontNotoSans p,
+.construcot-container .centerbox.fontNotoSans textarea,
+.construcot-container .centerbox.fontNotoSans input::-webkit-input-placeholder,
+.construcot-container .centerbox.fontNotoSans textarea::-webkit-input-placeholder,
+.construcot-container .centerbox.fontNotoSans button {
+  font-family: 'Noto Sans', sans-serif !important;
+}
+
+.construcot-container .centerbox.fontNotoSans div,
+.construcot-container .centerbox.fontNotoSans label,
+.construcot-container .centerbox.fontNotoSans input,
+.construcot-container .centerbox.fontNotoSans p,
+.construcot-container .centerbox.fontNotoSans textarea,
+.construcot-container .centerbox.fontNotoSans input::-moz-placeholder,
+.construcot-container .centerbox.fontNotoSans textarea::-moz-placeholder,
+.construcot-container .centerbox.fontNotoSans button {
+  font-family: 'Noto Sans', sans-serif !important;
+}
+
+.construcot-container .centerbox.fontNotoSans div,
+.construcot-container .centerbox.fontNotoSans label,
+.construcot-container .centerbox.fontNotoSans input,
+.construcot-container .centerbox.fontNotoSans p,
+.construcot-container .centerbox.fontNotoSans textarea,
+.construcot-container .centerbox.fontNotoSans input:-ms-input-placeholder,
+.construcot-container .centerbox.fontNotoSans textarea:-ms-input-placeholder,
+.construcot-container .centerbox.fontNotoSans button {
+  font-family: 'Noto Sans', sans-serif !important;
+}
+
+.construcot-container .centerbox.fontNotoSans div,
+.construcot-container .centerbox.fontNotoSans label,
+.construcot-container .centerbox.fontNotoSans input,
+.construcot-container .centerbox.fontNotoSans p,
+.construcot-container .centerbox.fontNotoSans textarea,
+.construcot-container .centerbox.fontNotoSans input::-ms-input-placeholder,
+.construcot-container .centerbox.fontNotoSans textarea::-ms-input-placeholder,
+.construcot-container .centerbox.fontNotoSans button {
+  font-family: 'Noto Sans', sans-serif !important;
+}
+
+.construcot-container .centerbox.fontNotoSans div,
+.construcot-container .centerbox.fontNotoSans label,
+.construcot-container .centerbox.fontNotoSans input,
+.construcot-container .centerbox.fontNotoSans p,
+.construcot-container .centerbox.fontNotoSans textarea,
+.construcot-container .centerbox.fontNotoSans input::placeholder,
+.construcot-container .centerbox.fontNotoSans textarea::placeholder,
+.construcot-container .centerbox.fontNotoSans button {
+  font-family: 'Noto Sans', sans-serif !important;
+}
+
+.construcot-container .centerbox.fontTahoma {
+  font-family: Tahoma, Geneva, sans-serif  !important;
+}
+
+.construcot-container .centerbox.fontTahoma div,
+.construcot-container .centerbox.fontTahoma label,
+.construcot-container .centerbox.fontTahoma input,
+.construcot-container .centerbox.fontTahoma p,
+.construcot-container .centerbox.fontTahoma textarea,
+.construcot-container .centerbox.fontTahoma input::-webkit-input-placeholder,
+.construcot-container .centerbox.fontTahoma textarea::-webkit-input-placeholder,
+.construcot-container .centerbox.fontTahoma button {
+  font-family: Tahoma, Geneva, sans-serif  !important;
+}
+
+.construcot-container .centerbox.fontTahoma div,
+.construcot-container .centerbox.fontTahoma label,
+.construcot-container .centerbox.fontTahoma input,
+.construcot-container .centerbox.fontTahoma p,
+.construcot-container .centerbox.fontTahoma textarea,
+.construcot-container .centerbox.fontTahoma input::-moz-placeholder,
+.construcot-container .centerbox.fontTahoma textarea::-moz-placeholder,
+.construcot-container .centerbox.fontTahoma button {
+  font-family: Tahoma, Geneva, sans-serif  !important;
+}
+
+.construcot-container .centerbox.fontTahoma div,
+.construcot-container .centerbox.fontTahoma label,
+.construcot-container .centerbox.fontTahoma input,
+.construcot-container .centerbox.fontTahoma p,
+.construcot-container .centerbox.fontTahoma textarea,
+.construcot-container .centerbox.fontTahoma input:-ms-input-placeholder,
+.construcot-container .centerbox.fontTahoma textarea:-ms-input-placeholder,
+.construcot-container .centerbox.fontTahoma button {
+  font-family: Tahoma, Geneva, sans-serif  !important;
+}
+
+.construcot-container .centerbox.fontTahoma div,
+.construcot-container .centerbox.fontTahoma label,
+.construcot-container .centerbox.fontTahoma input,
+.construcot-container .centerbox.fontTahoma p,
+.construcot-container .centerbox.fontTahoma textarea,
+.construcot-container .centerbox.fontTahoma input::-ms-input-placeholder,
+.construcot-container .centerbox.fontTahoma textarea::-ms-input-placeholder,
+.construcot-container .centerbox.fontTahoma button {
+  font-family: Tahoma, Geneva, sans-serif  !important;
+}
+
+.construcot-container .centerbox.fontTahoma div,
+.construcot-container .centerbox.fontTahoma label,
+.construcot-container .centerbox.fontTahoma input,
+.construcot-container .centerbox.fontTahoma p,
+.construcot-container .centerbox.fontTahoma textarea,
+.construcot-container .centerbox.fontTahoma input::placeholder,
+.construcot-container .centerbox.fontTahoma textarea::placeholder,
+.construcot-container .centerbox.fontTahoma button {
+  font-family: Tahoma, Geneva, sans-serif  !important;
+}
+
+.construcot-container .centerbox.fontImpact {
+  font-family: Impact, Charcoal, sans-serif  !important;
+}
+
+.construcot-container .centerbox.fontImpact div,
+.construcot-container .centerbox.fontImpact label,
+.construcot-container .centerbox.fontImpact input,
+.construcot-container .centerbox.fontImpact p,
+.construcot-container .centerbox.fontImpact textarea,
+.construcot-container .centerbox.fontImpact input::-webkit-input-placeholder,
+.construcot-container .centerbox.fontImpact textarea::-webkit-input-placeholder,
+.construcot-container .centerbox.fontImpact button {
+  font-family: Impact, Charcoal, sans-serif  !important;
+}
+
+.construcot-container .centerbox.fontImpact div,
+.construcot-container .centerbox.fontImpact label,
+.construcot-container .centerbox.fontImpact input,
+.construcot-container .centerbox.fontImpact p,
+.construcot-container .centerbox.fontImpact textarea,
+.construcot-container .centerbox.fontImpact input::-moz-placeholder,
+.construcot-container .centerbox.fontImpact textarea::-moz-placeholder,
+.construcot-container .centerbox.fontImpact button {
+  font-family: Impact, Charcoal, sans-serif  !important;
+}
+
+.construcot-container .centerbox.fontImpact div,
+.construcot-container .centerbox.fontImpact label,
+.construcot-container .centerbox.fontImpact input,
+.construcot-container .centerbox.fontImpact p,
+.construcot-container .centerbox.fontImpact textarea,
+.construcot-container .centerbox.fontImpact input:-ms-input-placeholder,
+.construcot-container .centerbox.fontImpact textarea:-ms-input-placeholder,
+.construcot-container .centerbox.fontImpact button {
+  font-family: Impact, Charcoal, sans-serif  !important;
+}
+
+.construcot-container .centerbox.fontImpact div,
+.construcot-container .centerbox.fontImpact label,
+.construcot-container .centerbox.fontImpact input,
+.construcot-container .centerbox.fontImpact p,
+.construcot-container .centerbox.fontImpact textarea,
+.construcot-container .centerbox.fontImpact input::-ms-input-placeholder,
+.construcot-container .centerbox.fontImpact textarea::-ms-input-placeholder,
+.construcot-container .centerbox.fontImpact button {
+  font-family: Impact, Charcoal, sans-serif  !important;
+}
+
+.construcot-container .centerbox.fontImpact div,
+.construcot-container .centerbox.fontImpact label,
+.construcot-container .centerbox.fontImpact input,
+.construcot-container .centerbox.fontImpact p,
+.construcot-container .centerbox.fontImpact textarea,
+.construcot-container .centerbox.fontImpact input::placeholder,
+.construcot-container .centerbox.fontImpact textarea::placeholder,
+.construcot-container .centerbox.fontImpact button {
+  font-family: Impact, Charcoal, sans-serif  !important;
+}
+
+.construcot-container .centerbox.fontLucida {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif !important;
+}
+
+.construcot-container .centerbox.fontLucida div,
+.construcot-container .centerbox.fontLucida label,
+.construcot-container .centerbox.fontLucida input,
+.construcot-container .centerbox.fontLucida p,
+.construcot-container .centerbox.fontLucida textarea,
+.construcot-container .centerbox.fontLucida input::-webkit-input-placeholder,
+.construcot-container .centerbox.fontLucida textarea::-webkit-input-placeholder,
+.construcot-container .centerbox.fontLucida button {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif  !important;
+}
+
+.construcot-container .centerbox.fontLucida div,
+.construcot-container .centerbox.fontLucida label,
+.construcot-container .centerbox.fontLucida input,
+.construcot-container .centerbox.fontLucida p,
+.construcot-container .centerbox.fontLucida textarea,
+.construcot-container .centerbox.fontLucida input::-moz-placeholder,
+.construcot-container .centerbox.fontLucida textarea::-moz-placeholder,
+.construcot-container .centerbox.fontLucida button {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif  !important;
+}
+
+.construcot-container .centerbox.fontLucida div,
+.construcot-container .centerbox.fontLucida label,
+.construcot-container .centerbox.fontLucida input,
+.construcot-container .centerbox.fontLucida p,
+.construcot-container .centerbox.fontLucida textarea,
+.construcot-container .centerbox.fontLucida input:-ms-input-placeholder,
+.construcot-container .centerbox.fontLucida textarea:-ms-input-placeholder,
+.construcot-container .centerbox.fontLucida button {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif  !important;
+}
+
+.construcot-container .centerbox.fontLucida div,
+.construcot-container .centerbox.fontLucida label,
+.construcot-container .centerbox.fontLucida input,
+.construcot-container .centerbox.fontLucida p,
+.construcot-container .centerbox.fontLucida textarea,
+.construcot-container .centerbox.fontLucida input::-ms-input-placeholder,
+.construcot-container .centerbox.fontLucida textarea::-ms-input-placeholder,
+.construcot-container .centerbox.fontLucida button {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif  !important;
+}
+
+.construcot-container .centerbox.fontLucida div,
+.construcot-container .centerbox.fontLucida label,
+.construcot-container .centerbox.fontLucida input,
+.construcot-container .centerbox.fontLucida p,
+.construcot-container .centerbox.fontLucida textarea,
+.construcot-container .centerbox.fontLucida input::placeholder,
+.construcot-container .centerbox.fontLucida textarea::placeholder,
+.construcot-container .centerbox.fontLucida button {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif  !important;
+}
+
+.construcot-container .centerbox.fontCourier {
+  font-family: "Courier New", Courier, monospace !important;
+}
+
+.construcot-container .centerbox.fontCourier div,
+.construcot-container .centerbox.fontCourier label,
+.construcot-container .centerbox.fontCourier input,
+.construcot-container .centerbox.fontCourier p,
+.construcot-container .centerbox.fontCourier textarea,
+.construcot-container .centerbox.fontCourier input::-webkit-input-placeholder,
+.construcot-container .centerbox.fontCourier textarea::-webkit-input-placeholder,
+.construcot-container .centerbox.fontCourier button {
+  font-family: "Courier New", Courier, monospace !important;
+}
+
+.construcot-container .centerbox.fontCourier div,
+.construcot-container .centerbox.fontCourier label,
+.construcot-container .centerbox.fontCourier input,
+.construcot-container .centerbox.fontCourier p,
+.construcot-container .centerbox.fontCourier textarea,
+.construcot-container .centerbox.fontCourier input::-moz-placeholder,
+.construcot-container .centerbox.fontCourier textarea::-moz-placeholder,
+.construcot-container .centerbox.fontCourier button {
+  font-family: "Courier New", Courier, monospace !important;
+}
+
+.construcot-container .centerbox.fontCourier div,
+.construcot-container .centerbox.fontCourier label,
+.construcot-container .centerbox.fontCourier input,
+.construcot-container .centerbox.fontCourier p,
+.construcot-container .centerbox.fontCourier textarea,
+.construcot-container .centerbox.fontCourier input:-ms-input-placeholder,
+.construcot-container .centerbox.fontCourier textarea:-ms-input-placeholder,
+.construcot-container .centerbox.fontCourier button {
+  font-family: "Courier New", Courier, monospace !important;
+}
+
+.construcot-container .centerbox.fontCourier div,
+.construcot-container .centerbox.fontCourier label,
+.construcot-container .centerbox.fontCourier input,
+.construcot-container .centerbox.fontCourier p,
+.construcot-container .centerbox.fontCourier textarea,
+.construcot-container .centerbox.fontCourier input::-ms-input-placeholder,
+.construcot-container .centerbox.fontCourier textarea::-ms-input-placeholder,
+.construcot-container .centerbox.fontCourier button {
+  font-family: "Courier New", Courier, monospace !important;
+}
+
+.construcot-container .centerbox.fontCourier div,
+.construcot-container .centerbox.fontCourier label,
+.construcot-container .centerbox.fontCourier input,
+.construcot-container .centerbox.fontCourier p,
+.construcot-container .centerbox.fontCourier textarea,
+.construcot-container .centerbox.fontCourier input::placeholder,
+.construcot-container .centerbox.fontCourier textarea::placeholder,
+.construcot-container .centerbox.fontCourier button {
+  font-family: "Courier New", Courier, monospace !important;
+}
+
+.construcot-container .centerbox.fontGeorgia {
+  font-family: Georgia, serif !important;
+}
+
+.construcot-container .centerbox.fontGeorgia div,
+.construcot-container .centerbox.fontGeorgia label,
+.construcot-container .centerbox.fontGeorgia input,
+.construcot-container .centerbox.fontGeorgia p,
+.construcot-container .centerbox.fontGeorgia textarea,
+.construcot-container .centerbox.fontGeorgia input::-webkit-input-placeholder,
+.construcot-container .centerbox.fontGeorgia textarea::-webkit-input-placeholder,
+.construcot-container .centerbox.fontGeorgia button {
+  font-family: Georgia, serif !important;
+}
+
+.construcot-container .centerbox.fontGeorgia div,
+.construcot-container .centerbox.fontGeorgia label,
+.construcot-container .centerbox.fontGeorgia input,
+.construcot-container .centerbox.fontGeorgia p,
+.construcot-container .centerbox.fontGeorgia textarea,
+.construcot-container .centerbox.fontGeorgia input::-moz-placeholder,
+.construcot-container .centerbox.fontGeorgia textarea::-moz-placeholder,
+.construcot-container .centerbox.fontGeorgia button {
+  font-family: Georgia, serif !important;
+}
+
+.construcot-container .centerbox.fontGeorgia div,
+.construcot-container .centerbox.fontGeorgia label,
+.construcot-container .centerbox.fontGeorgia input,
+.construcot-container .centerbox.fontGeorgia p,
+.construcot-container .centerbox.fontGeorgia textarea,
+.construcot-container .centerbox.fontGeorgia input:-ms-input-placeholder,
+.construcot-container .centerbox.fontGeorgia textarea:-ms-input-placeholder,
+.construcot-container .centerbox.fontGeorgia button {
+  font-family: Georgia, serif !important;
+}
+
+.construcot-container .centerbox.fontGeorgia div,
+.construcot-container .centerbox.fontGeorgia label,
+.construcot-container .centerbox.fontGeorgia input,
+.construcot-container .centerbox.fontGeorgia p,
+.construcot-container .centerbox.fontGeorgia textarea,
+.construcot-container .centerbox.fontGeorgia input::-ms-input-placeholder,
+.construcot-container .centerbox.fontGeorgia textarea::-ms-input-placeholder,
+.construcot-container .centerbox.fontGeorgia button {
+  font-family: Georgia, serif !important;
+}
+
+.construcot-container .centerbox.fontGeorgia div,
+.construcot-container .centerbox.fontGeorgia label,
+.construcot-container .centerbox.fontGeorgia input,
+.construcot-container .centerbox.fontGeorgia p,
+.construcot-container .centerbox.fontGeorgia textarea,
+.construcot-container .centerbox.fontGeorgia input::placeholder,
+.construcot-container .centerbox.fontGeorgia textarea::placeholder,
+.construcot-container .centerbox.fontGeorgia button {
+  font-family: Georgia, serif !important;
+}
+
+.construcot-container .centerbox.fontTimesNewRoman {
+  font-family: "Times New Roman", Times, serif  !important;
+}
+
+.construcot-container .centerbox.fontTimesNewRoman div,
+.construcot-container .centerbox.fontTimesNewRoman label,
+.construcot-container .centerbox.fontTimesNewRoman input,
+.construcot-container .centerbox.fontTimesNewRoman p,
+.construcot-container .centerbox.fontTimesNewRoman textarea,
+.construcot-container .centerbox.fontTimesNewRoman input::-webkit-input-placeholder,
+.construcot-container .centerbox.fontTimesNewRoman textarea::-webkit-input-placeholder,
+.construcot-container .centerbox.fontTimesNewRoman button {
+  font-family: "Times New Roman", Times, serif  !important;
+}
+
+.construcot-container .centerbox.fontTimesNewRoman div,
+.construcot-container .centerbox.fontTimesNewRoman label,
+.construcot-container .centerbox.fontTimesNewRoman input,
+.construcot-container .centerbox.fontTimesNewRoman p,
+.construcot-container .centerbox.fontTimesNewRoman textarea,
+.construcot-container .centerbox.fontTimesNewRoman input::-moz-placeholder,
+.construcot-container .centerbox.fontTimesNewRoman textarea::-moz-placeholder,
+.construcot-container .centerbox.fontTimesNewRoman button {
+  font-family: "Times New Roman", Times, serif  !important;
+}
+
+.construcot-container .centerbox.fontTimesNewRoman div,
+.construcot-container .centerbox.fontTimesNewRoman label,
+.construcot-container .centerbox.fontTimesNewRoman input,
+.construcot-container .centerbox.fontTimesNewRoman p,
+.construcot-container .centerbox.fontTimesNewRoman textarea,
+.construcot-container .centerbox.fontTimesNewRoman input:-ms-input-placeholder,
+.construcot-container .centerbox.fontTimesNewRoman textarea:-ms-input-placeholder,
+.construcot-container .centerbox.fontTimesNewRoman button {
+  font-family: "Times New Roman", Times, serif  !important;
+}
+
+.construcot-container .centerbox.fontTimesNewRoman div,
+.construcot-container .centerbox.fontTimesNewRoman label,
+.construcot-container .centerbox.fontTimesNewRoman input,
+.construcot-container .centerbox.fontTimesNewRoman p,
+.construcot-container .centerbox.fontTimesNewRoman textarea,
+.construcot-container .centerbox.fontTimesNewRoman input::-ms-input-placeholder,
+.construcot-container .centerbox.fontTimesNewRoman textarea::-ms-input-placeholder,
+.construcot-container .centerbox.fontTimesNewRoman button {
+  font-family: "Times New Roman", Times, serif  !important;
+}
+
+.construcot-container .centerbox.fontTimesNewRoman div,
+.construcot-container .centerbox.fontTimesNewRoman label,
+.construcot-container .centerbox.fontTimesNewRoman input,
+.construcot-container .centerbox.fontTimesNewRoman p,
+.construcot-container .centerbox.fontTimesNewRoman textarea,
+.construcot-container .centerbox.fontTimesNewRoman input::placeholder,
+.construcot-container .centerbox.fontTimesNewRoman textarea::placeholder,
+.construcot-container .centerbox.fontTimesNewRoman button {
+  font-family: "Times New Roman", Times, serif  !important;
+}
+
+.construcot-container .centerbox.fontRoboto {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.construcot-container .centerbox.fontRoboto div,
+.construcot-container .centerbox.fontRoboto label,
+.construcot-container .centerbox.fontRoboto input,
+.construcot-container .centerbox.fontRoboto p,
+.construcot-container .centerbox.fontRoboto textarea,
+.construcot-container .centerbox.fontRoboto input::-webkit-input-placeholder,
+.construcot-container .centerbox.fontRoboto textarea::-webkit-input-placeholder,
+.construcot-container .centerbox.fontRoboto button {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.construcot-container .centerbox.fontRoboto div,
+.construcot-container .centerbox.fontRoboto label,
+.construcot-container .centerbox.fontRoboto input,
+.construcot-container .centerbox.fontRoboto p,
+.construcot-container .centerbox.fontRoboto textarea,
+.construcot-container .centerbox.fontRoboto input::-moz-placeholder,
+.construcot-container .centerbox.fontRoboto textarea::-moz-placeholder,
+.construcot-container .centerbox.fontRoboto button {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.construcot-container .centerbox.fontRoboto div,
+.construcot-container .centerbox.fontRoboto label,
+.construcot-container .centerbox.fontRoboto input,
+.construcot-container .centerbox.fontRoboto p,
+.construcot-container .centerbox.fontRoboto textarea,
+.construcot-container .centerbox.fontRoboto input:-ms-input-placeholder,
+.construcot-container .centerbox.fontRoboto textarea:-ms-input-placeholder,
+.construcot-container .centerbox.fontRoboto button {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.construcot-container .centerbox.fontRoboto div,
+.construcot-container .centerbox.fontRoboto label,
+.construcot-container .centerbox.fontRoboto input,
+.construcot-container .centerbox.fontRoboto p,
+.construcot-container .centerbox.fontRoboto textarea,
+.construcot-container .centerbox.fontRoboto input::-ms-input-placeholder,
+.construcot-container .centerbox.fontRoboto textarea::-ms-input-placeholder,
+.construcot-container .centerbox.fontRoboto button {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.construcot-container .centerbox.fontRoboto div,
+.construcot-container .centerbox.fontRoboto label,
+.construcot-container .centerbox.fontRoboto input,
+.construcot-container .centerbox.fontRoboto p,
+.construcot-container .centerbox.fontRoboto textarea,
+.construcot-container .centerbox.fontRoboto input::placeholder,
+.construcot-container .centerbox.fontRoboto textarea::placeholder,
+.construcot-container .centerbox.fontRoboto button {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.construcot-container .centerbox.fontOpenSans {
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+.construcot-container .centerbox.fontOpenSans div,
+.construcot-container .centerbox.fontOpenSans label,
+.construcot-container .centerbox.fontOpenSans input,
+.construcot-container .centerbox.fontOpenSans p,
+.construcot-container .centerbox.fontOpenSans textarea,
+.construcot-container .centerbox.fontOpenSans input::-webkit-input-placeholder,
+.construcot-container .centerbox.fontOpenSans textarea::-webkit-input-placeholder,
+.construcot-container .centerbox.fontOpenSans button {
+  font-family: 'Open Sans', sans-serif  !important;
+}
+
+.construcot-container .centerbox.fontOpenSans div,
+.construcot-container .centerbox.fontOpenSans label,
+.construcot-container .centerbox.fontOpenSans input,
+.construcot-container .centerbox.fontOpenSans p,
+.construcot-container .centerbox.fontOpenSans textarea,
+.construcot-container .centerbox.fontOpenSans input::-moz-placeholder,
+.construcot-container .centerbox.fontOpenSans textarea::-moz-placeholder,
+.construcot-container .centerbox.fontOpenSans button {
+  font-family: 'Open Sans', sans-serif  !important;
+}
+
+.construcot-container .centerbox.fontOpenSans div,
+.construcot-container .centerbox.fontOpenSans label,
+.construcot-container .centerbox.fontOpenSans input,
+.construcot-container .centerbox.fontOpenSans p,
+.construcot-container .centerbox.fontOpenSans textarea,
+.construcot-container .centerbox.fontOpenSans input:-ms-input-placeholder,
+.construcot-container .centerbox.fontOpenSans textarea:-ms-input-placeholder,
+.construcot-container .centerbox.fontOpenSans button {
+  font-family: 'Open Sans', sans-serif  !important;
+}
+
+.construcot-container .centerbox.fontOpenSans div,
+.construcot-container .centerbox.fontOpenSans label,
+.construcot-container .centerbox.fontOpenSans input,
+.construcot-container .centerbox.fontOpenSans p,
+.construcot-container .centerbox.fontOpenSans textarea,
+.construcot-container .centerbox.fontOpenSans input::-ms-input-placeholder,
+.construcot-container .centerbox.fontOpenSans textarea::-ms-input-placeholder,
+.construcot-container .centerbox.fontOpenSans button {
+  font-family: 'Open Sans', sans-serif  !important;
+}
+
+.construcot-container .centerbox.fontOpenSans div,
+.construcot-container .centerbox.fontOpenSans label,
+.construcot-container .centerbox.fontOpenSans input,
+.construcot-container .centerbox.fontOpenSans p,
+.construcot-container .centerbox.fontOpenSans textarea,
+.construcot-container .centerbox.fontOpenSans input::placeholder,
+.construcot-container .centerbox.fontOpenSans textarea::placeholder,
+.construcot-container .centerbox.fontOpenSans button {
+  font-family: 'Open Sans', sans-serif  !important;
+}
+
+.construcot-container .centerbox.fontPiazzolla {
+  font-family: 'Piazzolla', serif !important;
+}
+
+.construcot-container .centerbox.fontPiazzolla div,
+.construcot-container .centerbox.fontPiazzolla label,
+.construcot-container .centerbox.fontPiazzolla input,
+.construcot-container .centerbox.fontPiazzolla p,
+.construcot-container .centerbox.fontPiazzolla textarea,
+.construcot-container .centerbox.fontPiazzolla input::-webkit-input-placeholder,
+.construcot-container .centerbox.fontPiazzolla textarea::-webkit-input-placeholder,
+.construcot-container .centerbox.fontPiazzolla button {
+  font-family: 'Piazzolla', serif !important;
+}
+
+.construcot-container .centerbox.fontPiazzolla div,
+.construcot-container .centerbox.fontPiazzolla label,
+.construcot-container .centerbox.fontPiazzolla input,
+.construcot-container .centerbox.fontPiazzolla p,
+.construcot-container .centerbox.fontPiazzolla textarea,
+.construcot-container .centerbox.fontPiazzolla input::-moz-placeholder,
+.construcot-container .centerbox.fontPiazzolla textarea::-moz-placeholder,
+.construcot-container .centerbox.fontPiazzolla button {
+  font-family: 'Piazzolla', serif !important;
+}
+
+.construcot-container .centerbox.fontPiazzolla div,
+.construcot-container .centerbox.fontPiazzolla label,
+.construcot-container .centerbox.fontPiazzolla input,
+.construcot-container .centerbox.fontPiazzolla p,
+.construcot-container .centerbox.fontPiazzolla textarea,
+.construcot-container .centerbox.fontPiazzolla input:-ms-input-placeholder,
+.construcot-container .centerbox.fontPiazzolla textarea:-ms-input-placeholder,
+.construcot-container .centerbox.fontPiazzolla button {
+  font-family: 'Piazzolla', serif !important;
+}
+
+.construcot-container .centerbox.fontPiazzolla div,
+.construcot-container .centerbox.fontPiazzolla label,
+.construcot-container .centerbox.fontPiazzolla input,
+.construcot-container .centerbox.fontPiazzolla p,
+.construcot-container .centerbox.fontPiazzolla textarea,
+.construcot-container .centerbox.fontPiazzolla input::-ms-input-placeholder,
+.construcot-container .centerbox.fontPiazzolla textarea::-ms-input-placeholder,
+.construcot-container .centerbox.fontPiazzolla button {
+  font-family: 'Piazzolla', serif !important;
+}
+
+.construcot-container .centerbox.fontPiazzolla div,
+.construcot-container .centerbox.fontPiazzolla label,
+.construcot-container .centerbox.fontPiazzolla input,
+.construcot-container .centerbox.fontPiazzolla p,
+.construcot-container .centerbox.fontPiazzolla textarea,
+.construcot-container .centerbox.fontPiazzolla input::placeholder,
+.construcot-container .centerbox.fontPiazzolla textarea::placeholder,
+.construcot-container .centerbox.fontPiazzolla button {
+  font-family: 'Piazzolla', serif !important;
+}
+
+.construcot-container .centerbox.fontOswald {
+  font-family: "Oswald", sans-serif !important;
+}
+
+.construcot-container .centerbox.fontOswald div,
+.construcot-container .centerbox.fontOswald label,
+.construcot-container .centerbox.fontOswald input,
+.construcot-container .centerbox.fontOswald p,
+.construcot-container .centerbox.fontOswald textarea,
+.construcot-container .centerbox.fontOswald input::-webkit-input-placeholder,
+.construcot-container .centerbox.fontOswald textarea::-webkit-input-placeholder,
+.construcot-container .centerbox.fontOswald button {
+  font-family: "Oswald", sans-serif !important;
+}
+
+.construcot-container .centerbox.fontOswald div,
+.construcot-container .centerbox.fontOswald label,
+.construcot-container .centerbox.fontOswald input,
+.construcot-container .centerbox.fontOswald p,
+.construcot-container .centerbox.fontOswald textarea,
+.construcot-container .centerbox.fontOswald input::-moz-placeholder,
+.construcot-container .centerbox.fontOswald textarea::-moz-placeholder,
+.construcot-container .centerbox.fontOswald button {
+  font-family: "Oswald", sans-serif !important;
+}
+
+.construcot-container .centerbox.fontOswald div,
+.construcot-container .centerbox.fontOswald label,
+.construcot-container .centerbox.fontOswald input,
+.construcot-container .centerbox.fontOswald p,
+.construcot-container .centerbox.fontOswald textarea,
+.construcot-container .centerbox.fontOswald input:-ms-input-placeholder,
+.construcot-container .centerbox.fontOswald textarea:-ms-input-placeholder,
+.construcot-container .centerbox.fontOswald button {
+  font-family: "Oswald", sans-serif !important;
+}
+
+.construcot-container .centerbox.fontOswald div,
+.construcot-container .centerbox.fontOswald label,
+.construcot-container .centerbox.fontOswald input,
+.construcot-container .centerbox.fontOswald p,
+.construcot-container .centerbox.fontOswald textarea,
+.construcot-container .centerbox.fontOswald input::-ms-input-placeholder,
+.construcot-container .centerbox.fontOswald textarea::-ms-input-placeholder,
+.construcot-container .centerbox.fontOswald button {
+  font-family: "Oswald", sans-serif !important;
+}
+
+.construcot-container .centerbox.fontOswald div,
+.construcot-container .centerbox.fontOswald label,
+.construcot-container .centerbox.fontOswald input,
+.construcot-container .centerbox.fontOswald p,
+.construcot-container .centerbox.fontOswald textarea,
+.construcot-container .centerbox.fontOswald input::placeholder,
+.construcot-container .centerbox.fontOswald textarea::placeholder,
+.construcot-container .centerbox.fontOswald button {
+  font-family: "Oswald", sans-serif !important;
+}
+
+.construcot-container .centerbox.fontUbuntu {
+  font-family: 'Ubuntu', sans-serif !important;
+}
+
+.construcot-container .centerbox.fontUbuntu div,
+.construcot-container .centerbox.fontUbuntu label,
+.construcot-container .centerbox.fontUbuntu input,
+.construcot-container .centerbox.fontUbuntu p,
+.construcot-container .centerbox.fontUbuntu textarea,
+.construcot-container .centerbox.fontUbuntu input::-webkit-input-placeholder,
+.construcot-container .centerbox.fontUbuntu textarea::-webkit-input-placeholder,
+.construcot-container .centerbox.fontUbuntu button {
+  font-family: 'Ubuntu', sans-serif !important;
+}
+
+.construcot-container .centerbox.fontUbuntu div,
+.construcot-container .centerbox.fontUbuntu label,
+.construcot-container .centerbox.fontUbuntu input,
+.construcot-container .centerbox.fontUbuntu p,
+.construcot-container .centerbox.fontUbuntu textarea,
+.construcot-container .centerbox.fontUbuntu input::-moz-placeholder,
+.construcot-container .centerbox.fontUbuntu textarea::-moz-placeholder,
+.construcot-container .centerbox.fontUbuntu button {
+  font-family: 'Ubuntu', sans-serif !important;
+}
+
+.construcot-container .centerbox.fontUbuntu div,
+.construcot-container .centerbox.fontUbuntu label,
+.construcot-container .centerbox.fontUbuntu input,
+.construcot-container .centerbox.fontUbuntu p,
+.construcot-container .centerbox.fontUbuntu textarea,
+.construcot-container .centerbox.fontUbuntu input:-ms-input-placeholder,
+.construcot-container .centerbox.fontUbuntu textarea:-ms-input-placeholder,
+.construcot-container .centerbox.fontUbuntu button {
+  font-family: 'Ubuntu', sans-serif !important;
+}
+
+.construcot-container .centerbox.fontUbuntu div,
+.construcot-container .centerbox.fontUbuntu label,
+.construcot-container .centerbox.fontUbuntu input,
+.construcot-container .centerbox.fontUbuntu p,
+.construcot-container .centerbox.fontUbuntu textarea,
+.construcot-container .centerbox.fontUbuntu input::-ms-input-placeholder,
+.construcot-container .centerbox.fontUbuntu textarea::-ms-input-placeholder,
+.construcot-container .centerbox.fontUbuntu button {
+  font-family: 'Ubuntu', sans-serif !important;
+}
+
+.construcot-container .centerbox.fontUbuntu div,
+.construcot-container .centerbox.fontUbuntu label,
+.construcot-container .centerbox.fontUbuntu input,
+.construcot-container .centerbox.fontUbuntu p,
+.construcot-container .centerbox.fontUbuntu textarea,
+.construcot-container .centerbox.fontUbuntu input::placeholder,
+.construcot-container .centerbox.fontUbuntu textarea::placeholder,
+.construcot-container .centerbox.fontUbuntu button {
+  font-family: 'Ubuntu', sans-serif !important;
 }
 
 .construcot-container .centerbox::-webkit-scrollbar-track {
@@ -1193,6 +2171,30 @@ table {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
           box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #4449DB;
+}
+
+.construcot-container .centerbox input[type=checkbox],
+.construcot-container .centerbox input[type=radio] {
+  display: none;
+}
+
+.construcot-container .centerbox input[type=checkbox]:checked + label::before,
+.construcot-container .centerbox input[type=radio]:checked + label::before {
+  background: #C4C4C4;
+}
+
+.construcot-container .centerbox input[type=checkbox] + label::before,
+.construcot-container .centerbox input[type=radio] + label::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border: 0.5px solid #C4C4C4;
+  border-radius: 50%;
+  margin-right: 5px;
+  -webkit-transition: background 0.3s ease-in;
+  -o-transition: background 0.3s ease-in;
+  transition: background 0.3s ease-in;
 }
 
 .construcot-container .centerbox .mediablock {
@@ -1883,6 +2885,10 @@ table {
   display: none;
 }
 
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label::before {
+  display: none;
+}
+
 .construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label {
   cursor: pointer;
   outline: none;
@@ -2002,6 +3008,10 @@ table {
 
 .construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color10 {
   background-color: #008811;
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar label::before {
+  display: none;
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating {
@@ -2197,6 +3207,10 @@ table {
   background-image: url("./../img/star-a-10.svg");
 }
 
+.construcot-container .centerbox .questions-box .question .answer.answer-star5 label::before, .construcot-container .centerbox .questions-box .question .answer.answer-star10 label::before {
+  display: none;
+}
+
 .construcot-container .centerbox .questions-box .question .answer.answer-star5 .rating, .construcot-container .centerbox .questions-box .question .answer.answer-star10 .rating {
   display: -webkit-box;
   display: -webkit-flex;
@@ -2250,6 +3264,10 @@ table {
 .construcot-container .centerbox .questions-box .question .answer.answer-star5 .rating > input:not(:checked) ~ label:hover ~ label, .construcot-container .centerbox .questions-box .question .answer.answer-star10 .rating > input:not(:checked) ~ label:hover,
 .construcot-container .centerbox .questions-box .question .answer.answer-star10 .rating > input:not(:checked) ~ label:hover ~ label {
   background-image: url("./..//img/star-hover.svg");
+}
+
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 label::before {
+  display: none;
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper {
@@ -2452,6 +3470,7 @@ table {
   border-bottom: 1px solid #A4A2A2;
   outline: none;
   width: 100%;
+  background: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .email-answer .col-email input::-webkit-input-placeholder {
@@ -2592,6 +3611,7 @@ table {
   outline: none;
   padding-left: 65px;
   width: 100%;
+  background: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone input::-webkit-input-placeholder {
@@ -2689,6 +3709,7 @@ table {
   border-bottom: 1px solid #A4A2A2;
   outline: none;
   width: 100%;
+  background: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .name-answer .col-date input::-webkit-input-placeholder,
@@ -2769,6 +3790,7 @@ table {
   border-bottom: 1px solid #A4A2A2;
   outline: none;
   width: 100%;
+  background: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .name-answer .col-name input::-webkit-input-placeholder,
@@ -2819,6 +3841,10 @@ table {
   font-size: 10px;
   line-height: 12px;
   color: #A4A2A2;
+}
+
+.construcot-container .centerbox .questions-box .question .answer .matrix-table label::before {
+  display: none;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .matrix-table .first-row {
@@ -3010,30 +4036,6 @@ table {
   padding-bottom: 6px;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block .dropdown-content .input-group input[type=checkbox],
-.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block .dropdown-content .input-group input[type=radio] {
-  display: none;
-}
-
-.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block .dropdown-content .input-group input[type=checkbox]:checked + label::before,
-.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block .dropdown-content .input-group input[type=radio]:checked + label::before {
-  background: #563BC2;
-}
-
-.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block .dropdown-content .input-group input[type=checkbox] + label::before,
-.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block .dropdown-content .input-group input[type=radio] + label::before {
-  content: "";
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border: 0.5px solid #563BC2;
-  border-radius: 50%;
-  margin-right: 5px;
-  -webkit-transition: background 0.3s ease-in;
-  -o-transition: background 0.3s ease-in;
-  transition: background 0.3s ease-in;
-}
-
 .construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block .dropdown-content .input-group label {
   font-family: "Montserrat";
   font-style: normal;
@@ -3168,6 +4170,19 @@ table {
   min-height: 100px;
   height: calc(100vh - 160px);
   overflow: auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .construcot-container .rightside::-webkit-scrollbar-track {
@@ -3191,6 +4206,267 @@ table {
 
 .construcot-container .rightside .optionsblock {
   width: 100%;
+}
+
+.construcot-container .rightside .designoptions .position {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  padding-bottom: 10px;
+}
+
+.construcot-container .rightside .designoptions .position .left {
+  padding-right: 17px;
+}
+
+.construcot-container .rightside .designoptions .position .left input {
+  display: none;
+}
+
+.construcot-container .rightside .designoptions .position .left input:checked + label {
+  background: url(./../img/positionleft-a.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.construcot-container .rightside .designoptions .position .left label {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url(./../img/positionleft.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  -webkit-transition: background 0.3s ease-in;
+  -o-transition: background 0.3s ease-in;
+  transition: background 0.3s ease-in;
+}
+
+.construcot-container .rightside .designoptions .position .left label:hover {
+  background: url(./../img/positionleft-a.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.construcot-container .rightside .designoptions .position .center {
+  padding-right: 17px;
+}
+
+.construcot-container .rightside .designoptions .position .center input {
+  display: none;
+}
+
+.construcot-container .rightside .designoptions .position .center input:checked + label {
+  background: url(./../img/positioncenter-a.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.construcot-container .rightside .designoptions .position .center label {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url(./../img/positioncenter.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  -webkit-transition: background 0.3s ease-in;
+  -o-transition: background 0.3s ease-in;
+  transition: background 0.3s ease-in;
+}
+
+.construcot-container .rightside .designoptions .position .center label:hover {
+  background: url(./../img//positioncenter-a.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.construcot-container .rightside .designoptions .position .right {
+  padding-right: 17px;
+}
+
+.construcot-container .rightside .designoptions .position .right input {
+  display: none;
+}
+
+.construcot-container .rightside .designoptions .position .right input:checked + label {
+  background: url(./../img/positionright-a.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.construcot-container .rightside .designoptions .position .right label {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url(./../img/positionright.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  -webkit-transition: background 0.3s ease-in;
+  -o-transition: background 0.3s ease-in;
+  transition: background 0.3s ease-in;
+}
+
+.construcot-container .rightside .designoptions .position .right label:hover {
+  background: url(./../img/positionright-a.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.construcot-container .rightside .designoptions .colorpick {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 9px;
+  border: 1px solid #EEEFF3;
+}
+
+.construcot-container .rightside .designoptions .colorpick .square {
+  width: 11px;
+  height: 11px;
+  background: #000000;
+}
+
+.construcot-container .rightside .designoptions .colorpick .inputs {
+  padding-left: 7px;
+  padding-right: 7px;
+  width: 55px;
+}
+
+.construcot-container .rightside .designoptions .colorpick .inputs input[type=text] {
+  width: 45px;
+  text-align: center;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 8px;
+  line-height: 10px;
+  color: #000000;
+  border: none;
+  outline: none;
+}
+
+.construcot-container .rightside .designoptions .colorpick .inputs input[type=color] {
+  width: 0px;
+  height: 0px;
+  opacity: 0;
+  padding: 0px;
+  overflow: hidden;
+  position: absolute;
+}
+
+.construcot-container .rightside .designoptions .colorpick .labelcolor {
+  width: calc(100% - 70px);
+}
+
+.construcot-container .rightside .designoptions .colorpick .labelcolor label {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px !important;
+  line-height: 12px !important;
+  color: #6F6969 !important;
+}
+
+.construcot-container .rightside .designoptions .select-options li[rel="PTSans"] {
+  font-family: 'PT Sans', sans-serif !important;
+}
+
+.construcot-container .rightside .designoptions .select-options li[rel="Arial"] {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.construcot-container .rightside .designoptions .select-options li[rel="Lora"] {
+  font-family: 'Lora', serif !important;
+}
+
+.construcot-container .rightside .designoptions .select-options li[rel="NotoSans"] {
+  font-family: 'Noto Sans', sans-serif !important;
+}
+
+.construcot-container .rightside .designoptions .select-options li[rel="Ubuntu"] {
+  font-family: 'Ubuntu', sans-serif !important;
+}
+
+.construcot-container .rightside .designoptions .select-options li[rel="Oswald"] {
+  font-family: 'Oswald', sans-serif !important;
+}
+
+.construcot-container .rightside .designoptions .select-options li[rel="Piazzolla"] {
+  font-family: 'Piazzolla', serif !important;
+}
+
+.construcot-container .rightside .designoptions .select-options li[rel="OpenSans"] {
+  font-family: 'Open Sans', sans-serif  !important;
+}
+
+.construcot-container .rightside .designoptions .select-options li[rel="Roboto"] {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.construcot-container .rightside .designoptions .select-options li[rel="TimesNewRoman"] {
+  font-family: "Times New Roman", Times, serif !important;
+}
+
+.construcot-container .rightside .designoptions .select-options li[rel="Georgia"] {
+  font-family: Georgia, serif !important;
+}
+
+.construcot-container .rightside .designoptions .select-options li[rel="Courier"] {
+  font-family: "Courier New", Courier, monospace !important;
+}
+
+.construcot-container .rightside .designoptions .select-options li[rel="Lucida"] {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif !important;
+}
+
+.construcot-container .rightside .designoptions .select-options li[rel="Impact"] {
+  font-family: Impact, Charcoal, sans-serif !important;
+}
+
+.construcot-container .rightside .designoptions .select-options li[rel="Tahoma"] {
+  font-family: Tahoma, Geneva, sans-serif !important;
+}
+
+.construcot-container .rightside .designoptions .select-options li[rel="Montserrat"] {
+  font-family: "Montserrat" !important;
 }
 
 .construcot-container .rightside .default,
@@ -3436,8 +4712,8 @@ table {
   height: 16px;
   background: url(./../img/positionleft.svg);
   background-position: center;
-  -webkit-background-size: cover;
-          background-size: cover;
+  -webkit-background-size: contain;
+          background-size: contain;
   background-repeat: no-repeat;
   cursor: pointer;
   -webkit-transition: background 0.3s ease-in;
@@ -3480,8 +4756,8 @@ table {
   height: 16px;
   background: url(./../img/positioncenter.svg);
   background-position: center;
-  -webkit-background-size: cover;
-          background-size: cover;
+  -webkit-background-size: contain;
+          background-size: contain;
   background-repeat: no-repeat;
   cursor: pointer;
   -webkit-transition: background 0.3s ease-in;
@@ -4042,6 +5318,24 @@ table {
   position: relative;
 }
 
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group:hover .adddropdownsubpoints,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group:hover .adddropdownsubpoints {
+  background: url(./../img/grey-plus-a.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group:hover .arrowshow,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group:hover .arrowshow {
+  background: url(./../img/arrow-dropdown-a.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+}
+
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .adddropdownsubpoints,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .adddropdownsubpoints {
   width: 8px;
@@ -4054,6 +5348,9 @@ table {
   position: absolute;
   right: 25px;
   bottom: 5px;
+  -webkit-transition: background 0.3s ease-in;
+  -o-transition: background 0.3s ease-in;
+  transition: background 0.3s ease-in;
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .arrowshow,
@@ -4069,11 +5366,9 @@ table {
   position: absolute;
   top: 25px;
   right: 25px;
-  -webkit-transition: -webkit-transform 0.3s ease-in;
-  transition: -webkit-transform 0.3s ease-in;
-  -o-transition: -o-transform 0.3s ease-in;
-  transition: transform 0.3s ease-in;
-  transition: transform 0.3s ease-in, -webkit-transform 0.3s ease-in, -o-transform 0.3s ease-in;
+  -webkit-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .arrowshow.active,
@@ -4207,7 +5502,11 @@ table {
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group:hover .removedropdownsub,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group:hover .removedropdownsub {
-  opacity: 1;
+  background: url(./../img/minus-grey-a.svg);
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-position: center;
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group .removedropdownsub,
@@ -4223,10 +5522,9 @@ table {
   width: 8px;
   height: 8px;
   cursor: pointer;
-  opacity: 0;
-  -webkit-transition: opacity 0.3s ease-in;
-  -o-transition: opacity 0.3s ease-in;
-  transition: opacity 0.3s ease-in;
+  -webkit-transition: background 0.3s ease-in;
+  -o-transition: background 0.3s ease-in;
+  transition: background 0.3s ease-in;
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group input,
@@ -5332,6 +6630,122 @@ html .ui-button.ui-state-disabled:active {
 
 .iti__flag {
   background-image: url("./../img/flags16.png");
+}
+
+.customselect-wrapper .select-hidden {
+  display: none;
+  visibility: hidden;
+  padding-right: 10px;
+}
+
+.customselect-wrapper .select {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+}
+
+.customselect-wrapper .select-styled {
+  -webkit-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: #000000;
+  padding: 8px;
+  border: 1px solid #EEEFF3;
+  width: 100%;
+  -webkit-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+  padding-right: 20px;
+}
+
+.customselect-wrapper .select-styled:after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 7px;
+  right: 10px;
+  top: calc(50% - 2.5px);
+  display: block;
+  background: url(./../img/arrow-dropdown.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+  -webkit-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+}
+
+.customselect-wrapper .select-styled:hover {
+  border-color: #563BC2;
+}
+
+.customselect-wrapper .select-styled:hover:after {
+  background: url(./../img/arrow-dropdown-a.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.customselect-wrapper .select-styled:active, .customselect-wrapper .select-styled.active {
+  border-color: #563BC2;
+}
+
+.customselect-wrapper .select-styled:active:after, .customselect-wrapper .select-styled.active:after {
+  background: url(./../img/arrow-dropdown-a.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+       -o-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.customselect-wrapper .select-options {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  z-index: 999;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: #FEFDFD;
+  border-right: 1px solid #EEEFF3;
+  border-left: 1px solid #EEEFF3;
+}
+
+.customselect-wrapper .select-options li {
+  margin: 0;
+  -webkit-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: #000000;
+  padding: 8px;
+  border-bottom: 1px solid #EEEFF3;
+}
+
+.customselect-wrapper .select-options li:hover {
+  border-color: #563BC2;
+}
+
+.customselect-wrapper .select-options li[rel="hide"] {
+  display: none;
 }
 
 @media screen and (min-width: 1500px) {

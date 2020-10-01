@@ -25,6 +25,7 @@ $colorscale4: #00E355;
 $colorscale5: #008811;
 
 @import url("../font/Montserrat/stylesheet.css");
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&family=Oswald:wght@200;300;400;500;600;700&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Piazzolla:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
     margin: 0;
@@ -884,6 +885,242 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
         width: calc(100% - 540px);
         height: calc(100vh - 160px);
         overflow: auto;
+        &.full-width {
+            width: calc(100% - 340px);
+            .questions-box {
+                .question {
+                    &:hover {
+                        background: inherit;
+                        box-shadow: none;
+                        &::before {
+                            opacity: 0;
+                        }
+                        .close-question {
+                            opacity: 0;
+                        }
+                    }
+                }
+            }
+        }
+        transition: all 0.3 ease-in;
+        &.alignleft {
+            text-align: left;
+        }
+        &.aligncenter {
+            text-align: center;
+        }
+        &.alignright {
+            text-align: right;
+        }
+        &.fontMontserrat {
+            font-family: $fontpage !important;
+            div,
+            label,
+            input,
+            p,
+            textarea,
+            input::placeholder,
+            textarea::placeholder,
+            button {
+                font-family: $fontpage !important;
+            }
+        }
+        &.fontArial {
+            font-family: Arial, Helvetica, sans-serif !important;
+            div,
+            label,
+            input,
+            p,
+            textarea,
+            input::placeholder,
+            textarea::placeholder,
+            button {
+                font-family: Arial, Helvetica, sans-serif !important;
+            }
+        }
+        &.fontLora {
+            font-family: 'Lora', serif !important;
+            div,
+            label,
+            input,
+            p,
+            textarea,
+            input::placeholder,
+            textarea::placeholder,
+            button {
+                font-family: 'Lora', serif !important;
+            }
+        }
+        &.fontPTSans {
+            font-family: Arial, Helvetica, sans-serif !important;
+            div,
+            label,
+            input,
+            p,
+            textarea,
+            input::placeholder,
+            textarea::placeholder,
+            button {
+                font-family: 'PT Sans', sans-serif !important;
+            }
+        }
+        &.fontNotoSans {
+            font-family: 'Noto Sans', sans-serif !important;
+            div,
+            label,
+            input,
+            p,
+            textarea,
+            input::placeholder,
+            textarea::placeholder,
+            button {
+                font-family: 'Noto Sans', sans-serif !important;
+            }
+        }
+        
+        &.fontTahoma {
+            font-family: Tahoma, Geneva, sans-serif  !important;
+            div,
+            label,
+            input,
+            p,
+            textarea,
+            input::placeholder,
+            textarea::placeholder,
+            button {
+                font-family: Tahoma, Geneva, sans-serif  !important;
+            }
+        }
+        &.fontImpact {
+            font-family: Impact, Charcoal, sans-serif  !important;
+            div,
+            label,
+            input,
+            p,
+            textarea,
+            input::placeholder,
+            textarea::placeholder,
+            button {
+                font-family: Impact, Charcoal, sans-serif  !important;
+            }
+        }
+        &.fontLucida {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif !important;
+            div,
+            label,
+            input,
+            p,
+            textarea,
+            input::placeholder,
+            textarea::placeholder,
+            button {
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif  !important;
+            }
+        }
+        &.fontCourier {
+            font-family: "Courier New", Courier, monospace !important;
+            div,
+            label,
+            input,
+            p,
+            textarea,
+            input::placeholder,
+            textarea::placeholder,
+            button {
+                font-family: "Courier New", Courier, monospace !important;
+            }
+        }
+        &.fontGeorgia {
+            font-family: Georgia, serif !important;
+            div,
+            label,
+            input,
+            p,
+            textarea,
+            input::placeholder,
+            textarea::placeholder,
+            button {
+                font-family: Georgia, serif !important;
+            }
+        }
+        &.fontTimesNewRoman {
+            font-family: "Times New Roman", Times, serif  !important;
+            div,
+            label,
+            input,
+            p,
+            textarea,
+            input::placeholder,
+            textarea::placeholder,
+            button {
+                font-family: "Times New Roman", Times, serif  !important;
+            }
+        }
+        &.fontRoboto {
+            font-family:  'Roboto', sans-serif !important;
+            div,
+            label,
+            input,
+            p,
+            textarea,
+            input::placeholder,
+            textarea::placeholder,
+            button {
+                font-family: 'Roboto', sans-serif !important;
+            }
+        }
+        &.fontOpenSans {
+            font-family: 'Open Sans', sans-serif !important;
+            div,
+            label,
+            input,
+            p,
+            textarea,
+            input::placeholder,
+            textarea::placeholder,
+            button {
+                font-family: 'Open Sans', sans-serif  !important;
+            }
+        }
+        &.fontPiazzolla {
+            font-family: 'Piazzolla', serif !important;
+            div,
+            label,
+            input,
+            p,
+            textarea,
+            input::placeholder,
+            textarea::placeholder,
+            button {
+                font-family: 'Piazzolla', serif !important;
+            }
+        }
+        &.fontOswald {
+            font-family: 'Oswald', sans-serif!important;
+            div,
+            label,
+            input,
+            p,
+            textarea,
+            input::placeholder,
+            textarea::placeholder,
+            button {
+                font-family: 'Oswald', sans-serif!important;
+            }
+        }
+        &.fontUbuntu {
+            font-family:  'Ubuntu', sans-serif !important;
+            div,
+            label,
+            input,
+            p,
+            textarea,
+            input::placeholder,
+            textarea::placeholder,
+            button {
+                font-family:  'Ubuntu', sans-serif !important;
+            }
+        }
         &::-webkit-scrollbar-track {
             box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
             border-radius: 10px;
@@ -898,6 +1135,23 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
             border-radius: 0px 2px 2px 0px;
             box-shadow: inset 0 0 6px rgba(0,0,0,.3);
             background-color: #4449DB;
+        }
+        input[type=checkbox],
+        input[type=radio] {
+            display: none;
+            &:checked + label::before {
+                background: #C4C4C4;
+            }
+            & + label::before {
+                content: "";
+                display: inline-block;
+                width: 8px;
+                height: 8px;
+                border: 0.5px solid #C4C4C4;
+                border-radius: 50%;
+                margin-right: 5px;
+                transition: background 0.3s ease-in;
+            }
         }
         .mediablock {
             padding-top: 25px;
@@ -1344,6 +1598,9 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                           opacity: 0;
                           display: none;
                         }
+                        label::before {
+                            display: none;
+                        }
                         label {
                           cursor: pointer;
                           outline: none;
@@ -1441,6 +1698,9 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                         }
                     }
                     &.answer-colorstar {
+                        label::before {
+                            display: none;
+                        }
                         .rating {
                             display: flex;
                             justify-content: flex-end;
@@ -1567,6 +1827,9 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                     }
                     &.answer-star5,
                     &.answer-star10 {
+                        label::before {
+                            display: none;
+                        }
                         .rating {
                             display: flex;
                             justify-content: flex-end;
@@ -1602,6 +1865,9 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                         }
                     }
                     &.answer-ratings5 {
+                        label::before {
+                            display: none;
+                        }
                         .radio-wrapper {
                             display: flex;
                             align-items: flex-start;
@@ -1752,6 +2018,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                 border-bottom: 1px solid #A4A2A2;
                                 outline: none;
                                 width: 100%;
+                                background: inherit;
                                 &::placeholder {
                                     font-family: $fontpage;
                                     font-style: normal;
@@ -1817,6 +2084,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                 outline: none;
                                 padding-left: 65px;
                                 width: 100%;
+                                background: inherit;
                                 &::placeholder {
                                     font-family: $fontpage;
                                     font-style: normal;
@@ -1859,6 +2127,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                 border-bottom: 1px solid #A4A2A2;
                                 outline: none;
                                 width: 100%;
+                                background: inherit;
                                 &::placeholder {
                                     font-family: $fontpage;
                                     font-style: normal;
@@ -1891,6 +2160,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                 border-bottom: 1px solid #A4A2A2;
                                 outline: none;
                                 width: 100%;
+                                background: inherit;
                                 &::placeholder {
                                     font-family: $fontpage;
                                     font-style: normal;
@@ -1903,7 +2173,9 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                         }
                     }
                     .matrix-table {
-
+                        label::before {
+                            display: none;
+                        }
                         .first-row {
                             display: flex;
                             align-items: center;
@@ -2024,23 +2296,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                 padding-left: 15px;
                                 .input-group {
                                     padding-bottom: 6px;
-                                    input[type=checkbox],
-                                    input[type=radio]{
-                                        display: none;
-                                        &:checked + label::before {
-                                            background: #563BC2;
-                                        }
-                                        & + label::before {
-                                            content: "";
-                                            display: inline-block;
-                                            width: 8px;
-                                            height: 8px;
-                                            border: 0.5px solid #563BC2;
-                                            border-radius: 50%;
-                                            margin-right: 5px;
-                                            transition: background 0.3s ease-in;
-                                        }
-                                    }
                                     label {
                                         font-family: $fontpage;
                                         font-style: normal;
@@ -2134,6 +2389,9 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
         min-height: 100px;
         height: calc(100vh - 160px);
         overflow: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         &::-webkit-scrollbar-track {
             box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
             border-radius: 10px;
@@ -2151,6 +2409,199 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
         }
         .optionsblock {
             width: 100%;
+        }
+        .designoptions {
+            .position {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                padding-bottom: 10px;
+                .left {
+                    padding-right: 17px;
+                    input {
+                        display: none;
+                        &:checked + label {
+                            background: url(./../img/positionleft-a.svg);
+                            background-position: center;
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                        }
+                    }
+                    label {
+                        display: inline-block;
+                        width: 16px;
+                        height: 16px;
+                        background: url(./../img/positionleft.svg);
+                        background-position: center;
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        cursor: pointer;
+                        transition: background 0.3s ease-in;
+                        &:hover {
+                            background: url(./../img/positionleft-a.svg);
+                            background-position: center;
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                        }
+                    }
+                }
+                .center {
+                    padding-right: 17px;
+                    input {
+                        display: none;
+                        &:checked + label {
+                            background: url(./../img/positioncenter-a.svg);
+                            background-position: center;
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                        }
+                    }
+                    label {
+                        display: inline-block;
+                        width: 16px;
+                        height: 16px;
+                        background: url(./../img/positioncenter.svg);
+                        background-position: center;
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        cursor: pointer;
+                        transition: background 0.3s ease-in;
+                        &:hover {
+                            background: url(./../img//positioncenter-a.svg);
+                            background-position: center;
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                        }
+                    }
+                }
+                .right {
+                    padding-right: 17px;
+                    input {
+                        display: none;
+                        &:checked + label {
+                            background: url(./../img/positionright-a.svg);
+                            background-position: center;
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                        }
+                    }
+                    label {
+                        display: inline-block;
+                        width: 16px;
+                        height: 16px;
+                        background: url(./../img/positionright.svg);
+                        background-position: center;
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        cursor: pointer;
+                        transition: background 0.3s ease-in;
+                        &:hover {
+                            background: url(./../img/positionright-a.svg);
+                            background-position: center;
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                        }
+                    }
+                }
+            }
+            .colorpick {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 9px;
+                border: 1px solid #EEEFF3;
+                .square {
+                    width: 11px;
+                    height: 11px;
+                    background: #000000;
+                }
+                .inputs {
+                    padding-left: 7px;
+                    padding-right: 7px;
+                    width: 55px;
+                    input[type=text] {
+                        width: 45px;
+                        text-align: center;
+                        font-family: $fontpage;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 8px;
+                        line-height: 10px;
+                        color: #000000;
+                        border: none;
+                        outline: none;
+                    }
+                    input[type=color] {
+                        width: 0px;
+                        height: 0px;
+                        opacity: 0;
+                        padding: 0px;
+                        overflow: hidden;
+                        position: absolute;
+                    }
+                }
+                .labelcolor {
+                    width: calc(100% - 70px);
+                    label {
+                        font-family: $fontpage;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 10px !important;
+                        line-height: 12px !important;
+                        color: #6F6969 !important;
+                    }
+                }
+            }
+            .select-options {
+                li[rel="PTSans"] {
+                    font-family: 'PT Sans', sans-serif !important;
+                }
+                li[rel="Arial"] {
+                    font-family: Arial, Helvetica, sans-serif !important;
+                }
+                li[rel="Lora"] {
+                    font-family: 'Lora', serif !important;
+                }
+                li[rel="NotoSans"] {
+                    font-family: 'Noto Sans', sans-serif !important;
+                }
+                li[rel="Ubuntu"] {
+                    font-family: 'Ubuntu', sans-serif !important;
+                }
+                li[rel="Oswald"] {
+                    font-family: 'Oswald', sans-serif !important;
+                }
+                li[rel="Piazzolla"] {
+                    font-family: 'Piazzolla', serif !important;
+                }
+                li[rel="OpenSans"] {
+                    font-family: 'Open Sans', sans-serif  !important;
+                }
+                li[rel="Roboto"] {
+                    font-family:'Roboto', sans-serif !important;
+                }
+                li[rel="TimesNewRoman"] {
+                    font-family: "Times New Roman", Times, serif !important;
+                }
+                li[rel="Georgia"] {
+                    font-family: Georgia, serif !important;
+                }
+                li[rel="Courier"] {
+                    font-family: "Courier New", Courier, monospace !important;
+                }
+                li[rel="Lucida"] {
+                    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif !important;
+                }
+                li[rel="Impact"] {
+                    font-family: Impact, Charcoal, sans-serif !important;
+                }
+                li[rel="Tahoma"] {
+                    font-family: Tahoma, Geneva, sans-serif !important;
+                }
+                li[rel="Montserrat"] {
+                    font-family: $fontpage !important;
+                }
+            }
         }
         .default,
         .optionbox {
@@ -2313,7 +2764,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                 height: 16px;
                                 background: url(./../img/positionleft.svg);
                                 background-position: center;
-                                background-size: cover;
+                                background-size: contain;
                                 background-repeat: no-repeat;
                                 cursor: pointer;
                                 transition: background 0.3s ease-in;
@@ -2342,7 +2793,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                 height: 16px;
                                 background: url(./../img/positioncenter.svg);
                                 background-position: center;
-                                background-size: cover;
+                                background-size: contain;
                                 background-repeat: no-repeat;
                                 cursor: pointer;
                                 transition: background 0.3s ease-in;
@@ -2716,6 +3167,20 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                         align-items: flex-start;
                         justify-content: space-between;
                         position: relative;
+                        &:hover {
+                            .adddropdownsubpoints {
+                                background: url(./../img/grey-plus-a.svg);
+                                background-position: center;
+                                background-size: contain;
+                                background-repeat: no-repeat;
+                            }
+                            .arrowshow {
+                                background: url(./../img/arrow-dropdown-a.svg);
+                                background-position: center;
+                                background-size: contain;
+                                background-repeat: no-repeat;
+                            }
+                        }
                         .adddropdownsubpoints {
                             width: 8px;
                             height: 8px;
@@ -2726,6 +3191,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                             position: absolute;
                             right: 25px;
                             bottom: 5px;
+                            transition: background 0.3s ease-in;
                         }
                         .arrowshow {
                             width: 10px;
@@ -2738,7 +3204,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                             position: absolute;
                             top: 25px;
                             right: 25px;
-                            transition: transform 0.3s ease-in;
+                            transition: all 0.3s ease-in;
                             &.active {
                                 transform: rotate(180deg);
                             }
@@ -2804,7 +3270,10 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                     }
                                     &:hover {
                                         .removedropdownsub {
-                                            opacity: 1;
+                                            background: url(./../img/minus-grey-a.svg);
+                                            background-repeat: no-repeat;
+                                            background-size: contain;
+                                            background-position: center;
                                         }
                                     }
                                     .removedropdownsub {
@@ -2818,8 +3287,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                         width: 8px;
                                         height: 8px;
                                         cursor: pointer;
-                                        opacity: 0;
-                                        transition: opacity 0.3s ease-in;
+                                        transition: background 0.3s ease-in;
                                     }
                                     input {
                                         padding: 0px 12px;
@@ -3672,6 +4140,104 @@ html .ui-button.ui-state-disabled:active {
 }
 
 .iti__flag {background-image: url("./../img/flags16.png");}
+
+.customselect-wrapper {
+    $background: #FEFDFD;
+    $select-background: #FEFDFD;
+
+    .select-hidden {
+        display: none;
+        visibility: hidden;
+        padding-right: 10px;
+    }
+    .select {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        width: 100%;
+    }
+    .select-styled {
+        transition: all 0.2s ease-in;
+        font-family: $fontpage;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 14px;
+        color: #000000;
+        padding: 8px;
+        border: 1px solid #EEEFF3;
+        width: 100%;
+        transition: all 0.3s ease-in;
+        padding-right: 20px;
+        &:after {
+            content:"";
+            position: absolute;
+            width: 12px;
+            height: 7px;
+            right: 10px;
+            top: calc(50% - 2.5px);
+            display: block;
+            background: url(./../img/arrow-dropdown.svg);
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            transition: all 0.3s ease-in;
+        }
+        &:hover {
+            border-color: $voilet;
+            &:after {
+                background: url(./../img/arrow-dropdown-a.svg);
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+        }
+        &:active,
+        &.active {
+            border-color: $voilet;
+            &:after {
+                background: url(./../img/arrow-dropdown-a.svg);
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    .select-options {
+        display: none; 
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        z-index: 999;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        background: #FEFDFD;
+        border-right: 1px solid #EEEFF3;
+        border-left: 1px solid #EEEFF3;
+        li {
+            margin: 0;
+            transition: all 0.2s ease-in;
+            font-family: $fontpage;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 14px;
+            color: #000000;
+            padding: 8px;
+            border-bottom: 1px solid #EEEFF3;
+            &:hover {
+                border-color: $voilet;
+            }
+            &[rel="hide"] {
+            display: none;
+            }
+        }
+    }
+}
 @media screen and (min-width: 1500px) {
     .header.sm-header .panelmenu ul li a {
         font-size: 16px;
