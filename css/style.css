@@ -716,6 +716,7 @@ table {
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
+  cursor: pointer;
 }
 
 .page-content .content-wrapper .table-wrapper table tbody tr td .edit-menu.active .showhide::before {
@@ -752,6 +753,7 @@ table {
           justify-content: center;
   position: relative;
   z-index: 110;
+  cursor: pointer;
 }
 
 .page-content .content-wrapper .table-wrapper table tbody tr td .edit-menu .showhide::before {
@@ -2183,6 +2185,11 @@ table {
   background: #C4C4C4;
 }
 
+.construcot-container .centerbox input[type=checkbox] + label,
+.construcot-container .centerbox input[type=radio] + label {
+  cursor: pointer;
+}
+
 .construcot-container .centerbox input[type=checkbox] + label::before,
 .construcot-container .centerbox input[type=radio] + label::before {
   content: "";
@@ -2195,6 +2202,7 @@ table {
   -webkit-transition: background 0.3s ease-in;
   -o-transition: background 0.3s ease-in;
   transition: background 0.3s ease-in;
+  cursor: pointer;
 }
 
 .construcot-container .centerbox .mediablock {
@@ -2486,6 +2494,7 @@ table {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
+  cursor: pointer;
 }
 
 .construcot-container .centerbox .mediablock .inputsimage .inputgroup input[type=radio] + label::before {
@@ -2499,6 +2508,7 @@ table {
   transition: all 0.3s ease-in;
   border-radius: 50%;
   display: inline-block;
+  cursor: pointer;
 }
 
 .construcot-container .centerbox .mediablock .inputsimage .inputgroup input[type=radio]:checked + label::before {
@@ -2519,6 +2529,7 @@ table {
   font-size: 10px;
   line-height: 12px;
   color: #37353F;
+  cursor: pointer;
 }
 
 .construcot-container .centerbox .filter-block {
@@ -2629,6 +2640,7 @@ table {
   -webkit-transition: background 0.3s ease-in;
   -o-transition: background 0.3s ease-in;
   transition: background 0.3s ease-in;
+  cursor: pointer;
 }
 
 .construcot-container .centerbox .filter-block .filter-list .filter-box .dropdownfilter .filter-group label {
@@ -2638,6 +2650,7 @@ table {
   font-size: 10px;
   line-height: 12px;
   color: #37353F;
+  cursor: pointer;
 }
 
 .construcot-container .centerbox .questions-box {
@@ -3055,6 +3068,7 @@ table {
   -o-transition: .3s;
   transition: .3s;
   outline: none;
+  cursor: pointer;
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(20) {
@@ -3099,6 +3113,7 @@ table {
 
 .construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label,
 .construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label {
+  cursor: pointer;
   background-image: url("./../img/star-active.svg");
 }
 
@@ -3154,6 +3169,7 @@ table {
 
 .construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover,
 .construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label {
+  cursor: pointer;
   background-image: url("./..//img/star-hover.svg");
 }
 
@@ -3258,12 +3274,14 @@ table {
 .construcot-container .centerbox .questions-box .question .answer.answer-star5 .rating > input:checked ~ label ~ label, .construcot-container .centerbox .questions-box .question .answer.answer-star10 .rating > input:checked ~ label,
 .construcot-container .centerbox .questions-box .question .answer.answer-star10 .rating > input:checked ~ label ~ label {
   background-image: url("./../img/star-active.svg");
+  cursor: pointer;
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-star5 .rating > input:not(:checked) ~ label:hover,
 .construcot-container .centerbox .questions-box .question .answer.answer-star5 .rating > input:not(:checked) ~ label:hover ~ label, .construcot-container .centerbox .questions-box .question .answer.answer-star10 .rating > input:not(:checked) ~ label:hover,
 .construcot-container .centerbox .questions-box .question .answer.answer-star10 .rating > input:not(:checked) ~ label:hover ~ label {
   background-image: url("./..//img/star-hover.svg");
+  cursor: pointer;
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-ratings5 label::before {
@@ -3313,6 +3331,7 @@ table {
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
+  cursor: pointer;
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont label .number {
@@ -3363,6 +3382,7 @@ table {
 .construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(1) label .number {
   border-color: #CD0800;
   color: #CD0800;
+  cursor: pointer;
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(2) input[type=radio]:checked + label .number {
@@ -3431,11 +3451,12 @@ table {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: bold;
-  font-size: 13px;
-  line-height: 16px;
+  font-size: 17px;
+  line-height: 18px;
   color: #FFFFFF;
   cursor: pointer;
   overflow: hidden;
+  max-width: 100%;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .email-answer {

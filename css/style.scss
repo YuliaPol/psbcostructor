@@ -563,6 +563,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                         display: flex;
                                         align-items: center;
                                         justify-content: center;
+                                        cursor: pointer;
                                         &::before {
                                             content: "";
                                             display: block;
@@ -587,6 +588,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                     justify-content: center;
                                     position: relative;
                                     z-index: 110;
+                                    cursor: pointer;
                                     &::before {
                                         content: "";
                                         display: block;
@@ -1142,6 +1144,9 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
             &:checked + label::before {
                 background: #C4C4C4;
             }
+            & + label {
+                cursor: pointer;
+            }
             & + label::before {
                 content: "";
                 display: inline-block;
@@ -1151,6 +1156,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                 border-radius: 50%;
                 margin-right: 5px;
                 transition: background 0.3s ease-in;
+                cursor: pointer;
             }
         }
         .mediablock {
@@ -1336,6 +1342,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                         & + label {
                             display: flex;
                             align-items: center;
+                            cursor: pointer;
                             &::before {
                                 content: "";
                                 width: 13px;
@@ -1345,6 +1352,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                 transition: all 0.3s ease-in;
                                 border-radius: 50%;
                                 display: inline-block;
+                                cursor: pointer;
                             }
                         }
                         &:checked + label {
@@ -1367,6 +1375,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                         font-size: 10px;
                         line-height: 12px;
                         color: $fontcolor;
+                        cursor: pointer;
                     }
                 }
             }
@@ -1440,6 +1449,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                     border-radius: 50%;
                                     margin-right: 5px;
                                     transition: background 0.3s ease-in;
+                                    cursor: pointer;
                                 }
                             }
                             label {
@@ -1449,6 +1459,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                 font-size: 10px;
                                 line-height: 12px;
                                 color: $fontcolor;
+                                cursor: pointer;
                             }
                         }
                     }
@@ -1725,6 +1736,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                             background-size: 76%;
                             transition: .3s;
                             outline: none;
+                            cursor: pointer;
                             &:nth-child(20){
                                 background-image: url('./../img/star-1.svg');
                             }
@@ -1758,6 +1770,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                         }
                         .rating > input:checked ~ label,
                         .rating > input:checked ~ label ~ label {
+                            cursor: pointer;
                             background-image: url('./../img/star-active.svg');
                             &:nth-child(20){
                                 background-image: url('./../img/star-a-1.svg');
@@ -1792,6 +1805,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                         }
                         .rating > input:not(:checked) ~ label:hover,
                         .rating > input:not(:checked) ~ label:hover ~ label {
+                            cursor: pointer;
                             background-image: url('./..//img/star-hover.svg');
                             &:nth-child(20){
                                 background-image: url('./../img/star-a-1.svg');
@@ -1858,10 +1872,12 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                         .rating > input:checked ~ label,
                         .rating > input:checked ~ label ~ label {
                             background-image: url('./../img/star-active.svg');
+                            cursor: pointer;
                         }
                         .rating > input:not(:checked) ~ label:hover,
                         .rating > input:not(:checked) ~ label:hover ~ label {
                             background-image: url('./..//img/star-hover.svg');
+                            cursor: pointer;
                         }
                     }
                     &.answer-ratings5 {
@@ -1884,6 +1900,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                     align-items: center;
                                     justify-content: center;
                                     flex-direction: column;
+                                    cursor: pointer;
                                     .number {
                                         font-family: $fontpage;
                                         font-style: normal;
@@ -1923,6 +1940,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                     label .number {
                                         border-color: $colorscale1;
                                         color: $colorscale1;
+                                        cursor: pointer;
                                     }
                                 }
                                 &:nth-child(2){
@@ -1992,11 +2010,12 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                             font-family: $fontpage;
                             font-style: normal;
                             font-weight: bold;
-                            font-size: 13px;
-                            line-height: 16px;
+                            font-size: 17px;
+                            line-height: 18px;
                             color: #FFFFFF;
                             cursor: pointer;
                             overflow: hidden;
+                            max-width: 100%;
                         }
                     }
                     .email-answer {

@@ -1,6 +1,22 @@
 jQuery(function ($) {
     $(document).ready(function () {
 
+        // Restricts input for the set of matched elements to the given inputFilter function.
+        $.fn.inputFilter = function(inputFilter) {
+            return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+                if (inputFilter(this.value)) {
+                this.oldValue = this.value;
+                this.oldSelectionStart = this.selectionStart;
+                this.oldSelectionEnd = this.selectionEnd;
+                } else if (this.hasOwnProperty("oldValue")) {
+                this.value = this.oldValue;
+                this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                } else {
+                this.value = "";
+                }
+            });
+        };
+
         $.datepicker.setDefaults(
             {
             closeText: 'Закрыть',
@@ -33,16 +49,30 @@ jQuery(function ($) {
             $('#questionanswers_' + idQuestion).find('.btn-answer .btn').css('width', value);
         });
 
+        $(".btnwidth").inputFilter(function(value) {
+            return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 1500);
+        });
+
         $('.rightside').on('change', '.btnheight', function(e){
             var idQuestion =  $(this).attr('name').split('_')[1];
             var value = $(this).val() + 'px';
             $('#questionanswers_' + idQuestion).find('.btn-answer .btn').css('height', value);
         });
 
+        $(".btnheight").inputFilter(function(value) {
+            return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 500);
+        });
+
+
         $('.rightside').on('change', '.btnradius', function(e){
             var idQuestion =  $(this).attr('name').split('_')[1];
             var value = $(this).val() + "px";
             $('#questionanswers_' + idQuestion).find('.btn-answer .btn').css( {  borderRadius:   value });
+        });
+
+        
+        $(".btnradius").inputFilter(function(value) {
+            return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 500);
         });
 
         $('.rightside').on('change', '.btncolor', function(e){
@@ -1787,21 +1817,7 @@ jQuery(function ($) {
                 $('#questionName_' + id).after(el);;
             }
         });
-        // Restricts input for the set of matched elements to the given inputFilter function.
-        $.fn.inputFilter = function(inputFilter) {
-            return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
-                if (inputFilter(this.value)) {
-                this.oldValue = this.value;
-                this.oldSelectionStart = this.selectionStart;
-                this.oldSelectionEnd = this.selectionEnd;
-                } else if (this.hasOwnProperty("oldValue")) {
-                this.value = this.oldValue;
-                this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
-                } else {
-                this.value = "";
-                }
-            });
-        };
+
 
         $(".spinner").inputFilter(function(value) {
             return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 15);
