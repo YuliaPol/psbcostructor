@@ -2297,6 +2297,8 @@ table {
 .construcot-container .centerbox .mediablock .videoblock {
   width: 100%;
   position: relative;
+  max-width: 600px;
+  margin: auto;
 }
 
 .construcot-container .centerbox .mediablock .videoblock:hover .remove-video {
@@ -6915,6 +6917,9 @@ html .ui-button.ui-state-disabled:active {
   .construcot-container .centerbox {
     width: calc(100% - 420px);
   }
+  .construcot-container .centerbox.full-width {
+    width: calc(100% - 220px);
+  }
   .page-content {
     padding-left: 20px;
     padding-right: 20px;
@@ -6956,6 +6961,9 @@ html .ui-button.ui-state-disabled:active {
   }
   .construcot-container .centerbox {
     width: calc(100% - 320px);
+  }
+  .construcot-container .centerbox.full-width {
+    width: calc(100% - 170px);
   }
   .page-content .box-wrapper .box-form {
     max-width: 100%;
