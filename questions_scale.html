@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вопросы</title>
+
+    <link rel="stylesheet" href="./css/style.css?5465465">
+    <link rel="stylesheet" href="./css/jquery-ui.css">
+    <link rel="stylesheet" href="./css/datepicker.min.css">
+    <link rel="stylesheet" href="./css/intlTelInput.css">
+
+    <script src="./js/jquery-3.5.1.min.js"></script>
+    <script src="./js/wavesurfer.js"></script>
+    <script src="./js/datepicker.min.js"></script>
+    <script src="./js/intlTelInput.js"></script>
+</head>
+
+<body>
+    <header class="header header-bt-menu">
+        <div class="header-row">
+            <div class="linkback linkback-big">
+                <a href="#"> Обслуживание удовлетворенности клиентов</a>
+            </div>
+            <div class="navbar-user">
+                <div class="user">
+                    <div class="user-wrapper show-user-dropdown">
+                        <div class="user-name">Alexander Pierce</div>
+                        <div class="icon-user">
+                            <img src="./img/user.png" alt="Alexander Pierce">
+                        </div>
+                    </div>
+                    <div class="dropdown-user">
+                        <ul>
+                            <li>
+                                <a href="#" class="logout">Выход </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom">
+            <div class="bottom-menu">
+                <ul>
+                    <li class="active">
+                        <a href="#">Вопросы</a>
+                    </li>
+                    <li>
+                        <a href="#">Дизайн</a>
+                    </li>
+                    <li>
+                        <a href="#">Cтраница приветствия</a>
+                    </li>
+                    <li>
+                        <a href="#">Cтраница с благодарностью</a>
+                    </li>
+                    <li>
+                        <a href="#">Опции</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="page-content">
+        <form action="#" class="rightsidefrom">
+            <input id="quiz-id" type="hidden" value="1">
+            <div class="construcot-container">
+                <aside class="leftside">
+                    <ul class="listbox">
+                        <li class="icon icon-single" data-type="single">
+                            Выбор из списка
+                        </li>
+                        <li class="icon icon-free" data-type="free">
+                            Свободный ответ
+                        </li>
+                        <li class="icon icon-listfree" data-type="listfree">
+                            Група свободных ответов
+                        </li>
+                        <li class="icon icon-branching" data-type="branching">
+                            Ветвление ответа
+                        </li>
+                        <li class="grey-line"></li>
+                        <li class="icon icon-scale" data-type="scale">
+                            Шкала оценок
+                        </li>
+                        <li class="icon icon-dropdown" data-type="dropdown">
+                            Выпадающий список
+                        </li>
+                        <li class="icon icon-dropdownmt" data-type="dropdownmt">
+                            Множ. выпадающий список
+                        </li>
+                        <li class="icon icon-matrix" data-type="matrix">
+                            Матрица
+                        </li>
+                        <li class="icon icon-ranging" data-type="ranging">
+                            Ранжирование
+                        </li>
+                        <li class="icon icon-name" data-type="name">
+                            ФИО
+                        </li>
+                        <li class="icon icon-date" data-type="date">
+                            Дата
+                        </li>
+                        <li class="icon icon-email" data-type="email">
+                            E-mail
+                        </li>
+                        <li class="icon icon-phone" data-type="phone">
+                            Номер телефона
+                        </li>
+                        <li class="icon icon-file" data-type="file">
+                            Загрузить файл
+                        </li>
+                    </ul>
+                </aside>
+                <div class="centerbox">
+                    <!-- data-count - summary of question -->
+                    <div class="filter-block">
+                        <form action="#">
+                            <div class="filter-list">
+                                <div class="filter-box">
+                                    <div class="filter-name">
+                                        Пол
+                                    </div>
+                                    <div class="dropdownfilter">
+                                        <div class="filter-group">
+                                            <input type="checkbox" name="filter_1" id="filter_1_1">
+                                            <label for="filter_1_1">Мужской</label>
+                                        </div>
+                                        <div class="filter-group">
+                                            <input type="checkbox" name="filter_2" id="filter_1_2">
+                                            <label for="filter_1_2">Женский</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="filter-box">
+                                    <div class="filter-name">
+                                        Возраст
+                                    </div>
+                                    <div class="dropdownfilter">
+                                        <div class="filter-group">
+                                            <input type="checkbox" name="filter_3" id="filter_2_1">
+                                            <label for="filter_2_1">18-25 лет</label>
+                                        </div>
+                                        <div class="filter-group">
+                                            <input type="checkbox" name="filter_4" id="filter_2_2">
+                                            <label for="filter_2_2">25-35 лет</label>
+                                        </div>
+                                        <div class="filter-group">
+                                            <input type="checkbox" name="filter_5" id="filter_2_3">
+                                            <label for="filter_2_3">35-45 лет</label>
+                                        </div>
+                                        <div class="filter-group">
+                                            <input type="checkbox" name="filter_6" id="filter_2_4">
+                                            <label for="filter_2_4">45-60 лет</label>
+                                        </div>
+                                        <div class="filter-group">
+                                            <input type="checkbox" name="filter_7" id="filter_2_5">
+                                            <label for="filter_2_5">Старше 60 лет </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="filter-box">
+                                    <div class="filter-name">
+                                        ГЕО
+                                    </div>
+                                    <div class="dropdownfilter">
+                                        <div class="filter-group">
+                                            <input type="checkbox" name="filter_8" id="filter_3_1">
+                                            <label for="filter_3_1">Украина</label>
+                                        </div>
+                                        <div class="filter-group">
+                                            <input type="checkbox" name="filter_9" id="filter_3_2">
+                                            <label for="filter_3_2">Россия</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="filter-box">
+                                    <div class="filter-name">
+                                        Город
+                                    </div>
+                                    <div class="dropdownfilter">
+                                        <div class="filter-group">
+                                            <input type="checkbox" name="filter_10" id="filter_4_1">
+                                            <label for="filter_4_1">Москва</label>
+                                        </div>
+                                        <div class="filter-group">
+                                            <input type="checkbox" name="filter_11" id="filter_4_2">
+                                            <label for="filter_4_2">Санкт-Петербург</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                    </div>
+                    <div class="questions-box" data-count="7">
+                        <div class="question" data-optionid="5">
+                            <div class="close-question"></div>
+                            <div class="name " id="questionName_5">
+                                Как Вы оцените работу нашего банка?
+                            </div>
+                            <div class="answer answer-ratings10" id="questionanswers_5">
+                                <input type="radio" name="questionanswer_5" id="questionanswer_5_0" value="0">
+                                <label for="questionanswer_5_0">
+                                    <div class="digit color0">
+                                        0
+                                    </div>
+                                </label>
+
+
+                                <input type="radio" name="questionanswer_5" id="questionanswer_5_1" value="1">
+                                <label for="questionanswer_5_1">
+                                    <div class="digit color1">
+                                        1
+                                    </div>
+                                </label>
+
+                                <input type="radio" name="questionanswer_5" id="questionanswer_5_2" value="2">
+                                <label for="questionanswer_5_2">
+                                    <div class="digit color2">
+                                        2
+                                    </div>
+                                </label>
+
+                                <input type="radio" name="questionanswer_5" id="questionanswer_5_3" value="3">
+                                <label for="questionanswer_5_3">
+                                    <div class="digit color3">
+                                        3
+                                    </div>
+                                </label>
+
+                                <input type="radio" name="questionanswer_5" id="questionanswer_5_4" value="4">
+                                <label for="questionanswer_5_4">
+                                    <div class="digit color4">
+                                        4
+                                    </div>
+                                </label>
+
+                                <input type="radio" name="questionanswer_5" id="questionanswer_5_5" value="5">
+                                <label for="questionanswer_5_5">
+                                    <div class="digit color5">
+                                        5
+                                    </div>
+                                </label>
+
+                                <input type="radio" name="questionanswer_5" id="questionanswer_5_6" value="6">
+                                <label for="questionanswer_5_6">
+                                    <div class="digit color6">
+                                        6
+                                    </div>
+                                </label>
+
+                                <input type="radio" name="questionanswer_5" id="questionanswer_5_7" value="7">
+                                <label for="questionanswer_5_7">
+                                    <div class="digit color7">
+                                        7
+                                    </div>
+                                </label>
+
+                                <input type="radio" name="questionanswer_5" id="questionanswer_5_8" value="8">
+                                <label for="questionanswer_5_8">
+                                    <div class="digit color8">
+                                        8
+                                    </div>
+                                </label>
+
+                                <input type="radio" name="questionanswer_5" id="questionanswer_5_9" value="9">
+                                <label for="questionanswer_5_9">
+                                    <div class="digit color9">
+                                        9
+                                    </div>
+                                </label>
+
+                                <input type="radio" name="questionanswer_5" id="questionanswer_5_10" value="10">
+                                <label for="questionanswer_5_10">
+                                    <div class="digit color10">
+                                        10
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="question" data-optionid="180">
+                            <div class="close-question"></div>
+                            <div class="name " id="questionName_180">
+                                Как Вы оцените работу нашего банка?
+                            </div>
+                            <div class="answer answer-star10" id="questionanswers_180">
+                                <div class="rating">
+                                    <input type="radio" name="questionanswer_180" id="questionanswer_180_10" value="10">
+                                    <label for="questionanswer_180_10"></label>
+                                    <input type="radio" name="questionanswer_180" id="questionanswer_180_9" value="9">
+                                    <label for="questionanswer_180_9"></label>
+                                    <input type="radio" name="questionanswer_180" id="questionanswer_180_8" value="8">
+                                    <label for="questionanswer_180_8"></label>
+                                    <input type="radio" name="questionanswer_180" id="questionanswer_180_7" value="7">
+                                    <label for="questionanswer_180_7"></label>
+                                    <input type="radio" name="questionanswer_180" id="questionanswer_180_6" value="6">
+                                    <label for="questionanswer_180_6"></label>
+                                    <input type="radio" name="questionanswer_180" id="questionanswer_180_5" value="5">
+                                    <label for="questionanswer_180_5"></label>
+                                    <input type="radio" name="questionanswer_180" id="questionanswer_180_4" value="4">
+                                    <label for="questionanswer_180_4"></label>
+                                    <input type="radio" name="questionanswer_180" id="questionanswer_180_3" value="3">
+                                    <label for="questionanswer_180_3"></label>
+                                    <input type="radio" name="questionanswer_180" id="questionanswer_180_2" value="2">
+                                    <label for="questionanswer_180_2"></label>
+                                    <input type="radio" name="questionanswer_180" id="questionanswer_180_1" value="1">
+                                    <label for="questionanswer_180_1"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question" data-optionid="181">
+                            <div class="close-question"></div>
+                            <div class="name " id="questionName_181">
+                                Как Вы оцените работу нашего банка?
+                            </div>
+                            <div class="answer answer-star5" id="questionanswers_181">
+                                <div class="rating">
+                                    <input type="radio" name="questionanswer_181" id="questionanswer_181_5" value="5">
+                                    <label for="questionanswer_181_5"></label>
+                                    <input type="radio" name="questionanswer_181" id="questionanswer_181_4" value="4">
+                                    <label for="questionanswer_181_4"></label>
+                                    <input type="radio" name="questionanswer_181" id="questionanswer_181_3" value="3">
+                                    <label for="questionanswer_181_3"></label>
+                                    <input type="radio" name="questionanswer_181" id="questionanswer_181_2" value="2">
+                                    <label for="questionanswer_181_2"></label>
+                                    <input type="radio" name="questionanswer_181" id="questionanswer_181_1" value="1">
+                                    <label for="questionanswer_5_1"></label>
+                                </div>
+                            </div>
+                        
+                        </div>
+                        <div class="question" data-optionid="182">
+                            <div class="close-question"></div>
+                            <div class="name " id="questionName_182">
+                                Как Вы оцените работу нашего банка?
+                            </div>
+                            <div class="answer answer-colorstar" id="questionanswers_182">
+                                <div class="rating">
+                                    <input type="radio" name="questionanswer_182" id="questionanswer_182_10" value="10">
+                                    <label for="questionanswer_182_10"></label>
+                                    <input type="radio" name="questionanswer_182" id="questionanswer_182_9" value="9">
+                                    <label for="questionanswer_182_9"></label>
+                                    <input type="radio" name="questionanswer_182" id="questionanswer_182_8" value="8">
+                                    <label for="questionanswer_182_8"></label>
+                                    <input type="radio" name="questionanswer_182" id="questionanswer_182_7" value="7">
+                                    <label for="questionanswer_182_7"></label>
+                                    <input type="radio" name="questionanswer_182" id="questionanswer_182_6" value="6">
+                                    <label for="questionanswer_182_6"></label>
+                                    <input type="radio" name="questionanswer_182" id="questionanswer_182_5" value="5">
+                                    <label for="questionanswer_182_5"></label>
+                                    <input type="radio" name="questionanswer_182" id="questionanswer_182_4" value="4">
+                                    <label for="questionanswer_182_4"></label>
+                                    <input type="radio" name="questionanswer_182" id="questionanswer_182_3" value="3">
+                                    <label for="questionanswer_182_3"></label>
+                                    <input type="radio" name="questionanswer_182" id="questionanswer_182_2" value="2">
+                                    <label for="questionanswer_182_2"></label>
+                                    <input type="radio" name="questionanswer_182" id="questionanswer_182_1" value="1">
+                                    <label for="questionanswer_182_1"></label> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <aside class="rightside">
+                    <div class="optionsblock">
+                        <div class="default optionbox active">
+                            <div class="header-aside">
+                                Настройки вопроса
+                            </div>
+                            <div class="text-aside">
+                                Нажмите на вопрос, чтобы обновить его настройки здесь.
+                            </div>
+                        </div>
+                        <div class="eloptions">
+                            <div class="optionbox" id="option_5">
+                                <input type="hidden" name="questiontype_5" value="scale">
+                                <input type="hidden" class="orderinput" name="questionorder_5" value="5">
+                                <div class="header-aside">
+                                    Настройки
+                                </div>
+                                <div class="text-aside">
+                                    <div class="form-group">
+                                        <label for="question_5">Вопрос</label>
+                                        <textarea class="question_name" name="question_5"
+                                            id="question_5">Как Вы оцените работу нашего банка?</textarea>
+                                    </div>
+                                    <div class="scale-option">
+                                        <div class="form-group">
+                                            <p>Шкала оценок</p>
+                                            <div class="scale-radio">
+                                                <input type="radio" name="typescale_5" id="typescale_5_1" value="1">
+                                                <label for="typescale_5_1" class="scalelabel">
+                                                    <div class="colorstars"></div>
+                                                </label>
+                                                <input type="radio" name="typescale_5" id="typescale_5_2" value="2">
+                                                <label for="typescale_5_2" class="scalelabel ">
+                                                    <div class="stars5"></div>
+                                                </label>
+                                                <input type="radio" name="typescale_5" id="typescale_5_3" value="3">
+                                                <label for="typescale_5_3" class="scalelabel">
+                                                    <div class="stars10"></div>
+                                                </label>
+                                                <input type="radio" name="typescale_5" id="typescale_5_4" value="4"
+                                                    checked>
+                                                <label for="typescale_5_4" class="scalelabel">
+                                                    <div class="ratings10"></div>
+                                                </label>
+                                                <input type="radio" name="typescale_5" id="typescale_5_5" value="5">
+                                                <label for="typescale_5_5" class="scalelabel">
+                                                    <div class="ratings5">
+                                                        <div class="circles">
+                                                            <div class="cirle">1</div>
+                                                            <div class="cirle">2</div>
+                                                            <div class="cirle">3</div>
+                                                            <div class="cirle">4</div>
+                                                            <div class="cirle">5</div>
+                                                        </div>
+                                                        <div class="ratinstables">
+                                                            <div class="cirlce-group">
+                                                                <div class="circle">1</div>
+                                                                <input type="text" name="inputpoint_5_1"
+                                                                    id="scaleRating5_5_1" placeholder="Введите текст">
+                                                            </div>
+                                                            <div class="cirlce-group">
+                                                                <div class="circle">2</div>
+                                                                <input type="text" name="inputpoint_5_2"
+                                                                    id="scaleRating5_5_2" placeholder="Введите текст">
+                                                            </div>
+                                                            <div class="cirlce-group">
+                                                                <div class="circle">3</div>
+                                                                <input type="text" name="inputpoint_5_3"
+                                                                    id="scaleRating5_5_3" placeholder="Введите текст">
+                                                            </div>
+                                                            <div class="cirlce-group">
+                                                                <div class="circle">4</div>
+                                                                <input type="text" name="inputpoint_5_4"
+                                                                    id="scaleRating5_5_4" placeholder="Введите текст">
+                                                            </div>
+                                                            <div class="cirlce-group">
+                                                                <div class="circle">5</div>
+                                                                <input type="text" name="inputpoint_5_5"
+                                                                    id="scaleRating5_5_5" placeholder="Введите текст">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="optionbox" id="option_180">
+                                <input type="hidden" name="questiontype_180" value="scale">
+                                <input type="hidden" class="orderinput" name="questionorder_180" value="5">
+                                <div class="header-aside">
+                                    Настройки
+                                </div>
+                                <div class="text-aside">
+                                    <div class="form-group">
+                                        <label for="question_180">Вопрос</label>
+                                        <textarea class="question_name" name="question_180"
+                                            id="question_180">Как Вы оцените работу нашего банка?</textarea>
+                                    </div>
+                                    <div class="scale-option">
+                                        <div class="form-group">
+                                            <p>Шкала оценок</p>
+                                            <div class="scale-radio">
+                                                <input type="radio" name="typescale_180" id="typescale_180_1" value="1">
+                                                <label for="typescale_180_1" class="scalelabel">
+                                                    <div class="colorstars"></div>
+                                                </label>
+                                                <input type="radio" name="typescale_180" id="typescale_180_2" value="2">
+                                                <label for="typescale_180_2" class="scalelabel ">
+                                                    <div class="stars5"></div>
+                                                </label>
+                                                <input type="radio" name="typescale_180" id="typescale_180_3" value="3" checked>
+                                                <label for="typescale_180_3" class="scalelabel">
+                                                    <div class="stars10"></div>
+                                                </label>
+                                                <input type="radio" name="typescale_180" id="typescale_180_4" value="4"
+                                                    >
+                                                <label for="typescale_180_4" class="scalelabel">
+                                                    <div class="ratings10"></div>
+                                                </label>
+                                                <input type="radio" name="typescale_180" id="typescale_180_5" value="5">
+                                                <label for="typescale_180_5" class="scalelabel">
+                                                    <div class="ratings5">
+                                                        <div class="circles">
+                                                            <div class="cirle">1</div>
+                                                            <div class="cirle">2</div>
+                                                            <div class="cirle">3</div>
+                                                            <div class="cirle">4</div>
+                                                            <div class="cirle">5</div>
+                                                        </div>
+                                                        <div class="ratinstables">
+                                                            <div class="cirlce-group">
+                                                                <div class="circle">1</div>
+                                                                <input type="text" name="inputpoint_180_1"
+                                                                    id="scaleRating5_180_1" placeholder="Введите текст">
+                                                            </div>
+                                                            <div class="cirlce-group">
+                                                                <div class="circle">2</div>
+                                                                <input type="text" name="inputpoint_180_2"
+                                                                    id="scaleRating5_180_2" placeholder="Введите текст">
+                                                            </div>
+                                                            <div class="cirlce-group">
+                                                                <div class="circle">3</div>
+                                                                <input type="text" name="inputpoint_180_3"
+                                                                    id="scaleRating5_180_3" placeholder="Введите текст">
+                                                            </div>
+                                                            <div class="cirlce-group">
+                                                                <div class="circle">4</div>
+                                                                <input type="text" name="inputpoint_180_4"
+                                                                    id="scaleRating5_180_4" placeholder="Введите текст">
+                                                            </div>
+                                                            <div class="cirlce-group">
+                                                                <div class="circle">5</div>
+                                                                <input type="text" name="inputpoint_180_5"
+                                                                    id="scaleRating5_180_5" placeholder="Введите текст">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="optionbox" id="option_181">
+                                <input type="hidden" name="questiontype_181" value="scale">
+                                <input type="hidden" class="orderinput" name="questionorder_181" value="5">
+                                <div class="header-aside">
+                                    Настройки
+                                </div>
+                                <div class="text-aside">
+                                    <div class="form-group">
+                                        <label for="question_181">Вопрос</label>
+                                        <textarea class="question_name" name="question_181"
+                                            id="question_181">Как Вы оцените работу нашего банка?</textarea>
+                                    </div>
+                                    <div class="scale-option">
+                                        <div class="form-group">
+                                            <p>Шкала оценок</p>
+                                            <div class="scale-radio">
+                                                <input type="radio" name="typescale_181" id="typescale_181_1" value="1">
+                                                <label for="typescale_181_1" class="scalelabel">
+                                                    <div class="colorstars"></div>
+                                                </label>
+                                                <input type="radio" name="typescale_181" id="typescale_181_2" value="2" checked>
+                                                <label for="typescale_181_2" class="scalelabel ">
+                                                    <div class="stars5"></div>
+                                                </label>
+                                                <input type="radio" name="typescale_181" id="typescale_181_3" value="3" >
+                                                <label for="typescale_181_3" class="scalelabel">
+                                                    <div class="stars10"></div>
+                                                </label>
+                                                <input type="radio" name="typescale_181" id="typescale_181_4" value="4">
+                                                <label for="typescale_181_4" class="scalelabel">
+                                                    <div class="ratings10"></div>
+                                                </label>
+                                                <input type="radio" name="typescale_181" id="typescale_181_5" value="5">
+                                                <label for="typescale_181_5" class="scalelabel">
+                                                    <div class="ratings5">
+                                                        <div class="circles">
+                                                            <div class="cirle">1</div>
+                                                            <div class="cirle">2</div>
+                                                            <div class="cirle">3</div>
+                                                            <div class="cirle">4</div>
+                                                            <div class="cirle">5</div>
+                                                        </div>
+                                                        <div class="ratinstables">
+                                                            <div class="cirlce-group">
+                                                                <div class="circle">1</div>
+                                                                <input type="text" name="inputpoint_181_1"
+                                                                    id="scaleRating5_181_1" placeholder="Введите текст">
+                                                            </div>
+                                                            <div class="cirlce-group">
+                                                                <div class="circle">2</div>
+                                                                <input type="text" name="inputpoint_181_2"
+                                                                    id="scaleRating5_181_2" placeholder="Введите текст">
+                                                            </div>
+                                                            <div class="cirlce-group">
+                                                                <div class="circle">3</div>
+                                                                <input type="text" name="inputpoint_181_3"
+                                                                    id="scaleRating5_181_3" placeholder="Введите текст">
+                                                            </div>
+                                                            <div class="cirlce-group">
+                                                                <div class="circle">4</div>
+                                                                <input type="text" name="inputpoint_181_4"
+                                                                    id="scaleRating5_181_4" placeholder="Введите текст">
+                                                            </div>
+                                                            <div class="cirlce-group">
+                                                                <div class="circle">5</div>
+                                                                <input type="text" name="inputpoint_181_5"
+                                                                    id="scaleRating5_181_5" placeholder="Введите текст">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="optionbox" id="option_182">
+                                <input type="hidden" name="questiontype_182" value="scale">
+                                <input type="hidden" class="orderinput" name="questionorder_182" value="5">
+                                <div class="header-aside">
+                                    Настройки
+                                </div>
+                                <div class="text-aside">
+                                    <div class="form-group">
+                                        <label for="question_182">Вопрос</label>
+                                        <textarea class="question_name" name="question_182"
+                                            id="question_182">Как Вы оцените работу нашего банка?</textarea>
+                                    </div>
+                                    <div class="scale-option">
+                                        <div class="form-group">
+                                            <p>Шкала оценок</p>
+                                            <div class="scale-radio">
+                                                <input type="radio" name="typescale_182" id="typescale_182_1" value="1" checked>
+                                                <label for="typescale_182_1" class="scalelabel">
+                                                    <div class="colorstars"></div>
+                                                </label>
+                                                <input type="radio" name="typescale_182" id="typescale_182_2" value="2" >
+                                                <label for="typescale_182_2" class="scalelabel ">
+                                                    <div class="stars5"></div>
+                                                </label>
+                                                <input type="radio" name="typescale_182" id="typescale_182_3" value="3" >
+                                                <label for="typescale_182_3" class="scalelabel">
+                                                    <div class="stars10"></div>
+                                                </label>
+                                                <input type="radio" name="typescale_182" id="typescale_182_4" value="4">
+                                                <label for="typescale_182_4" class="scalelabel">
+                                                    <div class="ratings10"></div>
+                                                </label>
+                                                <input type="radio" name="typescale_182" id="typescale_182_5" value="5">
+                                                <label for="typescale_182_5" class="scalelabel">
+                                                    <div class="ratings5">
+                                                        <div class="circles">
+                                                            <div class="cirle">1</div>
+                                                            <div class="cirle">2</div>
+                                                            <div class="cirle">3</div>
+                                                            <div class="cirle">4</div>
+                                                            <div class="cirle">5</div>
+                                                        </div>
+                                                        <div class="ratinstables">
+                                                            <div class="cirlce-group">
+                                                                <div class="circle">1</div>
+                                                                <input type="text" name="inputpoint_182_1"
+                                                                    id="scaleRating5_182_1" placeholder="Введите текст">
+                                                            </div>
+                                                            <div class="cirlce-group">
+                                                                <div class="circle">2</div>
+                                                                <input type="text" name="inputpoint_182_2"
+                                                                    id="scaleRating5_182_2" placeholder="Введите текст">
+                                                            </div>
+                                                            <div class="cirlce-group">
+                                                                <div class="circle">3</div>
+                                                                <input type="text" name="inputpoint_182_3"
+                                                                    id="scaleRating5_182_3" placeholder="Введите текст">
+                                                            </div>
+                                                            <div class="cirlce-group">
+                                                                <div class="circle">4</div>
+                                                                <input type="text" name="inputpoint_182_4"
+                                                                    id="scaleRating5_182_4" placeholder="Введите текст">
+                                                            </div>
+                                                            <div class="cirlce-group">
+                                                                <div class="circle">5</div>
+                                                                <input type="text" name="inputpoint_182_5"
+                                                                    id="scaleRating5_182_5" placeholder="Введите текст">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-wrapper">
+                        <button class="btn-default" type="submit"> Сохранить</button>
+                    </div>
+
+                </aside>
+            </div>
+        </form>
+    </div>
+    <script src="./js/jquery-ui.js"></script>
+    <script src="./js/constructor.js?5785785"></script>
+    <script src="./js/script.js?5785875"></script>
+</body>
+
+</html>

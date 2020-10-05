@@ -1613,6 +1613,29 @@ jQuery(function ($) {
             var el = '';
             var id = $(this).attr('name').split('_')[1];
             var type = $(this).val();
+            var pollid = $('#quiz-id').val();
+            console.log(id);
+            if(type && pollid && id){
+                $.ajax ({
+                    type: 'POST',
+                    url: "/admin/poll/create-question",
+                    dataType: "json",
+                    data: { 
+                        questiontype: "scale",
+                        quizid: pollid,
+                        questionid: id,
+                        scaletype: type
+                    },
+                }).done(function (data) {
+                    // данные сохранены
+                    console.log('Тип шкалы изменен');
+                }).fail(function (data) {
+                    // не удалось выполнить запрос к серверу
+                    console.log(data);
+                    console.log('Запрос не принят');
+                });
+            }
+
             if(type == 1){
                 el = 
                 '<div class="answer answer-colorstar" id="questionanswers_'+ id +'">'

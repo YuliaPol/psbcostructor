@@ -1632,6 +1632,9 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                             border-radius: 50%;
                             border: 2px solid #ffffff;
                             transition: background 0.5s;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
                           }
                           .color0{
                             border: 2px solid $color0;
