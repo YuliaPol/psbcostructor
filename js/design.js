@@ -114,7 +114,7 @@ jQuery(function ($) {
         $('.centerbox .question .text').css('color', $('.rightside .colorpick2level input[type=color]').val());
         $('.centerbox .question .matrix-table .value').css('color', $('.rightside .colorpick2level input[type=color]').val());
 
-
+        //color pick
         var style =  
         '<style title="colorpickselectstyle">'
         +'    .construcot-container .centerbox input[type=checkbox]:checked + label::before,'
@@ -128,16 +128,17 @@ jQuery(function ($) {
         '</style>';
         $('head').append(style);
 
-
+        //color input
         $('.centerbox .question input[type=text]').css('color', $('.rightside .colorpickinput input[type=color]').val());
         $('.centerbox .question input[type=email]').css('color', $('.rightside .colorpickinput input[type=color]').val());
         $('.centerbox .question input[type=tel]').css('color', $('.rightside .colorpickinput input[type=color]').val());
         $('.centerbox .question textarea').css('color', $('.rightside .colorpickinput input[type=color]').val());
-
         $('.centerbox').css('background', $('.rightside .colorpickbackground input[type=color]').val());
 
+        //position
+        $('.centerbox').addClass('align' + $('.rightside .position-text input[type=radio]:checked').val());
 
-        $('.centerbox').addClass('align' + $('.rightside .position-text input[type=radio]').val());
+        //font
         $('.centerbox').addClass('font' + $('.fontselect').val());
 
         $.fn.removeClassPrefix = function(prefix) {
@@ -317,9 +318,13 @@ jQuery(function ($) {
             $this.addClass('select-hidden'); 
             $this.wrap('<div class="select"></div>');
             $this.after('<div class="select-styled"></div>');
-
             var $styledSelect = $this.next('div.select-styled');
-            $styledSelect.text($this.children('option').eq(0).text());
+            if($('.customselect option:selected').length>0){
+                $styledSelect.text($('.customselect option:selected').text());
+            }
+            else {
+                $styledSelect.text($this.children('option').eq(0).text());
+            }
         
             var $list = $('<ul />', {
                 'class': 'select-options'
