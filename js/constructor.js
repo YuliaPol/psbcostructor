@@ -243,34 +243,28 @@ jQuery(function ($) {
 
         function SetImageFromAjax(files, idQuestion) {
             var child = $('#questionanswers_'+idQuestion);
-            var index = 1;
-            if(child.parents('.question').find('.imageblock').children().length>0){
-                index = child.parents('.question').find('.imageblock').children().length + 1;
-            }
-            var index2 = 1;
             var image;
             // for (var i = 0; i < files.length; i++) {
             // files.forEach(function(item, i, arr) {
             $.each( files, function( i, item ) {
-                var image;
                 var settingsImage =
                 '<div class="remove-picture"></div>'
                 +'<div class="bottom-row">'
                 +'   <div class="inputsimage">'
                 +'        <div class="inputgroup">'
-                +'            <input type="radio" name="clickforimage_' + idQuestion + '_' + index +'" id="clickforimage_' + idQuestion + '_' + index +'_1"'
+                +'            <input type="radio" name="clickforimage_' + idQuestion + '_' + i +'" id="clickforimage_' + idQuestion + '_' + i +'_1"'
                 +'                value="50">'
-                +'            <label for="clickforimage_' + idQuestion + '_' + index + '_1">50 на картинку</label>'
+                +'            <label for="clickforimage_' + idQuestion + '_' + i + '_1">50 на картинку</label>'
                 +'        </div>'
                 +'        <div class="inputgroup">'
-                +'            <input type="radio" name="clickforimage_' + idQuestion + '_' + index + '" id="clickforimage_' + idQuestion + '_' + index + '_2"'
+                +'            <input type="radio" name="clickforimage_' + idQuestion + '_' + i + '" id="clickforimage_' + idQuestion + '_' + i + '_2"'
                 +'                value="100">'
-                +'            <label for="clickforimage_' + idQuestion + '_' + index + '_2">100 на картинку</label>'
+                +'            <label for="clickforimage_' + idQuestion + '_' + i + '_2">100 на картинку</label>'
                 +'        </div>'
                 +'        <div class="inputgroup">'
-                +'            <input type="radio" name="clickforimage_' + idQuestion  + '_' + index + '" id="clickforimage_'  + idQuestion + '_' + index + '_3"'
+                +'            <input type="radio" name="clickforimage_' + idQuestion  + '_' + i + '" id="clickforimage_'  + idQuestion + '_' + i + '_3"'
                 +'                value="200">'
-                +'            <label for="clickforimage_' + idQuestion  + '_' + index + '_3">200 на картинку</label>'
+                +'            <label for="clickforimage_' + idQuestion  + '_' + i + '_3">200 на картинку</label>'
                 +'        </div>'
                 +'    </div>'
                 +'</div>';
@@ -280,8 +274,6 @@ jQuery(function ($) {
                 +'<img src ="/admin/uploads/'+ item + '" alt="Image"> ' + settingsImage + '</div>';
                 child.parents('.question').find('.imageblock').append(image);
                 ResizeImg();
-                index++;
-                index2++;
             });
         }
 
@@ -365,42 +357,6 @@ jQuery(function ($) {
             }).fail(function () {
                 // не удалось выполнить запрос к серверу
                 console.log('Запрос не принят');
-            });
-            var Images = parents.children();
-            Images.each(function (index, image) {
-                var id = index + 1;
-                var inputs = $(image).find('input');
-                inputs.each(function (index, input) {
-                    if($(input).attr('name')){
-                        prevId = $(input).attr('name').split("_");
-                        prevId[2] = id;
-                        newId = prevId.join('_');
-                        $(input).attr('name', newId);
-                    }
-                    if($(input).attr('id')){
-                        prevId = $(input).attr('id').split("_");
-                        prevId[2] = id;
-                        newId = prevId.join('_');
-                        $(input).attr('id', newId);
-                    }
-                });
-
-                var labels = $(image).find('label');
-                labels.each(function (index, label) {
-                    if($(label).attr('for')){
-                        prevId = $(label).attr('for').split("_");
-                        prevId[2] = id;
-                        newId = prevId.join('_');
-                        $(label).attr('for', newId);
-                    }
-                    if($(label).attr('id')){
-                        prevId = $(label).attr('id').split("_");
-                        prevId[2] = id;
-                        newId = prevId.join('_');
-                        $(label).attr('id', newId);
-                    }
-                });
-
             });
             ResizeImg();
         });
@@ -2208,7 +2164,7 @@ jQuery(function ($) {
                 +'            accept="video/mp4,video/x-m4v,video/*">'
                 +'            <div class="uploadaudio">'
                 +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
-                +'                    value="video">'
+                +'                    value="audio">'
                 +'            </div>'
                 +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
                 +'            accept="audio/*">'
@@ -2279,7 +2235,7 @@ jQuery(function ($) {
                 +'            accept="video/mp4,video/x-m4v,video/*">'
                 +'            <div class="uploadaudio">'
                 +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
-                +'                    value="video">'
+                +'                    value="audio">'
                 +'            </div>'
                 +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
                 +'            accept="audio/*">'
@@ -2338,7 +2294,7 @@ jQuery(function ($) {
                 +'            accept="video/mp4,video/x-m4v,video/*">'
                 +'            <div class="uploadaudio">'
                 +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
-                +'                    value="video">'
+                +'                    value="audio">'
                 +'            </div>'
                 +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
                 +'            accept="audio/*">'
@@ -2401,7 +2357,7 @@ jQuery(function ($) {
                 +'            accept="video/mp4,video/x-m4v,video/*">'
                 +'            <div class="uploadaudio">'
                 +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
-                +'                    value="video">'
+                +'                    value="audio">'
                 +'            </div>'
                 +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
                 +'            accept="audio/*">'
@@ -2516,7 +2472,7 @@ jQuery(function ($) {
                 +'            accept="video/mp4,video/x-m4v,video/*">'
                 +'            <div class="uploadaudio">'
                 +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
-                +'                    value="video">'
+                +'                    value="audio">'
                 +'            </div>'
                 +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
                 +'            accept="audio/*">'
@@ -2646,7 +2602,7 @@ jQuery(function ($) {
                 +'            accept="video/mp4,video/x-m4v,video/*">'
                 +'            <div class="uploadaudio">'
                 +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
-                +'                    value="video">'
+                +'                    value="audio">'
                 +'            </div>'
                 +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
                 +'            accept="audio/*">'
@@ -2754,7 +2710,7 @@ jQuery(function ($) {
                 +'            accept="video/mp4,video/x-m4v,video/*">'
                 +'            <div class="uploadaudio">'
                 +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
-                +'                    value="video">'
+                +'                    value="audio">'
                 +'            </div>'
                 +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
                 +'            accept="audio/*">'
@@ -2891,7 +2847,7 @@ jQuery(function ($) {
                 +'            accept="video/mp4,video/x-m4v,video/*">'
                 +'            <div class="uploadaudio">'
                 +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
-                +'                    value="video">'
+                +'                    value="audio">'
                 +'            </div>'
                 +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
                 +'            accept="audio/*">'
