@@ -1872,7 +1872,7 @@ jQuery(function ($) {
                         var newQuestion = 
                         '<div class="questionPoint" id="questionPoint_'+ id + '_' + currentId +'">'
                         +'    <label for="inputpoint_'+ id + '_' + currentId +'">'+ currentId +'</label>'
-                        +'    <input class="question_points" name="inputpoint_'+ id + '_' + currentId +'" id="inputpoint_'+ id + '_' + currentId +'" type="text" placeholder="Вариант ответа">'
+                        +'    <input class="branching_points" name="inputpoint_'+ id + '_' + currentId +'" id="inputpoint_'+ id + '_' + currentId +'" type="text" placeholder="Вариант ответа">'
                         +'    <div class="branching-btn"></div>'
                         +'    <div class="branching-list"> </div>'
                         +'</div>';
@@ -1886,7 +1886,7 @@ jQuery(function ($) {
         //add subpoints
         $('.rightside').on('click', '.branching-btn', function(e){
             var subPoints = $(this).next('.branching-list').children();
-            var prevNameInput = $(this).prev('.question_points').attr('id').split('_');
+            var prevNameInput = $(this).prev('.branching_points').attr('id').split('_');
             var questionId =  prevNameInput[1];
             var questionPointsId =  parseInt(prevNameInput[2]);
             var questionSubPointsId =  parseInt(subPoints.length) + 1;
