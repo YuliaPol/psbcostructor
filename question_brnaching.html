@@ -15,6 +15,7 @@
     <script src="./js/wavesurfer.js"></script>
     <script src="./js/datepicker.min.js"></script>
     <script src="./js/intlTelInput.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js "></script>
 </head>
 
 <body>
@@ -207,8 +208,7 @@
                             <div class="answer flex-50" id="questionanswers_1">
                                 <div class="form-group" id="questionformAnswer_1_1">
                                     <input type="radio" name="questionanswer_1" id="questionanswer_1_1">
-                                    <label id="questionpointsanswer_1_1" for="questionanswer_1_1">Потребительские
-                                        кредиты</label>
+                                    <label id="questionpointsanswer_1_1" for="questionanswer_1_1">Потребительские кредиты</label>
                                 </div>
                                 <div class="form-group" id="questionformAnswer_1_2">
                                     <input type="radio" name="questionanswer_1" id="questionanswer_1_2">
@@ -217,8 +217,7 @@
                                 </div>
                                 <div class="form-group" id="questionformAnswer_1_3">
                                     <input type="radio" name="questionanswer_1" id="questionanswer_1_3">
-                                    <label id="questionpointsanswer_1_3" for="questionanswer_1_3">Экспресс
-                                        кредит</label>
+                                    <label id="questionpointsanswer_1_3" for="questionanswer_1_3">Экспресс кредит</label>
                                 </div>
                                 <div class="form-group" id="questionformAnswer_1_4">
                                     <input type="radio" name="questionanswer_1" id="questionanswer_1_4">
@@ -228,75 +227,69 @@
                         </div>
                         <div class="question branchingquestion" data-optionid="4">
                             <div class="close-question"></div>
-                            <div class="name " id="questionName_4">
-                                Какие кредиты Вам больше всего подходят?
-                            </div>
-                            <div class="answer flex-50" id="questionanswers_4">
-                                <div class="form-group" id="questionformAnswer_4_1">
-                                    <input type="radio" name="questionanswer_4" id="questionanswer_4_1">
-                                    <label id="questionpointsanswer_4_1" for="questionanswer_4_1">Потребительские
-                                        кредиты</label>
-                                </div>
-                                <div class="form-group" id="questionformAnswer_4_2">
-                                    <input type="radio" name="questionanswer_4" id="questionanswer_4_2">
-                                    <label id="questionpointsanswer_4_2"
-                                        for="questionanswer_4_2">Рефинансирование</label>
-                                </div>
-                                <div class="form-group" id="questionformAnswer_4_3">
-                                    <input type="radio" name="questionanswer_4" id="questionanswer_4_3">
-                                    <label id="questionpointsanswer_4_3" for="questionanswer_4_3">Экспресс
-                                        кредит</label>
-                                </div>
-                                <div class="form-group" id="questionformAnswer_4_4">
-                                    <input type="radio" name="questionanswer_4" id="questionanswer_4_4">
-                                    <label id="questionpointsanswer_4_4" for="questionanswer_4_4">Ипотека</label>
-                                </div>
-                            </div>
-                            <div class="hidden-question-list">
-                                <div class="hidden-question-group" id="hiddenquestion_4_3">
-                                    <div class="hidden-question">
-                                        <div class="name">
-                                            Какие сложности возникают при оформлении кредита?
-                                        </div>
-                                        <div class="hidden-question-answer">
-                                            <div class="form-group">
-                                                <input type="text" name="hiddenquestionanswer_4_3_1"
-                                                    id="hiddenquestionanswer_4_3_1" placeholder="Ваш ответ">
+                            <div class="answer" id="questionanswers_4">
+                                <div class="branching-group">
+                                    <div class="group-name">Потребительские кредиты</div>
+                                    <div class="question-group">
+                                        <div class="branching-question">
+                                            <div class="name">
+                                                Какие сложности возникают при оформлении кредита?
                                             </div>
-                                        </div>
+                                            <div class="hidden-question-answer">
+                                                <div class="form-group">
+                                                    <input type="text" name="hiddenquestionanswer_4_3_1"
+                                                        id="hiddenquestionanswer_4_3_1" placeholder="Ваш ответ">
+                                                </div>
+                                            </div>
+                                        </div>  
                                     </div>
-                                    <div class="hidden-question">
-                                        <div class="name">
-                                            Какие сложности возникают при оформлении кредита?
-                                        </div>
-                                        <div class="hidden-question-answer">
-                                            <div class="form-group">
-                                                <input type="text" name="hiddenquestionanswer_4_3_2"
-                                                    id="hiddenquestionanswer_4_3_2" placeholder="Ваш ответ">
+                                </div>
+                                <div class="branching-group">
+                                    <div class="group-name">Рефинансирование</div>
+                                    <div class="question-group">
+                                        <div class="branching-question">
+                                            <div class="name">
+                                                Какие сложности возникают при оформлении кредита?
                                             </div>
-                                        </div>
+                                            <div class="hidden-question-answer">
+                                                <div class="form-group">
+                                                    <input type="text" name="hiddenquestionanswer_4_3_1"
+                                                        id="hiddenquestionanswer_4_3_1" placeholder="Ваш ответ">
+                                                </div>
+                                            </div>
+                                        </div>  
                                     </div>
-                                    <div class="hidden-question">
-                                        <div class="name">
-                                            Какие сложности возникают при оформлении кредита?
-                                        </div>
-                                        <div class="hidden-question-answer">
-                                            <div class="form-group">
-                                                <input type="text" name="hiddenquestionanswer_4_3_3"
-                                                    id="hiddenquestionanswer_4_3_3" placeholder="Ваш ответ">
+                                </div>
+                                <div class="branching-group">
+                                    <div class="group-name">Экспресс кредит</div>
+                                    <div class="question-group">
+                                        <div class="branching-question">
+                                            <div class="name">
+                                                Какие сложности возникают при оформлении кредита?
                                             </div>
-                                        </div>
+                                            <div class="hidden-question-answer">
+                                                <div class="form-group">
+                                                    <input type="text" name="hiddenquestionanswer_4_3_1"
+                                                        id="hiddenquestionanswer_4_3_1" placeholder="Ваш ответ">
+                                                </div>
+                                            </div>
+                                        </div>  
                                     </div>
-                                    <div class="hidden-question">
-                                        <div class="name">
-                                            Какие сложности возникают при оформлении кредита?
-                                        </div>
-                                        <div class="hidden-question-answer">
-                                            <div class="form-group">
-                                                <input type="text" name="hiddenquestionanswer_4_3_4"
-                                                    id="hiddenquestionanswer_4_3_4" placeholder="Ваш ответ">
+                                </div>
+                                <div class="branching-group">
+                                    <div class="group-name">Ипотека</div>
+                                    <div class="question-group">
+                                        <div class="branching-question">
+                                            <div class="name">
+                                                Какие сложности возникают при оформлении кредита?
                                             </div>
-                                        </div>
+                                            <div class="hidden-question-answer">
+                                                <div class="form-group">
+                                                    <input type="text" name="hiddenquestionanswer_4_3_1"
+                                                        id="hiddenquestionanswer_4_3_1" placeholder="Ваш ответ">
+                                                </div>
+                                            </div>
+                                        </div>  
                                     </div>
                                 </div>
                             </div>
@@ -388,28 +381,70 @@
                         </div>
                         <div class="question branchingquestion" data-optionid="22">
                             <div class="close-question"></div>
-                            <div class="name " id="questionName_22">
-                                Какие кредиты Вам больше всего подходят?
-                            </div>
-                            <div class="answer flex-50" id="questionanswers_22">
-                                <div class="form-group" id="questionformAnswer_22_1">
-                                    <input type="radio" name="questionanswer_22" id="questionanswer_22_1">
-                                    <label id="questionpointsanswer_22_1" for="questionanswer_22_1">Потребительские
-                                        кредиты</label>
+                            <div class="answer" id="questionanswers_22">
+                                <div class="branching-group">
+                                    <div class="group-name">1-2</div>
+                                    <div class="question-group">
+                                        <div class="branching-question">
+                                            <div class="name">
+                                                Какие сложности возникают при оформлении кредита?
+                                            </div>
+                                            <div class="hidden-question-answer">
+                                                <div class="form-group">
+                                                    <input type="text" name="hiddenquestionanswer_22_3_1"
+                                                        id="hiddenquestionanswer_22_3_1" placeholder="Ваш ответ">
+                                                </div>
+                                            </div>
+                                        </div>  
+                                    </div>
                                 </div>
-                                <div class="form-group" id="questionformAnswer_22_2">
-                                    <input type="radio" name="questionanswer_22" id="questionanswer_22_2">
-                                    <label id="questionpointsanswer_22_2"
-                                        for="questionanswer_22_2">Рефинансирование</label>
+                                <div class="branching-group">
+                                    <div class="group-name">3-5</div>
+                                    <div class="question-group">
+                                        <div class="branching-question">
+                                            <div class="name">
+                                                Какие сложности возникают при оформлении кредита?
+                                            </div>
+                                            <div class="hidden-question-answer">
+                                                <div class="form-group">
+                                                    <input type="text" name="hiddenquestionanswer_22_3_1"
+                                                        id="hiddenquestionanswer_22_3_1" placeholder="Ваш ответ">
+                                                </div>
+                                            </div>
+                                        </div>  
+                                    </div>
                                 </div>
-                                <div class="form-group" id="questionformAnswer_22_3">
-                                    <input type="radio" name="questionanswer_22" id="questionanswer_22_3">
-                                    <label id="questionpointsanswer_22_3" for="questionanswer_22_3">Экспресс
-                                        кредит</label>
+                                <div class="branching-group">
+                                    <div class="group-name">6-8</div>
+                                    <div class="question-group">
+                                        <div class="branching-question">
+                                            <div class="name">
+                                                Какие сложности возникают при оформлении кредита?
+                                            </div>
+                                            <div class="hidden-question-answer">
+                                                <div class="form-group">
+                                                    <input type="text" name="hiddenquestionanswer_22_3_1"
+                                                        id="hiddenquestionanswer_22_3_1" placeholder="Ваш ответ">
+                                                </div>
+                                            </div>
+                                        </div>  
+                                    </div>
                                 </div>
-                                <div class="form-group" id="questionformAnswer_22_4">
-                                    <input type="radio" name="questionanswer_22" id="questionanswer_22_4">
-                                    <label id="questionpointsanswer_22_4" for="questionanswer_22_4">Ипотека</label>
+                                <div class="branching-group">
+                                    <div class="group-name">9-10</div>
+                                    <div class="question-group">
+                                        <div class="branching-question">
+                                            <div class="name">
+                                                Какие сложности возникают при оформлении кредита?
+                                            </div>
+                                            <div class="hidden-question-answer">
+                                                <div class="form-group">
+                                                    <input type="text" name="hiddenquestionanswer_22_3_1"
+                                                        id="hiddenquestionanswer_22_3_1" placeholder="Ваш ответ">
+                                                </div>
+                                            </div>
+                                        </div>  
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -479,68 +514,54 @@
                                 </div>
                                 <div class="text-aside">
                                     <div class="form-group">
-                                        <label for="question_4">Вопрос</label>
-                                        <textarea class="question_name" name="question_4"
-                                            id="question_4">Какие кредиты Вам больше всего подходят?</textarea>
-                                    </div>
-                                    <div class="form-group spinner-wrapper">
-                                        <label for="number_4">Колличество пунктов </label>
-                                        <input class="question_number_branching spinner" name="number_4" id="number_4" type="text"
-                                            value="4">
-                                    </div>
-                                    <div class="form-group">
                                         <p>Варианты ответов</p>
                                         <div class="inputtables" id="inputtables_4">
                                             <div class="questionPoint" id="questionPoint_4_1">
                                                 <label for="inputpoint_4_1">1</label>
-                                                <input class="question_points" name="inputpoint_4_1" id="inputpoint_4_1"
-                                                    type="text" value="Потребительские кредиты">
-                                                <div class="branching-btn"></div>
+                                                <input class="branching_points" name="inputpoint_4_1" id="inputpoint_4_1" readonly type="text" value="Потребительские кредиты">
+                                                <div class="branching-btn active"></div>
                                                 <div class="branching-list">
+                                                    <div class="branching-group">
+                                                        <input type="text" name="subpoint_4_1_1" id="subpoint_4_1_1"
+                                                            value="Какие сложности возникают при оформлении кредита?">
+                                                        <div class="deleteSubPoint"></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="questionPoint" id="questionPoint_4_2">
                                                 <label for="inputpoint_4_2">2</label>
-                                                <input class="question_points" name="inputpoint_4_2" id="inputpoint_4_2"
-                                                    type="text" value="Рефинансирование">
-                                                <div class="branching-btn"></div>
+                                                <input class="branching_points" readonly name="inputpoint_4_2" id="inputpoint_4_2" type="text" value="Рефинансирование">
+                                                <div class="branching-btn active"></div>
                                                 <div class="branching-list">
+                                                    <div class="branching-group">
+                                                        <input type="text" name="subpoint_4_2_1" id="subpoint_4_2_1"
+                                                            value="Какие сложности возникают при оформлении кредита?">
+                                                        <div class="deleteSubPoint"></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="questionPoint" id="questionPoint_4_3">
                                                 <label for="inputpoint_4_3">3</label>
-                                                <input class="question_points" name="inputpoint_4_3" id="inputpoint_4_3"
-                                                    type="text" value="Экспресс кредит">
+                                                <input class="branching_points" readonly name="inputpoint_4_3" id="inputpoint_4_3" type="text" value="Экспресс кредит">
                                                 <div class="branching-btn active"></div>
                                                 <div class="branching-list">
                                                     <div class="branching-group">
                                                         <input type="text" name="subpoint_4_3_1" id="subpoint_4_3_1"
-                                                            value="Экспресс кредит">
-                                                        <div class="deleteSubPoint"></div>
-                                                    </div>
-                                                    <div class="branching-group">
-                                                        <input type="text" name="subpoint_4_3_2" id="subpoint_4_3_2"
-                                                            value="Экспресс кредит">
-                                                        <div class="deleteSubPoint"></div>
-                                                    </div>
-                                                    <div class="branching-group">
-                                                        <input type="text" name="subpoint_4_3_3" id="subpoint_4_3_3"
-                                                            value="Экспресс кредит">
-                                                        <div class="deleteSubPoint"></div>
-                                                    </div>
-                                                    <div class="branching-group">
-                                                        <input type="text" name="subpoint_4_3_4" id="subpoint_4_3_4"
-                                                            value="Экспресс кредит">
+                                                            value="Какие сложности возникают при оформлении кредита?">
                                                         <div class="deleteSubPoint"></div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="questionPoint" id="questionPoint_4_4">
                                                 <label for="inputpoint_4_4">4</label>
-                                                <input class="question_points" name="inputpoint_4_4" id="inputpoint_4_4"
-                                                    type="text" value="Ипотека">
-                                                <div class="branching-btn"></div>
+                                                <input class="branching_points" readonly name="inputpoint_4_4" id="inputpoint_4_4" type="text" value="Ипотека">
+                                                <div class="branching-btn active"></div>
                                                 <div class="branching-list">
+                                                    <div class="branching-group">
+                                                        <input type="text" name="subpoint_4_4_1" id="subpoint_4_4_1"
+                                                            value="Какие сложности возникают при оформлении кредита?">
+                                                        <div class="deleteSubPoint"></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -631,11 +652,6 @@
                                     Настройки
                                 </div>
                                 <div class="text-aside">
-                                    <div class="form-group">
-                                        <label for="question_22">Вопрос</label>
-                                        <textarea class="question_name" name="question_22"
-                                            id="question_22">Какие кредиты Вам больше всего подходят?</textarea>
-                                    </div>
                                     <div class="form-group spinner-wrapper">
                                         <label for="number_22">Колличество пунктов </label>
                                         <input class="question_number_branching spinner" name="number_22" id="number_22" type="text"
@@ -643,57 +659,57 @@
                                     </div>
                                     <div class="form-group">
                                         <p>Варианты ответов</p>
-                                        <div class="inputtables" id="inputtables_22">
+                                        <div class="inputtables branchingForScale" id="inputtables_22">
                                             <div class="questionPoint" id="questionPoint_22_1">
                                                 <label for="inputpoint_22_1">1</label>
-                                                <input class="question_points" name="inputpoint_22_1" id="inputpoint_22_1"
-                                                    type="text" value="Потребительские кредиты">
-                                                <div class="branching-btn"></div>
+                                                <input class="branching_points" name="inputpoint_22_1" id="inputpoint_22_1"
+                                                    type="text" value="1-2">
+                                                <div class="branching-btn active"></div>
                                                 <div class="branching-list">
+                                                    <div class="branching-group">
+                                                        <input type="text" name="subpoint_22_1_1" id="subpoint_4_1_1"
+                                                            value="Какие сложности возникают при оформлении кредита?">
+                                                        <div class="deleteSubPoint"></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="questionPoint" id="questionPoint_22_2">
                                                 <label for="inputpoint_22_2">2</label>
-                                                <input class="question_points" name="inputpoint_22_2" id="inputpoint_22_2"
-                                                    type="text" value="Рефинансирование">
-                                                <div class="branching-btn"></div>
+                                                <input class="branching_points" name="inputpoint_22_2" id="inputpoint_22_2"
+                                                    type="text" value="3-5">
+                                                <div class="branching-btn active"></div>
                                                 <div class="branching-list">
+                                                    <div class="branching-group">
+                                                        <input type="text" name="subpoint_22_2_1" id="subpoint_22_2_1"
+                                                            value="Какие сложности возникают при оформлении кредита?">
+                                                        <div class="deleteSubPoint"></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="questionPoint" id="questionPoint_22_3">
                                                 <label for="inputpoint_22_3">3</label>
-                                                <input class="question_points" name="inputpoint_22_3" id="inputpoint_22_3"
-                                                    type="text" value="Экспресс кредит">
+                                                <input class="branching_points" name="inputpoint_22_3" id="inputpoint_22_3"
+                                                    type="text" value="6-8">
                                                 <div class="branching-btn active"></div>
                                                 <div class="branching-list">
                                                     <div class="branching-group">
                                                         <input type="text" name="subpoint_22_3_1" id="subpoint_22_3_1"
-                                                            value="Экспресс кредит">
-                                                        <div class="deleteSubPoint"></div>
-                                                    </div>
-                                                    <div class="branching-group">
-                                                        <input type="text" name="subpoint_22_3_2" id="subpoint_22_3_2"
-                                                            value="Экспресс кредит">
-                                                        <div class="deleteSubPoint"></div>
-                                                    </div>
-                                                    <div class="branching-group">
-                                                        <input type="text" name="subpoint_22_3_3" id="subpoint_22_3_3"
-                                                            value="Экспресс кредит">
-                                                        <div class="deleteSubPoint"></div>
-                                                    </div>
-                                                    <div class="branching-group">
-                                                        <input type="text" name="subpoint_22_3_4" id="subpoint_22_3_4"
-                                                            value="Экспресс кредит">
+                                                            value="Какие сложности возникают при оформлении кредита?">
                                                         <div class="deleteSubPoint"></div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="questionPoint" id="questionPoint_22_4">
                                                 <label for="inputpoint_22_4">4</label>
-                                                <input class="question_points" name="inputpoint_22_4" id="inputpoint_22_4"
-                                                    type="text" value="Ипотека">
-                                                <div class="branching-btn"></div>
+                                                <input class="branching_points" name="inputpoint_22_4" id="inputpoint_22_4"
+                                                    type="text" value="9-10">
+                                                <div class="branching-btn active"></div>
                                                 <div class="branching-list">
+                                                    <div class="branching-group">
+                                                        <input type="text" name="subpoint_22_4_1" id="subpoint_22_4_1"
+                                                            value="Какие сложности возникают при оформлении кредита?">
+                                                        <div class="deleteSubPoint"></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

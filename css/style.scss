@@ -1514,7 +1514,23 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                 .hidden-question-group {
                     display: none;
                 }
-                .hidden-question {
+                .branching-group {
+                    padding-bottom: 15px;
+                    .group-name {
+                        width: 100%;
+                        font-family: "Montserrat";
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 14px;
+                        line-height: 18px;
+                        color: #4D4D4D;
+                    }
+                    .branching-question {
+                        padding-left: 15px;
+                    }
+                }
+                .hidden-question,
+                .branching-question {
                     padding: 10px;
                     .name {
                         font-family: $fontpage;

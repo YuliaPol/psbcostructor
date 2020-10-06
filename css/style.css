@@ -2716,11 +2716,31 @@ table {
   display: none;
 }
 
-.construcot-container .centerbox .questions-box .question .hidden-question {
+.construcot-container .centerbox .questions-box .question .branching-group {
+  padding-bottom: 15px;
+}
+
+.construcot-container .centerbox .questions-box .question .branching-group .group-name {
+  width: 100%;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  color: #4D4D4D;
+}
+
+.construcot-container .centerbox .questions-box .question .branching-group .branching-question {
+  padding-left: 15px;
+}
+
+.construcot-container .centerbox .questions-box .question .hidden-question,
+.construcot-container .centerbox .questions-box .question .branching-question {
   padding: 10px;
 }
 
-.construcot-container .centerbox .questions-box .question .hidden-question .name {
+.construcot-container .centerbox .questions-box .question .hidden-question .name,
+.construcot-container .centerbox .questions-box .question .branching-question .name {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 600;
@@ -2729,7 +2749,8 @@ table {
   color: #000000;
 }
 
-.construcot-container .centerbox .questions-box .question .hidden-question .hidden-question-answer input {
+.construcot-container .centerbox .questions-box .question .hidden-question .hidden-question-answer input,
+.construcot-container .centerbox .questions-box .question .branching-question .hidden-question-answer input {
   border-top: 0px;
   border-left: 0px;
   border-right: 0px;
@@ -2747,7 +2768,8 @@ table {
   color: #37353F;
 }
 
-.construcot-container .centerbox .questions-box .question .hidden-question .hidden-question-answer input::-webkit-input-placeholder {
+.construcot-container .centerbox .questions-box .question .hidden-question .hidden-question-answer input::-webkit-input-placeholder,
+.construcot-container .centerbox .questions-box .question .branching-question .hidden-question-answer input::-webkit-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -2756,7 +2778,8 @@ table {
   color: #A4A2A2;
 }
 
-.construcot-container .centerbox .questions-box .question .hidden-question .hidden-question-answer input::-moz-placeholder {
+.construcot-container .centerbox .questions-box .question .hidden-question .hidden-question-answer input::-moz-placeholder,
+.construcot-container .centerbox .questions-box .question .branching-question .hidden-question-answer input::-moz-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -2765,7 +2788,8 @@ table {
   color: #A4A2A2;
 }
 
-.construcot-container .centerbox .questions-box .question .hidden-question .hidden-question-answer input:-ms-input-placeholder {
+.construcot-container .centerbox .questions-box .question .hidden-question .hidden-question-answer input:-ms-input-placeholder,
+.construcot-container .centerbox .questions-box .question .branching-question .hidden-question-answer input:-ms-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -2774,7 +2798,8 @@ table {
   color: #A4A2A2;
 }
 
-.construcot-container .centerbox .questions-box .question .hidden-question .hidden-question-answer input::-ms-input-placeholder {
+.construcot-container .centerbox .questions-box .question .hidden-question .hidden-question-answer input::-ms-input-placeholder,
+.construcot-container .centerbox .questions-box .question .branching-question .hidden-question-answer input::-ms-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -2783,7 +2808,8 @@ table {
   color: #A4A2A2;
 }
 
-.construcot-container .centerbox .questions-box .question .hidden-question .hidden-question-answer input::placeholder {
+.construcot-container .centerbox .questions-box .question .hidden-question .hidden-question-answer input::placeholder,
+.construcot-container .centerbox .questions-box .question .branching-question .hidden-question-answer input::placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -2926,6 +2952,18 @@ table {
   -webkit-transition: background 0.5s;
   -o-transition: background 0.5s;
   transition: background 0.5s;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color0 {
