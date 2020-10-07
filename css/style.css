@@ -5324,6 +5324,7 @@ table {
       -ms-flex-pack: justify;
           justify-content: space-between;
   padding-bottom: 15px;
+  padding-top: 10px;
 }
 
 .construcot-container .rightside .default .text-aside .multityperow .namelabel,
@@ -5334,7 +5335,7 @@ table {
   font-weight: 500;
   font-size: 10px;
   line-height: 12px;
-  color: #37353F;
+  color: #563BC2;
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .top-row,
