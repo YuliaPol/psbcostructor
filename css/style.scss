@@ -1511,6 +1511,12 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                         opacity: 1;
                     }
                 }
+                .subquestion {
+                    margin-left: -20px;
+                    margin-right: -20px;
+                    padding-left: 30px;
+                    padding-right: 30px;
+                }
                 .hidden-question-group {
                     display: none;
                 }
@@ -4278,6 +4284,15 @@ html .ui-button.ui-state-disabled:active {
         }
     }
 }
+.col-phone .intl-tel-input .flag-dropdown .selected-flag .down-arrow {
+    border: none;
+    width: 10px;
+    height: 5px;
+    background: url(./../img/arrow-dropdown.svg);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
 @media screen and (min-width: 1500px) {
     .header.sm-header .panelmenu ul li a {
         font-size: 16px;
@@ -4292,7 +4307,11 @@ html .ui-button.ui-state-disabled:active {
     .construcot-container .rightside .default .text-aside .spinner-wrapper .ui-spinner-input, .construcot-container .rightside .optionbox .text-aside .spinner-wrapper .ui-spinner-input,
     .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint input, .construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint input,
     .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint label, .construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint label,
-    .construcot-container .rightside .optionbox .text-aside .scale-option p {
+    .construcot-container .rightside .optionbox .text-aside .scale-option p,
+    .construcot-container .rightside .default .text-aside,
+    .construcot-container .rightside .optionbox .text-aside,
+    .construcot-container .rightside .default .text-aside .multityperow .namelabel,
+    .construcot-container .rightside .optionbox .text-aside .multityperow .namelabel {
         font-size: 12px;
         line-height: 14px;
     }
@@ -4305,15 +4324,6 @@ html .ui-button.ui-state-disabled:active {
         font-size: 24px;
         line-height: 28px;
     }
-}
-.col-phone .intl-tel-input .flag-dropdown .selected-flag .down-arrow {
-    border: none;
-    width: 10px;
-    height: 5px;
-    background: url(./../img/arrow-dropdown.svg);
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
 }
 @media screen and (max-width: 1200px) {
     .construcot-container .centerbox .questions-box .question .answer.answer-scale label .digit {

@@ -1563,6 +1563,16 @@ jQuery(function ($) {
             var id = $(this).attr('name').split('_');
             id[0] = '#questionpointsanswer';
             $(id.join('_')).html($(this).val());
+            if($(this).parents('.optionbox').find('.brnachingonoff:checked')){
+                var questionId = $(this).parents('.optionbox').find('.subquestionID').val();
+                var questionPointsId = $(this).attr('name').split('_')[2];
+                console.log(questionId);
+                console.log(questionPointsId);
+                if($('#option_'+ questionId).find('.inputtables .questionPoint:nth-child('+ questionPointsId + ')').length>0) {
+                    $('#option_'+ questionId).find('.inputtables .questionPoint:nth-child('+ questionPointsId + ') .branching_points').val($(this).val());
+                    $('#questionanswers_'+ questionId).find('.branching-group:nth-child('+ questionPointsId + ')').find('.group-name').html($(this).val());
+                }
+            };
         });
 
 
@@ -1879,7 +1889,7 @@ jQuery(function ($) {
                         $(newQuestion).appendTo($('#inputtables_' + id));
                     }
                 }
-                SetPointOfQuestion(id, number);
+                SetPointOfQuestionBranching(id, number);
             }
         });
 
@@ -2031,14 +2041,14 @@ jQuery(function ($) {
                     var newQuestion = 
                     '<div class="questionPoint" id="questionPoint_'+ id + '_' + currentId +'">'
                     +'    <label for="inputpoint_'+ id + '_' + currentId +'">'+ currentId +'</label>'
-                    +'    <input class="question_points" name="inputpoint_'+ id + '_' + currentId +'" id="inputpoint_'+ id + '_' + currentId +'" type="text" placeholder="Вариант ответа">'
+                    +'    <input class="branching_points" name="inputpoint_'+ id + '_' + currentId +'" id="inputpoint_'+ id + '_' + currentId +'" type="text" placeholder="Вариант ответа">'
                     +'    <div class="branching-btn"></div>'
                     +'    <div class="branching-list"> </div>'
                     +'</div>';
                     $(newQuestion).appendTo($('#inputtables_' + id));
                 }
             }
-            SetPointOfQuestion(id, number);
+            SetPointOfQuestionBranching(id, number);
         });
 
         //change points of free question
@@ -2050,10 +2060,101 @@ jQuery(function ($) {
         
         //set points of question
         function SetPointOfQuestion(id, number) {
+            var questionPoints = $('#questionanswers_' + id).find('.form-group');
+            questionPoints.each(function (index, question) {
+                if((index + 1) > number) {
+                    $(question).remove();
+                    if($('#option_' + id).find('.brnachingonoff:checked')){
+                        var subquestionId = $('#option_' + id).find('.subquestionID').val();
+                        SetPointOfQuestionBranchingSingle(subquestionId,number);
+                    }
+                }
+            });
+            var currentId = questionPoints.length
+            if(number > questionPoints.length){
+                while (currentId != number){
+                    currentId++;
+                    var newQuestion = 
+                    '<div class="form-group" id="questionformAnswer_'+ id + '_' + currentId +'">'
+                    +'    <input type="radio" name="questionanswer_'+ id + '" id="questionanswer_'+ id + '_' + currentId +'">'
+                    +'    <label id="questionpointsanswer_'+ id + '_' + currentId +'" for="questionanswer_'+ id + '_' + currentId +'">Вариант ответа</label>'
+                    +'</div>';
+                    $(newQuestion).appendTo($('#questionanswers_' + id));
+                    if($('#option_' + id).find('.brnachingonoff:checked')){
+                        var subquestionId = $('#option_' + id).find('.subquestionID').val();
+                        SetPointOfQuestionBranchingSingle(subquestionId,number);
+                    }
+                }
+            }
+        }
+        
+            //set points of question
+            function SetPointOfQuestionBranchingSingle(id, number) {
+                var questionPoints = $('#inputtables_' + id).find('.questionPoint');
+                questionPoints.each(function (index, question) {
+                    if((index + 1) > number) {
+                        $(question).remove();
+                        $('#hiddenquestion_' + id + '_' + index).remove();
+                    }
+                });
+                var currentId = questionPoints.length
+                if(number > questionPoints.length){
+                    while (currentId != number){
+                        currentId++;
+                        var newQuestion = 
+                        '<div class="questionPoint" id="questionPoint_'+ id + '_' + currentId +'">'
+                        +'    <label for="inputpoint_'+ id + '_' + currentId +'">'+ currentId +'</label>'
+                        +'    <input class="branching_points" readonly name="inputpoint_'+ id + '_' + currentId +'" id="inputpoint_'+ id + '_' + currentId +'" type="text" placeholder="Вариант ответа">'
+                        +'    <div class="branching-btn"></div>'
+                        +'    <div class="branching-list"> </div>'
+                        +'</div>';
+                        $(newQuestion).appendTo($('#inputtables_' + id));
+                    }
+                }
+
+                var questionPoints = $('#questionanswers_' + id).find('.branching-group');
+                questionPoints.each(function (index, question) {
+                    if((index + 1) > number) {
+                        $(question).remove();
+                        if($('#option_'+ id).find('.brnachingonoff:checked')){
+                            var questionId = $('#option_'+ id).find('.subquestionID').val();
+                            var questionPointsId = number;
+                            if($('#option_'+ questionId).find('.inputtables .questionPoint:nth-child('+ questionPointsId + ')').length>0) {
+                                $('#option_'+ questionId).find('.inputtables .questionPoint:nth-child('+ questionPointsId + ') .branching_points').remove();
+                                $('#questionanswers_'+ questionId).find('.branching-group:nth-child('+ questionPointsId + ')').remove();
+                            }
+                        };
+                    }
+                });
+                var currentId = questionPoints.length
+                if(number > questionPoints.length){
+                    while (currentId != number){
+                        currentId++;
+                        var newQuestion = 
+                        '<div class="branching-group">'
+                        +'    <div class="group-name">Ответ</div>'
+                        +'    <div class="question-group">'
+                        +'    </div>'
+                        +'</div>';
+                        $(newQuestion).appendTo($('#questionanswers_' + id));
+                    }
+                }
+            }
+            
+        //set points of question
+        function SetPointOfQuestionBranching(id, number) {
             var questionPoints = $('#questionanswers_' + id).find('.branching-group');
             questionPoints.each(function (index, question) {
                 if((index + 1) > number) {
                     $(question).remove();
+                    if($('#option_'+ id).find('.brnachingonoff:checked')){
+                        var questionId = $('#option_'+ id).find('.subquestionID').val();
+                        var questionPointsId = number;
+                        if($('#option_'+ questionId).find('.inputtables .questionPoint:nth-child('+ questionPointsId + ')').length>0) {
+                            $('#option_'+ questionId).find('.inputtables .questionPoint:nth-child('+ questionPointsId + ') .branching_points').remove();
+                            $('#questionanswers_'+ questionId).find('.branching-group:nth-child('+ questionPointsId + ')').remove();
+                        }
+                    };
                 }
             });
             var currentId = questionPoints.length
@@ -3408,7 +3509,7 @@ jQuery(function ($) {
                             $(newQuestion).appendTo($('#inputtables_' + id));
                         }
                     }
-                    SetPointOfQuestion(id, number);
+                    SetPointOfQuestionBranching(id, number);
                 }
             });
 
@@ -3462,6 +3563,19 @@ jQuery(function ($) {
         //activating question
         $('.questions-box').on('click', '.question', function(e){
             if(!$(e.target).hasClass('close-question') && !$(this).parents('.centerbox').hasClass('full-width')){
+                if(!$(e.target).parents('.subquestion').length>0 && !$(e.target).hasClass('subquestion')){
+                    var id = $(this).attr('data-optionid');
+                    $('.questions-box .question').removeClass('active');
+                    $('.optionsblock .optionbox').removeClass('active');
+                    $(this).addClass('active');
+                    $('.optionsblock #option_' + id ).addClass('active');
+                }
+            }
+        });
+
+        //activating subquestion
+        $('.questions-box').on('click', '.subquestion', function(e){
+            if(!$(e.target).hasClass('close-question') && !$(this).parents('.centerbox').hasClass('full-width')){
                 var id = $(this).attr('data-optionid');
                 $('.questions-box .question').removeClass('active');
                 $('.optionsblock .optionbox').removeClass('active');
@@ -3469,7 +3583,7 @@ jQuery(function ($) {
                 $('.optionsblock #option_' + id ).addClass('active');
             }
         });
-
+        
         function getAppendIndex(arr, top, offsetY) {
             if( arr.length === 0 ) {
                 return 'last';
