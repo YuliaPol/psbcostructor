@@ -3859,6 +3859,37 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
         }
     }
 }
+.hellopahecontainer {
+    width: 100%;
+    max-width: 100%;
+    height: calc(100vh - 160px);
+    max-height: calc(100vh - 160px);
+    overflow: hidden;
+    background: #DEE1E9;
+    .dragimage {
+        border: 1px dashed #9A9797;
+    }
+    .dragtext {
+        border: 1px dashed #9A9797;
+    }
+    .drag {
+        display: inline-block;
+        position: absolute !important;
+        img {
+            width: 100%;
+        }
+        .text {
+            font-family: $fontpage;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 50px;
+            line-height: 40px;
+            text-transform: uppercase;
+            color: #4D4D4D;
+            padding: 10px;
+        }
+    }
+}
 /* datepicker css */
 .ui-state-default, .ui-widget-content .ui-state-default, 
 .ui-widget-header .ui-state-default,
