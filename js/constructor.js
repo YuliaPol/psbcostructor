@@ -1565,8 +1565,6 @@ jQuery(function ($) {
             if($(this).parents('.optionbox').find('.brnachingonoff:checked')){
                 var questionId = $(this).parents('.optionbox').find('.subquestionID').val();
                 var questionPointsId = $(this).attr('name').split('_')[2];
-                console.log(questionId);
-                console.log(questionPointsId);
                 if($('#option_'+ questionId).find('.inputtables .questionPoint:nth-child('+ questionPointsId + ')').length>0) {
                     $('#option_'+ questionId).find('.inputtables .questionPoint:nth-child('+ questionPointsId + ') .branching_points').val($(this).val());
                     $('#questionanswers_'+ questionId).find('.branching-group:nth-child('+ questionPointsId + ')').find('.group-name').html($(this).val());
@@ -2068,21 +2066,6 @@ jQuery(function ($) {
                 });
             }
             if($('#questionanswers_' + id).parents('.question').find('.subquestion').length>0){
-                console.log(type);
-                console.log($('#questionanswers_' + id).hasClass('answer-star5'))
-                console.log('answer-star5')
-                console.log($('#questionanswers_' + id).hasClass('answer-ratings5'))
-                console.log('answer-ratings5')
-
-                console.log($('#questionanswers_' + id).hasClass('answer-colorstar'))
-                console.log('answer-colorstar')
-
-                console.log($('#questionanswers_' + id).hasClass('answer-star10'))
-                console.log('answer-star10')
-
-                console.log($('#questionanswers_' + id).hasClass('answer-ratings10'))
-                console.log('answer-ratings10')
-
                 if(type == 1 || type == 4 || type == 3){
                     if($('#questionanswers_' + id).hasClass('answer-star5')
                     || $('#questionanswers_' + id).hasClass('answer-ratings5')){
@@ -2387,7 +2370,7 @@ jQuery(function ($) {
             var questionId =  prevNameInput[1];
             var questionPointsId =  parseInt(prevNameInput[2]);
             var questionSubPointsId =  parseInt(subPoints.length) + 1;
-            if(questionSubPointsId<3)
+            if(questionSubPointsId<2)
             {
                 var el = 
                 '<div class="branching-group">'
@@ -2420,7 +2403,7 @@ jQuery(function ($) {
                 }
             }
             else {
-                $('#modal-error').find('.text').html('Вы можете добавить не более 2 ветвление');
+                $('#modal-error').find('.text').html('Вы можете добавить не более 1 ветвление');
                 $('.modal').fadeIn(300);
             }
         });
