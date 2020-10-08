@@ -10,18 +10,21 @@ jQuery(function ($) {
                 console.log(ui);
             }
         });
+        //resize image
         $( ".dragimage" ).resizable({
             containment: ".dragable",
             grid: [ 10, 10 ],
             aspectRatio: true,
             handles: "n, e, s, w"
         });
+        //resize text
         $( ".dragtext" ).resizable({
             autoHide: false,
             containment: ".dragable",
             grid: [ 10, 10 ],
             handles: "n, e, s, w"
         });
+        //if hellopahecontainer is empty ad posibility to drag picture 
         // $(".droppable").droppable({
         //     drop: function (e, ui) {
         //         if ($(ui.draggable)[0].id != "") {

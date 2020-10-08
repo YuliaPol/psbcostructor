@@ -6351,13 +6351,32 @@ table {
   background: #EBEBEC;
 }
 
+.hellopage {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: calc(100vh - 160px);
+}
+
 .hellopahecontainer {
   width: 100%;
   max-width: 100%;
+  min-width: 800px;
+  min-height: 580px;
   height: calc(100vh - 160px);
   max-height: calc(100vh - 160px);
-  overflow: hidden;
-  background: #DEE1E9;
+  background: #ffffff;
+  position: relative;
+  border: 1px dashed #9A9797;
 }
 
 .hellopahecontainer .dragimage {
@@ -6375,6 +6394,9 @@ table {
 
 .hellopahecontainer .drag img {
   width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .hellopahecontainer .drag .text {
@@ -6386,6 +6408,22 @@ table {
   text-transform: uppercase;
   color: #4D4D4D;
   padding: 10px;
+}
+
+.hellopahecontainer .ui-resizable-n {
+  cursor: url(./../img/resizearrow.svg), auto;
+}
+
+.hellopahecontainer .ui-resizable-e {
+  cursor: url(./../img/resizearrow.svg), auto;
+}
+
+.hellopahecontainer .ui-resizable-s {
+  cursor: url(./../img/resizearrow.svg), auto;
+}
+
+.hellopahecontainer .ui-resizable-w {
+  cursor: url(./../img/resizearrow.svg), auto;
 }
 
 /* datepicker css */
