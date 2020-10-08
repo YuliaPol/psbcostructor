@@ -6409,6 +6409,37 @@ table {
   padding: 10px;
 }
 
+.hellopahecontainer .dropzone-file {
+  width: 100%;
+  height: 100%;
+  padding: 25px;
+}
+
+.hellopahecontainer .dropzone-file .file-btn {
+  width: 100%;
+  height: 100%;
+  border: 1px dashed #9A9797;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  color: #BDBCBC;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .hellopahecontainer .ui-resizable-n {
   cursor: url(./../img/resizearrow.svg), auto;
 }
@@ -6423,6 +6454,48 @@ table {
 
 .hellopahecontainer .ui-resizable-w {
   cursor: url(./../img/resizearrow.svg), auto;
+}
+
+.hellopage_options .filerow {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-bottom: 1px solid #EEEFF3;
+}
+
+.hellopage_options .filerow .addpicture {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 100%;
+  cursor: pointer;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #563BC2;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.hellopage_options .filerow .addpicture::after {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 10px;
+  background: url(./../img/uploadimage.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: 10px;
+}
+
+.hellopage_options .filerow input[type=file] {
+  display: none;
 }
 
 /* datepicker css */

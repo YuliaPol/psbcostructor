@@ -24,6 +24,22 @@ jQuery(function ($) {
             grid: [ 10, 10 ],
             handles: "n, e, s, w"
         });
+
+        $('.pictureforpage').change(function(e){
+            var fileName = e.target.files[0].name;
+            if (e.target.files && e.target.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('.preview-picture').css('background-image', 'url('+e.target.result+')');
+                    $('.preview-picture').addClass('active');
+                    $('.preview-picture').css('background-position', 'center');
+                    $('.preview-picture').css('background-repeat', 'no-repeat');
+                    $('.preview-picture').css('background-size', 'contain');
+                }
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        });
+        
         //if hellopahecontainer is empty ad posibility to drag picture 
         // $(".droppable").droppable({
         //     drop: function (e, ui) {
