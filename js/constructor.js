@@ -1594,7 +1594,7 @@ jQuery(function ($) {
                             },
                         }).done(function (data) {
                             // данные сохранены
-                             AddQuestionBranching(typeparent, data, mainquestionID)
+                             AddQuestionBranching(typeparent, data, mainquetionID)
                             console.log('Вопрос создан');
                         }).fail(function (data) {
                             // не удалось выполнить запрос к серверу
@@ -1615,7 +1615,7 @@ jQuery(function ($) {
         function AddQuestionBranching(type, id, mainquestionID){
             if(type == "single"){
                 var points = $("#option_" + mainquestionID).find('.inputtables').children();
-                var hinndeinp = '<input type="hidden" class="subquestionID" name="subquestion_'+ mainquestionID +'" value="' + id + '">';
+                var hinndeinp = '<input type="hidden" class="subquestionID" name="brancheid_'+ mainquestionID +'" value="' + id + '">';
                 $("#option_" + mainquestionID).append(hinndeinp);
                 var subpointsstr = '';
                 var answerstr = '';
@@ -1670,7 +1670,7 @@ jQuery(function ($) {
                 var typescale = $("#option_" + mainquestionID).find('.scale-radio input[type=radio]:checked').val();
                 console.log(typescale);
                 if(typescale == 1 || typescale == 3 || typescale == 4 ){
-                    var hinndeinp = '<input type="hidden" class="subquestionID" name="subquestion_'+ mainquestionID +'" value="' + id + '">';
+                    var hinndeinp = '<input type="hidden" class="subquestionID" name="brancheid_'+ mainquestionID +'" value="' + id + '">';
                     $("#option_" + mainquestionID).append(hinndeinp);
                     var el = 
                     '<div class="question subquestion branchingquestion" data-optionid="' + id + '">'
@@ -1744,7 +1744,7 @@ jQuery(function ($) {
                     $('.optionsblock .eloptions').append(option);
                 }
                 if (typescale == 2 || typescale == 5 ) {
-                    var hinndeinp = '<input type="hidden" class="subquestionID" name="subquestion_'+ mainquestionID +'" value="' + id + '">';
+                    var hinndeinp = '<input type="hidden" class="subquestionID" name="brancheid_'+ mainquestionID +'" value="' + id + '">';
                     $("#option_" + mainquestionID).append(hinndeinp);
                     var el = 
                     '<div class="question subquestion branchingquestion" data-optionid="' + id + '">'
