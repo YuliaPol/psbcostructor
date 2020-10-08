@@ -4538,18 +4538,21 @@ table {
 }
 
 .construcot-container .rightside .default,
-.construcot-container .rightside .optionbox {
+.construcot-container .rightside .optionbox,
+.construcot-container .rightside .branchingoptionbox {
   display: none;
   width: 100%;
 }
 
 .construcot-container .rightside .default.active,
-.construcot-container .rightside .optionbox.active {
+.construcot-container .rightside .optionbox.active,
+.construcot-container .rightside .branchingoptionbox.active {
   display: block;
 }
 
 .construcot-container .rightside .default .filerow,
-.construcot-container .rightside .optionbox .filerow {
+.construcot-container .rightside .optionbox .filerow,
+.construcot-container .rightside .branchingoptionbox .filerow {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -4569,12 +4572,14 @@ table {
 }
 
 .construcot-container .rightside .default .filerow input,
-.construcot-container .rightside .optionbox .filerow input {
+.construcot-container .rightside .optionbox .filerow input,
+.construcot-container .rightside .branchingoptionbox .filerow input {
   display: none;
 }
 
 .construcot-container .rightside .default .filerow .uploadpicture,
-.construcot-container .rightside .optionbox .filerow .uploadpicture {
+.construcot-container .rightside .optionbox .filerow .uploadpicture,
+.construcot-container .rightside .branchingoptionbox .filerow .uploadpicture {
   width: 15px;
   height: 14px;
   background: url(./../img/uploadimage.svg);
@@ -4591,7 +4596,9 @@ table {
 
 .construcot-container .rightside .default .filerow .uploadpicture.active, .construcot-container .rightside .default .filerow .uploadpicture:hover,
 .construcot-container .rightside .optionbox .filerow .uploadpicture.active,
-.construcot-container .rightside .optionbox .filerow .uploadpicture:hover {
+.construcot-container .rightside .optionbox .filerow .uploadpicture:hover,
+.construcot-container .rightside .branchingoptionbox .filerow .uploadpicture.active,
+.construcot-container .rightside .branchingoptionbox .filerow .uploadpicture:hover {
   background: url(./../img/uploadimage-a.svg);
   background-position: center;
   background-repeat: no-repeat;
@@ -4600,7 +4607,8 @@ table {
 }
 
 .construcot-container .rightside .default .filerow .uploadvideo,
-.construcot-container .rightside .optionbox .filerow .uploadvideo {
+.construcot-container .rightside .optionbox .filerow .uploadvideo,
+.construcot-container .rightside .branchingoptionbox .filerow .uploadvideo {
   width: 15px;
   height: 15px;
   background: url(./../img/uploadvideo.svg);
@@ -4617,7 +4625,9 @@ table {
 
 .construcot-container .rightside .default .filerow .uploadvideo.active, .construcot-container .rightside .default .filerow .uploadvideo:hover,
 .construcot-container .rightside .optionbox .filerow .uploadvideo.active,
-.construcot-container .rightside .optionbox .filerow .uploadvideo:hover {
+.construcot-container .rightside .optionbox .filerow .uploadvideo:hover,
+.construcot-container .rightside .branchingoptionbox .filerow .uploadvideo.active,
+.construcot-container .rightside .branchingoptionbox .filerow .uploadvideo:hover {
   background: url(./../img/uploadvideo-a.svg);
   background-position: center;
   background-repeat: no-repeat;
@@ -4626,7 +4636,8 @@ table {
 }
 
 .construcot-container .rightside .default .filerow .uploadaudio,
-.construcot-container .rightside .optionbox .filerow .uploadaudio {
+.construcot-container .rightside .optionbox .filerow .uploadaudio,
+.construcot-container .rightside .branchingoptionbox .filerow .uploadaudio {
   width: 15px;
   height: 15px;
   background: url(./../img/uploadaudio.svg);
@@ -4643,7 +4654,9 @@ table {
 
 .construcot-container .rightside .default .filerow .uploadaudio.active, .construcot-container .rightside .default .filerow .uploadaudio:hover,
 .construcot-container .rightside .optionbox .filerow .uploadaudio.active,
-.construcot-container .rightside .optionbox .filerow .uploadaudio:hover {
+.construcot-container .rightside .optionbox .filerow .uploadaudio:hover,
+.construcot-container .rightside .branchingoptionbox .filerow .uploadaudio.active,
+.construcot-container .rightside .branchingoptionbox .filerow .uploadaudio:hover {
   background: url(./../img/uploadaudio-a.svg);
   background-position: center;
   background-repeat: no-repeat;
@@ -4652,7 +4665,8 @@ table {
 }
 
 .construcot-container .rightside .default .filerow .uploadtext,
-.construcot-container .rightside .optionbox .filerow .uploadtext {
+.construcot-container .rightside .optionbox .filerow .uploadtext,
+.construcot-container .rightside .branchingoptionbox .filerow .uploadtext {
   width: 15px;
   height: 15px;
   background: url(./../img/uploadtext.svg);
@@ -4669,7 +4683,9 @@ table {
 
 .construcot-container .rightside .default .filerow .uploadtext.active, .construcot-container .rightside .default .filerow .uploadtext:hover,
 .construcot-container .rightside .optionbox .filerow .uploadtext.active,
-.construcot-container .rightside .optionbox .filerow .uploadtext:hover {
+.construcot-container .rightside .optionbox .filerow .uploadtext:hover,
+.construcot-container .rightside .branchingoptionbox .filerow .uploadtext.active,
+.construcot-container .rightside .branchingoptionbox .filerow .uploadtext:hover {
   background: url(./../img/uploadtext-a.svg);
   background-position: center;
   background-repeat: no-repeat;
@@ -4678,14 +4694,16 @@ table {
 }
 
 .construcot-container .rightside .default .filerow .inser-text,
-.construcot-container .rightside .optionbox .filerow .inser-text {
+.construcot-container .rightside .optionbox .filerow .inser-text,
+.construcot-container .rightside .branchingoptionbox .filerow .inser-text {
   display: none;
   width: 100%;
   padding-top: 10px;
 }
 
 .construcot-container .rightside .default .filerow .inser-text label,
-.construcot-container .rightside .optionbox .filerow .inser-text label {
+.construcot-container .rightside .optionbox .filerow .inser-text label,
+.construcot-container .rightside .branchingoptionbox .filerow .inser-text label {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
@@ -4698,7 +4716,8 @@ table {
 }
 
 .construcot-container .rightside .default .filerow .inser-text textarea,
-.construcot-container .rightside .optionbox .filerow .inser-text textarea {
+.construcot-container .rightside .optionbox .filerow .inser-text textarea,
+.construcot-container .rightside .branchingoptionbox .filerow .inser-text textarea {
   border: 1px solid #EEEFF3;
   padding: 5px;
   font-family: "Montserrat";
@@ -4715,7 +4734,8 @@ table {
 }
 
 .construcot-container .rightside .default .header-aside,
-.construcot-container .rightside .optionbox .header-aside {
+.construcot-container .rightside .optionbox .header-aside,
+.construcot-container .rightside .branchingoptionbox .header-aside {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
@@ -4727,7 +4747,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside,
-.construcot-container .rightside .optionbox .text-aside {
+.construcot-container .rightside .optionbox .text-aside,
+.construcot-container .rightside .branchingoptionbox .text-aside {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
@@ -4738,7 +4759,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .btn-options .position,
-.construcot-container .rightside .optionbox .text-aside .btn-options .position {
+.construcot-container .rightside .optionbox .text-aside .btn-options .position,
+.construcot-container .rightside .branchingoptionbox .text-aside .btn-options .position {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -4755,17 +4777,20 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .btn-options .position .left,
-.construcot-container .rightside .optionbox .text-aside .btn-options .position .left {
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .left,
+.construcot-container .rightside .branchingoptionbox .text-aside .btn-options .position .left {
   padding-right: 17px;
 }
 
 .construcot-container .rightside .default .text-aside .btn-options .position .left input,
-.construcot-container .rightside .optionbox .text-aside .btn-options .position .left input {
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .left input,
+.construcot-container .rightside .branchingoptionbox .text-aside .btn-options .position .left input {
   display: none;
 }
 
 .construcot-container .rightside .default .text-aside .btn-options .position .left input:checked + label,
-.construcot-container .rightside .optionbox .text-aside .btn-options .position .left input:checked + label {
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .left input:checked + label,
+.construcot-container .rightside .branchingoptionbox .text-aside .btn-options .position .left input:checked + label {
   background: url(./../img/positionleft-a.svg);
   background-position: center;
   -webkit-background-size: contain;
@@ -4774,7 +4799,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .btn-options .position .left label,
-.construcot-container .rightside .optionbox .text-aside .btn-options .position .left label {
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .left label,
+.construcot-container .rightside .branchingoptionbox .text-aside .btn-options .position .left label {
   display: inline-block;
   width: 16px;
   height: 16px;
@@ -4790,7 +4816,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .btn-options .position .left label:hover,
-.construcot-container .rightside .optionbox .text-aside .btn-options .position .left label:hover {
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .left label:hover,
+.construcot-container .rightside .branchingoptionbox .text-aside .btn-options .position .left label:hover {
   background: url(./../img/positionleft-a.svg);
   background-position: center;
   -webkit-background-size: contain;
@@ -4799,17 +4826,20 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .btn-options .position .center,
-.construcot-container .rightside .optionbox .text-aside .btn-options .position .center {
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .center,
+.construcot-container .rightside .branchingoptionbox .text-aside .btn-options .position .center {
   padding-right: 17px;
 }
 
 .construcot-container .rightside .default .text-aside .btn-options .position .center input,
-.construcot-container .rightside .optionbox .text-aside .btn-options .position .center input {
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .center input,
+.construcot-container .rightside .branchingoptionbox .text-aside .btn-options .position .center input {
   display: none;
 }
 
 .construcot-container .rightside .default .text-aside .btn-options .position .center input:checked + label,
-.construcot-container .rightside .optionbox .text-aside .btn-options .position .center input:checked + label {
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .center input:checked + label,
+.construcot-container .rightside .branchingoptionbox .text-aside .btn-options .position .center input:checked + label {
   background: url(./../img/positioncenter-a.svg);
   background-position: center;
   -webkit-background-size: contain;
@@ -4818,7 +4848,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .btn-options .position .center label,
-.construcot-container .rightside .optionbox .text-aside .btn-options .position .center label {
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .center label,
+.construcot-container .rightside .branchingoptionbox .text-aside .btn-options .position .center label {
   display: inline-block;
   width: 16px;
   height: 16px;
@@ -4834,7 +4865,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .btn-options .position .center label:hover,
-.construcot-container .rightside .optionbox .text-aside .btn-options .position .center label:hover {
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .center label:hover,
+.construcot-container .rightside .branchingoptionbox .text-aside .btn-options .position .center label:hover {
   background: url(./../img//positioncenter-a.svg);
   background-position: center;
   -webkit-background-size: contain;
@@ -4843,17 +4875,20 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .btn-options .position .right,
-.construcot-container .rightside .optionbox .text-aside .btn-options .position .right {
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .right,
+.construcot-container .rightside .branchingoptionbox .text-aside .btn-options .position .right {
   padding-right: 17px;
 }
 
 .construcot-container .rightside .default .text-aside .btn-options .position .right input,
-.construcot-container .rightside .optionbox .text-aside .btn-options .position .right input {
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .right input,
+.construcot-container .rightside .branchingoptionbox .text-aside .btn-options .position .right input {
   display: none;
 }
 
 .construcot-container .rightside .default .text-aside .btn-options .position .right input:checked + label,
-.construcot-container .rightside .optionbox .text-aside .btn-options .position .right input:checked + label {
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .right input:checked + label,
+.construcot-container .rightside .branchingoptionbox .text-aside .btn-options .position .right input:checked + label {
   background: url(./../img/positionright-a.svg);
   background-position: center;
   -webkit-background-size: contain;
@@ -4862,7 +4897,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .btn-options .position .right label,
-.construcot-container .rightside .optionbox .text-aside .btn-options .position .right label {
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .right label,
+.construcot-container .rightside .branchingoptionbox .text-aside .btn-options .position .right label {
   display: inline-block;
   width: 16px;
   height: 16px;
@@ -4878,7 +4914,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .btn-options .position .right label:hover,
-.construcot-container .rightside .optionbox .text-aside .btn-options .position .right label:hover {
+.construcot-container .rightside .optionbox .text-aside .btn-options .position .right label:hover,
+.construcot-container .rightside .branchingoptionbox .text-aside .btn-options .position .right label:hover {
   background: url(./../img/positionright-a.svg);
   background-position: center;
   -webkit-background-size: contain;
@@ -4887,7 +4924,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .btn-options .row-options,
-.construcot-container .rightside .optionbox .text-aside .btn-options .row-options {
+.construcot-container .rightside .optionbox .text-aside .btn-options .row-options,
+.construcot-container .rightside .branchingoptionbox .text-aside .btn-options .row-options {
   padding-top: 10px;
   width: 100%;
   display: -webkit-box;
@@ -4905,7 +4943,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .btn-options .row-options .optionbtngroup,
-.construcot-container .rightside .optionbox .text-aside .btn-options .row-options .optionbtngroup {
+.construcot-container .rightside .optionbox .text-aside .btn-options .row-options .optionbtngroup,
+.construcot-container .rightside .branchingoptionbox .text-aside .btn-options .row-options .optionbtngroup {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -4924,14 +4963,16 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .btn-options .row-options .optionbtngroup .hiddeninput,
-.construcot-container .rightside .optionbox .text-aside .btn-options .row-options .optionbtngroup .hiddeninput {
+.construcot-container .rightside .optionbox .text-aside .btn-options .row-options .optionbtngroup .hiddeninput,
+.construcot-container .rightside .branchingoptionbox .text-aside .btn-options .row-options .optionbtngroup .hiddeninput {
   width: 0px;
   height: 0px;
   opacity: 0;
 }
 
 .construcot-container .rightside .default .text-aside .btn-options .row-options .optionbtngroup label,
-.construcot-container .rightside .optionbox .text-aside .btn-options .row-options .optionbtngroup label {
+.construcot-container .rightside .optionbox .text-aside .btn-options .row-options .optionbtngroup label,
+.construcot-container .rightside .branchingoptionbox .text-aside .btn-options .row-options .optionbtngroup label {
   display: inline-block;
   font-family: "Montserrat";
   font-style: normal;
@@ -4942,7 +4983,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .btn-options .row-options .optionbtngroup label .radius,
-.construcot-container .rightside .optionbox .text-aside .btn-options .row-options .optionbtngroup label .radius {
+.construcot-container .rightside .optionbox .text-aside .btn-options .row-options .optionbtngroup label .radius,
+.construcot-container .rightside .branchingoptionbox .text-aside .btn-options .row-options .optionbtngroup label .radius {
   width: 10px;
   height: 10px;
   border: 1px solid #9B9595;
@@ -4952,13 +4994,15 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .btn-options .row-options .optionbtngroup label .color,
-.construcot-container .rightside .optionbox .text-aside .btn-options .row-options .optionbtngroup label .color {
+.construcot-container .rightside .optionbox .text-aside .btn-options .row-options .optionbtngroup label .color,
+.construcot-container .rightside .branchingoptionbox .text-aside .btn-options .row-options .optionbtngroup label .color {
   width: 10px;
   height: 10px;
 }
 
 .construcot-container .rightside .default .text-aside .btn-options .row-options .optionbtngroup input,
-.construcot-container .rightside .optionbox .text-aside .btn-options .row-options .optionbtngroup input {
+.construcot-container .rightside .optionbox .text-aside .btn-options .row-options .optionbtngroup input,
+.construcot-container .rightside .branchingoptionbox .text-aside .btn-options .row-options .optionbtngroup input {
   width: calc(100% - 25px);
   border: none;
   outline: none;
@@ -4972,19 +5016,22 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .btn-options .form-group,
-.construcot-container .rightside .optionbox .text-aside .btn-options .form-group {
+.construcot-container .rightside .optionbox .text-aside .btn-options .form-group,
+.construcot-container .rightside .branchingoptionbox .text-aside .btn-options .form-group {
   padding-top: 20px;
 }
 
 .construcot-container .rightside .default .text-aside .btn-options .form-group label,
-.construcot-container .rightside .optionbox .text-aside .btn-options .form-group label {
+.construcot-container .rightside .optionbox .text-aside .btn-options .form-group label,
+.construcot-container .rightside .branchingoptionbox .text-aside .btn-options .form-group label {
   display: inline-block;
   padding-bottom: 7px;
   width: 100%;
 }
 
 .construcot-container .rightside .default .text-aside .btn-options .form-group input,
-.construcot-container .rightside .optionbox .text-aside .btn-options .form-group input {
+.construcot-container .rightside .optionbox .text-aside .btn-options .form-group input,
+.construcot-container .rightside .branchingoptionbox .text-aside .btn-options .form-group input {
   border: 1px solid #EEEFF3;
   padding: 7px 9px;
   font-family: "Montserrat";
@@ -4998,7 +5045,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .matrix-options .rowslist .row-item,
-.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item {
+.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item,
+.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist .row-item {
   margin: 5px 0px;
   border: 1px solid #EEEFF3;
   padding: 7px;
@@ -5017,14 +5065,16 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .matrix-options .rowslist .row-item:hover .edit-menu .menu-list,
-.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item:hover .edit-menu .menu-list {
+.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item:hover .edit-menu .menu-list,
+.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist .row-item:hover .edit-menu .menu-list {
   width: 45px;
   height: 35px;
   opacity: 1;
 }
 
 .construcot-container .rightside .default .text-aside .matrix-options .rowslist .row-item input[type=text],
-.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item input[type=text] {
+.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item input[type=text],
+.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist .row-item input[type=text] {
   display: block;
   border: none;
   outline: none;
@@ -5038,12 +5088,14 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .matrix-options .rowslist .row-item .edit-menu,
-.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item .edit-menu {
+.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item .edit-menu,
+.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist .row-item .edit-menu {
   position: relative;
 }
 
 .construcot-container .rightside .default .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-dots,
-.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-dots {
+.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-dots,
+.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-dots {
   width: 10px;
   height: 10px;
   background: url(./../img/matrix-dots.svg);
@@ -5054,7 +5106,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list,
-.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list {
+.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list,
+.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list {
   position: absolute;
   background: url(./../img/matrix-menubg.svg);
   background-position: center;
@@ -5085,7 +5138,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list .add-row,
-.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list .add-row {
+.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list .add-row,
+.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list .add-row {
   width: 50%;
   height: 12px;
   background: url(./../img/matrix-addrow.svg);
@@ -5097,7 +5151,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list .delete-row,
-.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list .delete-row {
+.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list .delete-row,
+.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list .delete-row {
   width: 50%;
   height: 12px;
   background: url(./../img/matrix-deleterow.svg);
@@ -5109,7 +5164,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .matrix-options .matrix-btn-row,
-.construcot-container .rightside .optionbox .text-aside .matrix-options .matrix-btn-row {
+.construcot-container .rightside .optionbox .text-aside .matrix-options .matrix-btn-row,
+.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .matrix-btn-row {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -5125,7 +5181,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .matrix-options .matrix-btn-row .add-btn,
-.construcot-container .rightside .optionbox .text-aside .matrix-options .matrix-btn-row .add-btn {
+.construcot-container .rightside .optionbox .text-aside .matrix-options .matrix-btn-row .add-btn,
+.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .matrix-btn-row .add-btn {
   width: calc(50% - 5px);
   border: 0.5px solid #F26126;
   border-radius: 2px;
@@ -5141,7 +5198,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .matrix-options .matrix-btn-row .add-btn .icon-add,
-.construcot-container .rightside .optionbox .text-aside .matrix-options .matrix-btn-row .add-btn .icon-add {
+.construcot-container .rightside .optionbox .text-aside .matrix-options .matrix-btn-row .add-btn .icon-add,
+.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .matrix-btn-row .add-btn .icon-add {
   display: inline-block;
   width: 6px;
   height: 6px;
@@ -5154,7 +5212,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .ranging-options .rowslist .row-item,
-.construcot-container .rightside .optionbox .text-aside .ranging-options .rowslist .row-item {
+.construcot-container .rightside .optionbox .text-aside .ranging-options .rowslist .row-item,
+.construcot-container .rightside .branchingoptionbox .text-aside .ranging-options .rowslist .row-item {
   margin: 5px 0px;
   border: 1px solid #EEEFF3;
   padding: 7px;
@@ -5173,14 +5232,16 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .ranging-options .rowslist .row-item:hover .edit-menu .menu-list,
-.construcot-container .rightside .optionbox .text-aside .ranging-options .rowslist .row-item:hover .edit-menu .menu-list {
+.construcot-container .rightside .optionbox .text-aside .ranging-options .rowslist .row-item:hover .edit-menu .menu-list,
+.construcot-container .rightside .branchingoptionbox .text-aside .ranging-options .rowslist .row-item:hover .edit-menu .menu-list {
   width: 45px;
   height: 35px;
   opacity: 1;
 }
 
 .construcot-container .rightside .default .text-aside .ranging-options .rowslist .row-item input[type=text],
-.construcot-container .rightside .optionbox .text-aside .ranging-options .rowslist .row-item input[type=text] {
+.construcot-container .rightside .optionbox .text-aside .ranging-options .rowslist .row-item input[type=text],
+.construcot-container .rightside .branchingoptionbox .text-aside .ranging-options .rowslist .row-item input[type=text] {
   display: block;
   border: none;
   outline: none;
@@ -5194,12 +5255,14 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .ranging-options .rowslist .row-item .edit-menu,
-.construcot-container .rightside .optionbox .text-aside .ranging-options .rowslist .row-item .edit-menu {
+.construcot-container .rightside .optionbox .text-aside .ranging-options .rowslist .row-item .edit-menu,
+.construcot-container .rightside .branchingoptionbox .text-aside .ranging-options .rowslist .row-item .edit-menu {
   position: relative;
 }
 
 .construcot-container .rightside .default .text-aside .ranging-options .rowslist .row-item .edit-menu .menu-dots,
-.construcot-container .rightside .optionbox .text-aside .ranging-options .rowslist .row-item .edit-menu .menu-dots {
+.construcot-container .rightside .optionbox .text-aside .ranging-options .rowslist .row-item .edit-menu .menu-dots,
+.construcot-container .rightside .branchingoptionbox .text-aside .ranging-options .rowslist .row-item .edit-menu .menu-dots {
   width: 10px;
   height: 10px;
   background: url(./../img/matrix-dots.svg);
@@ -5210,7 +5273,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .ranging-options .rowslist .row-item .edit-menu .menu-list,
-.construcot-container .rightside .optionbox .text-aside .ranging-options .rowslist .row-item .edit-menu .menu-list {
+.construcot-container .rightside .optionbox .text-aside .ranging-options .rowslist .row-item .edit-menu .menu-list,
+.construcot-container .rightside .branchingoptionbox .text-aside .ranging-options .rowslist .row-item .edit-menu .menu-list {
   position: absolute;
   background: url(./../img/matrix-menubg.svg);
   background-position: center;
@@ -5241,7 +5305,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .ranging-options .rowslist .row-item .edit-menu .menu-list .add-row,
-.construcot-container .rightside .optionbox .text-aside .ranging-options .rowslist .row-item .edit-menu .menu-list .add-row {
+.construcot-container .rightside .optionbox .text-aside .ranging-options .rowslist .row-item .edit-menu .menu-list .add-row,
+.construcot-container .rightside .branchingoptionbox .text-aside .ranging-options .rowslist .row-item .edit-menu .menu-list .add-row {
   width: 50%;
   height: 12px;
   background: url(./../img/matrix-addrow.svg);
@@ -5253,7 +5318,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .ranging-options .rowslist .row-item .edit-menu .menu-list .delete-row,
-.construcot-container .rightside .optionbox .text-aside .ranging-options .rowslist .row-item .edit-menu .menu-list .delete-row {
+.construcot-container .rightside .optionbox .text-aside .ranging-options .rowslist .row-item .edit-menu .menu-list .delete-row,
+.construcot-container .rightside .branchingoptionbox .text-aside .ranging-options .rowslist .row-item .edit-menu .menu-list .delete-row {
   width: 50%;
   height: 12px;
   background: url(./../img/matrix-deleterow.svg);
@@ -5265,7 +5331,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .ranging-options .ranging-btn-row,
-.construcot-container .rightside .optionbox .text-aside .ranging-options .ranging-btn-row {
+.construcot-container .rightside .optionbox .text-aside .ranging-options .ranging-btn-row,
+.construcot-container .rightside .branchingoptionbox .text-aside .ranging-options .ranging-btn-row {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -5281,7 +5348,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .ranging-options .ranging-btn-row .add-btn,
-.construcot-container .rightside .optionbox .text-aside .ranging-options .ranging-btn-row .add-btn {
+.construcot-container .rightside .optionbox .text-aside .ranging-options .ranging-btn-row .add-btn,
+.construcot-container .rightside .branchingoptionbox .text-aside .ranging-options .ranging-btn-row .add-btn {
   width: calc(50% - 5px);
   border: 0.5px solid #F26126;
   border-radius: 2px;
@@ -5297,7 +5365,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .ranging-options .ranging-btn-row .add-btn .icon-add,
-.construcot-container .rightside .optionbox .text-aside .ranging-options .ranging-btn-row .add-btn .icon-add {
+.construcot-container .rightside .optionbox .text-aside .ranging-options .ranging-btn-row .add-btn .icon-add,
+.construcot-container .rightside .branchingoptionbox .text-aside .ranging-options .ranging-btn-row .add-btn .icon-add {
   display: inline-block;
   width: 6px;
   height: 6px;
@@ -5310,7 +5379,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .multityperow,
-.construcot-container .rightside .optionbox .text-aside .multityperow {
+.construcot-container .rightside .optionbox .text-aside .multityperow,
+.construcot-container .rightside .branchingoptionbox .text-aside .multityperow {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -5328,7 +5398,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .multityperow .namelabel,
-.construcot-container .rightside .optionbox .text-aside .multityperow .namelabel {
+.construcot-container .rightside .optionbox .text-aside .multityperow .namelabel,
+.construcot-container .rightside .branchingoptionbox .text-aside .multityperow .namelabel {
   width: calc(100% - 25px);
   font-family: "Montserrat";
   font-style: normal;
@@ -5339,12 +5410,14 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .top-row,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .top-row {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .top-row,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .top-row {
   position: relative;
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .top-row .namelabel,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .top-row .namelabel {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .top-row .namelabel,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .top-row .namelabel {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
@@ -5355,7 +5428,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .top-row .add-dropdown,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .top-row .add-dropdown {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .top-row .add-dropdown,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .top-row .add-dropdown {
   position: absolute;
   top: calc(50% - 4px);
   right: 0px;
@@ -5370,7 +5444,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group {
   padding-top: 10px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -5388,7 +5463,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group:hover .adddropdownsubpoints,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group:hover .adddropdownsubpoints {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group:hover .adddropdownsubpoints,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group:hover .adddropdownsubpoints {
   background: url(./../img/grey-plus-a.svg);
   background-position: center;
   -webkit-background-size: contain;
@@ -5397,7 +5473,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group:hover .arrowshow,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group:hover .arrowshow {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group:hover .arrowshow,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group:hover .arrowshow {
   background: url(./../img/arrow-dropdown-a.svg);
   background-position: center;
   -webkit-background-size: contain;
@@ -5406,7 +5483,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .adddropdownsubpoints,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .adddropdownsubpoints {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .adddropdownsubpoints,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .adddropdownsubpoints {
   width: 8px;
   height: 8px;
   background: url(./../img/grey-plus.svg);
@@ -5423,7 +5501,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .arrowshow,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .arrowshow {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .arrowshow,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .arrowshow {
   width: 10px;
   height: 6px;
   background: url(./../img/arrow-dropdown.svg);
@@ -5441,7 +5520,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .arrowshow.active,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .arrowshow.active {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .arrowshow.active,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .arrowshow.active {
   -webkit-transform: rotate(180deg);
       -ms-transform: rotate(180deg);
        -o-transform: rotate(180deg);
@@ -5449,7 +5529,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables {
   border: 1px solid #EEEFF3;
   padding: 8px;
   padding-bottom: 15px;
@@ -5457,7 +5538,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
@@ -5473,7 +5555,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-input-placeholder,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-input-placeholder {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-input-placeholder,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -5483,7 +5566,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-moz-placeholder,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-moz-placeholder {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-moz-placeholder,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-moz-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -5493,7 +5577,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question:-ms-input-placeholder,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question:-ms-input-placeholder {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question:-ms-input-placeholder,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question:-ms-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -5503,7 +5588,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-ms-input-placeholder,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-ms-input-placeholder {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-ms-input-placeholder,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-ms-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -5513,7 +5599,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question::placeholder,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::placeholder {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::placeholder,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -5523,29 +5610,34 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar-track,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar-track {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar-track,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar-track {
   width: 0px;
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar {
   width: 0px;
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar-thumb,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar-thumb {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar-thumb,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar-thumb {
   width: 0px;
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-list,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-list {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-list,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-list {
   width: 100%;
   padding-bottom: 5px;
   display: none;
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group {
   width: calc(100% - 35px);
   margin-left: 35px;
   position: relative;
@@ -5556,7 +5648,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group::before,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group::before {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group::before,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group::before {
   content: "";
   width: 4px;
   height: 4px;
@@ -5570,7 +5663,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group:hover .removedropdownsub,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group:hover .removedropdownsub {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group:hover .removedropdownsub,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group:hover .removedropdownsub {
   background: url(./../img/minus-grey-a.svg);
   background-repeat: no-repeat;
   -webkit-background-size: contain;
@@ -5579,7 +5673,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group .removedropdownsub,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group .removedropdownsub {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group .removedropdownsub,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group .removedropdownsub {
   position: absolute;
   bottom: 3px;
   right: 8px;
@@ -5597,7 +5692,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group input,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group input {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group input,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-list .dropdown-group input {
   padding: 0px 12px;
   border-bottom: none;
   border-top: none;
@@ -5615,7 +5711,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .remove-dropdown,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .remove-dropdown {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .remove-dropdown,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .remove-dropdown {
   width: 8px;
   height: 8px;
   background-image: url(./../img/minus.svg);
@@ -5627,13 +5724,15 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .scale-option,
-.construcot-container .rightside .optionbox .text-aside .scale-option {
+.construcot-container .rightside .optionbox .text-aside .scale-option,
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option {
   margin-left: -10px;
   margin-right: -10px;
 }
 
 .construcot-container .rightside .default .text-aside .scale-option p,
-.construcot-container .rightside .optionbox .text-aside .scale-option p {
+.construcot-container .rightside .optionbox .text-aside .scale-option p,
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option p {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
@@ -5645,7 +5744,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .scale-option .scalelabel,
-.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel {
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel,
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option .scalelabel {
   width: 100%;
   padding: 10px;
   display: inline-block;
@@ -5656,7 +5756,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .scale-option .scalelabel::before,
-.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel::before {
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel::before,
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option .scalelabel::before {
   content: "";
   background: #4449DB;
   border-radius: 0px 2px 2px 0px;
@@ -5672,7 +5773,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .scale-option .scalelabel .colorstars,
-.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .colorstars {
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .colorstars,
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option .scalelabel .colorstars {
   background: url(./../img/colorstar.svg);
   background-position-x: left;
   background-position-y: center;
@@ -5683,7 +5785,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .scale-option .scalelabel .stars5,
-.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .stars5 {
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .stars5,
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option .scalelabel .stars5 {
   background: url(./../img/star5.svg);
   background-position-x: left;
   background-position-y: center;
@@ -5694,7 +5797,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .scale-option .scalelabel .stars10,
-.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .stars10 {
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .stars10,
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option .scalelabel .stars10 {
   background: url(./../img/star10.svg);
   background-position-x: left;
   background-position-y: center;
@@ -5705,7 +5809,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings10,
-.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings10 {
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings10,
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option .scalelabel .ratings10 {
   background: url(./../img/ratings10.svg);
   background-position-x: left;
   background-position-y: center;
@@ -5716,7 +5821,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .circles,
-.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .circles {
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .circles,
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option .scalelabel .ratings5 .circles {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -5733,7 +5839,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .circles .cirle,
-.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .circles .cirle {
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .circles .cirle,
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option .scalelabel .ratings5 .circles .cirle {
   border-radius: 50%;
   width: 15px;
   height: 15px;
@@ -5757,38 +5864,45 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(1),
-.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(1) {
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(1),
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(1) {
   border: 1px solid #CD0800;
 }
 
 .construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(2),
-.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(2) {
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(2),
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(2) {
   border: 1px solid #FFA400;
 }
 
 .construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(3),
-.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(3) {
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(3),
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(3) {
   border: 1px solid #E7F600;
 }
 
 .construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(4),
-.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(4) {
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(4),
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(4) {
   border: 1px solid #00E355;
 }
 
 .construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(5),
-.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(5) {
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(5),
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option .scalelabel .ratings5 .circles .cirle:nth-child(5) {
   border: 1px solid #008811;
 }
 
 .construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .ratinstables,
-.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables {
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables,
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables {
   padding-left: 30px;
   padding-top: 10px;
 }
 
 .construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group,
-.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group {
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group,
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group {
   padding-bottom: 5px;
   padding-top: 5px;
   display: -webkit-box;
@@ -5807,32 +5921,38 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(1) .circle,
-.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(1) .circle {
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(1) .circle,
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(1) .circle {
   border: 1px solid #CD0800;
 }
 
 .construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(2) .circle,
-.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(2) .circle {
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(2) .circle,
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(2) .circle {
   border: 1px solid #FFA400;
 }
 
 .construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(3) .circle,
-.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(3) .circle {
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(3) .circle,
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(3) .circle {
   border: 1px solid #E7F600;
 }
 
 .construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(4) .circle,
-.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(4) .circle {
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(4) .circle,
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(4) .circle {
   border: 1px solid #00E355;
 }
 
 .construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(5) .circle,
-.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(5) .circle {
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(5) .circle,
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group:nth-child(5) .circle {
   border: 1px solid #008811;
 }
 
 .construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group .circle,
-.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group .circle {
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group .circle,
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group .circle {
   border-radius: 50%;
   width: 15px;
   height: 15px;
@@ -5857,7 +5977,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input,
-.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input {
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input,
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input {
   width: calc(100% - 20px);
   border: none;
   outline: none;
@@ -5871,7 +5992,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input::-webkit-input-placeholder,
-.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input::-webkit-input-placeholder {
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input::-webkit-input-placeholder,
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input::-webkit-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
@@ -5881,7 +6003,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input::-moz-placeholder,
-.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input::-moz-placeholder {
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input::-moz-placeholder,
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input::-moz-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
@@ -5891,7 +6014,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input:-ms-input-placeholder,
-.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input:-ms-input-placeholder {
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input:-ms-input-placeholder,
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input:-ms-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
@@ -5901,7 +6025,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input::-ms-input-placeholder,
-.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input::-ms-input-placeholder {
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input::-ms-input-placeholder,
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input::-ms-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
@@ -5911,7 +6036,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input::placeholder,
-.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input::placeholder {
+.construcot-container .rightside .optionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input::placeholder,
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option .scalelabel .ratings5 .ratinstables .cirlce-group input::placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
@@ -5921,22 +6047,26 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .scale-option input[type='radio'],
-.construcot-container .rightside .optionbox .text-aside .scale-option input[type='radio'] {
+.construcot-container .rightside .optionbox .text-aside .scale-option input[type='radio'],
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option input[type='radio'] {
   display: none;
 }
 
 .construcot-container .rightside .default .text-aside .scale-option input[type='radio']:checked + label,
-.construcot-container .rightside .optionbox .text-aside .scale-option input[type='radio']:checked + label {
+.construcot-container .rightside .optionbox .text-aside .scale-option input[type='radio']:checked + label,
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option input[type='radio']:checked + label {
   background: #F9F9F9;
 }
 
 .construcot-container .rightside .default .text-aside .scale-option input[type='radio']:checked + label::before,
-.construcot-container .rightside .optionbox .text-aside .scale-option input[type='radio']:checked + label::before {
+.construcot-container .rightside .optionbox .text-aside .scale-option input[type='radio']:checked + label::before,
+.construcot-container .rightside .branchingoptionbox .text-aside .scale-option input[type='radio']:checked + label::before {
   opacity: 1;
 }
 
 .construcot-container .rightside .default .text-aside .spinner-wrapper .ui-spinner,
-.construcot-container .rightside .optionbox .text-aside .spinner-wrapper .ui-spinner {
+.construcot-container .rightside .optionbox .text-aside .spinner-wrapper .ui-spinner,
+.construcot-container .rightside .branchingoptionbox .text-aside .spinner-wrapper .ui-spinner {
   margin-top: 8px;
   border-top: none;
   border-bottom: 1px solid #EEEFF3;
@@ -5946,7 +6076,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .spinner-wrapper .ui-spinner-input,
-.construcot-container .rightside .optionbox .text-aside .spinner-wrapper .ui-spinner-input {
+.construcot-container .rightside .optionbox .text-aside .spinner-wrapper .ui-spinner-input,
+.construcot-container .rightside .branchingoptionbox .text-aside .spinner-wrapper .ui-spinner-input {
   border: none;
   font-family: "Montserrat";
   font-style: normal;
@@ -5959,13 +6090,15 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .spinner-wrapper .ui-button,
-.construcot-container .rightside .optionbox .text-aside .spinner-wrapper .ui-button {
+.construcot-container .rightside .optionbox .text-aside .spinner-wrapper .ui-button,
+.construcot-container .rightside .branchingoptionbox .text-aside .spinner-wrapper .ui-button {
   border: none !important;
   background: transparent !important;
 }
 
 .construcot-container .rightside .default .text-aside .spinner-wrapper .ui-button .ui-icon-triangle-1-n,
-.construcot-container .rightside .optionbox .text-aside .spinner-wrapper .ui-button .ui-icon-triangle-1-n {
+.construcot-container .rightside .optionbox .text-aside .spinner-wrapper .ui-button .ui-icon-triangle-1-n,
+.construcot-container .rightside .branchingoptionbox .text-aside .spinner-wrapper .ui-button .ui-icon-triangle-1-n {
   background-image: url(./../img/arrow-up.svg);
   background-position: center;
   background-position-y: 8px;
@@ -5974,7 +6107,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .spinner-wrapper .ui-button .ui-icon-triangle-1-s,
-.construcot-container .rightside .optionbox .text-aside .spinner-wrapper .ui-button .ui-icon-triangle-1-s {
+.construcot-container .rightside .optionbox .text-aside .spinner-wrapper .ui-button .ui-icon-triangle-1-s,
+.construcot-container .rightside .branchingoptionbox .text-aside .spinner-wrapper .ui-button .ui-icon-triangle-1-s {
   background-image: url(./../img/arrow-down.svg);
   background-position: center;
   background-position-y: 4px;
@@ -5983,13 +6117,15 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .form-group,
-.construcot-container .rightside .optionbox .text-aside .form-group {
+.construcot-container .rightside .optionbox .text-aside .form-group,
+.construcot-container .rightside .branchingoptionbox .text-aside .form-group {
   padding-top: 10px;
   padding-bottom: 15px;
 }
 
 .construcot-container .rightside .default .text-aside .form-group label,
-.construcot-container .rightside .optionbox .text-aside .form-group label {
+.construcot-container .rightside .optionbox .text-aside .form-group label,
+.construcot-container .rightside .branchingoptionbox .text-aside .form-group label {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
@@ -5999,7 +6135,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .form-group textarea,
-.construcot-container .rightside .optionbox .text-aside .form-group textarea {
+.construcot-container .rightside .optionbox .text-aside .form-group textarea,
+.construcot-container .rightside .branchingoptionbox .text-aside .form-group textarea {
   border: 1px solid #EEEFF3;
   width: 100%;
   resize: none;
@@ -6016,12 +6153,14 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .form-group .inputtables,
-.construcot-container .rightside .optionbox .text-aside .form-group .inputtables {
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables,
+.construcot-container .rightside .branchingoptionbox .text-aside .form-group .inputtables {
   margin-top: 8px;
 }
 
 .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint,
-.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint {
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint,
+.construcot-container .rightside .branchingoptionbox .text-aside .form-group .inputtables .questionPoint {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -6044,12 +6183,14 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint:last-child,
-.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint:last-child {
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint:last-child,
+.construcot-container .rightside .branchingoptionbox .text-aside .form-group .inputtables .questionPoint:last-child {
   border-bottom: 1px solid #EEEFF3;
 }
 
 .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint .branching-btn,
-.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .branching-btn {
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .branching-btn,
+.construcot-container .rightside .branchingoptionbox .text-aside .form-group .inputtables .questionPoint .branching-btn {
   position: absolute;
   top: 12px;
   right: 6px;
@@ -6065,7 +6206,9 @@ table {
 
 .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint .branching-btn.active, .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint .branching-btn:hover,
 .construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .branching-btn.active,
-.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .branching-btn:hover {
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .branching-btn:hover,
+.construcot-container .rightside .branchingoptionbox .text-aside .form-group .inputtables .questionPoint .branching-btn.active,
+.construcot-container .rightside .branchingoptionbox .text-aside .form-group .inputtables .questionPoint .branching-btn:hover {
   background: url(./../img/branching-active.svg);
   -webkit-background-size: contain;
           background-size: contain;
@@ -6074,7 +6217,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint .branching-list,
-.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .branching-list {
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .branching-list,
+.construcot-container .rightside .branchingoptionbox .text-aside .form-group .inputtables .questionPoint .branching-list {
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -6097,7 +6241,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group,
-.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group {
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group,
+.construcot-container .rightside .branchingoptionbox .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group {
   width: calc(100% - 35px);
   margin-left: 35px;
   position: relative;
@@ -6108,7 +6253,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group::before,
-.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group::before {
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group::before,
+.construcot-container .rightside .branchingoptionbox .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group::before {
   content: "";
   width: 4px;
   height: 4px;
@@ -6122,12 +6268,14 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group:hover .deleteSubPoint,
-.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group:hover .deleteSubPoint {
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group:hover .deleteSubPoint,
+.construcot-container .rightside .branchingoptionbox .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group:hover .deleteSubPoint {
   opacity: 1;
 }
 
 .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group .deleteSubPoint,
-.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group .deleteSubPoint {
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group .deleteSubPoint,
+.construcot-container .rightside .branchingoptionbox .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group .deleteSubPoint {
   position: absolute;
   bottom: 3px;
   right: 8px;
@@ -6146,7 +6294,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group input,
-.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group input {
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group input,
+.construcot-container .rightside .branchingoptionbox .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group input {
   padding: 0px 12px;
   border-bottom: none;
   border-top: none;
@@ -6164,7 +6313,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint label,
-.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint label {
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint label,
+.construcot-container .rightside .branchingoptionbox .text-aside .form-group .inputtables .questionPoint label {
   display: block;
   width: 15px;
   text-align: center;
@@ -6178,7 +6328,8 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint input,
-.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint input {
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint input,
+.construcot-container .rightside .branchingoptionbox .text-aside .form-group .inputtables .questionPoint input {
   display: inline-block;
   padding: 10px 5px 5px;
   padding-right: 20px;

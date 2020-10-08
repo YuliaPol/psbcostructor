@@ -1284,14 +1284,14 @@ jQuery(function ($) {
             }
         });
         //branching hidden question show
-        $('.centerbox').on('change', '.branchingquestion input[type=radio]', function(e){
-            var idQuestion = $(this).attr('id').split('_')[1];
-            var idPoint = parseInt($(this).attr('id').split('_')[2]);
-            if($(this).is(':checked')){
-                $(this).parents('.question').find('.hidden-question-group').fadeOut(300);
-                $('#hiddenquestion_' + idQuestion + '_' + idPoint).fadeIn(300);
-            }
-        });
+        // $('.centerbox').on('change', '.branchingquestion input[type=radio]', function(e){
+        //     var idQuestion = $(this).attr('id').split('_')[1];
+        //     var idPoint = parseInt($(this).attr('id').split('_')[2]);
+        //     if($(this).is(':checked')){
+        //         $(this).parents('.question').find('.hidden-question-group').fadeOut(300);
+        //         $('#hiddenquestion_' + idQuestion + '_' + idPoint).fadeIn(300);
+        //     }
+        // });
 
         //hidden question input 
         $('.rightside').on('change , keypress, keydown, keyup', '.branching-group input[type=text]', function(e){
@@ -1299,8 +1299,8 @@ jQuery(function ($) {
             var idPoint = parseInt($(this).attr('name').split('_')[2]);
             var idSubPoint = parseInt($(this).attr('name').split('_')[3]);
             if(idQuestion && idPoint && idSubPoint){
-                if($('#questionanswers_'+ idQuestion).find('.branching-group:nth-child('+ idPoint + ') .question-group .branching-question:nth-child('+ idSubPoint + ')').find('.name').length>0){
-                    $('#questionanswers_'+ idQuestion).find('.branching-group:nth-child('+ idPoint + ') .question-group .branching-question:nth-child('+ idSubPoint + ')').find('.name').html($(this).val());
+                if($('#questionbrnaching_'+ idQuestion).find('.branching-group:nth-child('+ idPoint + ') .question-group .branching-question:nth-child('+ idSubPoint + ')').find('.name').length>0){
+                    $('#questionbrnaching_'+ idQuestion).find('.branching-group:nth-child('+ idPoint + ') .question-group .branching-question:nth-child('+ idSubPoint + ')').find('.name').html($(this).val());
                 }
             }
         });
@@ -1547,7 +1547,6 @@ jQuery(function ($) {
                 }
             }
         }
-        $('textarea').change();
         //change name of points of branching question
         $('.rightside').on('change , keypress, keydown, keyup', '.branching_points', function(e){
             var idQuestion = $(this).attr('name').split('_')[1];
@@ -1560,63 +1559,35 @@ jQuery(function ($) {
         //change name of points of question
         $('.rightside').on('change , keypress, keydown, keyup', '.question_points', function(e){
             var id = $(this).attr('name').split('_');
-            id[0] = '#questionpointsanswer';
+            id[0] = '#questionbrnaching';
             $(id.join('_')).html($(this).val());
             if($(this).parents('.optionbox').find('.brnachingonoff:checked')){
-                var questionId = $(this).parents('.optionbox').find('.subquestionID').val();
+                var questionId = $(this).attr('name').split('_')[1];
                 var questionPointsId = $(this).attr('name').split('_')[2];
-                if($('#option_'+ questionId).find('.inputtables .questionPoint:nth-child('+ questionPointsId + ')').length>0) {
-                    $('#option_'+ questionId).find('.inputtables .questionPoint:nth-child('+ questionPointsId + ') .branching_points').val($(this).val());
-                    $('#questionanswers_'+ questionId).find('.branching-group:nth-child('+ questionPointsId + ')').find('.group-name').html($(this).val());
+                if($('#branchinoption'+ questionId).find('.inputtables .questionPoint:nth-child('+ questionPointsId + ')').length>0) {
+                    $('#branchinoption'+ questionId).find('.inputtables .questionPoint:nth-child('+ questionPointsId + ') .branching_points').val($(this).val());
+                    $('#branchinoption'+ questionId).find('.branching-group:nth-child('+ questionPointsId + ')').find('.group-name').html($(this).val());
                 }
             };
         });
         $('.rightside').on('change', '.brnachingonoff', function(e){
             if($(this).is(':checked')){
-                var mainquetionID = $(this).attr('name').split('_')[1];
-                var type = "branching";
-                var pollid = $('#quiz-id').val();
+                var id = $(this).attr('name').split('_')[1];
                 var typeparent;
                 if($(this).parents('.optionbox').find('.orderinput').prev('input').val()){
                     typeparent = $(this).parents('.optionbox').find('.orderinput').prev('input').val();
                 }
-                if(typeparent && pollid && type) {
-                    // var id = Math.random().toString(36).substr(2, 9);
-                    // AddQuestionBranching(typeparent, id, mainquetionID)
-                    if(type && pollid){
-                        $.ajax ({
-                            type: 'POST',
-                            url: "/admin/poll/create-question",
-                            dataType: "json",
-                            data: { 
-                                questiontype: type,
-                                quizid: pollid
-                            },
-                        }).done(function (data) {
-                            // данные сохранены
-                             AddQuestionBranching(typeparent, data, mainquetionID)
-                            console.log('Вопрос создан');
-                        }).fail(function (data) {
-                            // не удалось выполнить запрос к серверу
-                            console.log(data);
-                            console.log('Запрос не принят');
-                        });
-                    }
-                }
+                AddQuestionBranching(typeparent, id)
             }
             else {
-                if($(this).parents('.optionbox').find('.subquestionID')){
-                    var subquestionID = $(this).parents('.optionbox').find('.subquestionID').val();
-                    console.log($('#questionanswers_' + subquestionID));
-                    $('#questionanswers_' + subquestionID).parents('.subquestion').find('.close-question').click();
-                }
+                var id = $(this).attr('name').split('_')[1];
+                $('#questionbrnaching_' + id).parents('.subquestion').remove();
+                $('#branchinoption_' + id).remove();
             }
         });
-        function AddQuestionBranching(type, id, mainquestionID){
+        function AddQuestionBranching(type, id){
             if(type == "single"){
-                var points = $("#option_" + mainquestionID).find('.inputtables').children();
-                var hinndeinp = '<input type="hidden" class="subquestionID" name="brancheid_'+ mainquestionID +'" value="' + id + '">';
-                $("#option_" + mainquestionID).append(hinndeinp);
+                var points = $("#branchinoption_" + id).find('.inputtables').children();
                 var subpointsstr = '';
                 var answerstr = '';
                 points.each(function (index, subpoint) {
@@ -1624,8 +1595,8 @@ jQuery(function ($) {
                     var text = $(subpoint).find('.question_points').val();
                     subpointsstr = subpointsstr
                     +'<div class="questionPoint" id="questionPoint_' + id + '_'+ index + '">'
-                    +'  <label for="inputpoint_' + id + '_1">1</label>'
-                    +'  <input class="branching_points" readonly name="inputpoint_' + id + '_'+ index + '" id="inputpoint_' + id + '_'+ index + '" readonly type="text"'
+                    +'  <label for="groupname_' + id + '_1">1</label>'
+                    +'  <input class="branching_points" readonly name="groupname_' + id + '_'+ index + '" id="groupname_' + id + '_'+ index + '" readonly type="text"'
                     +'      value="'+ text + '">'
                     +'  <div class="branching-btn"></div>'
                     +'  <div class="branching-list">'
@@ -1639,17 +1610,14 @@ jQuery(function ($) {
                     +'</div>';
                 });
                 var option = 
-                '<div class="optionbox" id="option_' + id + '">'
-                +'    <input type="hidden" name="questiontype_' + id + '" value="branching">'
-                +'    <input type="hidden" class="orderinput" name="questionorder_' + id + '" value="">'
-                +'    <input type="hidden" class="mainquestion" name="mainquestion_' + id + '" value="' + mainquestionID + '">'
+                '<div class="branchingoptionbox" id="branchinoption_' + id + '">'
                 +'    <div class="header-aside">'
                 +'        Настройки'
                 +'    </div>'
                 +'     <div class="text-aside">'
                 +'        <div class="form-group">'
                 +'            <p>Варианты ответов</p>'
-                +'            <div class="inputtables" id="inputtables_' + id + '">'
+                +'            <div class="inputtables" id="branchingtables_' + id + '">'
                 +               subpointsstr
                 +'            </div>'
                 +'        </div>'
@@ -1657,25 +1625,22 @@ jQuery(function ($) {
                 +'</div>';
     
                 var el =
-                '<div class="question subquestion branchingquestion" data-optionid="' + id + '">'
+                '<div class="subquestion branchingquestion" data-optionid="' + id + '">'
                 +'    <div class="close-question"></div>'
-                +'    <div class="answer" id="questionanswers_' + id + '">'
+                +'    <div class="answer" id="questionbrnaching_' + id + '">'
                 +      answerstr
                 +'    </div>'
                 +'</div>';
-                $('#questionanswers_' + mainquestionID).parents('.question').append(el);
+                $('#questionanswers_' + id).parents('.question').append(el);
                 $('.optionsblock .eloptions').append(option);
             }
             if(type == "scale"){
                 var typescale = $("#option_" + mainquestionID).find('.scale-radio input[type=radio]:checked').val();
-                console.log(typescale);
                 if(typescale == 1 || typescale == 3 || typescale == 4 ){
-                    var hinndeinp = '<input type="hidden" class="subquestionID" name="brancheid_'+ mainquestionID +'" value="' + id + '">';
-                    $("#option_" + mainquestionID).append(hinndeinp);
                     var el = 
-                    '<div class="question subquestion branchingquestion" data-optionid="' + id + '">'
+                    '<div class="subquestion branchingquestion" data-optionid="' + id + '">'
                     +'    <div class="close-question"></div>'
-                    +'    <div class="answer" id="questionanswers_' + id + '">'
+                    +'    <div class="answer" id="questionbrnaching_' + id + '">'
                     +'        <div class="branching-group">'
                     +'            <div class="group-name">1-5</div>'
                     +'            <div class="question-group">'
@@ -1689,10 +1654,7 @@ jQuery(function ($) {
                     +'    </div>'
                     +'</div>';
                     var option = 
-                    '<div class="optionbox" id="option_' + id + '">'
-                    +'    <input type="hidden" name="questiontype_' + id + '" value="branching">'
-                    +'    <input type="hidden" class="orderinput" name="questionorder_' + id + '" value="">'
-                    +'    <input type="hidden" class="mainquestion" name="mainquestion_' + id + '" value="' + mainquestionID + '">'
+                    '<div class="branchingoptionbox" id="branchinoption_' + id + '">'
                     +'    <div class="header-aside">'
                     +'        Настройки'
                     +'    </div>'
@@ -1719,18 +1681,18 @@ jQuery(function ($) {
                     +'          </div>'
                     +'        <div class="form-group">'
                     +'            <p>Варианты ответов</p>'
-                    +'            <div class="inputtables branchingForScale" id="inputtables_' + id + '">'
+                    +'            <div class="inputtables branchingForScale" id="branchingtables_' + id + '">'
                     +'                <div class="questionPoint" id="questionPoint_' + id + '_1">'
-                    +'                    <label for="inputpoint_' + id + '_1">1</label>'
-                    +'                    <input class="branching_points" readonly name="inputpoint_' + id + '_1" id="inputpoint_' + id + '_1"'
+                    +'                    <label for="groupname_' + id + '_1">1</label>'
+                    +'                    <input class="branching_points" readonly name="groupname_' + id + '_1" id="groupname_' + id + '_1"'
                     +'                        type="text" value="1-5">'
                     +'                    <div class="branching-btn"></div>'
                     +'                    <div class="branching-list">'
                     +'                    </div>'
                     +'                </div>'
                     +'                <div class="questionPoint" id="questionPoint_' + id + '_2">'
-                    +'                   <label for="inputpoint_' + id + '_2">2</label>'
-                    +'                   <input class="branching_points" readonly name="inputpoint_' + id + '_2" id="inputpoint_' + id + '_2"'
+                    +'                   <label for="groupname_' + id + '_2">2</label>'
+                    +'                   <input class="branching_points" readonly name="groupname_' + id + '_2" id="groupname_' + id + '_2"'
                     +'                       type="text" value="6-10">'
                     +'                  <div class="branching-btn"></div>'
                     +'                  <div class="branching-list">'
@@ -1744,12 +1706,10 @@ jQuery(function ($) {
                     $('.optionsblock .eloptions').append(option);
                 }
                 if (typescale == 2 || typescale == 5 ) {
-                    var hinndeinp = '<input type="hidden" class="subquestionID" name="brancheid_'+ mainquestionID +'" value="' + id + '">';
-                    $("#option_" + mainquestionID).append(hinndeinp);
                     var el = 
-                    '<div class="question subquestion branchingquestion" data-optionid="' + id + '">'
+                    '<div class="subquestion branchingquestion" data-optionid="' + id + '">'
                     +'    <div class="close-question"></div>'
-                    +'    <div class="answer" id="questionanswers_' + id + '">'
+                    +'    <div class="answer" id="questionbrnaching_' + id + '">'
                     +'        <div class="branching-group">'
                     +'            <div class="group-name">1-2</div>'
                     +'            <div class="question-group">'
@@ -1763,10 +1723,7 @@ jQuery(function ($) {
                     +'    </div>'
                     +'</div>';
                     var option = 
-                    '<div class="optionbox" id="option_' + id + '">'
-                    +'    <input type="hidden" name="questiontype_' + id + '" value="branching">'
-                    +'    <input type="hidden" class="orderinput" name="questionorder_' + id + '" value="">'
-                    +'    <input type="hidden" class="mainquestion" name="mainquestion_' + id + '" value="' + mainquestionID + '">'
+                    '<div class="branchingoptionbox" id="branchinoption_' + id + '">'
                     +'    <div class="header-aside">'
                     +'        Настройки'
                     +'    </div>'
@@ -1788,18 +1745,18 @@ jQuery(function ($) {
                     +'            </div>'
                     +'        <div class="form-group">'
                     +'            <p>Варианты ответов</p>'
-                    +'            <div class="inputtables branchingForScale" id="inputtables_' + id + '">'
+                    +'            <div class="inputtables branchingForScale" id="branchingtables_' + id + '">'
                     +'                <div class="questionPoint" id="questionPoint_' + id + '_1">'
-                    +'                    <label for="inputpoint_' + id + '_1">1</label>'
-                    +'                    <input class="branching_points" readonly name="inputpoint_' + id + '_1" id="inputpoint_' + id + '_1"'
+                    +'                    <label for="groupname_' + id + '_1">1</label>'
+                    +'                    <input class="branching_points" readonly name="groupname_' + id + '_1" id="groupname_' + id + '_1"'
                     +'                        type="text" value="1-2">'
                     +'                    <div class="branching-btn"></div>'
                     +'                    <div class="branching-list">'
                     +'                    </div>'
                     +'                </div>'
                     +'                <div class="questionPoint" id="questionPoint_' + id + '_2">'
-                    +'                   <label for="inputpoint_' + id + '_2">2</label>'
-                    +'                   <input class="branching_points" readonly name="inputpoint_' + id + '_2" id="inputpoint_' + id + '_2"'
+                    +'                   <label for="groupname_' + id + '_2">2</label>'
+                    +'                   <input class="branching_points" readonly name="groupname_' + id + '_2" id="groupname_' + id + '_2"'
                     +'                       type="text" value="3-5">'
                     +'                  <div class="branching-btn"></div>'
                     +'                  <div class="branching-list">'
@@ -1817,7 +1774,7 @@ jQuery(function ($) {
                     console.log(sliders);
                     sliders.each(function (index, slider) {
                         var slidervalue = $(slider).attr("data-value");
-                        var idQuestion = $(slider).parents('.optionbox').find('.orderinput').attr('name').split('_')[1];
+                        var idQuestion = $(slider).parents('.branchingoptionbox').attr('id').split('_')[1];
                         $(slider).slider({
                             min: 1,
                             max: 9,
@@ -1844,7 +1801,7 @@ jQuery(function ($) {
                     var sliders = $('.slidercursor5');
                     sliders.each(function (index, slider) {
                         var slidervalue = $(slider).attr("data-value");
-                        var idQuestion = $(slider).parents('.optionbox').find('.orderinput').attr('name').split('_')[1];
+                        var idQuestion = $(slider).parents('.branchingoptionbox').attr('id').split('_')[1];
                         $(slider).slider({
                             min: 1,
                             max: 4,
@@ -1874,7 +1831,7 @@ jQuery(function ($) {
                 spin: function( event, ui ) {
                     var id = $(event.target).attr('name').split('_')[1];
                     var number = ui.value;
-                    var questionPoints = $('#inputtables_' + id).find('.questionPoint');
+                    var questionPoints = $('#branchingtables_' + id).find('.questionPoint');
                     questionPoints.each(function (index, question) {
                         if((index + 1) > number) {
                             $('#hiddenquestion_' + id + '_' + index).remove();
@@ -1887,12 +1844,12 @@ jQuery(function ($) {
                             currentId++;
                             var newQuestion = 
                             '<div class="questionPoint" id="questionPoint_'+ id + '_' + currentId +'">'
-                            +'    <label for="inputpoint_'+ id + '_' + currentId +'">'+ currentId +'</label>'
-                            +'    <input class="branching_points" readonly name="inputpoint_'+ id + '_' + currentId +'" id="inputpoint_'+ id + '_' + currentId +'" type="text" placeholder="Вариант ответа">'
+                            +'    <label for="groupname_'+ id + '_' + currentId +'">'+ currentId +'</label>'
+                            +'    <input class="branching_points" readonly name="groupname_'+ id + '_' + currentId +'" id="groupname_'+ id + '_' + currentId +'" type="text" placeholder="Вариант ответа">'
                             +'    <div class="branching-btn"></div>'
                             +'    <div class="branching-list"> </div>'
                             +'</div>';
-                            $(newQuestion).appendTo($('#inputtables_' + id));
+                            $(newQuestion).appendTo($('#branchingtables_' + id));
                         }
                     }
                     SetPointOfQuestionBranching(id, number);
@@ -1904,7 +1861,7 @@ jQuery(function ($) {
             var sliders = $('.slidercursor');
             sliders.each(function (index, slider) {
                 var slidervalue = $(slider).attr("data-value");
-                var idQuestion = $(slider).parents('.optionbox').find('.orderinput').attr('name').split('_')[1];
+                var idQuestion = $(slider).parents('.branchingoptionbox').attr('id').split('_')[1];
                 $(slider).slider({
                     min: 1,
                     max: 9,
@@ -1931,7 +1888,7 @@ jQuery(function ($) {
             var sliders = $('.slidercursor5');
             sliders.each(function (index, slider) {
                 var slidervalue = $(slider).attr("data-value");
-                var idQuestion = $(slider).parents('.optionbox').find('.orderinput').attr('name').split('_')[1];
+                var idQuestion = $(slider).parents('.branchingoptionbox').attr('id').split('_')[1];
                 $(slider).slider({
                     min: 1,
                     max: 4,
@@ -2338,7 +2295,7 @@ jQuery(function ($) {
             spin: function( event, ui ) {
                 var id = $(event.target).attr('name').split('_')[1];
                 var number = ui.value;
-                var questionPoints = $('#inputtables_' + id).find('.questionPoint');
+                var questionPoints = $('#branchingtables_' + id).find('.questionPoint');
                 questionPoints.each(function (index, question) {
                     if((index + 1) > number) {
                         $(question).remove();
@@ -2351,12 +2308,12 @@ jQuery(function ($) {
                         currentId++;
                         var newQuestion = 
                         '<div class="questionPoint" id="questionPoint_'+ id + '_' + currentId +'">'
-                        +'    <label for="inputpoint_'+ id + '_' + currentId +'">'+ currentId +'</label>'
-                        +'    <input class="branching_points" readonly name="inputpoint_'+ id + '_' + currentId +'" id="inputpoint_'+ id + '_' + currentId +'" type="text" placeholder="Вариант ответа">'
+                        +'    <label for="groupname_'+ id + '_' + currentId +'">'+ currentId +'</label>'
+                        +'    <input class="branching_points" readonly name="groupname_'+ id + '_' + currentId +'" id="groupname_'+ id + '_' + currentId +'" type="text" placeholder="Вариант ответа">'
                         +'    <div class="branching-btn"></div>'
                         +'    <div class="branching-list"> </div>'
                         +'</div>';
-                        $(newQuestion).appendTo($('#inputtables_' + id));
+                        $(newQuestion).appendTo($('#branchingtables_' + id));
                     }
                 }
                 SetPointOfQuestionBranching(id, number);
@@ -2374,7 +2331,7 @@ jQuery(function ($) {
             {
                 var el = 
                 '<div class="branching-group">'
-                +'    <input type="text" name="subpoint_'+ questionId + '_' + questionPointsId +'_' + questionSubPointsId + '" id="subpoint_'+ questionId + '_' + questionPointsId +'_' + questionSubPointsId + '">'
+                +'    <input type="text" name="branchingpoint_'+ questionId + '_' + questionPointsId +'_' + questionSubPointsId + '" id="branchingpoint_'+ questionId + '_' + questionPointsId +'_' + questionSubPointsId + '">'
                 +'    <div class="deleteSubPoint"></div>'
                 +'</div>';
                 $(this).next('.branching-list').append(el);
@@ -2416,10 +2373,10 @@ jQuery(function ($) {
             var idPoint = parseInt($(this).parents('.branching-group').find('input').attr('name').split('_')[2]);
             var idSubPoint = parseInt($(this).parents('.branching-group').find('input').attr('name').split('_')[3]);
             if(idQuestion && idPoint && idSubPoint){
-                if($('#questionanswers_'+ idQuestion).find('.branching-group:nth-child('+ idPoint + ') .question-group .branching-question:nth-child('+ idSubPoint + ')').find('.name').length>0){
-                    $('#questionanswers_'+ idQuestion).find('.branching-group:nth-child('+ idPoint + ') .question-group .branching-question:nth-child('+ idSubPoint + ')').remove();
+                if($('#questionbrnaching_'+ idQuestion).find('.branching-group:nth-child('+ idPoint + ') .question-group .branching-question:nth-child('+ idSubPoint + ')').find('.name').length>0){
+                    $('#questionbrnaching_'+ idQuestion).find('.branching-group:nth-child('+ idPoint + ') .question-group .branching-question:nth-child('+ idSubPoint + ')').remove();
                 }
-                var SubpointsAnswer = $('#questionanswers_'+ idQuestion).find('.branching-group:nth-child('+ idPoint + ') .question-group').children();
+                var SubpointsAnswer = $('#questionbrnaching_'+ idQuestion).find('.branching-group:nth-child('+ idPoint + ') .question-group').children();
                 if(SubpointsAnswer.length>0){
                     SubpointsAnswer.each(function (index, subpoint) {
                         var id = index + 1;
@@ -2497,7 +2454,7 @@ jQuery(function ($) {
         $('.rightside').on('change', '.question_number_branching', function(e){
             var id = $(this).attr('name').split('_')[1];
             var number = $(this).val();
-            var questionPoints = $('#inputtables_' + id).find('.questionPoint');
+            var questionPoints = $('#branchingtables_' + id).find('.questionPoint');
             questionPoints.each(function (index, question) {
                 if((index + 1) > number) {
                     $(question).remove();
@@ -2510,12 +2467,12 @@ jQuery(function ($) {
                     currentId++;
                     var newQuestion = 
                     '<div class="questionPoint" id="questionPoint_'+ id + '_' + currentId +'">'
-                    +'    <label for="inputpoint_'+ id + '_' + currentId +'">'+ currentId +'</label>'
-                    +'    <input class="branching_points" readonly name="inputpoint_'+ id + '_' + currentId +'" id="inputpoint_'+ id + '_' + currentId +'" type="text" placeholder="Вариант ответа">'
+                    +'    <label for="groupname_'+ id + '_' + currentId +'">'+ currentId +'</label>'
+                    +'    <input class="branching_points" readonly name="groupname_'+ id + '_' + currentId +'" id="groupname_'+ id + '_' + currentId +'" type="text" placeholder="Вариант ответа">'
                     +'    <div class="branching-btn"></div>'
                     +'    <div class="branching-list"> </div>'
                     +'</div>';
-                    $(newQuestion).appendTo($('#inputtables_' + id));
+                    $(newQuestion).appendTo($('#branchingtables_' + id));
                 }
             }
             SetPointOfQuestionBranching(id, number);
@@ -2560,7 +2517,7 @@ jQuery(function ($) {
         
         //set points of question
         function SetPointOfQuestionBranchingSingle(id, number) {
-            var questionPoints = $('#inputtables_' + id).find('.questionPoint');
+            var questionPoints = $('.branchingoptionbox #branchingtables_' + id).find('.questionPoint');
             questionPoints.each(function (index, question) {
                 if((index + 1) > number) {
                     $(question).remove();
@@ -2573,12 +2530,12 @@ jQuery(function ($) {
                     currentId++;
                     var newQuestion = 
                     '<div class="questionPoint" id="questionPoint_'+ id + '_' + currentId +'">'
-                    +'    <label for="inputpoint_'+ id + '_' + currentId +'">'+ currentId +'</label>'
-                    +'    <input class="branching_points" readonly name="inputpoint_'+ id + '_' + currentId +'" id="inputpoint_'+ id + '_' + currentId +'" type="text" placeholder="Вариант ответа">'
+                    +'    <label for="groupname_'+ id + '_' + currentId +'">'+ currentId +'</label>'
+                    +'    <input class="branching_points" readonly name="groupname_'+ id + '_' + currentId +'" id="groupname_'+ id + '_' + currentId +'" type="text" placeholder="Вариант ответа">'
                     +'    <div class="branching-btn"></div>'
                     +'    <div class="branching-list"> </div>'
                     +'</div>';
-                    $(newQuestion).appendTo($('#inputtables_' + id));
+                    $(newQuestion).appendTo($('#branchingtables_' + id));
                 }
             }
 
@@ -2701,7 +2658,7 @@ jQuery(function ($) {
                             var sliders = $('.slidercursor5');
                             sliders.each(function (index, slider) {
                                 var slidervalue = $(slider).attr("data-value");
-                                var idQuestion = $(slider).parents('.optionbox').find('.orderinput').attr('name').split('_')[1];
+                                var idQuestion = $(slider).parents('.branchingoptionbox').attr('id').split('_')[1];
                                 $(slider).slider({
                                     min: 1,
                                     max: 4,
@@ -4086,7 +4043,7 @@ jQuery(function ($) {
                 spin: function( event, ui ) {
                     var id = $(event.target).attr('name').split('_')[1];
                     var number = ui.value;
-                    var questionPoints = $('#inputtables_' + id).find('.questionPoint');
+                    var questionPoints = $('#branchingtables_' + id).find('.questionPoint');
                     questionPoints.each(function (index, question) {
                         if((index + 1) > number) {
                             $('#hiddenquestion_' + id + '_' + index).remove();
@@ -4099,12 +4056,12 @@ jQuery(function ($) {
                             currentId++;
                             var newQuestion = 
                             '<div class="questionPoint" id="questionPoint_'+ id + '_' + currentId +'">'
-                            +'    <label for="inputpoint_'+ id + '_' + currentId +'">'+ currentId +'</label>'
-                            +'    <input class="branching_points" readonly name="inputpoint_'+ id + '_' + currentId +'" id="inputpoint_'+ id + '_' + currentId +'" type="text" placeholder="Вариант ответа">'
+                            +'    <label for="groupname_'+ id + '_' + currentId +'">'+ currentId +'</label>'
+                            +'    <input class="branching_points" readonly name="groupname_'+ id + '_' + currentId +'" id="groupname_'+ id + '_' + currentId +'" type="text" placeholder="Вариант ответа">'
                             +'    <div class="branching-btn"></div>'
                             +'    <div class="branching-list"> </div>'
                             +'</div>';
-                            $(newQuestion).appendTo($('#inputtables_' + id));
+                            $(newQuestion).appendTo($('#branchingtables_' + id));
                         }
                     }
                     SetPointOfQuestionBranching(id, number);
@@ -4200,6 +4157,7 @@ jQuery(function ($) {
                     var id = $(this).attr('data-optionid');
                     $('.questions-box .question').removeClass('active');
                     $('.optionsblock .optionbox').removeClass('active');
+                    $('.optionsblock .branchingoptionbox').removeClass('active');
                     $(this).addClass('active');
                     $('.optionsblock #option_' + id ).addClass('active');
                 }
@@ -4212,8 +4170,9 @@ jQuery(function ($) {
                 var id = $(this).attr('data-optionid');
                 $('.questions-box .question').removeClass('active');
                 $('.optionsblock .optionbox').removeClass('active');
+                $('.optionsblock .branchingoptionbox').removeClass('active');
                 $(this).addClass('active');
-                $('.optionsblock #option_' + id ).addClass('active');
+                $('.optionsblock #branchinoption_' + id ).addClass('active');
             }
         });
         
