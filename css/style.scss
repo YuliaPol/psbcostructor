@@ -3895,7 +3895,9 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
             }
         }
         &.scale5 {
-            width: 20%;
+            > div {
+                width: 20%;
+            }
         }
         > div {
             padding: 5px;
@@ -3925,7 +3927,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
             }
         }
     }
-    .slidercursor {
+    .slidercursor,
+    .slidercursor5 {
         position: absolute;
         bottom: 3px;
         left: 0px;
@@ -3934,8 +3937,10 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
         background: transparent;
     }
 }
-div.slider .slidercursor {
-    width: calc(100% - 55px);
+
+
+div.slider .slidercursor,
+div.slider .slidercursor5 {
     height: 0px;
     margin: auto;
     .ui-slider .ui-slider-handle,
@@ -3950,8 +3955,12 @@ div.slider .slidercursor {
         color: #fff;
     }
 }
-
-
+div.slider .slidercursor5 {
+    width: calc(100% - 105px);
+}
+div.slider .slidercursor {
+    width: calc(100% - 55px);
+}
 .ui-datepicker {
     text-align: center;
 }

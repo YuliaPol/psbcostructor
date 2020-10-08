@@ -6409,7 +6409,7 @@ table {
   width: 10%;
 }
 
-.slider .sliderscale.scale5 {
+.slider .sliderscale.scale5 > div {
   width: 20%;
 }
 
@@ -6441,7 +6441,8 @@ table {
   display: none;
 }
 
-.slider .slidercursor {
+.slider .slidercursor,
+.slider .slidercursor5 {
   position: absolute;
   bottom: 3px;
   left: 0px;
@@ -6450,8 +6451,8 @@ table {
   background: transparent;
 }
 
-div.slider .slidercursor {
-  width: calc(100% - 55px);
+div.slider .slidercursor,
+div.slider .slidercursor5 {
   height: 0px;
   margin: auto;
 }
@@ -6462,10 +6463,25 @@ div.slider .slidercursor .ui-state-default,
 div.slider .slidercursor .ui-widget-content .ui-state-default,
 div.slider .slidercursor .ui-widget-header .ui-state-default,
 div.slider .slidercursor .ui-button.ui-state-disabled:hover,
-div.slider .slidercursor .ui-button.ui-state-disabled:active {
+div.slider .slidercursor .ui-button.ui-state-disabled:active,
+div.slider .slidercursor5 .ui-slider .ui-slider-handle,
+div.slider .slidercursor5 .ui-state-default.ui-state-hover,
+div.slider .slidercursor5 .ui-state-default,
+div.slider .slidercursor5 .ui-widget-content .ui-state-default,
+div.slider .slidercursor5 .ui-widget-header .ui-state-default,
+div.slider .slidercursor5 .ui-button.ui-state-disabled:hover,
+div.slider .slidercursor5 .ui-button.ui-state-disabled:active {
   background-color: #563BC2 !important;
   outline: none;
   color: #fff;
+}
+
+div.slider .slidercursor5 {
+  width: calc(100% - 105px);
+}
+
+div.slider .slidercursor {
+  width: calc(100% - 55px);
 }
 
 .ui-datepicker {
