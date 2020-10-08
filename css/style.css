@@ -6385,13 +6385,87 @@ table {
   background: #EBEBEC;
 }
 
-/* datepicker css */
-.ui-state-default, .ui-widget-content .ui-state-default,
-.ui-widget-header .ui-state-default,
-.ui-button, html .ui-button.ui-state-disabled:hover,
-html .ui-button.ui-state-disabled:active {
+.slider {
+  position: relative;
+}
+
+.slider .sliderscale {
+  border-bottom: 1px solid #563BC2;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.slider .sliderscale.scale10 > div {
+  width: 10%;
+}
+
+.slider .sliderscale.scale5 {
+  width: 20%;
+}
+
+.slider .sliderscale > div {
+  padding: 5px;
+  padding-bottom: 10px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 8px;
+  line-height: 10px;
+  color: #563BC2;
+  text-align: center;
+  position: relative;
+}
+
+.slider .sliderscale > div:after {
+  content: "";
+  width: 1px;
+  height: 10px;
+  background-color: #563BC2;
+  display: block;
+  right: 0px;
+  position: absolute;
+  bottom: -5px;
+}
+
+.slider .sliderscale > div:last-child::after {
+  display: none;
+}
+
+.slider .slidercursor {
+  position: absolute;
+  bottom: 3px;
+  left: 0px;
+  right: 0px;
   border: none !important;
-  background-color: #fff !important;
+  background: transparent;
+}
+
+div.slider .slidercursor {
+  width: calc(100% - 55px);
+  height: 0px;
+  margin: auto;
+}
+
+div.slider .slidercursor .ui-slider .ui-slider-handle,
+div.slider .slidercursor .ui-state-default.ui-state-hover,
+div.slider .slidercursor .ui-state-default,
+div.slider .slidercursor .ui-widget-content .ui-state-default,
+div.slider .slidercursor .ui-widget-header .ui-state-default,
+div.slider .slidercursor .ui-button.ui-state-disabled:hover,
+div.slider .slidercursor .ui-button.ui-state-disabled:active {
+  background-color: #563BC2 !important;
+  outline: none;
+  color: #fff;
 }
 
 .ui-datepicker {

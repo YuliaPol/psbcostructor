@@ -1556,7 +1556,6 @@ jQuery(function ($) {
                 $('#questionanswers_'+ idQuestion).find('.branching-group:nth-child('+ idPoint + ')').find('.group-name').html($(this).val());
             }
         });
-        $('.branchingForScale .branching_points').inputmask("9-9{1,2}");
 
         //change name of points of question
         $('.rightside').on('change , keypress, keydown, keyup', '.question_points', function(e){
@@ -1758,10 +1757,68 @@ jQuery(function ($) {
                     SetPointOfQuestionBranching(id, number);
                 }
             });
-            $('.branchingForScale .branching_points').inputmask("9-9{1,2}");
             RefreshItems();
         }
-
+        if($('.slidercursor')){
+            var sliders = $('.slidercursor');
+            sliders.each(function (index, slider) {
+                var slidervalue = $(slider).attr("data-value");
+                var idQuestion = $(slider).parents('.optionbox').find('.orderinput').attr('name').split('_')[1];
+                $(slider).slider({
+                    min: 1,
+                    max: 9,
+                    step: 1,
+                    value: slidervalue,
+                    change: function( event, ui ) {
+                        var sliders = $('#option_' + idQuestion).find('.slidercursor');
+                        var values = new Array(sliders.length);
+                        sliders.each(function (index, slider) {
+                            values[index] = $(slider).attr('data-value');
+                        });
+                        if(values.includes(ui.value)){
+                            ui.value = $(slider).attr('data-value');
+                        }
+                        else {
+                            $(slider).attr("data-value", ui.value);
+                            ChangeSlider(idQuestion);
+                        }
+                    }
+                });
+            });
+        }
+        function ChangeSlider(idQuestion){
+            var sliders = $('#option_' + idQuestion).find('.slidercursor');
+            var values = new Array(sliders.length);
+            var ranges = new Array(sliders.length + 1);
+            sliders.each(function (index, slider) {
+                values[index] = $(slider).attr('data-value');
+            });
+            values.sort((a,b)=>a-b);
+            var index = 0;
+            var prevvalue = 1;
+            var newvalue = 10;
+            values.forEach(function(element){
+                newvalue = parseInt(element);
+                if(prevvalue==newvalue || prevvalue>newvalue){
+                    ranges[index] = prevvalue;
+                }
+                else {
+                    ranges[index] = prevvalue + '-' + newvalue;
+                    prevvalue = newvalue + 1;
+                }
+                index ++;
+            });
+            if(prevvalue==10){
+                ranges[index] = prevvalue;
+            }
+            else {
+                ranges[index] = prevvalue + '-' + 10;
+            }
+            var subpoints = $('#option_' + idQuestion).find('.inputtables').find('.questionPoint');
+            subpoints.each(function (index, subpoint) {
+                $(subpoint).find('.branching_points').val(ranges[index]);
+            });
+        }
         $('.rightside').on('change , keypress, keydown, keyup', '.ratinstables input[type=text]', function(e){
             var idQuestion = $(this).attr('name').split('_')[1];
             var idPoint = parseInt($(this).attr('name').split('_')[2]);
@@ -2355,7 +2412,6 @@ jQuery(function ($) {
                     $(newQuestion).appendTo($('#questionanswers_' + id));
                 }
             }
-            $('.branchingForScale .branching_points').inputmask("9-9{1,2}");
         }
 
         //set points of question
@@ -3734,7 +3790,6 @@ jQuery(function ($) {
             });
             $('.questions-box').attr('data-count', i);
 
-            $('.branchingForScale .branching_points').inputmask("9-9{1,2}");
             RefreshItems();
         }
         // delete question
