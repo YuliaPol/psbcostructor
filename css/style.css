@@ -6376,7 +6376,6 @@ table {
   max-height: calc(100vh - 160px);
   background: #ffffff;
   position: relative;
-  border: 1px dashed #9A9797;
 }
 
 .hellopahecontainer .dragimage {
