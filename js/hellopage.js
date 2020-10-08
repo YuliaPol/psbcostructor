@@ -26,15 +26,24 @@ jQuery(function ($) {
         });
 
         $('.pictureforpage').change(function(e){
+            console.log(this);
             var fileName = e.target.files[0].name;
+            console.log($('.dropzone-file'));
+            if($('.dropzone-file').lenght>0) {
+                $('.dropzone-file').remove();
+            }
+            var image = 
+            '<div class="drag dragimage newimage">'
+            +'    <div class="remove-picture "></div>'
+            +'    <input type="hidden" name="picture" value="562">'
+            +'    <img src="./img/hellopage_pic_1.png" alt="">'
+            +'</div>';
+            $('.hellopahecontainer').append(image);
             if (e.target.files && e.target.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function (e) {
-                    $('.preview-picture').css('background-image', 'url('+e.target.result+')');
-                    $('.preview-picture').addClass('active');
-                    $('.preview-picture').css('background-position', 'center');
-                    $('.preview-picture').css('background-repeat', 'no-repeat');
-                    $('.preview-picture').css('background-size', 'contain');
+                    $('.newimage').attr('src', e.target.result);
+                    $('.newimage').removeClass('newimage');
                 }
                 reader.readAsDataURL(e.target.files[0]);
             }
