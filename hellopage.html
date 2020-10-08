@@ -78,23 +78,23 @@
                                 </div>
                                 <div class="preview-picture"></div>
                              </div>
-                            <div class="drag dragimage">
+                             <div class="drag dragtext hidden">
+                                <div class="headertext">
+                                    Оцените эффективность
+                                </div>
+                            </div>
+                            <!-- <div class="drag dragimage">
                                 <div class="remove-picture "></div>
                                 <input type="hidden" name="picture" value="562">
                                 <img src="./img/hellopage_pic_1.png" alt="">
-                            </div>
-                            <!-- <div class="drag dragtext">
-                                <div class="text">
-                                    Оцените эффективность
-                                </div>
                             </div> -->
                         </div>
                     </div>       
                 </div>
                 <aside class="rightside">
                     <!-- <form action="#" class="rightsidefrom"> -->
-                    <div class="optionsblock hellopage_options">
-                        <div class="default designoptions active">
+                    <div class="optionsblock">
+                        <div class="default hellopage_options active">
                             <div class="header-aside">
                                 Настройки
                             </div>
@@ -102,9 +102,64 @@
                                 <div class="addpicture">
                                     Добавить фото
                                 </div>
-                                <input type="file" id="fileInput" class="realfileinput pictureforpage" />
+                                <input type="file" id="fileInput" name="pictures[]" class="realfileinput pictureforpage" />
                             </div>
                             <div class="text-aside">
+                                <p class="pad-bt-15">Текст</p>
+                                <div class="position position-text">
+                                    <div class="left">
+                                        <input type="radio" value="left" name="settings_1" id="settingsposition_1" checked>
+                                        <label for="settingsposition_1"> 
+                                        </label>
+                                    </div>
+                                    <div class="center">
+                                        <input type="radio" value="center" name="settings_1" id="settingsposition_2">
+                                        <label for="settingsposition_2">
+                                        </label>
+                                    </div>
+                                    <div class="right">
+                                        <input type="radio" value="right" name="settings_1" id="settingsposition_3">
+                                        <label for="settingsposition_3">
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <select name="settings_2" class="customselect fontselect">
+                                        <option value="Montserrat">Montserrat</option>
+                                        <option value="Arial">Arial</option>
+                                        <option value="Tahoma">Tahoma</option>
+                                        <option value="Lucida">Lucida</option>
+                                        <option value="Courier">Courier</option>
+                                        <option value="Georgia">Georgia</option>
+                                        <option value="TimesNewRoman">Times New Roman</option>
+                                        <option value="Roboto">Roboto</option>
+                                        <option value="Tahoma">Tahoma</option>
+                                        <option value="OpenSans">Open Sans</option>
+                                        <option value="Piazzolla">Piazzolla</option>
+                                        <option value="Oswald">Oswald</option>
+                                        <option value="Ubuntu">Ubuntu</option>
+                                        <option value="NotoSans">Noto Sans</option>
+                                        <option value="PTSans">PT Sans</option>
+                                        <option value="Lora">Lora</option>
+                                    </select> 
+                                </div>
+                                <div class="form-group">
+                                    <div class="blocktext">
+                                        <div class="colorpick colorpick1level">
+                                            <div class="square" style="background: #000000;"></div>
+                                            <div class="inputs">
+                                                <input type="color" value="#000000">
+                                                <input type="text" name="color1_3" id="color1_3" value="#000000">
+                                            </div>
+                                            <div class="labelcolor">
+                                               <label for="color1_3">Текст первого уровня</label>
+                                            </div>
+                                        </div>
+                                        <div class="textblock">
+                                            <textarea name="textleve1" id="textleve1" placeholder="Введите текст"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <!-- <div class="text-aside">
                                 <div class="position position-text">
@@ -240,6 +295,7 @@
             dT.items.add(evt.dataTransfer.files[0]);
             fileInput.files = dT.files;
             evt.preventDefault();
+            $('.pictureforpage').change();
         };
     </script>
     <!-- <script src="./js/constructor.js?6876546"></script> -->
