@@ -890,7 +890,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
         &.full-width {
             width: calc(100% - 340px);
             .questions-box {
-                .question {
+                .question,
+                .subquestion {
                     &:hover {
                         background: inherit;
                         box-shadow: none;
@@ -1471,7 +1472,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
         .questions-box {
             width: 100%;
             min-height: calc(100% - 104px);
-            .question {
+            .question,
+            .subquestion {
                 padding: 15px 20px;
                 position: relative;
                 .close-question {
@@ -3614,6 +3616,29 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                     }
                     .inputtables {
                         margin-top: 8px;
+                        &.branchingForScale {
+                            .questionPoint {
+                                input.branching_points {
+                                    width: 30px;
+                                    padding: 10px 5px 5px;
+                                }
+                                .branching-group {
+                                    width: 100% !important;
+                                    border-bottom: none !important;
+                                    padding: 10px 5px 5px !important;
+                                    margin: 0px !important;
+                                    input {
+                                        padding: 0px !important;
+                                    }
+                                }
+                                .branching-group::before {
+                                    display: none;
+                                }
+                            }
+                            .questionPoint {
+                                flex-wrap: nowrap;
+                            }
+                        }
                         .questionPoint {
                             display: flex;
                             align-items: flex-start;
@@ -3621,8 +3646,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                             border-top: 1px solid #EEEFF3;
                             border-left: 1px solid #EEEFF3;
                             border-right: 1px solid #EEEFF3;
-                            flex-wrap: wrap;
                             position: relative;
+                            flex-wrap: wrap;
                             &:last-child {
                                 border-bottom: 1px solid #EEEFF3;;
                             }
@@ -3654,12 +3679,12 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                 padding-bottom: 5px;
                                 .branching-group {
                                     width: calc(100% - 35px);
-                                    margin-left: 35px;
                                     position: relative;
                                     padding-bottom: 3px;
                                     padding-top: 6px;
                                     padding-right: 20px;
                                     border-bottom: 1px solid #EEEFF3;
+                                    margin-left: 15px;
                                     &::before {
                                         content: "";
                                         width: 4px;
