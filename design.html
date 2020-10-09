@@ -70,9 +70,9 @@
             <div class="construcot-container">
                 <div class="centerbox full-width">
                     <input id="quiz-id" type="hidden" value="1">
-                    <!-- data-count - summary of question -->
                     <div class="questions-box bg-image" data-count="3"
                     style="background-image: url(./../img/design-bg.png);">
+                    <!-- <div class="questions-box" data-count="3"> -->
                         <div class="question" data-optionid="976">
                             <div class="close-question"></div>
                             <div class="name" id="questionName_976"> Вопрос </div>
@@ -458,10 +458,33 @@
                                     </div>
                                 </div>
                                 <div class="filerow">
-                                    <div class="addpicture">
+                                    <div class="addpicture active">
                                         Добавить фото
                                     </div>
-                                    <input type="file" id="fileInput" name="pictures" class="realfileinput pictureforpage" />
+                                    <input type="file" id="fileInput" name="pictures" class="realfileinput pictureforpage" accept="image/x-png,image/gif,image/jpeg" />
+                                    <div class="removepicture"></div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="bgsettings">
+                                        <div class="colorpickbgtext">
+                                            <div class="square" style="background: #ffffff;"></div>
+                                            <div class="inputs">
+                                                <input type="color" value="#ffffff">
+                                                <input type="text" name="background" id="background" value="#ffffff">
+                                            </div>
+                                            <div class="labelcolor">
+                                               <label for="background_7">Фон для текста</label>
+                                            </div>
+                                        </div>
+                                        <div class="opacitybgtext">
+                                            <div class="inputs">
+                                                <input type="text" name="opacity" id="opacity" min="0" max="100" value="50">
+                                            </div>
+                                            <div class="labelopacity">
+                                                Прозрачность
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <!-- <div class="form-group">
                                     <div class="colorpick colorpickbackground">

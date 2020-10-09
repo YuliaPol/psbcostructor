@@ -890,6 +890,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
         &.full-width {
             width: calc(100% - 340px);
             .questions-box {
+                transition: background 0.3s ease-in;
                 .question {
                     &:hover {
                         background: inherit;
@@ -1471,6 +1472,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
         .questions-box {
             width: 100%;
             min-height: calc(100% - 104px);
+            transition: background 0.3s ease-in;
             &.bg-image {
                 background-position: center;
                 background-attachment: fixed;
@@ -1487,6 +1489,11 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                     margin-bottom: 20px;
                     &:hover {
                         background: rgba(255, 255, 255, 0.5);
+                    }
+                    &.nobgtext {
+                        background: transparent !important;
+                        box-shadow: none !important;
+                        border: none !important;
                     }
                     .mediablock {
                         .textblock {
@@ -2559,6 +2566,146 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                     }
                 }
             }
+            .filerow {
+                padding-top: 10px;
+                padding-bottom: 10px;
+                padding-left: 10px;
+                padding-right: 10px;
+                position: relative;
+                .addpicture {
+                    padding-top: 5px;
+                    padding-bottom: 5px;
+                    width: 100%;
+                    cursor: pointer;
+                    font-family: $fontpage;
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 10px;
+                    line-height: 12px;
+                    color: $voilet;
+                    display: flex;
+                    &::after {
+                        content: "";
+                        display: inline-block;
+                        width: 12px;
+                        height: 10px;
+                        background: url(./../img/uploadimage.svg);
+                        background-position: center;
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        margin-left: 10px;
+                    }
+                    &:hover,
+                    &.active {
+                        &::after {
+                            background: url(./../img/uploadimage-a.svg);
+                            background-position: center;
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                        }
+                    }
+                }
+                input[type=file] {
+                    display: none;
+                }
+                .removepicture {
+                    position: absolute;
+                    top: 15px;
+                    right: 15px;
+                    background: url(./../img/minus-grey-a.svg);
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    width: 10px;
+                    height: 10px;
+                    cursor: pointer;
+                }
+            }
+            .bgsettings {
+                display: flex;
+                flex-direction: column;
+                border: 1px solid #EEEFF3;
+                padding: 8px 9px;
+                .opacitybgtext {
+                    padding-top: 5px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    .inputs {
+                        padding-left: 7px;
+                        padding-right: 7px;
+                        width: 55px;
+                        input[type=text] {
+                            width: 45px;
+                            text-align: center;
+                            font-family: $fontpage;
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 8px;
+                            line-height: 10px;
+                            color: #000000;
+                            border: none;
+                            outline: none;
+                        }
+                    }
+                    .labelopacity {
+                        width: calc(100% - 70px);
+                        font-family: $fontpage;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 10px !important;
+                        line-height: 12px !important;
+                        color: #6F6969 !important;
+                    }
+                }
+                .colorpickbgtext {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    .square {
+                        width: 11px;
+                        height: 11px;
+                        background: #000000;
+                        border: 0.5px solid #E2E0E0;
+                    }
+                    .inputs {
+                        padding-left: 7px;
+                        padding-right: 7px;
+                        width: 55px;
+                        input[type=text] {
+                            width: 45px;
+                            text-align: center;
+                            font-family: $fontpage;
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 8px;
+                            line-height: 10px;
+                            color: #000000;
+                            border: none;
+                            outline: none;
+                        }
+                        input[type=color] {
+                            width: 0px;
+                            height: 0px;
+                            opacity: 0;
+                            padding: 0px;
+                            overflow: hidden;
+                            position: absolute;
+                        }
+                    }
+                    .labelcolor {
+                        width: calc(100% - 70px);
+                        label {
+                            font-family: $fontpage;
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 10px !important;
+                            line-height: 12px !important;
+                            color: #6F6969 !important;
+                        }
+                    }
+                }
+            }
             .colorpick {
                 display: flex;
                 align-items: center;
@@ -2569,6 +2716,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                     width: 11px;
                     height: 11px;
                     background: #000000;
+                    border: 0.5px solid #E2E0E0;
                 }
                 .inputs {
                     padding-left: 7px;
@@ -3999,8 +4147,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 .hellopage_options {
     .blocktext {
         border: 1px solid #EEEFF3;
-        .textblock {
-        }
+        // .textblock {
+        // }
     }
     .position {
         display: flex;

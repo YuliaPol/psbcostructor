@@ -1,6 +1,22 @@
 jQuery(function ($) {
     $(document).ready(function () {
 
+        // Restricts input for the set of matched elements to the given inputFilter function.
+        $.fn.inputFilter = function(inputFilter) {
+            return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+                if (inputFilter(this.value)) {
+                this.oldValue = this.value;
+                this.oldSelectionStart = this.selectionStart;
+                this.oldSelectionEnd = this.selectionEnd;
+                } else if (this.hasOwnProperty("oldValue")) {
+                this.value = this.oldValue;
+                this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                } else {
+                this.value = "";
+                }
+            });
+        };
+
         $.datepicker.setDefaults(
             {
             closeText: 'Закрыть',
@@ -101,8 +117,12 @@ jQuery(function ($) {
             $('.centerbox').css('background', value);
         });
 
-        //color set 
 
+        //btn question without bg 
+        if($('.btn-answer').length>0){
+            $('.btn-answer').parents('.question').addClass('nobgtext');
+        }
+        //color set 
         //color 1 level
         $('.centerbox .question .name').css('color', $('.rightside .colorpick1level input[type=color]').val());
         $('.centerbox .question .question-name').css('color', $('.rightside .colorpick1level input[type=color]').val());
@@ -140,11 +160,103 @@ jQuery(function ($) {
 
         //font
         $('.centerbox').addClass('font' + $('.fontselect').val());
-        
+        //bg for text
+        if($('.colorpickbgtext input[type=color]').val() && $('.opacitybgtext').find('input').val()){
+            var value = $('.colorpickbgtext input[type=color]').val();
+            var opacity = parseInt($('.opacitybgtext').find('input').val())/100;
+            var rgbaCol = 'rgba(' + parseInt(value.slice(-6, -4), 16) + ',' + parseInt(value.slice(-4, -2), 16) + ',' + parseInt(value.slice(-2), 16) + ',' + opacity + ')';
+            $('.construcot-container .centerbox .questions-box.bg-image .question').css('background', rgbaCol);
+            $('.construcot-container .centerbox .questions-box.bg-image .question .mediablock .textblock').css('background', rgbaCol);
+            $('.construcot-container .centerbox .questions-box.bg-image .question .answer .dropdown-list .dropdown-block').css('background', rgbaCol);
+        }
+
         //add backgground picture
         $('.page-content').on('click', '.addpicture', function(e){
             $(this).next('input[type=file]').click();
         });
+        //remove background 
+        $('.page-content').on('click', '.filerow .removepicture', function(e){
+            $('.questions-box').css('background-image', '');
+            $('.questions-box').removeClass('bg-image');
+            $('.addpicture').removeClass('active');
+            $('.bgsettings').parents('.form-group').remove();
+        });
+        //change input for file
+        $('.page-content').on('change', '.pictureforpage', function(e){
+            var fileName = e.target.files[0].name;
+            if (e.target.files && e.target.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('.questions-box').css('background-image', 'url(' + e.target.result + ')');
+                    $('.questions-box').addClass('bg-image');
+                }
+                reader.readAsDataURL(e.target.files[0]);
+            }
+            $('.addpicture').addClass('active');
+            $('.addpicture').parents('.filerow').append('<div class="removepicture"></div>');
+            AddSettingsBackground();
+        });
+        function AddSettingsBackground() {
+            var settings = 
+            '<div class="form-group">'
+            +'<div class="bgsettings">'
+            +'    <div class="colorpickbgtext">'
+            +'        <div class="square" style="background: #FEFDFD;"></div>'
+            +'        <div class="inputs">'
+            +'            <input type="color" value="#FEFDFD">'
+            +'            <input type="text" name="background" id="background" value="#FEFDFD">'
+            +'        </div>'
+            +'        <div class="labelcolor">'
+            +'           <label for="background_7">Фон для текста</label>'
+            +'        </div>'
+            +'    </div>'
+            +'    <div class="opacitybgtext">'
+            +'        <div class="inputs">'
+            +'            <input type="text" name="opacity" id="opacity" min="0" max="100" value="50">'
+            +'        </div>'
+            +'        <div class="labelopacity">'
+            +'            Прозрачность'
+            +'        </div>'
+            +'    </div>'
+            +'</div>'
+            +'</div>'
+            $(settings).appendTo('.optionsblock .text-aside');
+            $('.opacitybgtext').find('input').inputFilter(function(value) {
+                return /^\d*$/.test(value) && (value === "" || (parseInt(value) <= 100 && parseInt(value) >= 0));
+            });
+        }
+        //color options level change
+        $('.rightside').on('click', '.colorpickbgtext input[type=text]', function(e){
+            $(this).prev('input').click();
+        });
+        //change bg for text
+        $('.rightside').on('change', '.colorpickbgtext input[type=color]', function(e){
+            $(this).next('input').val($(this).val());
+            var value = $(this).val();
+            $(this).parents('.colorpickbgtext').find('.square').css( 'background', value);
+            var opacity = 0;
+            if($('.opacitybgtext').find('input').val() > 0){
+                opacity = parseInt($('.opacitybgtext').find('input').val())/100;
+            }
+            var rgbaCol = 'rgba(' + parseInt(value.slice(-6, -4), 16) + ',' + parseInt(value.slice(-4, -2), 16) + ',' + parseInt(value.slice(-2), 16) + ',' + opacity + ')';
+            $('.construcot-container .centerbox .questions-box.bg-image .question').css('background', rgbaCol);
+            $('.construcot-container .centerbox .questions-box.bg-image .question .mediablock .textblock').css('background', rgbaCol);
+            $('.construcot-container .centerbox .questions-box.bg-image .question .answer .dropdown-list .dropdown-block').css('background', rgbaCol);
+        });
+        //change bg opacity for text
+        $('.rightside').on('change', '.opacitybgtext input', function(e){
+            var value = $('.colorpickbgtext input[type=color]').val();
+            var opacity = parseInt($(this).val())/100;
+            var rgbaCol = 'rgba(' + parseInt(value.slice(-6, -4), 16) + ',' + parseInt(value.slice(-4, -2), 16) + ',' + parseInt(value.slice(-2), 16) + ',' + opacity + ')';
+            $('.construcot-container .centerbox .questions-box.bg-image .question').css('background', rgbaCol);
+            $('.construcot-container .centerbox .questions-box.bg-image .question .mediablock .textblock').css('background', rgbaCol);
+            $('.construcot-container .centerbox .questions-box.bg-image .question .answer .dropdown-list .dropdown-block').css('background', rgbaCol);
+        });
+
+        $('.opacitybgtext').find('input').inputFilter(function(value) {
+            return /^\d*$/.test(value) && (value === "" || (parseInt(value) <= 100 && parseInt(value) >= 0));
+        });
+
         $.fn.removeClassPrefix = function(prefix) {
             this.each(function(i, el) {
                 var classes = el.className.split(" ").filter(function(c) {
@@ -292,21 +404,6 @@ jQuery(function ($) {
                 }
             }
         }
-        // Restricts input for the set of matched elements to the given inputFilter function.
-        $.fn.inputFilter = function(inputFilter) {
-            return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
-                if (inputFilter(this.value)) {
-                this.oldValue = this.value;
-                this.oldSelectionStart = this.selectionStart;
-                this.oldSelectionEnd = this.selectionEnd;
-                } else if (this.hasOwnProperty("oldValue")) {
-                this.value = this.oldValue;
-                this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
-                } else {
-                this.value = "";
-                }
-            });
-        };
 
         $('.questions-box .ranging-list').sortable({});
 
