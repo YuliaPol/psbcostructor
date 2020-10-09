@@ -1297,10 +1297,9 @@ jQuery(function ($) {
         $('.rightside').on('change , keypress, keydown, keyup', '.branching-group input[type=text]', function(e){
             var idQuestion = $(this).attr('name').split('_')[1];
             var idPoint = parseInt($(this).attr('name').split('_')[2]);
-            var idSubPoint = parseInt($(this).attr('name').split('_')[3]);
-            if(idQuestion && idPoint && idSubPoint){
-                if($('#questionbrnaching_'+ idQuestion).find('.branching-group:nth-child('+ idPoint + ') .question-group .branching-question:nth-child('+ idSubPoint + ')').find('.name').length>0){
-                    $('#questionbrnaching_'+ idQuestion).find('.branching-group:nth-child('+ idPoint + ') .question-group .branching-question:nth-child('+ idSubPoint + ')').find('.name').html($(this).val());
+            if(idQuestion && idPoint ){
+                if($('#questionbrnaching_'+ idQuestion).find('.branching-group:nth-child('+ idPoint + ') .question-group .branching-question').find('.name').length>0){
+                    $('#questionbrnaching_'+ idQuestion).find('.branching-group:nth-child('+ idPoint + ') .question-group .branching-question').find('.name').html($(this).val());
                 }
             }
         });
@@ -1601,7 +1600,7 @@ jQuery(function ($) {
                     +'      value="'+ text + '">'
                     +'  <div class="branching-list">'
                     +'    <div class="branching-group">'
-                    +'        <input type="text" name="branchingpoint_' + id + '_'+ index + '_1" id="branchingpoint_' + id + '_'+ index + '_1" placeholder="Введите вопрос">'
+                    +'        <input type="text" name="branchingpoint_' + id + '_'+ index + '" id="branchingpoint_' + id + '_'+ index + '" placeholder="Введите вопрос">'
                     +'    </div>'
                     +'  </div>'
                     +'</div>';
@@ -1641,6 +1640,7 @@ jQuery(function ($) {
                 var el =
                 '<div class="subquestion branchingquestion" data-optionid="' + id + '">'
                 +'    <div class="close-question"></div>'
+                +'       <div class="name">Ветвление ответа</div>'
                 +'    <div class="answer" id="questionbrnaching_' + id + '">'
                 +      answerstr
                 +'    </div>'
@@ -1654,6 +1654,7 @@ jQuery(function ($) {
                     var el = 
                     '<div class="subquestion branchingquestion" data-optionid="' + id + '">'
                     +'    <div class="close-question"></div>'
+                    +'       <div class="name">Ветвление ответа</div>'
                     +'    <div class="answer" id="questionbrnaching_' + id + '">'
                     +'        <div class="branching-group">'
                     +'            <div class="group-name">1-5</div>'
@@ -1723,7 +1724,7 @@ jQuery(function ($) {
                     +'                        type="text" value="1-5">'
                     +'                    <div class="branching-list">'
                     +'                       <div class="branching-group">'
-                    +'                            <input type="text" name="branchingpoint_' + id + '_1_1" id="branchingpoint_' + id + '_1_1" placeholder="Введите вопрос">'
+                    +'                            <input type="text" name="branchingpoint_' + id + '_1" id="branchingpoint_' + id + '_1" placeholder="Введите вопрос">'
                     +'                      </div>'
                     +'                    </div>'
                     +'                </div>'
@@ -1732,7 +1733,7 @@ jQuery(function ($) {
                     +'                       type="text" value="6-10">'
                     +'                  <div class="branching-list">'
                     +'                       <div class="branching-group">'
-                    +'                            <input type="text" name="branchingpoint_' + id + '_2_1" id="branchingpoint_' + id + '_2_1" placeholder="Введите вопрос">'
+                    +'                            <input type="text" name="branchingpoint_' + id + '_2" id="branchingpoint_' + id + '_2" placeholder="Введите вопрос">'
                     +'                      </div>'
                     +'                   </div>'
                     +'               </div>'
@@ -1747,6 +1748,7 @@ jQuery(function ($) {
                     var el = 
                     '<div class="subquestion branchingquestion" data-optionid="' + id + '">'
                     +'    <div class="close-question"></div>'
+                    +'       <div class="name">Ветвление ответа</div>'
                     +'    <div class="answer" id="questionbrnaching_' + id + '">'
                     +'        <div class="branching-group">'
                     +'            <div class="group-name">1-2</div>'
@@ -1811,7 +1813,7 @@ jQuery(function ($) {
                     +'                        type="text" value="1-2">'
                     +'                    <div class="branching-list">'
                     +'                       <div class="branching-group">'
-                    +'                            <input type="text" name="branchingpoint_' + id + '_1_1" id="branchingpoint_' + id + '_1_1" placeholder="Введите вопрос">'
+                    +'                            <input type="text" name="branchingpoint_' + id + '_1 id="branchingpoint_' + id + '_1" placeholder="Введите вопрос">'
                     +'                      </div>'
                     +'                    </div>'
                     +'                </div>'
@@ -1820,7 +1822,7 @@ jQuery(function ($) {
                     +'                       type="text" value="3-5">'
                     +'                  <div class="branching-list">'
                     +'                       <div class="branching-group">'
-                    +'                            <input type="text" name="branchingpoint_' + id + '_2_1" id="branchingpoint_' + id + '_2_1" placeholder="Введите вопрос">'
+                    +'                            <input type="text" name="branchingpoint_' + id + '_2" id="branchingpoint_' + id + '_2" placeholder="Введите вопрос">'
                     +'                      </div>'
                     +'                   </div>'
                     +'               </div>'
@@ -1909,7 +1911,7 @@ jQuery(function ($) {
                             +'    <input class="branching_points" readonly name="groupname_'+ id + '_' + currentId +'" id="groupname_'+ id + '_' + currentId +'" type="text" placeholder="Вариант ответа">'
                             +'    <div class="branching-list">'
                             +'        <div class="branching-group">'
-                            +'            <input type="text" name="branchingpoint_'+ id + '_' + currentId +'_1" id="branchingpoint_'+ id + '_' + currentId +'_1" placeholder="Введите вопрос">'
+                            +'            <input type="text" name="branchingpoint_'+ id + '_' + currentId +'" id="branchingpoint_'+ id + '_' + currentId +'" placeholder="Введите вопрос">'
                             +'      </div>'
                             +'  </div>'
                             +'</div>';
@@ -2374,7 +2376,7 @@ jQuery(function ($) {
                         +'    <input class="branching_points" readonly name="groupname_'+ id + '_' + currentId +'" id="groupname_'+ id + '_' + currentId +'" type="text" placeholder="Вариант ответа">'
                         +'    <div class="branching-list">'
                         +'        <div class="branching-group">'
-                        +'            <input type="text" name="branchingpoint_'+ id + '_' + currentId +'_1" id="branchingpoint_'+ id + '_' + currentId +'_1" placeholder="Введите вопрос">'
+                        +'            <input type="text" name="branchingpoint_'+ id + '_' + currentId +'" id="branchingpoint_'+ id + '_' + currentId +'" placeholder="Введите вопрос">'
                         +'      </div>'
                         +'  </div>'
                         +'</div>';
@@ -2391,12 +2393,9 @@ jQuery(function ($) {
             var prevNameInput = $(this).prev('.branching_points').attr('id').split('_');
             var questionId =  prevNameInput[1];
             var questionPointsId =  parseInt(prevNameInput[2]);
-            var questionSubPointsId =  parseInt(subPoints.length) + 1;
-            if(questionSubPointsId<2)
-            {
                 var el = 
                 '<div class="branching-group">'
-                +'    <input type="text" name="branchingpoint_'+ questionId + '_' + questionPointsId +'_' + questionSubPointsId + '" id="branchingpoint_'+ questionId + '_' + questionPointsId +'_' + questionSubPointsId + '">'
+                +'    <input type="text" name="branchingpoint_'+ questionId + '_' + questionPointsId + '" id="branchingpoint_'+ questionId + '_' + questionPointsId + '">'
                 +'    <div class="deleteSubPoint"></div>'
                 +'</div>';
                 $(this).next('.branching-list').append(el);
@@ -2411,8 +2410,8 @@ jQuery(function ($) {
                 +'    </div>'
                 +'    <div class="hidden-question-answer">'
                 +'        <div class="form-group">'
-                +'            <input type="text" name="hiddenquestionanswer_'+ questionId + '_' + questionPointsId +'_' + questionSubPointsId + '"'
-                +'                id="hiddenquestionanswer_'+ questionId + '_' + questionPointsId +'_' + questionSubPointsId + '" placeholder="Ваш ответ">'
+                +'            <input type="text" name="hiddenquestionanswer_'+ questionId + '_' + questionPointsId + '"'
+                +'                id="hiddenquestionanswer_'+ questionId + '_' + questionPointsId  + '" placeholder="Ваш ответ">'
                 +'        </div>'
                 +'    </div>'
                 +'</div> '
@@ -2423,11 +2422,6 @@ jQuery(function ($) {
                 else {
                     console.log("Branching Error");
                 }
-            }
-            else {
-                $('#modal-error').find('.text').html('Вы можете добавить не более 1 ветвление');
-                $('.modal').fadeIn(300);
-            }
         });
 
         //delete subpoints
@@ -2535,7 +2529,7 @@ jQuery(function ($) {
                     +'    <input class="branching_points" readonly name="groupname_'+ id + '_' + currentId +'" id="groupname_'+ id + '_' + currentId +'" type="text" placeholder="Вариант ответа">'
                     +'    <div class="branching-list">'
                     +'        <div class="branching-group">'
-                    +'            <input type="text" name="branchingpoint_'+ id + '_' + currentId +'_1" id="branchingpoint_'+ id + '_' + currentId +'_1" placeholder="Введите вопрос">'
+                    +'            <input type="text" name="branchingpoint_'+ id + '_' + currentId +'" id="branchingpoint_'+ id + '_' + currentId +'" placeholder="Введите вопрос">'
                     +'      </div>'
                     +'  </div>'
                     +'</div>';
@@ -2598,7 +2592,7 @@ jQuery(function ($) {
                     +'    <input class="branching_points" readonly name="groupname_'+ id + '_' + currentId +'" id="groupname_'+ id + '_' + currentId +'" type="text" placeholder="Вариант ответа">'
                     +'    <div class="branching-list">'
                     +'        <div class="branching-group">'
-                    +'            <input type="text" name="branchingpoint_'+ id + '_' + currentId +'_1" id="branchingpoint_'+ id + '_' + currentId +'_1" placeholder="Введите вопрос">'
+                    +'            <input type="text" name="branchingpoint_'+ id + '_' + currentId +'" id="branchingpoint_'+ id + '_' + currentId +'" placeholder="Введите вопрос">'
                     +'      </div>'
                     +'  </div>'
                     +'</div>';
@@ -3053,6 +3047,7 @@ jQuery(function ($) {
                 el =
                 '<div class="question branchingquestion active" data-optionid="'+ id +'">'
                 +'    <div class="close-question"></div>'
+                +'       <div class="name">Ветвление ответа</div>'
                 +'    <div class="name " id="questionName_'+ id +'">'
                 +'        Ветвление'
                 +'    </div>'
@@ -4149,7 +4144,7 @@ jQuery(function ($) {
                             +'    <input class="branching_points" readonly name="groupname_'+ id + '_' + currentId +'" id="groupname_'+ id + '_' + currentId +'" type="text" placeholder="Вариант ответа">'
                             +'    <div class="branching-list">'
                             +'        <div class="branching-group">'
-                            +'            <input type="text" name="branchingpoint_'+ id + '_' + currentId +'_1" id="branchingpoint_'+ id + '_' + currentId +'_1" placeholder="Введите вопрос">'
+                            +'            <input type="text" name="branchingpoint_'+ id + '_' + currentId +'" id="branchingpoint_'+ id + '_' + currentId +'" placeholder="Введите вопрос">'
                             +'      </div>'
                             +'  </div>'
                             +'</div>';

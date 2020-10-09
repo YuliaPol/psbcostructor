@@ -2766,9 +2766,13 @@ table {
 }
 
 .construcot-container .centerbox .questions-box .question .hidden-question .name,
+.construcot-container .centerbox .questions-box .question .hidden-question .branching-name,
 .construcot-container .centerbox .questions-box .question .branching-question .name,
+.construcot-container .centerbox .questions-box .question .branching-question .branching-name,
 .construcot-container .centerbox .questions-box .subquestion .hidden-question .name,
-.construcot-container .centerbox .questions-box .subquestion .branching-question .name {
+.construcot-container .centerbox .questions-box .subquestion .hidden-question .branching-name,
+.construcot-container .centerbox .questions-box .subquestion .branching-question .name,
+.construcot-container .centerbox .questions-box .subquestion .branching-question .branching-name {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 600;
