@@ -1186,6 +1186,11 @@ table {
   width: calc(100% - 340px);
 }
 
+.construcot-container .centerbox.full-width .questions-box .subquestion .answer {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
 .construcot-container .centerbox.full-width .questions-box .question:hover,
 .construcot-container .centerbox.full-width .questions-box .subquestion:hover {
   background: inherit;
@@ -2730,6 +2735,7 @@ table {
   margin-right: -20px;
   padding-left: 30px;
   padding-right: 30px;
+  padding-left: 50px;
 }
 
 .construcot-container .centerbox .questions-box .question .hidden-question-group,
@@ -2755,7 +2761,7 @@ table {
 
 .construcot-container .centerbox .questions-box .question .branching-group .branching-question,
 .construcot-container .centerbox .questions-box .subquestion .branching-group .branching-question {
-  padding-left: 15px;
+  padding-left: 0px;
 }
 
 .construcot-container .centerbox .questions-box .question .hidden-question,

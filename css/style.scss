@@ -890,6 +890,12 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
         &.full-width {
             width: calc(100% - 340px);
             .questions-box {
+                .subquestion {
+                    .answer {
+                        padding-left: 0px;
+                        padding-right: 0px;
+                    }
+                }
                 .question,
                 .subquestion {
                     &:hover {
@@ -1518,6 +1524,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                     margin-right: -20px;
                     padding-left: 30px;
                     padding-right: 30px;
+                    padding-left: 50px;
                 }
                 .hidden-question-group {
                     display: none;
@@ -1534,7 +1541,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                         color: #4D4D4D;
                     }
                     .branching-question {
-                        padding-left: 15px;
+                        padding-left: 0px;
                     }
                 }
                 .hidden-question,
