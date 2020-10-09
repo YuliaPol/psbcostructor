@@ -1471,6 +1471,37 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
         .questions-box {
             width: 100%;
             min-height: calc(100% - 104px);
+            &.bg-image {
+                background-position: center;
+                background-attachment: fixed;
+                background-size: cover;
+                padding-top: 30px;
+                padding-bottom: 30px;
+                padding-right: 30px;
+                padding-left: 200px;
+                .question {
+                    background: rgba(255, 255, 255, 0.5);
+                    border: 1px solid #AEAEAE;
+                    box-sizing: border-box;
+                    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+                    margin-bottom: 20px;
+                    &:hover {
+                        background: rgba(255, 255, 255, 0.5);
+                    }
+                    .mediablock {
+                        .textblock {
+                            background: rgba(255, 255, 255, 0.5);
+                        }
+                    }
+                    .answer {
+                        .dropdown-list {
+                            .dropdown-block {
+                                background: rgba(255, 255, 255, 0.5);
+                            }
+                        }
+                    }
+                }
+            }
             .question {
                 padding: 15px 20px;
                 position: relative;
