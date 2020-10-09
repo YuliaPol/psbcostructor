@@ -140,7 +140,11 @@ jQuery(function ($) {
 
         //font
         $('.centerbox').addClass('font' + $('.fontselect').val());
-
+        
+        //add backgground picture
+        $('.page-content').on('click', '.addpicture', function(e){
+            $(this).next('input[type=file]').click();
+        });
         $.fn.removeClassPrefix = function(prefix) {
             this.each(function(i, el) {
                 var classes = el.className.split(" ").filter(function(c) {
