@@ -78,6 +78,21 @@
                                 </div>
                                 <div class="preview-picture"></div>
                              </div>
+                            <div class="drag dragtext text1level" style="left: 20px; top: 20px;">
+                                <div class="text">Header</div>
+                            </div>
+                            <!-- <div class="drag dragbtn" style="top: 20px; left: 20px;">
+                                <div class="btn-cont" style="text-align: center;">
+                                    <button class="btn" type="submit"
+                                        style="
+                                        background: #F26126;
+                                        width: 150px;
+                                        height: 36px;
+                                        border-radius: 30px;">
+                                        Пройти опрос
+                                    </button>
+                                </div>
+                            </div> -->
                             <!-- <div class="drag dragimage">
                                 <div class="remove-picture "></div>
                                 <input type="hidden" name="picture" value="562">
@@ -100,198 +115,176 @@
                                 <input type="file" id="fileInput" name="pictures[]" class="realfileinput pictureforpage" />
                             </div>
                             <div class="text-aside">
-                                <p class="pad-bt-15">Текст</p>
-                                <div class="position position-text">
-                                    <div class="left">
-                                        <input type="radio" value="left" name="settings_1" id="settingsposition_1" checked>
-                                        <label for="settingsposition_1"> 
-                                        </label>
+                                <div class="textasettings">
+                                    <p class="pad-bt-15">Текст</p>
+                                    <div class="position position-text">
+                                        <div class="left">
+                                            <input type="radio" value="left" name="settings_1" id="settingsposition_1" checked>
+                                            <label for="settingsposition_1"> 
+                                            </label>
+                                        </div>
+                                        <div class="center">
+                                            <input type="radio" value="center" name="settings_1" id="settingsposition_2">
+                                            <label for="settingsposition_2">
+                                            </label>
+                                        </div>
+                                        <div class="right">
+                                            <input type="radio" value="right" name="settings_1" id="settingsposition_3">
+                                            <label for="settingsposition_3">
+                                            </label>
+                                        </div>
                                     </div>
-                                    <div class="center">
-                                        <input type="radio" value="center" name="settings_1" id="settingsposition_2">
-                                        <label for="settingsposition_2">
-                                        </label>
+                                    <div class="form-group">
+                                        <select name="settings_2" class="customselect fontselect">
+                                            <option value="Montserrat">Montserrat</option>
+                                            <option value="Arial">Arial</option>
+                                            <option value="Tahoma">Tahoma</option>
+                                            <option value="Lucida">Lucida</option>
+                                            <option value="Courier">Courier</option>
+                                            <option value="Georgia">Georgia</option>
+                                            <option value="TimesNewRoman">Times New Roman</option>
+                                            <option value="Roboto">Roboto</option>
+                                            <option value="Tahoma">Tahoma</option>
+                                            <option value="OpenSans">Open Sans</option>
+                                            <option value="Piazzolla">Piazzolla</option>
+                                            <option value="Oswald">Oswald</option>
+                                            <option value="Ubuntu">Ubuntu</option>
+                                            <option value="NotoSans">Noto Sans</option>
+                                            <option value="PTSans">PT Sans</option>
+                                            <option value="Lora">Lora</option>
+                                        </select> 
                                     </div>
-                                    <div class="right">
-                                        <input type="radio" value="right" name="settings_1" id="settingsposition_3">
-                                        <label for="settingsposition_3">
-                                        </label>
+                                    <div class="form-group">
+                                        <input type="hidden" name="text1leveltop">
+                                        <input type="hidden" name="text1levelleft">
+                                        <input type="hidden" name="text1levelwidth">
+                                        <input type="hidden" name="text1levelheight">
+                                        <div class="blocktext">
+                                            <div class="colorpick colorpick1level">
+                                                <div class="square" style="background: #4D4D4D;"></div>
+                                                <div class="inputs">
+                                                    <input type="color" value="#4D4D4D">
+                                                    <input type="text" name="color1" id="color1" value="#4D4D4D">
+                                                </div>
+                                                <div class="labelcolor">
+                                                   <label for="color1">Текст первого уровня</label>
+                                                </div>
+                                            </div>
+                                            <div class="fontsize smallselect-wrapper">
+                                                <select name="fontsize1" class="customselect font1size ">
+                                                    <option value="50" selected>50</option>
+                                                    <option value="44">44</option>
+                                                    <option value="36">36</option>
+                                                    <option value="28">28</option>
+                                                    <option value="24">24</option>
+                                                    <option value="18">18</option>
+                                                </select>
+                                            </div>
+                                            <div class="textblock">
+                                                <textarea name="textleve1" class="textlevel1" placeholder="Введите текст"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group secondtextgroup">
+                                        <input type="hidden" class="secondtexttop" name="secondtexttop_1">
+                                        <input type="hidden" class="secondtextleft" name="secondtextleft_1">
+                                        <input type="hidden" class="secondtextwidth" name="secondtextwidth_1">
+                                        <input type="hidden" class="secondtextheight" name="secondtextheight_1">
+                                        <div class="top-col">
+                                            <div class="addsecondtext"></div>
+                                            <div class="removesecondtext"></div>
+                                        </div>
+                                        <div class="blocktext">
+                                            <div class="colorpick colorpicksecond">
+                                                <div class="square" style="background: #4D4D4D;"></div>
+                                                <div class="inputs">
+                                                    <input type="color" value="#4D4D4D">
+                                                    <input type="text" name="colorsecond_1" id="colorsecond_1" value="#4D4D4D">
+                                                </div>
+                                                <div class="labelcolor">
+                                                   <label for="colorsecond_1">Текст второго уровня</label>
+                                                </div>
+                                            </div>
+                                            <div class="fontsize smallselect-wrapper">
+                                                <select name="fontsizesecond_1" class="customselect fontsecondsize ">
+                                                    <option value="44">44</option>
+                                                    <option value="36">36</option>
+                                                    <option value="36">32</option>
+                                                    <option value="28" selected>28</option>
+                                                    <option value="28">26</option>
+                                                    <option value="24">24</option>
+                                                    <option value="18">18</option>
+                                                    <option value="18">16</option>
+                                                    <option value="18">14</option>
+                                                    <option value="18">12</option>
+                                                </select>
+                                            </div>
+                                            <div class="textblock">
+                                                <textarea name="textlevesecond_1" class="textlevelsecond" placeholder="Введите текст"></textarea>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <select name="settings_2" class="customselect fontselect">
-                                        <option value="Montserrat">Montserrat</option>
-                                        <option value="Arial">Arial</option>
-                                        <option value="Tahoma">Tahoma</option>
-                                        <option value="Lucida">Lucida</option>
-                                        <option value="Courier">Courier</option>
-                                        <option value="Georgia">Georgia</option>
-                                        <option value="TimesNewRoman">Times New Roman</option>
-                                        <option value="Roboto">Roboto</option>
-                                        <option value="Tahoma">Tahoma</option>
-                                        <option value="OpenSans">Open Sans</option>
-                                        <option value="Piazzolla">Piazzolla</option>
-                                        <option value="Oswald">Oswald</option>
-                                        <option value="Ubuntu">Ubuntu</option>
-                                        <option value="NotoSans">Noto Sans</option>
-                                        <option value="PTSans">PT Sans</option>
-                                        <option value="Lora">Lora</option>
-                                    </select> 
-                                </div>
-                                <div class="form-group">
-                                    <div class="blocktext">
-                                        <div class="colorpick colorpick1level">
-                                            <div class="square" style="background: #4D4D4D;"></div>
-                                            <div class="inputs">
-                                                <input type="color" value="#4D4D4D">
-                                                <input type="text" name="color1_3" id="color1_3" value="#4D4D4D">
-                                            </div>
-                                            <div class="labelcolor">
-                                               <label for="color1_3">Текст первого уровня</label>
-                                            </div>
-                                        </div>
-                                        <div class="fontsize smallselect-wrapper">
-                                            <select name="fontsize1" class="customselect font1size ">
-                                                <option value="50" selected>50</option>
-                                                <option value="44">44</option>
-                                                <option value="36">36</option>
-                                                <option value="28">28</option>
-                                                <option value="24">24</option>
-                                                <option value="18">18</option>
-                                            </select>
-                                        </div>
-                                        <div class="textblock">
-                                            <textarea name="textleve1" class="textlevel1" placeholder="Введите текст"></textarea>
-                                        </div>
+                                <div class="btn-options">
+                                    <div class="btn-top-col">
+                                        <p>Кнопка</p>
+                                        <div class="btn-add"></div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="blocktext">
-                                        <div class="colorpick colorpick1level">
-                                            <div class="square" style="background: #4D4D4D;"></div>
-                                            <div class="inputs">
-                                                <input type="color" value="#4D4D4D">
-                                                <input type="text" name="color1_3" id="color1_3" value="#4D4D4D">
+                                    <div class="btn-options-group">
+                                            <input type="hidden" name="pbtntop">
+                                            <input type="hidden" name="pbtnleft">
+                                            <input type="hidden" name="pbtnwidth">
+                                            <input type="hidden" name="pbtnheight">
+                                        <div class="position">
+                                            <div class="left">
+                                                <input type="radio" value="left" name="btnposition" id="btnposition_1">
+                                                <label for="btnposition_1">
+                                                </label>
                                             </div>
-                                            <div class="labelcolor">
-                                               <label for="color1_3">Текст второго уровня</label>
+                                            <div class="center">
+                                                <input type="radio" value="center" name="btnposition" id="btnposition_2" checked>
+                                                <label for="btnposition_2">
+                                                </label>
+                                            </div>
+                                            <div class="right">
+                                                <input type="radio" value="right" name="btnposition" id="btnposition_3">
+                                                <label for="btnposition_3">
+                                                </label>
                                             </div>
                                         </div>
-                                        <div class="fontsize smallselect-wrapper">
-                                            <select name="fontsize1" class="customselect font1size ">
-                                                <option value="50" selected>50</option>
-                                                <option value="44">44</option>
-                                                <option value="36">36</option>
-                                                <option value="28">28</option>
-                                                <option value="24">24</option>
-                                                <option value="18">18</option>
-                                            </select>
+                                        <div class="row-options">
+                                            <div class="optionbtngroup">
+                                                <label for="btnwidth">W</label>
+                                                <input class="btnwidth" type="text"  name="btnwidth"  id="btnwidth" value="150">
+                                            </div>
+                                            <div class="optionbtngroup">
+                                                <label for="inputpoint_1_3">H</label>
+                                                <input class="btnheight" type="text"  name="btnheight"  id="btnheight" value="36">
+                                            </div>
                                         </div>
-                                        <div class="textblock">
-                                            <textarea name="textleve1" class="textlevel1" placeholder="Введите текст"></textarea>
+                                        <div class="row-options">
+                                            <div class="optionbtngroup">
+                                                <label for="inputpoint_1_4">
+                                                    <div class="radius"></div>
+                                                </label>
+                                                <input class="btnradius" type="text"  name="btnradius"  id="btnradius" value="30">
+                                            </div>
+                                            <div class="optionbtngroup">
+                                                <label for="inputpoint_1_5">
+                                                    <div class="color"
+                                                    style="background: #F26126"></div>
+                                                </label>
+                                                <input type="color" class="hiddeninput hiddeninputcolor" value="#F26126">
+                                                <input class="btncolor" type="text"  name="btncolor"  id="btncolor" value="#F26126">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="btnname">Текст кнопки</label>
+                                            <input class="btn_name" name="btnname" id="btnname" value="Пройти опрос">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="text-aside">
-                                <div class="position position-text">
-                                    <div class="left">
-                                        <input type="radio" value="left" name="settings_1" id="settingsposition_1" checked>
-                                        <label for="settingsposition_1"> 
-                                        </label>
-                                    </div>
-                                    <div class="center">
-                                        <input type="radio" value="center" name="settings_1" id="settingsposition_2">
-                                        <label for="settingsposition_2">
-                                        </label>
-                                    </div>
-                                    <div class="right">
-                                        <input type="radio" value="right" name="settings_1" id="settingsposition_3">
-                                        <label for="settingsposition_3">
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <select name="settings_2" class="customselect fontselect">
-                                        <option value="Montserrat">Montserrat</option>
-                                        <option value="Arial">Arial</option>
-                                        <option value="Tahoma">Tahoma</option>
-                                        <option value="Lucida">Lucida</option>
-                                        <option value="Courier">Courier</option>
-                                        <option value="Georgia">Georgia</option>
-                                        <option value="TimesNewRoman">Times New Roman</option>
-                                        <option value="Roboto">Roboto</option>
-                                        <option value="Tahoma">Tahoma</option>
-                                        <option value="OpenSans">Open Sans</option>
-                                        <option value="Piazzolla">Piazzolla</option>
-                                        <option value="Oswald">Oswald</option>
-                                        <option value="Ubuntu">Ubuntu</option>
-                                        <option value="NotoSans">Noto Sans</option>
-                                        <option value="PTSans">PT Sans</option>
-                                        <option value="Lora">Lora</option>
-                                    </select> 
-                                </div>
-                                <div class="form-group">
-                                    <div class="colorpick colorpick1level">
-                                        <div class="square" style="background: #000000;"></div>
-                                        <div class="inputs">
-                                            <input type="color" value="#000000">
-                                            <input type="text" name="settings_3" id="settings_3" value="#000000">
-                                        </div>
-                                        <div class="labelcolor">
-                                           <label for="settings_3">Текст первого уровня</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="colorpick colorpick2level">
-                                        <div class="square" style="background: #37353F;"></div>
-                                        <div class="inputs">
-                                            <input type="color" value="#37353F">
-                                            <input type="text" name="settings_4" id="settings_4" value="#37353F">
-                                        </div>
-                                        <div class="labelcolor">
-                                           <label for="settings_4">Текст второго уровня</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="colorpick colorpickselect">
-                                        <div class="square" style="background: #C4C4C4;"></div>
-                                        <div class="inputs">
-                                            <input type="color" value="#C4C4C4">
-                                            <input type="text" name="settings_5" id="settings_5" value="#C4C4C4">
-                                        </div>
-                                        <div class="labelcolor">
-                                           <label for="settings_5">Поле выбора</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="colorpick colorpickinput">
-                                        <div class="square" style="background: #A4A2A2;"></div>
-                                        <div class="inputs">
-                                            <input type="color" value="#A4A2A2">
-                                            <input type="text" name="settings_6" id="settings_6" value="#A4A2A2">
-                                        </div>
-                                        <div class="labelcolor">
-                                           <label for="settings_6">Поле ввода</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="colorpick colorpickbackground">
-                                        <div class="square" style="background: #FEFDFD;"></div>
-                                        <div class="inputs">
-                                            <input type="color" value="#FEFDFD">
-                                            <input type="text" name="settings_7" id="settings_7" value="#FEFDFD">
-                                        </div>
-                                        <div class="labelcolor">
-                                           <label for="settings_7">Фон</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
                     <div class="btn-wrapper">

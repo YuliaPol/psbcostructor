@@ -4577,6 +4577,7 @@ table {
   -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  position: relative;
 }
 
 .construcot-container .rightside::-webkit-scrollbar-track {
@@ -7118,6 +7119,36 @@ table {
   background-repeat: no-repeat;
 }
 
+.hellopahecontainer .dragbtn {
+  border: 1px dashed #9A9797;
+  overflow: hidden;
+  max-width: calc(100% - 40px);
+  max-height: calc(100% - 40px);
+  padding: 5px;
+}
+
+.hellopahecontainer .dragbtn .btn {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  outline: none;
+  border: none;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 18px;
+  color: #FFFFFF;
+  overflow: hidden;
+  max-width: 100%;
+  pointer-events: none;
+}
+
 .hellopahecontainer .dragimage {
   border: 1px dashed #9A9797;
   max-width: 100%;
@@ -7162,10 +7193,20 @@ table {
   font-style: normal;
   font-weight: bold;
   font-size: 50px;
-  line-height: 40px;
+  line-height: 1.2em;
   text-transform: uppercase;
   color: #4D4D4D;
   padding: 10px;
+}
+
+.hellopahecontainer .dragtext.textsecond .text {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 25px;
+  line-height: 1.2em;
+  color: #5722DE;
+  padding: 5px;
 }
 
 .hellopahecontainer .drag {
@@ -7211,24 +7252,106 @@ table {
           justify-content: center;
 }
 
-.hellopahecontainer .ui-resizable-n {
-  cursor: url(./../img/resizearrow.svg), auto;
-}
-
-.hellopahecontainer .ui-resizable-e {
-  cursor: url(./../img/resizearrow.svg), auto;
-}
-
-.hellopahecontainer .ui-resizable-s {
-  cursor: url(./../img/resizearrow.svg), auto;
-}
-
-.hellopahecontainer .ui-resizable-w {
-  cursor: url(./../img/resizearrow.svg), auto;
-}
-
 .pad-bt-15 {
   padding-bottom: 15px;
+}
+
+.hellopage_options .form-group {
+  padding-bottom: 5px !important;
+}
+
+.hellopage_options .btn-top-col {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+
+.hellopage_options .btn-top-col .btn-remove {
+  height: 10px;
+  width: 20px;
+  background: url(./../img/minus-grey-a.svg);
+  -webkit-background-size: 10px 10px;
+          background-size: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.hellopage_options .btn-top-col .btn-add {
+  height: 10px;
+  width: 20px;
+  background: url(./../img/grey-plus-a.svg);
+  -webkit-background-size: 10px 10px;
+          background-size: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.hellopage_options .textasettings::after {
+  content: "";
+  display: block;
+  width: calc(100% + 20px);
+  height: 1px;
+  margin-left: -10px;
+  margin-right: -10px;
+  background: #EEEFF3;
+}
+
+.hellopage_options .top-col {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding-bottom: 5px;
+}
+
+.hellopage_options .top-col.flex-btwn {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.hellopage_options .top-col .addsecondtext {
+  height: 10px;
+  width: 20px;
+  background: url(./../img/grey-plus-a.svg);
+  -webkit-background-size: 10px 10px;
+          background-size: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.hellopage_options .top-col .removesecondtext {
+  height: 10px;
+  width: 20px;
+  background: url(./../img/minus-grey-a.svg);
+  -webkit-background-size: 10px 10px;
+          background-size: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
 }
 
 .hellopage_options .blocktext {
@@ -8084,6 +8207,8 @@ html .ui-button.ui-state-disabled:active {
   border: none;
   padding-left: 30px;
   position: relative;
+  font-size: 8px;
+  line-height: 10px;
 }
 
 .smallselect-wrapper .select-options {
@@ -8092,6 +8217,32 @@ html .ui-button.ui-state-disabled:active {
   width: 40px;
   border-left: none;
   border-right: none;
+  max-height: 140px;
+  overflow-y: scroll;
+}
+
+.smallselect-wrapper .select-options::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+          box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  background-color: #F5F5F5;
+}
+
+.smallselect-wrapper .select-options::-webkit-scrollbar {
+  width: 2px;
+  background-color: #F5F5F5;
+}
+
+.smallselect-wrapper .select-options::-webkit-scrollbar-thumb {
+  border-radius: 0px 2px 2px 0px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+          box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #4449DB;
+}
+
+.smallselect-wrapper .select-options li {
+  font-size: 8px;
+  line-height: 10px;
 }
 
 .col-phone .intl-tel-input .flag-dropdown .selected-flag .down-arrow {

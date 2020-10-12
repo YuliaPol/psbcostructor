@@ -46,7 +46,6 @@ jQuery(function ($) {
             $('.centerbox').addClass(className);
         });
 
-
         //font change
         $('.rightside').on('change', '.fontselect', function(e){
             var className = "font" + $(this).val();
@@ -58,7 +57,6 @@ jQuery(function ($) {
         $('.rightside').on('click', '.colorpick input[type=text]', function(e){
             $(this).prev('input').click();
         });
-
         $('.rightside').on('click', '.colorpick .square', function(e){
             $(this).parents('.colorpick').find('input[type=color]').click();
         });
