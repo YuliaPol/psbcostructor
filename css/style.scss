@@ -890,8 +890,14 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
         &.full-width {
             width: calc(100% - 340px);
             .questions-box {
-                transition: background 0.3s ease-in;
-                .question {
+                .subquestion {
+                    .answer {
+                        padding-left: 0px;
+                        padding-right: 0px;
+                    }
+                }
+                .question,
+                .subquestion {
                     &:hover {
                         background: inherit;
                         box-shadow: none;
@@ -1549,12 +1555,36 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                         opacity: 1;
                     }
                 }
+                .subquestion {
+                    margin-left: -20px;
+                    margin-right: -20px;
+                    padding-left: 30px;
+                    padding-right: 30px;
+                    padding-left: 50px;
+                }
                 .hidden-question-group {
                     display: none;
                 }
-                .hidden-question {
+                .branching-group {
+                    padding-bottom: 15px;
+                    .group-name {
+                        width: 100%;
+                        font-family: "Montserrat";
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 14px;
+                        line-height: 18px;
+                        color: #4D4D4D;
+                    }
+                    .branching-question {
+                        padding-left: 0px;
+                    }
+                }
+                .hidden-question,
+                .branching-question {
                     padding: 10px;
-                    .name {
+                    .name,
+                    .branching-name {
                         font-family: $fontpage;
                         font-style: normal;
                         font-weight: 600;
@@ -2807,7 +2837,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
             }
         }
         .default,
-        .optionbox {
+        .optionbox,
+        .branchingoptionbox {
             display: none;
             width: 100%;
             &.active {
@@ -3329,6 +3360,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                     align-items: center;
                     justify-content: space-between;
                     padding-bottom: 15px;
+                    padding-top: 10px;
                     .namelabel {
                         width: calc(100% - 25px);
                         font-family: $fontpage;
@@ -3336,7 +3368,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                         font-weight: 500;
                         font-size: 10px;
                         line-height: 12px;
-                        color: $fontcolor;
+                        color: #563BC2;
                     }
                 }
                 .dropdown-options {
@@ -3769,6 +3801,29 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                     }
                     .inputtables {
                         margin-top: 8px;
+                        &.branchingForScale {
+                            .questionPoint {
+                                input.branching_points {
+                                    width: 30px;
+                                    padding: 10px 5px 5px;
+                                }
+                                .branching-group {
+                                    width: 100% !important;
+                                    border-bottom: none !important;
+                                    padding: 10px 5px 5px !important;
+                                    margin: 0px !important;
+                                    input {
+                                        padding: 0px !important;
+                                    }
+                                }
+                                .branching-group::before {
+                                    display: none;
+                                }
+                            }
+                            .questionPoint {
+                                flex-wrap: nowrap;
+                            }
+                        }
                         .questionPoint {
                             display: flex;
                             align-items: flex-start;
@@ -3776,8 +3831,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                             border-top: 1px solid #EEEFF3;
                             border-left: 1px solid #EEEFF3;
                             border-right: 1px solid #EEEFF3;
-                            flex-wrap: wrap;
                             position: relative;
+                            flex-wrap: wrap;
                             &:last-child {
                                 border-bottom: 1px solid #EEEFF3;;
                             }
@@ -3809,12 +3864,12 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                 padding-bottom: 5px;
                                 .branching-group {
                                     width: calc(100% - 35px);
-                                    margin-left: 35px;
                                     position: relative;
                                     padding-bottom: 3px;
                                     padding-top: 6px;
                                     padding-right: 20px;
                                     border-bottom: 1px solid #EEEFF3;
+                                    margin-left: 15px;
                                     &::before {
                                         content: "";
                                         width: 4px;
@@ -4778,6 +4833,15 @@ html .ui-button.ui-state-disabled:active {
         }
     }
 }
+.col-phone .intl-tel-input .flag-dropdown .selected-flag .down-arrow {
+    border: none;
+    width: 10px;
+    height: 5px;
+    background: url(./../img/arrow-dropdown.svg);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
 @media screen and (min-width: 1500px) {
     .header.sm-header .panelmenu ul li a {
         font-size: 16px;
@@ -4792,7 +4856,11 @@ html .ui-button.ui-state-disabled:active {
     .construcot-container .rightside .default .text-aside .spinner-wrapper .ui-spinner-input, .construcot-container .rightside .optionbox .text-aside .spinner-wrapper .ui-spinner-input,
     .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint input, .construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint input,
     .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint label, .construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint label,
-    .construcot-container .rightside .optionbox .text-aside .scale-option p {
+    .construcot-container .rightside .optionbox .text-aside .scale-option p,
+    .construcot-container .rightside .default .text-aside,
+    .construcot-container .rightside .optionbox .text-aside,
+    .construcot-container .rightside .default .text-aside .multityperow .namelabel,
+    .construcot-container .rightside .optionbox .text-aside .multityperow .namelabel {
         font-size: 12px;
         line-height: 14px;
     }
@@ -4805,15 +4873,6 @@ html .ui-button.ui-state-disabled:active {
         font-size: 24px;
         line-height: 28px;
     }
-}
-.col-phone .intl-tel-input .flag-dropdown .selected-flag .down-arrow {
-    border: none;
-    width: 10px;
-    height: 5px;
-    background: url(./../img/arrow-dropdown.svg);
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
 }
 @media screen and (max-width: 1200px) {
     .construcot-container .centerbox .questions-box .question .answer.answer-scale label .digit {
