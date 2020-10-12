@@ -1,5 +1,15 @@
 jQuery(function ($) {
     $(document).ready(function () {
+        
+        $.fn.removeClassPrefix = function(prefix) {
+            this.each(function(i, el) {
+                var classes = el.className.split(" ").filter(function(c) {
+                    return c.lastIndexOf(prefix, 0) !== 0;
+                });
+                el.className = $.trim(classes.join(" "));
+            });
+            return this;
+        };
         //Make element draggable
         $(".drag").draggable({
             appendTo: ".dragable",
@@ -94,6 +104,13 @@ jQuery(function ($) {
         $('.rightside').on('change', '.font1size', function(e){
             var fontsize = $(this).val() + "px";
             $('.centerbox .text1level .text').css('font-size', fontsize);
+        });
+
+        //font change
+        $('.rightside').on('change', '.fontselect', function(e){
+            var className = "font" + $(this).val();
+            $('.centerbox').removeClassPrefix("font");
+            $('.centerbox').addClass(className);
         });
 
         //add header text

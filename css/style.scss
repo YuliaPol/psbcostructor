@@ -914,12 +914,27 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
         transition: all 0.3 ease-in;
         &.alignleft {
             text-align: left;
+            .questions-box.bg-image {
+                padding-left: 30px;
+                padding-right: 200px;
+                text-align: left;
+            }
         }
         &.aligncenter {
             text-align: center;
+            .questions-box.bg-image {
+                padding-right: 100px;
+                padding-left: 100px;
+                text-align: left;
+            }
         }
         &.alignright {
             text-align: right;
+            .questions-box.bg-image {
+                padding-right: 30px;
+                padding-left: 200px;
+                text-align: left;
+            }
         }
         &.fontMontserrat {
             font-family: $fontpage !important;

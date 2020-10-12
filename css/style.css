@@ -1212,12 +1212,30 @@ table {
   text-align: left;
 }
 
+.construcot-container .centerbox.alignleft .questions-box.bg-image {
+  padding-left: 30px;
+  padding-right: 200px;
+  text-align: left;
+}
+
 .construcot-container .centerbox.aligncenter {
   text-align: center;
 }
 
+.construcot-container .centerbox.aligncenter .questions-box.bg-image {
+  padding-right: 100px;
+  padding-left: 100px;
+  text-align: left;
+}
+
 .construcot-container .centerbox.alignright {
   text-align: right;
+}
+
+.construcot-container .centerbox.alignright .questions-box.bg-image {
+  padding-right: 30px;
+  padding-left: 200px;
+  text-align: left;
 }
 
 .construcot-container .centerbox.fontMontserrat {
