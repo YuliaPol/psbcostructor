@@ -9,6 +9,15 @@ jQuery(function ($) {
                 $('.dropdown-user').fadeIn(300)
             }
         });
+
+        $(document).click(function(event) { 
+            var $target = $(event.target);
+            if(!$target.closest('.show-user-dropdown').length && 
+            $('.dropdown-user').is(':visible')){
+                $('.dropdown-user').fadeOut(300)
+            }       
+          });
+
         $('.page-content').on('click', '.edit-menu .showhide', function(e){
             if(!$(this).parents('.edit-menu').hasClass('active')){
                 $(this).parents('.edit-menu').addClass('active');
