@@ -1515,7 +1515,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                     }
                 }
             }
-            .question {
+            .question,
+            .subquestion {
                 padding: 15px 20px;
                 position: relative;
                 .close-question {
@@ -4429,6 +4430,85 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
             display: none;
         }
     }
+}
+.slider {
+    position: relative;
+    .sliderscale {
+        border-bottom: 1px solid $voilet;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &.scale10 {
+            > div {
+                width: 10%;
+            }
+        }
+        &.scale5 {
+            > div {
+                width: 20%;
+            }
+        }
+        > div {
+            padding: 5px;
+            padding-bottom: 10px;
+            font-family: $fontpage;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 8px;
+            line-height: 10px;
+            color: $voilet;
+            text-align: center;
+            position: relative;
+            &:after {
+                content: "";
+                width: 1px;
+                height: 10px;
+                background-color: $voilet;
+                display: block;
+                right: 0px;
+                position: absolute;
+                bottom: -5px;
+            }
+            &:last-child {
+                &::after {
+                    display: none;
+                }
+            }
+        }
+    }
+    .slidercursor,
+    .slidercursor5 {
+        position: absolute;
+        bottom: 3px;
+        left: 0px;
+        right: 0px;
+        border: none !important;
+        background: transparent;
+    }
+}
+
+
+div.slider .slidercursor,
+div.slider .slidercursor5 {
+    height: 0px;
+    margin: auto;
+    .ui-slider .ui-slider-handle,
+    .ui-state-default.ui-state-hover,
+    .ui-state-default,
+    .ui-widget-content .ui-state-default,
+    .ui-widget-header .ui-state-default,
+    .ui-button.ui-state-disabled:hover,
+    .ui-button.ui-state-disabled:active {
+        background-color: $voilet !important;
+        outline: none;
+        color: #fff;
+    }
+}
+div.slider .slidercursor5 {
+    width: calc(100% - 105px);
+}
+div.slider .slidercursor {
+    width: calc(100% - 55px);
 }
 /* datepicker css */
 .ui-state-default, .ui-widget-content .ui-state-default, 

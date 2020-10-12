@@ -2711,12 +2711,14 @@ table {
   background: rgba(255, 255, 255, 0.5);
 }
 
-.construcot-container .centerbox .questions-box .question {
+.construcot-container .centerbox .questions-box .question,
+.construcot-container .centerbox .questions-box .subquestion {
   padding: 15px 20px;
   position: relative;
 }
 
-.construcot-container .centerbox .questions-box .question .close-question {
+.construcot-container .centerbox .questions-box .question .close-question,
+.construcot-container .centerbox .questions-box .subquestion .close-question {
   position: absolute;
   width: 20px;
   height: 20px;
@@ -2734,7 +2736,8 @@ table {
   transition: opacity 0.3s ease-in;
 }
 
-.construcot-container .centerbox .questions-box .question::before {
+.construcot-container .centerbox .questions-box .question::before,
+.construcot-container .centerbox .questions-box .subquestion::before {
   content: "";
   background: #4449DB;
   border-radius: 0px 2px 2px 0px;
@@ -2749,21 +2752,28 @@ table {
   transition: opacity 0.3s ease-in;
 }
 
-.construcot-container .centerbox .questions-box .question.active, .construcot-container .centerbox .questions-box .question:hover {
+.construcot-container .centerbox .questions-box .question.active, .construcot-container .centerbox .questions-box .question:hover,
+.construcot-container .centerbox .questions-box .subquestion.active,
+.construcot-container .centerbox .questions-box .subquestion:hover {
   background: #FEFDFD;
   -webkit-box-shadow: 0px 2px 13px rgba(0, 0, 0, 0.05);
           box-shadow: 0px 2px 13px rgba(0, 0, 0, 0.05);
 }
 
-.construcot-container .centerbox .questions-box .question.active::before, .construcot-container .centerbox .questions-box .question:hover::before {
+.construcot-container .centerbox .questions-box .question.active::before, .construcot-container .centerbox .questions-box .question:hover::before,
+.construcot-container .centerbox .questions-box .subquestion.active::before,
+.construcot-container .centerbox .questions-box .subquestion:hover::before {
   opacity: 1;
 }
 
-.construcot-container .centerbox .questions-box .question.active .close-question, .construcot-container .centerbox .questions-box .question:hover .close-question {
+.construcot-container .centerbox .questions-box .question.active .close-question, .construcot-container .centerbox .questions-box .question:hover .close-question,
+.construcot-container .centerbox .questions-box .subquestion.active .close-question,
+.construcot-container .centerbox .questions-box .subquestion:hover .close-question {
   opacity: 1;
 }
 
-.construcot-container .centerbox .questions-box .question .subquestion {
+.construcot-container .centerbox .questions-box .question .subquestion,
+.construcot-container .centerbox .questions-box .subquestion .subquestion {
   margin-left: -20px;
   margin-right: -20px;
   padding-left: 30px;
@@ -2771,15 +2781,18 @@ table {
   padding-left: 50px;
 }
 
-.construcot-container .centerbox .questions-box .question .hidden-question-group {
+.construcot-container .centerbox .questions-box .question .hidden-question-group,
+.construcot-container .centerbox .questions-box .subquestion .hidden-question-group {
   display: none;
 }
 
-.construcot-container .centerbox .questions-box .question .branching-group {
+.construcot-container .centerbox .questions-box .question .branching-group,
+.construcot-container .centerbox .questions-box .subquestion .branching-group {
   padding-bottom: 15px;
 }
 
-.construcot-container .centerbox .questions-box .question .branching-group .group-name {
+.construcot-container .centerbox .questions-box .question .branching-group .group-name,
+.construcot-container .centerbox .questions-box .subquestion .branching-group .group-name {
   width: 100%;
   font-family: "Montserrat";
   font-style: normal;
@@ -2789,19 +2802,26 @@ table {
   color: #4D4D4D;
 }
 
-.construcot-container .centerbox .questions-box .question .branching-group .branching-question {
+.construcot-container .centerbox .questions-box .question .branching-group .branching-question,
+.construcot-container .centerbox .questions-box .subquestion .branching-group .branching-question {
   padding-left: 0px;
 }
 
 .construcot-container .centerbox .questions-box .question .hidden-question,
-.construcot-container .centerbox .questions-box .question .branching-question {
+.construcot-container .centerbox .questions-box .question .branching-question,
+.construcot-container .centerbox .questions-box .subquestion .hidden-question,
+.construcot-container .centerbox .questions-box .subquestion .branching-question {
   padding: 10px;
 }
 
 .construcot-container .centerbox .questions-box .question .hidden-question .name,
 .construcot-container .centerbox .questions-box .question .hidden-question .branching-name,
 .construcot-container .centerbox .questions-box .question .branching-question .name,
-.construcot-container .centerbox .questions-box .question .branching-question .branching-name {
+.construcot-container .centerbox .questions-box .question .branching-question .branching-name,
+.construcot-container .centerbox .questions-box .subquestion .hidden-question .name,
+.construcot-container .centerbox .questions-box .subquestion .hidden-question .branching-name,
+.construcot-container .centerbox .questions-box .subquestion .branching-question .name,
+.construcot-container .centerbox .questions-box .subquestion .branching-question .branching-name {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 600;
@@ -2811,7 +2831,9 @@ table {
 }
 
 .construcot-container .centerbox .questions-box .question .hidden-question .hidden-question-answer input,
-.construcot-container .centerbox .questions-box .question .branching-question .hidden-question-answer input {
+.construcot-container .centerbox .questions-box .question .branching-question .hidden-question-answer input,
+.construcot-container .centerbox .questions-box .subquestion .hidden-question .hidden-question-answer input,
+.construcot-container .centerbox .questions-box .subquestion .branching-question .hidden-question-answer input {
   border-top: 0px;
   border-left: 0px;
   border-right: 0px;
@@ -2830,7 +2852,9 @@ table {
 }
 
 .construcot-container .centerbox .questions-box .question .hidden-question .hidden-question-answer input::-webkit-input-placeholder,
-.construcot-container .centerbox .questions-box .question .branching-question .hidden-question-answer input::-webkit-input-placeholder {
+.construcot-container .centerbox .questions-box .question .branching-question .hidden-question-answer input::-webkit-input-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .hidden-question .hidden-question-answer input::-webkit-input-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .branching-question .hidden-question-answer input::-webkit-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -2840,7 +2864,9 @@ table {
 }
 
 .construcot-container .centerbox .questions-box .question .hidden-question .hidden-question-answer input::-moz-placeholder,
-.construcot-container .centerbox .questions-box .question .branching-question .hidden-question-answer input::-moz-placeholder {
+.construcot-container .centerbox .questions-box .question .branching-question .hidden-question-answer input::-moz-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .hidden-question .hidden-question-answer input::-moz-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .branching-question .hidden-question-answer input::-moz-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -2850,7 +2876,9 @@ table {
 }
 
 .construcot-container .centerbox .questions-box .question .hidden-question .hidden-question-answer input:-ms-input-placeholder,
-.construcot-container .centerbox .questions-box .question .branching-question .hidden-question-answer input:-ms-input-placeholder {
+.construcot-container .centerbox .questions-box .question .branching-question .hidden-question-answer input:-ms-input-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .hidden-question .hidden-question-answer input:-ms-input-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .branching-question .hidden-question-answer input:-ms-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -2860,7 +2888,9 @@ table {
 }
 
 .construcot-container .centerbox .questions-box .question .hidden-question .hidden-question-answer input::-ms-input-placeholder,
-.construcot-container .centerbox .questions-box .question .branching-question .hidden-question-answer input::-ms-input-placeholder {
+.construcot-container .centerbox .questions-box .question .branching-question .hidden-question-answer input::-ms-input-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .hidden-question .hidden-question-answer input::-ms-input-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .branching-question .hidden-question-answer input::-ms-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -2870,7 +2900,9 @@ table {
 }
 
 .construcot-container .centerbox .questions-box .question .hidden-question .hidden-question-answer input::placeholder,
-.construcot-container .centerbox .questions-box .question .branching-question .hidden-question-answer input::placeholder {
+.construcot-container .centerbox .questions-box .question .branching-question .hidden-question-answer input::placeholder,
+.construcot-container .centerbox .questions-box .subquestion .hidden-question .hidden-question-answer input::placeholder,
+.construcot-container .centerbox .questions-box .subquestion .branching-question .hidden-question-answer input::placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -2879,7 +2911,8 @@ table {
   color: #A4A2A2;
 }
 
-.construcot-container .centerbox .questions-box .question .name {
+.construcot-container .centerbox .questions-box .question .name,
+.construcot-container .centerbox .questions-box .subquestion .name {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 600;
@@ -2888,7 +2921,8 @@ table {
   color: #000000;
 }
 
-.construcot-container .centerbox .questions-box .question .description {
+.construcot-container .centerbox .questions-box .question .description,
+.construcot-container .centerbox .questions-box .subquestion .description {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: normal;
@@ -2898,14 +2932,16 @@ table {
   padding-top: 5px;
 }
 
-.construcot-container .centerbox .questions-box .question .answer {
+.construcot-container .centerbox .questions-box .question .answer,
+.construcot-container .centerbox .questions-box .subquestion .answer {
   padding-top: 20px;
   padding-bottom: 10px;
   padding-left: 20px;
   padding-right: 20px;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.freeanswer input {
+.construcot-container .centerbox .questions-box .question .answer.freeanswer input,
+.construcot-container .centerbox .questions-box .subquestion .answer.freeanswer input {
   border-top: 0px;
   border-left: 0px;
   border-right: 0px;
@@ -2923,7 +2959,8 @@ table {
   color: #37353F;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.freeanswer input::-webkit-input-placeholder {
+.construcot-container .centerbox .questions-box .question .answer.freeanswer input::-webkit-input-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer.freeanswer input::-webkit-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -2932,7 +2969,8 @@ table {
   color: #A4A2A2;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.freeanswer input::-moz-placeholder {
+.construcot-container .centerbox .questions-box .question .answer.freeanswer input::-moz-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer.freeanswer input::-moz-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -2941,7 +2979,8 @@ table {
   color: #A4A2A2;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.freeanswer input:-ms-input-placeholder {
+.construcot-container .centerbox .questions-box .question .answer.freeanswer input:-ms-input-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer.freeanswer input:-ms-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -2950,7 +2989,8 @@ table {
   color: #A4A2A2;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.freeanswer input::-ms-input-placeholder {
+.construcot-container .centerbox .questions-box .question .answer.freeanswer input::-ms-input-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer.freeanswer input::-ms-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -2959,7 +2999,8 @@ table {
   color: #A4A2A2;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.freeanswer input::placeholder {
+.construcot-container .centerbox .questions-box .question .answer.freeanswer input::placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer.freeanswer input::placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -2968,7 +3009,8 @@ table {
   color: #A4A2A2;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings10 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2982,21 +3024,25 @@ table {
   padding-left: 0px;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio'] {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio'],
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings10 input[type='radio'] {
   opacity: 0;
   display: none;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label::before {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label::before,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings10 label::before {
   display: none;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings10 label {
   cursor: pointer;
   outline: none;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .digit {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .digit,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings10 label .digit {
   width: 37px;
   min-width: 37px;
   height: 37px;
@@ -3027,108 +3073,134 @@ table {
           justify-content: center;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color0 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color0,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings10 label .color0 {
   border: 2px solid #BA1417;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color1 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color1,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings10 label .color1 {
   border: 2px solid #CD0800;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color2 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color2,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings10 label .color2 {
   border: 2px solid #F40200;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color3 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color3,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings10 label .color3 {
   border: 2px solid #FF4A05;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color4 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color4,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings10 label .color4 {
   border: 2px solid #FF7500;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color5 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color5,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings10 label .color5 {
   border: 2px solid #FFA400;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color6 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color6,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings10 label .color6 {
   border: 2px solid #E7F600;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color7 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color7,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings10 label .color7 {
   border: 2px solid #00E355;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color8 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color8,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings10 label .color8 {
   border: 2px solid #00D086;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color9 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color9,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings10 label .color9 {
   border: 2px solid #00AB23;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color10 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .color10,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings10 label .color10 {
   border: 2px solid #008811;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .error {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 label .error,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings10 label .error {
   background-color: #e60028;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .digit {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .digit,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings10 input[type='radio']:checked + label .digit {
   color: #ffffff;
   font-weight: 500;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color0 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color0,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings10 input[type='radio']:checked + label .color0 {
   background-color: #BA1417;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color1 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color1,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings10 input[type='radio']:checked + label .color1 {
   background-color: #CD0800;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color2 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color2,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings10 input[type='radio']:checked + label .color2 {
   background-color: #F40200;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color3 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color3,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings10 input[type='radio']:checked + label .color3 {
   background-color: #FF4A05;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color4 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color4,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings10 input[type='radio']:checked + label .color4 {
   background-color: #FF7500;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color5 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color5,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings10 input[type='radio']:checked + label .color5 {
   background-color: #FFA400;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color6 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color6,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings10 input[type='radio']:checked + label .color6 {
   background-color: #E7F600;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color7 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color7,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings10 input[type='radio']:checked + label .color7 {
   background-color: #00E355;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color8 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color8,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings10 input[type='radio']:checked + label .color8 {
   background-color: #00D086;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color9 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color9,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings10 input[type='radio']:checked + label .color9 {
   background-color: #00AB23;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color10 {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings10 input[type='radio']:checked + label .color10,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings10 input[type='radio']:checked + label .color10 {
   background-color: #008811;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar label::before {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar label::before,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar label::before {
   display: none;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3146,16 +3218,19 @@ table {
   position: relative;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating-0 {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating-0,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating-0 {
   -webkit-filter: grayscale(100%);
           filter: grayscale(100%);
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input {
   display: none;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > label {
   cursor: pointer;
   width: 30px;
   height: 30px;
@@ -3172,163 +3247,221 @@ table {
   cursor: pointer;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(20) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(20),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > label:nth-child(20) {
   background-image: url("./../img/star-1.svg");
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(18) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(18),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > label:nth-child(18) {
   background-image: url("./../img/star-2.svg");
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(16) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(16),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > label:nth-child(16) {
   background-image: url("./../img/star-3.svg");
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(14) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(14),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > label:nth-child(14) {
   background-image: url("./../img/star-4.svg");
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(12) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(12),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > label:nth-child(12) {
   background-image: url("./../img/star-5.svg");
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(10) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(10),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > label:nth-child(10) {
   background-image: url("./../img/star-6.svg");
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(8) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(8),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > label:nth-child(8) {
   background-image: url("./../img/star-7.svg");
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(6) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(6),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > label:nth-child(6) {
   background-image: url("./../img/star-8.svg");
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(4) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(4),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > label:nth-child(4) {
   background-image: url("./../img/star-9.svg");
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(2) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > label:nth-child(2),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > label:nth-child(2) {
   background-image: url("./../img/star-10.svg");
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label,
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:checked ~ label,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:checked ~ label ~ label {
   cursor: pointer;
   background-image: url("./../img/star-active.svg");
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label:nth-child(20),
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(20) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(20),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:checked ~ label:nth-child(20),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(20) {
   background-image: url("./../img/star-a-1.svg");
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label:nth-child(18),
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(18) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(18),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:checked ~ label:nth-child(18),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(18) {
   background-image: url("./../img/star-a-2.svg");
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label:nth-child(16),
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(16) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(16),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:checked ~ label:nth-child(16),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(16) {
   background-image: url("./../img/star-a-3.svg");
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label:nth-child(14),
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(14) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(14),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:checked ~ label:nth-child(14),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(14) {
   background-image: url("./../img/star-a-4.svg");
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label:nth-child(12),
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(12) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(12),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:checked ~ label:nth-child(12),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(12) {
   background-image: url("./../img/star-a-5.svg");
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label:nth-child(10),
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(10) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(10),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:checked ~ label:nth-child(10),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(10) {
   background-image: url("./../img/star-a-6.svg");
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label:nth-child(8),
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(8) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(8),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:checked ~ label:nth-child(8),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(8) {
   background-image: url("./../img/star-a-7.svg");
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label:nth-child(6),
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(6) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(6),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:checked ~ label:nth-child(6),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(6) {
   background-image: url("./../img/star-a-8.svg");
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label:nth-child(4),
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(4) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(4),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:checked ~ label:nth-child(4),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(4) {
   background-image: url("./../img/star-a-9.svg");
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label:nth-child(2),
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(2) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(2),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:checked ~ label:nth-child(2),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:checked ~ label ~ label:nth-child(2) {
   background-image: url("./../img/star-a-10.svg");
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover,
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label {
   cursor: pointer;
   background-image: url("./..//img/star-hover.svg");
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(20),
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(20) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(20),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(20),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(20) {
   background-image: url("./../img/star-a-1.svg");
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(18),
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(18) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(18),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(18),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(18) {
   background-image: url("./../img/star-a-2.svg");
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(16),
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(16) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(16),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(16),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(16) {
   background-image: url("./../img/star-a-3.svg");
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(14),
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(14) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(14),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(14),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(14) {
   background-image: url("./../img/star-a-4.svg");
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(12),
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(12) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(12),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(12),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(12) {
   background-image: url("./../img/star-a-5.svg");
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(10),
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(10) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(10),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(10),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(10) {
   background-image: url("./../img/star-a-6.svg");
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(8),
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(8) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(8),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(8),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(8) {
   background-image: url("./../img/star-a-7.svg");
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(6),
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(6) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(6),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(6),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(6) {
   background-image: url("./../img/star-a-8.svg");
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(4),
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(4) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(4),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(4),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(4) {
   background-image: url("./../img/star-a-9.svg");
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(2),
-.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(2) {
+.construcot-container .centerbox .questions-box .question .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(2),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover:nth-child(2),
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-colorstar .rating > input:not(:checked) ~ label:hover ~ label:nth-child(2) {
   background-image: url("./../img/star-a-10.svg");
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-star5 label::before, .construcot-container .centerbox .questions-box .question .answer.answer-star10 label::before {
+.construcot-container .centerbox .questions-box .question .answer.answer-star5 label::before, .construcot-container .centerbox .questions-box .question .answer.answer-star10 label::before,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-star5 label::before,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-star10 label::before {
   display: none;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-star5 .rating, .construcot-container .centerbox .questions-box .question .answer.answer-star10 .rating {
+.construcot-container .centerbox .questions-box .question .answer.answer-star5 .rating, .construcot-container .centerbox .questions-box .question .answer.answer-star10 .rating,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-star5 .rating,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-star10 .rating {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3346,16 +3479,22 @@ table {
   position: relative;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-star5 .rating-0, .construcot-container .centerbox .questions-box .question .answer.answer-star10 .rating-0 {
+.construcot-container .centerbox .questions-box .question .answer.answer-star5 .rating-0, .construcot-container .centerbox .questions-box .question .answer.answer-star10 .rating-0,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-star5 .rating-0,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-star10 .rating-0 {
   -webkit-filter: grayscale(100%);
           filter: grayscale(100%);
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-star5 .rating > input, .construcot-container .centerbox .questions-box .question .answer.answer-star10 .rating > input {
+.construcot-container .centerbox .questions-box .question .answer.answer-star5 .rating > input, .construcot-container .centerbox .questions-box .question .answer.answer-star10 .rating > input,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-star5 .rating > input,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-star10 .rating > input {
   display: none;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-star5 .rating > label, .construcot-container .centerbox .questions-box .question .answer.answer-star10 .rating > label {
+.construcot-container .centerbox .questions-box .question .answer.answer-star5 .rating > label, .construcot-container .centerbox .questions-box .question .answer.answer-star10 .rating > label,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-star5 .rating > label,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-star10 .rating > label {
   cursor: pointer;
   width: 30px;
   height: 30px;
@@ -3373,23 +3512,33 @@ table {
 
 .construcot-container .centerbox .questions-box .question .answer.answer-star5 .rating > input:checked ~ label,
 .construcot-container .centerbox .questions-box .question .answer.answer-star5 .rating > input:checked ~ label ~ label, .construcot-container .centerbox .questions-box .question .answer.answer-star10 .rating > input:checked ~ label,
-.construcot-container .centerbox .questions-box .question .answer.answer-star10 .rating > input:checked ~ label ~ label {
+.construcot-container .centerbox .questions-box .question .answer.answer-star10 .rating > input:checked ~ label ~ label,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-star5 .rating > input:checked ~ label,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-star5 .rating > input:checked ~ label ~ label,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-star10 .rating > input:checked ~ label,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-star10 .rating > input:checked ~ label ~ label {
   background-image: url("./../img/star-active.svg");
   cursor: pointer;
 }
 
 .construcot-container .centerbox .questions-box .question .answer.answer-star5 .rating > input:not(:checked) ~ label:hover,
 .construcot-container .centerbox .questions-box .question .answer.answer-star5 .rating > input:not(:checked) ~ label:hover ~ label, .construcot-container .centerbox .questions-box .question .answer.answer-star10 .rating > input:not(:checked) ~ label:hover,
-.construcot-container .centerbox .questions-box .question .answer.answer-star10 .rating > input:not(:checked) ~ label:hover ~ label {
+.construcot-container .centerbox .questions-box .question .answer.answer-star10 .rating > input:not(:checked) ~ label:hover ~ label,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-star5 .rating > input:not(:checked) ~ label:hover,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-star5 .rating > input:not(:checked) ~ label:hover ~ label,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-star10 .rating > input:not(:checked) ~ label:hover,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-star10 .rating > input:not(:checked) ~ label:hover ~ label {
   background-image: url("./..//img/star-hover.svg");
   cursor: pointer;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 label::before {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 label::before,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings5 label::before {
   display: none;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings5 .radio-wrapper {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3404,17 +3553,20 @@ table {
           justify-content: space-between;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings5 .radio-wrapper .radio-cont {
   max-width: 20%;
   width: 20%;
   padding: 5px;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont input[type=radio] {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont input[type=radio],
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings5 .radio-wrapper .radio-cont input[type=radio] {
   display: none;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont label {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont label,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings5 .radio-wrapper .radio-cont label {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3435,7 +3587,8 @@ table {
   cursor: pointer;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont label .number {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont label .number,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings5 .radio-wrapper .radio-cont label .number {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: normal;
@@ -3462,7 +3615,8 @@ table {
   transition: all 0.3s ease-in;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont label .text {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont label .text,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings5 .radio-wrapper .radio-cont label .text {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: normal;
@@ -3474,67 +3628,79 @@ table {
   max-width: 220px;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(1) input[type=radio]:checked + label .number {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(1) input[type=radio]:checked + label .number,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(1) input[type=radio]:checked + label .number {
   border-color: #CD0800;
   color: #ffffff;
   background-color: #CD0800;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(1) label .number {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(1) label .number,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(1) label .number {
   border-color: #CD0800;
   color: #CD0800;
   cursor: pointer;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(2) input[type=radio]:checked + label .number {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(2) input[type=radio]:checked + label .number,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(2) input[type=radio]:checked + label .number {
   border-color: #FFA400;
   color: #ffffff;
   background-color: #FFA400;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(2) label .number {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(2) label .number,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(2) label .number {
   border-color: #FFA400;
   color: #FFA400;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(3) input[type=radio]:checked + label .number {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(3) input[type=radio]:checked + label .number,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(3) input[type=radio]:checked + label .number {
   border-color: #E7F600;
   color: #ffffff;
   background-color: #E7F600;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(3) label .number {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(3) label .number,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(3) label .number {
   border-color: #E7F600;
   color: #E7F600;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(4) input[type=radio]:checked + label .number {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(4) input[type=radio]:checked + label .number,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(4) input[type=radio]:checked + label .number {
   border-color: #00E355;
   color: #ffffff;
   background-color: #00E355;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(4) label .number {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(4) label .number,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(4) label .number {
   border-color: #00E355;
   color: #00E355;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(5) input[type=radio]:checked + label .number {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(5) input[type=radio]:checked + label .number,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(5) input[type=radio]:checked + label .number {
   border-color: #008811;
   color: #ffffff;
   background-color: #008811;
 }
 
-.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(5) label .number {
+.construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(5) label .number,
+.construcot-container .centerbox .questions-box .subquestion .answer.answer-ratings5 .radio-wrapper .radio-cont:nth-child(5) label .number {
   border-color: #008811;
   color: #008811;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .btn-answer {
+.construcot-container .centerbox .questions-box .question .answer .btn-answer,
+.construcot-container .centerbox .questions-box .subquestion .answer .btn-answer {
   text-align: center;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .btn-answer .btn {
+.construcot-container .centerbox .questions-box .question .answer .btn-answer .btn,
+.construcot-container .centerbox .questions-box .subquestion .answer .btn-answer .btn {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -3560,7 +3726,8 @@ table {
   max-width: 100%;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .email-answer {
+.construcot-container .centerbox .questions-box .question .answer .email-answer,
+.construcot-container .centerbox .questions-box .subquestion .answer .email-answer {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3575,12 +3742,14 @@ table {
           justify-content: space-between;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .email-answer .col-email {
+.construcot-container .centerbox .questions-box .question .answer .email-answer .col-email,
+.construcot-container .centerbox .questions-box .subquestion .answer .email-answer .col-email {
   width: calc(33.3% - 30px);
   position: relative;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .email-answer .col-email input {
+.construcot-container .centerbox .questions-box .question .answer .email-answer .col-email input,
+.construcot-container .centerbox .questions-box .subquestion .answer .email-answer .col-email input {
   border: none;
   font-family: "Montserrat";
   font-style: normal;
@@ -3595,7 +3764,8 @@ table {
   background: inherit;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .email-answer .col-email input::-webkit-input-placeholder {
+.construcot-container .centerbox .questions-box .question .answer .email-answer .col-email input::-webkit-input-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .email-answer .col-email input::-webkit-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -3604,7 +3774,8 @@ table {
   color: #A4A2A2;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .email-answer .col-email input::-moz-placeholder {
+.construcot-container .centerbox .questions-box .question .answer .email-answer .col-email input::-moz-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .email-answer .col-email input::-moz-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -3613,7 +3784,8 @@ table {
   color: #A4A2A2;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .email-answer .col-email input:-ms-input-placeholder {
+.construcot-container .centerbox .questions-box .question .answer .email-answer .col-email input:-ms-input-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .email-answer .col-email input:-ms-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -3622,7 +3794,8 @@ table {
   color: #A4A2A2;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .email-answer .col-email input::-ms-input-placeholder {
+.construcot-container .centerbox .questions-box .question .answer .email-answer .col-email input::-ms-input-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .email-answer .col-email input::-ms-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -3631,7 +3804,8 @@ table {
   color: #A4A2A2;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .email-answer .col-email input::placeholder {
+.construcot-container .centerbox .questions-box .question .answer .email-answer .col-email input::placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .email-answer .col-email input::placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -3640,7 +3814,8 @@ table {
   color: #A4A2A2;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .phone-answer {
+.construcot-container .centerbox .questions-box .question .answer .phone-answer,
+.construcot-container .centerbox .questions-box .subquestion .answer .phone-answer {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3655,13 +3830,15 @@ table {
           justify-content: space-between;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone {
+.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone,
+.construcot-container .centerbox .questions-box .subquestion .answer .phone-answer .col-phone {
   width: 100%;
   max-width: 300px;
   position: relative;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone .inputs {
+.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone .inputs,
+.construcot-container .centerbox .questions-box .subquestion .answer .phone-answer .col-phone .inputs {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3676,21 +3853,25 @@ table {
           justify-content: space-between;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone .inputs .intl-tel-input {
+.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone .inputs .intl-tel-input,
+.construcot-container .centerbox .questions-box .subquestion .answer .phone-answer .col-phone .inputs .intl-tel-input {
   width: 120px;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone .inputs .intl-tel-input input {
+.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone .inputs .intl-tel-input input,
+.construcot-container .centerbox .questions-box .subquestion .answer .phone-answer .col-phone .inputs .intl-tel-input input {
   width: 90px;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone .inputs .phone {
+.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone .inputs .phone,
+.construcot-container .centerbox .questions-box .subquestion .answer .phone-answer .col-phone .inputs .phone {
   padding-left: 30px;
   padding-right: 0px;
   width: calc(100% - 90px);
 }
 
-.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone .lines {
+.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone .lines,
+.construcot-container .centerbox .questions-box .subquestion .answer .phone-answer .col-phone .lines {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3705,24 +3886,29 @@ table {
           justify-content: space-between;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone .lines .line {
+.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone .lines .line,
+.construcot-container .centerbox .questions-box .subquestion .answer .phone-answer .col-phone .lines .line {
   height: 1px;
   background: #A4A2A2;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone .lines .line:nth-child(1) {
+.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone .lines .line:nth-child(1),
+.construcot-container .centerbox .questions-box .subquestion .answer .phone-answer .col-phone .lines .line:nth-child(1) {
   width: 32px;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone .lines .line:nth-child(2) {
+.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone .lines .line:nth-child(2),
+.construcot-container .centerbox .questions-box .subquestion .answer .phone-answer .col-phone .lines .line:nth-child(2) {
   width: 35px;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone .lines .line:nth-child(3) {
+.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone .lines .line:nth-child(3),
+.construcot-container .centerbox .questions-box .subquestion .answer .phone-answer .col-phone .lines .line:nth-child(3) {
   width: calc(100% - 127px);
 }
 
-.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone input {
+.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone input,
+.construcot-container .centerbox .questions-box .subquestion .answer .phone-answer .col-phone input {
   border: none;
   font-family: "Montserrat";
   font-style: normal;
@@ -3736,7 +3922,8 @@ table {
   background: inherit;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone input::-webkit-input-placeholder {
+.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone input::-webkit-input-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .phone-answer .col-phone input::-webkit-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -3745,7 +3932,8 @@ table {
   color: #A4A2A2;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone input::-moz-placeholder {
+.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone input::-moz-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .phone-answer .col-phone input::-moz-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -3754,7 +3942,8 @@ table {
   color: #A4A2A2;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone input:-ms-input-placeholder {
+.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone input:-ms-input-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .phone-answer .col-phone input:-ms-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -3763,7 +3952,8 @@ table {
   color: #A4A2A2;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone input::-ms-input-placeholder {
+.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone input::-ms-input-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .phone-answer .col-phone input::-ms-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -3772,7 +3962,8 @@ table {
   color: #A4A2A2;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone input::placeholder {
+.construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone input::placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .phone-answer .col-phone input::placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -3782,7 +3973,9 @@ table {
 }
 
 .construcot-container .centerbox .questions-box .question .answer .name-answer,
-.construcot-container .centerbox .questions-box .question .answer .date-answer {
+.construcot-container .centerbox .questions-box .question .answer .date-answer,
+.construcot-container .centerbox .questions-box .subquestion .answer .name-answer,
+.construcot-container .centerbox .questions-box .subquestion .answer .date-answer {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3798,13 +3991,17 @@ table {
 }
 
 .construcot-container .centerbox .questions-box .question .answer .name-answer .col-date,
-.construcot-container .centerbox .questions-box .question .answer .date-answer .col-date {
+.construcot-container .centerbox .questions-box .question .answer .date-answer .col-date,
+.construcot-container .centerbox .questions-box .subquestion .answer .name-answer .col-date,
+.construcot-container .centerbox .questions-box .subquestion .answer .date-answer .col-date {
   width: calc(33.3% - 30px);
   position: relative;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .name-answer .col-date .icon-date,
-.construcot-container .centerbox .questions-box .question .answer .date-answer .col-date .icon-date {
+.construcot-container .centerbox .questions-box .question .answer .date-answer .col-date .icon-date,
+.construcot-container .centerbox .questions-box .subquestion .answer .name-answer .col-date .icon-date,
+.construcot-container .centerbox .questions-box .subquestion .answer .date-answer .col-date .icon-date {
   position: absolute;
   width: 15px;
   height: 15px;
@@ -3819,7 +4016,9 @@ table {
 }
 
 .construcot-container .centerbox .questions-box .question .answer .name-answer .col-date input,
-.construcot-container .centerbox .questions-box .question .answer .date-answer .col-date input {
+.construcot-container .centerbox .questions-box .question .answer .date-answer .col-date input,
+.construcot-container .centerbox .questions-box .subquestion .answer .name-answer .col-date input,
+.construcot-container .centerbox .questions-box .subquestion .answer .date-answer .col-date input {
   border: none;
   font-family: "Montserrat";
   font-style: normal;
@@ -3835,7 +4034,9 @@ table {
 }
 
 .construcot-container .centerbox .questions-box .question .answer .name-answer .col-date input::-webkit-input-placeholder,
-.construcot-container .centerbox .questions-box .question .answer .date-answer .col-date input::-webkit-input-placeholder {
+.construcot-container .centerbox .questions-box .question .answer .date-answer .col-date input::-webkit-input-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .name-answer .col-date input::-webkit-input-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .date-answer .col-date input::-webkit-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -3845,7 +4046,9 @@ table {
 }
 
 .construcot-container .centerbox .questions-box .question .answer .name-answer .col-date input::-moz-placeholder,
-.construcot-container .centerbox .questions-box .question .answer .date-answer .col-date input::-moz-placeholder {
+.construcot-container .centerbox .questions-box .question .answer .date-answer .col-date input::-moz-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .name-answer .col-date input::-moz-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .date-answer .col-date input::-moz-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -3855,7 +4058,9 @@ table {
 }
 
 .construcot-container .centerbox .questions-box .question .answer .name-answer .col-date input:-ms-input-placeholder,
-.construcot-container .centerbox .questions-box .question .answer .date-answer .col-date input:-ms-input-placeholder {
+.construcot-container .centerbox .questions-box .question .answer .date-answer .col-date input:-ms-input-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .name-answer .col-date input:-ms-input-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .date-answer .col-date input:-ms-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -3865,7 +4070,9 @@ table {
 }
 
 .construcot-container .centerbox .questions-box .question .answer .name-answer .col-date input::-ms-input-placeholder,
-.construcot-container .centerbox .questions-box .question .answer .date-answer .col-date input::-ms-input-placeholder {
+.construcot-container .centerbox .questions-box .question .answer .date-answer .col-date input::-ms-input-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .name-answer .col-date input::-ms-input-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .date-answer .col-date input::-ms-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -3875,7 +4082,9 @@ table {
 }
 
 .construcot-container .centerbox .questions-box .question .answer .name-answer .col-date input::placeholder,
-.construcot-container .centerbox .questions-box .question .answer .date-answer .col-date input::placeholder {
+.construcot-container .centerbox .questions-box .question .answer .date-answer .col-date input::placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .name-answer .col-date input::placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .date-answer .col-date input::placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -3885,12 +4094,16 @@ table {
 }
 
 .construcot-container .centerbox .questions-box .question .answer .name-answer .col-name,
-.construcot-container .centerbox .questions-box .question .answer .date-answer .col-name {
+.construcot-container .centerbox .questions-box .question .answer .date-answer .col-name,
+.construcot-container .centerbox .questions-box .subquestion .answer .name-answer .col-name,
+.construcot-container .centerbox .questions-box .subquestion .answer .date-answer .col-name {
   width: calc(33.3% - 30px);
 }
 
 .construcot-container .centerbox .questions-box .question .answer .name-answer .col-name label,
-.construcot-container .centerbox .questions-box .question .answer .date-answer .col-name label {
+.construcot-container .centerbox .questions-box .question .answer .date-answer .col-name label,
+.construcot-container .centerbox .questions-box .subquestion .answer .name-answer .col-name label,
+.construcot-container .centerbox .questions-box .subquestion .answer .date-answer .col-name label {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -3900,7 +4113,9 @@ table {
 }
 
 .construcot-container .centerbox .questions-box .question .answer .name-answer .col-name input,
-.construcot-container .centerbox .questions-box .question .answer .date-answer .col-name input {
+.construcot-container .centerbox .questions-box .question .answer .date-answer .col-name input,
+.construcot-container .centerbox .questions-box .subquestion .answer .name-answer .col-name input,
+.construcot-container .centerbox .questions-box .subquestion .answer .date-answer .col-name input {
   border: none;
   font-family: "Montserrat";
   font-style: normal;
@@ -3916,7 +4131,9 @@ table {
 }
 
 .construcot-container .centerbox .questions-box .question .answer .name-answer .col-name input::-webkit-input-placeholder,
-.construcot-container .centerbox .questions-box .question .answer .date-answer .col-name input::-webkit-input-placeholder {
+.construcot-container .centerbox .questions-box .question .answer .date-answer .col-name input::-webkit-input-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .name-answer .col-name input::-webkit-input-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .date-answer .col-name input::-webkit-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -3926,7 +4143,9 @@ table {
 }
 
 .construcot-container .centerbox .questions-box .question .answer .name-answer .col-name input::-moz-placeholder,
-.construcot-container .centerbox .questions-box .question .answer .date-answer .col-name input::-moz-placeholder {
+.construcot-container .centerbox .questions-box .question .answer .date-answer .col-name input::-moz-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .name-answer .col-name input::-moz-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .date-answer .col-name input::-moz-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -3936,7 +4155,9 @@ table {
 }
 
 .construcot-container .centerbox .questions-box .question .answer .name-answer .col-name input:-ms-input-placeholder,
-.construcot-container .centerbox .questions-box .question .answer .date-answer .col-name input:-ms-input-placeholder {
+.construcot-container .centerbox .questions-box .question .answer .date-answer .col-name input:-ms-input-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .name-answer .col-name input:-ms-input-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .date-answer .col-name input:-ms-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -3946,7 +4167,9 @@ table {
 }
 
 .construcot-container .centerbox .questions-box .question .answer .name-answer .col-name input::-ms-input-placeholder,
-.construcot-container .centerbox .questions-box .question .answer .date-answer .col-name input::-ms-input-placeholder {
+.construcot-container .centerbox .questions-box .question .answer .date-answer .col-name input::-ms-input-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .name-answer .col-name input::-ms-input-placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .date-answer .col-name input::-ms-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -3956,7 +4179,9 @@ table {
 }
 
 .construcot-container .centerbox .questions-box .question .answer .name-answer .col-name input::placeholder,
-.construcot-container .centerbox .questions-box .question .answer .date-answer .col-name input::placeholder {
+.construcot-container .centerbox .questions-box .question .answer .date-answer .col-name input::placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .name-answer .col-name input::placeholder,
+.construcot-container .centerbox .questions-box .subquestion .answer .date-answer .col-name input::placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -3965,11 +4190,13 @@ table {
   color: #A4A2A2;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .matrix-table label::before {
+.construcot-container .centerbox .questions-box .question .answer .matrix-table label::before,
+.construcot-container .centerbox .questions-box .subquestion .answer .matrix-table label::before {
   display: none;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .matrix-table .first-row {
+.construcot-container .centerbox .questions-box .question .answer .matrix-table .first-row,
+.construcot-container .centerbox .questions-box .subquestion .answer .matrix-table .first-row {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3985,7 +4212,8 @@ table {
   padding-bottom: 10px;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .matrix-table .first-row .col {
+.construcot-container .centerbox .questions-box .question .answer .matrix-table .first-row .col,
+.construcot-container .centerbox .questions-box .subquestion .answer .matrix-table .first-row .col {
   width: 100%;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
@@ -3993,12 +4221,14 @@ table {
           flex-grow: 1;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .matrix-table .first-row .col:first-child {
+.construcot-container .centerbox .questions-box .question .answer .matrix-table .first-row .col:first-child,
+.construcot-container .centerbox .questions-box .subquestion .answer .matrix-table .first-row .col:first-child {
   overflow: hidden;
   min-width: 100px;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .matrix-table .first-row .col .value {
+.construcot-container .centerbox .questions-box .question .answer .matrix-table .first-row .col .value,
+.construcot-container .centerbox .questions-box .subquestion .answer .matrix-table .first-row .col .value {
   width: calc(100% - 10px);
   margin: auto;
   display: -webkit-box;
@@ -4025,7 +4255,8 @@ table {
   min-height: 28px;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .matrix-table .matrix-row {
+.construcot-container .centerbox .questions-box .question .answer .matrix-table .matrix-row,
+.construcot-container .centerbox .questions-box .subquestion .answer .matrix-table .matrix-row {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -4041,7 +4272,8 @@ table {
   padding-bottom: 10px;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .matrix-table .matrix-row .first-col {
+.construcot-container .centerbox .questions-box .question .answer .matrix-table .matrix-row .first-col,
+.construcot-container .centerbox .questions-box .subquestion .answer .matrix-table .matrix-row .first-col {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
       -ms-flex-positive: 1;
@@ -4050,7 +4282,8 @@ table {
   min-width: 100px;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .matrix-table .matrix-row .first-col .value {
+.construcot-container .centerbox .questions-box .question .answer .matrix-table .matrix-row .first-col .value,
+.construcot-container .centerbox .questions-box .subquestion .answer .matrix-table .matrix-row .first-col .value {
   width: calc(100% - 10px);
   margin: auto;
   display: -webkit-box;
@@ -4078,7 +4311,8 @@ table {
   overflow: hidden;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .matrix-table .matrix-row .col {
+.construcot-container .centerbox .questions-box .question .answer .matrix-table .matrix-row .col,
+.construcot-container .centerbox .questions-box .subquestion .answer .matrix-table .matrix-row .col {
   width: 100%;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
@@ -4087,11 +4321,13 @@ table {
   overflow: hidden;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .matrix-table .matrix-row .col input {
+.construcot-container .centerbox .questions-box .question .answer .matrix-table .matrix-row .col input,
+.construcot-container .centerbox .questions-box .subquestion .answer .matrix-table .matrix-row .col input {
   display: none;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .matrix-table .matrix-row .col input + label {
+.construcot-container .centerbox .questions-box .question .answer .matrix-table .matrix-row .col input + label,
+.construcot-container .centerbox .questions-box .subquestion .answer .matrix-table .matrix-row .col input + label {
   width: calc(100% - 10px);
   background: rgba(255, 164, 0, 0.05);
   border: 0.5px solid #FFA400;
@@ -4101,26 +4337,30 @@ table {
   margin: auto;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .matrix-table .matrix-row .col input:checked + label {
+.construcot-container .centerbox .questions-box .question .answer .matrix-table .matrix-row .col input:checked + label,
+.construcot-container .centerbox .questions-box .subquestion .answer .matrix-table .matrix-row .col input:checked + label {
   background: rgba(86, 59, 194, 0.05);
   border: 0.5px solid #563BC2;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block {
+.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block,
+.construcot-container .centerbox .questions-box .subquestion .answer .dropdown-list .dropdown-block {
   padding: 8px 10px;
   position: relative;
   background: #FFFFFF;
   margin-bottom: 10px;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block.active .dropdown-arrow {
+.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block.active .dropdown-arrow,
+.construcot-container .centerbox .questions-box .subquestion .answer .dropdown-list .dropdown-block.active .dropdown-arrow {
   -webkit-transform: rotate(180deg);
       -ms-transform: rotate(180deg);
        -o-transform: rotate(180deg);
           transform: rotate(180deg);
 }
 
-.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block .dropdown-arrow {
+.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block .dropdown-arrow,
+.construcot-container .centerbox .questions-box .subquestion .answer .dropdown-list .dropdown-block .dropdown-arrow {
   position: absolute;
   background-image: url(./../img/arrow-dropdown.svg);
   background-position: center;
@@ -4138,7 +4378,8 @@ table {
   transition: transform 0.3s ease-in, -webkit-transform 0.3s ease-in, -o-transform 0.3s ease-in;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block .question-name {
+.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block .question-name,
+.construcot-container .centerbox .questions-box .subquestion .answer .dropdown-list .dropdown-block .question-name {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 600;
@@ -4149,16 +4390,19 @@ table {
   padding-bottom: 5px;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block .dropdown-content {
+.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block .dropdown-content,
+.construcot-container .centerbox .questions-box .subquestion .answer .dropdown-list .dropdown-block .dropdown-content {
   display: none;
   padding-left: 15px;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block .dropdown-content .input-group {
+.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block .dropdown-content .input-group,
+.construcot-container .centerbox .questions-box .subquestion .answer .dropdown-list .dropdown-block .dropdown-content .input-group {
   padding-bottom: 6px;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block .dropdown-content .input-group label {
+.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block .dropdown-content .input-group label,
+.construcot-container .centerbox .questions-box .subquestion .answer .dropdown-list .dropdown-block .dropdown-content .input-group label {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
@@ -4167,11 +4411,13 @@ table {
   color: #37353F;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .ranging-list {
+.construcot-container .centerbox .questions-box .question .answer .ranging-list,
+.construcot-container .centerbox .questions-box .subquestion .answer .ranging-list {
   margin-top: 15px;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .ranging-list .rangint-item {
+.construcot-container .centerbox .questions-box .question .answer .ranging-list .rangint-item,
+.construcot-container .centerbox .questions-box .subquestion .answer .ranging-list .rangint-item {
   margin-bottom: 10px;
   border: 1px solid #EEEFF3;
   border-radius: 3px;
@@ -4191,7 +4437,8 @@ table {
   padding: 10px;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .ranging-list .rangint-item .arrows {
+.construcot-container .centerbox .questions-box .question .answer .ranging-list .rangint-item .arrows,
+.construcot-container .centerbox .questions-box .subquestion .answer .ranging-list .rangint-item .arrows {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -4212,7 +4459,8 @@ table {
   min-height: 13px;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .ranging-list .rangint-item .arrows .item-up {
+.construcot-container .centerbox .questions-box .question .answer .ranging-list .rangint-item .arrows .item-up,
+.construcot-container .centerbox .questions-box .subquestion .answer .ranging-list .rangint-item .arrows .item-up {
   width: 10px;
   height: 5px;
   padding: 3px;
@@ -4228,7 +4476,8 @@ table {
   cursor: pointer;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .ranging-list .rangint-item .arrows .item-down {
+.construcot-container .centerbox .questions-box .question .answer .ranging-list .rangint-item .arrows .item-down,
+.construcot-container .centerbox .questions-box .subquestion .answer .ranging-list .rangint-item .arrows .item-down {
   width: 10px;
   height: 5px;
   padding: 3px;
@@ -4240,7 +4489,8 @@ table {
   cursor: pointer;
 }
 
-.construcot-container .centerbox .questions-box .question .answer .ranging-list .rangint-item .text {
+.construcot-container .centerbox .questions-box .question .answer .ranging-list .rangint-item .text,
+.construcot-container .centerbox .questions-box .subquestion .answer .ranging-list .rangint-item .text {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
@@ -4251,7 +4501,9 @@ table {
 }
 
 .construcot-container .centerbox .questions-box .question .form-group,
-.construcot-container .centerbox .questions-box .question .form-group label {
+.construcot-container .centerbox .questions-box .question .form-group label,
+.construcot-container .centerbox .questions-box .subquestion .form-group,
+.construcot-container .centerbox .questions-box .subquestion .form-group label {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
@@ -4261,7 +4513,8 @@ table {
   padding-bottom: 10px;
 }
 
-.construcot-container .centerbox .questions-box .question .flex-50 {
+.construcot-container .centerbox .questions-box .question .flex-50,
+.construcot-container .centerbox .questions-box .subquestion .flex-50 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -4279,7 +4532,8 @@ table {
           flex-wrap: wrap;
 }
 
-.construcot-container .centerbox .questions-box .question .flex-50 > div {
+.construcot-container .centerbox .questions-box .question .flex-50 > div,
+.construcot-container .centerbox .questions-box .subquestion .flex-50 > div {
   width: 50%;
 }
 
@@ -7256,6 +7510,105 @@ table {
 
 .hellopage_options .filerow input[type=file] {
   display: none;
+}
+
+.slider {
+  position: relative;
+}
+
+.slider .sliderscale {
+  border-bottom: 1px solid #563BC2;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.slider .sliderscale.scale10 > div {
+  width: 10%;
+}
+
+.slider .sliderscale.scale5 > div {
+  width: 20%;
+}
+
+.slider .sliderscale > div {
+  padding: 5px;
+  padding-bottom: 10px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 8px;
+  line-height: 10px;
+  color: #563BC2;
+  text-align: center;
+  position: relative;
+}
+
+.slider .sliderscale > div:after {
+  content: "";
+  width: 1px;
+  height: 10px;
+  background-color: #563BC2;
+  display: block;
+  right: 0px;
+  position: absolute;
+  bottom: -5px;
+}
+
+.slider .sliderscale > div:last-child::after {
+  display: none;
+}
+
+.slider .slidercursor,
+.slider .slidercursor5 {
+  position: absolute;
+  bottom: 3px;
+  left: 0px;
+  right: 0px;
+  border: none !important;
+  background: transparent;
+}
+
+div.slider .slidercursor,
+div.slider .slidercursor5 {
+  height: 0px;
+  margin: auto;
+}
+
+div.slider .slidercursor .ui-slider .ui-slider-handle,
+div.slider .slidercursor .ui-state-default.ui-state-hover,
+div.slider .slidercursor .ui-state-default,
+div.slider .slidercursor .ui-widget-content .ui-state-default,
+div.slider .slidercursor .ui-widget-header .ui-state-default,
+div.slider .slidercursor .ui-button.ui-state-disabled:hover,
+div.slider .slidercursor .ui-button.ui-state-disabled:active,
+div.slider .slidercursor5 .ui-slider .ui-slider-handle,
+div.slider .slidercursor5 .ui-state-default.ui-state-hover,
+div.slider .slidercursor5 .ui-state-default,
+div.slider .slidercursor5 .ui-widget-content .ui-state-default,
+div.slider .slidercursor5 .ui-widget-header .ui-state-default,
+div.slider .slidercursor5 .ui-button.ui-state-disabled:hover,
+div.slider .slidercursor5 .ui-button.ui-state-disabled:active {
+  background-color: #563BC2 !important;
+  outline: none;
+  color: #fff;
+}
+
+div.slider .slidercursor5 {
+  width: calc(100% - 105px);
+}
+
+div.slider .slidercursor {
+  width: calc(100% - 55px);
 }
 
 /* datepicker css */
