@@ -681,6 +681,9 @@ jQuery(function ($) {
                 $('.textasettings input[name=secondtextheight_' + id + ']').val(height);
             }
         }
+        //set size of screen
+        $('.text-aside input[name=widthscreen]').val($('.hellopahecontainer').width());
+        $('.text-aside input[name=heightscreen]').val($('.hellopahecontainer').height());
     });
 });
 $(document).click(function(e) {
