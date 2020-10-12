@@ -7094,6 +7094,10 @@ table {
   background: #ffffff;
   position: relative;
   border: 1px dashed #9A9797;
+  background-position: center;
+  -webkit-background-size: cover;
+          background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .hellopahecontainer .dragimage {
@@ -7126,6 +7130,9 @@ table {
 
 .hellopahecontainer .dragtext {
   border: 1px dashed #9A9797;
+  overflow: hidden;
+  max-width: calc(100% - 40px);
+  max-height: calc(100% - 40px);
 }
 
 .hellopahecontainer .dragtext.hidden {
@@ -7217,6 +7224,8 @@ table {
 
 .hellopage_options .blocktext .textblock textarea {
   border: none !important;
+  font-size: 10px;
+  line-height: 12px;
 }
 
 .hellopage_options .position {

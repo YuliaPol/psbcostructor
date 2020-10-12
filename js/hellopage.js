@@ -4,7 +4,7 @@ jQuery(function ($) {
         $(".drag").draggable({
             appendTo: ".dragable",
             containment: ".dragable",
-            grid: [ 10, 10 ],
+            grid: [ 20, 20 ],
             stop: function( event, ui ) {
                 console.log(event);
                 console.log(ui);
@@ -13,7 +13,7 @@ jQuery(function ($) {
         //resize image
         $( ".dragimage" ).resizable({
             containment: ".dragable",
-            grid: [ 10, 10 ],
+            grid: [ 20, 20 ],
             aspectRatio: true,
             handles: "n, e, s, w"
         });
@@ -21,52 +21,66 @@ jQuery(function ($) {
         $( ".dragtext" ).resizable({
             autoHide: false,
             containment: ".dragable",
-            grid: [ 10, 10 ],
+            grid: [ 20, 20 ],
             handles: "n, e, s, w"
         });
-        //change input for file
+        // image as background
         $('.page-content').on('change', '.pictureforpage', function(e){
             var fileName = e.target.files[0].name;
-            var newinputfile = '<input type="file" name="pictures[]" class="realfileinput pictureforpage" />';
-            $(newinputfile).insertBefore($(this));
             if($('.dropzone-file').length>0) {
                 $('.dropzone-file').remove();
             }
-            var image = 
-            '<div class="drag dragimage newimage">'
-            +'    <div class="remove-picture "></div>'
-            +'    <input type="hidden" name="picture" value="562">'
-            +'    <img src="./img/hellopage_pic_1.png" alt="">'
-            +'</div>';
-            $('.hellopahecontainer').append(image);
             if (e.target.files && e.target.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function (e) {
-                    $('.newimage img').attr('src', e.target.result);
-                    $('.newimage').removeClass('newimage');
+                    $('.hellopahecontainer').css('background-image', 'url(' + e.target.result + ')');
                 }
                 reader.readAsDataURL(e.target.files[0]);
             }
-            //resize image
-            $( ".dragimage" ).resizable({
-                containment: ".dragable",
-                grid: [ 10, 10 ],
-                aspectRatio: true,
-                handles: "n, e, s, w"
-            });
-
-            //Make element draggable
-            $(".drag").draggable({
-                appendTo: ".dragable",
-                containment: ".dragable",
-                grid: [ 10, 10 ],
-                stop: function( event, ui ) {
-                    console.log(event);
-                    console.log(ui);
-                }
-            });
-
         });
+        //change input for file
+        // $('.page-content').on('change', '.pictureforpage', function(e){
+        //     var fileName = e.target.files[0].name;
+        //     var newinputfile = '<input type="file" name="pictures[]" class="realfileinput pictureforpage" />';
+        //     $(newinputfile).insertBefore($(this));
+        //     if($('.dropzone-file').length>0) {
+        //         $('.dropzone-file').remove();
+        //     }
+        //     var image = 
+        //     '<div class="drag dragimage newimage">'
+        //     +'    <div class="remove-picture "></div>'
+        //     +'    <input type="hidden" name="picture" value="562">'
+        //     +'    <img src="./img/hellopage_pic_1.png" alt="">'
+        //     +'</div>';
+        //     $('.hellopahecontainer').append(image);
+        //     if (e.target.files && e.target.files[0]) {
+        //         var reader = new FileReader();
+        //         reader.onload = function (e) {
+        //             $('.newimage img').attr('src', e.target.result);
+        //             $('.newimage').removeClass('newimage');
+        //         }
+        //         reader.readAsDataURL(e.target.files[0]);
+        //     }
+        //     //resize image
+        //     $( ".dragimage" ).resizable({
+        //         containment: ".dragable",
+        //         grid: [ 20, 20 ],
+        //         aspectRatio: true,
+        //         handles: "n, e, s, w"
+        //     });
+
+        //     //Make element draggable
+        //     $(".drag").draggable({
+        //         appendTo: ".dragable",
+        //         containment: ".dragable",
+        //         grid: [ 20, 20 ],
+        //         stop: function( event, ui ) {
+        //             console.log(event);
+        //             console.log(ui);
+        //         }
+        //     });
+
+        // });
         
         //remove picture
         $('.page-content').on('click', '.remove-picture', function(e){
@@ -76,16 +90,23 @@ jQuery(function ($) {
             $(this).next('input[type=file]').click();
         });
 
+        //change of font size
+        $('.rightside').on('change', '.font1size', function(e){
+            var fontsize = $(this).val() + "px";
+            $('.centerbox .text1level .text').css('font-size', fontsize);
+        });
+
         //add header text
         $('.rightside').on('change, keypress, keydown, keyup', '.textlevel1', function(e){
             if($('.hellopahecontainer').find('.text1level').length>0){
-                console.log( $('.hellopahecontainer').find('.text1level .text'));
                 $('.hellopahecontainer').find('.text1level .text').html($(this).val());
             }
             else {
+                var color = $('.colorpick1level input[type=color]').val();
+                var fontsize = $('.font1size').val() + "px";
                 var text1 = 
                 '<div class="drag dragtext text1level" style="left: 20px; top: 20px;">'
-                +'    <div class="text">'+ $(this).val() + '</div>'
+                +'    <div class="text" style="color: ' + color + ';font-size: ' + fontsize + ';">'+ $(this).val() + '</div>'
                 +'</div>';
                 $(text1).appendTo($('.hellopahecontainer'));
             }
@@ -94,7 +115,7 @@ jQuery(function ($) {
             $(".drag").draggable({
                 appendTo: ".dragable",
                 containment: ".dragable",
-                grid: [ 10, 10 ],
+                grid: [ 20, 20 ],
                 stop: function( event, ui ) {
                     console.log(event);
                     console.log(ui);
@@ -104,7 +125,7 @@ jQuery(function ($) {
             $( ".dragtext" ).resizable({
                 autoHide: false,
                 containment: ".dragable",
-                grid: [ 10, 10 ],
+                grid: [ 20, 20 ],
                 handles: "n, e, s, w"
             });
         });
@@ -146,8 +167,7 @@ jQuery(function ($) {
             $(this).next('input').val($(this).val());
             var value = $(this).val();
             $(this).parents('.colorpick').find('.square').css( 'background', value);
-            // $('.centerbox .question .name').css('color', value);
-            // $('.centerbox .question .question-name').css('color', value);
+            $('.centerbox .text1level .text').css('color', value);
         });
         var minRows = 5;
         var maxRows = 26;

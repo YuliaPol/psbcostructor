@@ -4102,18 +4102,18 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     padding: 20px;
 }
 .hellopahecontainer {
-    // width: 900px;
     width: 100%;
     max-width: 100%;
     min-width: 800px;
     min-height: 580px;
-    // height: 600px;
     height: calc(100vh - 200px);
     max-height: calc(100vh - 160px);
     background: #ffffff;
     position: relative;
     border: 1px dashed #9A9797;
-    // border: 1px dashed #9A9797;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     .dragimage {
         border: 1px dashed #9A9797;
         max-width: 100%;
@@ -4140,6 +4140,9 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     }
     .dragtext {
         border: 1px dashed #9A9797;
+        overflow: hidden;
+        max-width: calc(100% - 40px);
+        max-height: calc(100% - 40px);
         &.hidden {
             display: none;
         }
@@ -4210,6 +4213,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
             border: none;
             textarea {
                 border: none !important;
+                font-size: 10px;
+                line-height: 12px;
             }
         }
     }
