@@ -2665,7 +2665,7 @@ table {
 
 .construcot-container .centerbox .questions-box {
   width: 100%;
-  min-height: calc(100% - 104px);
+  min-height: 100%;
   -webkit-transition: background 0.3s ease-in;
   -o-transition: background 0.3s ease-in;
   transition: background 0.3s ease-in;
@@ -4769,15 +4769,15 @@ table {
 
 .construcot-container .rightside .designoptions .filerow .removepicture {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 0px;
+  right: 0px;
   background: url(./../img/minus-grey-a.svg);
-  background-position: center;
+  background-position: center right;
   background-repeat: no-repeat;
-  -webkit-background-size: contain;
-          background-size: contain;
-  width: 10px;
-  height: 10px;
+  -webkit-background-size: 10px 10px;
+          background-size: 10px;
+  width: 30px;
+  height: 40px;
   cursor: pointer;
 }
 

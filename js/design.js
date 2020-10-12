@@ -179,6 +179,9 @@ jQuery(function ($) {
             $('.questions-box').css('background-image', '');
             $('.questions-box').removeClass('bg-image');
             $('.addpicture').removeClass('active');
+            $('.construcot-container .centerbox .questions-box .question').css('background', 'transparent');
+            $('.construcot-container .centerbox .questions-box .question .mediablock .textblock').css('background', 'transparent');
+            $('.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block').css('background', 'transparent');
             $('.bgsettings').parents('.form-group').remove();
         });
         //change input for file

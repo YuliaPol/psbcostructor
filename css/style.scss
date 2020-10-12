@@ -1477,7 +1477,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
         }
         .questions-box {
             width: 100%;
-            min-height: calc(100% - 104px);
+            min-height: 100%;
             transition: background 0.3s ease-in;
             &.bg-image {
                 background-position: center;
@@ -2641,14 +2641,14 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                 }
                 .removepicture {
                     position: absolute;
-                    top: 15px;
-                    right: 15px;
+                    top: 0px;
+                    right: 0px;
                     background: url(./../img/minus-grey-a.svg);
-                    background-position: center;
+                    background-position: center right;
                     background-repeat: no-repeat;
-                    background-size: contain;
-                    width: 10px;
-                    height: 10px;
+                    background-size: 10px;
+                    width: 30px;
+                    height: 40px;
                     cursor: pointer;
                 }
             }
