@@ -7132,6 +7132,17 @@ table {
   display: none;
 }
 
+.hellopahecontainer .dragtext.text1level .text {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 50px;
+  line-height: 40px;
+  text-transform: uppercase;
+  color: #4D4D4D;
+  padding: 10px;
+}
+
 .hellopahecontainer .drag {
   display: inline-block;
   position: absolute !important;
@@ -7144,17 +7155,6 @@ table {
   max-height: calc(100vh - 170px);
   -o-object-fit: cover;
      object-fit: cover;
-}
-
-.hellopahecontainer .drag .headertext {
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: bold;
-  font-size: 50px;
-  line-height: 40px;
-  text-transform: uppercase;
-  color: #4D4D4D;
-  padding: 10px;
 }
 
 .hellopahecontainer .dropzone-file {
@@ -7208,6 +7208,15 @@ table {
 
 .hellopage_options .blocktext {
   border: 1px solid #EEEFF3;
+}
+
+.hellopage_options .blocktext .textblock {
+  padding: 8px;
+  border: none;
+}
+
+.hellopage_options .blocktext .textblock textarea {
+  border: none !important;
 }
 
 .hellopage_options .position {
@@ -8041,6 +8050,21 @@ html .ui-button.ui-state-disabled:active {
 
 .customselect-wrapper .select-options li[rel="hide"] {
   display: none;
+}
+
+.smallselect-wrapper .select-styled {
+  width: 80px;
+  border: none;
+  padding-left: 30px;
+  position: relative;
+}
+
+.smallselect-wrapper .select-options {
+  left: 20px;
+  right: auto;
+  width: 40px;
+  border-left: none;
+  border-right: none;
 }
 
 .col-phone .intl-tel-input .flag-dropdown .selected-flag .down-arrow {

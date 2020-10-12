@@ -54,6 +54,7 @@ jQuery(function ($) {
                 aspectRatio: true,
                 handles: "n, e, s, w"
             });
+
             //Make element draggable
             $(".drag").draggable({
                 appendTo: ".dragable",
@@ -73,6 +74,39 @@ jQuery(function ($) {
         });
         $('.page-content').on('click', '.addpicture', function(e){
             $(this).next('input[type=file]').click();
+        });
+
+        //add header text
+        $('.rightside').on('change, keypress, keydown, keyup', '.textlevel1', function(e){
+            if($('.hellopahecontainer').find('.text1level').length>0){
+                console.log( $('.hellopahecontainer').find('.text1level .text'));
+                $('.hellopahecontainer').find('.text1level .text').html($(this).val());
+            }
+            else {
+                var text1 = 
+                '<div class="drag dragtext text1level" style="left: 20px; top: 20px;">'
+                +'    <div class="text">'+ $(this).val() + '</div>'
+                +'</div>';
+                $(text1).appendTo($('.hellopahecontainer'));
+            }
+            auto_grow(this);
+            //Make element draggable
+            $(".drag").draggable({
+                appendTo: ".dragable",
+                containment: ".dragable",
+                grid: [ 10, 10 ],
+                stop: function( event, ui ) {
+                    console.log(event);
+                    console.log(ui);
+                }
+            });
+            //resize text
+            $( ".dragtext" ).resizable({
+                autoHide: false,
+                containment: ".dragable",
+                grid: [ 10, 10 ],
+                handles: "n, e, s, w"
+            });
         });
         
         //if hellopahecontainer is empty ad posibility to drag picture 
@@ -115,20 +149,44 @@ jQuery(function ($) {
             // $('.centerbox .question .name').css('color', value);
             // $('.centerbox .question .question-name').css('color', value);
         });
-
+        var minRows = 5;
+        var maxRows = 26;
+        function auto_grow(id) {
+            var t = id;
+            if (t.scrollTop == 0)   t.scrollTop=1;
+            while (t.scrollTop == 0) {
+                if (t.rows > minRows)
+                        t.rows--; else
+                    break;
+                t.scrollTop = 1;
+                if (t.rows < maxRows)
+                        t.style.overflowY = "hidden";
+                if (t.scrollTop > 0) {
+                    t.rows++;
+                    break;
+                }
+            }
+            while(t.scrollTop > 0) {
+                if (t.rows < maxRows) {
+                    t.rows++;
+                    if (t.scrollTop == 0) t.scrollTop=1;
+                } else {
+                    t.style.overflowY = "auto";
+                    break;
+                }
+            }
+        }
         //customselect
         $('.customselect').each(function(){
-
             $(this).parent().addClass('customselect-wrapper');
             var $this = $(this),
             numberOfOptions = $(this).children('option').length;
-        
             $this.addClass('select-hidden'); 
             $this.wrap('<div class="select"></div>');
             $this.after('<div class="select-styled"></div>');
             var $styledSelect = $this.next('div.select-styled');
-            if($('.customselect option:selected').length>0){
-                $styledSelect.text($('.customselect option:selected').text());
+            if($this.find('option:selected').length>0){
+                $styledSelect.text($this.find('option:selected').text());
             }
             else {
                 $styledSelect.text($this.children('option').eq(0).text());

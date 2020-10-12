@@ -156,7 +156,13 @@ jQuery(function ($) {
         $('.centerbox').css('background', $('.rightside .colorpickbackground input[type=color]').val());
 
         //position
-        $('.centerbox').addClass('align' + $('.rightside .position-text input[type=radio]:checked').val());
+        if($('.rightside .position-text input[type=radio]:checked').length>0){
+            $('.centerbox').addClass('align' + $('.rightside .position-text input[type=radio]:checked').val());
+        }
+        else {
+            console.log('default)');
+            $('.rightside .position-text input[type=radio][value=left]').attr('checked', 'checked')
+        }
 
         //font
         $('.centerbox').addClass('font' + $('.fontselect').val());
