@@ -285,9 +285,9 @@ jQuery(function ($) {
             +'              <option value="28">26</option>'
             +'              <option value="24">24</option>'
             +'              <option value="18">18</option>'
-            +'              <option value="18">16</option>'
-            +'              <option value="18">14</option>'
-            +'              <option value="18">12</option>'
+            +'              <option value="16">16</option>'
+            +'              <option value="14">14</option>'
+            +'              <option value="12">12</option>'
             +'          </select>'
             +'      </div>'
             +'      <div class="textblock">'
@@ -680,6 +680,55 @@ jQuery(function ($) {
                 $('.textasettings input[name=secondtextwidth_' + id + ']').val(width);
                 $('.textasettings input[name=secondtextheight_' + id + ']').val(height);
             }
+        }
+
+        //set options on start
+
+        //font size 1level
+        if($('.rightside .font1size').val()){
+            var fontsize = $('.rightside .font1size').val() + "px";
+            $('.centerbox .text1level .text').css('font-size', fontsize);
+        }
+        //font family
+        if($('.rightside .fontselect').val()){
+            var className = "font" + $('.rightside .fontselect').val();
+            $('.centerbox').addClass(className);
+        }
+        //set second text font size and color
+        if($('.rightside .secondtextgroup').length>0){
+            var SecondTexts = $('.rightside .secondtextgroup');
+            SecondTexts.each(function (index, text) {
+                var id = $(text).find('input[type=text]').attr('name').split('_')[1];
+                var fontsize = $(text).find('.fontsecondsize').val() + "px";
+                var color = $(text).find('.colorpicksecond input[type=color]').val();
+                $('#secondtext_' + id + ' .text').css('font-size', fontsize);
+                $('#secondtext_' + id + ' .text').css('color', color);
+            });
+        }
+        //set btn options
+        //btn position
+        if($('.rightside .btn-options .position input[type=radio]:checked').length>0){
+            $('.dragbtn').find('.btn-cont .btn').css('text-align', $('.rightside .btn-options .position input[type=radio]:checked').val());
+        }
+        //btnwidth
+        if($('.rightside .btnwidth').length>0){
+            var btnwidth =$('.rightside .btnwidth').val() + 'px';
+            $('.dragbtn').find('.btn-cont .btn').css('width', btnwidth);
+        }
+        //btnheight
+        if($('.rightside .btnheight').length>0){
+            var btnheight =$('.rightside .btnheight').val() + 'px';
+            $('.dragbtn').find('.btn-cont .btn').css('height', btnheight);
+        }
+        //btnradius
+        if($('.rightside .btnradius').length>0){
+            var btnradius =$('.rightside .btnradius').val() + 'px';
+            $('.dragbtn').find('.btn-cont .btn').css( {  borderRadius:   btnradius });
+        }
+        //btn color
+        if($('.rightside .hiddeninputcolor').length>0){
+            var color = $('.rightside .hiddeninputcolor').val();
+            $('.dragbtn').find('.btn-cont .btn').css( 'background', color);
         }
         //set size of screen
         $('.text-aside input[name=widthscreen]').val($('.hellopahecontainer').width());
