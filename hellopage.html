@@ -301,29 +301,31 @@
     </div>
 
     <script>
-                // Dropzone.autoDiscover = false;
-        var drop = $('#dz-preview-template').html();
-        $('.upload-file').click(function () {
-            $('.realfileinput').click();
-        });
+        if($('#dropContainer').length>0){
+            // Dropzone.autoDiscover = false;
+            var drop = $('#dz-preview-template').html();
+            $('.upload-file').click(function () {
+                $('.realfileinput').click();
+            });
 
-        // dragover and dragenter events need to have 'preventDefault' called
-        // in order for the 'drop' event to register. 
-        // See: https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Drag_operations#droptargets
-        dropContainer.ondragover = dropContainer.ondragenter = function(evt) {
-            evt.preventDefault();
-        };
+            // dragover and dragenter events need to have 'preventDefault' called
+            // in order for the 'drop' event to register. 
+            // See: https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Drag_operations#droptargets
+            dropContainer.ondragover = dropContainer.ondragenter = function(evt) {
+                evt.preventDefault();
+            };
 
-        dropContainer.ondrop = function(evt) {
-        // pretty simple -- but not for IE :(
-            fileInput.files = evt.dataTransfer.files;
-            // If you want to use some of the dropped files
-            const dT = new DataTransfer();
-            dT.items.add(evt.dataTransfer.files[0]);
-            fileInput.files = dT.files;
-            evt.preventDefault();
-            $('.pictureforpage').change();
-        };
+            dropContainer.ondrop = function(evt) {
+            // pretty simple -- but not for IE :(
+                fileInput.files = evt.dataTransfer.files;
+                // If you want to use some of the dropped files
+                const dT = new DataTransfer();
+                dT.items.add(evt.dataTransfer.files[0]);
+                fileInput.files = dT.files;
+                evt.preventDefault();
+                $('.pictureforpage').change();
+            };
+        }
     </script>
     <!-- <script src="./js/constructor.js?6876546"></script> -->
 

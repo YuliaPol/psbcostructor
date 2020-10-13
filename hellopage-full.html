@@ -136,13 +136,12 @@
                                     <p class="pad-bt-15">Текст</p>
                                     <div class="position position-text">
                                         <div class="left">
-                                            <input type="radio" value="left" name="settings_1" id="settingsposition_1"
-                                                checked="">
+                                            <input type="radio" value="left" name="settings_1" id="settingsposition_1">
                                             <label for="settingsposition_1">
                                             </label>
                                         </div>
                                         <div class="center">
-                                            <input type="radio" value="center" name="settings_1"
+                                            <input type="radio" value="center" name="settings_1" checked=""
                                                 id="settingsposition_2">
                                             <label for="settingsposition_2">
                                             </label>
@@ -395,9 +394,9 @@
                                                     <div class="color" style="background: rgb(25, 16, 16);"></div>
                                                 </label>
                                                 <input type="color" class="hiddeninput hiddeninputcolor"
-                                                    value="#F26126">
+                                                    value="#191010">
                                                 <input class="btncolor" type="text" name="btncolor" id="btncolor"
-                                                    value="#F26126">
+                                                    value="#191010">
                                             </div>
                                         </div>
                                         <div class="form-group"> <label for="btnname">Текст кнопки</label>
@@ -415,6 +414,33 @@
             </div>
         </form>
     </div>
+    <script>
+        if($('#dropContainer').length>0){
+            // Dropzone.autoDiscover = false;
+            var drop = $('#dz-preview-template').html();
+            $('.upload-file').click(function () {
+                $('.realfileinput').click();
+            });
+
+            // dragover and dragenter events need to have 'preventDefault' called
+            // in order for the 'drop' event to register. 
+            // See: https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Drag_operations#droptargets
+            dropContainer.ondragover = dropContainer.ondragenter = function(evt) {
+                evt.preventDefault();
+            };
+
+            dropContainer.ondrop = function(evt) {
+            // pretty simple -- but not for IE :(
+                fileInput.files = evt.dataTransfer.files;
+                // If you want to use some of the dropped files
+                const dT = new DataTransfer();
+                dT.items.add(evt.dataTransfer.files[0]);
+                fileInput.files = dT.files;
+                evt.preventDefault();
+                $('.pictureforpage').change();
+            };
+        }
+    </script>
 </body>
 
 </html>

@@ -681,8 +681,74 @@ jQuery(function ($) {
                 $('.textasettings input[name=secondtextheight_' + id + ']').val(height);
             }
         }
-
-        //set options on start
+        function ResizeScreen(){
+            //set position of element
+            if($('.text-aside input[name=widthscreen]').val() && $('.text-aside input[name=heightscreen]').val()){
+                var prevwidth = parseInt($('.text-aside input[name=widthscreen]').val());
+                var prevheight = parseInt($('.text-aside input[name=heightscreen]').val());
+                var elements = $('.hellopahecontainer').children();
+                elements.each(function (index, element) {
+                    var width;
+                    var height;
+                    var top;
+                    var left;
+                    if($(element).hasClass('dragbtn')){
+                        top = parseInt($('.btn-options-group input[name=pbtntop]').val());
+                        left = parseInt($('.btn-options-group input[name=pbtnleft]').val());
+                        width = parseInt($('.btn-options-group input[name=pbtnwidth]').val());
+                        height = parseInt($('.btn-options-group input[name=pbtnheight]').val());
+                    }
+                    else if($(element).hasClass('text1level')){
+                        top = parseInt($('.textasettings input[name=text1leveltop]').val());
+                        left = parseInt($('.textasettings input[name=text1levelleft]').val());
+                        width = parseInt($('.textasettings input[name=text1levelwidth]').val());
+                        height = parseInt($('.textasettings input[name=text1levelheight]').val());
+                    }
+                    else if($(element).hasClass('textsecond')){
+                        var id = $(element).attr('id').split('_')[1];
+                        top = parseInt($('.textasettings input[name=secondtexttop_' + id + ']').val());
+                        left = parseInt($('.textasettings input[name=secondtextleft_' + id + ']').val());
+                        width = parseInt($('.textasettings input[name=secondtextwidth_' + id + ']').val());
+                        height = parseInt($('.textasettings input[name=secondtextheight_' + id + ']').val());
+                    }
+                    var perleft = left * (100/prevwidth);
+                    var newleft = perleft * (parseInt($('.hellopahecontainer').width())/100);
+                    if(width + newleft > parseInt($('.hellopahecontainer').width())){
+                        var index = 0;
+                        while(width + newleft > parseInt($('.hellopahecontainer').width()) && index < 20){
+                            newleft = newleft - 20;
+                            width = width - 20;
+                            $(element).css('left', newleft  + 'px');
+                            $(element).css('width', width + 'px');
+                            index ++;
+                        }
+                    }
+                    else {
+                        $(element).css('left', newleft  + 'px');
+                        $(element).css('width', width + 10 + 'px');
+                    }
+                    $(element).css('height', height + 10  + 'px');
+                    if(top + height < $('.hellopahecontainer').height()){
+                        $(element).css('top', top  + 'px' );
+                    }
+                    else {
+                        $(element).css('top', prevheight - height  + 'px' );
+                    }
+                });
+            }
+            //set options on start
+            //set size of screen
+            $('.text-aside input[name=widthscreen]').val($('.hellopahecontainer').width());
+            $('.text-aside input[name=heightscreen]').val($('.hellopahecontainer').height());
+        }
+        //page position
+        if($('.rightside .textasettings .position-text input[type=radio]:checked').length>0){
+            var className = "align" + $('.rightside .textasettings .position-text input[type=radio]:checked').val();
+            $('.centerbox').addClass(className);
+        }
+        else {
+            $('.rightside .textasettings .position-text input[type=radio][value=left]').attr('checked', 'checked');
+        }
 
         //font size 1level
         if($('.rightside .font1size').val()){
@@ -730,9 +796,10 @@ jQuery(function ($) {
             var color = $('.rightside .hiddeninputcolor').val();
             $('.dragbtn').find('.btn-cont .btn').css( 'background', color);
         }
-        //set size of screen
-        $('.text-aside input[name=widthscreen]').val($('.hellopahecontainer').width());
-        $('.text-aside input[name=heightscreen]').val($('.hellopahecontainer').height());
+        ResizeScreen();
+        $(window).on('resize', function(){
+            ResizeScreen()
+        });
     });
 });
 $(document).click(function(e) {
