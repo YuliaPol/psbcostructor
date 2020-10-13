@@ -797,9 +797,6 @@ jQuery(function ($) {
             $('.dragbtn').find('.btn-cont .btn').css( 'background', color);
         }
         ResizeScreen();
-        $(window).on('resize', function(){
-            ResizeScreen()
-        });
     });
 });
 $(document).click(function(e) {
