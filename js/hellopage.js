@@ -251,16 +251,18 @@ jQuery(function ($) {
             if($(this).parents('.templatecol').length>0) {
                 $(this).parents('.templatecol').remove();
             }
-            var id = 1;
+            var id = 2;
             if($('.rightside').find('.secondtextgroup').length>0){
                 id = parseInt($('.rightside .secondtextgroup:last-child input[type=text]').attr('name').split('_')[1]) + 1;
             }
+
             var newsecondtext = 
             '<div class="form-group secondtextgroup">'
-            +'    <input type="hidden" class="secondtexttop" name="secondtexttop_'+ id + '" value="20">'
-            +'    <input type="hidden" class="secondtextleft" name="secondtextleft_'+ id + '" value="20">'
-            +'    <input type="hidden" class="secondtextwidth" name="secondtextwidth_'+ id + '">'
-            +'    <input type="hidden" class="secondtextheight" name="secondtextheight_'+ id + '">'
+            +'    <input type="hidden" class="secondtexttop" name="texttop_'+ id + '" value="20">'
+            +'    <input type="hidden" class="secondtextleft" name="textleft_'+ id + '" value="20">'
+            +'    <input type="hidden" class="secondtextwidth" name="textwidth_'+ id + '">'
+            +'    <input type="hidden" class="secondtextheight" name="textheight_'+ id + '">'
+            +'    <input type="hidden" name="texttype_'+ id + '" value="2">'
             +'    <div class="top-col">'
             +'        <div class="addsecondtext"></div>'
             +'        <div class="removesecondtext"></div>'
@@ -270,14 +272,14 @@ jQuery(function ($) {
             +'            <div class="square" style="background: #4D4D4D;"></div>'
             +'            <div class="inputs">'
             +'                <input type="color" value="#4D4D4D">'
-            +'                <input type="text" name="colorsecond_'+ id + '" id="colorsecond_'+ id + '" value="#4D4D4D">'
+            +'                <input type="text" name="color_'+ id + '" id="color_'+ id + '" value="#4D4D4D">'
             +'            </div>'
             +'            <div class="labelcolor">'
-            +'           <label for="colorsecond_'+ id + '">Текст второго уровня</label>'
+            +'           <label for="color_'+ id + '">Текст второго уровня</label>'
             +'          </div>'
             +'      </div>'
             +'      <div class="fontsize smallselect-wrapper">'
-            +'           <select name="fontsizesecond_'+ id + '" class="customselect fontsecondsize ">'
+            +'           <select name="fontsize_'+ id + '" class="customselect fontsecondsize ">'
             +'               <option value="44">44</option>'
             +'              <option value="36">36</option>'
             +'              <option value="36">32</option>'
@@ -291,7 +293,7 @@ jQuery(function ($) {
             +'          </select>'
             +'      </div>'
             +'      <div class="textblock">'
-            +'          <textarea name="textlevesecond_'+ id + '" class="textlevelsecond" placeholder="Введите текст"></textarea>'
+            +'          <textarea name="textlevel_'+ id + '" class="textlevelsecond" placeholder="Введите текст"></textarea>'
             +'      </div>'
             +'  </div>'
             +'</div>';
@@ -464,7 +466,6 @@ jQuery(function ($) {
             $('.hellopahecontainer').find('.textsecond').addClass('changingid');
             var SecondTexts = $('.rightside').find('.secondtextgroup');
             if(SecondTexts.length>0){
-
                 SecondTexts.each(function (index, text) {
                     var id = index + 1;
                     var inputs = $(text).find('input');
@@ -699,17 +700,17 @@ jQuery(function ($) {
                         height = parseInt($('.btn-options-group input[name=pbtnheight]').val());
                     }
                     else if($(element).hasClass('text1level')){
-                        top = parseInt($('.textasettings input[name=text1leveltop]').val());
-                        left = parseInt($('.textasettings input[name=text1levelleft]').val());
-                        width = parseInt($('.textasettings input[name=text1levelwidth]').val());
-                        height = parseInt($('.textasettings input[name=text1levelheight]').val());
+                        top = parseInt($('.textasettings input[name=texttop_1]').val());
+                        left = parseInt($('.textasettings input[name=textleft_1]').val());
+                        width = parseInt($('.textasettings input[name=textwidth_1]').val());
+                        height = parseInt($('.textasettings input[name=textheight_1]').val());
                     }
                     else if($(element).hasClass('textsecond')){
                         var id = $(element).attr('id').split('_')[1];
-                        top = parseInt($('.textasettings input[name=secondtexttop_' + id + ']').val());
-                        left = parseInt($('.textasettings input[name=secondtextleft_' + id + ']').val());
-                        width = parseInt($('.textasettings input[name=secondtextwidth_' + id + ']').val());
-                        height = parseInt($('.textasettings input[name=secondtextheight_' + id + ']').val());
+                        top = parseInt($('.textasettings input[name=texttop_' + id + ']').val());
+                        left = parseInt($('.textasettings input[name=textleft_' + id + ']').val());
+                        width = parseInt($('.textasettings input[name=textwidth_' + id + ']').val());
+                        height = parseInt($('.textasettings input[name=textheight_' + id + ']').val());
                     }
                     var perleft = left * (100/prevwidth);
                     var newleft = perleft * (parseInt($('.hellopahecontainer').width())/100);
@@ -796,6 +797,81 @@ jQuery(function ($) {
             var color = $('.rightside .hiddeninputcolor').val();
             $('.dragbtn').find('.btn-cont .btn').css( 'background', color);
         }
+        //set header text
+        if($('.rightside .textlevel1').val()){
+            var color = $('.colorpick1level input[type=color]').val();
+            var fontsize = $('.font1size').val() + "px";
+            var text1 = 
+            '<div class="drag dragtext text1level" style="left: 20px; top: 20px;">'
+            +'    <div class="text" style="color: ' + color + ';font-size: ' + fontsize + ';">'+ $('.rightside .textlevel1').val() + '</div>'
+            +'</div>';
+            $(text1).appendTo($('.hellopahecontainer'));
+        }
+        //set second level text
+        if($('.rightside .textlevelsecond').length>0){
+            var SecondTexts = $('.rightside .textlevelsecond');
+            SecondTexts.each(function (index, text) {
+                if($(text).val()){
+                    var id = $(text).attr('name').split('_')[1];
+                    var color = $(text).parents('.blocktext').find('.colorpick input[type=color]').val();
+                    var fontsize = $(text).parents('.blocktext').find('.font1size').val() + "px";
+                    var text1 = 
+                    '<div class="drag dragtext textsecond" id="secondtext_' + id + '" style="left: 20px; top: 20px;">'
+                    +'    <div class="text" style="color: ' + color + ';font-size: ' + fontsize + ';">'+ $(text).val() + '</div>'
+                    +'</div>';
+                    $(text1).appendTo($('.hellopahecontainer'));
+                }
+            });
+        }
+        //set btn
+        if($('#btnname').val() && $('#btnwidth').val() && $('#btnheight').val() && $('#btncolor').val()){
+            var btntext = $('#btnname').val();
+            var btncolor = $('#btncolor').val();
+            var btnwidth = $('#btnwidth').val() + 'px';
+            var btnheight = $('#btnheight').val() + 'px';
+            var btnradius = $('#btnradius').val() + 'px';
+            var position = "center";
+            if($('input[name=btnposition]:checked').val()){
+                position = $('input[name=btnposition]:checked').val();
+            }
+            var btnel =
+            '<div class="drag dragbtn" style="top: 20px; left: 20px;">'
+            +'    <div class="btn-cont" style="text-align: '+ position + ';">'
+            +'      <button class="btn" type="submit"'
+            +'          style="'
+            +'          background: '+ btncolor + ';'
+            +'          width: ' + btnwidth + ';'
+            +'          height: '+ btnheight + ';'
+            +'          border-radius: '+ btnradius + ';">'
+            +'          ' + btntext
+            +'      </button>'
+            +'  </div>'
+            +'</div>';
+            $(btnel).appendTo($('.hellopahecontainer'));
+        }
+        //Make element draggable
+        $(".drag").draggable({
+            appendTo: ".dragable",
+            containment: ".dragable",
+            grid: [ 20, 20 ],
+            stop: function( event, ui ) {
+                var top = ui.position.top;
+                var left = ui.position.left;
+                SetPositionOfElement(event.target, top, left);
+            }
+        });
+        // resize text
+        $( ".dragtext" ).resizable({
+            autoHide: false,
+            containment: ".dragable",
+            grid: [ 20, 20 ],
+            handles: "n, e, s, w",
+            stop: function( event, ui ) {
+                var top = ui.position.top;
+                var left = ui.position.left;
+                SetPositionOfElement(event.target, top, left);
+            }
+        });
         ResizeScreen();
     });
 });
