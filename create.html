@@ -81,6 +81,21 @@
                         </div>
                     </div>
                     <div class="form-group">
+                            <div class="question">
+                                3. Введите тип опроса
+                            </div>
+                            <div class="select">
+                                <select id="" name="type" class="customselect">
+                                    <option value="audio">Тестирование аудиальной составляющей</option>
+                                    <option value="visual">Тестирование визуальной составляющей</option>
+                                    <option value="video">Тестирование аудиовизуальных произведений</option>
+                                    <option value="text">Тестирование текстовой составляющей</option>
+                                    <option value="design">Тестирование дизайна</option>
+                                    <option value="idea">Тестирование идейной составляющей</option>
+                                </select>
+                            </div>
+                    </div>
+                    <div class="form-group">
                         <div class="file-upload-froup">
                             <div class="question question-file">
                                 4. Добавить файл для опроса
@@ -159,7 +174,65 @@
                 reader.readAsDataURL(e.target.files[0]);
             }
         });
-
+        jQuery(function ($) {
+            $(document).ready(function () {
+                 //customselect
+                customSelectActive();
+                function customSelectActive(){
+                    $('.customselect').each(function(){
+                        if(!$(this).hasClass('select-hidden')){
+                            $(this).parent().addClass('customselect-wrapper');
+                            var $this = $(this),
+                            numberOfOptions = $(this).children('option').length;
+                            $this.addClass('select-hidden'); 
+                            $this.wrap('<div class="select"></div>');
+                            $this.after('<div class="select-styled"></div>');
+                            var $styledSelect = $this.next('div.select-styled');
+                            if($this.find('option:selected').length>0){
+                                $styledSelect.text($this.find('option:selected').text());
+                            }
+                            else {
+                                $styledSelect.text($this.children('option').eq(0).text());
+                            }
+                        
+                            var $list = $('<ul />', {
+                                'class': 'select-options'
+                            }).insertAfter($styledSelect);
+                        
+                            for (var i = 0; i < numberOfOptions; i++) {
+                                $('<li />', {
+                                    text: $this.children('option').eq(i).text(),
+                                    rel: $this.children('option').eq(i).val()
+                                }).appendTo($list);
+                            }
+                        
+                            var $listItems = $list.children('li');
+                        
+                            $styledSelect.click(function(e) {
+                                e.stopPropagation();
+                                $('div.select-styled.active').not(this).each(function(){
+                                    $(this).removeClass('active').next('ul.select-options').hide();
+                                });
+                                $(this).toggleClass('active').next('ul.select-options').toggle();
+                            });
+                        
+                            $listItems.click(function(e) {
+                                e.stopPropagation();
+                                $styledSelect.text($(this).text()).removeClass('active');
+                                $this.val($(this).attr('rel'));
+                                $list.hide();
+                                $this.change();
+                            });
+                        
+                            $(document).click(function() {
+                                $styledSelect.removeClass('active');
+                                $list.hide();
+                            });
+                        }
+                    });   
+                }
+            });
+        });
         // var myDropzone = new Dropzone('.dropzone', {
         //     url: "#urlforfile",
         //     dictDefaultMessage: 'Перетащите картинку сюда, либо нажмите на скрепку',
