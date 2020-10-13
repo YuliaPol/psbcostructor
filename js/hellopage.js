@@ -146,7 +146,7 @@ jQuery(function ($) {
                 $('.hellopahecontainer').find('.text1level .text').html($(this).val());
             }
             else {
-                var color = $('.colorpick1level input[type=color]').val();
+                var color = $('.textlevel1').parents('.blocktext').find('.colorpick1level input[type=color]').val();
                 var fontsize = $('.font1size').val() + "px";
                 var text1 = 
                 '<div class="drag dragtext text1level" style="left: 20px; top: 20px;">'
@@ -667,19 +667,19 @@ jQuery(function ($) {
             else if($(element).hasClass('text1level')){
                 var width = $(element).width()
                 var height = $(element).height()
-                $('.textasettings input[name=text1leveltop]').val(top);
-                $('.textasettings input[name=text1levelleft]').val(left);
-                $('.textasettings input[name=text1levelwidth]').val(width);
-                $('.textasettings input[name=text1levelheight]').val(height);
+                $('.textasettings input[name=texttop_1]').val(top);
+                $('.textasettings input[name=textleft_1]').val(left);
+                $('.textasettings input[name=textwidth_1]').val(width);
+                $('.textasettings input[name=textheight_1]').val(height);
             }
             else if($(element).hasClass('textsecond')){
                 var id = $(element).attr('id').split('_')[1];
                 var width = $(element).width()
                 var height = $(element).height()
-                $('.textasettings input[name=secondtexttop_' + id + ']').val(top);
-                $('.textasettings input[name=secondtextleft_' + id + ']').val(left);
-                $('.textasettings input[name=secondtextwidth_' + id + ']').val(width);
-                $('.textasettings input[name=secondtextheight_' + id + ']').val(height);
+                $('.textasettings input[name=texttop_' + id + ']').val(top);
+                $('.textasettings input[name=textleft_' + id + ']').val(left);
+                $('.textasettings input[name=textwidth_' + id + ']').val(width);
+                $('.textasettings input[name=textheight_' + id + ']').val(height);
             }
         }
         function ResizeScreen(){
@@ -799,7 +799,7 @@ jQuery(function ($) {
         }
         //set header text
         if($('.rightside .textlevel1').val()){
-            var color = $('.colorpick1level input[type=color]').val();
+            var color = $('.textlevel1').parents('.blocktext').find('.colorpick1level input[type=color]').val();
             var fontsize = $('.font1size').val() + "px";
             var text1 = 
             '<div class="drag dragtext text1level" style="left: 20px; top: 20px;">'
