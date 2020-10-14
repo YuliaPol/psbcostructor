@@ -5476,6 +5476,14 @@ table {
   padding: 7px 9px;
 }
 
+.construcot-container .rightside .default .text-aside .btn-options .row-options .optionbtngroup.optionbtntextcolor .color,
+.construcot-container .rightside .optionbox .text-aside .btn-options .row-options .optionbtngroup.optionbtntextcolor .color,
+.construcot-container .rightside .branchingoptionbox .text-aside .btn-options .row-options .optionbtngroup.optionbtntextcolor .color {
+  font-size: 8px;
+  text-align: center;
+  vertical-align: middle;
+}
+
 .construcot-container .rightside .default .text-aside .btn-options .row-options .optionbtngroup .hiddeninput,
 .construcot-container .rightside .optionbox .text-aside .btn-options .row-options .optionbtngroup .hiddeninput,
 .construcot-container .rightside .branchingoptionbox .text-aside .btn-options .row-options .optionbtngroup .hiddeninput {

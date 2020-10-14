@@ -3099,6 +3099,13 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                             width: calc(50% - 5px);
                             border: 1px solid #EEEFF3;
                             padding: 7px 9px;
+                            &.optionbtntextcolor {
+                                .color {
+                                    font-size: 8px;
+                                    text-align: center;
+                                    vertical-align: middle;
+                                }
+                            }
                             .hiddeninput {
                                 width: 0px;
                                 height: 0px;

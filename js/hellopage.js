@@ -188,7 +188,7 @@ jQuery(function ($) {
         });
         
         //change of color second level 
-        $('.rightside').on('change', '.colorpicksecond input[type=color]', function(e){
+        $('.rightside').on('input', '.colorpicksecond input[type=color]', function(e){
             $(this).next('input').val($(this).val());
             var value = $(this).val();
             var id = $(this).parents('.colorpick').find('input[type=text]').attr('name').split('_')[1];
@@ -345,7 +345,8 @@ jQuery(function ($) {
             return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 500);
         });
 
-        $('.rightside').on('change', '.btncolor', function(e){
+        //btn background color
+        $('.rightside').on('input', '.btncolor', function(e){
             var value = $(this).val();
             $('.dragbtn').find('.btn-cont  .btn').css( 'background', value);
             $(this).parents('.optionbtngroup').find('.color').css( 'background', value);
@@ -355,11 +356,30 @@ jQuery(function ($) {
             $(this).prev('input').click();
         });
 
-        $('.rightside').on('change', '.hiddeninputcolor', function(e){
+        $('.rightside').on('input', '.hiddeninputcolor', function(e){
             $(this).next('input').val($(this).val());
             var value = $(this).val();
             $('.dragbtn').find('.btn-cont .btn').css( 'background', value);
+            
+            $(this).parents('.btn-options-group').find('.optionbtntextcolor .color').css( 'background', value);
             $(this).parents('.optionbtngroup').find('.color').css( 'background', value);
+        });
+        //btn text color 
+        $('.rightside').on('input', '.btntextcolor', function(e){
+            var value = $(this).val();
+            $('.dragbtn').find('.btn-cont  .btn').css( 'color', value);
+            $(this).parents('.optionbtngroup').find('.color').css( 'color', value);
+        });
+
+        $('.rightside').on('click', '.btntextcolor', function(e){
+            $(this).prev('input').click();
+        });
+
+        $('.rightside').on('input', '.hiddeninputtextcolor', function(e){
+            $(this).next('input').val($(this).val());
+            var value = $(this).val();
+            $('.dragbtn').find('.btn-cont .btn').css( 'color', value);
+            $(this).parents('.optionbtngroup').find('.color').css( 'color', value);
         });
 
         $('.rightside').on('change, keypress, keydown, keyup', '.btn_name', function(e){
@@ -428,6 +448,19 @@ jQuery(function ($) {
             +'          <input class="btncolor" type="text"  name="btncolor"  id="btncolor" value="#F26126">'
             +'      </div>'
             +'  </div>'
+            +'    <div class="row-options">'
+            +'        <div class="optionbtngroup optionbtntextcolor">'
+            +'            <label for="btntextcolor">'
+            +'                <div class="color" style="'
+            +'                background-color: #F26126;'
+            +'                color: #ffffff;">T</div>'
+            +'            </label>'
+            +'            <input type="color" class="hiddeninput hiddeninputtextcolor"'
+            +'                value="#ffffff">'
+            +'            <input class="btntextcolor" type="text" name="btntextcolor" id="btntextcolor"'
+            +'                value="#ffffff">'
+            +'        </div>'
+            +'    </div>'
             +'  <div class="form-group">'
             +'      <label for="btnname">Текст кнопки</label>'
             +'      <input class="btn_name" name="btnname" id="btnname" value="Пройти опрос">'
@@ -467,7 +500,7 @@ jQuery(function ($) {
             var SecondTexts = $('.rightside').find('.secondtextgroup');
             if(SecondTexts.length>0){
                 SecondTexts.each(function (index, text) {
-                    var id = index + 1;
+                    var id = index + 2;
                     var inputs = $(text).find('input');
                     inputs.each(function (index, input) {
                         if($(input).attr('name')){
@@ -566,7 +599,7 @@ jQuery(function ($) {
             $(this).parents('.colorpick').find('input[type=color]').click();
         });
 
-        $('.rightside').on('change', '.colorpick1level input[type=color]', function(e){
+        $('.rightside').on('input', '.colorpick1level input[type=color]', function(e){
             $(this).next('input').val($(this).val());
             var value = $(this).val();
             $(this).parents('.colorpick').find('.square').css( 'background', value);
@@ -717,8 +750,13 @@ jQuery(function ($) {
                     if(width + newleft > parseInt($('.hellopahecontainer').width())){
                         var index = 0;
                         while(width + newleft > parseInt($('.hellopahecontainer').width()) && index < 20){
-                            newleft = newleft - 20;
-                            width = width - 20;
+                            if(width > parseInt($('.hellopahecontainer').width()) - 100){
+                                newleft = newleft - 20;
+                                width = width - 10;
+                            }
+                            else {
+                                newleft = newleft - 20;
+                            }
                             $(element).css('left', newleft  + 'px');
                             $(element).css('width', width + 'px');
                             index ++;
@@ -797,6 +835,11 @@ jQuery(function ($) {
             var color = $('.rightside .hiddeninputcolor').val();
             $('.dragbtn').find('.btn-cont .btn').css( 'background', color);
         }
+        //btn text color 
+        if($('.rightside .hiddeninputtextcolor').length>0){
+            var color = $('.rightside .hiddeninputtextcolor').val();
+            $('.dragbtn').find('.btn-cont .btn').css( 'color', color);
+        }
         //set header text
         if($('.rightside .textlevel1').val()){
             var color = $('.textlevel1').parents('.blocktext').find('.colorpick1level input[type=color]').val();
@@ -830,6 +873,7 @@ jQuery(function ($) {
             var btnwidth = $('#btnwidth').val() + 'px';
             var btnheight = $('#btnheight').val() + 'px';
             var btnradius = $('#btnradius').val() + 'px';
+            var btntextcolor =$('#btntextcolor').val();
             var position = "center";
             if($('input[name=btnposition]:checked').val()){
                 position = $('input[name=btnposition]:checked').val();
@@ -842,7 +886,8 @@ jQuery(function ($) {
             +'          background: '+ btncolor + ';'
             +'          width: ' + btnwidth + ';'
             +'          height: '+ btnheight + ';'
-            +'          border-radius: '+ btnradius + ';">'
+            +'          border-radius: '+ btnradius + ';'
+            +'          color: '+ btntextcolor + '">'
             +'          ' + btntext
             +'      </button>'
             +'  </div>'
@@ -873,6 +918,11 @@ jQuery(function ($) {
             }
         });
         ResizeScreen();
+        $(window).resize(function() {
+            if(Math.abs(parseInt($('.text-aside input[name=widthscreen]').val()) - parseInt($('.hellopahecontainer').width())) > 20) {
+                ResizeScreen();
+            }
+        });
     });
 });
 $(document).click(function(e) {
