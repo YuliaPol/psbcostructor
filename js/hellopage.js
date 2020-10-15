@@ -143,7 +143,16 @@ jQuery(function ($) {
         //add header text
         $('.rightside').on('change, keypress, keydown, keyup', '.textlevel1', function(e){
             if($('.hellopahecontainer').find('.text1level').length>0){
+                if(parseInt($('.hellopahecontainer').find('.text1level').width()) < 150){
+                    $('.hellopahecontainer').find('.text1level').css('width','auto');
+                }
+                if(parseInt($('.hellopahecontainer').find('.text1level .text').height()) + 30 > parseInt($('.hellopahecontainer').find('.text1level').height()) && parseInt($('.hellopahecontainer').find('.text1level').width()) > 150){
+                    $('.hellopahecontainer').find('.text1level').css('height','auto');
+                }
                 $('.hellopahecontainer').find('.text1level .text').html($(this).val());
+                var top = $('.hellopahecontainer').find('.text1level')[0].offsetTop;
+                var left = $('.hellopahecontainer').find('.text1level')[0].offsetLeft;
+                SetPositionOfElement($('.hellopahecontainer').find('.text1level'), top, left);
             }
             else {
                 var color = $('.textlevel1').parents('.blocktext').find('.colorpick1level input[type=color]').val();
@@ -200,7 +209,16 @@ jQuery(function ($) {
         $('.rightside').on('change, keypress, keydown, keyup', '.textlevelsecond', function(e){
             var id = $(this).attr('name').split('_')[1];
             if($('#secondtext_' + id).find('.text').length>0){
+                if(parseInt($('#secondtext_' + id).width()) < 150){
+                    $('#secondtext_' + id).css('width','auto');
+                }
+                if(parseInt($('#secondtext_' + id).find('.text').height()) + 15 > parseInt($('#secondtext_' + id).height()) && parseInt($('#secondtext_' + id).width()) > 150){
+                    $('#secondtext_' + id).css('height','auto');
+                }
                 $('#secondtext_' + id).find('.text').html($(this).val());
+                var top = $('#secondtext_' + id)[0].offsetTop;
+                var left = $('#secondtext_' + id)[0].offsetLeft;
+                SetPositionOfElement($('#secondtext_' + id), top, left);
             }
             else {
                 var color = $(this).parents('.blocktext').find('.colorpick input[type=color]').val();
@@ -255,7 +273,6 @@ jQuery(function ($) {
             if($('.rightside').find('.secondtextgroup').length>0){
                 id = parseInt($('.rightside .secondtextgroup:last-child input[type=text]').attr('name').split('_')[1]) + 1;
             }
-
             var newsecondtext = 
             '<div class="form-group secondtextgroup">'
             +'    <input type="hidden" class="secondtexttop" name="texttop_'+ id + '" value="20">'
@@ -690,16 +707,16 @@ jQuery(function ($) {
         }
         function SetPositionOfElement(element, top, left){
             if($(element).hasClass('dragbtn')){
-                var width = $(element).width()
-                var height = $(element).height()
+                var width = parseInt($('#btnwidth').val()) + 12;
+                var height =  parseInt($('#btnheight').val()) + 12;
                 $('.btn-options-group input[name=pbtntop]').val(top);
                 $('.btn-options-group input[name=pbtnleft]').val(left);
                 $('.btn-options-group input[name=pbtnwidth]').val(width);
                 $('.btn-options-group input[name=pbtnheight]').val(height);
             }
             else if($(element).hasClass('text1level')){
-                var width = $(element).width()
-                var height = $(element).height()
+                var width = $(element).width();
+                var height = $(element).height();
                 $('.textasettings input[name=texttop_1]').val(top);
                 $('.textasettings input[name=textleft_1]').val(left);
                 $('.textasettings input[name=textwidth_1]').val(width);
@@ -707,8 +724,8 @@ jQuery(function ($) {
             }
             else if($(element).hasClass('textsecond')){
                 var id = $(element).attr('id').split('_')[1];
-                var width = $(element).width()
-                var height = $(element).height()
+                var width = $(element).width();
+                var height = $(element).height();
                 $('.textasettings input[name=texttop_' + id + ']').val(top);
                 $('.textasettings input[name=textleft_' + id + ']').val(left);
                 $('.textasettings input[name=textwidth_' + id + ']').val(width);
@@ -745,33 +762,62 @@ jQuery(function ($) {
                         width = parseInt($('.textasettings input[name=textwidth_' + id + ']').val());
                         height = parseInt($('.textasettings input[name=textheight_' + id + ']').val());
                     }
-                    var perleft = left * (100/prevwidth);
-                    var newleft = perleft * (parseInt($('.hellopahecontainer').width())/100);
-                    if(width + newleft > parseInt($('.hellopahecontainer').width())){
-                        var index = 0;
-                        while(width + newleft > parseInt($('.hellopahecontainer').width()) && index < 20){
-                            if(width > parseInt($('.hellopahecontainer').width()) - 100){
-                                newleft = newleft - 20;
-                                width = width - 10;
+                    if($(element).hasClass('dragbtn')){
+                        var perleft = left * (100/prevwidth);
+                        var newleft = perleft * (parseInt($('.hellopahecontainer').width())/100);
+                        if(width + newleft > parseInt($('.hellopahecontainer').width())){
+                            var index = 0;
+                            while(width + newleft > parseInt($('.hellopahecontainer').width()) && index < 20){
+                                if(width > parseInt($('.hellopahecontainer').width()) - 100){
+                                    newleft = newleft - 20;
+                                    width = width - 10;
+                                }
+                                else {
+                                    newleft = newleft - 20;
+                                }
+                                $(element).css('left', newleft  + 'px');
+                                index ++;
                             }
-                            else {
-                                newleft = newleft - 20;
-                            }
+                        }
+                        else {
                             $(element).css('left', newleft  + 'px');
-                            $(element).css('width', width + 'px');
-                            index ++;
+                        }
+                        if(top + height < $('.hellopahecontainer').height()){
+                            $(element).css('top', top  + 'px' );
+                        }
+                        else {
+                            $(element).css('top', prevheight - height  + 'px' );
                         }
                     }
                     else {
-                        $(element).css('left', newleft  + 'px');
-                        $(element).css('width', width + 10 + 'px');
-                    }
-                    $(element).css('height', height + 10  + 'px');
-                    if(top + height < $('.hellopahecontainer').height()){
-                        $(element).css('top', top  + 'px' );
-                    }
-                    else {
-                        $(element).css('top', prevheight - height  + 'px' );
+                        var perleft = left * (100/prevwidth);
+                        var newleft = perleft * (parseInt($('.hellopahecontainer').width())/100);
+                        if(width + newleft > parseInt($('.hellopahecontainer').width())){
+                            var index = 0;
+                            while(width + newleft > parseInt($('.hellopahecontainer').width()) && index < 20){
+                                if(width > parseInt($('.hellopahecontainer').width()) - 100){
+                                    newleft = newleft - 20;
+                                    width = width - 10;
+                                }
+                                else {
+                                    newleft = newleft - 20;
+                                }
+                                $(element).css('left', newleft  + 'px');
+                                $(element).css('width', width + 'px');
+                                index ++;
+                            }
+                        }
+                        else {
+                            $(element).css('left', newleft  + 'px');
+                            $(element).css('width', width + 10 + 'px');
+                        }
+                        $(element).css('height', height + 10  + 'px');
+                        if(top + height < $('.hellopahecontainer').height()){
+                            $(element).css('top', top  + 'px' );
+                        }
+                        else {
+                            $(element).css('top', prevheight - height  + 'px' );
+                        }
                     }
                 });
             }
@@ -857,7 +903,7 @@ jQuery(function ($) {
                 if($(text).val()){
                     var id = $(text).attr('name').split('_')[1];
                     var color = $(text).parents('.blocktext').find('.colorpick input[type=color]').val();
-                    var fontsize = $(text).parents('.blocktext').find('.font1size').val() + "px";
+                    var fontsize = $(text).parents('.blocktext').find('.fontsecondsize').val() + "px";
                     var text1 = 
                     '<div class="drag dragtext textsecond" id="secondtext_' + id + '" style="left: 20px; top: 20px;">'
                     +'    <div class="text" style="color: ' + color + ';font-size: ' + fontsize + ';">'+ $(text).val() + '</div>'
