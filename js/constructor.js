@@ -74,7 +74,7 @@ jQuery(function ($) {
         $(".btnradius").inputFilter(function(value) {
             return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 500);
         });
-
+        //btn background
         $('.rightside').on('change', '.btncolor', function(e){
             var idQuestion =  $(this).attr('name').split('_')[1];
             var value = $(this).val();
@@ -86,12 +86,34 @@ jQuery(function ($) {
             $(this).prev('input').click();
         });
 
-        $('.rightside').on('change', '.hiddeninputcolor', function(e){
+        $('.rightside').on('input', '.hiddeninputcolor', function(e){
             $(this).next('input').val($(this).val());
             var idQuestion =  $(this).attr('name').split('_')[1];
             var value = $(this).val();
+            $(this).parents('.btn-options').find('.optionbtntextcolor .color').css( 'background', value);
             $('#questionanswers_' + idQuestion).find('.btn-answer .btn').css( 'background', value);
             $(this).parents('.optionbtngroup').find('.color').css( 'background', value);
+        });
+
+        //btn text color 
+        $('.rightside').on('input', '.btntextcolor', function(e){
+            var idQuestion =  $(this).attr('name').split('_')[1];
+            var value = $(this).val();
+            $('#questionanswers_' + idQuestion).find('.btn-answer .btn').css( 'color', value);
+            $(this).parents('.optionbtngroup').find('.color').css( 'color', value);
+
+        });
+
+        $('.rightside').on('click', '.btntextcolor', function(e){
+            $(this).prev('input').click();
+        });
+
+        $('.rightside').on('input', '.hiddeninputtextcolor', function(e){
+            $(this).next('input').val($(this).val());
+            var idQuestion =  $(this).attr('name').split('_')[1];
+            var value = $(this).val();
+            $('#questionanswers_' + idQuestion).find('.btn-answer .btn').css( 'color', value);
+            $(this).parents('.optionbtngroup').find('.color').css( 'color', value);
         });
 
         $('.rightside').on('change, keypress, keydown, keyup', '.btn_name', function(e){
@@ -4055,6 +4077,15 @@ jQuery(function ($) {
                 +'                   <input class="btncolor" type="text"  name="inputpoint_'+ id +'_6"  id="inputpoint_'+ id +'_6" value="#F26126">'
                 +'               </div>'
                 +'           </div>'
+                +'            <div class="row-options">'
+                +'                <div class="optionbtngroup optionbtntextcolor">'
+                +'                  <label for="inputpoint_'+ id +'_7">'
+                +'                      <div class="color" style=" background-color: #F26126; color: #ffffff;">T</div>'
+                +'                  </label>'
+                +'                  <input type="color" class="hiddeninput hiddeninputtextcolor" name="hiddeninputtextcolor_'+ id +'_7" value="#ffffff">'
+                +'                  <input class="btntextcolor" type="text" name="inputpoint_'+ id +'_8" id="inputpoint_'+ id +'_8" value="#ffffff">'
+                +'              </div>'
+                +'          </div>'
                 +'           <div class="form-group">'
                 +'               <label for="question_'+ id +'">Текст кнопки</label>'
                 +'               <input class="btn_name" name="question_'+ id +'" id="question_'+ id +'" value="Отправить">'
