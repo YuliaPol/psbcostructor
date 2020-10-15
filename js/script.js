@@ -33,6 +33,19 @@ jQuery(function ($) {
             }
         });
 
+        if($('#modal-error').length==0){
+            var modal = 
+            '<div id="modal-error" class="modal">'
+            +'    <div class="modal-content">'
+            +'        <span class="close">&times;</span>'
+            +'        <div class="text">'
+            +'            <p>Введите, пожалуйста, ответ.</p>'
+            +'        </div>'
+            +'    </div>'
+            +'</div>';
+            $('body').append(modal);
+        }
+        
         //modal
         $('.modal .close').click(function (e) {
             $('.modal').fadeOut(300);
@@ -95,6 +108,8 @@ jQuery(function ($) {
                     formValid.submit();
                 }
                 if (erroreArrayElemnts.length > 0) {
+                    $('#modal-error').find('.text').html('Введите, пожалуйста, ответ.');
+                    $('.modal').fadeIn(300);
                     console.log('Valid error');
                     $("html, body").animate({ scrollTop: $(erroreArrayElemnts[0]).offset().top }, 600);
                     return false;
