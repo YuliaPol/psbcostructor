@@ -5479,7 +5479,8 @@ table {
 .construcot-container .rightside .default .text-aside .btn-options .row-options .optionbtngroup.optionbtntextcolor .color,
 .construcot-container .rightside .optionbox .text-aside .btn-options .row-options .optionbtngroup.optionbtntextcolor .color,
 .construcot-container .rightside .branchingoptionbox .text-aside .btn-options .row-options .optionbtngroup.optionbtntextcolor .color {
-  font-size: 8px;
+  font-size: 10px;
+  font-weight: bold;
   text-align: center;
   vertical-align: middle;
 }

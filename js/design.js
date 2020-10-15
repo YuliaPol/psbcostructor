@@ -60,7 +60,7 @@ jQuery(function ($) {
         $('.rightside').on('click', '.colorpick .square', function(e){
             $(this).parents('.colorpick').find('input[type=color]').click();
         });
-        $('.rightside').on('change', '.colorpick1level input[type=color]', function(e){
+        $('.rightside').on('input', '.colorpick1level input[type=color]', function(e){
             $(this).next('input').val($(this).val());
             var value = $(this).val();
             $(this).parents('.colorpick').find('.square').css( 'background', value);
@@ -68,7 +68,7 @@ jQuery(function ($) {
             $('.centerbox .question .question-name').css('color', value);
         });
         //color 2 level
-        $('.rightside').on('change', '.colorpick2level input[type=color]', function(e){
+        $('.rightside').on('input', '.colorpick2level input[type=color]', function(e){
             $(this).next('input').val($(this).val());
             var value = $(this).val();
             $(this).parents('.colorpick').find('.square').css( 'background', value);
@@ -79,7 +79,7 @@ jQuery(function ($) {
             $('.centerbox .question .matrix-table .value').css('color', value);
         });
 
-        $('.rightside').on('change', '.colorpickselect input[type=color]', function(e){
+        $('.rightside').on('input', '.colorpickselect input[type=color]', function(e){
             $(this).next('input').val($(this).val());
             var value = $(this).val();
             $(this).parents('.colorpick').find('.square').css( 'background', value);
@@ -98,7 +98,7 @@ jQuery(function ($) {
             $('head').append(style);
         });
 
-        $('.rightside').on('change', '.colorpickinput input[type=color]', function(e){
+        $('.rightside').on('input', '.colorpickinput input[type=color]', function(e){
             $(this).next('input').val($(this).val());
             var value = $(this).val();
             $(this).parents('.colorpick').find('.square').css( 'background', value);
@@ -108,7 +108,7 @@ jQuery(function ($) {
             $('.centerbox .question textarea').css('color', value);
         });
 
-        $('.rightside').on('change', '.colorpickbackground input[type=color]', function(e){
+        $('.rightside').on('input', '.colorpickbackground input[type=color]', function(e){
             $(this).next('input').val($(this).val());
             var value = $(this).val();
             $(this).parents('.colorpick').find('.square').css( 'background', value);
@@ -236,7 +236,7 @@ jQuery(function ($) {
             $(this).prev('input').click();
         });
         //change bg for text
-        $('.rightside').on('change', '.colorpickbgtext input[type=color]', function(e){
+        $('.rightside').on('input', '.colorpickbgtext input[type=color]', function(e){
             $(this).next('input').val($(this).val());
             var value = $(this).val();
             $(this).parents('.colorpickbgtext').find('.square').css( 'background', value);
