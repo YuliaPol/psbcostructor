@@ -1672,7 +1672,102 @@ jQuery(function ($) {
             }
             if(type == "scale"){
                 var typescale = $("#option_" + id).find('.scale-radio input[type=radio]:checked').val();
-                if(typescale == 1 || typescale == 3 || typescale == 4 ){
+                if(typescale == 4 ){
+                    var el = 
+                    '<div class="subquestion branchingquestion" data-optionid="' + id + '">'
+                    +'    <div class="close-question"></div>'
+                    +'       <div class="name">Ветвление ответа</div>'
+                    +'    <div class="answer" id="questionbrnaching_' + id + '">'
+                    +'        <div class="branching-group">'
+                    +'            <div class="group-name">0-5</div>'
+                    +'            <div class="question-group">'
+                    +'                <div class="branching-question">'
+                    +'                    <div class="name">'
+                    +'                        Вопрос'
+                    +'                    </div>'
+                    +'                    <div class="hidden-question-answer">'
+                    +'                        <div class="form-group">'
+                    +'                            <input type="text" name="hiddenquestionanswer_' + id + '_1_1"'
+                    +'                                id="hiddenquestionanswer_' + id + '_1_1" placeholder="Ваш ответ">'
+                    +'                        </div>'
+                    +'                    </div>'
+                    +'                </div>  '
+                    +'            </div>'
+                    +'        </div>'
+                    +'        <div class="branching-group">'
+                    +'            <div class="group-name">6-10</div>'
+                    +'            <div class="question-group">'
+                    +'                <div class="branching-question">'
+                    +'                    <div class="name">'
+                    +'                        Вопрос'
+                    +'                    </div>'
+                    +'                    <div class="hidden-question-answer">'
+                    +'                        <div class="form-group">'
+                    +'                            <input type="text" name="hiddenquestionanswer_' + id + '_2_1"'
+                    +'                                id="hiddenquestionanswer_' + id + '_2_1" placeholder="Ваш ответ">'
+                    +'                        </div>'
+                    +'                    </div>'
+                    +'                </div>  '
+                    +'            </div>'
+                    +'        </div>'
+                    +'    </div>'
+                    +'</div>';
+                    var option = 
+                    '<div class="branchingoptionbox" id="branchinoption_' + id + '">'
+                    +'    <div class="header-aside">'
+                    +'        Настройки'
+                    +'    </div>'
+                    +'    <div class="text-aside">'
+                    +'        <div class="form-group spinner-wrapper">'
+                    +'            <label for="number_' + id + '">Колличество пунктов </label>'
+                    +'            <input class="question_number_branching spinner" name="number_' + id + '" id="number_' + id + '" type="text"'
+                    +'                value="2">'
+                    +'        </div>'
+                    +'            <div class="slider">'
+                    +'                <div class="sliderscale scale10">'
+                    +'                    <div>1</div>'
+                    +'                    <div>2</div>'
+                    +'                    <div>3</div>'
+                    +'                    <div>4</div>'
+                    +'                    <div>5</div>'
+                    +'                    <div>6</div>'
+                    +'                    <div>7</div>'
+                    +'                   <div>8</div>'
+                    +'                  <div>9</div>'
+                    +'                  <div>10</div>'
+                    +'              </div>'
+                    +'              <div class="slidercursor" data-value="4"></div>'
+                    +'          </div>'
+                    +'        <div class="form-group">'
+                    +'            <p>Варианты ответов</p>'
+                    +'            <div class="inputtables branchingForScale" id="branchingtables_' + id + '">'
+                    +'                <div class="questionPoint" id="questionPoint_' + id + '_1">'
+                    +'                    <input class="branching_points" readonly name="groupname_' + id + '_1" id="groupname_' + id + '_1"'
+                    +'                        type="text" value="0-5">'
+                    +'                    <div class="branching-list">'
+                    +'                       <div class="branching-group">'
+                    +'                            <input type="text" name="branchingpoint_' + id + '_1" id="branchingpoint_' + id + '_1" placeholder="Введите вопрос">'
+                    +'                      </div>'
+                    +'                    </div>'
+                    +'                </div>'
+                    +'                <div class="questionPoint" id="questionPoint_' + id + '_2">'
+                    +'                   <input class="branching_points" readonly name="groupname_' + id + '_2" id="groupname_' + id + '_2"'
+                    +'                       type="text" value="6-10">'
+                    +'                  <div class="branching-list">'
+                    +'                       <div class="branching-group">'
+                    +'                            <input type="text" name="branchingpoint_' + id + '_2" id="branchingpoint_' + id + '_2" placeholder="Введите вопрос">'
+                    +'                      </div>'
+                    +'                   </div>'
+                    +'               </div>'
+                    +'           </div>'
+                    +'       </div>'
+                    +'   </div>'
+                    +'</div>';
+                    $('#questionanswers_' + id).parents('.question').append(el);
+                    $('.optionsblock .eloptions').append(option);
+                    ChangeSlider(id);
+                }
+                else if(typescale == 1 || typescale == 3){
                     var el = 
                     '<div class="subquestion branchingquestion" data-optionid="' + id + '">'
                     +'    <div class="close-question"></div>'
@@ -1765,6 +1860,7 @@ jQuery(function ($) {
                     +'</div>';
                     $('#questionanswers_' + id).parents('.question').append(el);
                     $('.optionsblock .eloptions').append(option);
+                    ChangeSlider(id);
                 }
                 if (typescale == 2 || typescale == 5 ) {
                     var el = 
@@ -1854,6 +1950,7 @@ jQuery(function ($) {
                     +'</div>';
                     $('#questionanswers_' + id).parents('.question').append(el);
                     $('.optionsblock .eloptions').append(option);
+                    ChangeSlider5(id);
                 }
                 if($('.slidercursor')){
                     var sliders = $('.slidercursor');
@@ -2011,6 +2108,11 @@ jQuery(function ($) {
             values.sort((a,b)=>a-b);
             var index = 0;
             var prevvalue = 1;
+            if($('#option_' + idQuestion).find('.scale-radio input[type=radio]:checked')){
+                if($('#option_' + idQuestion).find('.scale-radio input[type=radio]:checked').val() == 4) {
+                    prevvalue = 0;
+                }
+            }
             var newvalue = 10;
             values.forEach(function(element){
                 newvalue = parseInt(element);
@@ -2039,7 +2141,6 @@ jQuery(function ($) {
 
         function ChangeSlider5(idQuestion){
             var sliders = $('#branchinoption_' + idQuestion).find('.slidercursor5');
-            console.log(sliders);
             var values = new Array(sliders.length);
             var ranges = new Array(sliders.length + 1);
             sliders.each(function (index, slider) {
@@ -2115,12 +2216,18 @@ jQuery(function ($) {
                     || $('#questionanswers_' + id).hasClass('answer-ratings5')){
                         $('#questionanswers_' + id).parents('.question').find('.subquestion .close-question').click();
                     }
+                    else {
+                        ChangeSlider(id);
+                    }
                 }
                 if(type == 2 || type == 5) {
                     if($('#questionanswers_' + id).hasClass('answer-colorstar')
                     || $('#questionanswers_' + id).hasClass('answer-star10')
                     || $('#questionanswers_' + id).hasClass('answer-ratings10')){
                         $('#questionanswers_' + id).parents('.question').find('.subquestion .close-question').click();
+                    }
+                    else {
+                        ChangeSlider5(id);
                     }
                 }
             }

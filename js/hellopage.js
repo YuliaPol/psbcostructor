@@ -130,6 +130,17 @@ jQuery(function ($) {
         //change of font size
         $('.rightside').on('change', '.font1size', function(e){
             var fontsize = $(this).val() + "px";
+            if($('.hellopahecontainer').find('.text1level').length>0){
+                if(parseInt($('.hellopahecontainer').find('.text1level').width()) < 150){
+                    $('.hellopahecontainer').find('.text1level').css('width','auto');
+                }
+                if(parseInt($('.hellopahecontainer').find('.text1level .text').height()) + 30 > parseInt($('.hellopahecontainer').find('.text1level').height()) && parseInt($('.hellopahecontainer').find('.text1level').width()) > 150){
+                    $('.hellopahecontainer').find('.text1level').css('height','auto');
+                }
+                var top = $('.hellopahecontainer').find('.text1level')[0].offsetTop;
+                var left = $('.hellopahecontainer').find('.text1level')[0].offsetLeft;
+                SetPositionOfElement($('.hellopahecontainer').find('.text1level'), top, left);
+            }
             $('.centerbox .text1level .text').css('font-size', fontsize);
         });
 
@@ -194,6 +205,18 @@ jQuery(function ($) {
             var fontsize = $(this).val() + "px";
             var id = $(this).attr('name').split('_')[1];
             $('#secondtext_' + id + ' .text').css('font-size', fontsize);
+            if($('#secondtext_' + id).find('.text').length>0){
+                if(parseInt($('#secondtext_' + id).width()) < 150){
+                    $('#secondtext_' + id).css('width','auto');
+                }
+                if(parseInt($('#secondtext_' + id).find('.text').height()) + 15 > parseInt($('#secondtext_' + id).height()) && parseInt($('#secondtext_' + id).width()) > 150){
+                    $('#secondtext_' + id).css('height','auto');
+                }
+                var top = $('#secondtext_' + id)[0].offsetTop;
+                var left = $('#secondtext_' + id)[0].offsetLeft;
+                SetPositionOfElement($('#secondtext_' + id), top, left);
+            }
+
         });
         
         //change of color second level 
