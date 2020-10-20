@@ -4385,8 +4385,8 @@ jQuery(function ($) {
             else {
                 for( var i = 0; i < arr.length; i++ ) {
                     var elTop = $(arr[i]).offset().top,
-                        elBottom = $(arr[i]).offset().top + $(arr[i]).height() + 50,
-                        height = $(arr[i]).height() + 50;
+                        elBottom = $(arr[i]).offset().top + $(arr[i]).height() + 31,
+                        height = $(arr[i]).height() + 31;
                     if( top > elTop + height && top < elBottom + offsetY ) {
                         return i;
                     }
