@@ -2935,6 +2935,9 @@ jQuery(function ($) {
                 var eventTop = event.pageY;
                 var offsetY = event.offsetY;
                 var children = $('.questions-box').children();
+                console.log(event);
+                console.log(event.pageY);
+                console.log(event.offsetY);
                 var appendInde = getAppendIndex(children, eventTop, offsetY);
                 var el = '';
                 var option = '';
@@ -2942,28 +2945,28 @@ jQuery(function ($) {
                 var id;
                 var type = $(ui.draggable).attr('data-type');
                 var pollid = $('#quiz-id').val();
-                // if(type && pollid){
-                //     AddQuestion(type, Math.random().toString(36).substr(2, 9), appendInde);
-                // }
                 if(type && pollid){
-                    $.ajax ({
-                        type: 'POST',
-                        url: "/admin/poll/create-question",
-                        dataType: "json",
-                        data: { 
-                            questiontype: type,
-                            quizid: pollid
-                        },
-                    }).done(function (data) {
-                        // данные сохранены
-                        AddQuestion(type, data, appendInde);
-                        console.log('Вопрос создан');
-                    }).fail(function (data) {
-                        // не удалось выполнить запрос к серверу
-                        console.log(data);
-                        console.log('Запрос не принят');
-                    });
+                    AddQuestion(type, Math.random().toString(36).substr(2, 9), appendInde);
                 }
+                // if(type && pollid){
+                //     $.ajax ({
+                //         type: 'POST',
+                //         url: "/admin/poll/create-question",
+                //         dataType: "json",
+                //         data: { 
+                //             questiontype: type,
+                //             quizid: pollid
+                //         },
+                //     }).done(function (data) {
+                //         // данные сохранены
+                //         AddQuestion(type, data, appendInde);
+                //         console.log('Вопрос создан');
+                //     }).fail(function (data) {
+                //         // не удалось выполнить запрос к серверу
+                //         console.log(data);
+                //         console.log('Запрос не принят');
+                //     });
+                // }
             }
         });
         
@@ -4382,9 +4385,9 @@ jQuery(function ($) {
             else {
                 for( var i = 0; i < arr.length; i++ ) {
                     var elTop = $(arr[i]).offset().top,
-                        elBottom = $(arr[i]).offset().top + $(arr[i]).height(),
-                        height = $(arr[i]).height();
-                    if( top > elTop + height && top < elBottom +offsetY ) {
+                        elBottom = $(arr[i]).offset().top + $(arr[i]).height() + 50,
+                        height = $(arr[i]).height() + 50;
+                    if( top > elTop + height && top < elBottom + offsetY ) {
                         return i;
                     }
                     else if(top > elTop && top < elBottom) {

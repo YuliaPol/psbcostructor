@@ -2733,6 +2733,7 @@ table {
 .construcot-container .centerbox .questions-box .subquestion {
   padding: 15px 20px;
   position: relative;
+  margin-bottom: 30px;
 }
 
 .construcot-container .centerbox .questions-box .question .close-question,
