@@ -1241,7 +1241,6 @@ jQuery(function ($) {
         $('.rightside').on('click', '.dropdown-options .dropdownmultiple', function(e){
             var idQuestion = $(this).attr('name').split('_')[1];
             if($(this).is(':checked')){
-                console.log('multiple');
                 var newSelect = 
                 '<div class="dropdownanswer">'
                 +'    <div class="selectdropdown">'
@@ -1259,7 +1258,6 @@ jQuery(function ($) {
                 $('#questionanswers_' + idQuestion).html(newSelect);
             }
             else {
-                console.log('single');
                 var newSelect = 
                 '<div class="dropdownanswer">'
                 +'    <div class="selectdropdown">'
@@ -1550,8 +1548,6 @@ jQuery(function ($) {
             if($(this).parents('.optionbox').find('.brnachingonoff:checked').length>0){
                 var questionId = $(this).attr('name').split('_')[1];
                 var questionPointsId = $(this).attr('name').split('_')[2];
-                console.log(questionId);
-                console.log(questionPointsId);
                 if($('#branchinoption_'+ questionId).find('.inputtables .questionPoint:nth-child('+ questionPointsId + ')').length>0) {
                     $('#branchinoption_'+ questionId).find('.inputtables .questionPoint:nth-child('+ questionPointsId + ') .branching_points').val($(this).val());
                     $('#questionbrnaching_' + questionId).find('.branching-group:nth-child('+ questionPointsId + ')').find('.group-name').html($(this).val());
@@ -1919,7 +1915,6 @@ jQuery(function ($) {
                 }
                 if($('.slidercursor')){
                     var sliders = $('.slidercursor');
-                    console.log(sliders);
                     sliders.each(function (index, slider) {
                         var slidervalue = $(slider).attr("data-value");
                         var idQuestion = $(slider).parents('.branchingoptionbox').attr('id').split('_')[1];
@@ -2900,9 +2895,6 @@ jQuery(function ($) {
                 var eventTop = event.pageY;
                 var offsetY = event.offsetY;
                 var children = $('.questions-box').children();
-                console.log(event);
-                console.log(event.pageY);
-                console.log(event.offsetY);
                 var appendInde = getAppendIndex(children, eventTop, offsetY);
                 var el = '';
                 var option = '';
@@ -4505,7 +4497,6 @@ jQuery(function ($) {
                             if($(e.target).parents('.customselect-wrapper').length == 0) {
                                 $styledSelect.removeClass('active');
                                 $list.hide();
-                                console.log('mousedown');
                             }
                         });
 
@@ -4561,7 +4552,6 @@ jQuery(function ($) {
                             if($(e.target).parents('.customselect-wrapper').length == 0) {
                                 $styledSelect.removeClass('active');
                                 $list.hide();
-                                console.log('mousedown');
                             }
                         });
                         $(document).click(function() {
