@@ -1178,9 +1178,11 @@ jQuery(function ($) {
         $('.rightside').on('change, keypress, keydown, keyup', '.dropdown-question', function(e){
             auto_grow(this);
             var name = $(this).attr('name').split('_');
-            if($('#questionanswers_'+ name[1]).find('.dropdown-list .dropdown-block:nth-child('+ name[2] +')').find('.question-name').length>0){
-                $('#questionanswers_'+ name[1]).find('.dropdown-list .dropdown-block:nth-child('+ name[2] +')').find('.question-name').html($(this).val());
-            }
+            var select = $('#questionanswers_'+ name[1]).find('select');
+            ChangeOption(select, name[2], $(this).val());
+            // if($('#questionanswers_'+ name[1]).find('.dropdown-list .dropdown-block:nth-child('+ name[2] +')').find('.question-name').length>0){
+            //     $('#questionanswers_'+ name[1]).find('.dropdown-list .dropdown-block:nth-child('+ name[2] +')').find('.question-name').html($(this).val());
+            // }
         });
 
         $('.rightside').on('change, keypress, keydown, keyup', '.dropdown-list .dropdown-group input', function(e){
@@ -1210,10 +1212,10 @@ jQuery(function ($) {
             var idQuestion;
             var idPoint;
             if(namequestion){
-                idQuestion = parseInt(namequestion[1]);
+                idQuestion = namequestion[1];
             }
             else {
-                idQuestion = parseInt($(this).parents('.optionbox').find('input:first-child').attr('name').split('_')[1]);
+                idQuestion = $(this).parents('.optionbox').find('input:first-child').attr('name').split('_')[1];
             }
 
             if(namequestion){
@@ -1225,56 +1227,56 @@ jQuery(function ($) {
             var newOptionel = 
                 '<div class="option-group">'
                 +'    <div class="inputstables">'
-                +'        <textarea class="dropdown-question" name="inputpoint_'+ idQuestion + '_' + idPoint + '" id="inputpoint_' + idQuestion + '_' + idPoint + '" placeholder="Введите вопрос"></textarea>'
-                +'        <div class="dropdown-list">'
-                +'        </div>'
+                +'        <textarea class="dropdown-question" name="inputpoint_'+ idQuestion + '_' + idPoint + '" id="inputpoint_' + idQuestion + '_' + idPoint + '" placeholder="Введите ответ"></textarea>'
                 +'    </div>'
-                +'    <div class="adddropdownsubpoints"></div>'
                 +'    <div class="remove-dropdown"></div>'
-                +'    <div class="arrowshow"></div>'
-                +'</div>';
-            var newEl = 
-                '<div class="dropdown-block">'
-                +'    <div class="dropdown-arrow"></div>'
-                +'    <div class="question-name">'
-                +'        Вопрос'
-                +'    </div>'
-                +'    <div class="dropdown-content">'
-                +'    </div>'
                 +'</div>';
             $(newOptionel).appendTo($(this).parents('.dropdown-options').find('.optionsdropdownlist'));
-            $(newEl).appendTo('#questionanswers_' + idQuestion + ' .dropdown-list');
+            AddOption($('#questionanswers_' + idQuestion + ' select'));
         });
         
 
 
         //dropdown  multiple change
         $('.rightside').on('click', '.dropdown-options .dropdownmultiple', function(e){
-            var idQuestion = parseInt($(this).attr('name').split('_')[1]);
+            var idQuestion = $(this).attr('name').split('_')[1];
             if($(this).is(':checked')){
-                var inputs = $('#questionanswers_' + idQuestion).find('input');
-                inputs.each(function (index, input) {
-                    if($(input).attr('type') == 'radio'){
-                        $(input).attr('type', 'checkbox');
+                console.log('multiple');
+                var newSelect = 
+                '<div class="dropdownanswer">'
+                +'    <div class="selectdropdown">'
+                +'       <select name="questionanswersdrp_'+ idQuestion + '" class="customselect" multiple>';
+                var options = $('#option_'+ idQuestion + ' .optionsdropdownlist').children();
+                options.each(function (index, option) {
+                    if($(option).find('.dropdown-question').val()){
+                        newSelect += '<option val="'+ $(option).find('.dropdown-question').val() + '">'+ $(option).find('.dropdown-question').val() +'</option>';
                     }
-                    if($(input).attr('name')){
-                        $(input).attr('name', $(input).attr('id'));
+                    else {
+                        newSelect += '<option val="">Ответ</option>';
                     }
                 });
+                newSelect += '</select></div></div>';
+                $('#questionanswers_' + idQuestion).html(newSelect);
             }
             else {
-                var inputs = $('#questionanswers_' + idQuestion).find('input');
-                inputs.each(function (index, input) {
-                    if($(input).attr('type') == 'checkbox'){
-                        $(input).attr('type', 'radio');
+                console.log('single');
+                var newSelect = 
+                '<div class="dropdownanswer">'
+                +'    <div class="selectdropdown">'
+                +'       <select name="questionanswersdrp_'+ idQuestion + '" class="customselect">';
+                var options = $('#option_'+ idQuestion + ' .optionsdropdownlist').children();
+                options.each(function (index, option) {
+                    if($(option).find('.dropdown-question').val()){
+                        newSelect += '<option val="'+ $(option).find('.dropdown-question').val() + '">'+ $(option).find('.dropdown-question').val() +'</option>';
                     }
-                    if($(input).attr('name')){
-                        var prevName = $(input).attr('name').split('_');
-                        prevName.splice(3 ,1);
-                        $(input).attr('name', prevName.join('_'));
+                    else {
+                        newSelect += '<option val="">Ответ</option>';
                     }
                 });
+                newSelect += '</select></div></div>';
+                $('#questionanswers_' + idQuestion).html(newSelect);
             }
+            customSelectActive();
         });
 
         //matrix  multiple change
@@ -1457,47 +1459,10 @@ jQuery(function ($) {
         $('.rightside').on('click', '.dropdown-options .remove-dropdown', function(e){
             var parents = $(this).parents('.optionsdropdownlist');
             var namequestion = $(this).parents('.option-group').find('.dropdown-question').attr('name').split('_');
-            var idQuestion = parseInt(namequestion[1]);
+            var idQuestion = namequestion[1];
             var idPoint = parseInt(namequestion[2]);
             $('#questionanswers_' + idQuestion + ' .dropdown-block:nth-child('+ idPoint +')').remove();
-            var Subpoints = $('#questionanswers_' + idQuestion + ' .dropdown-list').children();
-            if(Subpoints.length>0){
-                Subpoints.each(function (index, subpoint) {
-                    var id = index + 1;
-                    var inputs = $(subpoint).find('input');
-                    inputs.each(function (index, input) {
-                        if($(input).attr('name')){
-                            prevId = $(input).attr('name').split("_");
-                            prevId[2] = id;
-                            newId = prevId.join('_');
-                            $(input).attr('name', newId);
-                        }
-                        if($(input).attr('id')){
-                            prevId = $(input).attr('id').split("_");
-                            prevId[2] = id;
-                            newId = prevId.join('_');
-                            $(input).attr('id', newId);
-                        }
-                    });
-
-                    var labels = $(subpoint).find('label');
-                    labels.each(function (index, label) {
-                        if($(label).attr('for')){
-                            prevId = $(label).attr('for').split("_");
-                            prevId[2] = id;
-                            newId = prevId.join('_');
-                            $(label).attr('for', newId);
-                        }
-                        if($(label).attr('id')){
-                            prevId = $(label).attr('id').split("_");
-                            prevId[2] = id;
-                            newId = prevId.join('_');
-                            $(label).attr('id', newId);
-                        }
-                    });
-                });
-            }
-
+            RemoveOption($('#questionanswers_' + idQuestion).find('select'), idPoint );
 
             $(this).parents('.option-group').remove();
             var Subpoints = parents.children();
@@ -2945,28 +2910,28 @@ jQuery(function ($) {
                 var id;
                 var type = $(ui.draggable).attr('data-type');
                 var pollid = $('#quiz-id').val();
-                if(type && pollid){
-                    AddQuestion(type, Math.random().toString(36).substr(2, 9), appendInde);
-                }
                 // if(type && pollid){
-                //     $.ajax ({
-                //         type: 'POST',
-                //         url: "/admin/poll/create-question",
-                //         dataType: "json",
-                //         data: { 
-                //             questiontype: type,
-                //             quizid: pollid
-                //         },
-                //     }).done(function (data) {
-                //         // данные сохранены
-                //         AddQuestion(type, data, appendInde);
-                //         console.log('Вопрос создан');
-                //     }).fail(function (data) {
-                //         // не удалось выполнить запрос к серверу
-                //         console.log(data);
-                //         console.log('Запрос не принят');
-                //     });
+                //     AddQuestion(type, Math.random().toString(36).substr(2, 9), appendInde);
                 // }
+                if(type && pollid){
+                    $.ajax ({
+                        type: 'POST',
+                        url: "/admin/poll/create-question",
+                        dataType: "json",
+                        data: { 
+                            questiontype: type,
+                            quizid: pollid
+                        },
+                    }).done(function (data) {
+                        // данные сохранены
+                        AddQuestion(type, data, appendInde);
+                        console.log('Вопрос создан');
+                    }).fail(function (data) {
+                        // не удалось выполнить запрос к серверу
+                        console.log(data);
+                        console.log('Запрос не принят');
+                    });
+                }
             }
         });
         
@@ -3425,32 +3390,15 @@ jQuery(function ($) {
                 +'        Вопрос'
                 +'    </div>'
                 +'    <div class="answer" id="questionanswers_'+ id +'">'
-                +'        <div class="dropdown-list">'
-                +'            <div class="dropdown-block">'
-                +'                <div class="dropdown-arrow"></div>'
-                +'                <div class="question-name">'
-                +'                    Вопрос'
-                +'                </div>'
-                +'                <div class="dropdown-content">'
-                +'                </div>'
+                +'        <div class="dropdownanswer">'
+                +'            <div class="selectdropdown">'
+                +'                <select name="questionanswersdrp_'+ id +'" class="customselect">'
+                +'                    <option value="Ответ">Ответ</option>'
+                +'                    <option value="Ответ">Ответ</option>'
+                +'                    <option value="Ответ">Ответ</option>'
+                +'                </select> '
                 +'            </div>'
-                +'            <div class="dropdown-block">'
-                +'                <div class="dropdown-arrow"></div>'
-                +'                <div class="question-name">'
-                +'                    Вопрос'
-                +'                </div>'
-                +'                <div class="dropdown-content">'
-                +'               </div>'
-                +'           </div>'
-                +'           <div class="dropdown-block">'
-                +'               <div class="dropdown-arrow"></div>'
-                +'               <div class="question-name">'
-                +'                   Вопрос'
-                +'               </div>'
-                +'               <div class="dropdown-content">'
-                +'               </div>'
-                +'           </div>'
-                +'       </div>'
+                +'        </div>'
                 +'   </div>'
                 +'</div>';
                 option =
@@ -3498,33 +3446,21 @@ jQuery(function ($) {
                 +'            <div class="optionsdropdownlist">'
                 +'                <div class="option-group">'
                 +'                    <div class="inputstables">'
-                +'                        <textarea class="dropdown-question" name="inputpoint_'+ id +'_1" id="inputpoint_'+ id +'_1" placeholder="Введите вопрос"></textarea>'
-                +'                        <div class="dropdown-list">'
-                +'                        </div>'
+                +'                        <textarea class="dropdown-question" name="inputpoint_'+ id +'_1" id="inputpoint_'+ id +'_1" placeholder="Введите ответ"></textarea>'
                 +'                    </div>'
-                +'                    <div class="adddropdownsubpoints"></div>'
                 +'                    <div class="remove-dropdown"></div>'
-                +'                    <div class="arrowshow"></div>'
                 +'                </div>'
                 +'                <div class="option-group">'
                 +'                    <div class="inputstables">'
-                +'                        <textarea class="dropdown-question" name="inputpoint_'+ id +'_2" id="inputpoint_'+ id +'_2"  placeholder="Введите вопрос"></textarea>'
-                +'                        <div class="dropdown-list">'
-                +'                        </div>'
+                +'                        <textarea class="dropdown-question" name="inputpoint_'+ id +'_2" id="inputpoint_'+ id +'_2"  placeholder="Введите ответ"></textarea>'
                 +'                    </div>'
-                +'                    <div class="adddropdownsubpoints"></div>'
                 +'                    <div class="remove-dropdown"></div>'
-                +'                    <div class="arrowshow"></div>'
                 +'                </div>'
                 +'                <div class="option-group">'
                 +'                    <div class="inputstables">'
-                +'                        <textarea class="dropdown-question" name="inputpoint_'+ id +'_3" id="inputpoint_'+ id +'_3"  placeholder="Введите вопрос"></textarea>'
-                +'                        <div class="dropdown-list">'
-                +'                        </div>'
+                +'                        <textarea class="dropdown-question" name="inputpoint_'+ id +'_3" id="inputpoint_'+ id +'_3"  placeholder="Введите ответ"></textarea>'
                 +'                    </div>'
-                +'                    <div class="adddropdownsubpoints"></div>'
                 +'                    <div class="remove-dropdown"></div>'
-                +'                    <div class="arrowshow"></div>'
                 +'                </div>'
                 +'            </div>'
                 +'        </div>'
@@ -3540,33 +3476,16 @@ jQuery(function ($) {
                 +'        Вопрос'
                 +'    </div>'
                 +'    <div class="answer" id="questionanswers_'+ id +'">'
-                +'        <div class="dropdown-list">'
-                +'            <div class="dropdown-block">'
-                +'                <div class="dropdown-arrow"></div>'
-                +'                <div class="question-name">'
-                +'                    Вопрос'
-                +'                </div>'
-                +'                <div class="dropdown-content">'
-                +'                </div>'
-                +'            </div>'
-                +'            <div class="dropdown-block">'
-                +'                <div class="dropdown-arrow"></div>'
-                +'                <div class="question-name">'
-                +'                    Вопрос'
-                +'                </div>'
-                +'                <div class="dropdown-content">'
-                +'                </div>'
-                +'            </div>'
-                +'            <div class="dropdown-block">'
-                +'                <div class="dropdown-arrow"></div>'
-                +'                <div class="question-name">'
-                +'                    Вопрос'
-                +'                </div>'
-                +'                <div class="dropdown-content">'
-                +'                </div>'
+                +'        <div class="dropdownanswer">'
+                +'            <div class="selectdropdown">'
+                +'                <select name="questionanswersdrp_'+ id +'" class="customselect" multiple>'
+                +'                    <option value="Ответ">Ответ</option>'
+                +'                    <option value="Ответ">Ответ</option>'
+                +'                    <option value="Ответ">Ответ</option>'
+                +'                </select> '
                 +'            </div>'
                 +'        </div>'
-                +'    </div>'
+                +'   </div>'
                 +'</div>';
                 option = 
                 '<div class="optionbox active" id="option_'+ id +'">'
@@ -3623,32 +3542,20 @@ jQuery(function ($) {
                 +'                <div class="option-group">'
                 +'                    <div class="inputstables">'
                 +'                        <textarea class="dropdown-question" name="inputpoint_'+ id +'_1" id="inputpoint_'+ id +'_1" placeholder="Введите вопрос"></textarea>'
-                +'                        <div class="dropdown-list">'
-                +'                        </div>'
                 +'                    </div>'
-                +'                    <div class="adddropdownsubpoints"></div>'
                 +'                    <div class="remove-dropdown"></div>'
-                +'                    <div class="arrowshow"></div>'
                 +'                </div>'
                 +'                <div class="option-group">'
                 +'                    <div class="inputstables">'
                 +'                        <textarea class="dropdown-question" name="inputpoint_'+ id +'_2" id="inputpoint_'+ id +'_2"  placeholder="Введите вопрос"></textarea>'
-                +'                        <div class="dropdown-list">'
-                +'                        </div>'
                 +'                    </div>'
-                +'                    <div class="adddropdownsubpoints"></div>'
                 +'                    <div class="remove-dropdown"></div>'
-                +'                    <div class="arrowshow"></div>'
                 +'                </div>'
                 +'                <div class="option-group">'
                 +'                    <div class="inputstables">'
                 +'                        <textarea class="dropdown-question" name="inputpoint_'+ id +'_3" id="inputpoint_'+ id +'_3"  placeholder="Введите вопрос"></textarea>'
-                +'                        <div class="dropdown-list">'
-                +'                        </div>'
                 +'                    </div>'
-                +'                    <div class="adddropdownsubpoints"></div>'
                 +'                    <div class="remove-dropdown"></div>'
-                +'                    <div class="arrowshow"></div>'
                 +'                </div>'
                 +'            </div>'
                 +'        </div>'
@@ -4310,7 +4217,7 @@ jQuery(function ($) {
                 initialCountry: "ru",
             });
             $('.questions-box').attr('data-count', i);
-
+            customSelectActive();
             RefreshItems();
         }
         // delete question
@@ -4441,5 +4348,229 @@ jQuery(function ($) {
                 $('.optionsblock .default').addClass('active');
             }
         });
+
+        //customselect
+        customSelectActive();
+        // RemoveOption($('.customselect'), 1);
+        function RemoveOption(select, lenghtid){
+            var id = $(select).find('option:nth-child(' + lenghtid + ')').attr('data-id');
+            var $styledSelect = $(select).next('div.select-styled');
+            $(select).find('option:nth-child(' + lenghtid + ')').remove();
+            $(select).parents('.customselect-wrapper').find('ul li[data-id="'+ id + '"]').remove();
+            if($(select).attr('multiple')){
+                if($(select).find('option[data-id="'+ id + '"]:selected').length>0){
+                    $styledSelect.html('Выберите ответ');
+                }
+            }
+            else {
+                if($(select).find('option[data-id="'+ id + '"]:selected').length==0){
+                    $styledSelect.html('Выберите ответ');
+                }
+            }
+        }
+        function ChangeOption(select, lenghtid, value){
+            var id = $(select).find('option:nth-child(' + lenghtid + ')').attr('data-id');
+            var $styledSelect = $(select).next('div.select-styled');
+            $(select).find('option:nth-child(' + lenghtid + ')').text(value);
+            $(select).find('option:nth-child(' + lenghtid + ')').attr('value', value);
+            if($(select).attr('multiple')){
+                if($(select).parents('.customselect-wrapper').find('ul li[data-id="'+ id + '"] .checked').hasClass('active')){
+                    $(select).parents('.customselect-wrapper').find('ul li[data-id="'+ id + '"] .text').html(value);
+                    $styledSelect.find('[data-id="'+ id + '"]').html(value);
+                }
+                else {
+                    $(select).parents('.customselect-wrapper').find('ul li[data-id="'+ id + '"] .text').html(value);
+                }
+            }
+            else {
+                $(select).parents('.customselect-wrapper').find('ul li[data-id="'+ id + '"]').html(value);
+                if($(select).find('option[data-id="'+ id + '"]:selected').length>0){
+                    $styledSelect.html(value);
+                }
+            }
+            $(select).parents('.customselect-wrapper').find('ul li[data-id="'+ id + '"]').attr('rel', value);
+        }
+        function AddOption(select){
+            var id = Math.floor(Math.random() * 100000);
+            if($(select).attr('multiple')){
+                $(select).append('<option value="" data-id="'+ id + '"></option>');
+                $(select).parents('.customselect-wrapper').find('ul').append('<li rel="" data-id="'+ id + '"><div class="checked"></div><div class="text">Ответ</div></li>');
+                var $styledSelect = $(select).next('div.select-styled');
+                $this = select;
+                var listItem = $(select).parents('.customselect-wrapper').find('ul li:last-child');
+                $(listItem).click(function(e) {
+                        e.stopPropagation();
+                        if($(e.currentTarget).find('.checked').hasClass('active')) {
+                            $(e.currentTarget).find('.checked').removeClass('active');
+                            var id = $(e.currentTarget).attr('data-id');
+                            $styledSelect.find('.selectvalue[data-id="' + id + '"]').remove();
+                            if($styledSelect.find('.selectvalue').length == 0){
+                                $styledSelect.html('<div class="default">Выберите ответ</div>');
+                            }
+                            $this.find('option[data-id="' + id + '"]').prop("selected", false)
+                        }
+                        else {
+                            $(e.currentTarget).find('.checked').addClass('active');
+                            var id = $(e.currentTarget).attr('data-id');
+                            if($styledSelect.find('.default').length > 0){
+                                $styledSelect.find('.default').remove();
+                            }
+                            $styledSelect.append('<div class="selectvalue" data-value="' + $(e.currentTarget).attr('rel') + '" data-id="'+ id + '">' + $(e.currentTarget).attr('rel') + '</div>');
+                            $this.find('option[data-id="' + id + '"]').prop("selected", true)
+                        }
+                    select.change();
+                });
+            }
+            else {
+                $(select).append('<option value="" data-id="'+ id + '"></option>');
+                $(select).parents('.customselect-wrapper').find('ul').append('<li rel="" data-id="'+ id + '">Ответ</li>');
+                var $styledSelect = $(select).next('div.select-styled');
+                $this = select;
+                var listItem = $(select).parents('.customselect-wrapper').find('ul li:last-child');
+                $(listItem).click(function(e) {
+                    e.stopPropagation();
+                    $styledSelect.text($(this).text()).removeClass('active');
+                    $this.val($(this).attr('rel'));
+                    $(select).parents('.customselect-wrapper').find('ul').hide();
+                    $this.change();
+                });
+            }
+        }
+        function customSelectActive(){
+            $('.customselect').each(function(){
+                if(!$(this).hasClass('select-hidden')){
+                    if($(this).attr('multiple')){
+                        $(this).parent().addClass('customselect-wrapper');
+                        var $this = $(this),
+                        numberOfOptions = $(this).children('option').length;
+                        $this.addClass('select-hidden'); 
+                        $this.wrap('<div class="select"></div>');
+                        $this.after('<div class="select-styled"></div>');
+                        var $styledSelect = $this.next('div.select-styled');
+                        if($this.find('option:selected').length == 0){
+                            $styledSelect.html('<div class="default">Выберите ответ</div>');
+                        }
+                    
+                        var $list = $('<ul />', {
+                            'class': 'select-options'
+                        }).insertAfter($styledSelect);
+                        for (var i = 0; i < numberOfOptions; i++) {
+                            var lioption;
+                            var id = Math.floor(Math.random() * 100000);
+                            $this.children('option').eq(i).attr('data-id', id);
+                            if($this.children('option').eq(i)[0].selected){
+                                $styledSelect.append('<div class="selectvalue" data-value="' + $this.children('option').eq(i).text() + '" data-id="'+ id + '">' + $this.children('option').eq(i).text() + '</div>');
+                                lioption = '<li rel="'+ $this.children('option').eq(i).val() + '" data-id="'+ id + '"><div class="checked active"></div><div class="text">'+ $this.children('option').eq(i).text() + '</div></li>';
+                            }
+                            else {
+                                lioption = '<li rel="'+ $this.children('option').eq(i).val() + '" data-id="'+ id + '" ><div class="checked"></div><div class="text">'+ $this.children('option').eq(i).text() + '</div></li>';
+                            }
+                            $(lioption).appendTo($list);
+                        }
+                    
+                        var $listItems = $list.children('li');
+                    
+                        $styledSelect.click(function(e) {
+                            e.stopPropagation();
+                            $('div.select-styled.active').not(this).each(function(){
+                                $(this).removeClass('active').next('ul.select-options').hide();
+                            });
+                            $(this).toggleClass('active').next('ul.select-options').toggle();
+                        });
+                    
+                        $listItems.click(function(e) {
+                            e.stopPropagation();
+                            if($(e.currentTarget).find('.checked').hasClass('active')) {
+                                $(e.currentTarget).find('.checked').removeClass('active');
+                                var id = $(e.currentTarget).attr('data-id');
+                                $styledSelect.find('.selectvalue[data-id="' + id + '"]').remove();
+                                if($styledSelect.find('.selectvalue').length == 0){
+                                    $styledSelect.html('<div class="default">Выберите ответ</div>');
+                                }
+                                $this.find('option[value="' + $(e.currentTarget).attr('rel') + '"][data-id="' + id + '"]').prop("selected", false)
+                            }
+                            else {
+                                $(e.currentTarget).find('.checked').addClass('active');
+                                var id = $(e.currentTarget).attr('data-id');
+                                if($styledSelect.find('.default').length > 0){
+                                    $styledSelect.find('.default').remove();
+                                }
+                                $styledSelect.append('<div class="selectvalue" data-value="' + $(e.currentTarget).attr('rel') + '" data-id="'+ id + '">' + $(e.currentTarget).attr('rel') + '</div>');
+                                $this.find('option[value="' + $(e.currentTarget).attr('rel') + '"][data-id="' + id + '"]').prop("selected", true)
+                            }
+                            $this.change();
+                        });
+
+                        $(document).mousedown(function(e) {
+                            if($(e.target).parents('.customselect-wrapper').length == 0) {
+                                $styledSelect.removeClass('active');
+                                $list.hide();
+                                console.log('mousedown');
+                            }
+                        });
+
+                        $(document).click(function() {
+                            $styledSelect.removeClass('active');
+                            $list.hide();
+                        });
+                    }
+                    else {
+                        $(this).parent().addClass('customselect-wrapper');
+                        var $this = $(this),
+                        numberOfOptions = $(this).children('option').length;
+                        $this.addClass('select-hidden'); 
+                        $this.wrap('<div class="select"></div>');
+                        $this.after('<div class="select-styled"></div>');
+                        var $styledSelect = $this.next('div.select-styled');
+                        if($this.find('option:selected').length>0){
+                            $styledSelect.text($this.find('option:selected').text());
+                        }
+                        else {
+                            $styledSelect.text('Выберите ответ');
+                        }
+                    
+                        var $list = $('<ul />', {
+                            'class': 'select-options'
+                        }).insertAfter($styledSelect);
+                    
+                        for (var i = 0; i < numberOfOptions; i++) {
+                            var id = Math.floor(Math.random() * 100000);
+                            $this.children('option').eq(i).attr('data-id', id);
+                            lioption = '<li rel="'+ $this.children('option').eq(i).val() + '" data-id="'+ id + '">'+ $this.children('option').eq(i).text() + '</li>';
+                            $(lioption).appendTo($list);
+                        }
+                    
+                        var $listItems = $list.children('li');
+                    
+                        $styledSelect.click(function(e) {
+                            e.stopPropagation();
+                            $('div.select-styled.active').not(this).each(function(){
+                                $(this).removeClass('active').next('ul.select-options').hide();
+                            });
+                            $(this).toggleClass('active').next('ul.select-options').toggle();
+                        });
+                    
+                        $listItems.click(function(e) {
+                            e.stopPropagation();
+                            $styledSelect.text($(this).text()).removeClass('active');
+                            $this.val($(this).attr('rel'));
+                            $list.hide();
+                            $this.change();
+                        });
+                        $(document).mousedown(function(e) {
+                            if($(e.target).parents('.customselect-wrapper').length == 0) {
+                                $styledSelect.removeClass('active');
+                                $list.hide();
+                                console.log('mousedown');
+                            }
+                        });
+                        $(document).click(function() {
+                            $styledSelect.removeClass('active');
+                            $list.hide();
+                        });
+                    }
+                }
+            });   
+        }
     });
 });

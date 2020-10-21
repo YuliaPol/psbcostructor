@@ -1582,6 +1582,11 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                 .hidden-question-group {
                     display: none;
                 }
+                .dropdownanswer {
+                    .selectdropdown {
+                        max-width: 300px;
+                    }
+                }
                 .branching-group {
                     padding-bottom: 15px;
                     .group-name {
@@ -3473,7 +3478,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                         .inputstables {
                             border: 1px solid #EEEFF3;
                             padding: 8px;
-                            padding-bottom: 15px;
                             width: calc(100% - 15px);
                             .dropdown-question {
                                 font-family: $fontpage;
@@ -4954,7 +4958,22 @@ html .ui-button.ui-state-disabled:active {
 .customselect-wrapper {
     $background: #FEFDFD;
     $select-background: #FEFDFD;
-
+    .checked {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border: 0.5px solid #C4C4C4;
+        border-radius: 50%;
+        margin-right: 5px;
+        transition: background 0.3s ease-in;
+        cursor: pointer;
+        &.active {
+            background: #C4C4C4;
+        }
+    }
+    .text {
+        display: inline-block;
+    }
     .select-hidden {
         display: none;
         visibility: hidden;

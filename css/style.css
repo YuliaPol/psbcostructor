@@ -2805,6 +2805,11 @@ table {
   display: none;
 }
 
+.construcot-container .centerbox .questions-box .question .dropdownanswer .selectdropdown,
+.construcot-container .centerbox .questions-box .subquestion .dropdownanswer .selectdropdown {
+  max-width: 300px;
+}
+
 .construcot-container .centerbox .questions-box .question .branching-group,
 .construcot-container .centerbox .questions-box .subquestion .branching-group {
   padding-bottom: 15px;
@@ -6057,7 +6062,6 @@ table {
 .construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables {
   border: 1px solid #EEEFF3;
   padding: 8px;
-  padding-bottom: 15px;
   width: calc(100% - 15px);
 }
 
@@ -8094,6 +8098,27 @@ html .ui-button.ui-state-disabled:active {
 
 .iti__flag {
   background-image: url("./../img/flags16.png");
+}
+
+.customselect-wrapper .checked {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 0.5px solid #C4C4C4;
+  border-radius: 50%;
+  margin-right: 5px;
+  -webkit-transition: background 0.3s ease-in;
+  -o-transition: background 0.3s ease-in;
+  transition: background 0.3s ease-in;
+  cursor: pointer;
+}
+
+.customselect-wrapper .checked.active {
+  background: #C4C4C4;
+}
+
+.customselect-wrapper .text {
+  display: inline-block;
 }
 
 .customselect-wrapper .select-hidden {

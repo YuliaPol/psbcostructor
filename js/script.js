@@ -71,7 +71,7 @@ jQuery(function ($) {
             }
         });
 
-        $(document).mouseup(function (e){
+        $(document).mousedown(function (e){
             var div = $('.filter-box .filter-name'); 
             var div2 = $('.filter-box .dropdownfilter'); 
             var div3 = $('.filter-box .filter-group'); 
@@ -82,11 +82,6 @@ jQuery(function ($) {
             }
         });
 
-        // $('.filter-box').on('change', 'input[type=radio]', function(e){
-        //     if($(this).next('label').html()){
-        //         $(this).parents('.filter-box').find('.filter-name').html($(this).next('label').html());
-        //     }
-        // });
 
         //validation
         var formValid = document.getElementsByClassName('form-valid')[0];
