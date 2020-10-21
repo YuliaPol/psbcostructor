@@ -4,15 +4,30 @@ jQuery(function ($) {
         // Restricts input for the set of matched elements to the given inputFilter function.
         $.fn.inputFilter = function(inputFilter) {
             return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
-                if (inputFilter(this.value)) {
-                this.oldValue = this.value;
-                this.oldSelectionStart = this.selectionStart;
-                this.oldSelectionEnd = this.selectionEnd;
-                } else if (this.hasOwnProperty("oldValue")) {
-                this.value = this.oldValue;
-                this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
-                } else {
-                this.value = "";
+                if($(this).hasClass('btnradius') && $(this).parents('.btn-options').find('.btnheight').val()){
+                    var max = parseInt($(this).parents('.btn-options').find('.btnheight').val())/2;
+                        if (inputFilter(this.value) && this.value < max ) {
+                            this.oldValue = this.value;
+                            this.oldSelectionStart = this.selectionStart;
+                            this.oldSelectionEnd = this.selectionEnd;
+                            } else if (this.hasOwnProperty("oldValue")) {
+                            this.value = this.oldValue;
+                            this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                            } else {
+                            this.value = "";
+                            }
+                }
+                else {
+                    if (inputFilter(this.value)) {
+                        this.oldValue = this.value;
+                        this.oldSelectionStart = this.selectionStart;
+                        this.oldSelectionEnd = this.selectionEnd;
+                        } else if (this.hasOwnProperty("oldValue")) {
+                        this.value = this.oldValue;
+                        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                        } else {
+                        this.value = "";
+                        }
                 }
             });
         };
