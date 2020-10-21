@@ -1503,12 +1503,12 @@ jQuery(function ($) {
             
 
         });
-        var minRows = 5;
+        var minRows = 2;
         var maxRows = 26;
         //autoheight textarea
         function auto_grow(id) {
             var t = id;
-            if (t.scrollTop == 0)   t.scrollTop=1;
+            // if (t.scrollTop == 0)   t.scrollTop=1;
             while (t.scrollTop == 0) {
                 if (t.rows > minRows)
                         t.rows--; else
@@ -2145,6 +2145,25 @@ jQuery(function ($) {
             }
         });
 
+        $('.rightside').on('change , keypress, keydown, keyup', '.scale-option .scalelabels textarea', function(e){
+            var idQuestion = $(this).attr('name').split('_')[1];
+            console.log($('#questionanswers_' + idQuestion).find('.scaleanswer .rightlabel').length);
+            if($('#questionanswers_' + idQuestion).find('.scaleanswer .rightlabel').length==0){
+                var label = 
+                '<div class="scalelabels">'
+                +'    <div class="rightlabel"></div>'
+                +'    <div class="leftlabel"></div>'
+                +'</div>';
+                $(label).appendTo($('#questionanswers_' + idQuestion + ' .scaleanswer'));
+            }
+            if($(this).parent('.rightlabel').length>0){
+                $('#questionanswers_' + idQuestion).find('.scaleanswer .rightlabel').html($(this).val());
+            }
+            else if ($(this).parent('.leftlabel').length>0){
+                $('#questionanswers_' + idQuestion).find('.scaleanswer .leftlabel').html($(this).val());
+            }
+        });
+
         $('.rightside').on('change', '.scale-radio input[type=radio]', function(e){
             var el = '';
             var id = $(this).attr('name').split('_')[1];
@@ -2193,7 +2212,7 @@ jQuery(function ($) {
             }
             if(type == 1){
                 el = 
-                '<div class="answer answer-colorstar" id="questionanswers_'+ id +'">'
+                '<div class="answer answer-colorstar" id="questionanswers_'+ id +'"><div class="scaleanswer">'
                 +'    <div class="rating">'
                 +'        <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_10" value="10">'
                 +'        <label for="questionanswer_'+ id +'_10"></label>'
@@ -2216,7 +2235,7 @@ jQuery(function ($) {
                 +'        <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_1" value="1">'
                 +'        <label for="questionanswer_'+ id +'_1"></label>'
                 +'    </div>'
-                +'</div>';
+                +'</div></div>';
             }
             else if(type == 2){
                 el =
@@ -2237,7 +2256,7 @@ jQuery(function ($) {
             }
             else if(type == 3){
                 el = 
-                '<div class="answer answer-star10" id="questionanswers_'+ id +'">'
+                '<div class="answer answer-star10" id="questionanswers_'+ id +'"><div class="scaleanswer">'
                 +'    <div class="rating">'
                 +'        <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_10" value="10">'
                 +'        <label for="questionanswer_'+ id +'_10"></label>'
@@ -2260,11 +2279,13 @@ jQuery(function ($) {
                 +'        <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_1" value="1">'
                 +'        <label for="questionanswer_'+ id +'_1"></label>'
                 +'    </div>'
-                +'</div>';
+                +'</div></div>';
             }
             else if(type == 4){
                 el = 
-                '<div class="answer answer-ratings10" id="questionanswers_'+ id +'">'
+                '<div class="answer" id="questionanswers_'+ id +'">'
+                +'    <div class="scaleanswer scaleanswer10">'
+                +'    <div class="answer-ratings10">'
                 +'    <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_0" value="0">'
                 +'    <label  for="questionanswer_'+ id +'_0">'
                 +'        <div class="digit color0">'
@@ -2331,7 +2352,7 @@ jQuery(function ($) {
                 +'            10'
                 +'        </div>'
                 +'    </label>'
-                +'</div>';
+                +'</div></div></div>';
             }
             else if(type == 5){
                 var text1 = $('#scaleRating5_'+ id +'_1').val();
@@ -2393,6 +2414,38 @@ jQuery(function ($) {
             if(el){
                 $('#questionanswers_' +id).remove();
                 $('#questionName_' + id).after(el);;
+                if(type == 1 || type == 4 || type == 3){
+                    if($('#option_' + id).find('.scalelabels').length>0) {
+                        var lefttext = $('#option_' + id).find('.scalelabels .leftlabel textarea').val();
+                        var righttext = $('#option_' + id).find('.scalelabels .rightlabel textarea').val();
+                        var label = 
+                        '<div class="scalelabels">'
+                        +'    <div class="rightlabel">'+ righttext + '</div>'
+                        +'    <div class="leftlabel">'+ lefttext +'</div>'
+                        +'</div>';
+                        $(label).appendTo($('#questionanswers_' + id + ' .scaleanswer'));
+                        $('#option_' + id).find('.scalelabels').insertAfter($(this).next());
+                    }
+                    else {
+                        var scalelabels = 
+                        '<div class="scalelabels">'
+                        +'    <div class="rightlabel">'
+                        +'        <textarea rows="2"'
+                        +'            name="rightlabelscale_' + id + '" placeholder="Совершенно не удовлетворен"></textarea>'
+                        +'    </div>'
+                        +'    <div class="leftlabel">'
+                        +'        <textarea rows="2"'
+                        +'            name="leftlabelscale_' + id + '" placeholder="Полностью удовлетворен"></textarea>'
+                        +'    </div>'
+                        +'</div>';
+                        $(scalelabels).insertAfter($(this).next());
+                    }
+                }
+                else {
+                    if($('#option_' + id).find('.scalelabels').length>0) {
+                        $('#option_' + id).find('.scalelabels').remove();
+                    }
+                }
             }
         });
 

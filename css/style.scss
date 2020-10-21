@@ -1691,12 +1691,35 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                             }
                         }
                     }
-                    &.answer-ratings10 {
+                    .scaleanswer {
+                        display: inline-table;
+                    }
+                    .scaleanswer10 {
                         display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                    }
+                    .scalelabels {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        font-family: "Montserrat";
+                        font-style: normal;
+                        font-size: 12px;
+                        line-height: 15px;
+                        color: #000000;
+                        padding-top: 10px;
+                        > div {
+                            max-width: 105px;
+                        }
+                    }
+                    .answer-ratings10 {
+                        display: inline-flex;
                         justify-content: space-between;
                         max-width: 1000px;
                         margin: auto;
                         padding-left: 0px;
+                        width: 100%;
                         input[type='radio'] {
                           opacity: 0;
                           display: none;
@@ -1813,6 +1836,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                             overflow: hidden;
                             flex-direction: row-reverse;
                             position: relative;
+                            flex-wrap: wrap;
                         }
                         .rating-0 {
                             filter: grayscale(100%);
@@ -1945,6 +1969,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                             overflow: hidden;
                             flex-direction: row-reverse;
                             position: relative;
+                            flex-wrap: wrap;
                         }
                         .rating-0 {
                             filter: grayscale(100%);
@@ -3597,7 +3622,20 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                         padding-left: 10px;
                         padding-right: 10px;
                     }
-                    
+                    .scalelabels {
+                        display: flex;
+                        align-items: stretch;
+                        justify-content: space-between;
+                        padding: 0px 10px;
+                        .rightlabel,
+                        .leftlabel {
+                            width: 45%;
+                        }
+                        textarea {
+                            border: none;
+                            border-bottom: 1px solid $voilet;
+                        }
+                    }
                     .scalelabel {
                         width: 100%;
                         padding: 10px;
