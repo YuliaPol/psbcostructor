@@ -4126,7 +4126,7 @@ jQuery(function ($) {
                 +'            <div class="row-options">'
                 +'                <div class="optionbtngroup">'
                 +'                    <label for="inputpoint_'+ id +'_4">'
-                +'                        <div class="radius"></div>'
+                +'                        R'
                 +'                    </label>'
                 +'                    <input class="btnradius" type="text"  name="inputpoint_'+ id +'_4"  id="inputpoint_'+ id +'_4" value="30">'
                 +'                </div>'
