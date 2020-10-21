@@ -1,6 +1,26 @@
+jscolor.presets.default = {
+    position: 'bottom',
+    width: 181,
+    height: 100,
+    padding: 10,
+    sliderSize: 25,
+    borderRadius: 0,
+    borderWidth: 0,
+    controlBorderWidth: 1,
+    pointerBorderWidth: 1,
+    borderColor: '#000',
+    controlBorderColor: '#CCC',
+    backgroundColor: '#fff',
+    format: 'rgba',
+    controlBorderColor: '#ccc',
+    crossSize: 5,
+    pointerBorderColor: '#fff',
+    pointerBorderWidth: 1,
+};
+
 jQuery(function ($) {
     $(document).ready(function () {
-
+       
         // Restricts input for the set of matched elements to the given inputFilter function.
         $.fn.inputFilter = function(inputFilter) {
             return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
@@ -2970,28 +2990,28 @@ jQuery(function ($) {
                 var id;
                 var type = $(ui.draggable).attr('data-type');
                 var pollid = $('#quiz-id').val();
-                // if(type && pollid){
-                //     AddQuestion(type, Math.random().toString(36).substr(2, 9), appendInde);
-                // }
                 if(type && pollid){
-                    $.ajax ({
-                        type: 'POST',
-                        url: "/admin/poll/create-question",
-                        dataType: "json",
-                        data: { 
-                            questiontype: type,
-                            quizid: pollid
-                        },
-                    }).done(function (data) {
-                        // данные сохранены
-                        AddQuestion(type, data, appendInde);
-                        console.log('Вопрос создан');
-                    }).fail(function (data) {
-                        // не удалось выполнить запрос к серверу
-                        console.log(data);
-                        console.log('Запрос не принят');
-                    });
+                    AddQuestion(type, Math.random().toString(36).substr(2, 9), appendInde);
                 }
+                // if(type && pollid){
+                //     $.ajax ({
+                //         type: 'POST',
+                //         url: "/admin/poll/create-question",
+                //         dataType: "json",
+                //         data: { 
+                //             questiontype: type,
+                //             quizid: pollid
+                //         },
+                //     }).done(function (data) {
+                //         // данные сохранены
+                //         AddQuestion(type, data, appendInde);
+                //         console.log('Вопрос создан');
+                //     }).fail(function (data) {
+                //         // не удалось выполнить запрос к серверу
+                //         console.log(data);
+                //         console.log('Запрос не принят');
+                //     });
+                // }
             }
         });
         
@@ -3049,16 +3069,6 @@ jQuery(function ($) {
                 +'                    value="text">'
                 +'            </div>'
                 +'        </div>'
-                // +'            <div class="multityperow">'
-                // +'                <div class="namelabel">'
-                // +'                    Ветвление ответа'
-                // +'                </div>'
-                // +'              <label class="switch" for="brnachingonoff_'+ id +'">'
-                // +'                  <input type="checkbox" class="brnachingonoff"'
-                // +'                      name="brnachingonoff_'+ id +'" id="brnachingonoff_'+ id +'">'
-                // +'                  <span class="slider round"></span>'
-                // +'              </label>'
-                // +'          </div>'
                 +'        <div class="form-group">'
                 +'            <label for="question_'+ id +'">Вопрос</label>'
                 +'            <textarea class="question_name" name="question_'+ id +'" id="question_'+ id +'" placeholder="Введите вопрос"></textarea>'
@@ -4150,8 +4160,7 @@ jQuery(function ($) {
                 +'                        <div class="color"'
                 +'                        style="background: #F26126"></div>'
                 +'                    </label>'
-                +'                   <input type="color" class="hiddeninput hiddeninputcolor" name="inputpoint_'+ id +'_5" value="#F26126">'
-                +'                   <input class="btncolor" type="text"  name="inputpoint_'+ id +'_6"  id="inputpoint_'+ id +'_6" value="#F26126">'
+                +'                   <input class="btncolor" type="text"  name="inputpoint_'+ id +'_6"  id="inputpoint_'+ id +'_6" value="#F26126" data-jscolor="">'
                 +'               </div>'
                 +'           </div>'
                 +'            <div class="row-options">'
@@ -4159,8 +4168,8 @@ jQuery(function ($) {
                 +'                  <label for="inputpoint_'+ id +'_7">'
                 +'                      <div class="color" style=" background-color: #F26126; color: #ffffff;">T</div>'
                 +'                  </label>'
-                +'                  <input type="color" class="hiddeninput hiddeninputtextcolor" name="hiddeninputtextcolor_'+ id +'_7" value="#ffffff">'
-                +'                  <input class="btntextcolor" type="text" name="inputpoint_'+ id +'_8" id="inputpoint_'+ id +'_8" value="#ffffff">'
+                // +'                  <input type="color" class="hiddeninput hiddeninputtextcolor" name="hiddeninputtextcolor_'+ id +'_7" value="#ffffff">'
+                +'                  <input class="btntextcolor" type="text" name="inputpoint_'+ id +'_8" id="inputpoint_'+ id +'_8" value="#ffffff" data-jscolor="">'
                 +'              </div>'
                 +'          </div>'
                 +'           <div class="form-group">'
@@ -4278,6 +4287,7 @@ jQuery(function ($) {
             });
             $('.questions-box').attr('data-count', i);
             customSelectActive();
+            jscolor.install('.rightside')
             RefreshItems();
         }
         // delete question
