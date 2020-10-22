@@ -22,7 +22,6 @@ jQuery(function ($) {
     $(document).ready(function () {
         //hide datepicker while scroll
         $(".centerbox").scroll(function(){
-            console.log($( "#ui-datepicker-div" ));
             $( "#ui-datepicker-div" ).hide();
         });
 
@@ -77,6 +76,7 @@ jQuery(function ($) {
             yearSuffix: ''
         });
 
+        
         //btnoptions
         $('.rightside').on('change', '.position input[type=radio]', function(e){
             var idQuestion =  $(this).attr('name').split('_')[1];
@@ -173,11 +173,27 @@ jQuery(function ($) {
         $('.phone-answer input.code').intlTelInput({
             initialCountry: "ru",
         });
+        //set code country of downloadinf page
+        var TelCountries = $('.rightside .telcountry');
+        if(TelCountries.length>0){
+            TelCountries.each(function (index, telcountry) {
+                var idQuestion =  $(telcountry).attr('name').split('_')[1];
+                var country =  $(telcountry).val();
+                $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .country[data-country-code="'+ country + '"]').click();    
+            });
+        }
+        //change default country code
+        $('.rightside').on('change', '.telcountry', function(e){
+            var idQuestion =  $(this).attr('name').split('_')[1];
+            var country =  $(this).val();
+            $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .country[data-country-code="'+ country + '"]').click();
+        });
+        
 
         $('.centerbox').on('keyup', '.phone-answer input', function(e){
-            if (/\D/g.test(this.value))
+            if (/[^\d|\-+|\.+]/g.test(this.value))
             {
-              this.value = this.value.replace(/\D/g, '');
+              this.value = this.value.replace(/[^\d|\-+|\.+]/g, '');
             }
         });
 
