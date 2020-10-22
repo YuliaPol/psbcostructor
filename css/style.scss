@@ -2184,7 +2184,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                 .intl-tel-input {
                                     width: 120px;
                                     input {
-                                        width: 90px;
+                                        width: 100px;
                                     }
                                 }
                                 .phone {
@@ -5143,7 +5143,9 @@ html .ui-button.ui-state-disabled:active {
         }
     }
 }
-
+.intl-tel-input .flag-dropdown .selected-flag {
+    pointer-events: none;
+}
 .col-phone .intl-tel-input .flag-dropdown .selected-flag .down-arrow {
     border: none;
     width: 10px;

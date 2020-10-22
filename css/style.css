@@ -3937,7 +3937,7 @@ table {
 
 .construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone .inputs .intl-tel-input input,
 .construcot-container .centerbox .questions-box .subquestion .answer .phone-answer .col-phone .inputs .intl-tel-input input {
-  width: 90px;
+  width: 100px;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone .inputs .phone,
@@ -8389,6 +8389,10 @@ html .ui-button.ui-state-disabled:active {
 .smallselect-wrapper .select-options li {
   font-size: 8px;
   line-height: 10px;
+}
+
+.intl-tel-input .flag-dropdown .selected-flag {
+  pointer-events: none;
 }
 
 .col-phone .intl-tel-input .flag-dropdown .selected-flag .down-arrow {
