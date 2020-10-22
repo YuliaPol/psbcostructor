@@ -948,7 +948,6 @@ jQuery(function ($) {
                 var idPoints = 1;
             }
             var numberCols = parseInt($(this).parents('.matrix-options').find('.rowslist').children().length);
-            console.log(idPoints);
             if(idPoints<15) {
                 if(idQuestion && idPoints) {
                     var newoptionrow = 
@@ -1091,7 +1090,6 @@ jQuery(function ($) {
             var SubpointsAnswer = $('#questionanswers_' + idQuestion + ' .matrix-table').children();
             SubpointsAnswer.each(function (index, subpoint) {
                 var answerCols = $(subpoint).children();
-                console.log(answerCols);
                 answerCols.each(function (i_col, col) {
                     var id = i_col;
                     var inputs = $(col).find('input');
@@ -2308,7 +2306,6 @@ jQuery(function ($) {
 
         $('.rightside').on('change , keypress, keydown, keyup', '.scale-option .scalelabels textarea', function(e){
             var idQuestion = $(this).attr('name').split('_')[1];
-            console.log($('#questionanswers_' + idQuestion).find('.scaleanswer .rightlabel').length);
             if($('#questionanswers_' + idQuestion).find('.scaleanswer .rightlabel').length==0){
                 var label = 
                 '<div class="scalelabels">'
@@ -3116,28 +3113,28 @@ jQuery(function ($) {
                 var id;
                 var type = $(ui.draggable).attr('data-type');
                 var pollid = $('#quiz-id').val();
-                if(type && pollid){
-                    AddQuestion(type, Math.random().toString(36).substr(2, 9), appendInde);
-                }
                 // if(type && pollid){
-                //     $.ajax ({
-                //         type: 'POST',
-                //         url: "/admin/poll/create-question",
-                //         dataType: "json",
-                //         data: { 
-                //             questiontype: type,
-                //             quizid: pollid
-                //         },
-                //     }).done(function (data) {
-                //         // данные сохранены
-                //         AddQuestion(type, data, appendInde);
-                //         console.log('Вопрос создан');
-                //     }).fail(function (data) {
-                //         // не удалось выполнить запрос к серверу
-                //         console.log(data);
-                //         console.log('Запрос не принят');
-                //     });
+                //     AddQuestion(type, Math.random().toString(36).substr(2, 9), appendInde);
                 // }
+                if(type && pollid){
+                    $.ajax ({
+                        type: 'POST',
+                        url: "/admin/poll/create-question",
+                        dataType: "json",
+                        data: { 
+                            questiontype: type,
+                            quizid: pollid
+                        },
+                    }).done(function (data) {
+                        // данные сохранены
+                        AddQuestion(type, data, appendInde);
+                        console.log('Вопрос создан');
+                    }).fail(function (data) {
+                        // не удалось выполнить запрос к серверу
+                        console.log(data);
+                        console.log('Запрос не принят');
+                    });
+                }
             }
         });
         
@@ -3889,10 +3886,30 @@ jQuery(function ($) {
                 +'                  </div>'
                 +'              </div>'
                 +'          </div>'
-                +'          <div class="form-group spinner-wrapper">'
-                +'              <label for="number_'+ id +'">Колонки</label>'
-                +'              <input class="matrix_number spinner" name="number_'+ id +'" id="number_'+ id +'" type="text"'
-                +'                  value="2">'
+                +'            <div class="form-group">'
+                +'               <p>Колонки</p>'
+                +'              <div class="rowslist2">'
+                +'                  <div class="row-item">'
+                +'                      <input type="text" name="inputrow_'+ id +'_1" id="inputrow_'+ id +'_1" value="1">'
+                +'                      <div class="edit-menu">'
+                +'                          <div class="menu-dots"></div>'
+                +'                          <div class="menu-list">'
+                +'                              <div class="add-row addmatrixrow2"></div>'
+                +'                              <div class="delete-row deletematrixrow2"></div>'
+                +'                          </div>'
+                +'                      </div>'
+                +'                  </div>'
+                +'                  <div class="row-item">'
+                +'                      <input type="text" name="inputrow_'+ id +'_2" id="inputrow_'+ id +'_2" value="2">'
+                +'                      <div class="edit-menu">'
+                +'                          <div class="menu-dots"></div>'
+                +'                          <div class="menu-list">'
+                +'                              <div class="add-row addmatrixrow2"></div>'
+                +'                              <div class="delete-row deletematrixrow2"></div>'
+                +'                          </div>'
+                +'                      </div>'
+                +'                  </div>'
+                +'              </div>'
                 +'          </div>'
                 +'          <div class="matrix-btn-row">'
                 +'              <div class="addmatrixrow add-btn">'
@@ -3900,7 +3917,7 @@ jQuery(function ($) {
                 +'                  </div>'
                 +'                  Добавить строку'
                 +'              </div>'
-                +'              <div class="addcolmatrix add-btn">'
+                +'              <div class="addmatrixrow2 add-btn">'
                 +'                  <div class="icon-add">'
                 +'                  </div>'
                 +'                  Добавить колонки'
