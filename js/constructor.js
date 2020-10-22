@@ -113,6 +113,7 @@ jQuery(function ($) {
         $('.rightside').on('change', '.btncolor', function(e){
             var idQuestion =  $(this).attr('name').split('_')[1];
             var value = $(this).val();
+            $(this).parents('.btn-options').find('.optionbtntextcolor .color').css( 'background', value);
             $('#questionanswers_' + idQuestion).find('.btn-answer .btn').css( 'background', value);
             $(this).parents('.optionbtngroup').find('.color').css( 'background', value);
         });
