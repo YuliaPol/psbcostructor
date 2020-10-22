@@ -4211,7 +4211,7 @@ jQuery(function ($) {
                 +'        <div class="phone-answer">'
                 +'          <div class="col-phone">'
                 +'                <div class="inputs">'
-                +'                    <input class="code" type="text" name="answerphonecode_'+ id +'" id="answerphonecode_'+ id +'" value="+70">'
+                +'                    <input class="code" type="text" name="answerphonecode_'+ id +'" id="answerphonecode_'+ id +'" value="+7" readonly>'
                 +'                    <input class="phone" type="tel" name="answerphone_'+ id +'" id="answerphone_'+ id +'" maxlength="9">'
                 +'               </div>'
                 +'              <div class="lines">'
