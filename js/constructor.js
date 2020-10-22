@@ -859,6 +859,15 @@ jQuery(function ($) {
             $('#questionanswers_' + idQuestion + ' .matrix-table .matrix-row:nth-child(' + idPoints + ') .first-col .value').html(value);
         });
 
+        //change matrix row
+        $('.rightside').on('change, keypress, keydown, keyup', '.matrix-options .rowslist2 .row-item input', function(e){
+            var name =  $(this).attr('name');
+            var idQuestion = name.split('_')[1];
+            var idPoints = parseInt(name.split('_')[2]) + 1;
+            var value = $(this).val();
+            $('#questionanswers_' + idQuestion + ' .matrix-table .first-row .col:nth-child(' + idPoints + ') .value').html(value);
+        });
+
         //add matrix row
         $('.rightside').on('click', '.addmatrixrow', function(e){
             if($(this).parents('.matrix-options').find('.rowslist .row-item:last-child input').length>0)
@@ -872,7 +881,7 @@ jQuery(function ($) {
                 var idQuestion = name.split('_')[1];
                 var idPoints = 1;
             }
-            var numberCols = parseInt($(this).parents('.matrix-options').find('.matrix_number').val());
+            var numberCols = parseInt($(this).parents('.matrix-options').find('.rowslist2').children().length);
             if(idPoints<21) {
                 if(idQuestion && idPoints) {
                     var newoptionrow = 
@@ -925,6 +934,44 @@ jQuery(function ($) {
                 $('.modal').fadeIn(300);
             }
         });
+        //add matrix row
+        $('.rightside').on('click', '.addmatrixrow2', function(e){
+            if($(this).parents('.matrix-options').find('.rowslist2 .row-item:last-child input').length>0)
+            {
+                var name =  $(this).parents('.matrix-options').find('.rowslist2 .row-item:last-child input').attr('name');
+                var idQuestion = name.split('_')[1];
+                var idPoints = parseInt(name.split('_')[2]) + 1;
+            }
+            else {
+                var name =  $(this).parents('.matrix-options').find('input').attr('name');
+                var idQuestion = name.split('_')[1];
+                var idPoints = 1;
+            }
+            var numberCols = parseInt($(this).parents('.matrix-options').find('.rowslist').children().length);
+            console.log(idPoints);
+            if(idPoints<15) {
+                if(idQuestion && idPoints) {
+                    var newoptionrow = 
+                    '<div class="row-item">'
+                    +'    <input type="text" name="inputrow_' + idQuestion + '_'+ idPoints + '" id="inputrow_' + idQuestion + '_'+ idPoints + '" value="'+ idPoints + '">'
+                    +'    <div class="edit-menu">'
+                    +'        <div class="menu-dots"></div>'
+                    +'        <div class="menu-list">'
+                    +'            <div class="add-row addmatrixrow2"></div>'
+                    +'            <div class="delete-row deletematrixrow2"></div>'
+                    +'        </div>'
+                    +'    </div>'
+                    +'</div>';
+                    $(this).parents('.matrix-options').find('.rowslist2').append(newoptionrow);
+                    MatrixColChange(idQuestion, idPoints);
+                }
+            }
+            else {
+                $('#modal-error').find('.text').html('Вы можете задать не более 15 колонок');
+                $('.modal').fadeIn(300);
+            }
+        });
+        
         // add matric col
         $('.rightside').on('click', '.addcolmatrix', function(e){
             var colls = parseInt($(this).parents('.matrix-options').find('.matrix_number').val()) + 1;
@@ -1003,6 +1050,84 @@ jQuery(function ($) {
             });
         });
 
+        //delete matrix row
+        $('.rightside').on('click', '.deletematrixrow2', function(e){
+            var name =  $(this).parents('.row-item').find('input').attr('name');
+            var idQuestion = name.split('_')[1];
+            var idPoints = parseInt(name.split('_')[2]) + 1;
+            var parents =  $(this).parents('.rowslist2');
+            $(this).parents('.row-item').remove();
+            var Subpoints = parents.children();
+            Subpoints.each(function (index, subpoint) {
+                var id = index + 1;
+                var inputs = $(subpoint).find('input');
+                inputs.each(function (index, input) {
+                    if($(input).attr('name')){
+                        prevId = $(input).attr('name').split("_");
+                        prevId[2] = id;
+                        newId = prevId.join('_');
+                        $(input).attr('name', newId);
+                    }
+                    if($(input).attr('id')){
+                        prevId = $(input).attr('id').split("_");
+                        prevId[2] = id;
+                        newId = prevId.join('_');
+                        $(input).attr('id', newId);
+                    }
+                });
+            });
+
+            var SubpointsAnswer = $('#questionanswers_' + idQuestion + ' .matrix-table').children();
+            SubpointsAnswer.each(function (i_subpoint, subpoint) {
+                var answerCols = $(subpoint).children();
+                answerCols.each(function (i_col, col) {
+                    var index = i_col + 1;
+                    if(index == idPoints) {
+                        $(col).remove();
+                    }
+                });
+            });
+
+            var SubpointsAnswer = $('#questionanswers_' + idQuestion + ' .matrix-table').children();
+            SubpointsAnswer.each(function (index, subpoint) {
+                var answerCols = $(subpoint).children();
+                console.log(answerCols);
+                answerCols.each(function (i_col, col) {
+                    var id = i_col;
+                    var inputs = $(col).find('input');
+                    inputs.each(function (index, input) {
+                        if($(input).attr('name')){
+                            prevId = $(input).attr('name').split("_");
+                            prevId[3] = id;
+                            newId = prevId.join('_');
+                            $(input).attr('name', newId);
+                        }
+                        if($(input).attr('id')){
+                            prevId = $(input).attr('id').split("_");
+                            prevId[3] = id;
+                            newId = prevId.join('_');
+                            $(input).attr('id', newId);
+                        }
+                    });
+                    
+                    var labels = $(col).find('label');
+                    labels.each(function (index, label) {
+                        if($(label).attr('for')){
+                            prevId = $(label).attr('for').split("_");
+                            prevId[3] = id;
+                            newId = prevId.join('_');
+                            $(label).attr('for', newId);
+                        }
+                        if($(label).attr('id')){
+                            prevId = $(label).attr('id').split("_");
+                            prevId[3] = id;
+                            newId = prevId.join('_');
+                            $(label).attr('id', newId);
+                        }
+                    });
+                });
+            });
+        });
 
         //change points of matrix col
         $('.rightside').on('change', '.matrix_number', function(e){
@@ -1028,6 +1153,7 @@ jQuery(function ($) {
             answerRows.each(function (i_row, row) {
                 var answerCols = $(row).children();
                 if(answerCols.length > number){
+                    var idrow = i_row + 1;
                     answerCols.each(function (i_col, col) {
                         var index = i_col + 1;
                         if(index > number) {
@@ -1036,9 +1162,9 @@ jQuery(function ($) {
                     });
                 }
                 else if(answerCols.length < number){
-                    var name = $('#option_' + id).find('.matrix_number').attr('name');
-                    var idQuestion = name.split('_')[1];
-                    var idPoints = i_row;
+                    // var name = $('#option_' + id).find('.matrix_number').attr('name');
+                    var idQuestion = id;
+                    var idPoints = parseInt($('#option_' + id).find('.matrix-options').find('.rowslist').children().length);
                     if(i_row == 0){
                         for (let i =  answerCols.length; i < number; i++){
                             var newCol =
@@ -1053,8 +1179,8 @@ jQuery(function ($) {
                             for (let i =  answerCols.length; i < number; i++){
                                 var newCol =
                                 '<div class="col">'
-                                +'    <input type="checkbox" name="answermatrix_' + idQuestion + '_' + idPoints +  '_' + i + '"  id="answermatrix_' + idQuestion + '_' + idPoints + '_' + i + '">'
-                                +'    <label for="answermatrix_' + idQuestion + '_' + idPoints + '_' + i + '">'
+                                +'    <input type="checkbox" name="answermatrix_' + idQuestion + '_' + i_row +  '_' + i + '"  id="answermatrix_' + idQuestion + '_' + i_row + '_' + i + '">'
+                                +'    <label for="answermatrix_' + idQuestion + '_' + i_row + '_' + i + '">'
                                 +'    </label>'
                                 +'</div>';
                                 $(row).append(newCol);
@@ -1064,8 +1190,8 @@ jQuery(function ($) {
                             for (let i =  answerCols.length; i < number; i++){
                                 var newCol =
                                 '<div class="col">'
-                                +'    <input type="radio" name="answermatrix_' + idQuestion + '_' + idPoints  + '"  id="answermatrix_' + idQuestion + '_' + idPoints + '_' + i + '">'
-                                +'    <label for="answermatrix_' + idQuestion + '_' + idPoints + '_' + i + '">'
+                                +'    <input type="radio" name="answermatrix_' + idQuestion + '_' + i_row  + '"  id="answermatrix_' + idQuestion + '_' + i_row + '_' + i + '">'
+                                +'    <label for="answermatrix_' + idQuestion + '_' + i_row + '_' + i + '">'
                                 +'    </label>'
                                 +'</div>';
                                 $(row).append(newCol);

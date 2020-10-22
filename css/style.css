@@ -5627,8 +5627,11 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .matrix-options .rowslist .row-item,
+.construcot-container .rightside .default .text-aside .matrix-options .rowslist2 .row-item,
 .construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item,
-.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist .row-item {
+.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist2 .row-item,
+.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist .row-item,
+.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist2 .row-item {
   margin: 5px 0px;
   border: 1px solid #EEEFF3;
   padding: 7px;
@@ -5647,16 +5650,22 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .matrix-options .rowslist .row-item:hover .edit-menu .menu-list,
+.construcot-container .rightside .default .text-aside .matrix-options .rowslist2 .row-item:hover .edit-menu .menu-list,
 .construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item:hover .edit-menu .menu-list,
-.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist .row-item:hover .edit-menu .menu-list {
+.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist2 .row-item:hover .edit-menu .menu-list,
+.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist .row-item:hover .edit-menu .menu-list,
+.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist2 .row-item:hover .edit-menu .menu-list {
   width: 45px;
   height: 35px;
   opacity: 1;
 }
 
 .construcot-container .rightside .default .text-aside .matrix-options .rowslist .row-item input[type=text],
+.construcot-container .rightside .default .text-aside .matrix-options .rowslist2 .row-item input[type=text],
 .construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item input[type=text],
-.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist .row-item input[type=text] {
+.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist2 .row-item input[type=text],
+.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist .row-item input[type=text],
+.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist2 .row-item input[type=text] {
   display: block;
   border: none;
   outline: none;
@@ -5670,14 +5679,20 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .matrix-options .rowslist .row-item .edit-menu,
+.construcot-container .rightside .default .text-aside .matrix-options .rowslist2 .row-item .edit-menu,
 .construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item .edit-menu,
-.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist .row-item .edit-menu {
+.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist2 .row-item .edit-menu,
+.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist .row-item .edit-menu,
+.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist2 .row-item .edit-menu {
   position: relative;
 }
 
 .construcot-container .rightside .default .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-dots,
+.construcot-container .rightside .default .text-aside .matrix-options .rowslist2 .row-item .edit-menu .menu-dots,
 .construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-dots,
-.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-dots {
+.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist2 .row-item .edit-menu .menu-dots,
+.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-dots,
+.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist2 .row-item .edit-menu .menu-dots {
   width: 10px;
   height: 10px;
   background: url(./../img/matrix-dots.svg);
@@ -5688,8 +5703,11 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list,
+.construcot-container .rightside .default .text-aside .matrix-options .rowslist2 .row-item .edit-menu .menu-list,
 .construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list,
-.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list {
+.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist2 .row-item .edit-menu .menu-list,
+.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list,
+.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist2 .row-item .edit-menu .menu-list {
   position: absolute;
   background: url(./../img/matrix-menubg.svg);
   background-position: center;
@@ -5720,8 +5738,11 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list .add-row,
+.construcot-container .rightside .default .text-aside .matrix-options .rowslist2 .row-item .edit-menu .menu-list .add-row,
 .construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list .add-row,
-.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list .add-row {
+.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist2 .row-item .edit-menu .menu-list .add-row,
+.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list .add-row,
+.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist2 .row-item .edit-menu .menu-list .add-row {
   width: 50%;
   height: 12px;
   background: url(./../img/matrix-addrow.svg);
@@ -5733,8 +5754,11 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list .delete-row,
+.construcot-container .rightside .default .text-aside .matrix-options .rowslist2 .row-item .edit-menu .menu-list .delete-row,
 .construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list .delete-row,
-.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list .delete-row {
+.construcot-container .rightside .optionbox .text-aside .matrix-options .rowslist2 .row-item .edit-menu .menu-list .delete-row,
+.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist .row-item .edit-menu .menu-list .delete-row,
+.construcot-container .rightside .branchingoptionbox .text-aside .matrix-options .rowslist2 .row-item .edit-menu .menu-list .delete-row {
   width: 50%;
   height: 12px;
   background: url(./../img/matrix-deleterow.svg);
