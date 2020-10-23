@@ -36,7 +36,6 @@ jQuery(function ($) {
             showMonthAfterYear: false,
             yearSuffix: ''
         });
-
         //btnoptions
         $('.rightside').on('change', '.position-text input[type=radio]', function(e){
             var className = "align" + $(this).val();
@@ -412,6 +411,20 @@ jQuery(function ($) {
         }
 
         $('.questions-box .ranging-list').sortable({});
+
+        //set code country of downloadinf page
+        var TelCountries = $('.answer .phone-answer .code');
+        if(TelCountries.length>0){
+            TelCountries.each(function (index, telcountry) {
+                console.log($(telcountry).val());
+                if($(telcountry).val()){
+                    var country =  $(telcountry).val();
+                    console.log( $(telcountry).parents('.phone-answer').find('.intl-tel-input .country[data-country-code="'+ country + '"]'));
+                    $(telcountry).parents('.phone-answer').find('input.code').val('');
+                    $(telcountry).parents('.phone-answer').find('.intl-tel-input .country[data-country-code="'+ country + '"]').click();    
+                }
+            });
+        }
 
 
         //customselect
