@@ -200,15 +200,30 @@ jQuery(function ($) {
             TelCountries.each(function (index, telcountry) {
                 var idQuestion =  $(telcountry).attr('name').split('_')[1];
                 var country =  $(telcountry).val();
-                $('#questionanswers_' + idQuestion).find('.phone-answer input.code').val('');
-                $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .country[data-country-code="'+ country + '"]').click();    
+                if(country == 'all') {
+                    $('#questionanswers_' + idQuestion).find('.phone-answer input.code').val('');
+                    $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .selected-flag').css('pointer-events','all');
+                    $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .country[data-country-code="ru"]').click();    
+                }
+                else {
+                    $('#questionanswers_' + idQuestion).find('.phone-answer input.code').val('');
+                    $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .country[data-country-code="'+ country + '"]').click();    
+                }
             });
         }
         //change default country code
         $('.rightside').on('change', '.telcountry', function(e){
             var idQuestion =  $(this).attr('name').split('_')[1];
             var country =  $(this).val();
-            $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .country[data-country-code="'+ country + '"]').click();
+            if(country == 'all') {
+                $('#questionanswers_' + idQuestion).find('.phone-answer input.code').val('');
+                $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .selected-flag').css('pointer-events','all');
+                $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .country[data-country-code="ru"]').click();    
+            }
+            else {
+                $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .selected-flag').css('pointer-events','none');
+                $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .country[data-country-code="'+ country + '"]').click();
+            }
         });
         
 
