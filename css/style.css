@@ -3791,7 +3791,6 @@ table {
       -ms-flex-pack: center;
           justify-content: center;
   outline: none;
-  border: none;
   font-family: "Montserrat";
   font-style: normal;
   font-weight: bold;
@@ -3801,6 +3800,7 @@ table {
   cursor: pointer;
   overflow: hidden;
   max-width: 100%;
+  border: 0px solid #ffffff;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .email-answer,
@@ -5573,6 +5573,27 @@ table {
   border-top-left-radius: 3px;
   border-bottom: none;
   border-right: none;
+}
+
+.construcot-container .rightside .default .text-aside .btn-options .row-options .optionbtngroup label .border,
+.construcot-container .rightside .optionbox .text-aside .btn-options .row-options .optionbtngroup label .border,
+.construcot-container .rightside .branchingoptionbox .text-aside .btn-options .row-options .optionbtngroup label .border {
+  width: 10px;
+  height: 10px;
+  background: url(./../img/icon-borderwidth.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+          background-size: contain;
+}
+
+.construcot-container .rightside .default .text-aside .btn-options .row-options .optionbtngroup label .bordercolor,
+.construcot-container .rightside .optionbox .text-aside .btn-options .row-options .optionbtngroup label .bordercolor,
+.construcot-container .rightside .branchingoptionbox .text-aside .btn-options .row-options .optionbtngroup label .bordercolor {
+  width: 10px;
+  height: 10px;
+  border: 1px solid #9B9595;
+  border-radius: 3px;
 }
 
 .construcot-container .rightside .default .text-aside .btn-options .row-options .optionbtngroup label .color,

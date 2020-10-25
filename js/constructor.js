@@ -93,6 +93,17 @@ jQuery(function ($) {
             return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 1500);
         });
 
+        $('.rightside').on('change', '.btnborderwidth', function(e){
+            var idQuestion =  $(this).attr('name').split('_')[1];
+            var value = $(this).val() + 'px';
+            $('#questionanswers_' + idQuestion).find('.btn-answer .btn').css('border-width', value);
+        });
+
+        $(".btnborderwidth").inputFilter(function(value) {
+            return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 10);
+        });
+        
+
         $('.rightside').on('change', '.btnheight', function(e){
             var idQuestion =  $(this).attr('name').split('_')[1];
             var value = $(this).val() + 'px';
@@ -127,6 +138,16 @@ jQuery(function ($) {
             $(this).prev('input').click();
         });
 
+        $('.rightside').on('change', '.btnbordercolor', function(e){
+            var idQuestion =  $(this).attr('name').split('_')[1];
+            var value = $(this).val();
+            $('#questionanswers_' + idQuestion).find('.btn-answer .btn').css( 'border-color', value);
+        });
+
+        $('.rightside').on('click', '.btnbordercolor', function(e){
+            $(this).prev('input').click();
+        });
+        
         $('.rightside').on('input', '.hiddeninputcolor', function(e){
             $(this).next('input').val($(this).val());
             var idQuestion =  $(this).attr('name').split('_')[1];
@@ -4332,9 +4353,23 @@ jQuery(function ($) {
                 +'                </div>'
                 +'            </div>'
                 +'            <div class="row-options">'
+                +'              <div class="optionbtngroup">'
+                +'                  <label for="inputpoint_'+ id +'_7">'
+                +'                      <div class="border"></div>'
+                +'                  </label>'
+                +'                  <input class="btnborderwidth" type="text"  name="inputpoint_'+ id +'_7"  id="inputpoint_'+ id +'_7" value="0">'
+                +'              </div>'
+                +'              <div class="optionbtngroup">'
+                +'                  <label for="inputpoint_'+ id +'_8">'
+                +'                      <div class="bordercolor"></div>'
+                +'                  </label>'
+                +'                  <input class="btnbordercolor" type="text"  name="inputpoint_'+ id +'_8"  id="inputpoint_'+ id +'_8" value="#ffffff" data-jscolor="">'
+                +'              </div>'
+                +'          </div>'
+                +'            <div class="row-options">'
                 +'                <div class="optionbtngroup">'
                 +'                    <label for="inputpoint_'+ id +'_4">'
-                +'                        R'
+                +'                        <div class="radius"></div>'
                 +'                    </label>'
                 +'                    <input class="btnradius" type="text"  name="inputpoint_'+ id +'_4"  id="inputpoint_'+ id +'_4" value="30">'
                 +'                </div>'

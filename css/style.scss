@@ -2126,7 +2126,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                             align-items: center;
                             justify-content: center;
                             outline: none;
-                            border: none;
                             font-family: $fontpage;
                             font-style: normal;
                             font-weight: bold;
@@ -2136,6 +2135,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                             cursor: pointer;
                             overflow: hidden;
                             max-width: 100%;
+                            border: 0px solid #ffffff;
                         }
                     }
                     .email-answer {
@@ -3158,6 +3158,20 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                     border-top-left-radius: 3px;
                                     border-bottom: none;
                                     border-right: none;
+                                }
+                                .border {
+                                    width: 10px;
+                                    height: 10px;
+                                    background: url(./../img/icon-borderwidth.svg);
+                                    background-position: center;
+                                    background-repeat: no-repeat;
+                                    background-size: contain;
+                                }
+                                .bordercolor {
+                                    width: 10px;
+                                    height: 10px;
+                                    border: 1px solid #9B9595;
+                                    border-radius: 3px;
                                 }
                                 .color {
                                     width: 10px;
