@@ -3093,6 +3093,7 @@ table {
   margin: auto;
   padding-left: 0px;
   width: 100%;
+  max-width: 1000px;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .answer-ratings10 input[type='radio'],
@@ -8341,7 +8342,7 @@ html .ui-button.ui-state-disabled:active {
   margin: 0;
   padding: 0;
   list-style: none;
-  background: #FEFDFD;
+  background: transparent;
   border-right: 1px solid #EEEFF3;
   border-left: 1px solid #EEEFF3;
 }
