@@ -81,7 +81,12 @@ jQuery(function ($) {
                 $('.dropdownfilter').fadeOut(300);
             }
         });
-
+        $('.centerbox').on('change', '.filter-group input[type=radio]', function(e){
+            if($(this).is(':checked')){
+                $('.filter-box .filter-name').removeClass('active');
+                $('.dropdownfilter').fadeOut(300);
+            }
+        });
 
         //validation
         var formValid = document.getElementsByClassName('form-valid')[0];
