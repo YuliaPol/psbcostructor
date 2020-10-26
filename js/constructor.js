@@ -3172,28 +3172,28 @@ jQuery(function ($) {
                 var id;
                 var type = $(ui.draggable).attr('data-type');
                 var pollid = $('#quiz-id').val();
-                if(type && pollid){
-                    AddQuestion(type, Math.random().toString(36).substr(2, 9), appendInde);
-                }
                 // if(type && pollid){
-                //     $.ajax ({
-                //         type: 'POST',
-                //         url: "/admin/poll/create-question",
-                //         dataType: "json",
-                //         data: { 
-                //             questiontype: type,
-                //             quizid: pollid
-                //         },
-                //     }).done(function (data) {
-                //         // данные сохранены
-                //         AddQuestion(type, data, appendInde);
-                //         console.log('Вопрос создан');
-                //     }).fail(function (data) {
-                //         // не удалось выполнить запрос к серверу
-                //         console.log(data);
-                //         console.log('Запрос не принят');
-                //     });
+                //     AddQuestion(type, Math.random().toString(36).substr(2, 9), appendInde);
                 // }
+                if(type && pollid){
+                    $.ajax ({
+                        type: 'POST',
+                        url: "/admin/poll/create-question",
+                        dataType: "json",
+                        data: { 
+                            questiontype: type,
+                            quizid: pollid
+                        },
+                    }).done(function (data) {
+                        // данные сохранены
+                        AddQuestion(type, data, appendInde);
+                        console.log('Вопрос создан');
+                    }).fail(function (data) {
+                        // не удалось выполнить запрос к серверу
+                        console.log(data);
+                        console.log('Запрос не принят');
+                    });
+                }
             }
         });
         
@@ -4372,13 +4372,13 @@ jQuery(function ($) {
                 +'                  <label for="inputpoint_'+ id +'_7">'
                 +'                      <div class="border"></div>'
                 +'                  </label>'
-                +'                  <input class="btnborderwidth" type="text"  name="inputpoint_'+ id +'_7"  id="inputpoint_'+ id +'_7" value="0">'
+                +'                  <input class="btnborderwidth" type="text"  name="inputpoint_'+ id +'_9"  id="inputpoint_'+ id +'_9" value="0">'
                 +'              </div>'
                 +'              <div class="optionbtngroup">'
                 +'                  <label for="inputpoint_'+ id +'_8">'
                 +'                      <div class="bordercolor"></div>'
                 +'                  </label>'
-                +'                  <input class="btnbordercolor" type="text"  name="inputpoint_'+ id +'_8"  id="inputpoint_'+ id +'_8" value="#ffffff" data-jscolor="">'
+                +'                  <input class="btnbordercolor" type="text"  name="inputpoint_'+ id +'_10"  id="inputpoint_'+ id +'_10" value="#ffffff" data-jscolor="">'
                 +'              </div>'
                 +'          </div>'
                 +'            <div class="row-options">'
