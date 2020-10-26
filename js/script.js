@@ -16,7 +16,7 @@ jQuery(function ($) {
             $('.dropdown-user').is(':visible')){
                 $('.dropdown-user').fadeOut(300)
             }       
-          });
+        });
 
         $('.page-content').on('click', '.edit-menu .showhide', function(e){
             if(!$(this).parents('.edit-menu').hasClass('active')){

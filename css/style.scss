@@ -5098,7 +5098,7 @@ html .ui-button.ui-state-disabled:active {
         margin: 0;
         padding: 0;
         list-style: none;
-        background: transparent;
+        background: #ffffff;
         border-right: 1px solid #EEEFF3;
         border-left: 1px solid #EEEFF3;
         li {
@@ -5160,6 +5160,14 @@ html .ui-button.ui-state-disabled:active {
 }
 .intl-tel-input .flag-dropdown .selected-flag {
     pointer-events: none;
+    .flag {
+        &.all-country {
+            background: url(./../img/country-all.svg);
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+    }
 }
 .col-phone .intl-tel-input .flag-dropdown .selected-flag .down-arrow {
     border: none;

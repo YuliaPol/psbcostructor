@@ -420,10 +420,10 @@ jQuery(function ($) {
                 if($(telcountry).val()){
                     var country =  $(telcountry).val();
                     if(country == 'all') {
-                        $('#questionanswers_' + idQuestion).find('.phone-answer input.code').val('');
                         $(telcountry).parents('.phone-answer').find('input.code').val('');
                         $(telcountry).parents('.phone-answer').find('.intl-tel-input .selected-flag').css('pointer-events','all');    
-                        $(telcountry).parents('.phone-answer').find('.intl-tel-input .country[data-country-code="ru"]').click();    
+                        $(telcountry).parents('.phone-answer').find('.intl-tel-input .selected-flag .flag').addClass('all-country');    
+                        // $(telcountry).parents('.phone-answer').find('.intl-tel-input .country[data-country-code="ru"]').click();    
                     }
                     else {
                         $(telcountry).parents('.phone-answer').find('input.code').val('');
