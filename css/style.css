@@ -5115,6 +5115,10 @@ table {
   font-family: "Montserrat" !important;
 }
 
+.construcot-container .rightside .select-styled .default {
+  display: block;
+}
+
 .construcot-container .rightside .default,
 .construcot-container .rightside .optionbox,
 .construcot-container .rightside .branchingoptionbox {

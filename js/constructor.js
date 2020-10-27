@@ -200,15 +200,48 @@ jQuery(function ($) {
             TelCountries.each(function (index, telcountry) {
                 var idQuestion =  $(telcountry).attr('name').split('_')[1];
                 var country =  $(telcountry).val();
-                if(country == 'all') {
+                if(country.includes('all') && !$(telcountry).hasClass('allcountry')){
+                    var lielements = $(telcountry).parents('.select').find('.select-options li');
+                    lielements.each(function (index, el) {
+                        if(!$(el).find('.checked').hasClass('active')) {
+                            $(el).click();
+                        }
+                    });
+                    $(telcountry).addClass('allcountry');
+                }
+                else {
+                    if($(telcountry).hasClass('allcountry') && !country.includes('all')){
+                        var lielements = $(telcountry).parents('.select').find('.select-options li');
+                        lielements.each(function (index, el) {
+                            if($(el).find('.checked').hasClass('active')) {
+                                $(el).click();
+                            }
+                        });
+                    }
+                    $(telcountry).removeClass('allcountry');
+                    if(country.includes('all')) {
+                       $(telcountry).parents('.select').find('.select-options li[rel=all]').click();
+                    }
+                }
+                if(country.includes('all')) {
                     $('#questionanswers_' + idQuestion).find('.phone-answer input.code').val('');
                     $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .selected-flag').css('pointer-events','all');
+                    $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .country').css('display', 'block');
                     $('#questionanswers_' + idQuestion).find('.intl-tel-input .selected-flag .flag').addClass('all-country');    
-                    // $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .country[data-country-code="ru"]').click();    
+                }
+                else if(country.length == 1) {
+                    $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .country').css('display', 'block');
+                    $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .selected-flag').css('pointer-events','none');
+                    $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .country[data-country-code="'+ country + '"]').click();
                 }
                 else {
                     $('#questionanswers_' + idQuestion).find('.phone-answer input.code').val('');
-                    $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .country[data-country-code="'+ country + '"]').click();    
+                    $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .selected-flag').css('pointer-events','all');
+                    $('#questionanswers_' + idQuestion).find('.intl-tel-input .selected-flag .flag').addClass('all-country');
+                    $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .country').css('display', 'none');
+                    for(const element of country){
+                        $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .country[data-country-code="'+ element + '"]').css('display', 'block');
+                    }
                 }
             });
         }
@@ -216,15 +249,49 @@ jQuery(function ($) {
         $('.rightside').on('change', '.telcountry', function(e){
             var idQuestion =  $(this).attr('name').split('_')[1];
             var country =  $(this).val();
-            if(country == 'all') {
-                $('#questionanswers_' + idQuestion).find('.phone-answer input.code').val('');
-                $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .selected-flag').css('pointer-events','all');
-                $('#questionanswers_' + idQuestion).find('.intl-tel-input .selected-flag .flag').addClass('all-country');    
-                // $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .country[data-country-code="ru"]').click();    
+            var telcountry = this;
+            if(country.includes('all') && !$(telcountry).hasClass('allcountry')){
+                var lielements = $(telcountry).parents('.select').find('.select-options li');
+                lielements.each(function (index, el) {
+                    if(!$(el).find('.checked').hasClass('active')) {
+                        $(el).click();
+                    }
+                });
+                $(telcountry).addClass('allcountry');
             }
             else {
+                if($(telcountry).hasClass('allcountry') && !country.includes('all')){
+                    var lielements = $(telcountry).parents('.select').find('.select-options li');
+                    lielements.each(function (index, el) {
+                        if($(el).find('.checked').hasClass('active')) {
+                            $(el).click();
+                        }
+                    });
+                }
+                $(telcountry).removeClass('allcountry');
+                if(country.includes('all')) {
+                   $(telcountry).parents('.select').find('.select-options li[rel=all]').click();
+                }
+            }
+            if(country.includes('all')) {
+                $('#questionanswers_' + idQuestion).find('.phone-answer input.code').val('');
+                $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .selected-flag').css('pointer-events','all');
+                $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .country').css('display', 'block');
+                $('#questionanswers_' + idQuestion).find('.intl-tel-input .selected-flag .flag').addClass('all-country');    
+            }
+            else if(country.length == 1) {
+                $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .country').css('display', 'block');
                 $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .selected-flag').css('pointer-events','none');
                 $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .country[data-country-code="'+ country + '"]').click();
+            }
+            else {
+                $('#questionanswers_' + idQuestion).find('.phone-answer input.code').val('');
+                $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .selected-flag').css('pointer-events','all');
+                $('#questionanswers_' + idQuestion).find('.intl-tel-input .selected-flag .flag').addClass('all-country');
+                $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .country').css('display', 'none');
+                for(const element of country){
+                    $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .country[data-country-code="'+ element + '"]').css('display', 'block');
+                }
             }
         });
         
@@ -4771,6 +4838,7 @@ jQuery(function ($) {
                         $this.after('<div class="select-styled"></div>');
                         var $styledSelect = $this.next('div.select-styled');
                         if($this.find('option:selected').length == 0){
+                        console.log($this.find('option:selected').length);
                             $styledSelect.html('<div class="default">Выберите ответ</div>');
                         }
                     
@@ -4818,7 +4886,9 @@ jQuery(function ($) {
                                 if($styledSelect.find('.default').length > 0){
                                     $styledSelect.find('.default').remove();
                                 }
-                                $styledSelect.append('<div class="selectvalue" data-value="' + $(e.currentTarget).attr('rel') + '" data-id="'+ id + '">' + $(e.currentTarget).attr('rel') + '</div>');
+                                if($(e.currentTarget).attr('rel') !== 'all'){
+                                    $styledSelect.append('<div class="selectvalue" data-value="' + $(e.currentTarget).attr('rel') + '" data-id="'+ id + '">' + $(e.currentTarget).find('.text').html() + '</div>');
+                                }
                                 $this.find('option[value="' + $(e.currentTarget).attr('rel') + '"][data-id="' + id + '"]').prop("selected", true)
                             }
                             $this.change();
@@ -4831,9 +4901,11 @@ jQuery(function ($) {
                             }
                         });
 
-                        $(document).click(function() {
-                            $styledSelect.removeClass('active');
-                            $list.hide();
+                        $(document).click(function(e) {
+                            if(!$(e.target).hasClass('country')){
+                                $styledSelect.removeClass('active');
+                                $list.hide();
+                            }
                         });
                     }
                     else {
