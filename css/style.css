@@ -2690,6 +2690,7 @@ table {
   -webkit-transition: background 0.3s ease-in;
   -o-transition: background 0.3s ease-in;
   transition: background 0.3s ease-in;
+  padding-bottom: 1px;
 }
 
 .construcot-container .centerbox .questions-box.bg-image {
@@ -5589,6 +5590,8 @@ table {
   border-right: 5px solid transparent;
   border-top: 5px solid #ffffff;
   clear: both;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
 }
 
 .construcot-container .rightside .default .text-aside .btn-options .row-options .optionbtngroup input:focus + .tooltip,

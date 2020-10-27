@@ -1495,6 +1495,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
             width: 100%;
             min-height: 100%;
             transition: background 0.3s ease-in;
+            padding-bottom: 1px;
             &.bg-image {
                 background-position: center;
                 background-attachment: fixed;
@@ -3172,6 +3173,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                         border-right: 5px solid transparent;
                                         border-top: 5px solid #ffffff;
                                         clear: both;
+                                        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
                                     }
                                 }
                                 &:focus {
