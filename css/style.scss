@@ -5166,6 +5166,116 @@ html .ui-button.ui-state-disabled:active {
             &[rel="hide"] {
             display: none;
             }
+            &[rel="ru"] {
+                .text::before {
+                    content: "";
+                    width: 16px;
+                    height: 13px;
+                    background: url(../img/flags16.png) no-repeat;
+                    display: inline-block;
+                    background-position: 0 -3104px;
+                    margin-right: 6px;
+                }
+            }
+            &[rel="by"] {
+                .text::before {
+                    content: "";
+                    width: 16px;
+                    height: 13px;
+                    background: url(../img/flags16.png) no-repeat;
+                    display: inline-block;
+                    background-position:  0 -864px;
+                    margin-right: 6px;
+                }
+            }
+            &[rel="ua"] {
+                .text::before {
+                    content: "";
+                    width: 16px;
+                    height: 13px;
+                    background: url(../img/flags16.png) no-repeat;
+                    display: inline-block;
+                    background-position:  0 -3632px;
+                    margin-right: 6px;
+                }
+            }
+            &[rel="kz"] {
+                .text::before {
+                    content: "";
+                    width: 16px;
+                    height: 13px;
+                    background: url(../img/flags16.png) no-repeat;
+                    display: inline-block;
+                    background-position: 0 -2160px;
+                    margin-right: 6px;
+                }
+            }
+            &[rel="tj"] {
+                .text::before {
+                    content: "";
+                    width: 16px;
+                    height: 13px;
+                    background: url(../img/flags16.png) no-repeat;
+                    display: inline-block;
+                    background-position: 0 -3472px;
+                    margin-right: 6px;
+                }
+            }
+            &[rel="tm"] {
+                .text::before {
+                    content: "";
+                    width: 16px;
+                    height: 13px;
+                    background: url(../img/flags16.png) no-repeat;
+                    display: inline-block;
+                    background-position: 0 -3504px;
+                    margin-right: 6px;
+                }
+            }
+            &[rel="uz"] {
+                .text::before {
+                    content: "";
+                    width: 16px;
+                    height: 13px;
+                    background: url(../img/flags16.png) no-repeat;
+                    display: inline-block;
+                    background-position: 0 -3696px;
+                    margin-right: 6px;
+                }
+            }
+            &[rel="kg"] {
+                .text::before {
+                    content: "";
+                    width: 16px;
+                    height: 13px;
+                    background: url(../img/flags16.png) no-repeat;
+                    display: inline-block;
+                    background-position: 0 -2016px;
+                    margin-right: 6px;
+                }
+            }
+            &[rel="az"] {
+                .text::before {
+                    content: "";
+                    width: 16px;
+                    height: 13px;
+                    background: url(../img/flags16.png) no-repeat;
+                    display: inline-block;
+                    background-position: 0 -592px;
+                    margin-right: 6px;
+                }
+            }
+            &[rel="md"] {
+                .text::before {
+                    content: "";
+                    width: 16px;
+                    height: 13px;
+                    background: url(../img/flags16.png) no-repeat;
+                    display: inline-block;
+                    background-position: 0 -2368px;
+                    margin-right: 6px;
+                }
+            }
         }
     }
 }

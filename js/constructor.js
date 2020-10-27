@@ -230,6 +230,7 @@ jQuery(function ($) {
                     $('#questionanswers_' + idQuestion).find('.intl-tel-input .selected-flag .flag').addClass('all-country');    
                 }
                 else if(country.length == 1) {
+                    $('#questionanswers_' + idQuestion).find('.phone-answer input.code').val('');
                     $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .country').css('display', 'block');
                     $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .selected-flag').css('pointer-events','none');
                     $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .country[data-country-code="'+ country + '"]').click();
@@ -273,7 +274,7 @@ jQuery(function ($) {
                    $(telcountry).parents('.select').find('.select-options li[rel=all]').click();
                 }
             }
-            if(country.includes('all')) {
+            if(country.includes('all') && $(telcountry).hasClass('allcountry') ) {
                 $('#questionanswers_' + idQuestion).find('.phone-answer input.code').val('');
                 $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .selected-flag').css('pointer-events','all');
                 $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .country').css('display', 'block');

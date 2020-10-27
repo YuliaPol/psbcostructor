@@ -416,19 +416,32 @@ jQuery(function ($) {
         var TelCountries = $('.answer .phone-answer .code');
         if(TelCountries.length>0){
             TelCountries.each(function (index, telcountry) {
-                console.log($(telcountry).val());
-                if($(telcountry).val()){
-                    var country =  $(telcountry).val();
-                    if(country == 'all') {
-                        $(telcountry).parents('.phone-answer').find('input.code').val('');
-                        $(telcountry).parents('.phone-answer').find('.intl-tel-input .selected-flag').css('pointer-events','all');    
-                        $(telcountry).parents('.phone-answer').find('.intl-tel-input .selected-flag .flag').addClass('all-country');    
-                        // $(telcountry).parents('.phone-answer').find('.intl-tel-input .country[data-country-code="ru"]').click();    
-                    }
-                    else {
-                        $(telcountry).parents('.phone-answer').find('input.code').val('');
-                        $(telcountry).parents('.phone-answer').find('.intl-tel-input .selected-flag').css('pointer-events','none');    
-                        $(telcountry).parents('.phone-answer').find('.intl-tel-input .country[data-country-code="'+ country + '"]').click();    
+                var idQuestion =  $(telcountry).attr('name').split('_')[1];
+                if($(telcountry).val().split(',').length != 0 && !$(telcountry).val().includes('+')){
+                    country =  $(telcountry).val().split(',');
+                }
+                else {
+                    country = 'all';
+                }
+                if(country.includes('all')) {
+                    $('#questionanswers_' + idQuestion).find('.phone-answer input.code').val('');
+                    $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .selected-flag').css('pointer-events','all');
+                    $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .country').css('display', 'block');
+                    $('#questionanswers_' + idQuestion).find('.intl-tel-input .selected-flag .flag').addClass('all-country');    
+                }
+                else if(country.length == 1) {
+                    $('#questionanswers_' + idQuestion).find('.phone-answer input.code').val('');
+                    $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .country').css('display', 'block');
+                    $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .selected-flag').css('pointer-events','none');
+                    $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .country[data-country-code="'+ country + '"]').click();
+                }
+                else {
+                    $('#questionanswers_' + idQuestion).find('.phone-answer input.code').val('');
+                    $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .selected-flag').css('pointer-events','all');
+                    $('#questionanswers_' + idQuestion).find('.intl-tel-input .selected-flag .flag').addClass('all-country');
+                    $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .country').css('display', 'none');
+                    for(const element of country){
+                        $('#questionanswers_' + idQuestion).find('.phone-answer .intl-tel-input .country[data-country-code="'+ element + '"]').css('display', 'block');
                     }
                 }
             });
