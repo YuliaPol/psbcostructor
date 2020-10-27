@@ -407,7 +407,7 @@
                                             <p>Выберете страну</p>
                                         </div>
                                         <div class="form-group">
-                                            <select name="telcountry_4" class="customselect telcountry" multiple>
+                                            <select name="telcountry_4[]" class="customselect telcountry" multiple>
                                                 <option value="ru" >Россия</option>
                                                 <option value="by">Белоруссия</option>
                                                 <option value="ua">Украина</option>
@@ -451,6 +451,13 @@
     <script src="./js/jscolor.js"></script>
     <script src="./js/constructor.js?6876546"></script>
     <script src="./js/script.js?87654"></script>
+<!-- 
+    <script>
+        $( "form" ).submit(function( event ) {
+            event.preventDefault();
+            console.log( $( this ).serializeArray() );
+        });
+    </script> -->
 </body>
 
 </html>

@@ -198,7 +198,8 @@ jQuery(function ($) {
         var TelCountries = $('.rightside .telcountry');
         if(TelCountries.length>0){
             TelCountries.each(function (index, telcountry) {
-                var idQuestion =  $(telcountry).attr('name').split('_')[1];
+                var name = $(telcountry).attr('name').split('[')[0];
+                var idQuestion = name.split('_')[1];
                 var country =  $(telcountry).val();
                 if(country.includes('all') && !$(telcountry).hasClass('allcountry')){
                     var lielements = $(telcountry).parents('.select').find('.select-options li');
@@ -248,7 +249,8 @@ jQuery(function ($) {
         }
         //change default country code
         $('.rightside').on('change', '.telcountry', function(e){
-            var idQuestion =  $(this).attr('name').split('_')[1];
+            var name = $(this).attr('name').split('[')[0];
+            var idQuestion = name.split('_')[1];
             var country =  $(this).val();
             var telcountry = this;
             if(country.includes('all') && !$(telcountry).hasClass('allcountry')){
@@ -4365,7 +4367,7 @@ jQuery(function ($) {
                 +'            <p>Выберете страну</p>'
                 +'      </div>'
                 +'      <div class="form-group">'
-                +'          <select name="telcountry_'+ id +'" class="customselect telcountry">'
+                +'          <select name="telcountry_'+ id +'[]" class="customselect telcountry" multiple>'
                 +'              <option value="ru" selected>Россия</option>'
                 +'              <option value="by">Белоруссия</option>'
                 +'              <option value="ua">Украина</option>'
