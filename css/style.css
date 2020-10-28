@@ -4272,6 +4272,24 @@ table {
   color: #A4A2A2;
 }
 
+.construcot-container .centerbox .questions-box .question .answer .multipleanswer .item,
+.construcot-container .centerbox .questions-box .subquestion .answer .multipleanswer .item {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: #000000;
+  padding: 8px;
+  border: 1px solid #EEEFF3;
+  width: 100%;
+  -webkit-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+  margin-bottom: 5px;
+  max-width: 500px;
+}
+
 .construcot-container .centerbox .questions-box .question .answer .matrix-table label::before,
 .construcot-container .centerbox .questions-box .subquestion .answer .matrix-table label::before {
   display: none;
@@ -6115,8 +6133,11 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .top-row .add-dropdown,
+.construcot-container .rightside .default .text-aside .dropdown-options .top-row .add-multiple,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .top-row .add-dropdown,
-.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .top-row .add-dropdown {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .top-row .add-multiple,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .top-row .add-dropdown,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .top-row .add-multiple {
   position: absolute;
   top: calc(50% - 4px);
   right: 0px;
@@ -6224,8 +6245,11 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question,
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiple-question,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question,
-.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiple-question,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .multiple-question {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
@@ -6241,8 +6265,11 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-input-placeholder,
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiple-question::-webkit-input-placeholder,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-input-placeholder,
-.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-input-placeholder {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiple-question::-webkit-input-placeholder,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-input-placeholder,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .multiple-question::-webkit-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -6252,8 +6279,11 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-moz-placeholder,
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiple-question::-moz-placeholder,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-moz-placeholder,
-.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-moz-placeholder {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiple-question::-moz-placeholder,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-moz-placeholder,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .multiple-question::-moz-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -6263,8 +6293,11 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question:-ms-input-placeholder,
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiple-question:-ms-input-placeholder,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question:-ms-input-placeholder,
-.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question:-ms-input-placeholder {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiple-question:-ms-input-placeholder,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question:-ms-input-placeholder,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .multiple-question:-ms-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -6274,8 +6307,11 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-ms-input-placeholder,
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiple-question::-ms-input-placeholder,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-ms-input-placeholder,
-.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-ms-input-placeholder {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiple-question::-ms-input-placeholder,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-ms-input-placeholder,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .multiple-question::-ms-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -6285,8 +6321,11 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question::placeholder,
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiple-question::placeholder,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::placeholder,
-.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::placeholder {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiple-question::placeholder,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::placeholder,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .multiple-question::placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -6296,20 +6335,29 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar-track,
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiple-question::-webkit-scrollbar-track,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar-track,
-.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar-track {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiple-question::-webkit-scrollbar-track,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar-track,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .multiple-question::-webkit-scrollbar-track {
   width: 0px;
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar,
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiple-question::-webkit-scrollbar,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar,
-.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiple-question::-webkit-scrollbar,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .multiple-question::-webkit-scrollbar {
   width: 0px;
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar-thumb,
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiple-question::-webkit-scrollbar-thumb,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar-thumb,
-.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar-thumb {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiple-question::-webkit-scrollbar-thumb,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar-thumb,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .inputstables .multiple-question::-webkit-scrollbar-thumb {
   width: 0px;
 }
 
@@ -6397,8 +6445,11 @@ table {
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .remove-dropdown,
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .remove-multiple,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .remove-dropdown,
-.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .remove-dropdown {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .remove-multiple,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .remove-dropdown,
+.construcot-container .rightside .branchingoptionbox .text-aside .dropdown-options .option-group .remove-multiple {
   width: 8px;
   height: 8px;
   background-image: url(./../img/minus.svg);

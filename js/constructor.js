@@ -1475,6 +1475,13 @@ jQuery(function ($) {
             // }
         });
 
+        $('.rightside').on('change, keypress, keydown, keyup', '.multiple-question', function(e){
+            var name = $(this).attr('name').split('_');
+            if($('#questionanswers_'+ name[1]).find('.multipleanswer .item:nth-child('+ name[2] +')').length>0){
+                $('#questionanswers_'+ name[1]).find('.multipleanswer .item:nth-child('+ name[2] +')').html($(this).val());
+            }
+        });
+
         $('.rightside').on('change, keypress, keydown, keyup', '.dropdown-list .dropdown-group input', function(e){
             var name = $(this).attr('name').split('_');
             if($('#questionanswers_'+ name[1]).find('.dropdown-list .dropdown-block:nth-child('+ name[2] +') .dropdown-content .input-group:nth-child('+ name[3] +')').length>0){
@@ -1494,6 +1501,39 @@ jQuery(function ($) {
             }
         });
         //add dropdpwn option block
+        
+        $('.rightside').on('click', '.dropdown-options .add-multiple', function(e){
+            var namequestion ;
+            if($(this).parents('.dropdown-options').find('.option-group:last-child .multiple-question').length>0){
+                namequestion = $(this).parents('.dropdown-options').find('.option-group:last-child .multiple-question').attr('name').split('_');
+            }
+            var idQuestion;
+            var idPoint;
+            if(namequestion){
+                idQuestion = namequestion[1];
+            }
+            else {
+                idQuestion = $(this).parents('.optionbox').find('input:first-child').attr('name').split('_')[1];
+            }
+
+            if(namequestion){
+                idPoint = parseInt(namequestion[2]) + 1;
+            }
+            else {
+                idPoint = 1;
+            }
+            var newOptionel = 
+                '<div class="option-group">'
+                +'    <div class="inputstables">'
+                +'        <textarea class="multiple-question" name="inputpoint_'+ idQuestion + '_' + idPoint + '" id="inputpoint_' + idQuestion + '_' + idPoint + '" placeholder="Введите ответ"></textarea>'
+                +'    </div>'
+                +'    <div class="remove-multiple"></div>'
+                +'</div>';
+            $(newOptionel).appendTo($(this).parents('.dropdown-options').find('.optionsdropdownlist'));
+            var newitem = '<div class="item">Ответ</div>';
+            $(newitem).appendTo($('#questionanswers_' + idQuestion).find('.multipleanswer'));
+        });
+        
         $('.rightside').on('click', '.dropdown-options .add-dropdown', function(e){
             var namequestion ;
             if($(this).parents('.dropdown-options').find('.option-group:last-child .dropdown-question').length>0){
@@ -1528,44 +1568,44 @@ jQuery(function ($) {
 
 
         //dropdown  multiple change
-        $('.rightside').on('click', '.dropdown-options .dropdownmultiple', function(e){
-            var idQuestion = $(this).attr('name').split('_')[1];
-            if($(this).is(':checked')){
-                var newSelect = 
-                '<div class="dropdownanswer">'
-                +'    <div class="selectdropdown">'
-                +'       <select name="questionanswersdrp_'+ idQuestion + '" class="customselect" multiple>';
-                var options = $('#option_'+ idQuestion + ' .optionsdropdownlist').children();
-                options.each(function (index, option) {
-                    if($(option).find('.dropdown-question').val()){
-                        newSelect += '<option val="'+ $(option).find('.dropdown-question').val() + '">'+ $(option).find('.dropdown-question').val() +'</option>';
-                    }
-                    else {
-                        newSelect += '<option val="">Ответ</option>';
-                    }
-                });
-                newSelect += '</select></div></div>';
-                $('#questionanswers_' + idQuestion).html(newSelect);
-            }
-            else {
-                var newSelect = 
-                '<div class="dropdownanswer">'
-                +'    <div class="selectdropdown">'
-                +'       <select name="questionanswersdrp_'+ idQuestion + '" class="customselect">';
-                var options = $('#option_'+ idQuestion + ' .optionsdropdownlist').children();
-                options.each(function (index, option) {
-                    if($(option).find('.dropdown-question').val()){
-                        newSelect += '<option val="'+ $(option).find('.dropdown-question').val() + '">'+ $(option).find('.dropdown-question').val() +'</option>';
-                    }
-                    else {
-                        newSelect += '<option val="">Ответ</option>';
-                    }
-                });
-                newSelect += '</select></div></div>';
-                $('#questionanswers_' + idQuestion).html(newSelect);
-            }
-            customSelectActive();
-        });
+        // $('.rightside').on('click', '.dropdown-options .dropdownmultiple', function(e){
+        //     var idQuestion = $(this).attr('name').split('_')[1];
+        //     if($(this).is(':checked')){
+        //         var newSelect = 
+        //         '<div class="dropdownanswer">'
+        //         +'    <div class="selectdropdown">'
+        //         +'       <select name="questionanswersdrp_'+ idQuestion + '" class="customselect" multiple>';
+        //         var options = $('#option_'+ idQuestion + ' .optionsdropdownlist').children();
+        //         options.each(function (index, option) {
+        //             if($(option).find('.dropdown-question').val()){
+        //                 newSelect += '<option val="'+ $(option).find('.dropdown-question').val() + '">'+ $(option).find('.dropdown-question').val() +'</option>';
+        //             }
+        //             else {
+        //                 newSelect += '<option val="">Ответ</option>';
+        //             }
+        //         });
+        //         newSelect += '</select></div></div>';
+        //         $('#questionanswers_' + idQuestion).html(newSelect);
+        //     }
+        //     else {
+        //         var newSelect = 
+        //         '<div class="dropdownanswer">'
+        //         +'    <div class="selectdropdown">'
+        //         +'       <select name="questionanswersdrp_'+ idQuestion + '" class="customselect">';
+        //         var options = $('#option_'+ idQuestion + ' .optionsdropdownlist').children();
+        //         options.each(function (index, option) {
+        //             if($(option).find('.dropdown-question').val()){
+        //                 newSelect += '<option val="'+ $(option).find('.dropdown-question').val() + '">'+ $(option).find('.dropdown-question').val() +'</option>';
+        //             }
+        //             else {
+        //                 newSelect += '<option val="">Ответ</option>';
+        //             }
+        //         });
+        //         newSelect += '</select></div></div>';
+        //         $('#questionanswers_' + idQuestion).html(newSelect);
+        //     }
+        //     customSelectActive();
+        // });
 
         //matrix  multiple change
         $('.rightside').on('click', '.matrix-options .matrixtype', function(e){
@@ -1743,6 +1783,53 @@ jQuery(function ($) {
 
         });
         
+        $('.rightside').on('click', '.dropdown-options .remove-multiple', function(e){
+            var parents = $(this).parents('.optionsdropdownlist');
+            var namequestion = $(this).parents('.option-group').find('.multiple-question').attr('name').split('_');
+            var idQuestion = namequestion[1];
+            var idPoint = parseInt(namequestion[2]);
+            $('#questionanswers_' + idQuestion + ' .multipleanswer .item:nth-child('+ idPoint +')').remove();
+
+            $(this).parents('.option-group').remove();
+            var Subpoints = parents.children();
+            if(Subpoints.length>0){
+                Subpoints.each(function (index, subpoint) {
+                    var id = index + 1;
+                    var inputs = $(subpoint).find('input');
+                    inputs.each(function (index, input) {
+                        if($(input).attr('name')){
+                            prevId = $(input).attr('name').split("_");
+                            prevId[2] = id;
+                            newId = prevId.join('_');
+                            $(input).attr('name', newId);
+                        }
+                        if($(input).attr('id')){
+                            prevId = $(input).attr('id').split("_");
+                            prevId[2] = id;
+                            newId = prevId.join('_');
+                            $(input).attr('id', newId);
+                        }
+                    });
+
+                    var textareas = $(subpoint).find('textarea');
+                    textareas.each(function (index, textarea) {
+                        if($(textarea).attr('name')){
+                            prevId = $(textarea).attr('name').split("_");
+                            prevId[2] = id;
+                            newId = prevId.join('_');
+                            $(textarea).attr('name', newId);
+                        }
+                        if($(textarea).attr('id')){
+                            prevId = $(textarea).attr('id').split("_");
+                            prevId[2] = id;
+                            newId = prevId.join('_');
+                            $(textarea).attr('id', newId);
+                        }
+                    });
+                });
+            }
+        });
+
 
         $('.rightside').on('click', '.dropdown-options .remove-dropdown', function(e){
             var parents = $(this).parents('.optionsdropdownlist');
@@ -3796,20 +3883,13 @@ jQuery(function ($) {
                 el =
                 '<div class="question active" data-optionid="'+ id +'">'
                 +'    <div class="close-question"></div>'
-                +'    <div class="name " id="questionName_'+ id +'">'
-                +'        Вопрос'
-                +'    </div>'
+                +'    <div class="name " id="questionName_'+ id +'"> Вопрос </div>'
                 +'    <div class="answer" id="questionanswers_'+ id +'">'
-                +'        <div class="dropdownanswer">'
-                +'            <div class="selectdropdown">'
-                +'                <select name="questionanswersdrp_'+ id +'" class="customselect" multiple>'
-                +'                    <option value="Ответ">Ответ</option>'
-                +'                    <option value="Ответ">Ответ</option>'
-                +'                    <option value="Ответ">Ответ</option>'
-                +'                </select> '
-                +'            </div>'
+                +'        <div class="multipleanswer">'
+                +'            <div class="item">Ответ 1</div>'
+                +'            <div class="item">Ответ 2</div>'
                 +'        </div>'
-                +'   </div>'
+                +'    </div>'
                 +'</div>';
                 option = 
                 '<div class="optionbox active" id="option_'+ id +'">'
@@ -3845,44 +3925,29 @@ jQuery(function ($) {
                 +'            </div>'
                 +'        </div>'
                 +'        <div class="dropdown-options">'
-                +'            <div class="multityperow">'
-                +'                <div class="namelabel">'
-                +'                    Множественный выбор'
-                +'                </div>'
-                +'                <label class="switch" for="dropdownmultiple_'+ id +'">'
-                +'                    <input type="checkbox" class="dropdownmultiple" name="dropdownmultiple_'+ id +'" id="dropdownmultiple_'+ id +'" checked="">'
-                +'                    <span class="slider round"></span>'
-                +'                </label>'
-                +'            </div>'
-                +'        <div class="form-group">'
-                +'            <label for="question_'+ id +'">Вопрос</label>'
-                +'            <textarea class="question_name" name="question_'+ id +'" id="question_'+ id +'" placeholder="Введите вопрос"></textarea>'
-                +'        </div>'
-                +'            <div class="top-row">'
-                +'                <div class="namelabel">Вопросы</div>'
-                +'                <div class="add-dropdown"></div>'
-                +'            </div>'
-                +'            <div class="optionsdropdownlist">'
-                +'                <div class="option-group">'
-                +'                    <div class="inputstables">'
-                +'                        <textarea class="dropdown-question" name="inputpoint_'+ id +'_1" id="inputpoint_'+ id +'_1" placeholder="Введите вопрос"></textarea>'
-                +'                    </div>'
-                +'                    <div class="remove-dropdown"></div>'
-                +'                </div>'
-                +'                <div class="option-group">'
-                +'                    <div class="inputstables">'
-                +'                        <textarea class="dropdown-question" name="inputpoint_'+ id +'_2" id="inputpoint_'+ id +'_2"  placeholder="Введите вопрос"></textarea>'
-                +'                    </div>'
-                +'                    <div class="remove-dropdown"></div>'
-                +'                </div>'
-                +'                <div class="option-group">'
-                +'                    <div class="inputstables">'
-                +'                        <textarea class="dropdown-question" name="inputpoint_'+ id +'_3" id="inputpoint_'+ id +'_3"  placeholder="Введите вопрос"></textarea>'
-                +'                    </div>'
-                +'                    <div class="remove-dropdown"></div>'
-                +'                </div>'
-                +'            </div>'
-                +'        </div>'
+                +'           <div class="form-group">'
+                +'              <label for="question_'+ id +'">Вопрос</label>'
+                +'              <textarea class="question_name" name="question_'+ id +'" id="question_'+ id +'" placeholder="Введите вопрос"></textarea>'
+                +'          </div>'
+                +'          <div class="top-row">'
+                +'              <div class="namelabel">Вопросы</div>'
+                +'              <div class="add-multiple"></div>'
+                +'          </div>'
+                +'          <div class="optionsdropdownlist">'
+                +'              <div class="option-group">'
+                +'                  <div class="inputstables">'
+                +'                      <textarea class="multiple-question" name="inputpoint_'+ id +'_1" id="inputpoint_'+ id +'_1" placeholder="Введите ответ">Ответ 1</textarea>'
+                +'                  </div>'
+                +'                  <div class="remove-multiple"></div>'
+                +'              </div>'
+                +'              <div class="option-group">'
+                +'                  <div class="inputstables">'
+                +'                      <textarea class="multiple-question" name="inputpoint_'+ id +'_2" id="inputpoint_'+ id +'_2" placeholder="Введите ответ">Ответ 2</textarea>'
+                +'                  </div>'
+                +'                  <div class="remove-multiple"></div>'
+                +'              </div>'
+                +'          </div>'
+                +'      </div>'
                 +'    </div>'
                 +'</div>';
             }

@@ -2314,6 +2314,22 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                             }
                         }
                     }
+                    .multipleanswer {
+                        .item {
+                            font-family: $fontpage;
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 12px;
+                            line-height: 14px;
+                            color: #000000;
+                            padding: 8px;
+                            border: 1px solid #EEEFF3;
+                            width: 100%;
+                            transition: all 0.3s ease-in;
+                            margin-bottom: 5px;
+                            max-width: 500px;
+                        }
+                    }
                     .matrix-table {
                         label::before {
                             display: none;
@@ -3503,7 +3519,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                             color: #563BC2;
                             padding-right: 15px;
                         }
-                        .add-dropdown {
+                        .add-dropdown,
+                        .add-multiple {
                             position: absolute;
                             top: calc(50% - 4px);
                             right: 0px;
@@ -3568,7 +3585,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                             border: 1px solid #EEEFF3;
                             padding: 8px;
                             width: calc(100% - 15px);
-                            .dropdown-question {
+                            .dropdown-question,
+                            .multiple-question {
                                 font-family: $fontpage;
                                 font-style: normal;
                                 font-weight: 500;
@@ -3662,7 +3680,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                 }
                             }
                         }
-                        .remove-dropdown {
+                        .remove-dropdown,
+                        .remove-multiple {
                             width: 8px;
                             height: 8px;
                             background-image: url(./../img/minus.svg);
