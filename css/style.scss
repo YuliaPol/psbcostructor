@@ -2339,6 +2339,99 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                             max-width: 500px;
                         }
                     }
+                    .range-list {
+                        .range-row {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            padding-bottom: 10px;
+                            .range-question {
+                                width: calc(100% - 200px);
+                            }
+                            .range {
+                                width: 100%;
+                                max-width: 200px;
+                                height: 30px;
+                                position: relative;
+                                .label {
+                                  position: absolute;
+                                  width: 30px;
+                                  height: 30px;
+                                  background: #563BC2;
+                                  border-radius: 50%;
+                                  top: 0px;
+                                  left: calc(50% - 15px);
+                                  z-index: 5;
+                                  transition: left 0.1s ease-in;
+                                  pointer-events: none;
+                                  background-repeat: no-repeat;
+                                  .value {
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    color: #ffffff;
+                                    font-size: 12px;
+                                    line-height: 14px;
+                                    width: 100%;
+                                    height: 100%;
+                                  }
+                                }
+                                .input-box {
+                                  margin: 0px;
+                                  padding: 0px;
+                                  position: relative;
+                                  .input-range {
+                                    appearance: none;
+                                    width: 100%;
+                                    height: 30px;
+                                    background: transparent;
+                                    outline: none;
+                                    margin: 0px;
+                                    padding: 0px;
+                                    position: relative;
+                                    z-index: 10;
+                                    &::-webkit-slider-thumb {
+                                      appearance: none;
+                                      width: 30px;
+                                      height: 30px;
+                                      background: transparent;
+                                      border-radius: 50%;
+                                      cursor: pointer;
+                                    }
+                                    &::-moz-range-thumb {
+                                      width: 30px;
+                                      height: 30px;
+                                      background: transparent;
+                                      border-radius: 50%;
+                                      cursor: pointer;
+                                    }
+                                  }
+                                  .bar {
+                                    position: absolute;
+                                    top: 14px;
+                                    left: 0px;
+                                    right: 0px;
+                                    width: 100%;
+                                    height: 2px;
+                                    background: #EEEFF3;
+                                    z-index: 1;
+                                  }
+                                  .bar-filled {
+                                    position: absolute;
+                                    top: 14px;
+                                    left: 0px;
+                                    right: 0px;
+                                    width: 50%;
+                                    height: 2px;
+                                    background: #563BC2;
+                                    z-index: 2;
+                                    transition: width 0.1s ease-in;
+                                    background-repeat: no-repeat;
+                                  }
+                                }
+                            }
+                        }
+                    }
                     .matrix-table {
                         label::before {
                             display: none;
@@ -4282,6 +4375,12 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                 background-size: contain;
                 background-repeat: no-repeat;
             }
+            &.icon-range::before {
+                background: url(./../img/icon-range.svg);
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
             &.grey-line {
                 &::after {
                     content: "";
@@ -5422,6 +5521,7 @@ html .ui-button.ui-state-disabled:active {
         margin-bottom: 20px;
     }
 }
+
 @media screen and (min-width: 1500px) {
     .header.sm-header .panelmenu ul li a {
         font-size: 16px;
@@ -5432,7 +5532,6 @@ html .ui-button.ui-state-disabled:active {
         padding-left: 50px;
         padding-right: 50px;
     }
-    .construcot-container .rightside .default .text-aside .form-group textarea, .construcot-container .rightside .optionbox .text-aside .form-group textarea,
     .construcot-container .rightside .default .text-aside .spinner-wrapper .ui-spinner-input, .construcot-container .rightside .optionbox .text-aside .spinner-wrapper .ui-spinner-input,
     .construcot-container .rightside .optionbox .text-aside .scale-option p,
     .construcot-container .rightside .default .text-aside,
@@ -5444,8 +5543,8 @@ html .ui-button.ui-state-disabled:active {
     }
     .construcot-container .rightside .default .text-aside .form-group label, .construcot-container .rightside .optionbox .text-aside .form-group label,
     .construcot-container .rightside .default .header-aside, .construcot-container .rightside .optionbox .header-aside {
-        font-size: 14px;
-        line-height: 16px;
+        font-size: 122x;
+        line-height: 14px;
     }
     .modal-content .text {
         font-size: 24px;

@@ -1619,6 +1619,88 @@ jQuery(function ($) {
             AddOption($('#questionanswers_' + idQuestion + ' select'));
         });
         
+        //range settings
+        //set range value on start
+        var ranges = $('.range .input-box input[type=range]');
+        if(ranges.length>0){
+            ranges.each(function (index, range) {
+                if(!$(range).attr('min')) {
+                    $(range).attr('min', 0);
+                }
+                if(!$(range).attr('max')) {
+                    $(range).attr('max', 10);
+                }
+                if($(range).val()){
+                    SetRangeValue(range, $(range).val());
+                }
+                else {
+                    SetRangeValue(range, 0);
+                }
+            });
+        }
+        //set new range value when chane value
+        $('.centerbox').on('input', '.range input[type=range]', function(e){
+            SetRangeValue(this, $(this).val());
+        });
+        //change color settings range
+        function SetRangeColor(rangeinput, color){
+            var parents = $(rangeinput).parents('.range');
+            parents.find('.label').css('background', color);
+            parents.find('.input-box .bar-filled').css('background', color);
+        };
+        //change color settings range
+        function SetRangeColor2(rangeinput, color1, color2){
+            var background = 'linear-gradient(to right, ' + color1 + ', ' + color2 + ')';
+            var parents = $(rangeinput).parents('.range');
+            parents.find('.label').css('background', background);
+            parents.find('.input-box .bar-filled').css('background', background);
+            parents.find('.label').css('background-size', '200px');
+            parents.find('.input-box .bar-filled').css('background-size', '200px');
+        };
+
+        //change color settings range
+        function SetRangeTextColor(rangeinput, color){
+            var parents = $(rangeinput).parents('.range');
+            parents.find('.label .value').css('color', color);
+        };
+
+        //change max settings range
+        function SetRangeMax(rangeinput, max){
+            console.log(max);
+            $(rangeinput).attr('max', max);
+            var val = $(rangeinput).val();
+            SetRangeValue(rangeinput, val);
+        };
+
+        //change min settings range
+        function SetRangeMin(rangeinput, min){
+            $(rangeinput).attr('min', min);
+            var val = $(rangeinput).val();
+            SetRangeValue(rangeinput, val);
+        };
+
+        //change step settings range
+        function SetRangeStep(rangeinput, step){
+            $(rangeinput).attr('step', step);
+            var val = $(rangeinput).val();
+            SetRangeValue(rangeinput, val);
+        };
+
+        //set new range value
+        function SetRangeValue(rangeinput, value){
+            var value = $(rangeinput).val();
+            var max = $(rangeinput).attr('max');
+            var min = $(rangeinput).attr('min');
+            var range = max - min;
+            var relvalue = value - min;
+            var percent = (100/range)*relvalue;
+            var parents = $(rangeinput).parents('.range');
+            var paddleft = (30*percent)/100;
+            parents.find('.label').css('left', 'calc(' + percent + '% - ' + paddleft + 'px)');
+            parents.find('.label .value').html(value);
+            parents.find('.input-box .bar-filled').css('width', percent + '%');
+            parents.find('.label').css('background-position', percent + '%');
+        };
 
 
         //dropdown  multiple change
@@ -2420,7 +2502,7 @@ jQuery(function ($) {
                     +'                        type="text" value="1-2">'
                     +'                    <div class="branching-list">'
                     +'                       <div class="branching-group">'
-                    +'                            <input type="text" name="branchingpoint_' + id + '_1 id="branchingpoint_' + id + '_1" placeholder="Введите вопрос">'
+                    +'                            <input type="text" name="branchingpoint_' + id + '_1" id="branchingpoint_' + id + '_1" placeholder="Введите вопрос">'
                     +'                            <div class="add-multiplescalerow"></div>'
                     +'                      </div>'
                     +'                    </div>'
@@ -2519,6 +2601,7 @@ jQuery(function ($) {
                             +'    <div class="branching-list">'
                             +'        <div class="branching-group">'
                             +'            <input type="text" name="branchingpoint_'+ id + '_' + currentId +'" id="branchingpoint_'+ id + '_' + currentId +'" placeholder="Введите вопрос">'
+                            +'            <div class="add-multiplescalerow"></div>'
                             +'      </div>'
                             +'  </div>'
                             +'</div>';
@@ -3047,6 +3130,7 @@ jQuery(function ($) {
                         +'    <div class="branching-list">'
                         +'        <div class="branching-group">'
                         +'            <input type="text" name="branchingpoint_'+ id + '_' + currentId +'" id="branchingpoint_'+ id + '_' + currentId +'" placeholder="Введите вопрос">'
+                        +'            <div class="add-multiplescalerow"></div>'
                         +'      </div>'
                         +'  </div>'
                         +'</div>';
@@ -3200,6 +3284,7 @@ jQuery(function ($) {
                     +'    <div class="branching-list">'
                     +'        <div class="branching-group">'
                     +'            <input type="text" name="branchingpoint_'+ id + '_' + currentId +'" id="branchingpoint_'+ id + '_' + currentId +'" placeholder="Введите вопрос">'
+                    +'            <div class="add-multiplescalerow"></div>'
                     +'      </div>'
                     +'  </div>'
                     +'</div>';
@@ -3877,9 +3962,9 @@ jQuery(function ($) {
                 +'                <div class="namelabel">'
                 +'                    Ветвление ответа'
                 +'                </div>'
-                +'              <label class="switch" for="brnachingonoff_'+ id +'">'
+                +'              <label class="switch" for="branchingonoff_'+ id +'">'
                 +'                  <input type="checkbox" class="brnachingonoff"'
-                +'                      name="brnachingonoff_'+ id +'" id="brnachingonoff_'+ id +'">'
+                +'                      name="branchingonoff_'+ id +'" id="branchingonoff_'+ id +'">'
                 +'                  <span class="slider round"></span>'
                 +'              </label>'
                 +'          </div>'
@@ -4803,6 +4888,7 @@ jQuery(function ($) {
                             +'    <div class="branching-list">'
                             +'        <div class="branching-group">'
                             +'            <input type="text" name="branchingpoint_'+ id + '_' + currentId +'" id="branchingpoint_'+ id + '_' + currentId +'" placeholder="Введите вопрос">'
+                            +'            <div class="add-multiplescalerow"></div>'
                             +'      </div>'
                             +'  </div>'
                             +'</div>';

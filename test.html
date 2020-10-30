@@ -1,9 +1,193 @@
-<div class="multiple-group">
-    <div class="name">
-        Вопрос
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/range.css">
+
+    <script src="./js/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+    <div class="container" 
+    style="display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;">
+        <div class="range">
+            <div class="label">
+                <div class="value"></div>
+            </div>
+            <div class="input-box">
+                <input class="input-range" type="range" min="90" max="100" step="5" value="95"/>
+                <div class="bar"></div>
+                <div class="bar-filled"></div>
+            </div>
+        </div>
     </div>
-    <div class="multipleanswer">
-        <div class="item">Ответ</div>
-        <div class="item">Ответ</div>
+    <div class="settingscnt"
+    style="display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;">
+        <div class="settings">
+            <div class="color">
+                <label>Background</label>
+                <input type="color" class="color1"  value="#563BC2">
+                <input type="color" class="color2"  value="#563BC2">
+            </div>
+            <div class="textcolor">
+                <label>textcolor</label>
+                <input type="color"  value="#FFFFFF">
+            </div>
+            <div class="max">
+                <label >max</label>
+                <input type="text"  value="10">
+            </div>
+            <div class="min">
+                <label>min</label>
+                <input type="text" value="0">
+            </div>
+            <div class="step">
+                <label>step</label>
+                <input type="text"  value="1">
+            </div>
+        </div>
     </div>
-</div>
+
+      <script>
+          jQuery(function ($) {
+            $(document).ready(function () {
+
+                //change color settings range
+                $('.settings').on('input', '.color input[type=color]', function(e){
+                    if($(this).parents('.color').find('input[type=color]').length>1){
+                        var color1 = $(this).parents('.color').find('.color1[type=color]').val();
+                        var color2 = $(this).parents('.color').find('.color2[type=color]').val();
+                        SetRangeColor2($('.input-range'), color1, color2);
+                    }
+                    else {
+                        var color = $(this).val();
+                        SetRangeColor($('.input-range'), color);
+                    }
+                });
+
+                //change color settings range
+                $('.settings').on('input', '.textcolor input[type=color]', function(e){  
+                    var color = $(this).val();
+                    SetRangeTextColor($('.input-range'), color);
+                });
+
+                //change max settings range
+                $('.settings').on('change', '.max input[type=text]', function(e){
+                    var max = $(this).val();
+                    SetRangeMax($('.input-range'), max);
+                });
+
+                //change min settings range
+                $('.settings').on('change', '.min input[type=text]', function(e){
+                    var min = $(this).val();
+                    SetRangeMin($('.input-range'), min);
+                });
+
+                //change step settings range
+                $('.settings').on('change', '.step input[type=text]', function(e){
+                    var step = $(this).val();
+                    SetRangeStep($('.input-range'), step);
+                });
+
+                //set range value on start
+                var ranges = $('.range .input-box input[type=range]');
+                if(ranges.length>0){
+                    ranges.each(function (index, range) {
+                        if(!$(range).attr('min')) {
+                            $(range).attr('min', 0);
+                        }
+                        if(!$(range).attr('max')) {
+                            $(range).attr('max', 10);
+                        }
+                        if($(range).val()){
+                            SetRangeValue(range, $(range).val());
+                        }
+                        else {
+                            SetRangeValue(range, 0);
+                        }
+                    });
+                }
+
+                //set new range value when chane value
+                $('body').on('input', '.range input[type=range]', function(e){
+                    SetRangeValue(this, $(this).val());
+                });
+
+
+                //change color settings range
+                function SetRangeColor(rangeinput, color){
+                    var parents = $(rangeinput).parents('.range');
+                    parents.find('.label').css('background', color);
+                    parents.find('.input-box .bar-filled').css('background', color);
+                };
+                //change color settings range
+                function SetRangeColor2(rangeinput, color1, color2){
+                    var background = 'linear-gradient(to right, ' + color1 + ', ' + color2 + ')';
+                    var parents = $(rangeinput).parents('.range');
+                    parents.find('.label').css('background', background);
+                    parents.find('.input-box .bar-filled').css('background', background);
+                    parents.find('.label').css('background-size', '200px');
+                    parents.find('.input-box .bar-filled').css('background-size', '200px');
+                };
+
+                //change color settings range
+                function SetRangeTextColor(rangeinput, color){
+                    var parents = $(rangeinput).parents('.range');
+                    parents.find('.label .value').css('color', color);
+                };
+
+                //change max settings range
+                function SetRangeMax(rangeinput, max){
+                    console.log(max);
+                    $(rangeinput).attr('max', max);
+                    var val = $(rangeinput).val();
+                    SetRangeValue(rangeinput, val);
+                };
+
+                //change min settings range
+                function SetRangeMin(rangeinput, min){
+                    $(rangeinput).attr('min', min);
+                    var val = $(rangeinput).val();
+                    SetRangeValue(rangeinput, val);
+                };
+
+                //change step settings range
+                function SetRangeStep(rangeinput, step){
+                    $(rangeinput).attr('step', step);
+                    var val = $(rangeinput).val();
+                    SetRangeValue(rangeinput, val);
+                };
+
+                //set new range value
+                function SetRangeValue(rangeinput, value){
+                    var value = $(rangeinput).val();
+                    var max = $(rangeinput).attr('max');
+                    var min = $(rangeinput).attr('min');
+                    var range = max - min;
+                    var relvalue = value - min;
+                    var percent = (100/range)*relvalue;
+                    var parents = $(rangeinput).parents('.range');
+                    var paddleft = (30*percent)/100;
+                    parents.find('.label').css('left', 'calc(' + percent + '% - ' + paddleft + 'px)');
+                    parents.find('.label .value').html(value);
+                    parents.find('.input-box .bar-filled').css('width', percent + '%');
+                    parents.find('.label').css('background-position', percent + '%');
+                };
+
+            });
+        });
+      </script>
+</body>
+
+</html>
