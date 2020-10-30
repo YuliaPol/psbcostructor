@@ -975,6 +975,14 @@ jQuery(function ($) {
             $('#questionName_' + id).html($(this).val());
         });
 
+        //change name of multiple question in scale
+        $('.rightside').on('change, keypress, keydown, keyup', '.multiplequestion_name', function(e){
+            var idQuestion = $(this).attr('name').split('_')[1];
+            var idMultiple = $(this).attr('name').split('_')[2];
+            $('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.multiple-group .name').html($(this).val());
+            // $('#questionName_' + id).html($(this).val());
+        });
+        
         //change description of question
         $('.rightside').on('change, keypress, keydown, keyup', '.question_description', function(e){
             var id = $(this).attr('name').split('_')[1];
@@ -1482,6 +1490,16 @@ jQuery(function ($) {
             }
         });
 
+        $('.rightside').on('change, keypress, keydown, keyup', '.multiplescale-question', function(e){
+            var name = $(this).attr('name').split('_');
+            var idQuestion = name[1];
+            var idMultiple = name[2];
+            var idPoint = name[3];
+            if($('#questionbrnaching_'+ idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.item:nth-child('+ idPoint +')').length>0){
+                $('#questionbrnaching_'+ idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.item:nth-child('+ idPoint +')').html($(this).val());
+            }
+        });
+
         $('.rightside').on('change, keypress, keydown, keyup', '.dropdown-list .dropdown-group input', function(e){
             var name = $(this).attr('name').split('_');
             if($('#questionanswers_'+ name[1]).find('.dropdown-list .dropdown-block:nth-child('+ name[2] +') .dropdown-content .input-group:nth-child('+ name[3] +')').length>0){
@@ -1533,6 +1551,42 @@ jQuery(function ($) {
             var newitem = '<div class="item">Ответ</div>';
             $(newitem).appendTo($('#questionanswers_' + idQuestion).find('.multipleanswer'));
         });
+
+        $('.rightside').on('click', '.dropdown-options .add-multiplescale', function(e){
+            var namequestion ;
+            if($(this).parents('.dropdown-options').find('.option-group:last-child .multiplescale-question').length>0){
+                namequestion = $(this).parents('.dropdown-options').find('.option-group:last-child .multiplescale-question').attr('name').split('_');
+            }
+            var idQuestion;
+            var idPoint;
+            var idMultiple;
+            if(namequestion){
+                idQuestion = namequestion[1];
+                idMultiple = namequestion[2];
+            }
+            else {
+                idQuestion = $(this).parents('.questionPoint').find('.branching_points ').attr('name').split('_')[1];
+                idMultiple = $(this).parents('.questionPoint').find('.branching_points ').attr('name').split('_')[2];
+            }
+
+            if(namequestion){
+                idPoint = parseInt(namequestion[3]) + 1;
+            }
+            else {
+                idPoint = 1;
+            }
+            var newOptionel = 
+                '<div class="option-group">'
+                +'    <div class="inputstables">'
+                +'       <textarea class="multiplescale-question" name="multipleanswer_'+ idQuestion + '_'+ idMultiple + '_'+ idPoint +'" id="multipleanswer_'+ idQuestion + '_'+ idMultiple + '_'+ idPoint +'" placeholder="Введите ответ"></textarea>'
+                +'  </div>'
+                +'  <div class="remove-multiplescale"></div>'
+                +'</div>';
+            $(newOptionel).appendTo($(this).parents('.dropdown-options').find('.optionsdropdownlist'));
+            var newitem = '<div class="item">Ответ</div>';
+            $(newitem).appendTo($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.multiple-group .multipleanswer'));
+        });
+        
         
         $('.rightside').on('click', '.dropdown-options .add-dropdown', function(e){
             var namequestion ;
@@ -1830,7 +1884,119 @@ jQuery(function ($) {
             }
         });
 
+                
+        $('.rightside').on('click', '.dropdown-options .remove-multiplescale', function(e){
+            var parents = $(this).parents('.optionsdropdownlist');
+            var namequestion = $(this).parents('.option-group').find('.multiplescale-question').attr('name').split('_');
+            var idQuestion = namequestion[1];
+            var idMultiple = namequestion[2];
+            var idPoint = parseInt(namequestion[3]);
+            if($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.item:nth-child('+ idPoint +')').length>0){
+                $('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.item:nth-child('+ idPoint +')').remove();
+            }
+            $(this).parents('.option-group').remove();
+            var Subpoints = parents.children();
+            if(Subpoints.length>0){
+                Subpoints.each(function (index, subpoint) {
+                    var id = index + 1;
+                    var inputs = $(subpoint).find('input');
+                    inputs.each(function (index, input) {
+                        if($(input).attr('name')){
+                            prevId = $(input).attr('name').split("_");
+                            prevId[3] = id;
+                            newId = prevId.join('_');
+                            $(input).attr('name', newId);
+                        }
+                        if($(input).attr('id')){
+                            prevId = $(input).attr('id').split("_");
+                            prevId[3] = id;
+                            newId = prevId.join('_');
+                            $(input).attr('id', newId);
+                        }
+                    });
 
+                    var textareas = $(subpoint).find('textarea');
+                    textareas.each(function (index, textarea) {
+                        if($(textarea).attr('name')){
+                            prevId = $(textarea).attr('name').split("_");
+                            prevId[3] = id;
+                            newId = prevId.join('_');
+                            $(textarea).attr('name', newId);
+                        }
+                        if($(textarea).attr('id')){
+                            prevId = $(textarea).attr('id').split("_");
+                            prevId[3] = id;
+                            newId = prevId.join('_');
+                            $(textarea).attr('id', newId);
+                        }
+                    });
+                });
+            }
+        });
+
+        $('.rightside').on('click', '.multiple-row .remobe-multiple-row', function(e){
+            var parents = $(this).parents('.multiple-row');
+            var namequestion = $(this).parents('.multiple-row').find('.multiplequestion_name').attr('name').split('_');
+            var idQuestion = namequestion[1];
+            var idMultiple = namequestion[2];
+            if($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.multiple-group').length>0){
+                $('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.multiple-group').remove();
+                parents.remove();
+            }
+        });
+        $('.rightside').on('click', '.branchingoptionbox .add-multiplescalerow', function(e){
+            if($(this).parents('.questionPoint').find('.multiple-row').length == 0){
+                var name = $(this).parents('.questionPoint').find('.branching_points ').attr('name').split('_');
+                var idQuestion = name[1];
+                var idMultiple = name[2];
+    
+                var newOption = 
+                    '<div class="multiple-row">'
+                    +'    <div class="option-row-name">'
+                    +'       <p>Множественный выбор</p>'
+                    +'      <div class="remobe-multiple-row"></div>'
+                    +'  </div>'
+                    +'  <div class="dropdown-options">'
+                    +'      <div class="form-group">'
+                    +'          <label for="multiplequestion_'+ idQuestion +'_'+ idMultiple + '">Вопрос</label>'
+                    +'          <textarea class="multiplequestion_name" name="multiplequestion_'+ idQuestion +'_'+ idMultiple + '" id="multiplequestion_'+ idQuestion +'_'+ idMultiple + '" placeholder="Введите вопрос"></textarea>'
+                    +'      </div>'
+                    +'      <div class="top-row">'
+                    +'          <div class="namelabel">Ответы</div>'
+                    +'          <div class="add-multiplescale"></div>'
+                    +'      </div>'
+                    +'      <div class="optionsdropdownlist">'
+                    +'          <div class="option-group">'
+                    +'              <div class="inputstables">'
+                    +'                  <textarea class="multiplescale-question" name="multipleanswer_'+ idQuestion +'_'+ idMultiple + '_1" id="multipleanswer_'+ idQuestion +'_'+ idMultiple + '_1" placeholder="Введите ответ"></textarea>'
+                    +'              </div>'
+                    +'              <div class="remove-multiplescale"></div>'
+                    +'          </div>'
+                    +'          <div class="option-group">'
+                    +'              <div class="inputstables">'
+                    +'                  <textarea class="multiplescale-question" name="multipleanswer_'+ idQuestion +'_'+ idMultiple + '_2" id="multipleanswer_'+ idQuestion +'_'+ idMultiple + '_2" placeholder="Введите ответ"></textarea>'
+                    +'              </div>'
+                    +'              <div class="remove-multiplescale"></div>'
+                    +'          </div>'
+                    +'      </div>'
+                    +'  </div>'
+                    +'</div>';
+    
+                var newEl = 
+                    '<div class="multiple-group">'
+                    +'    <div class="name">'
+                    +'      Вопрос'
+                    +'  </div>'
+                    +'  <div class="multipleanswer">'
+                    +'      <div class="item">Ответ</div>'
+                    +'      <div class="item">Ответ</div>'
+                    +'  </div>'
+                    +'</div>';
+                $(newOption).appendTo($(this).parents('.questionPoint'));
+                $(newEl).appendTo($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')'));
+            }
+        });
+        
         $('.rightside').on('click', '.dropdown-options .remove-dropdown', function(e){
             var parents = $(this).parents('.optionsdropdownlist');
             var namequestion = $(this).parents('.option-group').find('.dropdown-question').attr('name').split('_');
@@ -1925,8 +2091,8 @@ jQuery(function ($) {
             if($(this).parents('.optionbox').find('.brnachingonoff:checked').length>0){
                 var questionId = $(this).attr('name').split('_')[1];
                 var questionPointsId = $(this).attr('name').split('_')[2];
-                if($('#branchinoption_'+ questionId).find('.inputtables .questionPoint:nth-child('+ questionPointsId + ')').length>0) {
-                    $('#branchinoption_'+ questionId).find('.inputtables .questionPoint:nth-child('+ questionPointsId + ') .branching_points').val($(this).val());
+                if($('#option_' + questionId).find('.branchingoptionbox').find('.inputtables .questionPoint:nth-child('+ questionPointsId + ')').length>0) {
+                    $('#option_' + questionId).find('.branchingoptionbox').find('.inputtables .questionPoint:nth-child('+ questionPointsId + ') .branching_points').val($(this).val());
                     $('#questionbrnaching_' + questionId).find('.branching-group:nth-child('+ questionPointsId + ')').find('.group-name').html($(this).val());
                 }
             };
@@ -1943,77 +2109,76 @@ jQuery(function ($) {
             else {
                 var id = $(this).attr('name').split('_')[1];
                 $('#questionbrnaching_' + id).parents('.subquestion').remove();
-                $('#branchinoption_' + id).remove();
+                $('#option_' + id).find('.branchingoptionbox').remove();
             }
         });
         function AddQuestionBranching(type, id){
-            if(type == "single"){
-                var points = $("#option_" + id).find('.inputtables').children();
-                var subpointsstr = '';
-                var answerstr = '';
-                points.each(function (index, subpoint) {
-                    var index = index + 1;
-                    var text = $(subpoint).find('.question_points').val();
-                    subpointsstr = subpointsstr
-                    +'<div class="questionPoint" id="questionPoint_' + id + '_'+ index + '">'
-                    +'  <input class="branching_points" readonly name="groupname_' + id + '_'+ index + '" id="groupname_' + id + '_'+ index + '" readonly type="text"'
-                    +'      value="'+ text + '">'
-                    +'  <div class="branching-list">'
-                    +'    <div class="branching-group">'
-                    +'        <input type="text" name="branchingpoint_' + id + '_'+ index + '" id="branchingpoint_' + id + '_'+ index + '" placeholder="Введите вопрос">'
-                    +'    </div>'
-                    +'  </div>'
-                    +'</div>';
-                    answerstr = answerstr 
-                    +'<div class="branching-group">'
-                    +'  <div class="group-name">'+ text +'</div>'
-                    +'  <div class="question-group">'
-                    +'        <div class="branching-question">'
-                    +'            <div class="name">'
-                    +'                Вопрос'
-                    +'            </div>'
-                    +'            <div class="hidden-question-answer">'
-                    +'                <div class="form-group">'
-                    +'                    <input type="text" name="hiddenquestionanswer_' + id + '_'+ index + '_1"'
-                    +'                        id="hiddenquestionanswer_' + id + '_'+ index + '_1" placeholder="Ваш ответ">'
-                    +'                </div>'
-                    +'            </div>'
-                    +'        </div>' 
-                    +'  </div>'
-                    +'</div>';
-                });
-                var option = 
-                '<div class="branchingoptionbox" id="branchinoption_' + id + '">'
-                +'    <div class="header-aside">'
-                +'        Настройки'
-                +'    </div>'
-                +'     <div class="text-aside">'
-                +'        <div class="form-group">'
-                +'            <p>Варианты ответов</p>'
-                +'            <div class="inputtables" id="branchingtables_' + id + '">'
-                +               subpointsstr
-                +'            </div>'
-                +'        </div>'
-                +'    </div>'
-                +'</div>';
+            // if(type == "single"){
+            //     var points = $("#option_" + id).find('.inputtables').children();
+            //     var subpointsstr = '';
+            //     var answerstr = '';
+            //     points.each(function (index, subpoint) {
+            //         var index = index + 1;
+            //         var text = $(subpoint).find('.question_points').val();
+            //         subpointsstr = subpointsstr
+            //         +'<div class="questionPoint" id="questionPoint_' + id + '_'+ index + '">'
+            //         +'  <input class="branching_points" readonly name="groupname_' + id + '_'+ index + '" id="groupname_' + id + '_'+ index + '" readonly type="text"'
+            //         +'      value="'+ text + '">'
+            //         +'  <div class="branching-list">'
+            //         +'    <div class="branching-group">'
+            //         +'        <input type="text" name="branchingpoint_' + id + '_'+ index + '" id="branchingpoint_' + id + '_'+ index + '" placeholder="Введите вопрос">'
+            //         +'    </div>'
+            //         +'  </div>'
+            //         +'</div>';
+            //         answerstr = answerstr 
+            //         +'<div class="branching-group">'
+            //         +'  <div class="group-name">'+ text +'</div>'
+            //         +'  <div class="question-group">'
+            //         +'        <div class="branching-question">'
+            //         +'            <div class="name">'
+            //         +'                Вопрос'
+            //         +'            </div>'
+            //         +'            <div class="hidden-question-answer">'
+            //         +'                <div class="form-group">'
+            //         +'                    <input type="text" name="hiddenquestionanswer_' + id + '_'+ index + '_1"'
+            //         +'                        id="hiddenquestionanswer_' + id + '_'+ index + '_1" placeholder="Ваш ответ">'
+            //         +'                </div>'
+            //         +'            </div>'
+            //         +'        </div>' 
+            //         +'  </div>'
+            //         +'</div>';
+            //     });
+            //     var option = 
+            //     '<div class="branchingoptionbox" id="branchinoption_' + id + '">'
+            //     +'    <div class="header-aside">'
+            //     +'        Настройки'
+            //     +'    </div>'
+            //     +'     <div class="text-aside">'
+            //     +'        <div class="form-group">'
+            //     +'            <p>Варианты ответов</p>'
+            //     +'            <div class="inputtables" id="branchingtables_' + id + '">'
+            //     +               subpointsstr
+            //     +'            </div>'
+            //     +'        </div>'
+            //     +'    </div>'
+            //     +'</div>';
     
-                var el =
-                '<div class="subquestion branchingquestion" data-optionid="' + id + '">'
-                +'    <div class="close-question"></div>'
-                +'       <div class="name">Ветвление ответа</div>'
-                +'    <div class="answer" id="questionbrnaching_' + id + '">'
-                +      answerstr
-                +'    </div>'
-                +'</div>';
-                $('#questionanswers_' + id).parents('.question').append(el);
-                $('.optionsblock .eloptions').append(option);
-            }
+            //     var el =
+            //     '<div class="subquestion branchingquestion" data-optionid="' + id + '">'
+            //     +'    <div class="close-question"></div>'
+            //     +'       <div class="name">Ветвление ответа</div>'
+            //     +'    <div class="answer" id="questionbrnaching_' + id + '">'
+            //     +      answerstr
+            //     +'    </div>'
+            //     +'</div>';
+            //     $('#questionanswers_' + id).parents('.question').append(el);
+            //     $('.optionsblock .eloptions').append(option);
+            // }
             if(type == "scale"){
                 var typescale = $("#option_" + id).find('.scale-radio input[type=radio]:checked').val();
                 if(typescale == 4 ){
                     var el = 
                     '<div class="subquestion branchingquestion" data-optionid="' + id + '">'
-                    +'    <div class="close-question"></div>'
                     +'       <div class="name">Ветвление ответа</div>'
                     +'    <div class="answer" id="questionbrnaching_' + id + '">'
                     +'        <div class="branching-group">'
@@ -2051,11 +2216,7 @@ jQuery(function ($) {
                     +'    </div>'
                     +'</div>';
                     var option = 
-                    '<div class="branchingoptionbox" id="branchinoption_' + id + '">'
-                    +'    <div class="header-aside">'
-                    +'        Настройки'
-                    +'    </div>'
-                    +'    <div class="text-aside">'
+                    '<div class="branchingoptionbox">'
                     +'        <div class="form-group spinner-wrapper">'
                     +'            <label for="number_' + id + '">Колличество пунктов </label>'
                     +'            <input class="question_number_branching spinner" name="number_' + id + '" id="number_' + id + '" type="text"'
@@ -2085,6 +2246,7 @@ jQuery(function ($) {
                     +'                    <div class="branching-list">'
                     +'                       <div class="branching-group">'
                     +'                            <input type="text" name="branchingpoint_' + id + '_1" id="branchingpoint_' + id + '_1" placeholder="Введите вопрос">'
+                    +'                            <div class="add-multiplescalerow"></div>'
                     +'                      </div>'
                     +'                    </div>'
                     +'                </div>'
@@ -2094,21 +2256,19 @@ jQuery(function ($) {
                     +'                  <div class="branching-list">'
                     +'                       <div class="branching-group">'
                     +'                            <input type="text" name="branchingpoint_' + id + '_2" id="branchingpoint_' + id + '_2" placeholder="Введите вопрос">'
+                    +'                            <div class="add-multiplescalerow"></div>'
                     +'                      </div>'
                     +'                   </div>'
                     +'               </div>'
                     +'           </div>'
-                    +'       </div>'
-                    +'   </div>'
                     +'</div>';
                     $('#questionanswers_' + id).parents('.question').append(el);
-                    $('.optionsblock .eloptions').append(option);
+                    $(option).insertBefore($('#option_' + id).find('.scale-option'));
                     ChangeSlider(id);
                 }
                 else if(typescale == 1 || typescale == 3){
                     var el = 
                     '<div class="subquestion branchingquestion" data-optionid="' + id + '">'
-                    +'    <div class="close-question"></div>'
                     +'       <div class="name">Ветвление ответа</div>'
                     +'    <div class="answer" id="questionbrnaching_' + id + '">'
                     +'        <div class="branching-group">'
@@ -2146,11 +2306,7 @@ jQuery(function ($) {
                     +'    </div>'
                     +'</div>';
                     var option = 
-                    '<div class="branchingoptionbox" id="branchinoption_' + id + '">'
-                    +'    <div class="header-aside">'
-                    +'        Настройки'
-                    +'    </div>'
-                    +'    <div class="text-aside">'
+                    '<div class="branchingoptionbox">'
                     +'        <div class="form-group spinner-wrapper">'
                     +'            <label for="number_' + id + '">Колличество пунктов </label>'
                     +'            <input class="question_number_branching spinner" name="number_' + id + '" id="number_' + id + '" type="text"'
@@ -2180,6 +2336,7 @@ jQuery(function ($) {
                     +'                    <div class="branching-list">'
                     +'                       <div class="branching-group">'
                     +'                            <input type="text" name="branchingpoint_' + id + '_1" id="branchingpoint_' + id + '_1" placeholder="Введите вопрос">'
+                    +'                            <div class="add-multiplescalerow"></div>'
                     +'                      </div>'
                     +'                    </div>'
                     +'                </div>'
@@ -2189,21 +2346,19 @@ jQuery(function ($) {
                     +'                  <div class="branching-list">'
                     +'                       <div class="branching-group">'
                     +'                            <input type="text" name="branchingpoint_' + id + '_2" id="branchingpoint_' + id + '_2" placeholder="Введите вопрос">'
+                    +'                            <div class="add-multiplescalerow"></div>'
                     +'                      </div>'
                     +'                   </div>'
                     +'               </div>'
                     +'           </div>'
-                    +'       </div>'
-                    +'   </div>'
                     +'</div>';
                     $('#questionanswers_' + id).parents('.question').append(el);
-                    $('.optionsblock .eloptions').append(option);
+                    $(option).insertBefore($('#option_' + id).find('.scale-option'));
                     ChangeSlider(id);
                 }
                 if (typescale == 2 || typescale == 5 ) {
                     var el = 
                     '<div class="subquestion branchingquestion" data-optionid="' + id + '">'
-                    +'    <div class="close-question"></div>'
                     +'       <div class="name">Ветвление ответа</div>'
                     +'    <div class="answer" id="questionbrnaching_' + id + '">'
                     +'        <div class="branching-group">'
@@ -2241,11 +2396,7 @@ jQuery(function ($) {
                     +'    </div>'
                     +'</div>';
                     var option = 
-                    '<div class="branchingoptionbox" id="branchinoption_' + id + '">'
-                    +'    <div class="header-aside">'
-                    +'        Настройки'
-                    +'    </div>'
-                    +'    <div class="text-aside">'
+                    '<div class="branchingoptionbox">'
                     +'        <div class="form-group spinner-wrapper">'
                     +'            <label for="number_' + id + '">Колличество пунктов </label>'
                     +'            <input class="question_number_branching spinner" name="number_' + id + '" id="number_' + id + '" type="text"'
@@ -2270,6 +2421,7 @@ jQuery(function ($) {
                     +'                    <div class="branching-list">'
                     +'                       <div class="branching-group">'
                     +'                            <input type="text" name="branchingpoint_' + id + '_1 id="branchingpoint_' + id + '_1" placeholder="Введите вопрос">'
+                    +'                            <div class="add-multiplescalerow"></div>'
                     +'                      </div>'
                     +'                    </div>'
                     +'                </div>'
@@ -2279,29 +2431,28 @@ jQuery(function ($) {
                     +'                  <div class="branching-list">'
                     +'                       <div class="branching-group">'
                     +'                            <input type="text" name="branchingpoint_' + id + '_2" id="branchingpoint_' + id + '_2" placeholder="Введите вопрос">'
+                    +'                            <div class="add-multiplescalerow"></div>'
                     +'                      </div>'
                     +'                   </div>'
                     +'               </div>'
                     +'           </div>'
-                    +'       </div>'
-                    +'   </div>'
                     +'</div>';
                     $('#questionanswers_' + id).parents('.question').append(el);
-                    $('.optionsblock .eloptions').append(option);
+                    $(option).insertBefore($('#option_' + id).find('.scale-option'));
                     ChangeSlider5(id);
                 }
                 if($('.slidercursor')){
                     var sliders = $('.slidercursor');
                     sliders.each(function (index, slider) {
                         var slidervalue = $(slider).attr("data-value");
-                        var idQuestion = $(slider).parents('.branchingoptionbox').attr('id').split('_')[1];
+                        var idQuestion = $(slider).parents('.optionbox').attr('id').split('_')[1];
                         $(slider).slider({
                             min: 1,
                             max: 9,
                             step: 1,
                             value: slidervalue,
                             change: function( event, ui ) {
-                                var sliders = $('#branchinoption_' + idQuestion).find('.slidercursor');
+                                var sliders = $('#option_' + idQuestion).find('.branchingoptionbox').find('.slidercursor');
                                 var values = new Array(sliders.length);
                                 sliders.each(function (index, slider) {
                                     values[index] = $(slider).attr('data-value');
@@ -2321,14 +2472,14 @@ jQuery(function ($) {
                     var sliders = $('.slidercursor5');
                     sliders.each(function (index, slider) {
                         var slidervalue = $(slider).attr("data-value");
-                        var idQuestion = $(slider).parents('.branchingoptionbox').attr('id').split('_')[1];
+                        var idQuestion = $(slider).parents('.optionbox').attr('id').split('_')[1];
                         $(slider).slider({
                             min: 1,
                             max: 4,
                             step: 1,
                             value: slidervalue,
                             change: function( event, ui ) {
-                                var sliders = $('#branchinoption_' + idQuestion).find('.slidercursor');
+                                var sliders = $('#option_' + idQuestion).find('.branchingoptionbox').find('.slidercursor');
                                 var values = new Array(sliders.length);
                                 sliders.each(function (index, slider) {
                                     values[index] = $(slider).attr('data-value');
@@ -2383,7 +2534,7 @@ jQuery(function ($) {
             var sliders = $('.slidercursor');
             sliders.each(function (index, slider) {
                 var slidervalue = $(slider).attr("data-value");
-                var idQuestion = $(slider).parents('.branchingoptionbox').attr('id').split('_')[1];
+                var idQuestion = $(slider).parents('.optionbox').attr('id').split('_')[1];
                 $(slider).slider({
                     min: 1,
                     max: 9,
@@ -2410,7 +2561,7 @@ jQuery(function ($) {
             var sliders = $('.slidercursor5');
             sliders.each(function (index, slider) {
                 var slidervalue = $(slider).attr("data-value");
-                var idQuestion = $(slider).parents('.branchingoptionbox').attr('id').split('_')[1];
+                var idQuestion = $(slider).parents('.optionbox').attr('id').split('_')[1];
                 $(slider).slider({
                     min: 1,
                     max: 4,
@@ -2436,7 +2587,8 @@ jQuery(function ($) {
 
         //change position of cursor for branching dcale
         function ChangeSlider(idQuestion){
-            var sliders = $('#branchinoption_' + idQuestion).find('.slidercursor');
+            
+            var sliders = $('#option_' + idQuestion).find('.branchingoptionbox').find('.slidercursor');
             var values = new Array(sliders.length);
             var ranges = new Array(sliders.length + 1);
             sliders.each(function (index, slider) {
@@ -2469,7 +2621,7 @@ jQuery(function ($) {
             else {
                 ranges[index] = prevvalue + '-' + 10;
             }
-            var subpoints = $('#branchinoption_' + idQuestion).find('.inputtables').find('.questionPoint');
+            var subpoints = $('#option_' + idQuestion).find('.branchingoptionbox').find('.inputtables').find('.questionPoint');
             subpoints.each(function (index, subpoint) {
                 $(subpoint).find('.branching_points').val(ranges[index]);
                 $(subpoint).find('.branching_points').change();
@@ -2477,7 +2629,7 @@ jQuery(function ($) {
         }
 
         function ChangeSlider5(idQuestion){
-            var sliders = $('#branchinoption_' + idQuestion).find('.slidercursor5');
+            var sliders = $('#option_' + idQuestion).find('.branchingoptionbox').find('.slidercursor5');
             var values = new Array(sliders.length);
             var ranges = new Array(sliders.length + 1);
             sliders.each(function (index, slider) {
@@ -2505,7 +2657,7 @@ jQuery(function ($) {
             else {
                 ranges[index] = prevvalue + '-' + 5;
             }
-            var subpoints = $('#branchinoption_' + idQuestion).find('.inputtables').find('.questionPoint');
+            var subpoints = $('#option_' + idQuestion).find('.branchingoptionbox').find('.inputtables').find('.questionPoint');
             subpoints.each(function (index, subpoint) {
                 $(subpoint).find('.branching_points').val(ranges[index]);
                 $(subpoint).find('.branching_points').change();
@@ -2569,7 +2721,7 @@ jQuery(function ($) {
                 if(type == 1 || type == 4 || type == 3){
                     if($('#questionanswers_' + id).hasClass('answer-star5')
                     || $('#questionanswers_' + id).hasClass('answer-ratings5')){
-                        $('#questionanswers_' + id).parents('.question').find('.subquestion .close-question').click();
+                        $('#option_' + id).find('.brnachingonoff').click();
                     }
                     else {
                         ChangeSlider(id);
@@ -2578,8 +2730,8 @@ jQuery(function ($) {
                 if(type == 2 || type == 5) {
                     if($('#questionanswers_' + id).hasClass('answer-colorstar')
                     || $('#questionanswers_' + id).hasClass('answer-star10')
-                    || $('#questionanswers_' + id).hasClass('answer-ratings10')){
-                        $('#questionanswers_' + id).parents('.question').find('.subquestion .close-question').click();
+                    || $('#questionanswers_' + id).find('.answer-ratings10').length>0){
+                        $('#option_' + id).find('.brnachingonoff').click();
                     }
                     else {
                         ChangeSlider5(id);
@@ -3094,7 +3246,7 @@ jQuery(function ($) {
         
         //set points of question
         function SetPointOfQuestionBranchingSingle(id, number) {
-            var questionPoints = $('.branchingoptionbox #branchingtables_' + id).find('.questionPoint');
+            var questionPoints = $('#optionbox' + id).find('.branchingoptionbox .questionPoint');
             questionPoints.each(function (index, question) {
                 if((index + 1) > number) {
                     $(question).remove();
@@ -3125,8 +3277,9 @@ jQuery(function ($) {
                     if($('#option_'+ id).find('.brnachingonoff:checked')){
                         var questionId = id;
                         var questionPointsId = number;
-                        if($('#branchinoption_'+ questionId).find('.inputtables .questionPoint:nth-child('+ questionPointsId + ')').length>0) {
-                            $('#branchinoption_'+ questionId).find('.inputtables .questionPoint:nth-child('+ questionPointsId + ') .branching_points').remove();
+                        
+                        if($('#option_' + questionId).find('.branchingoptionbox').find('.inputtables .questionPoint:nth-child('+ questionPointsId + ')').length>0) {
+                            $('#option_' + questionId).find('.branchingoptionbox').find('.inputtables .questionPoint:nth-child('+ questionPointsId + ') .branching_points').remove();
                             $('#questionbrnaching_'+ questionId).find('.branching-group:nth-child('+ questionPointsId + ')').remove();
                         }
                     };
@@ -3164,23 +3317,24 @@ jQuery(function ($) {
             questionPoints.each(function (index, question) {
                 if((index + 1) > number) {
                     $(question).remove();
-                    if($('#branchinoption_' + id).find('.scale10').length>0) {
-                        if($('#branchinoption_' + id).find('.slidercursor:last-child').length>0){
-                            $('#branchinoption_' + id).find('.slidercursor:last-child').remove();
+                    if($('#option_' + id).find('.branchingoptionbox').find('.scale10').length>0) {
+                        if($('#option_' + id).find('.branchingoptionbox').find('.slidercursor:last-child').length>0){
+                            $('#option_' + id).find('.branchingoptionbox').find('.slidercursor:last-child').remove();
                             ChangeSlider(id);
                         }            
                     }
                     else {
-                        if($('#branchinoption_' + id).find('.slidercursor5:last-child').length>0){
-                            $('#branchinoption_' + id).find('.slidercursor5:last-child').remove();
+                        if($('#option_' + id).find('.branchingoptionbox').find('.slidercursor5:last-child').length>0){
+                            $('#option_' + id).find('.branchingoptionbox').find('.slidercursor5:last-child').remove();
                             ChangeSlider5(id);
                         }            
                     }
-                    if($('#branchinoption_'+ id).find('.brnachingonoff:checked')){
-                        var questionId = $('#branchinoption_'+ id).find('.subquestionID').val();
+                    
+                    if($('#option' + id).find('.branchingoptionbox').find('.brnachingonoff:checked')){
+                        var questionId = $('#option' + id).find('.branchingoptionbox').find('.subquestionID').val();
                         var questionPointsId = number;
-                        if($('#branchinoption_'+ questionId).find('.inputtables .questionPoint:nth-child('+ questionPointsId + ')').length>0) {
-                            $('#branchinoption_'+ questionId).find('.inputtables .questionPoint:nth-child('+ questionPointsId + ') .branching_points').remove();
+                        if($('#option_' + questionId).find('.branchingoptionbox').find('.inputtables .questionPoint:nth-child('+ questionPointsId + ')').length>0) {
+                            $('#option_' + questionId).find('.branchingoptionbox').find('.inputtables .questionPoint:nth-child('+ questionPointsId + ') .branching_points').remove();
                             $('#questionbrnaching_'+ questionId).find('.branching-group:nth-child('+ questionPointsId + ')').remove();
                         }
                     };
@@ -3190,9 +3344,9 @@ jQuery(function ($) {
             if(number > questionPoints.length){
                 while (currentId != number){
                     currentId++;
-                    if($('#branchinoption_' + id).find('.slider').length>0){
-                        if($('#branchinoption_' + id).find('.scale10').length>0) {
-                            var sliders = $('#branchinoption_' + id).find('.slidercursor');
+                    if($('#option_' + id).find('.branchingoptionbox').find('.slider').length>0){
+                        if($('#option_' + id).find('.branchingoptionbox').find('.scale10').length>0) {
+                            var sliders = $('#option_' + id).find('.branchingoptionbox').find('.slidercursor');
                             var values = new Array(sliders.length);
                             sliders.each(function (index, slider) {
                                 values[index] = parseInt($(slider).attr('data-value'));
@@ -3204,18 +3358,18 @@ jQuery(function ($) {
                                 index++;
                             }
                             var newslider = '<div class="slidercursor" data-value="'+ newvalue + '"></div>';
-                            $('#branchinoption_' + id).find('.slider').append(newslider);
+                            $('#option_' + id).find('.branchingoptionbox').find('.slider').append(newslider);
                             var sliders = $('.slidercursor');
                             sliders.each(function (index, slider) {
                                 var slidervalue = $(slider).attr("data-value");
-                                var idQuestion = $(slider).parents('.branchingoptionbox').attr('id').split('_')[1];
+                                var idQuestion = $(slider).parents('.optionbox').attr('id').split('_')[1];
                                 $(slider).slider({
                                     min: 1,
                                     max: 9,
                                     step: 1,
                                     value: slidervalue,
                                     change: function( event, ui ) {
-                                        var sliders = $('#branchinoption_' + idQuestion).find('.slidercursor');
+                                        var sliders = $('#option_' + idQuestion).find('.branchingoptionbox').find('.slidercursor');
                                         var values = new Array(sliders.length);
                                         sliders.each(function (index, slider) {
                                             values[index] = $(slider).attr('data-value');
@@ -3232,7 +3386,7 @@ jQuery(function ($) {
                             });
                         }
                         else {
-                            var sliders = $('#branchinoption_' + id).find('.slidercursor5');
+                            var sliders = $('#option_' + id).find('.branchingoptionbox').find('.slidercursor5');
                             var values = new Array(sliders.length);
                             sliders.each(function (index, slider) {
                                 values[index] = parseInt($(slider).attr('data-value'));
@@ -3244,18 +3398,18 @@ jQuery(function ($) {
                                 index++;
                             }
                             var newslider = '<div class="slidercursor5" data-value="'+ newvalue + '"></div>';
-                            $('#branchinoption_' + id).find('.slider').append(newslider);
+                            $('#option_' + id).find('.branchingoptionbox').find('.slider').append(newslider);
                             var sliders = $('.slidercursor5');
                             sliders.each(function (index, slider) {
                                 var slidervalue = $(slider).attr("data-value");
-                                var idQuestion = $(slider).parents('.branchingoptionbox').attr('id').split('_')[1];
+                                var idQuestion = $(slider).parents('.optionbox').attr('id').split('_')[1];
                                 $(slider).slider({
                                     min: 1,
                                     max: 4,
                                     step: 1,
                                     value: slidervalue,
                                     change: function( event, ui ) {
-                                        var sliders = $('#branchinoption_' + idQuestion).find('.slidercursor5');
+                                        var sliders = $('#option_' + idQuestion).find('.branchingoptionbox').find('.slidercursor5');
                                         var values = new Array(sliders.length);
                                         sliders.each(function (index, slider) {
                                             values[index] = $(slider).attr('data-value');
@@ -3290,7 +3444,7 @@ jQuery(function ($) {
                     +'    </div>'
                     +'</div>';
                     $(newQuestion).appendTo($('#questionbrnaching_' + id));
-                    $('#branchinoption_' + id).find('.inputtables .branching_points').change();
+                    $('#option_' + id).find('.branchingoptionbox').find('.inputtables .branching_points').change();
                 }
             }
         }
@@ -3930,7 +4084,7 @@ jQuery(function ($) {
                 +'              <textarea class="question_name" name="question_'+ id +'" id="question_'+ id +'" placeholder="Введите вопрос"></textarea>'
                 +'          </div>'
                 +'          <div class="top-row">'
-                +'              <div class="namelabel">Вопросы</div>'
+                +'              <div class="namelabel">Ответы</div>'
                 +'              <div class="add-multiple"></div>'
                 +'          </div>'
                 +'          <div class="optionsdropdownlist">'
@@ -4562,7 +4716,6 @@ jQuery(function ($) {
             var childrenOptions = $('.optionsblock .eloptions').children();
             $('.questions-box .question').removeClass('active');
             $('.optionsblock .optionbox').removeClass('active');
-            console.log(appendInde);
             if( appendInde === 'last' ){
                 $('.questions-box').append(el);
                 $('.optionsblock .eloptions').append(option);
@@ -4720,28 +4873,26 @@ jQuery(function ($) {
         //activating question
         $('.questions-box').on('click', '.question', function(e){
             if(!$(e.target).hasClass('close-question') && !$(this).parents('.centerbox').hasClass('full-width')){
-                if(!$(e.target).parents('.subquestion').length>0 && !$(e.target).hasClass('subquestion')){
-                    var id = $(this).attr('data-optionid');
-                    $('.questions-box .question').removeClass('active');
-                    $('.optionsblock .optionbox').removeClass('active');
-                    $('.optionsblock .branchingoptionbox').removeClass('active');
-                    $(this).addClass('active');
-                    $('.optionsblock #option_' + id ).addClass('active');
-                }
-            }
-        });
-
-        //activating subquestion
-        $('.questions-box').on('click', '.subquestion', function(e){
-            if(!$(e.target).hasClass('close-question') && !$(this).parents('.centerbox').hasClass('full-width')){
                 var id = $(this).attr('data-optionid');
                 $('.questions-box .question').removeClass('active');
                 $('.optionsblock .optionbox').removeClass('active');
                 $('.optionsblock .branchingoptionbox').removeClass('active');
                 $(this).addClass('active');
-                $('.optionsblock #branchinoption_' + id ).addClass('active');
+                $('.optionsblock #option_' + id ).addClass('active');
             }
         });
+
+        //activating subquestion
+        // $('.questions-box').on('click', '.subquestion', function(e){
+        //     if(!$(e.target).hasClass('close-question') && !$(this).parents('.centerbox').hasClass('full-width')){
+        //         var id = $(this).attr('data-optionid');
+        //         $('.questions-box .question').removeClass('active');
+        //         $('.optionsblock .optionbox').removeClass('active');
+        //         $('.optionsblock .branchingoptionbox').removeClass('active');
+        //         $(this).addClass('active');
+        //         $('.optionsblock #branchinoption_' + id ).addClass('active');
+        //     }
+        // });
         
         function getAppendIndex(arr, top, offsetY) {
             if( arr.length === 0 ) {
@@ -4906,7 +5057,6 @@ jQuery(function ($) {
                         $this.after('<div class="select-styled"></div>');
                         var $styledSelect = $this.next('div.select-styled');
                         if($this.find('option:selected').length == 0){
-                        console.log($this.find('option:selected').length);
                             $styledSelect.html('<div class="default">Выберите ответ</div>');
                         }
                     

@@ -15,7 +15,7 @@
     <script src="./js/wavesurfer.js"></script>
     <script src="./js/datepicker.min.js"></script>
     <script src="./js/intlTelInput.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js "></script>
+    <script src="./js/jscolor.js"></script>
 </head>
 
 <body>
@@ -196,177 +196,90 @@
                             </div>
                     </div>
                     <div class="questions-box" data-count="7">
-                        <div class="question" data-optionid="1">
-                            <div class="close-question"></div>
-                            <div class="name " id="questionName_1">
-                                Какие кредиты Вам больше всего подходят?
-                            </div>
-                            <div class="answer flex-50" id="questionanswers_1">
-                                <div class="form-group" id="questionformAnswer_1_1">
-                                    <input type="radio" name="questionanswer_1" id="questionanswer_1_1">
-                                    <label id="questionpointsanswer_1_1" for="questionanswer_1_1">Потребительские кредиты</label>
-                                </div>
-                                <div class="form-group" id="questionformAnswer_1_2">
-                                    <input type="radio" name="questionanswer_1" id="questionanswer_1_2">
-                                    <label id="questionpointsanswer_1_2"
-                                        for="questionanswer_1_2">Рефинансирование</label>
-                                </div>
-                                <div class="form-group" id="questionformAnswer_1_3">
-                                    <input type="radio" name="questionanswer_1" id="questionanswer_1_3">
-                                    <label id="questionpointsanswer_1_3" for="questionanswer_1_3">Экспресс кредит</label>
-                                </div>
-                                <div class="form-group" id="questionformAnswer_1_4">
-                                    <input type="radio" name="questionanswer_1" id="questionanswer_1_4">
-                                    <label id="questionpointsanswer_1_4" for="questionanswer_1_4">Ипотека</label>
-                                </div>
-                            </div>
-                            <div class="subquestion branchingquestion" data-optionid="1">
-                                <div class="close-question"></div>
-                                <div class="name">Ветвление ответа</div>
-                                <div class="answer" id="questionbrnaching_1">
-                                    <div class="branching-group">
-                                        <div class="group-name">Потребительские кредиты</div>
-                                        <div class="question-group">
-                                            <div class="branching-question">
-                                                <div class="name">
-                                                    Какие сложности возникают при оформлении кредита?
-                                                </div>
-                                                <div class="hidden-question-answer">
-                                                    <div class="form-group">
-                                                        <input type="text" name="hiddenquestionanswer_1_3_1"
-                                                            id="hiddenquestionanswer_1_3_1" placeholder="Ваш ответ">
-                                                    </div>
-                                                </div>
-                                            </div>  
-                                        </div>
-                                    </div>
-                                    <div class="branching-group">
-                                        <div class="group-name">Рефинансирование</div>
-                                        <div class="question-group">
-                                            <div class="branching-question">
-                                                <div class="name">
-                                                    Какие сложности возникают при оформлении кредита?
-                                                </div>
-                                                <div class="hidden-question-answer">
-                                                    <div class="form-group">
-                                                        <input type="text" name="hiddenquestionanswer_1_3_1"
-                                                            id="hiddenquestionanswer_1_3_1" placeholder="Ваш ответ">
-                                                    </div>
-                                                </div>
-                                            </div>  
-                                        </div>
-                                    </div>
-                                    <div class="branching-group">
-                                        <div class="group-name">Экспресс кредит</div>
-                                        <div class="question-group">
-                                            <div class="branching-question">
-                                                <div class="name">
-                                                    Какие сложности возникают при оформлении кредита?
-                                                </div>
-                                                <div class="hidden-question-answer">
-                                                    <div class="form-group">
-                                                        <input type="text" name="hiddenquestionanswer_1_3_1"
-                                                            id="hiddenquestionanswer_1_3_1" placeholder="Ваш ответ">
-                                                    </div>
-                                                </div>
-                                            </div>  
-                                        </div>
-                                    </div>
-                                    <div class="branching-group">
-                                        <div class="group-name">Ипотека</div>
-                                        <div class="question-group">
-                                            <div class="branching-question">
-                                                <div class="name">
-                                                    Какие сложности возникают при оформлении кредита?
-                                                </div>
-                                                <div class="hidden-question-answer">
-                                                    <div class="form-group">
-                                                        <input type="text" name="hiddenquestionanswer_1_3_1"
-                                                            id="hiddenquestionanswer_1_3_1" placeholder="Ваш ответ">
-                                                    </div>
-                                                </div>
-                                            </div>  
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="question" data-optionid="5">
                             <div class="close-question"></div>
                             <div class="name " id="questionName_5">
                                 Как Вы оцените работу нашего банка?
                             </div>
-                            <div class="answer answer-ratings10" id="questionanswers_5">
-                                <input type="radio" name="questionanswer_5" id="questionanswer_5_0" value="0">
-                                <label for="questionanswer_5_0">
-                                    <div class="digit color0">
-                                        0
+                            <div class="answer" id="questionanswers_5">
+                                <div class="scaleanswer scaleanswer10">
+                                    <div class="answer-ratings10">
+                                        <input type="radio" name="questionanswer_5" id="questionanswer_5_0" value="0">
+                                        <label for="questionanswer_5_0">
+                                            <div class="digit color0">
+                                                0
+                                            </div>
+                                        </label>
+                                        <input type="radio" name="questionanswer_5" id="questionanswer_5_1" value="1">
+                                        <label for="questionanswer_5_1">
+                                            <div class="digit color1">
+                                                1
+                                            </div>
+                                        </label>
+                                        <input type="radio" name="questionanswer_5" id="questionanswer_5_2" value="2">
+                                        <label for="questionanswer_5_2">
+                                            <div class="digit color2">
+                                                2
+                                            </div>
+                                        </label>
+        
+                                        <input type="radio" name="questionanswer_5" id="questionanswer_5_3" value="3">
+                                        <label for="questionanswer_5_3">
+                                            <div class="digit color3">
+                                                3
+                                            </div>
+                                        </label>
+                                        <input type="radio" name="questionanswer_5" id="questionanswer_5_4" value="4">
+                                        <label for="questionanswer_5_4">
+                                            <div class="digit color4">
+                                                4
+                                            </div>
+                                        </label>
+                                        <input type="radio" name="questionanswer_5" id="questionanswer_5_5" value="5">
+                                        <label for="questionanswer_5_5">
+                                            <div class="digit color5">
+                                                5
+                                            </div>
+                                        </label>
+                                        <input type="radio" name="questionanswer_5" id="questionanswer_5_6" value="6">
+                                        <label for="questionanswer_5_6">
+                                            <div class="digit color6">
+                                                6
+                                            </div>
+                                        </label>
+                                        <input type="radio" name="questionanswer_5" id="questionanswer_5_7" value="7">
+                                        <label for="questionanswer_5_7">
+                                            <div class="digit color7">
+                                                7
+                                            </div>
+                                        </label>
+                                        <input type="radio" name="questionanswer_5" id="questionanswer_5_8" value="8">
+                                        <label for="questionanswer_5_8">
+                                            <div class="digit color8">
+                                                8
+                                            </div>
+                                        </label>
+                                        <input type="radio" name="questionanswer_5" id="questionanswer_5_9" value="9">
+                                        <label for="questionanswer_5_9">
+                                            <div class="digit color9">
+                                                9
+                                            </div>
+                                        </label>
+                                        <input type="radio" name="questionanswer_5" id="questionanswer_5_10" value="10">
+                                        <label for="questionanswer_5_10">
+                                            <div class="digit color10">
+                                                10
+                                            </div>
+                                        </label>
                                     </div>
-                                </label>
-                                <input type="radio" name="questionanswer_5" id="questionanswer_5_1" value="1">
-                                <label for="questionanswer_5_1">
-                                    <div class="digit color1">
-                                        1
+                                    <div class="scalelabels">
+                                        <div class="rightlabel">Совершенно не удовлетворен</div>
+                                        <div class="leftlabel">Полностью удовлетворен</div>
                                     </div>
-                                </label>
-                                <input type="radio" name="questionanswer_5" id="questionanswer_5_2" value="2">
-                                <label for="questionanswer_5_2">
-                                    <div class="digit color2">
-                                        2
-                                    </div>
-                                </label>
-
-                                <input type="radio" name="questionanswer_5" id="questionanswer_5_3" value="3">
-                                <label for="questionanswer_5_3">
-                                    <div class="digit color3">
-                                        3
-                                    </div>
-                                </label>
-                                <input type="radio" name="questionanswer_5" id="questionanswer_5_4" value="4">
-                                <label for="questionanswer_5_4">
-                                    <div class="digit color4">
-                                        4
-                                    </div>
-                                </label>
-                                <input type="radio" name="questionanswer_5" id="questionanswer_5_5" value="5">
-                                <label for="questionanswer_5_5">
-                                    <div class="digit color5">
-                                        5
-                                    </div>
-                                </label>
-                                <input type="radio" name="questionanswer_5" id="questionanswer_5_6" value="6">
-                                <label for="questionanswer_5_6">
-                                    <div class="digit color6">
-                                        6
-                                    </div>
-                                </label>
-                                <input type="radio" name="questionanswer_5" id="questionanswer_5_7" value="7">
-                                <label for="questionanswer_5_7">
-                                    <div class="digit color7">
-                                        7
-                                    </div>
-                                </label>
-                                <input type="radio" name="questionanswer_5" id="questionanswer_5_8" value="8">
-                                <label for="questionanswer_5_8">
-                                    <div class="digit color8">
-                                        8
-                                    </div>
-                                </label>
-                                <input type="radio" name="questionanswer_5" id="questionanswer_5_9" value="9">
-                                <label for="questionanswer_5_9">
-                                    <div class="digit color9">
-                                        9
-                                    </div>
-                                </label>
-                                <input type="radio" name="questionanswer_5" id="questionanswer_5_10" value="10">
-                                <label for="questionanswer_5_10">
-                                    <div class="digit color10">
-                                        10
-                                    </div>
-                                </label>
+                                </div>
                             </div>
-                            <div class="subquestion branchingquestion" data-optionid="5">
-                                <div class="close-question"></div>
+                            <div class="subquestion branchingquestion">
                                 <div class="name">Ветвление ответа</div>
                                 <div class="answer" id="questionbrnaching_5">
                                     <div class="branching-group">
@@ -383,6 +296,16 @@
                                                     </div>
                                                 </div>
                                             </div>  
+                                        </div>
+                                        <div class="multiple-group">
+                                            <div class="name">
+                                                Вопрос
+                                            </div>
+                                            <div class="multipleanswer">
+                                                <div class="item">Ответ 1</div>
+                                                <div class="item">Ответ 2</div>
+                                                <div class="item">Ответ 3</div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="branching-group">
@@ -481,7 +404,6 @@
                                 </div>
                             </div>
                             <div class="subquestion branchingquestion" data-optionid="123">
-                                <div class="close-question"></div>
                                 <div class="name">Ветвление ответа</div>
                                 <div class="answer" id="questionbrnaching_123">
                                     <div class="branching-group">
@@ -533,113 +455,9 @@
                             </div>
                         </div>
                         <div class="eloptions">
-                            <div class="optionbox option_single" id="option_1">
-                                <input type="hidden" name="questiontype_1" value="single">
-                                <input type="hidden" class="orderinput" name="questionorder_1" value="1">
-                                <input type="hidden" class="subquestionID" name="brancheid_1" value="4">
-                                <div class="header-aside">
-                                    Настройки
-                                </div>
-                                <div class="text-aside">
-                                    <div class="multityperow">
-                                        <div class="namelabel">
-                                            Ветвление ответа
-                                        </div>
-                                        <label class="switch" for="brnachingonoff_1">
-                                            <input type="checkbox" class="brnachingonoff"
-                                                name="brnachingonoff_1" id="brnachingonoff_1" checked="checked">
-                                            <span class="slider round"></span>
-                                        </label>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="question_1">Вопрос</label>
-                                        <textarea class="question_name" name="question_1"
-                                            id="question_1">Какие кредиты Вам больше всего подходят?</textarea>
-                                    </div>
-                                    <div class="form-group spinner-wrapper">
-                                        <label for="number_1">Колличество пунктов </label>
-                                        <input class="question_number spinner" name="number_1" id="number_1" type="text"
-                                            value="4">
-                                    </div>
-                                    <div class="form-group">
-                                        <p>Варианты ответов</p>
-                                        <div class="inputtables" id="inputtables_1">
-                                            <div class="questionPoint" id="questionPoint_1_1">
-                                                <label for="inputpoint_1_1">1</label>
-                                                <input class="question_points" name="inputpoint_1_1" id="inputpoint_1_1"
-                                                    type="text" value="Потребительские кредиты">
-                                            </div>
-                                            <div class="questionPoint" id="questionPoint_1_2">
-                                                <label for="inputpoint_1_2">2</label>
-                                                <input class="question_points" name="inputpoint_1_2" id="inputpoint_1_2"
-                                                    type="text" value="Рефинансирование">
-                                            </div>
-                                            <div class="questionPoint" id="questionPoint_1_3">
-                                                <label for="inputpoint_1_3">3</label>
-                                                <input class="question_points" name="inputpoint_1_3" id="inputpoint_1_3"
-                                                    type="text" value="Экспресс кредит">
-                                            </div>
-                                            <div class="questionPoint" id="questionPoint_1_4">
-                                                <label for="inputpoint_1_4">4</label>
-                                                <input class="question_points" name="inputpoint_1_4" id="inputpoint_1_4"
-                                                    type="text" value="Ипотека">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="branchingoptionbox" id="branchinoption_1">
-                                <div class="header-aside">
-                                    Настройки
-                                </div>
-                                <div class="text-aside">
-                                    <div class="form-group">
-                                        <p>Варианты ответов</p>
-                                        <div class="inputtables" id="branchingtables_1">
-                                            <div class="questionPoint" id="questionPoint_1_1">
-                                                <input class="branching_points"  name="groupname_1_1" id="groupname_1_1" readonly type="text" value="Потребительские кредиты">
-                                                <div class="branching-list">
-                                                    <div class="branching-group">
-                                                        <input type="text" name="branchingpoint_1_1" id="branchingpoint_1_1"
-                                                            value="Какие сложности возникают при оформлении кредита?">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="questionPoint" id="questionPoint_1_2">
-                                                <input class="branching_points" readonly name="groupname_1_2" id="groupname_1_2" type="text" value="Рефинансирование">
-                                                <div class="branching-list">
-                                                    <div class="branching-group">
-                                                        <input type="text" name="branchingpoint_1_2" id="branchingpoint_1_2"
-                                                            value="Какие сложности возникают при оформлении кредита?">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="questionPoint" id="questionPoint_1_3">
-                                                <input class="branching_points" readonly name="groupname_1_3" id="groupname_1_3" type="text" value="Экспресс кредит">
-                                                <div class="branching-list">
-                                                    <div class="branching-group">
-                                                        <input type="text" name="branchingpoint_1_3" id="branchingpoint_1_3"
-                                                            value="Какие сложности возникают при оформлении кредита?">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="questionPoint" id="questionPoint_1_4">
-                                                <input class="branching_points" readonly name="groupname_1_4" id="groupname_1_4" type="text" value="Ипотека">
-                                                <div class="branching-list">
-                                                    <div class="branching-group">
-                                                        <input type="text" name="branchingpoint_1_4" id="branchingpoint_1_4"
-                                                            value="Какие сложности возникают при оформлении кредита?">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="optionbox" id="option_5">
                                 <input type="hidden" name="questiontype_5" value="scale">
                                 <input type="hidden" class="orderinput" name="questionorder_5" value="5">
-                                <input type="hidden" class="subquestionID" name="brancheid_5" value="22">
                                 <div class="header-aside">
                                     Настройки
                                 </div>
@@ -658,6 +476,115 @@
                                         <label for="question_5">Вопрос</label>
                                         <textarea class="question_name" name="question_5"
                                             id="question_5">Как Вы оцените работу нашего банка?</textarea>
+                                    </div>
+                                    <div class="branchingoptionbox">
+                                        <div class="form-group spinner-wrapper">
+                                            <label for="number_5">Колличество пунктов </label>
+                                            <input class="question_number_branching spinner" name="number_5" id="number_5" type="text"
+                                                value="4">
+                                        </div>
+                                        <div class="slider">
+                                            <div class="sliderscale scale10">
+                                                <div>1</div>
+                                                <div>2</div>
+                                                <div>3</div>
+                                                <div>4</div>
+                                                <div>5</div>
+                                                <div>6</div>
+                                                <div>7</div>
+                                                <div>8</div>
+                                                <div>9</div>
+                                                <div>10</div>
+                                            </div>
+                                            <div class="slidercursor" data-value="2"></div>
+                                            <div class="slidercursor" data-value="5"></div>
+                                            <div class="slidercursor" data-value="8"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <p>Варианты ответов</p>
+                                            <div class="inputtables branchingForScale" id="branchingtables_5">
+                                                <div class="questionPoint" id="questionPoint_5_1">
+                                                    <input class="branching_points " readonly name="groupname_5_1" id="groupname_5_1"
+                                                        type="text" value="1-2">
+                                                    <div class="branching-list">
+                                                        <div class="branching-group">
+                                                            <input type="text" name="branchingpoint_5_1" id="branchingpoint_5_1"
+                                                                value="Какие сложности возникают при оформлении кредита?">
+                                                            <div class="add-multiplescalerow"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="multiple-row">
+                                                        <div class="option-row-name">
+                                                            <p>Множественный выбор</p>
+                                                            <div class="remobe-multiple-row"></div>
+                                                        </div>
+                                                        <div class="dropdown-options">
+                                                            <div class="form-group">
+                                                                <label for="multiplequestion_5_1">Вопрос</label>
+                                                                <textarea class="multiplequestion_name" name="multiplequestion_5_1" id="multiplequestion_5_1" placeholder="Введите вопрос"></textarea>
+                                                            </div>
+                                                            <div class="top-row">
+                                                                <div class="namelabel">Ответы</div>
+                                                                <div class="add-multiplescale"></div>
+                                                            </div>
+                                                            <div class="optionsdropdownlist">
+                                                                <div class="option-group">
+                                                                    <div class="inputstables">
+                                                                        <textarea class="multiplescale-question" name="multipleanswer_5_1_1" id="multipleanswer_5_1_1" placeholder="Введите ответ">Ответ 1</textarea>
+                                                                    </div>
+                                                                    <div class="remove-multiplescale"></div>
+                                                                </div>
+                                                                <div class="option-group">
+                                                                    <div class="inputstables">
+                                                                        <textarea class="multiplescale-question" name="multipleanswer_5_1_2" id="multipleanswer_5_1_2" placeholder="Введите ответ">Ответ 2</textarea>
+                                                                    </div>
+                                                                    <div class="remove-multiplescale"></div>
+                                                                </div>
+                                                                <div class="option-group">
+                                                                    <div class="inputstables">
+                                                                        <textarea class="multiplescale-question" name="multipleanswer_5_1_3"  id="multipleanswer_5_1_3" placeholder="Введите ответ">Ответ 3</textarea>
+                                                                    </div>
+                                                                    <div class="remove-multiplescale"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="questionPoint" id="questionPoint_5_2">
+                                                    <input class="branching_points "  readonly name="groupname_5_2" id="groupname_5_2"
+                                                        type="text" value="3-5">
+                                                    <div class="branching-list">
+                                                        <div class="branching-group">
+                                                            <input type="text" name="branchingpoint_5_2" id="branchingpoint_5_2"
+                                                                value="Какие сложности возникают при оформлении кредита?">
+                                                                <div class="add-multiplescalerow"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="questionPoint" id="questionPoint_5_3">
+                                                    <input class="branching_points " readonly name="groupname_5_3" id="groupname_5_3"
+                                                        type="text" value="6-8">
+                                                    <div class="branching-list">
+                                                        <div class="branching-group">
+                                                            <input type="text" name="branchingpoint_5_3" id="branchingpoint_5_3"
+                                                                value="Какие сложности возникают при оформлении кредита?">
+                                                                <div class="add-multiplescalerow"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="questionPoint" id="questionPoint_5_4">
+                                                    <input class="branching_points " readonly name="groupname_5_4" id="groupname_5_4"
+                                                        type="text" value="9-10">
+                                                    <div class="branching-list">
+                                                        <div class="branching-group">
+                                                            <input type="text" name="branchingpoint_5_4" id="branchingpoint_5_4"
+                                                                value="Какие сложности возникают при оформлении кредита?">
+                                                                <div class="add-multiplescalerow"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="scale-option">
                                         <div class="form-group">
@@ -724,84 +651,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="branchingoptionbox" id="branchinoption_5">
+                            <!-- <div class="branchingoptionbox" id="branchinoption_5">
                                 <div class="header-aside">
                                     Настройки
                                 </div>
                                 <div class="text-aside">
-                                    <div class="form-group spinner-wrapper">
-                                        <label for="number_5">Колличество пунктов </label>
-                                        <input class="question_number_branching spinner" name="number_5" id="number_5" type="text"
-                                            value="4">
-                                    </div>
-                                    <div class="slider">
-                                        <div class="sliderscale scale10">
-                                            <div>1</div>
-                                            <div>2</div>
-                                            <div>3</div>
-                                            <div>4</div>
-                                            <div>5</div>
-                                            <div>6</div>
-                                            <div>7</div>
-                                            <div>8</div>
-                                            <div>9</div>
-                                            <div>10</div>
-                                        </div>
-                                        <div class="slidercursor" data-value="2"></div>
-                                        <div class="slidercursor" data-value="5"></div>
-                                        <div class="slidercursor" data-value="8"></div>
-                                    </div>
-                                    <div class="form-group">
-                                        <p>Варианты ответов</p>
-                                        <div class="inputtables branchingForScale" id="branchingtables_5">
-                                            <div class="questionPoint" id="questionPoint_5_1">
-                                                <input class="branching_points " readonly name="groupname_5_1" id="groupname_5_1"
-                                                    type="text" value="1-2">
-                                                <div class="branching-list">
-                                                    <div class="branching-group">
-                                                        <input type="text" name="branchingpoint_5_1" id="branchingpoint_5_1"
-                                                            value="Какие сложности возникают при оформлении кредита?">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="questionPoint" id="questionPoint_5_2">
-                                                <input class="branching_points "  readonly name="groupname_5_2" id="groupname_5_2"
-                                                    type="text" value="3-5">
-                                                <div class="branching-list">
-                                                    <div class="branching-group">
-                                                        <input type="text" name="branchingpoint_5_2" id="branchingpoint_5_2"
-                                                            value="Какие сложности возникают при оформлении кредита?">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="questionPoint" id="questionPoint_5_3">
-                                                <input class="branching_points " readonly name="groupname_5_3" id="groupname_5_3"
-                                                    type="text" value="6-8">
-                                                <div class="branching-list">
-                                                    <div class="branching-group">
-                                                        <input type="text" name="branchingpoint_5_3" id="branchingpoint_5_3"
-                                                            value="Какие сложности возникают при оформлении кредита?">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="questionPoint" id="questionPoint_5_4">
-                                                <input class="branching_points " readonly name="groupname_5_4" id="groupname_5_4"
-                                                    type="text" value="9-10">
-                                                <div class="branching-list">
-                                                    <div class="branching-group">
-                                                        <input type="text" name="branchingpoint_5_4" id="branchingpoint_5_4"
-                                                            value="Какие сложности возникают при оформлении кредита?">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="optionbox" id="option_123">
                                 <input type="hidden" name="questiontype_123" value="scale">
                                 <input type="hidden" class="orderinput" name="questionorder_123" value="123">
-                                <input type="hidden" class="subquestionID" name="brancheid_123" value="242">
                                 <div class="header-aside">
                                     Настройки
                                 </div>
@@ -820,6 +680,50 @@
                                         <label for="question_123">Вопрос</label>
                                         <textarea class="question_name" name="question_123"
                                             id="question_123">Как Вы оцените работу нашего банка?</textarea>
+                                    </div>
+                                    <div class="branchingoptionbox">
+                                        <div class="form-group spinner-wrapper">
+                                            <label for="number_123">Колличество пунктов </label>
+                                            <input class="question_number_branching spinner" name="number_123" id="number_123" type="text"
+                                                value="2">
+                                        </div>
+                                        <div class="slider">
+                                            <div class="sliderscale scale5">
+                                                <div>1</div>
+                                                <div>2</div>
+                                                <div>3</div>
+                                                <div>4</div>
+                                                <div>5</div>
+                                            </div>
+                                            <div class="slidercursor5" data-value="2"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <p>Варианты ответов</p>
+                                            <div class="inputtables branchingForScale" id="branchingtables_123">
+                                                <div class="questionPoint" id="questionPoint_123_1">
+                                                    <input class="branching_points " readonly name="groupname_123_1" id="groupname_123_1"
+                                                        type="text" value="1-2">
+                                                    <div class="branching-list">
+                                                        <div class="branching-group">
+                                                            <input type="text" name="branchingpoint_123_1" id="branchingpoint_4_1"
+                                                                value="Какие сложности возникают при оформлении кредита?">
+                                                                <div class="add-multiplescalerow"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="questionPoint" id="questionPoint_123_2">
+                                                    <input class="branching_points "  readonly name="groupname_123_2" id="groupname_123_2"
+                                                        type="text" value="3-5">
+                                                    <div class="branching-list">
+                                                        <div class="branching-group">
+                                                            <input type="text" name="branchingpoint_123_2" id="branchingpoint_123_2"
+                                                                value="Какие сложности возникают при оформлении кредита?">
+                                                                <div class="add-multiplescalerow"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="scale-option">
                                         <div class="form-group">
@@ -886,53 +790,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="branchingoptionbox" id="branchinoption_123">
+                            <!-- <div class="branchingoptionbox" id="branchinoption_123">
                                 <div class="header-aside">
                                     Настройки
                                 </div>
                                 <div class="text-aside">
-                                    <div class="form-group spinner-wrapper">
-                                        <label for="number_123">Колличество пунктов </label>
-                                        <input class="question_number_branching spinner" name="number_123" id="number_123" type="text"
-                                            value="2">
-                                    </div>
-                                    <div class="slider">
-                                        <div class="sliderscale scale5">
-                                            <div>1</div>
-                                            <div>2</div>
-                                            <div>3</div>
-                                            <div>4</div>
-                                            <div>5</div>
-                                        </div>
-                                        <div class="slidercursor5" data-value="2"></div>
-                                    </div>
-                                    <div class="form-group">
-                                        <p>Варианты ответов</p>
-                                        <div class="inputtables branchingForScale" id="branchingtables_123">
-                                            <div class="questionPoint" id="questionPoint_123_1">
-                                                <input class="branching_points " readonly name="groupname_123_1" id="groupname_123_1"
-                                                    type="text" value="1-2">
-                                                <div class="branching-list">
-                                                    <div class="branching-group">
-                                                        <input type="text" name="branchingpoint_123_1" id="branchingpoint_4_1"
-                                                            value="Какие сложности возникают при оформлении кредита?">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="questionPoint" id="questionPoint_123_2">
-                                                <input class="branching_points "  readonly name="groupname_123_2" id="groupname_123_2"
-                                                    type="text" value="3-5">
-                                                <div class="branching-list">
-                                                    <div class="branching-group">
-                                                        <input type="text" name="branchingpoint_123_2" id="branchingpoint_123_2"
-                                                            value="Какие сложности возникают при оформлении кредита?">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="btn-wrapper">
