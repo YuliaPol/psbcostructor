@@ -2362,7 +2362,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                   top: 0px;
                                   left: calc(50% - 15px);
                                   z-index: 5;
-                                  transition: left 0.1s ease-in;
+                                  transition: all 0.1s ease-in;
                                   pointer-events: none;
                                   background-repeat: no-repeat;
                                   .value {
@@ -2390,6 +2390,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                     padding: 0px;
                                     position: relative;
                                     z-index: 10;
+                                    border-radius: 50%;
                                     &::-webkit-slider-thumb {
                                       appearance: none;
                                       width: 30px;
@@ -3622,7 +3623,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                         }
                         .add-dropdown,
                         .add-multiple,
-                        .add-multiplescale {
+                        .add-multiplescale,
+                        .add-range {
                             position: absolute;
                             top: calc(50% - 4px);
                             right: 0px;
@@ -3689,7 +3691,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                             width: calc(100% - 15px);
                             .dropdown-question,
                             .multiple-question,
-                            .multiplescale-question {
+                            .multiplescale-question,
+                            .range-question {
                                 font-family: $fontpage;
                                 font-style: normal;
                                 font-weight: 500;
@@ -3785,7 +3788,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                         }
                         .remove-dropdown,
                         .remove-multiple,
-                        .remove-multiplescale {
+                        .remove-multiplescale,
+                        .remove-rangin {
                             width: 8px;
                             height: 8px;
                             background-image: url(./../img/minus.svg);
@@ -4025,6 +4029,189 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                             background-position: center;
                             background-position-y: 4px;
                             background-size: auto;
+                        }
+                    }
+                }
+                &.range-options {
+                    .row-options {
+                        padding-bottom: 15px;
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        .optionremove {
+                            align-items: flex-start;
+                            width: 10px;
+                            min-width: 10px;
+                            position: relative;
+                            .removerangecolor {
+                                width: 8px;
+                                height: 8px;
+                                background-image: url(./../img/minus.svg);
+                                background-position: left;
+                                background-size: contain;
+                                background-repeat: no-repeat;
+                                cursor: pointer;
+                                & +  .tooltip {
+                                    position: absolute;
+                                    opacity: 0;
+                                    padding: 5px;
+                                    font-family: $fontpage;
+                                    font-size: 10px;
+                                    line-height: 12px;
+                                    color: rgb(55, 53, 63);
+                                    transition: opacity 0.3s ease-in 0s;
+                                    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+                                    background: #fff;
+                                    border-radius: 5px;
+                                    bottom: 30px;
+                                    left: -40px;
+                                    pointer-events: none;
+                                    &::after{
+                                        content: '';
+                                        position: absolute;
+                                        right: 5px;
+                                        top: 100%;
+                                        width: 0;
+                                        height: 0;
+                                        border-left: 5px solid transparent;
+                                        border-right: 5px solid transparent;
+                                        border-top: 5px solid #ffffff;
+                                        clear: both;
+                                        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+                                    }
+                                }
+                                &:hover {
+                                    & +  .tooltip {
+                                        opacity: 1;
+                                    }
+                                }
+                            }   
+                        }
+                        .optionadd {
+                            align-items: flex-start;
+                            width: 50%;
+                            position: relative;
+                            .addranhecolor {
+                                width: 8px;
+                                height: 8px;
+                                background-image: url(./../img/plus.svg);
+                                background-position: left;
+                                background-size: contain;
+                                background-repeat: no-repeat;
+                                cursor: pointer;
+                                & +  .tooltip {
+                                    position: absolute;
+                                    opacity: 0;
+                                    padding: 5px;
+                                    font-family: $fontpage;
+                                    font-size: 10px;
+                                    line-height: 12px;
+                                    color: rgb(55, 53, 63);
+                                    transition: opacity 0.3s ease-in 0s;
+                                    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+                                    background: #fff;
+                                    border-radius: 5px;
+                                    bottom: 30px;
+                                    left: -40px;
+                                    pointer-events: none;
+                                    &::after{
+                                        content: '';
+                                        position: absolute;
+                                        left: calc(50% - 2.5px);
+                                        top: 100%;
+                                        width: 0;
+                                        height: 0;
+                                        border-left: 5px solid transparent;
+                                        border-right: 5px solid transparent;
+                                        border-top: 5px solid #ffffff;
+                                        clear: both;
+                                        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+                                    }
+                                }
+                                &:hover {
+                                    & +  .tooltip {
+                                        opacity: 1;
+                                    }
+                                }
+                            }
+                        }
+                        .optiongroup {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            width: calc(50% - 10px);
+                            border: 1px solid #EEEFF3;
+                            padding: 7px 9px;
+                            position: relative;
+                            &:hover {
+                                .tooltip {
+                                    opacity: 1;
+                                }
+                            }
+                            input {
+                                & +  .tooltip {
+                                    position: absolute;
+                                    opacity: 0;
+                                    padding: 5px;
+                                    font-family: $fontpage;
+                                    font-size: 10px;
+                                    line-height: 12px;
+                                    color: rgb(55, 53, 63);
+                                    transition: opacity 0.3s ease-in 0s;
+                                    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+                                    background: #fff;
+                                    border-radius: 5px;
+                                    bottom: 30px;
+                                    pointer-events: none;
+                                    &::after{
+                                        content: '';
+                                        position: absolute;
+                                        left: calc(50% - 2.5px);
+                                        top: 100%;
+                                        width: 0;
+                                        height: 0;
+                                        border-left: 5px solid transparent;
+                                        border-right: 5px solid transparent;
+                                        border-top: 5px solid #ffffff;
+                                        clear: both;
+                                        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+                                    }
+                                }
+                                &:focus {
+                                    & +  .tooltip {
+                                        opacity: 0;
+                                    }
+                                }
+                            }
+                            label {
+                                display: inline-block;
+                                font-family: $fontpage;
+                                font-style: normal;
+                                font-weight: 500;
+                                font-size: 10px;
+                                line-height: 12px;
+                                color: #9B9595;
+                                margin-right: 10px;
+                                .color {
+                                    width: 10px;
+                                    height: 10px; 
+                                    border: 0.3px solid #9B9595;
+                                    border-radius: 3px;
+                                }
+                            }
+                            input {
+                                width: calc(100% - 25px);
+                                border: none;
+                                outline: none;
+                                padding: 0px;
+                                font-family: $fontpage;
+                                font-style: normal;
+                                font-weight: 500;
+                                font-size: 10px;
+                                line-height: 12px;
+                                color: #000000;
+                            }
                         }
                     }
                 }
@@ -5537,9 +5724,26 @@ html .ui-button.ui-state-disabled:active {
     .construcot-container .rightside .default .text-aside,
     .construcot-container .rightside .optionbox .text-aside,
     .construcot-container .rightside .default .text-aside .multityperow .namelabel,
-    .construcot-container .rightside .optionbox .text-aside .multityperow .namelabel {
+    .construcot-container .rightside .optionbox .text-aside .multityperow .namelabel,
+    .construcot-container .rightside .default .text-aside .form-group label,
+    .construcot-container .rightside .optionbox .text-aside .form-group label,
+    .construcot-container .rightside .default .text-aside .dropdown-options .top-row .namelabel,
+    .construcot-container .rightside .optionbox .text-aside .dropdown-options .top-row .namelabel {
         font-size: 12px;
         line-height: 14px;
+    }
+    .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question,
+    .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiple-question,
+    .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiplescale-question,
+    .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .range-question,
+    .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question,
+    .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiple-question,
+    .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiplescale-question,
+    .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .range-question,
+    .construcot-container .rightside .default .text-aside .form-group textarea,
+    .construcot-container .rightside .optionbox .text-aside .form-group textarea {
+        font-size: 10px;
+        line-height: 12px;
     }
     .construcot-container .rightside .default .text-aside .form-group label, .construcot-container .rightside .optionbox .text-aside .form-group label,
     .construcot-container .rightside .default .header-aside, .construcot-container .rightside .optionbox .header-aside {

@@ -56,6 +56,49 @@ jQuery(function ($) {
             });
         };
 
+        $.fn.inputFilterRange = function(inputFilterRange) {
+            return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+                if($(this).hasClass('rangemin') && $(this).parents('.row-options').find('.rangemax').val()){
+                    var max = parseInt($(this).parents('.row-options').find('.rangemax').val());
+                        if (inputFilterRange(this.value) && this.value < max ) {
+                            this.oldValue = this.value;
+                            this.oldSelectionStart = this.selectionStart;
+                            this.oldSelectionEnd = this.selectionEnd;
+                            } else if (this.hasOwnProperty("oldValue")) {
+                            this.value = this.oldValue;
+                            this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                            } else {
+                            this.value = "";
+                            }
+                }
+                // else if ($(this).hasClass('rangemax') && $(this).parents('.row-options').find('.rangemin').val()) {
+                //     var min = parseInt($(this).parents('.row-options').find('.rangemin').val());
+                //         if (inputFilterRange(this.value) && this.value > min ) {
+                //             this.oldValue = this.value;
+                //             this.oldSelectionStart = this.selectionStart;
+                //             this.oldSelectionEnd = this.selectionEnd;
+                //             } else if (this.hasOwnProperty("oldValue")) {
+                //             this.value = this.oldValue;
+                //             this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                //             } else {
+                //             this.value = "";
+                //             }
+                // }
+                else {
+                    if (inputFilterRange(this.value)) {
+                        this.oldValue = this.value;
+                        this.oldSelectionStart = this.selectionStart;
+                        this.oldSelectionEnd = this.selectionEnd;
+                        } else if (this.hasOwnProperty("oldValue")) {
+                        this.value = this.oldValue;
+                        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                        } else {
+                        this.value = "";
+                        }
+                }
+            });
+        };
+
         $.datepicker.setDefaults(
             {
             closeText: 'Закрыть',
@@ -1483,6 +1526,19 @@ jQuery(function ($) {
             // }
         });
 
+                
+        $('.rightside').on('change, keypress, keydown, keyup', '.range-question', function(e){
+            auto_grow(this);
+            var name = $(this).attr('name').split('_');
+            var idQuestion = name[1];
+            var idPoint = name[2];
+            if($('#questionanswers_' + idQuestion).find('.range-list .range-row:nth-child('+ idPoint + ')').length>0){
+                $('#questionanswers_' + idQuestion).find('.range-list .range-row:nth-child('+ idPoint + ') .range-question').html($(this).val());
+            }
+            
+        });
+
+
         $('.rightside').on('change, keypress, keydown, keyup', '.multiple-question', function(e){
             var name = $(this).attr('name').split('_');
             if($('#questionanswers_'+ name[1]).find('.multipleanswer .item:nth-child('+ name[2] +')').length>0){
@@ -1619,6 +1675,75 @@ jQuery(function ($) {
             AddOption($('#questionanswers_' + idQuestion + ' select'));
         });
         
+                
+        $('.rightside').on('click', '.dropdown-options .add-range', function(e){
+            var namequestion ;
+            if($(this).parents('.dropdown-options').find('.option-group:last-child .range-question').length>0){
+                namequestion = $(this).parents('.dropdown-options').find('.option-group:last-child .range-question').attr('name').split('_');
+            }
+            var idQuestion;
+            var idPoint;
+            if(namequestion){
+                idQuestion = namequestion[1];
+            }
+            else {
+                idQuestion = $(this).parents('.optionbox').find('input:first-child').attr('name').split('_')[1];
+            }
+
+            if(namequestion){
+                idPoint = parseInt(namequestion[2]) + 1;
+            }
+            else {
+                idPoint = 1;
+            }
+            var newOptionel = 
+                '<div class="option-group">'
+                +'    <div class="inputstables">'
+                +'        <textarea class="range-question" name="inputpoint_'+ idQuestion + '_' + idPoint + '" id="inputpoint_' + idQuestion + '_' + idPoint + '" placeholder="Введите ответ"></textarea>'
+                +'    </div>'
+                +'    <div class="remove-rangin"></div>'
+                +'</div>';
+            $(newOptionel).appendTo($(this).parents('.dropdown-options').find('.optionsdropdownlist'));
+            var rangemin = $(this).parents('.range-options').find('.rangemin').val();
+            var rangemax = $(this).parents('.range-options').find('.rangemax').val();
+            var rangevalue = Math.round((parseInt(rangemax) + parseInt(rangemin))/2);
+            var step = $(this).parents('.range-options').find('.step').val();
+            var textcolor = $(this).parents('.range-options').find('.textcolor ').val();
+            var newEl = 
+            '<div class="range-row">'
+            +'    <div class="range-question">'
+            +'      Ответ'
+            +'  </div>'
+            +'  <div class="range">'
+            +'      <div class="label">'
+            +'          <div class="value" style="color: ' + textcolor + '"></div>'
+            +'      </div>'
+            +'      <div class="input-box">'
+            +'          <input class="input-range"'
+            +'                name="range_'+ idQuestion + '_' + idPoint + '"'
+            +'              id="range_'+ idQuestion + '_' + idPoint + '" type="range"'
+            +'              min="'+ rangemin + '"'
+            +'              max="' + rangemax + '"'
+            +'              step="' + step + '"'
+            +'              value="' + rangevalue +'"/>'
+            +'          <div class="bar"></div>'
+            +'          <div class="bar-filled"></div>'
+            +'      </div>'
+            +'  </div>'
+            +'</div>';
+            $(newEl).appendTo($('#questionanswers_' + idQuestion).find('.range-list'));
+            SetRangeValue($('#questionanswers_' + idQuestion).find('.range-list .range-row:last-child input'), rangevalue);
+            if($(this).parents('.range-options').find('.rangecolor').length>1) {
+                var color1 = $(this).parents('.range-options').find('.rangecolor1').val();
+                var color2 = $(this).parents('.range-options').find('.rangecolor2').val();
+                SetRangeColor2($('#questionanswers_' + idQuestion).find('.input-range'), color1, color2);
+            }
+            else {
+                var color = $(this).parents('.range-options').find('.rangecolor1').val();
+                SetRangeColor($('#questionanswers_' + idQuestion).find('.input-range'), color);
+            }
+        });
+        
         //range settings
         //set range value on start
         var ranges = $('.range .input-box input[type=range]');
@@ -1638,10 +1763,143 @@ jQuery(function ($) {
                 }
             });
         }
-        //set new range value when chane value
+        //set new range value when change value
         $('.centerbox').on('input', '.range input[type=range]', function(e){
             SetRangeValue(this, $(this).val());
         });
+
+        //set new color 
+        $('.rightside').on('input, change', '.row-color .rangecolor', function(e){
+            var idQuestion = $(this).parents('.row-color').find('.rangecolor1').attr('name').split('_')[1];
+            $(this).parents('.optiongroup').find('.color').css('background', $(this).val());
+            if($(this).parents('.row-color').find('.rangecolor').length>1){
+                var color1 = $(this).parents('.row-color').find('.rangecolor1').val();
+                var color2 = $(this).parents('.row-color').find('.rangecolor2').val();
+                if($(this).hasClass('rangecolor1')) {
+                    color1 = $(this).val();
+                }
+                else {
+                    color2 = $(this).val();
+                }
+                SetRangeColor2($('#questionanswers_' + idQuestion).find('.input-range'), color1, color2);
+            }
+            else {
+                var color = $(this).val();
+                SetRangeColor($('#questionanswers_' + idQuestion).find('.input-range'), color);
+            }
+        });
+        $('.rightside').on('click', '.row-color .addranhecolor', function(e){
+            var idQuestion = $(this).parents('.row-color').find('.rangecolor1').attr('name').split('_')[1];
+            var value = $(this).parents('.row-color').find('.rangecolor1').val();
+            var newcolor = 
+                '<div class="optiongroup">'
+                +'    <label for="color_' + idQuestion + '_2">'
+                +'      <div class="color" style="background: '+ value +';"></div>'
+                +'  </label>'
+                +'  <input class="rangecolor rangecolor2" type="text"  name="color_' + idQuestion + '_2"  id="color_' + idQuestion + '_2" value="'+ value +'" data-jscolor="">'
+                +'</div>'
+                +'<div class="optionremove">'
+                +'  <div class="removerangecolor"></div>'
+                +'  <div class="tooltip">Удалить цвет</div>'
+                +'</div>';
+                $(newcolor).appendTo($(this).parents('.row-color'));
+                $(this).parents('.optionadd').remove();
+                jscolor.install('.rightside')
+        });
+
+        $('.rightside').on('click', '.row-color .removerangecolor', function(e){
+            var idQuestion = $(this).parents('.row-color').find('.rangecolor1').attr('name').split('_')[1];
+            var color = $(this).parents('.row-color').find('.rangecolor1').val();
+            SetRangeColor($('#questionanswers_' + idQuestion).find('.input-range'), color);
+            var newcolor = 
+                '<div class="optionadd">'
+                +'    <div class="addranhecolor"></div>'
+                +'  <div class="tooltip">Добавить цвет</div>'
+                +'</div>';
+                $(newcolor).appendTo($(this).parents('.row-color'));
+                $(this).parents('.row-color').find('.rangecolor2').parents('.optiongroup').remove();
+                $(this).parents('.optionremove').remove();
+        });
+
+        $('.rightside').on('change', '.range-options .rangemin', function(e){
+            var idQuestion = $(this).attr('name').split('_')[1];
+            var min = $(this).val();
+            SetRangeMin($('#questionanswers_' + idQuestion).find('.input-range'), min);
+        });
+
+        $(".rangemin").inputFilterRange(function(value) {
+            return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 1500);
+        });
+
+        
+        $('.rightside').on('change', '.range-options .step', function(e){
+            if(parseInt($(this).val()) > parseInt($(this).parents('.range-options').find('.rangemax').val())){
+                $(this).val(1);
+                $('#modal-error').find('.text').html('Вы не можете ввести шаг больше, чем максимальное значение');
+                $('.modal').fadeIn(300);
+            }
+            else {
+                var idQuestion = $(this).attr('name').split('_')[1];
+                var step = $(this).val();
+                SetRangeStep($('#questionanswers_' + idQuestion).find('.input-range'), step);
+            }
+        });
+
+        $(".step").inputFilterRange(function(value) {
+            return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 1500);
+        });
+
+
+        $('.rightside').on('change', '.range-options .rangemax', function(e){
+            if(parseInt($(this).val()) < parseInt($(this).parents('.range-options').find('.rangemin').val())){
+                $(this).val(parseInt($(this).parents('.range-options').find('.rangemin').val()) + 1);
+                $('#modal-error').find('.text').html('Вы не можете ввести максимальное значение меньше, чем минимальное значение');
+                $('.modal').fadeIn(300);
+            }
+            else {
+                var idQuestion = $(this).attr('name').split('_')[1];
+                var max = $(this).val();
+                SetRangeMax($('#questionanswers_' + idQuestion).find('.input-range'), max);
+            }
+        });
+
+        $(".rangemax").inputFilterRange(function(value) {
+            return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 1500);
+        });
+
+        $('.rightside').on('input, change', '.range-options .textcolor', function(e){
+            var idQuestion = $(this).attr('name').split('_')[1];
+            $(this).parents('.optiongroup').find('.color').css('background', $(this).val());
+            var color = $(this).val();
+            SetRangeTextColor($('#questionanswers_' + idQuestion).find('.input-range'), color);
+        });
+
+        //set settings on download page
+        var rangeOptions = $('.rightside .range-options');
+        rangeOptions.each(function (index, rangeOption) {
+            idQuestion = $(this).find('.question_name').attr('name').split('_')[1];
+            if($(rangeOption).find('.rangecolor').length>1){
+                var color1 = $(rangeOption).find('.rangecolor1').val();
+                var color2 = $(rangeOption).find('.rangecolor2').val();
+                SetRangeColor2($('#questionanswers_' + idQuestion).find('.input-range'), color1, color2);
+            }
+            else {
+                var color = $(rangeOption).find('.rangecolor1').val();
+                SetRangeColor($('#questionanswers_' + idQuestion).find('.input-range'), color);
+            }
+            var min = $(rangeOption).find('.rangemin').val();
+            SetRangeMin($('#questionanswers_' + idQuestion).find('.input-range'), min);
+
+            var max = $(rangeOption).find('.rangemax').val();
+            SetRangeMax($('#questionanswers_' + idQuestion).find('.input-range'), max);
+
+            var step = $(rangeOption).find('.step').val();
+            SetRangeStep($('#questionanswers_' + idQuestion).find('.input-range'), step);
+
+            var color = $(rangeOption).find('.textcolor').val();
+            SetRangeTextColor($('#questionanswers_' + idQuestion).find('.input-range'), color);
+        });
+
         //change color settings range
         function SetRangeColor(rangeinput, color){
             var parents = $(rangeinput).parents('.range');
@@ -1656,6 +1914,10 @@ jQuery(function ($) {
             parents.find('.input-box .bar-filled').css('background', background);
             parents.find('.label').css('background-size', '200px');
             parents.find('.input-box .bar-filled').css('background-size', '200px');
+            var rangeElements = parents.find('.input-box input');
+            rangeElements.each(function (index, range) {
+                SetRangeValue(range, $(range).val());
+            });
         };
 
         //change color settings range
@@ -2128,6 +2390,57 @@ jQuery(function ($) {
             
 
         });
+
+        
+        $('.rightside').on('click', '.dropdown-options .remove-rangin', function(e){
+            var parents = $(this).parents('.optionsdropdownlist');
+            var namequestion = $(this).parents('.option-group').find('.range-question').attr('name').split('_');
+            var idQuestion = namequestion[1];
+            var idPoint = parseInt(namequestion[2]);
+            $('#questionanswers_' + idQuestion + ' .range-row:nth-child('+ idPoint +')').remove();
+
+            $(this).parents('.option-group').remove();
+            var Subpoints = parents.children();
+            if(Subpoints.length>0){
+                Subpoints.each(function (index, subpoint) {
+                    var id = index + 1;
+                    var inputs = $(subpoint).find('input');
+                    inputs.each(function (index, input) {
+                        if($(input).attr('name')){
+                            prevId = $(input).attr('name').split("_");
+                            prevId[2] = id;
+                            newId = prevId.join('_');
+                            $(input).attr('name', newId);
+                        }
+                        if($(input).attr('id')){
+                            prevId = $(input).attr('id').split("_");
+                            prevId[2] = id;
+                            newId = prevId.join('_');
+                            $(input).attr('id', newId);
+                        }
+                    });
+
+                    var textareas = $(subpoint).find('textarea');
+                    textareas.each(function (index, textarea) {
+                        if($(textarea).attr('name')){
+                            prevId = $(textarea).attr('name').split("_");
+                            prevId[2] = id;
+                            newId = prevId.join('_');
+                            $(textarea).attr('name', newId);
+                        }
+                        if($(textarea).attr('id')){
+                            prevId = $(textarea).attr('id').split("_");
+                            prevId[2] = id;
+                            newId = prevId.join('_');
+                            $(textarea).attr('id', newId);
+                        }
+                    });
+                });
+            }
+            
+
+        });
+
         var minRows = 2;
         var maxRows = 26;
         //autoheight textarea
@@ -3570,28 +3883,28 @@ jQuery(function ($) {
                 var id;
                 var type = $(ui.draggable).attr('data-type');
                 var pollid = $('#quiz-id').val();
-                // if(type && pollid){
-                //     AddQuestion(type, Math.random().toString(36).substr(2, 9), appendInde);
-                // }
                 if(type && pollid){
-                    $.ajax ({
-                        type: 'POST',
-                        url: "/admin/poll/create-question",
-                        dataType: "json",
-                        data: { 
-                            questiontype: type,
-                            quizid: pollid
-                        },
-                    }).done(function (data) {
-                        // данные сохранены
-                        AddQuestion(type, data, appendInde);
-                        console.log('Вопрос создан');
-                    }).fail(function (data) {
-                        // не удалось выполнить запрос к серверу
-                        console.log(data);
-                        console.log('Запрос не принят');
-                    });
+                    AddQuestion(type, Math.random().toString(36).substr(2, 9), appendInde);
                 }
+                // if(type && pollid){
+                //     $.ajax ({
+                //         type: 'POST',
+                //         url: "/admin/poll/create-question",
+                //         dataType: "json",
+                //         data: { 
+                //             questiontype: type,
+                //             quizid: pollid
+                //         },
+                //     }).done(function (data) {
+                //         // данные сохранены
+                //         AddQuestion(type, data, appendInde);
+                //         console.log('Вопрос создан');
+                //     }).fail(function (data) {
+                //         // не удалось выполнить запрос к серверу
+                //         console.log(data);
+                //         console.log('Запрос не принят');
+                //     });
+                // }
             }
         });
         
@@ -4794,7 +5107,111 @@ jQuery(function ($) {
                 +'           </div>'
                 +'       </div>'
                 +'   </div>'
-                +'</div>';``
+                +'</div>';
+            }
+            if (type === 'range') {
+                el = 
+                '<div class="question" data-optionid="'+ id +'">'
+                +'    <div class="close-question"></div>'
+                +'  <div class="name " id="questionName_'+ id +'">'
+                +'      Вопрос'
+                +'  </div>'
+                +'  <div class="description " id="questiondescription_'+ id +'">'
+                +'      Описание'
+                +'  </div>'
+                +'  <div class="answer" id="questionanswers_'+ id +'">'
+                +'      <div class="range-list">'
+                +'          <div class="range-row">'
+                +'              <div class="range-question">'
+                +'                  Ответ'
+                +'              </div>'
+                +'              <div class="range">'
+                +'                  <div class="label">'
+                +'                      <div class="value">5</div>'
+                +'                  </div>'
+                +'                  <div class="input-box">'
+                +'                      <input class="input-range" name="range_'+ id +'_1" id="range_'+ id +'_1" type="range" min="0" max="10" step="1" value="5"/>'
+                +'                      <div class="bar"></div>'
+                +'                      <div class="bar-filled"></div>'
+                +'                  </div>'
+                +'              </div>'
+                +'          </div>'
+                +'      </div>'
+                +'  </div>'
+                +'</div>';
+                option = 
+                    '<div class="optionbox" id="option_'+ id +'">'
+                    +'   <input type="hidden" name="questiontype_'+ id +'" value="dropdown">'
+                    +'  <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
+                    +'  <div class="header-aside">'
+                    +'      Настройки'
+                    +'  </div>'
+                    +'  <div class="text-aside range-options">'
+                    +'      <div class="form-group">'
+                    +'          <label for="question_'+ id +'">Вопрос</label>'
+                    +'          <textarea class="question_name" name="question_'+ id +'"'
+                    +'              id="question_'+ id +'">Какие кредиты Вам больше всего подходят?</textarea>'
+                    +'      </div>'
+                    +'      <div class="form-group">'
+                    +'          <label for="questiondescription_1">Доп. описание</label>'
+                    +'          <textarea class="question_description" name="questiondescription_'+ id +'"'
+                    +'              id="questiondescription_'+ id +'">описание</textarea>'
+                    +'      </div>'
+                    +'      <div class="row-options row-color">'
+                    +'          <div class="optiongroup">'
+                    +'              <label for="color_'+ id +'_1">'
+                    +'                  <div class="color" style="background: #563BC2;"></div>'
+                    +'              </label>'
+                    +'              <input class="rangecolor rangecolor1" type="text"  name="color_'+ id +'_1"  id="color_'+ id +'_1" value="#563BC2" data-jscolor="">'
+                    +'          </div>'
+                    +'          <div class="optionadd">'
+                    +'              <div class="addranhecolor"></div>'
+                    +'              <div class="tooltip">Добавить цвет</div>'
+                    +'          </div>'
+                    +'      </div>'
+                    +'      <div class="row-options">'
+                    +'          <div class="optiongroup">'
+                    +'              <label for="rangemin_'+ id +'">MIN</label>'
+                    +'              <input class="rangemin" type="text"  name="rangemin_'+ id +'"  id="rangemin_'+ id +'" value="0">'
+                    +'              <div class="tooltip">Минимальное значение</div>'
+                    +'          </div>'
+                    +'          <div class="optiongroup">'
+                    +'              <label for="rangemax_'+ id +'">MAX</label>'
+                    +'              <input class="rangemax" type="text"  name="rangemax_'+ id +'"  id="rangemax_'+ id +'" value="10">'
+                    +'              <div class="tooltip">Максимальное значение</div>'
+                    +'          </div>'
+                    +'      </div>'
+                    +'      <div class="row-options">'
+                    +'          <div class="optiongroup">'
+                    +'              <label for="step_'+ id +'">STEP</label>'
+                    +'              <input class="step" type="text"  name="step_'+ id +'"  id="step_'+ id +'" value="1">'
+                    +'              <div class="tooltip">Шаг диапазона</div>'
+                    +'          </div>'
+                    +'          <div class="optiongroup">'
+                    +'              <label for="textcolor_'+ id +'">'
+                    +'                  <div class="color" style="background: #ffffff;"></div>'
+                    +'              </label>'
+                    +'              <input class="textcolor" type="text"  name="textcolor_'+ id +'"  id="textcolor_'+ id +'" value="#ffffff" data-jscolor="">'
+                    +'              <div class="tooltip">Цвет текста</div>'
+                    +'          </div>'
+                    +'      </div>'
+                    +'      <div class="dropdown-options">'
+                    +'          <div class="top-row">'
+                    +'              <div class="namelabel">Вопросы</div>'
+                    +'              <div class="add-range"></div>'
+                    +'          </div>'
+                    +'          <div class="optionsdropdownlist">'
+                    +'              <div class="option-group">'
+                    +'                  <div class="inputstables">'
+                    +'                      <textarea class="range-question" name="inputpoint_'+ id +'_1" placeholder="Введите ответ"'
+                    +'                          id="inputpoint_'+ id +'_1"></textarea>'
+                    +'                  </div>'
+                    +'                  <div class="remove-rangin"></div>'
+                    +'              </div>'
+                    +'          </div>'
+                    +'      </div>'
+                    +'  </div>'
+                    +'</div>';
             }
             var children = $('.questions-box').children();
 

@@ -211,7 +211,7 @@
                                 <div class="range-list">
                                     <div class="range-row">
                                         <div class="range-question">
-                                            <label for="range_6_1">Как Вы оцените работу нашего банка?</label>
+                                            Как Вы оцените работу нашего банка?
                                         </div>
                                         <div class="range">
                                             <div class="label">
@@ -226,7 +226,7 @@
                                     </div>
                                     <div class="range-row">
                                         <div class="range-question">
-                                            <label for="range_6_2">Какие специальные предложения от застройщиков Вас заинтересовало?</label>
+                                            Какие специальные предложения от застройщиков Вас заинтересовало?
                                         </div>
                                         <div class="range">
                                             <div class="label">
@@ -241,7 +241,7 @@
                                     </div>
                                     <div class="range-row">
                                         <div class="range-question">
-                                            <label for="range_6_3">Как Вы оцените работу нашего банка?</label>
+                                            Как Вы оцените работу нашего банка?
                                         </div>
                                         <div class="range">
                                             <div class="label">
@@ -276,7 +276,7 @@
                                 <div class="header-aside">
                                     Настройки
                                 </div>
-                                <div class="text-aside ">
+                                <div class="text-aside range-options">
                                     <div class="form-group">
                                         <label for="question_6">Вопрос</label>
                                         <textarea class="question_name" name="question_6"
@@ -287,32 +287,87 @@
                                         <textarea class="question_description" name="questiondescription_6"
                                             id="questiondescription_6">описание</textarea>
                                     </div>
+                                    <div class="row-options row-color">
+                                        <div class="optiongroup">
+                                            <label for="color_6_1">
+                                                <div class="color" style="background: #563BC2;"></div>
+                                            </label>
+                                            <input class="rangecolor rangecolor1" type="text"  name="color_6_1"  id="color_6_1" value="#563BC2" data-jscolor="">
+                                        </div>
+                                        <!-- if Если есть второй цвет -->
+
+
+                                        <!-- <div class="optiongroup">
+                                            <label for="color_6_2">
+                                                <div class="color" style="background: #563BC2;"></div>
+                                            </label>
+                                            <input class="rangecolor rangecolor2" type="text"  name="color_6_2"  id="color_6_2" value="#563BC2" data-jscolor="">
+                                        </div>
+                                        <div class="optionremove">
+                                            <div class="removerangecolor"></div>
+                                            <div class="tooltip">Удалить цвет</div>
+                                        </div> -->
+
+
+                                        <!-- else  -->
+                                        <div class="optionadd">
+                                            <div class="addranhecolor"></div>
+                                            <div class="tooltip">Добавить цвет</div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row-options">
+                                        <div class="optiongroup">
+                                            <label for="rangemin_6">MIN</label>
+                                            <input class="rangemin" type="text"  name="rangemin_6"  id="rangemin_6" value="0">
+                                            <div class="tooltip">Минимальное значение</div>
+                                        </div>
+                                        <div class="optiongroup">
+                                            <label for="rangemax_6">MAX</label>
+                                            <input class="rangemax" type="text"  name="rangemax_6"  id="rangemax_6" value="10">
+                                            <div class="tooltip">Максимальное значение</div>
+                                        </div>
+                                    </div>
+                                    <div class="row-options">
+                                        <div class="optiongroup">
+                                            <label for="step_6">STEP</label>
+                                            <input class="step" type="text"  name="step_6"  id="step_6" value="1">
+                                            <div class="tooltip">Шаг диапазона</div>
+                                        </div>
+                                        <div class="optiongroup">
+                                            <label for="textcolor_6">
+                                                <div class="color" style="background: #ffffff;"></div>
+                                            </label>
+                                            <input class="textcolor" type="text"  name="textcolor_6"  id="textcolor_6" value="#ffffff" data-jscolor="">
+                                            <div class="tooltip">Цвет текста</div>
+                                        </div>
+                                    </div>
                                     <div class="dropdown-options">
                                         <div class="top-row">
                                             <div class="namelabel">Вопросы</div>
-                                            <div class="add-dropdown"></div>
+                                            <div class="add-range"></div>
                                         </div>
                                         <div class="optionsdropdownlist">
                                             <div class="option-group">
                                                 <div class="inputstables">
-                                                    <textarea class="dropdown-question" name="inputpoint_6_1"
+                                                    <textarea class="range-question" name="inputpoint_6_1"
                                                         id="inputpoint_6_1">Как Вы оцените работу нашего банка?</textarea>
                                                 </div>
-                                                <div class="remove-dropdown"></div>
+                                                <div class="remove-rangin"></div>
                                             </div>
                                             <div class="option-group">
                                                 <div class="inputstables">
-                                                    <textarea class="dropdown-question" name="inputpoint_6_2"
+                                                    <textarea class="range-question" name="inputpoint_6_2"
                                                         id="inputpoint_6_2">Какие специальные предложения от застройщиков Вас заинтересовало?</textarea>
                                                 </div>
-                                                <div class="remove-dropdown"></div>
+                                                <div class="remove-rangin"></div>
                                             </div>
                                             <div class="option-group">
                                                 <div class="inputstables">
-                                                    <textarea class="dropdown-question" name="inputpoint_6_3"
+                                                    <textarea class="range-question" name="inputpoint_6_3"
                                                         id="inputpoint_6_3">Как Вы оцените работу нашего банка?</textarea>
                                                 </div>
-                                                <div class="remove-dropdown"></div>
+                                                <div class="remove-rangin"></div>
                                             </div>
                                         </div>
                                     </div>
