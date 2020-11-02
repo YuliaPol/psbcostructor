@@ -449,23 +449,23 @@ jQuery(function ($) {
 
           //range settings
         //set range value on start
-        var ranges = $('.range .input-box input[type=range]');
-        if(ranges.length>0){
-            ranges.each(function (index, range) {
-                if(!$(range).attr('min')) {
-                    $(range).attr('min', 0);
-                }
-                if(!$(range).attr('max')) {
-                    $(range).attr('max', 10);
-                }
-                if($(range).val()){
-                    SetRangeValue(range, $(range).val());
-                }
-                else {
-                    SetRangeValue(range, 0);
-                }
-            });
-        }
+        // var ranges = $('.range .input-box input[type=range]');
+        // if(ranges.length>0){
+        //     ranges.each(function (index, range) {
+        //         if(!$(range).attr('min')) {
+        //             $(range).attr('min', 0);
+        //         }
+        //         if(!$(range).attr('max')) {
+        //             $(range).attr('max', 10);
+        //         }
+        //         if($(range).val()){
+        //             SetRangeValue(range, $(range).val());
+        //         }
+        //         else {
+        //             SetRangeValue(range, 0);
+        //         }
+        //     });
+        // }
         //set new range value when change value
         $('.centerbox').on('input', '.range input[type=range]', function(e){
             SetRangeValue(this, $(this).val());

@@ -4100,7 +4100,7 @@ table {
   background: #563BC2;
   border-radius: 50%;
   top: 0px;
-  left: calc(50% - 15px);
+  left: 0px;
   z-index: 5;
   -webkit-transition: all 0.1s ease-in;
   -o-transition: all 0.1s ease-in;
@@ -4184,7 +4184,7 @@ table {
   top: 14px;
   left: 0px;
   right: 0px;
-  width: 50%;
+  width: 0%;
   height: 2px;
   background: #563BC2;
   z-index: 2;

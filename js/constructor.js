@@ -1746,23 +1746,23 @@ jQuery(function ($) {
         
         //range settings
         //set range value on start
-        var ranges = $('.range .input-box input[type=range]');
-        if(ranges.length>0){
-            ranges.each(function (index, range) {
-                if(!$(range).attr('min')) {
-                    $(range).attr('min', 0);
-                }
-                if(!$(range).attr('max')) {
-                    $(range).attr('max', 10);
-                }
-                if($(range).val()){
-                    SetRangeValue(range, $(range).val());
-                }
-                else {
-                    SetRangeValue(range, 0);
-                }
-            });
-        }
+        // var ranges = $('.range .input-box input[type=range]');
+        // if(ranges.length>0){
+        //     ranges.each(function (index, range) {
+        //         if(!$(range).attr('min')) {
+        //             $(range).attr('min', 0);
+        //         }
+        //         if(!$(range).attr('max')) {
+        //             $(range).attr('max', 10);
+        //         }
+        //         // if($(range).val()){
+        //         //     SetRangeValue(range, $(range).val());
+        //         // }
+        //         // else {
+        //         //     SetRangeValue(range, 0);
+        //         // }
+        //     });
+        // }
         //set new range value when change value
         $('.centerbox').on('input', '.range input[type=range]', function(e){
             SetRangeValue(this, $(this).val());
@@ -1881,20 +1881,26 @@ jQuery(function ($) {
             if($(rangeOption).find('.rangecolor').length>1){
                 var color1 = $(rangeOption).find('.rangecolor1').val();
                 var color2 = $(rangeOption).find('.rangecolor2').val();
-                SetRangeColor2($('#questionanswers_' + idQuestion).find('.input-range'), color1, color2);
+                var parents = $(rangeOption).find('.range')
+                var background = 'linear-gradient(to right, ' + color1 + ', ' + color2 + ')';
+                var parents = $('#questionanswers_' + idQuestion).find('.range');
+                parents.find('.label').css('background', background);
+                parents.find('.input-box .bar-filled').css('background', background);
+                parents.find('.label').css('background-size', '200px');
+                parents.find('.input-box .bar-filled').css('background-size', '200px');
             }
             else {
                 var color = $(rangeOption).find('.rangecolor1').val();
                 SetRangeColor($('#questionanswers_' + idQuestion).find('.input-range'), color);
             }
             var min = $(rangeOption).find('.rangemin').val();
-            SetRangeMin($('#questionanswers_' + idQuestion).find('.input-range'), min);
+            $('#questionanswers_' + idQuestion).find('.input-range').attr('min', min);
 
             var max = $(rangeOption).find('.rangemax').val();
-            SetRangeMax($('#questionanswers_' + idQuestion).find('.input-range'), max);
+            $('#questionanswers_' + idQuestion).find('.input-range').attr('max', max);
 
             var step = $(rangeOption).find('.step').val();
-            SetRangeStep($('#questionanswers_' + idQuestion).find('.input-range'), step);
+            $('#questionanswers_' + idQuestion).find('.input-range').attr('step', step);
 
             var color = $(rangeOption).find('.textcolor').val();
             SetRangeTextColor($('#questionanswers_' + idQuestion).find('.input-range'), color);
@@ -1928,7 +1934,6 @@ jQuery(function ($) {
 
         //change max settings range
         function SetRangeMax(rangeinput, max){
-            console.log(max);
             $(rangeinput).attr('max', max);
             var val = $(rangeinput).val();
             SetRangeValue(rangeinput, val);
