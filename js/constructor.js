@@ -5109,7 +5109,7 @@ jQuery(function ($) {
                 +'   </div>'
                 +'</div>';
             }
-            if (type === 'range') {
+            if (type === 'diapason') {
                 el = 
                 '<div class="question" data-optionid="'+ id +'">'
                 +'    <div class="close-question"></div>'
@@ -5141,7 +5141,7 @@ jQuery(function ($) {
                 +'</div>';
                 option = 
                     '<div class="optionbox" id="option_'+ id +'">'
-                    +'   <input type="hidden" name="questiontype_'+ id +'" value="dropdown">'
+                    +'   <input type="hidden" name="questiontype_'+ id +'" value="diapason">'
                     +'  <input type="hidden" class="orderinput" name="questionorder_'+ id +'" value="'+ id +'">'
                     +'  <div class="header-aside">'
                     +'      Настройки'
