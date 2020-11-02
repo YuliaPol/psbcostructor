@@ -447,6 +447,46 @@ jQuery(function ($) {
             });
         }
 
+          //range settings
+        //set range value on start
+        var ranges = $('.range .input-box input[type=range]');
+        if(ranges.length>0){
+            ranges.each(function (index, range) {
+                if(!$(range).attr('min')) {
+                    $(range).attr('min', 0);
+                }
+                if(!$(range).attr('max')) {
+                    $(range).attr('max', 10);
+                }
+                if($(range).val()){
+                    SetRangeValue(range, $(range).val());
+                }
+                else {
+                    SetRangeValue(range, 0);
+                }
+            });
+        }
+        //set new range value when change value
+        $('.centerbox').on('input', '.range input[type=range]', function(e){
+            SetRangeValue(this, $(this).val());
+        });
+
+        //set new range value
+        function SetRangeValue(rangeinput, value){
+            var value = $(rangeinput).val();
+            var max = $(rangeinput).attr('max');
+            var min = $(rangeinput).attr('min');
+            var range = max - min;
+            var relvalue = value - min;
+            var percent = (100/range)*relvalue;
+            var parents = $(rangeinput).parents('.range');
+            var paddleft = (30*percent)/100;
+            parents.find('.label').css('left', 'calc(' + percent + '% - ' + paddleft + 'px)');
+            parents.find('.label .value').html(value);
+            parents.find('.input-box .bar-filled').css('width', percent + '%');
+            parents.find('.label').css('background-position', percent + '%');
+        };
+        
 
         //customselect
         

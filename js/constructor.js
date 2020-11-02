@@ -3883,28 +3883,28 @@ jQuery(function ($) {
                 var id;
                 var type = $(ui.draggable).attr('data-type');
                 var pollid = $('#quiz-id').val();
-                if(type && pollid){
-                    AddQuestion(type, Math.random().toString(36).substr(2, 9), appendInde);
-                }
                 // if(type && pollid){
-                //     $.ajax ({
-                //         type: 'POST',
-                //         url: "/admin/poll/create-question",
-                //         dataType: "json",
-                //         data: { 
-                //             questiontype: type,
-                //             quizid: pollid
-                //         },
-                //     }).done(function (data) {
-                //         // данные сохранены
-                //         AddQuestion(type, data, appendInde);
-                //         console.log('Вопрос создан');
-                //     }).fail(function (data) {
-                //         // не удалось выполнить запрос к серверу
-                //         console.log(data);
-                //         console.log('Запрос не принят');
-                //     });
+                //     AddQuestion(type, Math.random().toString(36).substr(2, 9), appendInde);
                 // }
+                if(type && pollid){
+                    $.ajax ({
+                        type: 'POST',
+                        url: "/admin/poll/create-question",
+                        dataType: "json",
+                        data: { 
+                            questiontype: type,
+                            quizid: pollid
+                        },
+                    }).done(function (data) {
+                        // данные сохранены
+                        AddQuestion(type, data, appendInde);
+                        console.log('Вопрос создан');
+                    }).fail(function (data) {
+                        // не удалось выполнить запрос к серверу
+                        console.log(data);
+                        console.log('Запрос не принят');
+                    });
+                }
             }
         });
         
@@ -5147,10 +5147,35 @@ jQuery(function ($) {
                     +'      Настройки'
                     +'  </div>'
                     +'  <div class="text-aside range-options">'
+                    +'        <div class="filerow">'
+                    +'            <div class="uploadpicture">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
+                    +'                    value="image">'
+                    +'            </div>'
+                    +'            <input class="uploadpictureinput" type="file"'
+                    +'                name="uploadimage_'+ id +'[]" multiple="multiple"'
+                    +'                accept="image/x-png,image/gif,image/jpeg">'
+                    +'            <div class="uploadvideo">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                    +'                    value="video">'
+                    +'            </div>'
+                    +'            <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'" id="uploadvideo_'+ id +'"'
+                    +'            accept="video/mp4,video/x-m4v,video/*">'
+                    +'            <div class="uploadaudio">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
+                    +'                    value="audio">'
+                    +'            </div>'
+                    +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
+                    +'            accept="audio/*">'
+                    +'            <div class="uploadtext">'
+                    +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_4"'
+                    +'                    value="text">'
+                    +'            </div>'
+                    +'        </div>'
                     +'      <div class="form-group">'
                     +'          <label for="question_'+ id +'">Вопрос</label>'
                     +'          <textarea class="question_name" name="question_'+ id +'"'
-                    +'              id="question_'+ id +'">Какие кредиты Вам больше всего подходят?</textarea>'
+                    +'              id="question_'+ id +'">Вопрос</textarea>'
                     +'      </div>'
                     +'      <div class="form-group">'
                     +'          <label for="questiondescription_1">Доп. описание</label>'
