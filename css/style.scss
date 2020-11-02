@@ -4733,10 +4733,139 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     // }
 
 }
+.banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 160px);
+    padding: 20px;
+}
+.bannercontainer {
+    width: 100%;
+    max-width: 100%;
+    min-width: 800px;
+    min-height: 480px;
+    height: 480px;
+    max-height: 480px;
+    background: #ffffff;
+    position: relative;
+    border: 1px dashed #9A9797;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    .dragbtn {
+        border: 1px dashed #9A9797;
+        overflow: hidden;
+        max-width: calc(100% - 40px);
+        max-height: calc(100% - 40px);
+        padding: 5px;
+        .btn {
+            align-items: center;
+            justify-content: center;
+            outline: none;
+            border: none;
+            font-family: $fontpage;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 17px;
+            line-height: 18px;
+            color: #FFFFFF;
+            overflow: hidden;
+            max-width: 100%;
+            pointer-events: none;
+        }
+    }
+    .dragimage {
+        border: 1px dashed #9A9797;
+        max-width: 100%;
+        max-height: calc(100vh - 160px);
+        &:hover {
+            .remove-picture {
+                opacity: 1;
+            }
+        }
+        .remove-picture {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 15px;
+            height: 15px;
+            background: url('./../img/close-grey.svg');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease-in;
+        }
+    }
+    .dragtext {
+        border: 1px dashed #9A9797;
+        overflow: hidden;
+        max-width: calc(100% - 40px);
+        max-height: calc(100% - 40px);
+        &.hidden {
+            display: none;
+        }
+        &.text1level {
+            .text {
+                font-family: $fontpage;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 50px;
+                line-height: 1.2em;
+                text-transform: uppercase;
+                color: #4D4D4D;
+                padding: 10px;
+            }
+        }
+        &.textsecond {
+            .text {
+                font-family: $fontpage;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 25px;
+                line-height: 1.2em;
+                color: #5722DE;
+                padding: 5px;
+            }
+        }
+    }
+    .drag {
+        display: inline-block;
+        position: absolute !important;
+        img {
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            max-height: calc(100vh - 170px);
+            object-fit: cover;
+        }
+    }
+    .dropzone-file {
+        width: 100%;
+        height: 100%;
+        .file-btn {
+            width: 100%;
+            height: 100%;
+            font-family: $fontpage;
+            font-style: normal;
+            font-weight: 300;
+            font-size: 20px;
+            line-height: 24px;
+            text-align: center;
+            color: #BDBCBC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
 .pad-bt-15 {
     padding-bottom: 15px;
 }
-.hellopage_options {
+.hellopage_options,
+.banner_options {
     .form-group {
         padding-bottom: 5px !important;
     }
@@ -5037,6 +5166,133 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
         }
         input[type=file] {
             display: none;
+        }
+    }
+}
+.banner_options {
+    .imagerow {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding-top: 15px;
+        .filename {
+            width: calc(100% - 40px);
+            font-family: $fontpage;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 10px;
+            line-height: 12px;
+            color: #563BC2;
+        }
+        .removeimage {
+            width: 20px;
+            position: relative;
+            .icon-remove {
+                align-items: flex-end;
+                display: block;
+                width: 12px;
+                height: 12px;
+                background: url(./../img/close-grey.svg);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+                cursor: pointer;
+                &:hover {
+                    & + .tooltip {
+                        opacity: 1;
+                    }
+                }
+            }
+            .tooltip {
+                position: absolute;
+                opacity: 0;
+                padding: 5px;
+                font-family: "Montserrat";
+                font-size: 10px;
+                line-height: 12px;
+                color: #37353f;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+                background: #fff;
+                border-radius: 5px;
+                bottom: 30px;
+                width: 110px;
+                left: -80px;
+                pointer-events: none;
+                &::after {
+                    content: '';
+                    position: absolute;
+                    right: 20px;
+                    top: 100%;
+                    width: 0;
+                    height: 0;
+                    border-left: 5px solid transparent;
+                    border-right: 5px solid transparent;
+                    border-top: 5px solid #ffffff;
+                    clear: both;
+                    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+                }
+            }
+        }
+        .setbackground {
+            width: 20px;
+            position: relative;
+            input[type=radio] {
+                display: none;
+                &:checked {
+                    & + label {
+                        background: url(./../img/set-background-a.svg);
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                    }
+                }
+            }
+            label {
+                align-items: flex-end;
+                display: block;
+                width: 12px;
+                height: 12px;
+                background: url(./../img/set-background.svg);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+                cursor: pointer;
+                &:hover {
+                    & + .tooltip {
+                        opacity: 1;
+                    }
+                }
+            }
+            .tooltip {
+                position: absolute;
+                opacity: 0;
+                padding: 5px;
+                font-family: "Montserrat";
+                font-size: 10px;
+                line-height: 12px;
+                color: #37353f;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+                background: #fff;
+                border-radius: 5px;
+                bottom: 30px;
+                width: 110px;
+                left: -90px;
+                pointer-events: none;
+                &::after {
+                    content: '';
+                    position: absolute;
+                    right: 5px;
+                    top: 100%;
+                    width: 0;
+                    height: 0;
+                    border-left: 5px solid transparent;
+                    border-right: 5px solid transparent;
+                    border-top: 5px solid #ffffff;
+                    clear: both;
+                    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+                }
+            }
         }
     }
 }
@@ -5756,6 +6012,13 @@ html .ui-button.ui-state-disabled:active {
     }
 }
 @media screen and (max-width: 1200px) {
+    .page-content {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .construcot-container .centerbox.full-width {
+        width: calc(100% - 315px);
+    }
     .construcot-container .centerbox .questions-box .question .answer.answer-scale label .digit {
         width: 25px;
         height: 25px;
