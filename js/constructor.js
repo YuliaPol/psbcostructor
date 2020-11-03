@@ -5361,7 +5361,7 @@ jQuery(function ($) {
             });
             $('.questions-box').attr('data-count', i);
             customSelectActive();
-            jscolor.install('.rightside')
+            jscolor.install('.rightside');
             RefreshItems();
         }
         // delete question

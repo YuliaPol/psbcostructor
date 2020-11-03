@@ -1,3 +1,24 @@
+
+jscolor.presets.default = {
+    position: 'bottom',
+    width: 181,
+    height: 100,
+    padding: 10,
+    sliderSize: 25,
+    borderRadius: 0,
+    borderWidth: 0,
+    controlBorderWidth: 1,
+    pointerBorderWidth: 1,
+    borderColor: '#000',
+    controlBorderColor: '#CCC',
+    backgroundColor: '#fff',
+    format: 'rgba',
+    controlBorderColor: '#ccc',
+    crossSize: 5,
+    pointerBorderColor: '#fff',
+    pointerBorderWidth: 1,
+};
+
 jQuery(function ($) {
     $(document).ready(function () {
         $.fn.removeClassPrefix = function(prefix) {
@@ -30,7 +51,7 @@ jQuery(function ($) {
         $(".drag").draggable({
             appendTo: ".dragable",
             containment: ".dragable",
-            grid: [ 20, 20 ],
+            grid: [ 10, 10 ],
             stop: function( event, ui ) {
                 var top = ui.position.top;
                 var left = ui.position.left;
@@ -40,7 +61,7 @@ jQuery(function ($) {
         //resize image
         $( ".dragimage" ).resizable({
             containment: ".dragable",
-            grid: [ 20, 20 ],
+            grid: [ 10, 10 ],
             aspectRatio: true,
             handles: "n, e, s, w",
             stop: function( event, ui ) {
@@ -54,7 +75,7 @@ jQuery(function ($) {
         $( ".dragtext" ).resizable({
             autoHide: false,
             containment: ".dragable",
-            grid: [ 20, 20 ],
+            grid: [ 10, 10 ],
             handles: "n, e, s, w",
             stop: function( event, ui ) {
                 var top = ui.position.top;
@@ -63,21 +84,10 @@ jQuery(function ($) {
             }
         });
 
-        // image as background
-        // $('.page-content').on('change', '.pictureforpage', function(e){
-        //     var fileName = e.target.files[0].name;
-        //     if($('.dropzone-file').length>0) {
-        //         $('.dropzone-file').remove();
-        //     }
-        //     if (e.target.files && e.target.files[0]) {
-        //         var reader = new FileReader();
-        //         reader.onload = function (e) {
-        //             $('.bannercontainer').css('background-image', 'url(' + e.target.result + ')');
-        //         }
-        //         reader.readAsDataURL(e.target.files[0]);
-        //     }
-        // });
+        //plugin for colorpick
+        jscolor.install('.rightside');
 
+        //set backgroun image
         $('.rightside').on('change', '.setbackground input[type=radio]', function(e){
             if($(this).is(':checked')){
                 if($('.bannercontainer').attr('data-background')){
@@ -95,29 +105,96 @@ jQuery(function ($) {
                     //resize image
                     $( ".dragimage" ).resizable({
                         containment: ".dragable",
-                        grid: [ 20, 20 ],
+                        grid: [ 10, 10 ],
                         aspectRatio: true,
-                        handles: "n, e, s, w"
+                        handles: "n, e, s, w",
+                        stop: function( event, ui ) {
+                            var top = ui.position.top;
+                            var left = ui.position.left;
+                            SetPositionOfElement(event.target, top, left);
+                        }
                     });
                     //Make element draggable
                     $(".drag").draggable({
                         appendTo: ".dragable",
                         containment: ".dragable",
-                        grid: [ 20, 20 ],
+                        grid: [ 10, 10 ],
                         stop: function( event, ui ) {
-                            console.log(event);
-                            console.log(ui);
+                            var top = ui.position.top;
+                            var left = ui.position.left;
+                            SetPositionOfElement(event.target, top, left);
                         }
                     });
                 }
                 var id = $(this).val();
                 var src = $('#image_' + id).find('img').attr('src');
+                $('.bannercontainer').css('background', 'none');
                 $('.bannercontainer').css('background-image', 'url(' + src + ')');
+                $('.bannercontainer').css('background-position', 'center');
+                $('.bannercontainer').css('background-repeat', 'no-repeat');
+                $('.bannercontainer').css('background-size', 'cover');
                 $('.bannercontainer').attr('data-background', id);
                 $('#image_' + id).remove();
             }
         });
 
+        //set background color
+        $('.rightside').on('change', '.setbackgroundcolor input[type=radio]', function(e){
+            if($(this).is(':checked')){
+                if($('.bannercontainer').attr('data-background')){
+                    var prevId = $('.bannercontainer').attr('data-background');
+                    var prevsrc = $('.bannercontainer').css('background-image');
+                    prevsrc = prevsrc.replace('url(','').replace(')','').replace(/\"/gi, "");
+                    var image = 
+                    '<div class="drag dragimage" id="image_'+ prevId + '" style="width: 300px;" data-id="'+ prevId + '">'
+                    +'    <div class="remove-picture "></div>'
+                    +'    <input type="hidden" name="picture" value="'+ prevId + '">'
+                    +'    <img src="'+ prevsrc + '" alt="">'
+                    +'</div>';
+                    $('.bannercontainer').append(image);
+                    //resize image
+                    $( ".dragimage" ).resizable({
+                        containment: ".dragable",
+                        grid: [ 10, 10 ],
+                        aspectRatio: true,
+                        handles: "n, e, s, w",
+                        stop: function( event, ui ) {
+                            var top = ui.position.top;
+                            var left = ui.position.left;
+                            SetPositionOfElement(event.target, top, left);
+                        }
+                    });
+                    //Make element draggable
+                    $(".drag").draggable({
+                        appendTo: ".dragable",
+                        containment: ".dragable",
+                        grid: [ 10, 10 ],
+                        stop: function( event, ui ) {
+                            var top = ui.position.top;
+                            var left = ui.position.left;
+                            SetPositionOfElement(event.target, top, left);
+                        }
+                    });
+                    $('.bannercontainer').css('background-image', 'none');
+                    $('.bannercontainer').removeAttr('data-background');
+                }
+                if($('.dropzone-file').length>0) {
+                    $('.dropzone-file').remove();
+                }
+                var color = $(this).parents('.colorrow').find('.bannercolor').val();
+                $('.bannercontainer').css('background', color);
+            }
+        });
+
+        //change color background
+
+        $('.page-content').on('input', '.colorrow .bannercolor', function(e){
+            var color = $(this).val();
+            $(this).parents('.optiongroup').find('.color').css('background', color);
+            if($(this).parents('.colorrow').find('input[name=setbackground]').is(':checked')){
+                $('.bannercontainer').css('background', color);
+            }
+        });
         $('.page-content').on('click', '.removeimage', function(e){
             var id = $(this).parents('.imagerow').find('.setbackground input[type=radio]').val();
             if($('#image_' + id).length>0) {
@@ -147,6 +224,10 @@ jQuery(function ($) {
             var imageSetings = 
             '<div class="imagerow">'
             +'    <div class="filename">'+ fileName + '</div>'
+            +'    <input type="hidden" name="imagetop_' + id + '">'
+            +'    <input type="hidden" name="imageleft_' + id + '">'
+            +'    <input type="hidden" name="imagewidth_' + id + '">'
+            +'    <input type="hidden" name="imageheight_' + id + '">'
             +'  <div class="removeimage">'
             +'      <div class="icon-remove"></div>'
             +'      <div class="tooltip">Удалить изображение</div>'
@@ -157,7 +238,7 @@ jQuery(function ($) {
             +'      <div class="tooltip">Сделать фоновым рисунком</div>'
             +'  </div>'
             +'</div>';
-            $('.filerow').append(imageSetings);
+            $('.filerow .imagelist').append(imageSetings);
             $('.bannercontainer').append(image);
             if (e.target.files && e.target.files[0]) {
                 var reader = new FileReader();
@@ -170,18 +251,24 @@ jQuery(function ($) {
             //resize image
             $( ".dragimage" ).resizable({
                 containment: ".dragable",
-                grid: [ 20, 20 ],
+                grid: [ 10, 10 ],
                 aspectRatio: true,
-                handles: "n, e, s, w"
+                handles: "n, e, s, w",
+                stop: function( event, ui ) {
+                    var top = ui.position.top;
+                    var left = ui.position.left;
+                    SetPositionOfElement(event.target, top, left);
+                }
             });
             //Make element draggable
             $(".drag").draggable({
                 appendTo: ".dragable",
                 containment: ".dragable",
-                grid: [ 20, 20 ],
+                grid: [ 10, 10 ],
                 stop: function( event, ui ) {
-                    console.log(event);
-                    console.log(ui);
+                    var top = ui.position.top;
+                    var left = ui.position.left;
+                    SetPositionOfElement(event.target, top, left);
                 }
             });
         });
@@ -248,7 +335,7 @@ jQuery(function ($) {
             $(".drag").draggable({
                 appendTo: ".dragable",
                 containment: ".dragable",
-                grid: [ 20, 20 ],
+                grid: [ 10, 10 ],
                 stop: function( event, ui ) {
                     var top = ui.position.top;
                     var left = ui.position.left;
@@ -259,7 +346,7 @@ jQuery(function ($) {
             $( ".dragtext" ).resizable({
                 autoHide: false,
                 containment: ".dragable",
-                grid: [ 20, 20 ],
+                grid: [ 10, 10 ],
                 handles: "n, e, s, w",
                 stop: function( event, ui ) {
                     var top = ui.position.top;
@@ -326,7 +413,7 @@ jQuery(function ($) {
             $(".drag").draggable({
                 appendTo: ".dragable",
                 containment: ".dragable",
-                grid: [ 20, 20 ],
+                grid: [ 10, 10 ],
                 stop: function( event, ui ) {
                     var top = ui.position.top;
                     var left = ui.position.left;
@@ -337,7 +424,7 @@ jQuery(function ($) {
             $( ".dragtext" ).resizable({
                 autoHide: false,
                 containment: ".dragable",
-                grid: [ 20, 20 ],
+                grid: [ 10, 10 ],
                 handles: "n, e, s, w",
                 stop: function( event, ui ) {
                     var top = ui.position.top;
@@ -594,7 +681,7 @@ jQuery(function ($) {
             $(".drag").draggable({
                 appendTo: ".dragable",
                 containment: ".dragable",
-                grid: [ 20, 20 ],
+                grid: [ 10, 10 ],
                 stop: function( event, ui ) {
                     var top = ui.position.top;
                     var left = ui.position.left;
@@ -797,16 +884,9 @@ jQuery(function ($) {
                 }
             });   
         }
+
         function SetPositionOfElement(element, top, left){
-            if($(element).hasClass('dragbtn')){
-                var width = parseInt($('#btnwidth').val()) + 12;
-                var height =  parseInt($('#btnheight').val()) + 12;
-                $('.btn-options-group input[name=pbtntop]').val(top);
-                $('.btn-options-group input[name=pbtnleft]').val(left);
-                $('.btn-options-group input[name=pbtnwidth]').val(width);
-                $('.btn-options-group input[name=pbtnheight]').val(height);
-            }
-            else if($(element).hasClass('text1level')){
+            if($(element).hasClass('text1level')){
                 var width = $(element).width();
                 var height = $(element).height();
                 $('.textasettings input[name=texttop_1]').val(top);
@@ -823,6 +903,15 @@ jQuery(function ($) {
                 $('.textasettings input[name=textwidth_' + id + ']').val(width);
                 $('.textasettings input[name=textheight_' + id + ']').val(height);
             }
+            else if($(element).hasClass('dragimage')){
+                var id = $(element).attr('id').split('_')[1];
+                var width = $(element).width();
+                var height = $(element).height();
+                $('.imagelist input[name=imagetop_' + id + ']').val(top);
+                $('.imagelist input[name=imageleft_' + id + ']').val(left);
+                $('.imagelist input[name=imagewidth_' + id + ']').val(width);
+                $('.imagelist input[name=imageheight_' + id + ']').val(height);
+            }
         }
         function ResizeScreen(){
             //set position of element
@@ -835,13 +924,8 @@ jQuery(function ($) {
                     var height;
                     var top;
                     var left;
-                    if($(element).hasClass('dragbtn')){
-                        top = parseInt($('.btn-options-group input[name=pbtntop]').val());
-                        left = parseInt($('.btn-options-group input[name=pbtnleft]').val());
-                        width = parseInt($('.btn-options-group input[name=pbtnwidth]').val());
-                        height = parseInt($('.btn-options-group input[name=pbtnheight]').val());
-                    }
-                    else if($(element).hasClass('text1level')){
+
+                    if($(element).hasClass('text1level')){
                         top = parseInt($('.textasettings input[name=texttop_1]').val());
                         left = parseInt($('.textasettings input[name=textleft_1]').val());
                         width = parseInt($('.textasettings input[name=textwidth_1]').val());
@@ -854,40 +938,18 @@ jQuery(function ($) {
                         width = parseInt($('.textasettings input[name=textwidth_' + id + ']').val());
                         height = parseInt($('.textasettings input[name=textheight_' + id + ']').val());
                     }
-                    if($(element).hasClass('dragbtn')){
-                        var perleft = left * (100/prevwidth);
-                        var newleft = perleft * (parseInt($('.bannercontainer').width())/100);
-
-                        var pertop = top * (100/prevheight);
-                        var newtop = pertop * (parseInt($('.bannercontainer').height())/100);
-                        if(width + newleft > parseInt($('.bannercontainer').width())){
-                            var index = 0;
-                            while(width + newleft > parseInt($('.bannercontainer').width()) && index < 20){
-                                if(width > parseInt($('.bannercontainer').width()) - 100){
-                                    newleft = newleft - 20;
-                                    width = width - 10;
-                                }
-                                else {
-                                    newleft = newleft - 20;
-                                }
-                                $(element).css('left', newleft  + 'px');
-                                index ++;
-                            }
-                        }
-                        else {
-                            $(element).css('left', newleft  + 'px');
-                        }
-                        if(newtop + height < $('.bannercontainer').height()){
-                            $(element).css('top', newtop  + 'px' );
-                        }
-                        else {
-                            $(element).css('top', prevheight - height  + 'px' );
-                            $(element).css('top', prevheight - height  + 'px' );
-                        }
+                    else if($(element).hasClass('dragimage')){
+                        var id = $(element).attr('id').split('_')[1];
+                        top = parseInt($('.imagelist input[name=imagetop_' + id + ']').val());
+                        left = parseInt($('.imagelist input[name=imageleft_' + id + ']').val());
+                        width = parseInt($('.imagelist input[name=imagewidth_' + id + ']').val());
+                        height = parseInt($('.imagelist input[name=imageheight_' + id + ']').val());
                     }
-                    else {
-                        var perleft = left * (100/prevwidth);
-                        var newleft = perleft * (parseInt($('.bannercontainer').width())/100);
+                    if( width && top) {
+                        var smwidth = prevwidth - width;
+                        var prevleft = (100 * left)/smwidth;
+                        var smwidthnew = parseInt($('.bannercontainer').width()) - width;
+                        var newleft = Math.round((prevleft*smwidthnew)/100);
 
                         var pertop = top * (100/prevheight);
                         var newtop = pertop * (parseInt($('.bannercontainer').height())/100);
@@ -897,31 +959,29 @@ jQuery(function ($) {
                             while(width + newleft > parseInt($('.bannercontainer').width()) && index < 20){
                                 if(width > parseInt($('.bannercontainer').width()) - 100){
                                     newleft = newleft - 20;
-                                    width = width - 10;
                                 }
                                 else {
                                     newleft = newleft - 20;
                                 }
-                                $(element).css('left', newleft  + 'px');
-                                $(element).css('width', width + 'px');
                                 index ++;
                             }
                         }
-                        else {
-                            $(element).css('left', newleft  + 'px');
-                            $(element).css('width', width + 10 + 'px');
-                        }
-                        $(element).css('height', height + 10  + 'px');
+                        $(element).css('left', newleft  + 'px');
+                        // $(element).css('width', width + 'px');
+                        // $(element).css('height', height  + 'px');
                         if(newtop + height < $('.bannercontainer').height()){
-                            $(element).css('top', top  + 'px' );
                             $(element).css('top', newtop  + 'px' );
                         }
                         else {
                             $(element).css('top', prevheight - height  + 'px' );
                         }
+                        SetPositionOfElement(element, newtop, newleft);
                     }
                 });
             }
+
+
+
             //set options on start
             //set size of screen
             $('.text-aside input[name=widthscreen]').val($('.bannercontainer').width());
@@ -1013,39 +1073,12 @@ jQuery(function ($) {
                 }
             });
         }
-        //set btn
-        if($('#btnname').val() && $('#btnwidth').val() && $('#btnheight').val() && $('#btncolor').val()){
-            var btntext = $('#btnname').val();
-            var btncolor = $('#btncolor').val();
-            var btnwidth = $('#btnwidth').val() + 'px';
-            var btnheight = $('#btnheight').val() + 'px';
-            var btnradius = $('#btnradius').val() + 'px';
-            var btntextcolor =$('#btntextcolor').val();
-            var position = "center";
-            if($('input[name=btnposition]:checked').val()){
-                position = $('input[name=btnposition]:checked').val();
-            }
-            var btnel =
-            '<div class="drag dragbtn" style="top: 20px; left: 20px;">'
-            +'    <div class="btn-cont" style="text-align: '+ position + ';">'
-            +'      <button class="btn" type="submit"'
-            +'          style="'
-            +'          background: '+ btncolor + ';'
-            +'          width: ' + btnwidth + ';'
-            +'          height: '+ btnheight + ';'
-            +'          border-radius: '+ btnradius + ';'
-            +'          color: '+ btntextcolor + '">'
-            +'          ' + btntext
-            +'      </button>'
-            +'  </div>'
-            +'</div>';
-            $(btnel).appendTo($('.bannercontainer'));
-        }
+
         //Make element draggable
         $(".drag").draggable({
             appendTo: ".dragable",
             containment: ".dragable",
-            grid: [ 20, 20 ],
+            grid: [ 10, 10 ],
             stop: function( event, ui ) {
                 var top = ui.position.top;
                 var left = ui.position.left;
@@ -1056,7 +1089,7 @@ jQuery(function ($) {
         $( ".dragtext" ).resizable({
             autoHide: false,
             containment: ".dragable",
-            grid: [ 20, 20 ],
+            grid: [ 10, 10 ],
             handles: "n, e, s, w",
             stop: function( event, ui ) {
                 var top = ui.position.top;

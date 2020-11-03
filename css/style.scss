@@ -4753,6 +4753,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    padding: 10px;
     .dragbtn {
         border: 1px dashed #9A9797;
         overflow: hidden;
@@ -5170,6 +5171,156 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     }
 }
 .banner_options {
+    .imagelist {
+        padding-bottom: 15px;
+        width: 100%;
+    }
+    .colorrow {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        .optiongroup {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: calc(50% - 10px);
+            border: 1px solid #EEEFF3;
+            padding: 7px 9px;
+            position: relative;
+            &:hover {
+                .tooltip {
+                    opacity: 1;
+                }
+            }
+            input {
+                & +  .tooltip {
+                    position: absolute;
+                    opacity: 0;
+                    padding: 5px;
+                    font-family: $fontpage;
+                    font-size: 10px;
+                    line-height: 12px;
+                    color: rgb(55, 53, 63);
+                    transition: opacity 0.3s ease-in 0s;
+                    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+                    background: #fff;
+                    border-radius: 5px;
+                    bottom: 30px;
+                    pointer-events: none;
+                    &::after{
+                        content: '';
+                        position: absolute;
+                        left: calc(50% - 2.5px);
+                        top: 100%;
+                        width: 0;
+                        height: 0;
+                        border-left: 5px solid transparent;
+                        border-right: 5px solid transparent;
+                        border-top: 5px solid #ffffff;
+                        clear: both;
+                        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+                    }
+                }
+                &:focus {
+                    & +  .tooltip {
+                        opacity: 0;
+                    }
+                }
+            }
+            label {
+                display: inline-block;
+                font-family: $fontpage;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 10px;
+                line-height: 12px;
+                color: #9B9595;
+                margin-right: 10px;
+                .color {
+                    width: 10px;
+                    height: 10px; 
+                    border: 0.3px solid #9B9595;
+                    border-radius: 3px;
+                }
+            }
+            input {
+                display: block !important;
+                width: calc(100% - 25px);
+                border: none;
+                outline: none;
+                padding: 0px;
+                font-family: $fontpage;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 10px;
+                line-height: 12px;
+                color: #000000;
+            }
+        }
+        .setbackground,
+        .setbackgroundcolor {
+            width: 20px;
+            position: relative;
+            input[type=radio] {
+                display: none;
+                &:checked {
+                    & + label {
+                        background: url(./../img/set-background-a.svg);
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                    }
+                }
+            }
+            label {
+                align-items: flex-end;
+                display: block;
+                width: 12px;
+                height: 12px;
+                background: url(./../img/set-background.svg);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+                cursor: pointer;
+                &:hover {
+                    & + .tooltip {
+                        opacity: 1;
+                    }
+                }
+            }
+            .tooltip {
+                position: absolute;
+                opacity: 0;
+                padding: 5px;
+                font-family: "Montserrat";
+                font-size: 10px;
+                line-height: 12px;
+                color: #37353f;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+                background: #fff;
+                border-radius: 5px;
+                bottom: 30px;
+                width: 110px;
+                left: -90px;
+                pointer-events: none;
+                &::after {
+                    content: '';
+                    position: absolute;
+                    right: 5px;
+                    top: 100%;
+                    width: 0;
+                    height: 0;
+                    border-left: 5px solid transparent;
+                    border-right: 5px solid transparent;
+                    border-top: 5px solid #ffffff;
+                    clear: both;
+                    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+                }
+            }
+        }
+
+    }
     .imagerow {
         display: flex;
         align-items: center;

@@ -12,6 +12,7 @@
     <script src="./js/jquery-3.5.1.min.js"></script>
     <script src="./js//jquery-ui.js"></script>
     <script src="./js/dropzone.js"></script>
+    <script src="./js/jscolor.js"></script>
     <script src="./js/banner.js"></script>
     <script src="./js/script.js?87654"></script>
 </head>
@@ -92,25 +93,19 @@
                                     Добавить фото
                                 </div>
                                 <input type="file" id="fileInput" name="pictures[]" class="realfileinput pictureforpage" />
+                                <div class="imagelist">
 
-                                <!-- <div class="imagerow" data-id="">
-                                    <div class="filename">design-bg</div>
-                                    <div class="setbackground">
-                                        <input type="radio" name="setbackground" id="setbackground" value="1">
-                                        <label for="setbackground"></label>
-                                        <div class="tooltip">Сделать фоновым рисунком</div>
-                                    </div>
-                                </div> -->
+                                </div>
                                 <div class="colorrow">
                                     <div class="optiongroup">
-                                        <label for="color_6_1">
-                                            <div class="color" style="background: #563BC2;"></div>
+                                        <label for="background">
+                                            <div class="color" style="background: #DEE1E9;"></div>
                                         </label>
-                                        <input class="rangecolor rangecolor1" type="text"  name="color_6_1"  id="color_6_1" value="#563BC2" data-jscolor="">
+                                        <input class="bannercolor" type="text"  name="background"  id="background" value="#DEE1E9" data-jscolor="">
                                     </div>
-                                    <div class="setbackground">
-                                        <input type="radio" name="setbackground" id="setbackground" value="">
-                                        <label for="setbackground"></label>
+                                    <div class="setbackgroundcolor">
+                                        <input type="radio" name="setbackground" id="setbackgroundcolor" value="">
+                                        <label for="setbackgroundcolor"></label>
                                         <div class="tooltip">Сделать фоновым цветом</div>
                                     </div>
                                 </div>

@@ -7599,6 +7599,7 @@ table {
   -webkit-background-size: cover;
           background-size: cover;
   background-repeat: no-repeat;
+  padding: 10px;
 }
 
 .bannercontainer .dragbtn {
@@ -8206,6 +8207,197 @@ table {
 .hellopage_options .filerow input[type=file],
 .banner_options .filerow input[type=file] {
   display: none;
+}
+
+.banner_options .imagelist {
+  padding-bottom: 15px;
+  width: 100%;
+}
+
+.banner_options .colorrow {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+
+.banner_options .colorrow .optiongroup {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: calc(50% - 10px);
+  border: 1px solid #EEEFF3;
+  padding: 7px 9px;
+  position: relative;
+}
+
+.banner_options .colorrow .optiongroup:hover .tooltip {
+  opacity: 1;
+}
+
+.banner_options .colorrow .optiongroup input + .tooltip {
+  position: absolute;
+  opacity: 0;
+  padding: 5px;
+  font-family: "Montserrat";
+  font-size: 10px;
+  line-height: 12px;
+  color: #37353f;
+  -webkit-transition: opacity 0.3s ease-in 0s;
+  -o-transition: opacity 0.3s ease-in 0s;
+  transition: opacity 0.3s ease-in 0s;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+  background: #fff;
+  border-radius: 5px;
+  bottom: 30px;
+  pointer-events: none;
+}
+
+.banner_options .colorrow .optiongroup input + .tooltip::after {
+  content: '';
+  position: absolute;
+  left: calc(50% - 2.5px);
+  top: 100%;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #ffffff;
+  clear: both;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+}
+
+.banner_options .colorrow .optiongroup input:focus + .tooltip {
+  opacity: 0;
+}
+
+.banner_options .colorrow .optiongroup label {
+  display: inline-block;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #9B9595;
+  margin-right: 10px;
+}
+
+.banner_options .colorrow .optiongroup label .color {
+  width: 10px;
+  height: 10px;
+  border: 0.3px solid #9B9595;
+  border-radius: 3px;
+}
+
+.banner_options .colorrow .optiongroup input {
+  display: block !important;
+  width: calc(100% - 25px);
+  border: none;
+  outline: none;
+  padding: 0px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #000000;
+}
+
+.banner_options .colorrow .setbackground,
+.banner_options .colorrow .setbackgroundcolor {
+  width: 20px;
+  position: relative;
+}
+
+.banner_options .colorrow .setbackground input[type=radio],
+.banner_options .colorrow .setbackgroundcolor input[type=radio] {
+  display: none;
+}
+
+.banner_options .colorrow .setbackground input[type=radio]:checked + label,
+.banner_options .colorrow .setbackgroundcolor input[type=radio]:checked + label {
+  background: url(./../img/set-background-a.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+          background-size: contain;
+}
+
+.banner_options .colorrow .setbackground label,
+.banner_options .colorrow .setbackgroundcolor label {
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  display: block;
+  width: 12px;
+  height: 12px;
+  background: url(./../img/set-background.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+          background-size: contain;
+  cursor: pointer;
+}
+
+.banner_options .colorrow .setbackground label:hover + .tooltip,
+.banner_options .colorrow .setbackgroundcolor label:hover + .tooltip {
+  opacity: 1;
+}
+
+.banner_options .colorrow .setbackground .tooltip,
+.banner_options .colorrow .setbackgroundcolor .tooltip {
+  position: absolute;
+  opacity: 0;
+  padding: 5px;
+  font-family: "Montserrat";
+  font-size: 10px;
+  line-height: 12px;
+  color: #37353f;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+  background: #fff;
+  border-radius: 5px;
+  bottom: 30px;
+  width: 110px;
+  left: -90px;
+  pointer-events: none;
+}
+
+.banner_options .colorrow .setbackground .tooltip::after,
+.banner_options .colorrow .setbackgroundcolor .tooltip::after {
+  content: '';
+  position: absolute;
+  right: 5px;
+  top: 100%;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #ffffff;
+  clear: both;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
 }
 
 .banner_options .imagerow {
