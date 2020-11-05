@@ -7602,6 +7602,17 @@ table {
   padding: 10px;
 }
 
+.bannercontainer .logo {
+  position: absolute;
+  max-width: 100px;
+  top: 20px;
+  left: 20px;
+}
+
+.bannercontainer .logo img {
+  max-width: 100%;
+}
+
 .bannercontainer .dragbtn {
   border: 1px dashed #9A9797;
   overflow: hidden;
@@ -7690,6 +7701,10 @@ table {
   line-height: 1.2em;
   color: #5722DE;
   padding: 5px;
+}
+
+.bannercontainer .dragtext.backgroundtext {
+  border-radius: 15px;
 }
 
 .bannercontainer .drag {
@@ -8214,7 +8229,12 @@ table {
   width: 100%;
 }
 
-.banner_options .colorrow {
+.banner_options .textbackgroundrow {
+  margin-top: 10px;
+}
+
+.banner_options .colorrow,
+.banner_options .textbackgroundrow {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -8230,7 +8250,8 @@ table {
   width: 100%;
 }
 
-.banner_options .colorrow .optiongroup {
+.banner_options .colorrow .optiongroup,
+.banner_options .textbackgroundrow .optiongroup {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -8249,11 +8270,13 @@ table {
   position: relative;
 }
 
-.banner_options .colorrow .optiongroup:hover .tooltip {
+.banner_options .colorrow .optiongroup:hover .tooltip,
+.banner_options .textbackgroundrow .optiongroup:hover .tooltip {
   opacity: 1;
 }
 
-.banner_options .colorrow .optiongroup input + .tooltip {
+.banner_options .colorrow .optiongroup input + .tooltip,
+.banner_options .textbackgroundrow .optiongroup input + .tooltip {
   position: absolute;
   opacity: 0;
   padding: 5px;
@@ -8272,7 +8295,8 @@ table {
   pointer-events: none;
 }
 
-.banner_options .colorrow .optiongroup input + .tooltip::after {
+.banner_options .colorrow .optiongroup input + .tooltip::after,
+.banner_options .textbackgroundrow .optiongroup input + .tooltip::after {
   content: '';
   position: absolute;
   left: calc(50% - 2.5px);
@@ -8287,11 +8311,13 @@ table {
           box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
 }
 
-.banner_options .colorrow .optiongroup input:focus + .tooltip {
+.banner_options .colorrow .optiongroup input:focus + .tooltip,
+.banner_options .textbackgroundrow .optiongroup input:focus + .tooltip {
   opacity: 0;
 }
 
-.banner_options .colorrow .optiongroup label {
+.banner_options .colorrow .optiongroup label,
+.banner_options .textbackgroundrow .optiongroup label {
   display: inline-block;
   font-family: "Montserrat";
   font-style: normal;
@@ -8302,14 +8328,16 @@ table {
   margin-right: 10px;
 }
 
-.banner_options .colorrow .optiongroup label .color {
+.banner_options .colorrow .optiongroup label .color,
+.banner_options .textbackgroundrow .optiongroup label .color {
   width: 10px;
   height: 10px;
   border: 0.3px solid #9B9595;
   border-radius: 3px;
 }
 
-.banner_options .colorrow .optiongroup input {
+.banner_options .colorrow .optiongroup input,
+.banner_options .textbackgroundrow .optiongroup input {
   display: block !important;
   width: calc(100% - 25px);
   border: none;
@@ -8324,18 +8352,24 @@ table {
 }
 
 .banner_options .colorrow .setbackground,
-.banner_options .colorrow .setbackgroundcolor {
+.banner_options .colorrow .setbackgroundcolor,
+.banner_options .textbackgroundrow .setbackground,
+.banner_options .textbackgroundrow .setbackgroundcolor {
   width: 20px;
   position: relative;
 }
 
 .banner_options .colorrow .setbackground input[type=radio],
-.banner_options .colorrow .setbackgroundcolor input[type=radio] {
+.banner_options .colorrow .setbackgroundcolor input[type=radio],
+.banner_options .textbackgroundrow .setbackground input[type=radio],
+.banner_options .textbackgroundrow .setbackgroundcolor input[type=radio] {
   display: none;
 }
 
 .banner_options .colorrow .setbackground input[type=radio]:checked + label,
-.banner_options .colorrow .setbackgroundcolor input[type=radio]:checked + label {
+.banner_options .colorrow .setbackgroundcolor input[type=radio]:checked + label,
+.banner_options .textbackgroundrow .setbackground input[type=radio]:checked + label,
+.banner_options .textbackgroundrow .setbackgroundcolor input[type=radio]:checked + label {
   background: url(./../img/set-background-a.svg);
   background-position: center;
   background-repeat: no-repeat;
@@ -8344,7 +8378,9 @@ table {
 }
 
 .banner_options .colorrow .setbackground label,
-.banner_options .colorrow .setbackgroundcolor label {
+.banner_options .colorrow .setbackgroundcolor label,
+.banner_options .textbackgroundrow .setbackground label,
+.banner_options .textbackgroundrow .setbackgroundcolor label {
   -webkit-box-align: end;
   -webkit-align-items: flex-end;
       -ms-flex-align: end;
@@ -8361,12 +8397,16 @@ table {
 }
 
 .banner_options .colorrow .setbackground label:hover + .tooltip,
-.banner_options .colorrow .setbackgroundcolor label:hover + .tooltip {
+.banner_options .colorrow .setbackgroundcolor label:hover + .tooltip,
+.banner_options .textbackgroundrow .setbackground label:hover + .tooltip,
+.banner_options .textbackgroundrow .setbackgroundcolor label:hover + .tooltip {
   opacity: 1;
 }
 
 .banner_options .colorrow .setbackground .tooltip,
-.banner_options .colorrow .setbackgroundcolor .tooltip {
+.banner_options .colorrow .setbackgroundcolor .tooltip,
+.banner_options .textbackgroundrow .setbackground .tooltip,
+.banner_options .textbackgroundrow .setbackgroundcolor .tooltip {
   position: absolute;
   opacity: 0;
   padding: 5px;
@@ -8385,7 +8425,86 @@ table {
 }
 
 .banner_options .colorrow .setbackground .tooltip::after,
-.banner_options .colorrow .setbackgroundcolor .tooltip::after {
+.banner_options .colorrow .setbackgroundcolor .tooltip::after,
+.banner_options .textbackgroundrow .setbackground .tooltip::after,
+.banner_options .textbackgroundrow .setbackgroundcolor .tooltip::after {
+  content: '';
+  position: absolute;
+  right: 5px;
+  top: 100%;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #ffffff;
+  clear: both;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+}
+
+.banner_options .colorrow .settextbackground,
+.banner_options .textbackgroundrow .settextbackground {
+  width: 20px;
+  position: relative;
+}
+
+.banner_options .colorrow .settextbackground input[type=checkbox],
+.banner_options .textbackgroundrow .settextbackground input[type=checkbox] {
+  display: none;
+}
+
+.banner_options .colorrow .settextbackground input[type=checkbox]:checked + label,
+.banner_options .textbackgroundrow .settextbackground input[type=checkbox]:checked + label {
+  background: url(./../img/setbackgroundtext-a.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+          background-size: contain;
+}
+
+.banner_options .colorrow .settextbackground label,
+.banner_options .textbackgroundrow .settextbackground label {
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  display: block;
+  width: 12px;
+  height: 12px;
+  background: url(./../img/setbackgroundtext.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+          background-size: contain;
+  cursor: pointer;
+}
+
+.banner_options .colorrow .settextbackground label:hover + .tooltip,
+.banner_options .textbackgroundrow .settextbackground label:hover + .tooltip {
+  opacity: 1;
+}
+
+.banner_options .colorrow .settextbackground .tooltip,
+.banner_options .textbackgroundrow .settextbackground .tooltip {
+  position: absolute;
+  opacity: 0;
+  padding: 5px;
+  font-family: "Montserrat";
+  font-size: 10px;
+  line-height: 12px;
+  color: #37353f;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+  background: #fff;
+  border-radius: 5px;
+  bottom: 30px;
+  width: 110px;
+  left: -90px;
+  pointer-events: none;
+}
+
+.banner_options .colorrow .settextbackground .tooltip::after,
+.banner_options .textbackgroundrow .settextbackground .tooltip::after {
   content: '';
   position: absolute;
   right: 5px;

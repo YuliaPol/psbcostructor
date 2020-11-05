@@ -4754,6 +4754,15 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     background-size: cover;
     background-repeat: no-repeat;
     padding: 10px;
+    .logo {
+        position: absolute;
+        max-width: 100px;
+        top: 20px;
+        left: 20px;
+        img {
+            max-width: 100%;
+        }
+    }
     .dragbtn {
         border: 1px dashed #9A9797;
         overflow: hidden;
@@ -4830,6 +4839,9 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                 color: #5722DE;
                 padding: 5px;
             }
+        }
+        &.backgroundtext {
+            border-radius: 15px;
         }
     }
     .drag {
@@ -5175,7 +5187,11 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
         padding-bottom: 15px;
         width: 100%;
     }
-    .colorrow {
+    .textbackgroundrow {
+        margin-top: 10px;
+    }
+    .colorrow,
+    .textbackgroundrow {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -5279,6 +5295,66 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                 width: 12px;
                 height: 12px;
                 background: url(./../img/set-background.svg);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+                cursor: pointer;
+                &:hover {
+                    & + .tooltip {
+                        opacity: 1;
+                    }
+                }
+            }
+            .tooltip {
+                position: absolute;
+                opacity: 0;
+                padding: 5px;
+                font-family: "Montserrat";
+                font-size: 10px;
+                line-height: 12px;
+                color: #37353f;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+                background: #fff;
+                border-radius: 5px;
+                bottom: 30px;
+                width: 110px;
+                left: -90px;
+                pointer-events: none;
+                &::after {
+                    content: '';
+                    position: absolute;
+                    right: 5px;
+                    top: 100%;
+                    width: 0;
+                    height: 0;
+                    border-left: 5px solid transparent;
+                    border-right: 5px solid transparent;
+                    border-top: 5px solid #ffffff;
+                    clear: both;
+                    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+                }
+            }
+        }
+        .settextbackground {
+            width: 20px;
+            position: relative;
+            input[type=checkbox] {
+                display: none;
+                &:checked {
+                    & + label {
+                        background: url(./../img/setbackgroundtext-a.svg);
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                    }
+                }
+            }
+            label {
+                align-items: flex-end;
+                display: block;
+                width: 12px;
+                height: 12px;
+                background: url(./../img/setbackgroundtext.svg);
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: contain;

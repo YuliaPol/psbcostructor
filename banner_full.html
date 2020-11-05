@@ -68,22 +68,15 @@
         <form action="#">
             <!-- <table> -->
             <div class="construcot-container">
-                <div class="centerbox full-width fontMonserat">
+                <div class="centerbox full-width fontMonserat alignleft fontMontserrat">
                     <input id="quiz-id" type="hidden" value="1">
                     <div class="banner">
                         <div class="bannercontainer dragable">
                             <div class="logo">
                                 <img src="./img/logo-banner.svg" alt="Logo">
                             </div>
-                            <div id="dropContainer" class="dropzone-file">
-                                <div class="file-btn">
-                                    Перетащите сюда <br>
-                                    нужную фотографию
-                                </div>
-                                <div class="preview-picture"></div>
-                             </div>
                         </div>
-                    </div>       
+                    </div>
                 </div>
                 <aside class="rightside">
                     <div class="optionsblock">
@@ -95,19 +88,37 @@
                                 <div class="addpicture">
                                     Добавить фото
                                 </div>
-                                <input type="file" id="fileInput" name="pictures[]" class="realfileinput pictureforpage" />
+                                <input type="file" name="pictures[]" class="realfileinput pictureforpage"><input
+                                    type="file" id="fileInput" name="pictures[]" class="realfileinput pictureforpage">
                                 <div class="imagelist">
 
+                                    <div class="imagerow">
+                                        <div class="filename">hellopage_pic_1.png</div>
+                                        <input type="hidden" name="imagetop_9256595" value="80.3194580078125">
+                                        <input type="hidden" name="imageleft_9256595" value="810.3194580078125">
+                                        <input type="hidden" name="imagewidth_9256595" value="333.33378">
+                                        <input type="hidden" name="imageheight_9256595" value="281.92678">
+                                        <input type="hidden" name="imagesrc_9256595" value="./img/hellopage_pic_1.png">
+                                        <div class="removeimage">
+                                            <div class="icon-remove"></div>
+                                            <div class="tooltip">Удалить изображение</div>
+                                        </div>
+                                        <div class="setbackground">
+                                            <input type="radio" name="setbackground" id="setbackground_9256595" value="9256595">
+                                            <label for="setbackground_9256595"></label>
+                                            <div class="tooltip">Сделать фоновым рисунком</div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="colorrow">
                                     <div class="optiongroup">
                                         <label for="background">
                                             <div class="color" style="background: #DEE1E9;"></div>
                                         </label>
-                                        <input class="bannercolor" type="text"  name="background"  id="background" value="#DEE1E9" data-jscolor="">
+                                        <input class="bannercolor" type="text" name="background" id="background" value="#DEE1E9" data-jscolor="">
                                     </div>
                                     <div class="setbackgroundcolor">
-                                        <input type="radio" name="setbackground" id="setbackgroundcolor" value="">
+                                        <input type="radio" name="setbackground" id="setbackgroundcolor" value="#DEE1E9" checked>
                                         <label for="setbackgroundcolor"></label>
                                         <div class="tooltip">Сделать фоновым цветом</div>
                                     </div>
@@ -120,25 +131,27 @@
                                         <input class="textbannercolor" type="text"  name="background"  id="background" value="#DEE1E9" data-jscolor="">
                                     </div>
                                     <div class="settextbackground">
-                                        <input type="checkbox" name="settextbackground" id="settextbackground" value="#DEE1E9">
+                                        <input type="checkbox" name="settextbackground" id="settextbackground" value="#DEE1E9" checked>
                                         <label for="settextbackground"></label>
                                         <div class="tooltip">Добавить фон тексту</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="text-aside">
-                                <input type="hidden" name="widthscreen">
-                                <input type="hidden" name="heightscreen">
+                                <input type="hidden" name="widthscreen" value="1216.66778">
+                                <input type="hidden" name="heightscreen" value="457.77778">
                                 <div class="textasettings">
                                     <p class="pad-bt-15">Текст</p>
                                     <div class="position position-text">
                                         <div class="left">
-                                            <input type="radio" value="left" name="settings_1" id="settingsposition_1" checked>
-                                            <label for="settingsposition_1"> 
+                                            <input type="radio" value="left" name="settings_1" id="settingsposition_1"
+                                                checked="">
+                                            <label for="settingsposition_1">
                                             </label>
                                         </div>
                                         <div class="center">
-                                            <input type="radio" value="center" name="settings_1" id="settingsposition_2">
+                                            <input type="radio" value="center" name="settings_1"
+                                                id="settingsposition_2">
                                             <label for="settingsposition_2">
                                             </label>
                                         </div>
@@ -149,30 +162,33 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <select name="settings_2" class="customselect fontselect">
-                                            <option value="Montserrat">Montserrat</option>
-                                            <option value="Arial">Arial</option>
-                                            <option value="Tahoma">Tahoma</option>
-                                            <option value="Lucida">Lucida</option>
-                                            <option value="Courier">Courier</option>
-                                            <option value="Georgia">Georgia</option>
-                                            <option value="TimesNewRoman">Times New Roman</option>
-                                            <option value="Roboto">Roboto</option>
-                                            <option value="Tahoma">Tahoma</option>
-                                            <option value="OpenSans">Open Sans</option>
-                                            <option value="Piazzolla">Piazzolla</option>
-                                            <option value="Oswald">Oswald</option>
-                                            <option value="Ubuntu">Ubuntu</option>
-                                            <option value="NotoSans">Noto Sans</option>
-                                            <option value="PTSans">PT Sans</option>
-                                            <option value="Lora">Lora</option>
-                                        </select> 
+                                        <div class="select">
+                                            <select name="settings_2"
+                                                class="customselect fontselect">
+                                                <option value="Montserrat">Montserrat</option>
+                                                <option value="Arial">Arial</option>
+                                                <option value="Tahoma">Tahoma</option>
+                                                <option value="Lucida">Lucida</option>
+                                                <option value="Courier">Courier</option>
+                                                <option value="Georgia">Georgia</option>
+                                                <option value="TimesNewRoman">Times New Roman</option>
+                                                <option value="Roboto">Roboto</option>
+                                                <option value="Tahoma">Tahoma</option>
+                                                <option value="OpenSans">Open Sans</option>
+                                                <option value="Piazzolla">Piazzolla</option>
+                                                <option value="Oswald">Oswald</option>
+                                                <option value="Ubuntu">Ubuntu</option>
+                                                <option value="NotoSans">Noto Sans</option>
+                                                <option value="PTSans">PT Sans</option>
+                                                <option value="Lora">Lora</option>
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="form-group">
-                                        <input type="hidden" name="texttop_1">
-                                        <input type="hidden" name="textleft_1">
-                                        <input type="hidden" name="textwidth_1">
-                                        <input type="hidden" name="textheight_1">
+                                        <input type="hidden" name="texttop_1" value="110.21530151367188">
+                                        <input type="hidden" name="textleft_1" value="90.21528625488281">
+                                        <input type="hidden" name="textwidth_1" value="638.36778">
+                                        <input type="hidden" name="textheight_1" value="47.77778">
                                         <input type="hidden" name="texttype_1" value="1">
                                         <div class="blocktext">
                                             <div class="colorpick colorpick1level">
@@ -181,29 +197,33 @@
                                                     <input type="text" name="color_1" id="color_1" value="#4D4D4D" data-jscolor="">
                                                 </div>
                                                 <div class="labelcolor">
-                                                   <label for="color_1">Текст первого уровня</label>
+                                                    <label for="color_1">Текст первого уровня</label>
                                                 </div>
                                             </div>
                                             <div class="fontsize smallselect-wrapper">
-                                                <select name="fontsize_1" class="customselect font1size ">
-                                                    <option value="50" selected>50</option>
-                                                    <option value="44">44</option>
-                                                    <option value="36">36</option>
-                                                    <option value="28">28</option>
-                                                    <option value="24">24</option>
-                                                    <option value="18">18</option>
-                                                </select>
+                                                <div class="select">
+                                                    <select name="fontsize_1"
+                                                        class="customselect font1size">
+                                                        <option value="50">50</option>
+                                                        <option value="44">44</option>
+                                                        <option value="36">36</option>
+                                                        <option value="28">28</option>
+                                                        <option value="24" selected="">24</option>
+                                                        <option value="18">18</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                             <div class="textblock">
-                                                <textarea name="textlevel_1" class="textlevel1" placeholder="Введите текст"></textarea>
+                                                <textarea name="textlevel_1" class="textlevel1"
+                                                    placeholder="Введите текст">ТЕСТИРОВАНИЕ ТЕКСТОВОЙ СОСТАВЛЯЮЩЕЙ</textarea>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group secondtextgroup">
-                                        <input type="hidden" name="texttop_2">
-                                        <input type="hidden" name="textleft_2">
-                                        <input type="hidden" name="textwidth_2">
-                                        <input type="hidden" name="textheight_2">
+                                        <input type="hidden" name="texttop_2" value="190.111">
+                                        <input type="hidden" name="textleft_2" value="90.1111">
+                                        <input type="hidden" name="textwidth_2" value="662.22178">
+                                        <input type="hidden" name="textheight_2" value="81.11107999999999">
                                         <input type="hidden" name="texttype_2" value="2">
                                         <div class="top-col">
                                             <div class="addsecondtext"></div>
@@ -211,30 +231,35 @@
                                         </div>
                                         <div class="blocktext">
                                             <div class="colorpick colorpicksecond">
-                                                <div class="square" style="background: #4D4D4D;"></div>
+                                                <div class="square" style="background: rgb(87, 34, 222);"></div>
                                                 <div class="inputs">
-                                                    <input type="text" name="color_2" id="color_2" value="#4D4D4D" data-jscolor="">
+                                                    <input type="text" name="color_2" id="color_2" value="rgb(87, 34, 222)"  data-jscolor="">
                                                 </div>
                                                 <div class="labelcolor">
-                                                   <label for="color_2">Текст второго уровня</label>
+                                                    <label for="color_2">Текст второго уровня</label>
                                                 </div>
                                             </div>
                                             <div class="fontsize smallselect-wrapper">
-                                                <select name="fontsize_2" class="customselect fontsecondsize ">
-                                                    <option value="44">44</option>
-                                                    <option value="36">36</option>
-                                                    <option value="36">32</option>
-                                                    <option value="28" selected>28</option>
-                                                    <option value="28">26</option>
-                                                    <option value="24">24</option>
-                                                    <option value="18">18</option>
-                                                    <option value="16">16</option>
-                                                    <option value="14">14</option>
-                                                    <option value="12">12</option>
-                                                </select>
+                                                <div class="select">
+                                                    <select name="fontsize_2"
+                                                        class="customselect fontsecondsize">
+                                                        <option value="44">44</option>
+                                                        <option value="36">36</option>
+                                                        <option value="36">32</option>
+                                                        <option value="28">28</option>
+                                                        <option value="28">26</option>
+                                                        <option value="24">24</option>
+                                                        <option value="18">18</option>
+                                                        <option value="16" selected="">16</option>
+                                                        <option value="14">14</option>
+                                                        <option value="12">12</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                             <div class="textblock">
-                                                <textarea name="textlevel_2" class="textlevelsecond" placeholder="Введите текст"></textarea>
+                                                <textarea name="textlevel_2" class="textlevelsecond" placeholder="Введите текст"
+                                                    rows="5">Коротких рекламных сообщений товаров и услуг, слоганов, призывающих к оформлению того или иного банковского продукта или услуги
+                                                </textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -243,7 +268,7 @@
                         </div>
                     </div>
                     <div class="btn-wrapper">
-                        <input class="btn-default" type='submit' value=" Сохранить">
+                        <input class="btn-default" type="submit" value="&nbsp;Сохранить">
                     </div>
                 </aside>
 
@@ -253,7 +278,7 @@
     </div>
 
     <script>
-        if($('#dropContainer').length>0){
+        if ($('#dropContainer').length > 0) {
             // Dropzone.autoDiscover = false;
             var drop = $('#dz-preview-template').html();
             $('.upload-file').click(function () {
@@ -263,12 +288,12 @@
             // dragover and dragenter events need to have 'preventDefault' called
             // in order for the 'drop' event to register. 
             // See: https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Drag_operations#droptargets
-            dropContainer.ondragover = dropContainer.ondragenter = function(evt) {
+            dropContainer.ondragover = dropContainer.ondragenter = function (evt) {
                 evt.preventDefault();
             };
 
-            dropContainer.ondrop = function(evt) {
-            // pretty simple -- but not for IE :(
+            dropContainer.ondrop = function (evt) {
+                // pretty simple -- but not for IE :(
                 fileInput.files = evt.dataTransfer.files;
                 // If you want to use some of the dropped files
                 const dT = new DataTransfer();

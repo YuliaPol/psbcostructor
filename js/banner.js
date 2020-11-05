@@ -138,6 +138,19 @@ jQuery(function ($) {
             }
         });
 
+
+        //set background color
+        $('.rightside').on('change', '.settextbackground input[type=checkbox]', function(e){
+            if($(this).is(':checked')){
+                var color = $('.rightside .textbackgroundrow .textbannercolor').val();
+                $('.bannercontainer .dragtext').addClass('backgroundtext');
+                $('.bannercontainer .dragtext').css('background', color);
+            }
+            else {
+                $('.bannercontainer .dragtext').removeClass('backgroundtext');
+                $('.bannercontainer .dragtext').css('background', 'transparent');
+            }
+        });
         //set background color
         $('.rightside').on('change', '.setbackgroundcolor input[type=radio]', function(e){
             if($(this).is(':checked')){
@@ -195,6 +208,15 @@ jQuery(function ($) {
                 $('.bannercontainer').css('background', color);
             }
         });
+
+        //change color background text
+        $('.page-content').on('input', '.textbackgroundrow .textbannercolor', function(e){
+            var color = $(this).val();
+            $(this).parents('.optiongroup').find('.color').css('background', color);
+            if($(this).parents('.textbackgroundrow').find('input[name=settextbackground]').is(':checked')){
+                $('.bannercontainer .dragtext').css('background', color);
+            }
+        });
         $('.page-content').on('click', '.removeimage', function(e){
             var id = $(this).parents('.imagerow').find('.setbackground input[type=radio]').val();
             if($('#image_' + id).length>0) {
@@ -216,7 +238,7 @@ jQuery(function ($) {
             }
             var id = Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
             var image = 
-            '<div class="drag dragimage newimage" id="image_'+ id + '" style="width: 300px;" data-id="'+ id + '">'
+            '<div class="drag dragimage newimage" id="image_'+ id + '" style="width: 300px; top: 50px;" data-id="'+ id + '">'
             +'    <div class="remove-picture "></div>'
             +'    <img src="./img/hellopage_pic_1.png" alt="">'
             +'</div>';
@@ -322,13 +344,18 @@ jQuery(function ($) {
                 SetPositionOfElement($('.bannercontainer').find('.text1level'), top, left);
             }
             else {
-                var color = $('.textlevel1').parents('.blocktext').find('.colorpick1level input[type=color]').val();
+                var color = $('.textlevel1').parents('.blocktext').find('.colorpick1level input[type=text]').val();
                 var fontsize = $('.font1size').val() + "px";
                 var text1 = 
-                '<div class="drag dragtext text1level" style="left: 20px; top: 20px;">'
+                '<div class="drag dragtext text1level" style="left: 20px; top: 50px;">'
                 +'    <div class="text" style="color: ' + color + ';font-size: ' + fontsize + ';">'+ $(this).val() + '</div>'
                 +'</div>';
                 $(text1).appendTo($('.bannercontainer'));
+                if($('.rightside .textbackgroundrow input[name=settextbackground]:checked').length>0){
+                    var textBg = $('.rightside .textbackgroundrow .textbannercolor').val();
+                    $('.bannercontainer .dragtext').addClass('backgroundtext');
+                    $('.bannercontainer .dragtext').css('background', textBg);
+                }
             }
             auto_grow(this);
             //Make element draggable
@@ -376,8 +403,7 @@ jQuery(function ($) {
         });
         
         //change of color second level 
-        $('.rightside').on('input', '.colorpicksecond input[type=color]', function(e){
-            $(this).next('input').val($(this).val());
+        $('.rightside').on('input', '.colorpicksecond input[type=text]', function(e){
             var value = $(this).val();
             var id = $(this).parents('.colorpick').find('input[type=text]').attr('name').split('_')[1];
             $(this).parents('.colorpick').find('.square').css( 'background', value);
@@ -400,13 +426,18 @@ jQuery(function ($) {
                 SetPositionOfElement($('#secondtext_' + id), top, left);
             }
             else {
-                var color = $(this).parents('.blocktext').find('.colorpick input[type=color]').val();
+                var color = $(this).parents('.blocktext').find('.colorpick input[type=text]').val();
                 var fontsize = $(this).parents('.blocktext').find('.font1size').val() + "px";
                 var text1 = 
-                '<div class="drag dragtext textsecond" id="secondtext_' + id + '" style="left: 20px; top: 20px;">'
+                '<div class="drag dragtext textsecond" id="secondtext_' + id + '" style="left: 20px; top: 50px;">'
                 +'    <div class="text" style="color: ' + color + ';font-size: ' + fontsize + ';">'+ $(this).val() + '</div>'
                 +'</div>';
                 $(text1).appendTo($('.bannercontainer'));
+                if($('.rightside .textbackgroundrow input[name=settextbackground]:checked').length>0){
+                    var textBg = $('.rightside .textbackgroundrow .textbannercolor').val();
+                    $('.bannercontainer .dragtext').addClass('backgroundtext');
+                    $('.bannercontainer .dragtext').css('background', textBg);
+                }
             }
             auto_grow(this);
             //Make element draggable
@@ -467,8 +498,7 @@ jQuery(function ($) {
             +'        <div class="colorpick colorpicksecond">'
             +'            <div class="square" style="background: #4D4D4D;"></div>'
             +'            <div class="inputs">'
-            +'                <input type="color" value="#4D4D4D">'
-            +'                <input type="text" name="color_'+ id + '" id="color_'+ id + '" value="#4D4D4D">'
+            +'                <input type="text" name="color_'+ id + '" id="color_'+ id + '" value="#4D4D4D"  data-jscolor="">'
             +'            </div>'
             +'            <div class="labelcolor">'
             +'           <label for="color_'+ id + '">Текст второго уровня</label>'
@@ -495,6 +525,8 @@ jQuery(function ($) {
             +'</div>';
             $(newsecondtext).appendTo($('.rightside .text-aside .textasettings'));
             customSelectActive();
+            //plugin for colorpick
+            jscolor.install('.rightside');
         });
 
         //removesecondtext
@@ -511,185 +543,6 @@ jQuery(function ($) {
         $('.rightside').on('change', '.btn-options .position input[type=radio]', function(e){
             $('.dragbtn').find('.btn-cont .btn').css('text-align', $(this).val());
         });
-
-        $('.rightside').on('change', '.btnwidth', function(e){
-            var value = $(this).val() + 'px';
-            $('.dragbtn').find('.btn-cont .btn').css('width', value);
-        });
-
-        $(".btnwidth").inputFilter(function(value) {
-            return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 1500);
-        });
-
-        $('.rightside').on('change', '.btnheight', function(e){
-            var value = $(this).val() + 'px';
-            $('.dragbtn').find('.btn-cont .btn').css('height', value);
-        });
-
-        $(".btnheight").inputFilter(function(value) {
-            return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 500);
-        });
-
-
-        $('.rightside').on('change', '.btnradius', function(e){
-            var value = $(this).val() + "px";
-            $('.dragbtn').find('.btn-cont .btn').css( {  borderRadius:   value });
-        });
-
-        
-        $(".btnradius").inputFilter(function(value) {
-            return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 500);
-        });
-
-        //btn background color
-        $('.rightside').on('input', '.btncolor', function(e){
-            var value = $(this).val();
-            $('.dragbtn').find('.btn-cont  .btn').css( 'background', value);
-            $(this).parents('.optionbtngroup').find('.color').css( 'background', value);
-        });
-
-        $('.rightside').on('click', '.btncolor', function(e){
-            $(this).prev('input').click();
-        });
-
-        $('.rightside').on('input', '.hiddeninputcolor', function(e){
-            $(this).next('input').val($(this).val());
-            var value = $(this).val();
-            $('.dragbtn').find('.btn-cont .btn').css( 'background', value);
-            
-            $(this).parents('.btn-options-group').find('.optionbtntextcolor .color').css( 'background', value);
-            $(this).parents('.optionbtngroup').find('.color').css( 'background', value);
-        });
-        //btn text color 
-        $('.rightside').on('input', '.btntextcolor', function(e){
-            var value = $(this).val();
-            $('.dragbtn').find('.btn-cont  .btn').css( 'color', value);
-            $(this).parents('.optionbtngroup').find('.color').css( 'color', value);
-        });
-
-        $('.rightside').on('click', '.btntextcolor', function(e){
-            $(this).prev('input').click();
-        });
-
-        $('.rightside').on('input', '.hiddeninputtextcolor', function(e){
-            $(this).next('input').val($(this).val());
-            var value = $(this).val();
-            $('.dragbtn').find('.btn-cont .btn').css( 'color', value);
-            $(this).parents('.optionbtngroup').find('.color').css( 'color', value);
-        });
-
-        $('.rightside').on('change, keypress, keydown, keyup', '.btn_name', function(e){
-            var value = $(this).val();
-            $('.dragbtn').find('.btn-cont .btn').html(value);
-        });
-
-        //remove btn 
-        $('.rightside').on('click', '.btn-remove', function(e){
-            $(this).parents('.rightside').find('.btn-options-group').remove();
-            $('.bannercontainer .dragbtn').remove();
-            $(this).removeClass('btn-remove');
-            $(this).addClass('btn-add');
-        });
-
-        //add btn 
-        $('.rightside').on('click', '.btn-add', function(e){
-            $(this).addClass('btn-remove');
-            $(this).removeClass('btn-add');
-            var btnoptions = 
-            '<div class="btn-options-group">'
-            +'    <input type="hidden" name="pbtntop" value="20">'
-            +'    <input type="hidden" name="pbtnleft"  value="20">'
-            +'    <input type="hidden" name="pbtnwidth">'
-            +'    <input type="hidden" name="pbtnheight">'
-            +'    <div class="position">'
-            +'        <div class="left">'
-            +'          <input type="radio" value="left" name="btnposition" id="btnposition_1">'
-            +'          <label for="btnposition_1">'
-            +'          </label>'
-            +'      </div>'
-            +'      <div class="center">'
-            +'          <input type="radio" value="center" name="btnposition" id="btnposition_2" checked>'
-            +'          <label for="btnposition_2">'
-            +'          </label>'
-            +'      </div>'
-            +'      <div class="right">'
-            +'          <input type="radio" value="right" name="btnposition" id="btnposition_3">'
-            +'          <label for="btnposition_3">'
-            +'          </label>'
-            +'      </div>'
-            +'  </div>'
-            +'  <div class="row-options">'
-            +'      <div class="optionbtngroup">'
-            +'          <label for="btnwidth">W</label>'
-            +'          <input class="btnwidth" type="text"  name="btnwidth"  id="btnwidth" value="150">'
-            +'      </div>'
-            +'      <div class="optionbtngroup">'
-            +'          <label for="btnheight">H</label>'
-            +'          <input class="btnheight" type="text"  name="btnheight"  id="btnheight" value="36">'
-            +'      </div>'
-            +'  </div>'
-            +'  <div class="row-options">'
-            +'      <div class="optionbtngroup">'
-            +'          <label for="btnradius">'
-            +'              <div class="radius"></div>'
-            +'          </label>'
-            +'          <input class="btnradius" type="text"  name="btnradius"  id="btnradius" value="30">'
-            +'      </div>'
-            +'      <div class="optionbtngroup">'
-            +'          <label for="btncolor">'
-            +'              <div class="color"'
-            +'              style="background: #F26126"></div>'
-            +'          </label>'
-            +'          <input type="color" class="hiddeninput hiddeninputcolor" value="#F26126">'
-            +'          <input class="btncolor" type="text"  name="btncolor"  id="btncolor" value="#F26126">'
-            +'      </div>'
-            +'  </div>'
-            +'    <div class="row-options">'
-            +'        <div class="optionbtngroup optionbtntextcolor">'
-            +'            <label for="btntextcolor">'
-            +'                <div class="color" style="'
-            +'                background-color: #F26126;'
-            +'                color: #ffffff;">T</div>'
-            +'            </label>'
-            +'            <input type="color" class="hiddeninput hiddeninputtextcolor"'
-            +'                value="#ffffff">'
-            +'            <input class="btntextcolor" type="text" name="btntextcolor" id="btntextcolor"'
-            +'                value="#ffffff">'
-            +'        </div>'
-            +'    </div>'
-            +'  <div class="form-group">'
-            +'      <label for="btnname">Текст кнопки</label>'
-            +'      <input class="btn_name" name="btnname" id="btnname" value="Пройти опрос">'
-            +'  </div>'
-            +'</div>';
-            var btnel =
-            '<div class="drag dragbtn" style="top: 20px; left: 20px;">'
-            +'    <div class="btn-cont" style="text-align: center;">'
-            +'      <button class="btn" type="submit"'
-            +'          style="'
-            +'          background: #F26126;'
-            +'          width: 150px;'
-            +'          height: 36px;'
-            +'          border-radius: 30px;">'
-            +'          Пройти опрос'
-            +'      </button>'
-            +'  </div>'
-            +'</div>';
-            $(btnel).appendTo($('.bannercontainer'));
-            $(btnoptions).appendTo($('.rightside .text-aside .btn-options'));
-            //Make element draggable
-            $(".drag").draggable({
-                appendTo: ".dragable",
-                containment: ".dragable",
-                grid: [ 10, 10 ],
-                stop: function( event, ui ) {
-                    var top = ui.position.top;
-                    var left = ui.position.left;
-                    SetPositionOfElement(event.target, top, left);
-                }
-            });
-        });
-        
 
         function RefreshSecondTextIndex() {
             $('.bannercontainer').find('.textsecond').addClass('changingid');
@@ -762,29 +615,7 @@ jQuery(function ($) {
                 $(tepltecol).appendTo($('.rightside .text-aside .textasettings'));
             }
         }
-        //if bannercontainer is empty ad posibility to drag picture 
-        // $(".droppable").droppable({
-        //     drop: function (e, ui) {
-        //         if ($(ui.draggable)[0].id != "") {
-        //             x = ui.helper.clone();
-        //             ui.helper.remove();
-        //         x.draggable({
-        //             //helper: 'original',
-        //             containment: '.droppable',
-        //             tolerance: 'fit',
-        //             stack: '.drag'
-        //         });
 
-        //         x.resizable({
-        //           animate: true,
-        //           //aspectRatio: 16 / 9,
-        //           helper: "ui-resizable-helper",
-        //           handles: "n, e, s, w, nw, ne, sw,se"
-        //         });
-        //         x.appendTo('.droppable');
-        //         }
-        //     }
-        // });
 
         //color options level change
         $('.rightside').on('click', '.colorpick input[type=text]', function(e){
@@ -792,11 +623,10 @@ jQuery(function ($) {
         });
 
         $('.rightside').on('click', '.colorpick .square', function(e){
-            $(this).parents('.colorpick').find('input[type=color]').click();
+            $(this).parents('.colorpick').find('input[type=text]').click();
         });
 
-        $('.rightside').on('input', '.colorpick1level input[type=color]', function(e){
-            $(this).next('input').val($(this).val());
+        $('.rightside').on('input', '.colorpick1level input[type=text]', function(e){
             var value = $(this).val();
             $(this).parents('.colorpick').find('.square').css( 'background', value);
             $('.centerbox .text1level .text').css('color', value);
@@ -946,11 +776,11 @@ jQuery(function ($) {
                         height = parseInt($('.imagelist input[name=imageheight_' + id + ']').val());
                     }
                     if( width && top) {
-                        var smwidth = prevwidth - width;
+                        var smwidth = prevwidth;
                         var prevleft = (100 * left)/smwidth;
-                        var smwidthnew = parseInt($('.bannercontainer').width()) - width;
-                        var newleft = Math.round((prevleft*smwidthnew)/100);
+                        var smwidthnew = parseInt($('.bannercontainer').width());
 
+                        var newleft = Math.round((prevleft*smwidthnew)/100);
                         var pertop = top * (100/prevheight);
                         var newtop = pertop * (parseInt($('.bannercontainer').height())/100);
 
@@ -967,8 +797,25 @@ jQuery(function ($) {
                             }
                         }
                         $(element).css('left', newleft  + 'px');
-                        // $(element).css('width', width + 'px');
-                        // $(element).css('height', height  + 'px');
+
+                        var prevwidthEl = (100*width)/smwidth;
+                        var elwidth = Math.round((prevwidthEl*smwidthnew)/100);
+                        if((width<250 || $(element).hasClass('text1level')) && prevwidth>smwidthnew){
+                            if($(element).hasClass('text1level') && width<350){
+                                $(element).css('width', 'auto');
+                            }
+                            else {
+                                $(element).css('width', elwidth + 'px');
+                            }
+                        }
+                        else {
+                            $(element).css('width', elwidth + 'px');
+                            if($(element).hasClass('dragimage')){
+                                var relative = Math.round((width/height)*100)/100;
+                                var newHeight = Math.round(elwidth/relative);
+                                $(element).css('height', newHeight  + 'px');
+                            }
+                        }
                         if(newtop + height < $('.bannercontainer').height()){
                             $(element).css('top', newtop  + 'px' );
                         }
@@ -979,8 +826,6 @@ jQuery(function ($) {
                     }
                 });
             }
-
-
 
             //set options on start
             //set size of screen
@@ -1012,47 +857,18 @@ jQuery(function ($) {
             SecondTexts.each(function (index, text) {
                 var id = $(text).find('input[type=text]').attr('name').split('_')[1];
                 var fontsize = $(text).find('.fontsecondsize').val() + "px";
-                var color = $(text).find('.colorpicksecond input[type=color]').val();
+                var color = $(text).find('.colorpicksecond input[type=text]').val();
                 $('#secondtext_' + id + ' .text').css('font-size', fontsize);
                 $('#secondtext_' + id + ' .text').css('color', color);
             });
         }
-        //set btn options
-        //btn position
-        if($('.rightside .btn-options .position input[type=radio]:checked').length>0){
-            $('.dragbtn').find('.btn-cont .btn').css('text-align', $('.rightside .btn-options .position input[type=radio]:checked').val());
-        }
-        //btnwidth
-        if($('.rightside .btnwidth').length>0){
-            var btnwidth =$('.rightside .btnwidth').val() + 'px';
-            $('.dragbtn').find('.btn-cont .btn').css('width', btnwidth);
-        }
-        //btnheight
-        if($('.rightside .btnheight').length>0){
-            var btnheight =$('.rightside .btnheight').val() + 'px';
-            $('.dragbtn').find('.btn-cont .btn').css('height', btnheight);
-        }
-        //btnradius
-        if($('.rightside .btnradius').length>0){
-            var btnradius =$('.rightside .btnradius').val() + 'px';
-            $('.dragbtn').find('.btn-cont .btn').css( {  borderRadius:   btnradius });
-        }
-        //btn color
-        if($('.rightside .hiddeninputcolor').length>0){
-            var color = $('.rightside .hiddeninputcolor').val();
-            $('.dragbtn').find('.btn-cont .btn').css( 'background', color);
-        }
-        //btn text color 
-        if($('.rightside .hiddeninputtextcolor').length>0){
-            var color = $('.rightside .hiddeninputtextcolor').val();
-            $('.dragbtn').find('.btn-cont .btn').css( 'color', color);
-        }
+
         //set header text
         if($('.rightside .textlevel1').val()){
-            var color = $('.textlevel1').parents('.blocktext').find('.colorpick1level input[type=color]').val();
+            var color = $('.textlevel1').parents('.blocktext').find('.colorpick1level input[type=text]').val();
             var fontsize = $('.font1size').val() + "px";
             var text1 = 
-            '<div class="drag dragtext text1level" style="left: 20px; top: 20px;">'
+            '<div class="drag dragtext text1level" style="left: 20px; top: 50px;">'
             +'    <div class="text" style="color: ' + color + ';font-size: ' + fontsize + ';">'+ $('.rightside .textlevel1').val() + '</div>'
             +'</div>';
             $(text1).appendTo($('.bannercontainer'));
@@ -1063,10 +879,10 @@ jQuery(function ($) {
             SecondTexts.each(function (index, text) {
                 if($(text).val()){
                     var id = $(text).attr('name').split('_')[1];
-                    var color = $(text).parents('.blocktext').find('.colorpick input[type=color]').val();
+                    var color = $(text).parents('.blocktext').find('.colorpick input[type=text]').val();
                     var fontsize = $(text).parents('.blocktext').find('.fontsecondsize').val() + "px";
                     var text1 = 
-                    '<div class="drag dragtext textsecond" id="secondtext_' + id + '" style="left: 20px; top: 20px;">'
+                    '<div class="drag dragtext textsecond" id="secondtext_' + id + '" style="left: 20px; top: 50px;">'
                     +'    <div class="text" style="color: ' + color + ';font-size: ' + fontsize + ';">'+ $(text).val() + '</div>'
                     +'</div>';
                     $(text1).appendTo($('.bannercontainer'));
@@ -1074,6 +890,44 @@ jQuery(function ($) {
             });
         }
 
+        //set image and background
+        if($('.rightside .setbackgroundcolor input[type=radio]:checked').length > 0){
+            var color = $('.rightside .colorrow .bannercolor').val();
+            $('.bannercontainer').css('background', color);
+        }
+        //set background text
+        if($('.rightside .settextbackground input[type=checkbox]:checked').length > 0){
+            var color = $('.rightside .textbackgroundrow .textbannercolor').val();
+            $('.bannercontainer .dragtext').addClass('backgroundtext');
+            $('.bannercontainer .dragtext').css('background', color);
+        }
+        //set image and background
+        if($('.rightside .imagelist .imagerow').length>0){
+            var Images = $('.rightside .imagelist .imagerow');
+            Images.each(function (index, image) {
+                if($(image).find('.setbackground input[type=radio]:checked').length>0){
+                    var id = $(image).find('.setbackground input[type=radio]:checked').val();
+                    var src = $(image).find('input[name=imagesrc_' + id + ']').val();
+                    $('.bannercontainer').css('background', 'none');
+                    $('.bannercontainer').css('background-image', 'url(' + src + ')');
+                    $('.bannercontainer').css('background-position', 'center');
+                    $('.bannercontainer').css('background-repeat', 'no-repeat');
+                    $('.bannercontainer').css('background-size', 'cover');
+                    $('.bannercontainer').attr('data-background', id);
+                }
+                else {
+                    var id = $(image).find('.setbackground input[type=radio]').val();
+                    var src = $(image).find('input[name=imagesrc_' + id + ']').val();
+                    var image = 
+                    '<div class="drag dragimage" id="image_'+ id + '" style="width: 300px;" data-id="'+ id + '">'
+                    +'    <div class="remove-picture "></div>'
+                    +'    <input type="hidden" name="picture" value="'+ id + '">'
+                    +'    <img src="'+ src + '" alt="">'
+                    +'</div>';
+                    $('.bannercontainer').append(image);
+                }
+            });
+        }
         //Make element draggable
         $(".drag").draggable({
             appendTo: ".dragable",
