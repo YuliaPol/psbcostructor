@@ -7602,6 +7602,11 @@ table {
   padding: 10px;
 }
 
+.bannercontainer.addshadowtext .dragtext {
+  -webkit-box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+}
+
 .bannercontainer .logo {
   position: absolute;
   max-width: 100px;
@@ -7701,10 +7706,6 @@ table {
   line-height: 1.2em;
   color: #5722DE;
   padding: 5px;
-}
-
-.bannercontainer .dragtext.backgroundtext {
-  border-radius: 15px;
 }
 
 .bannercontainer .drag {
@@ -8517,6 +8518,213 @@ table {
   clear: both;
   -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
           box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+}
+
+.banner_options .textsettings .row-options {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.banner_options .textsettings .shadow-col {
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: calc(50% - 10px);
+}
+
+.banner_options .textsettings .setshadowtext {
+  width: 20px;
+  position: relative;
+}
+
+.banner_options .textsettings .setshadowtext input[type=checkbox] {
+  display: none;
+}
+
+.banner_options .textsettings .setshadowtext input[type=checkbox]:checked + label {
+  background: url(./../img/add-shadow-a.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+          background-size: contain;
+}
+
+.banner_options .textsettings .setshadowtext label {
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  display: block;
+  width: 12px;
+  height: 12px;
+  background: url(./../img/add-shadow.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+          background-size: contain;
+  cursor: pointer;
+}
+
+.banner_options .textsettings .setshadowtext label:hover + .tooltip {
+  opacity: 1;
+}
+
+.banner_options .textsettings .setshadowtext .tooltip {
+  position: absolute;
+  opacity: 0;
+  padding: 5px;
+  font-family: "Montserrat";
+  font-size: 10px;
+  line-height: 12px;
+  color: #37353f;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+  background: #fff;
+  border-radius: 5px;
+  bottom: 30px;
+  width: 110px;
+  left: -90px;
+  pointer-events: none;
+}
+
+.banner_options .textsettings .setshadowtext .tooltip::after {
+  content: '';
+  position: absolute;
+  right: 5px;
+  top: 100%;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #ffffff;
+  clear: both;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+}
+
+.banner_options .textsettings .optiongroup {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: calc(50% - 10px);
+  border: 1px solid #EEEFF3;
+  padding: 7px 9px;
+  position: relative;
+}
+
+.banner_options .textsettings .optiongroup .radius {
+  width: 10px;
+  height: 10px;
+  border: 1px solid #9B9595;
+  border-top-left-radius: 3px;
+  border-bottom: none;
+  border-right: none;
+}
+
+.banner_options .textsettings .optiongroup .border {
+  width: 10px;
+  height: 10px;
+  background: url(./../img/icon-borderwidth.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+          background-size: contain;
+}
+
+.banner_options .textsettings .optiongroup:hover .tooltip {
+  opacity: 1;
+}
+
+.banner_options .textsettings .optiongroup input + .tooltip {
+  position: absolute;
+  opacity: 0;
+  padding: 5px;
+  font-family: "Montserrat";
+  font-size: 10px;
+  line-height: 12px;
+  color: #37353f;
+  -webkit-transition: opacity 0.3s ease-in 0s;
+  -o-transition: opacity 0.3s ease-in 0s;
+  transition: opacity 0.3s ease-in 0s;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+  background: #fff;
+  border-radius: 5px;
+  bottom: 30px;
+  pointer-events: none;
+}
+
+.banner_options .textsettings .optiongroup input + .tooltip::after {
+  content: '';
+  position: absolute;
+  left: calc(50% - 2.5px);
+  top: 100%;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #ffffff;
+  clear: both;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+}
+
+.banner_options .textsettings .optiongroup input:focus + .tooltip {
+  opacity: 0;
+}
+
+.banner_options .textsettings .optiongroup label {
+  display: inline-block;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #9B9595;
+  margin-right: 10px;
+}
+
+.banner_options .textsettings .optiongroup label .color {
+  width: 10px;
+  height: 10px;
+  border: 0.3px solid #9B9595;
+  border-radius: 3px;
+}
+
+.banner_options .textsettings .optiongroup input {
+  display: block !important;
+  width: calc(100% - 25px);
+  border: none;
+  outline: none;
+  padding: 0px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #000000;
 }
 
 .banner_options .imagerow {
@@ -9428,7 +9636,11 @@ html .ui-button.ui-state-disabled:active {
   .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiplescale-question,
   .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .range-question,
   .construcot-container .rightside .default .text-aside .form-group textarea,
-  .construcot-container .rightside .optionbox .text-aside .form-group textarea {
+  .construcot-container .rightside .optionbox .text-aside .form-group textarea,
+  .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group input,
+  .construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group input,
+  .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint input,
+  .construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint input {
     font-size: 10px;
     line-height: 12px;
   }

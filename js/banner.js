@@ -86,7 +86,23 @@ jQuery(function ($) {
 
         //plugin for colorpick
         jscolor.install('.rightside');
-
+        //set text settings 
+        //border-width
+        $(".settextborderradius").inputFilter(function(value) {
+            return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 200);
+        });
+        $('.rightside').on('change', '.settextborderradius', function(e){
+            var borderRadius = $(this).val() + 'px';
+            $('.bannercontainer').find('.dragtext').css('border-radius', borderRadius);
+        });
+        $('.rightside').on('change', '.setshadowtext input', function(e){
+            if($(this).is(':checked')) {
+                $('.bannercontainer').addClass('addshadowtext');
+            }
+            else {
+                $('.bannercontainer').removeClass('addshadowtext');
+            }
+        });
         //set backgroun image
         $('.rightside').on('change', '.setbackground input[type=radio]', function(e){
             if($(this).is(':checked')){
@@ -94,7 +110,6 @@ jQuery(function ($) {
                     var prevId = $('.bannercontainer').attr('data-background');
                     var prevsrc = $('.bannercontainer').css('background-image');
                     prevsrc = prevsrc.replace('url(','').replace(')','').replace(/\"/gi, "");
-
                     var image = 
                     '<div class="drag dragimage" id="image_'+ prevId + '" style="width: 300px;" data-id="'+ prevId + '">'
                     +'    <div class="remove-picture "></div>'
@@ -356,6 +371,10 @@ jQuery(function ($) {
                     $('.bannercontainer .dragtext').addClass('backgroundtext');
                     $('.bannercontainer .dragtext').css('background', textBg);
                 }
+                if($('.rightside .settextborderradius').val()){
+                    var borderRadius = $('.rightside .settextborderradius').val() + px;
+                    $('.bannercontainer').find('.dragtext').css('border-radius', borderRadius);
+                }
             }
             auto_grow(this);
             //Make element draggable
@@ -427,7 +446,7 @@ jQuery(function ($) {
             }
             else {
                 var color = $(this).parents('.blocktext').find('.colorpick input[type=text]').val();
-                var fontsize = $(this).parents('.blocktext').find('.font1size').val() + "px";
+                var fontsize = $(this).parents('.blocktext').find('.fontsecondsize').val() + "px";
                 var text1 = 
                 '<div class="drag dragtext textsecond" id="secondtext_' + id + '" style="left: 20px; top: 50px;">'
                 +'    <div class="text" style="color: ' + color + ';font-size: ' + fontsize + ';">'+ $(this).val() + '</div>'
@@ -437,6 +456,10 @@ jQuery(function ($) {
                     var textBg = $('.rightside .textbackgroundrow .textbannercolor').val();
                     $('.bannercontainer .dragtext').addClass('backgroundtext');
                     $('.bannercontainer .dragtext').css('background', textBg);
+                }
+                if($('.rightside .settextborderradius').val()){
+                    var borderRadius = $('.rightside .settextborderradius').val() + 'px';
+                    $('.bannercontainer').find('.dragtext').css('border-radius', borderRadius);
                 }
             }
             auto_grow(this);
@@ -889,7 +912,14 @@ jQuery(function ($) {
                 }
             });
         }
-
+        //text block radius
+        if($('.rightside .settextborderradius').val()){
+            var borderRadius = $('.rightside .settextborderradius').val() + 'px';
+            $('.bannercontainer').find('.dragtext').css('border-radius', borderRadius);
+        }
+        if($('.rightside .setshadowtext input:checked').length>0){
+            $('.bannercontainer').addClass('addshadowtext');
+        }
         //set image and background
         if($('.rightside .setbackgroundcolor input[type=radio]:checked').length > 0){
             var color = $('.rightside .colorrow .bannercolor').val();

@@ -4754,6 +4754,11 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     background-size: cover;
     background-repeat: no-repeat;
     padding: 10px;
+    &.addshadowtext {
+        .dragtext {
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+        }
+    }
     .logo {
         position: absolute;
         max-width: 100px;
@@ -4839,9 +4844,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                 color: #5722DE;
                 padding: 5px;
             }
-        }
-        &.backgroundtext {
-            border-radius: 15px;
         }
     }
     .drag {
@@ -5396,6 +5398,173 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
             }
         }
 
+    }
+    .textsettings {
+        .row-options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .shadow-col {
+            align-items: flex-start;
+            width: calc(50% - 10px);
+        }
+        .setshadowtext {
+            width: 20px;
+            position: relative;
+            input[type=checkbox] {
+                display: none;
+                &:checked {
+                    & + label {
+                        background: url(./../img/add-shadow-a.svg);
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                    }
+                }
+            }
+            label {
+                align-items: flex-end;
+                display: block;
+                width: 12px;
+                height: 12px;
+                background: url(./../img/add-shadow.svg);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+                cursor: pointer;
+                &:hover {
+                    & + .tooltip {
+                        opacity: 1;
+                    }
+                }
+            }
+            .tooltip {
+                position: absolute;
+                opacity: 0;
+                padding: 5px;
+                font-family: "Montserrat";
+                font-size: 10px;
+                line-height: 12px;
+                color: #37353f;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+                background: #fff;
+                border-radius: 5px;
+                bottom: 30px;
+                width: 110px;
+                left: -90px;
+                pointer-events: none;
+                &::after {
+                    content: '';
+                    position: absolute;
+                    right: 5px;
+                    top: 100%;
+                    width: 0;
+                    height: 0;
+                    border-left: 5px solid transparent;
+                    border-right: 5px solid transparent;
+                    border-top: 5px solid #ffffff;
+                    clear: both;
+                    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+                }
+            }
+        }
+        .optiongroup {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: calc(50% - 10px);
+            border: 1px solid #EEEFF3;
+            padding: 7px 9px;
+            position: relative;
+            .radius {
+                width: 10px;
+                height: 10px;
+                border: 1px solid #9B9595;
+                border-top-left-radius: 3px;
+                border-bottom: none;
+                border-right: none;
+            }
+            .border {
+                width: 10px;
+                height: 10px;
+                background: url(./../img/icon-borderwidth.svg);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+            }
+            &:hover {
+                .tooltip {
+                    opacity: 1;
+                }
+            }
+            input {
+                & +  .tooltip {
+                    position: absolute;
+                    opacity: 0;
+                    padding: 5px;
+                    font-family: $fontpage;
+                    font-size: 10px;
+                    line-height: 12px;
+                    color: rgb(55, 53, 63);
+                    transition: opacity 0.3s ease-in 0s;
+                    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+                    background: #fff;
+                    border-radius: 5px;
+                    bottom: 30px;
+                    pointer-events: none;
+                    &::after{
+                        content: '';
+                        position: absolute;
+                        left: calc(50% - 2.5px);
+                        top: 100%;
+                        width: 0;
+                        height: 0;
+                        border-left: 5px solid transparent;
+                        border-right: 5px solid transparent;
+                        border-top: 5px solid #ffffff;
+                        clear: both;
+                        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+                    }
+                }
+                &:focus {
+                    & +  .tooltip {
+                        opacity: 0;
+                    }
+                }
+            }
+            label {
+                display: inline-block;
+                font-family: $fontpage;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 10px;
+                line-height: 12px;
+                color: #9B9595;
+                margin-right: 10px;
+                .color {
+                    width: 10px;
+                    height: 10px; 
+                    border: 0.3px solid #9B9595;
+                    border-radius: 3px;
+                }
+            }
+            input {
+                display: block !important;
+                width: calc(100% - 25px);
+                border: none;
+                outline: none;
+                padding: 0px;
+                font-family: $fontpage;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 10px;
+                line-height: 12px;
+                color: #000000;
+            }
+        }
     }
     .imagerow {
         display: flex;
@@ -6224,7 +6393,11 @@ html .ui-button.ui-state-disabled:active {
     .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiplescale-question,
     .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .range-question,
     .construcot-container .rightside .default .text-aside .form-group textarea,
-    .construcot-container .rightside .optionbox .text-aside .form-group textarea {
+    .construcot-container .rightside .optionbox .text-aside .form-group textarea,
+    .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group input,
+    .construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .branching-list .branching-group input,
+    .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint input,
+    .construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint input {
         font-size: 10px;
         line-height: 12px;
     }
