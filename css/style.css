@@ -7587,7 +7587,7 @@ table {
 
 .bannercontainer {
   width: 100%;
-  max-width: 100%;
+  max-width: 1400px;
   min-width: 800px;
   min-height: 480px;
   height: 480px;
@@ -7624,6 +7624,7 @@ table {
   max-width: calc(100% - 40px);
   max-height: calc(100% - 40px);
   padding: 5px;
+  z-index: 100;
 }
 
 .bannercontainer .dragbtn .btn {
@@ -7652,6 +7653,7 @@ table {
   border: 1px dashed #9A9797;
   max-width: 100%;
   max-height: calc(100vh - 160px);
+  z-index: 50;
 }
 
 .bannercontainer .dragimage:hover .remove-picture {
@@ -7681,6 +7683,7 @@ table {
   overflow: hidden;
   max-width: calc(100% - 40px);
   max-height: calc(100% - 40px);
+  z-index: 100;
 }
 
 .bannercontainer .dragtext.hidden {

@@ -4742,7 +4742,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 .bannercontainer {
     width: 100%;
-    max-width: 100%;
+    max-width: 1400px;
     min-width: 800px;
     min-height: 480px;
     height: 480px;
@@ -4774,6 +4774,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
         max-width: calc(100% - 40px);
         max-height: calc(100% - 40px);
         padding: 5px;
+        z-index: 100;
         .btn {
             align-items: center;
             justify-content: center;
@@ -4794,6 +4795,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
         border: 1px dashed #9A9797;
         max-width: 100%;
         max-height: calc(100vh - 160px);
+        z-index: 50;
         &:hover {
             .remove-picture {
                 opacity: 1;
@@ -4819,6 +4821,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
         overflow: hidden;
         max-width: calc(100% - 40px);
         max-height: calc(100% - 40px);
+        z-index: 100;
         &.hidden {
             display: none;
         }
