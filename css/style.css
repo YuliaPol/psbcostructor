@@ -7714,6 +7714,7 @@ table {
 .bannercontainer .drag {
   display: inline-block;
   position: absolute !important;
+  cursor: pointer;
 }
 
 .bannercontainer .drag img {

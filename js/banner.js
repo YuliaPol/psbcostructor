@@ -324,10 +324,10 @@ jQuery(function ($) {
         $('.rightside').on('change', '.font1size', function(e){
             var fontsize = $(this).val() + "px";
             if($('.bannercontainer').find('.text1level').length>0){
-                if(parseInt($('.bannercontainer').find('.text1level').width()) < 150){
+                if(parseInt($('.bannercontainer').find('.text1level').outerWidth()) < 150){
                     $('.bannercontainer').find('.text1level').css('width','auto');
                 }
-                if(parseInt($('.bannercontainer').find('.text1level .text').height()) + 30 > parseInt($('.bannercontainer').find('.text1level').height()) && parseInt($('.bannercontainer').find('.text1level').width()) > 150){
+                if(parseInt($('.bannercontainer').find('.text1level .text').height()) + 30 > parseInt($('.bannercontainer').find('.text1level').height()) && parseInt($('.bannercontainer').find('.text1level').outerWidth()) > 150){
                     $('.bannercontainer').find('.text1level').css('height','auto');
                 }
                 var top = $('.bannercontainer').find('.text1level')[0].offsetTop;
@@ -347,10 +347,10 @@ jQuery(function ($) {
         //add header text
         $('.rightside').on('change, keypress, keydown, keyup', '.textlevel1', function(e){
             if($('.bannercontainer').find('.text1level').length>0){
-                if(parseInt($('.bannercontainer').find('.text1level').width()) < 150){
+                if(parseInt($('.bannercontainer').find('.text1level').outerWidth()) < 150){
                     $('.bannercontainer').find('.text1level').css('width','auto');
                 }
-                if(parseInt($('.bannercontainer').find('.text1level .text').height()) + 30 > parseInt($('.bannercontainer').find('.text1level').height()) && parseInt($('.bannercontainer').find('.text1level').width()) > 150){
+                if(parseInt($('.bannercontainer').find('.text1level .text').height()) + 30 > parseInt($('.bannercontainer').find('.text1level').height()) && parseInt($('.bannercontainer').find('.text1level').outerWidth()) > 150){
                     $('.bannercontainer').find('.text1level').css('height','auto');
                 }
                 $('.bannercontainer').find('.text1level .text').html($(this).val());
@@ -372,7 +372,7 @@ jQuery(function ($) {
                     $('.bannercontainer .dragtext').css('background', textBg);
                 }
                 if($('.rightside .settextborderradius').val()){
-                    var borderRadius = $('.rightside .settextborderradius').val() + px;
+                    var borderRadius = $('.rightside .settextborderradius').val() + 'px';
                     $('.bannercontainer').find('.dragtext').css('border-radius', borderRadius);
                 }
             }
@@ -408,10 +408,10 @@ jQuery(function ($) {
             var id = $(this).attr('name').split('_')[1];
             $('#secondtext_' + id + ' .text').css('font-size', fontsize);
             if($('#secondtext_' + id).find('.text').length>0){
-                if(parseInt($('#secondtext_' + id).width()) < 150){
+                if(parseInt($('#secondtext_' + id).outerWidth()) < 150){
                     $('#secondtext_' + id).css('width','auto');
                 }
-                if(parseInt($('#secondtext_' + id).find('.text').height()) + 15 > parseInt($('#secondtext_' + id).height()) && parseInt($('#secondtext_' + id).width()) > 150){
+                if(parseInt($('#secondtext_' + id).find('.text').height()) + 15 > parseInt($('#secondtext_' + id).height()) && parseInt($('#secondtext_' + id).outerWidth()) > 150){
                     $('#secondtext_' + id).css('height','auto');
                 }
                 var top = $('#secondtext_' + id)[0].offsetTop;
@@ -433,10 +433,10 @@ jQuery(function ($) {
         $('.rightside').on('change, keypress, keydown, keyup', '.textlevelsecond', function(e){
             var id = $(this).attr('name').split('_')[1];
             if($('#secondtext_' + id).find('.text').length>0){
-                if(parseInt($('#secondtext_' + id).width()) < 150){
+                if(parseInt($('#secondtext_' + id).outerWidth()) < 150){
                     $('#secondtext_' + id).css('width','auto');
                 }
-                if(parseInt($('#secondtext_' + id).find('.text').height()) + 15 > parseInt($('#secondtext_' + id).height()) && parseInt($('#secondtext_' + id).width()) > 150){
+                if(parseInt($('#secondtext_' + id).find('.text').height()) + 15 > parseInt($('#secondtext_' + id).height()) && parseInt($('#secondtext_' + id).outerWidth()) > 150){
                     $('#secondtext_' + id).css('height','auto');
                 }
                 $('#secondtext_' + id).find('.text').html($(this).val());
@@ -740,7 +740,7 @@ jQuery(function ($) {
 
         function SetPositionOfElement(element, top, left){
             if($(element).hasClass('text1level')){
-                var width = $(element).width();
+                var width = $(element).outerWidth();
                 var height = $(element).height();
                 $('.textasettings input[name=texttop_1]').val(top);
                 $('.textasettings input[name=textleft_1]').val(left);
@@ -749,7 +749,7 @@ jQuery(function ($) {
             }
             else if($(element).hasClass('textsecond')){
                 var id = $(element).attr('id').split('_')[1];
-                var width = $(element).width();
+                var width = $(element).outerWidth();
                 var height = $(element).height();
                 $('.textasettings input[name=texttop_' + id + ']').val(top);
                 $('.textasettings input[name=textleft_' + id + ']').val(left);
@@ -758,7 +758,7 @@ jQuery(function ($) {
             }
             else if($(element).hasClass('dragimage')){
                 var id = $(element).attr('id').split('_')[1];
-                var width = $(element).width();
+                var width = $(element).outerWidth();
                 var height = $(element).height();
                 $('.imagelist input[name=imagetop_' + id + ']').val(top);
                 $('.imagelist input[name=imageleft_' + id + ']').val(left);
@@ -777,7 +777,6 @@ jQuery(function ($) {
                     var height;
                     var top;
                     var left;
-
                     if($(element).hasClass('text1level')){
                         top = parseInt($('.textasettings input[name=texttop_1]').val());
                         left = parseInt($('.textasettings input[name=textleft_1]').val());
@@ -801,16 +800,14 @@ jQuery(function ($) {
                     if( width && top) {
                         var smwidth = prevwidth;
                         var prevleft = (100 * left)/smwidth;
-                        var smwidthnew = parseInt($('.bannercontainer').width());
-
+                        var smwidthnew = parseInt($('.bannercontainer').outerWidth());
                         var newleft = Math.round((prevleft*smwidthnew)/100);
                         var pertop = top * (100/prevheight);
                         var newtop = pertop * (parseInt($('.bannercontainer').height())/100);
-
-                        if(width + newleft > parseInt($('.bannercontainer').width())){
+                        if(width + newleft > parseInt($('.bannercontainer').outerWidth())){
                             var index = 0;
-                            while(width + newleft > parseInt($('.bannercontainer').width()) && index < 20){
-                                if(width > parseInt($('.bannercontainer').width()) - 100){
+                            while(width + newleft > parseInt($('.bannercontainer').outerWidth()) && index < 20){
+                                if(width > parseInt($('.bannercontainer').outerWidth()) - 100){
                                     newleft = newleft - 20;
                                 }
                                 else {
@@ -823,12 +820,12 @@ jQuery(function ($) {
 
                         var prevwidthEl = (100*width)/smwidth;
                         var elwidth = Math.round((prevwidthEl*smwidthnew)/100);
-                        if((width<250 || $(element).hasClass('text1level')) && prevwidth>smwidthnew){
+                        if((elwidth<250 || $(element).hasClass('text1level')) && prevwidth>smwidthnew){
                             if($(element).hasClass('text1level') && width<350){
                                 $(element).css('width', 'auto');
                             }
                             else {
-                                $(element).css('width', elwidth + 'px');
+                                $(element).css('width', 'auto');
                             }
                         }
                         else {
@@ -852,7 +849,7 @@ jQuery(function ($) {
 
             //set options on start
             //set size of screen
-            $('.text-aside input[name=widthscreen]').val($('.bannercontainer').width());
+            $('.text-aside input[name=widthscreen]').val($('.bannercontainer').outerWidth());
             $('.text-aside input[name=heightscreen]').val($('.bannercontainer').height());
         }
         //page position
@@ -983,7 +980,7 @@ jQuery(function ($) {
         });
         ResizeScreen();
         $(window).resize(function() {
-            if(Math.abs(parseInt($('.text-aside input[name=widthscreen]').val()) - parseInt($('.bannercontainer').width())) > 20) {
+            if(Math.abs(parseInt($('.text-aside input[name=widthscreen]').val()) - parseInt($('.bannercontainer').outerWidth())) > 20) {
                 ResizeScreen();
             }
         });
