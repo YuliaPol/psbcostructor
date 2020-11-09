@@ -753,7 +753,7 @@ jQuery(function ($) {
         function SetPositionOfElement(element, top, left){
             if($(element).hasClass('text1level')){
                 var width = $(element).outerWidth();
-                var height = $(element).height();
+                var height = $(element).outerHeight();
                 $('.textasettings input[name=texttop_1]').val(top);
                 $('.textasettings input[name=textleft_1]').val(left);
                 $('.textasettings input[name=textwidth_1]').val(width);
@@ -762,7 +762,7 @@ jQuery(function ($) {
             else if($(element).hasClass('textsecond')){
                 var id = $(element).attr('id').split('_')[1];
                 var width = $(element).outerWidth();
-                var height = $(element).height();
+                var height = $(element).outerHeight();
                 $('.textasettings input[name=texttop_' + id + ']').val(top);
                 $('.textasettings input[name=textleft_' + id + ']').val(left);
                 $('.textasettings input[name=textwidth_' + id + ']').val(width);
@@ -770,7 +770,7 @@ jQuery(function ($) {
             }
             else if($(element).hasClass('dragimage')){
                 var width = $(element).outerWidth();
-                var height = $(element).height();
+                var height = $(element).outerHeight();
                 $('.imagelist input[name=imagetop]').val(top);
                 $('.imagelist input[name=imageleft]').val(left);
                 $('.imagelist input[name=imagewidth]').val(width);
@@ -977,6 +977,18 @@ jQuery(function ($) {
             autoHide: false,
             containment: ".dragable",
             // grid: [ 10, 10 ],
+            handles: "n, e, s, w",
+            stop: function( event, ui ) {
+                var top = ui.position.top;
+                var left = ui.position.left;
+                SetPositionOfElement(event.target, top, left);
+            }
+        });
+        //resize image
+        $( ".dragimage" ).resizable({
+            containment: ".dragable",
+            // grid: [ 10, 10 ],
+            aspectRatio: true,
             handles: "n, e, s, w",
             stop: function( event, ui ) {
                 var top = ui.position.top;
