@@ -51,7 +51,7 @@ jQuery(function ($) {
         $(".drag").draggable({
             appendTo: ".dragable",
             containment: ".dragable",
-            grid: [ 10, 10 ],
+            // grid: [ 10, 10 ],
             stop: function( event, ui ) {
                 var top = ui.position.top;
                 var left = ui.position.left;
@@ -61,7 +61,7 @@ jQuery(function ($) {
         //resize image
         $( ".dragimage" ).resizable({
             containment: ".dragable",
-            grid: [ 10, 10 ],
+            // grid: [ 10, 10 ],
             aspectRatio: true,
             handles: "n, e, s, w",
             stop: function( event, ui ) {
@@ -75,7 +75,7 @@ jQuery(function ($) {
         $( ".dragtext" ).resizable({
             autoHide: false,
             containment: ".dragable",
-            grid: [ 10, 10 ],
+            // grid: [ 10, 10 ],
             handles: "n, e, s, w",
             stop: function( event, ui ) {
                 var top = ui.position.top;
@@ -111,16 +111,15 @@ jQuery(function ($) {
                     var prevsrc = $('.bannercontainer').css('background-image');
                     prevsrc = prevsrc.replace('url(','').replace(')','').replace(/\"/gi, "");
                     var image = 
-                    '<div class="drag dragimage" id="image_'+ prevId + '" style="width: 300px;" data-id="'+ prevId + '">'
+                    '<div class="drag dragimage" id="image" style="width: 300px;">'
                     +'    <div class="remove-picture "></div>'
-                    +'    <input type="hidden" name="picture" value="'+ prevId + '">'
                     +'    <img src="'+ prevsrc + '" alt="">'
                     +'</div>';
                     $('.bannercontainer').append(image);
                     //resize image
                     $( ".dragimage" ).resizable({
                         containment: ".dragable",
-                        grid: [ 10, 10 ],
+                        // grid: [ 10, 10 ],
                         aspectRatio: true,
                         handles: "n, e, s, w",
                         stop: function( event, ui ) {
@@ -133,7 +132,7 @@ jQuery(function ($) {
                     $(".drag").draggable({
                         appendTo: ".dragable",
                         containment: ".dragable",
-                        grid: [ 10, 10 ],
+                        // grid: [ 10, 10 ],
                         stop: function( event, ui ) {
                             var top = ui.position.top;
                             var left = ui.position.left;
@@ -141,15 +140,14 @@ jQuery(function ($) {
                         }
                     });
                 }
-                var id = $(this).val();
-                var src = $('#image_' + id).find('img').attr('src');
+                var src = $('#image').find('img').attr('src');
                 $('.bannercontainer').css('background', 'none');
                 $('.bannercontainer').css('background-image', 'url(' + src + ')');
                 $('.bannercontainer').css('background-position', 'center');
                 $('.bannercontainer').css('background-repeat', 'no-repeat');
                 $('.bannercontainer').css('background-size', 'cover');
-                $('.bannercontainer').attr('data-background', id);
-                $('#image_' + id).remove();
+                $('.bannercontainer').attr('data-background', 'picture');
+                $('#image').remove();
             }
         });
 
@@ -174,16 +172,15 @@ jQuery(function ($) {
                     var prevsrc = $('.bannercontainer').css('background-image');
                     prevsrc = prevsrc.replace('url(','').replace(')','').replace(/\"/gi, "");
                     var image = 
-                    '<div class="drag dragimage" id="image_'+ prevId + '" style="width: 300px;" data-id="'+ prevId + '">'
+                    '<div class="drag dragimage" id="image" style="width: 300px;">'
                     +'    <div class="remove-picture "></div>'
-                    +'    <input type="hidden" name="picture" value="'+ prevId + '">'
                     +'    <img src="'+ prevsrc + '" alt="">'
                     +'</div>';
                     $('.bannercontainer').append(image);
                     //resize image
                     $( ".dragimage" ).resizable({
                         containment: ".dragable",
-                        grid: [ 10, 10 ],
+                        // grid: [ 10, 10 ],
                         aspectRatio: true,
                         handles: "n, e, s, w",
                         stop: function( event, ui ) {
@@ -196,7 +193,7 @@ jQuery(function ($) {
                     $(".drag").draggable({
                         appendTo: ".dragable",
                         containment: ".dragable",
-                        grid: [ 10, 10 ],
+                        // grid: [ 10, 10 ],
                         stop: function( event, ui ) {
                             var top = ui.position.top;
                             var left = ui.position.left;
@@ -221,7 +218,6 @@ jQuery(function ($) {
             $(this).parents('.optiongroup').find('.color').css('background', color);
             if($(this).parents('.colorrow').find('input[name=setbackground]').is(':checked')){
                 $('.bannercontainer').css('background', color);
-                $(this).parents('.colorrow').find('.setbackgroundcolor input').val( color);
             }
         });
 
@@ -234,9 +230,8 @@ jQuery(function ($) {
             }
         });
         $('.page-content').on('click', '.removeimage', function(e){
-            var id = $(this).parents('.imagerow').find('.setbackground input[type=radio]').val();
-            if($('#image_' + id).length>0) {
-                $('#image_' + id).find('.remove-picture').click();
+            if($('#image').length>0) {
+                $('#image').find('.remove-picture').click();
             }
             else {
                 $('.bannercontainer').removeAttr('data-background');
@@ -247,49 +242,66 @@ jQuery(function ($) {
         // change input for file
         $('.page-content').on('change', '.pictureforpage', function(e){
             var fileName = e.target.files[0].name;
-            var newinputfile = '<input type="file" name="pictures[]" class="realfileinput pictureforpage" />';
-            $(newinputfile).insertBefore($(this));
+            console.log(fileName);
             if($('.dropzone-file').length>0) {
                 $('.dropzone-file').remove();
             }
-            var id = Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
-            var image = 
-            '<div class="drag dragimage newimage" id="image_'+ id + '" style="width: 300px; top: 50px;" data-id="'+ id + '">'
-            +'    <div class="remove-picture "></div>'
-            +'    <img src="./img/hellopage_pic_1.png" alt="">'
-            +'</div>';
+            console.log($('.bannercontainer .dragimage'));
+            if($('.bannercontainer .dragimage').length==0){
+                if(!$('.imagerow .setbackground input[type=radio]').is(':checked')){
+                    var image = 
+                    '<div class="drag dragimage newimage" id="image" style="width: 300px; top: 50px;"">'
+                    +'    <div class="remove-picture "></div>'
+                    +'    <img src="./img/hellopage_pic_1.png" alt="">'
+                    +'</div>';
+                }
+                
+                var imageSetings = 
+                '<div class="imagerow">'
+                +'    <div class="filename">'+ fileName + '</div>'
+                +'    <input type="hidden" name="imagetop">'
+                +'    <input type="hidden" name="imageleft">'
+                +'    <input type="hidden" name="imagewidth">'
+                +'    <input type="hidden" name="imageheight">'
+                +'  <div class="removeimage">'
+                +'      <div class="icon-remove"></div>'
+                +'      <div class="tooltip">Удалить изображение</div>'
+                +'  </div>'
+                +'  <div class="setbackground">'
+                +'      <input type="radio" name="setbackground" id="setbackground" value="'+ fileName +'">'
+                +'      <label for="setbackground"></label>'
+                +'      <div class="tooltip">Сделать фоновым рисунком</div>'
+                +'  </div>'
+                +'</div>';
 
-            var imageSetings = 
-            '<div class="imagerow">'
-            +'    <div class="filename">'+ fileName + '</div>'
-            +'    <input type="hidden" name="imagetop_' + id + '">'
-            +'    <input type="hidden" name="imageleft_' + id + '">'
-            +'    <input type="hidden" name="imagewidth_' + id + '">'
-            +'    <input type="hidden" name="imageheight_' + id + '">'
-            +'  <div class="removeimage">'
-            +'      <div class="icon-remove"></div>'
-            +'      <div class="tooltip">Удалить изображение</div>'
-            +'  </div>'
-            +'  <div class="setbackground">'
-            +'      <input type="radio" name="setbackground" id="setbackground_' + id + '" value="' + id + '">'
-            +'      <label for="setbackground_' + id + '"></label>'
-            +'      <div class="tooltip">Сделать фоновым рисунком</div>'
-            +'  </div>'
-            +'</div>';
-            $('.filerow .imagelist').append(imageSetings);
-            $('.bannercontainer').append(image);
+                $('.filerow .imagelist').append(imageSetings);
+                $('.bannercontainer').append(image);
+            }
+            else {
+                $('.filerow .imagelist').find('.filename').html(fileName);
+                $('.filerow .setbackground').find('input[type=radio]').val(fileName);
+            }
+
             if (e.target.files && e.target.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function (e) {
-                    $('.newimage img').attr('src', e.target.result);
-                    $('.newimage').removeClass('newimage');
+                    if(!$('.imagerow .setbackground input[type=radio]').is(':checked')){
+                        $('.dragimage img').attr('src', e.target.result);
+                    }
+                    else {
+                        $('.bannercontainer').css('background', 'none');
+                        $('.bannercontainer').css('background-image', 'url(' + e.target.result + ')');
+                        $('.bannercontainer').css('background-position', 'center');
+                        $('.bannercontainer').css('background-repeat', 'no-repeat');
+                        $('.bannercontainer').css('background-size', 'cover');
+                    }
                 }
                 reader.readAsDataURL(e.target.files[0]);
             }
             //resize image
             $( ".dragimage" ).resizable({
                 containment: ".dragable",
-                grid: [ 10, 10 ],
+                // grid: [ 10, 10 ],
                 aspectRatio: true,
                 handles: "n, e, s, w",
                 stop: function( event, ui ) {
@@ -302,7 +314,7 @@ jQuery(function ($) {
             $(".drag").draggable({
                 appendTo: ".dragable",
                 containment: ".dragable",
-                grid: [ 10, 10 ],
+                // grid: [ 10, 10 ],
                 stop: function( event, ui ) {
                     var top = ui.position.top;
                     var left = ui.position.left;
@@ -313,8 +325,7 @@ jQuery(function ($) {
         
         //remove picture
         $('.page-content').on('click', '.remove-picture', function(e){
-            var id = $(this).parents('.dragimage').attr('id').split('_')[1];
-            $('#setbackground_' + id).parents('.imagerow').remove();
+            $('.imagerow').remove();
             $(this).parents('.dragimage').remove();
         });
         $('.page-content').on('click', '.addpicture', function(e){
@@ -382,7 +393,7 @@ jQuery(function ($) {
             $(".drag").draggable({
                 appendTo: ".dragable",
                 containment: ".dragable",
-                grid: [ 10, 10 ],
+                // grid: [ 10, 10 ],
                 stop: function( event, ui ) {
                     var top = ui.position.top;
                     var left = ui.position.left;
@@ -393,7 +404,7 @@ jQuery(function ($) {
             $( ".dragtext" ).resizable({
                 autoHide: false,
                 containment: ".dragable",
-                grid: [ 10, 10 ],
+                // grid: [ 10, 10 ],
                 handles: "n, e, s, w",
                 stop: function( event, ui ) {
                     var top = ui.position.top;
@@ -468,7 +479,7 @@ jQuery(function ($) {
             $(".drag").draggable({
                 appendTo: ".dragable",
                 containment: ".dragable",
-                grid: [ 10, 10 ],
+                // grid: [ 10, 10 ],
                 stop: function( event, ui ) {
                     var top = ui.position.top;
                     var left = ui.position.left;
@@ -479,7 +490,7 @@ jQuery(function ($) {
             $( ".dragtext" ).resizable({
                 autoHide: false,
                 containment: ".dragable",
-                grid: [ 10, 10 ],
+                // grid: [ 10, 10 ],
                 handles: "n, e, s, w",
                 stop: function( event, ui ) {
                     var top = ui.position.top;
@@ -758,13 +769,12 @@ jQuery(function ($) {
                 $('.textasettings input[name=textheight_' + id + ']').val(height);
             }
             else if($(element).hasClass('dragimage')){
-                var id = $(element).attr('id').split('_')[1];
                 var width = $(element).outerWidth();
                 var height = $(element).height();
-                $('.imagelist input[name=imagetop_' + id + ']').val(top);
-                $('.imagelist input[name=imageleft_' + id + ']').val(left);
-                $('.imagelist input[name=imagewidth_' + id + ']').val(width);
-                $('.imagelist input[name=imageheight_' + id + ']').val(height);
+                $('.imagelist input[name=imagetop]').val(top);
+                $('.imagelist input[name=imageleft]').val(left);
+                $('.imagelist input[name=imagewidth]').val(width);
+                $('.imagelist input[name=imageheight]').val(height);
             }
         }
         function ResizeScreen(){
@@ -792,11 +802,10 @@ jQuery(function ($) {
                         height = parseInt($('.textasettings input[name=textheight_' + id + ']').val());
                     }
                     else if($(element).hasClass('dragimage')){
-                        var id = $(element).attr('id').split('_')[1];
-                        top = parseInt($('.imagelist input[name=imagetop_' + id + ']').val());
-                        left = parseInt($('.imagelist input[name=imageleft_' + id + ']').val());
-                        width = parseInt($('.imagelist input[name=imagewidth_' + id + ']').val());
-                        height = parseInt($('.imagelist input[name=imageheight_' + id + ']').val());
+                        top = parseInt($('.imagelist input[name=imagetop]').val());
+                        left = parseInt($('.imagelist input[name=imageleft]').val());
+                        width = parseInt($('.imagelist input[name=imagewidth]').val());
+                        height = parseInt($('.imagelist input[name=imageheight]').val());
                     }
                     if( width && top) {
                         var smwidth = prevwidth;
@@ -922,7 +931,6 @@ jQuery(function ($) {
         if($('.rightside .setbackgroundcolor input[type=radio]:checked').length > 0){
             var color = $('.rightside .colorrow .bannercolor').val();
             $('.bannercontainer').css('background', color);
-            $('.rightside .colorrow').find('.setbackgroundcolor input').val( color);
         }
         //set background text
         if($('.rightside .settextbackground input[type=checkbox]:checked').length > 0){
@@ -935,22 +943,18 @@ jQuery(function ($) {
             var Images = $('.rightside .imagelist .imagerow');
             Images.each(function (index, image) {
                 if($(image).find('.setbackground input[type=radio]:checked').length>0){
-                    var id = $(image).find('.setbackground input[type=radio]:checked').val();
-                    var src = $(image).find('input[name=imagesrc_' + id + ']').val();
+                    var src = $(image).find('input[name=imagesrc]').val();
                     $('.bannercontainer').css('background', 'none');
                     $('.bannercontainer').css('background-image', 'url(' + src + ')');
                     $('.bannercontainer').css('background-position', 'center');
                     $('.bannercontainer').css('background-repeat', 'no-repeat');
                     $('.bannercontainer').css('background-size', 'cover');
-                    $('.bannercontainer').attr('data-background', id);
                 }
                 else {
-                    var id = $(image).find('.setbackground input[type=radio]').val();
-                    var src = $(image).find('input[name=imagesrc_' + id + ']').val();
+                    var src = $(image).find('input[name=imagesrc]').val();
                     var image = 
-                    '<div class="drag dragimage" id="image_'+ id + '" style="width: 300px;" data-id="'+ id + '">'
+                    '<div class="drag dragimage" id="image" style="width: 300px;"">'
                     +'    <div class="remove-picture "></div>'
-                    +'    <input type="hidden" name="picture" value="'+ id + '">'
                     +'    <img src="'+ src + '" alt="">'
                     +'</div>';
                     $('.bannercontainer').append(image);
@@ -961,7 +965,7 @@ jQuery(function ($) {
         $(".drag").draggable({
             appendTo: ".dragable",
             containment: ".dragable",
-            grid: [ 10, 10 ],
+            // grid: [ 10, 10 ],
             stop: function( event, ui ) {
                 var top = ui.position.top;
                 var left = ui.position.left;
@@ -972,7 +976,7 @@ jQuery(function ($) {
         $( ".dragtext" ).resizable({
             autoHide: false,
             containment: ".dragable",
-            grid: [ 10, 10 ],
+            // grid: [ 10, 10 ],
             handles: "n, e, s, w",
             stop: function( event, ui ) {
                 var top = ui.position.top;
