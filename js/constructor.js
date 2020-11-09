@@ -1765,7 +1765,9 @@ jQuery(function ($) {
         // }
         //set new range value when change value
         $('.centerbox').on('input', '.range input[type=range]', function(e){
-            SetRangeValue(this, $(this).val());
+            if($(this).val()){
+                SetRangeValue(this, $(this).val());
+            }
         });
 
         //set new color 
@@ -5132,10 +5134,10 @@ jQuery(function ($) {
                 +'              </div>'
                 +'              <div class="range">'
                 +'                  <div class="label">'
-                +'                      <div class="value">5</div>'
+                +'                      <div class="value"></div>'
                 +'                  </div>'
                 +'                  <div class="input-box">'
-                +'                      <input class="input-range" name="range_'+ id +'_1" id="range_'+ id +'_1" type="range" min="0" max="10" step="1" value="5"/>'
+                +'                      <input class="input-range" name="range_'+ id +'_1" id="range_'+ id +'_1" type="range" min="0" max="10" step="1"/>'
                 +'                      <div class="bar"></div>'
                 +'                      <div class="bar-filled"></div>'
                 +'                  </div>'
@@ -5203,12 +5205,12 @@ jQuery(function ($) {
                     +'          <div class="optiongroup">'
                     +'              <label for="rangemin_'+ id +'">MIN</label>'
                     +'              <input class="rangemin" type="text"  name="rangemin_'+ id +'"  id="rangemin_'+ id +'" value="0">'
-                    +'              <div class="tooltip">Минимальное значение</div>'
+                    +'              <div class="tooltip">Минимальное значение оценки</div>'
                     +'          </div>'
                     +'          <div class="optiongroup">'
                     +'              <label for="rangemax_'+ id +'">MAX</label>'
                     +'              <input class="rangemax" type="text"  name="rangemax_'+ id +'"  id="rangemax_'+ id +'" value="10">'
-                    +'              <div class="tooltip">Максимальное значение</div>'
+                    +'              <div class="tooltip">Максимальное значение оценки</div>'
                     +'          </div>'
                     +'      </div>'
                     +'      <div class="row-options">'
@@ -5345,7 +5347,6 @@ jQuery(function ($) {
                     SetPointOfQuestionBranching(id, number);
                 }
             });
-
             $( ".freeanswer_number" ).spinner({
                 min: 0,
                 max: 15,

@@ -221,6 +221,7 @@ jQuery(function ($) {
             $(this).parents('.optiongroup').find('.color').css('background', color);
             if($(this).parents('.colorrow').find('input[name=setbackground]').is(':checked')){
                 $('.bannercontainer').css('background', color);
+                $(this).parents('.colorrow').find('.setbackgroundcolor input').val( color);
             }
         });
 
@@ -921,6 +922,7 @@ jQuery(function ($) {
         if($('.rightside .setbackgroundcolor input[type=radio]:checked').length > 0){
             var color = $('.rightside .colorrow .bannercolor').val();
             $('.bannercontainer').css('background', color);
+            $('.rightside .colorrow').find('.setbackgroundcolor input').val( color);
         }
         //set background text
         if($('.rightside .settextbackground input[type=checkbox]:checked').length > 0){
