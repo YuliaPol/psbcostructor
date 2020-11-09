@@ -1,3 +1,23 @@
+jscolor.presets.default = {
+    position: 'bottom',
+    width: 181,
+    height: 100,
+    padding: 10,
+    sliderSize: 25,
+    borderRadius: 0,
+    borderWidth: 0,
+    controlBorderWidth: 1,
+    pointerBorderWidth: 1,
+    borderColor: '#000',
+    controlBorderColor: '#CCC',
+    backgroundColor: '#fff',
+    format: 'rgba',
+    controlBorderColor: '#ccc',
+    crossSize: 5,
+    pointerBorderColor: '#fff',
+    pointerBorderWidth: 1,
+};
+
 jQuery(function ($) {
     $(document).ready(function () {
 
@@ -56,19 +76,20 @@ jQuery(function ($) {
         $('.rightside').on('click', '.colorpick input[type=text]', function(e){
             $(this).prev('input').click();
         });
+
         $('.rightside').on('click', '.colorpick .square', function(e){
-            $(this).parents('.colorpick').find('input[type=color]').click();
+            $(this).parents('.colorpick').find('input[type=text]').click();
         });
-        $('.rightside').on('input', '.colorpick1level input[type=color]', function(e){
-            $(this).next('input').val($(this).val());
+
+        $('.rightside').on('input', '.colorpick1level input[type=text]', function(e){
             var value = $(this).val();
             $(this).parents('.colorpick').find('.square').css( 'background', value);
             $('.centerbox .question .name').css('color', value);
             $('.centerbox .question .question-name').css('color', value);
         });
+
         //color 2 level
-        $('.rightside').on('input', '.colorpick2level input[type=color]', function(e){
-            $(this).next('input').val($(this).val());
+        $('.rightside').on('input', '.colorpick2level input[type=text]', function(e){
             var value = $(this).val();
             $(this).parents('.colorpick').find('.square').css( 'background', value);
             $('.centerbox .question label').css('color', value);
@@ -76,10 +97,13 @@ jQuery(function ($) {
             $('.centerbox .question .description').css('color', value);
             $('.centerbox .question .text').css('color', value);
             $('.centerbox .question .matrix-table .value').css('color', value);
+
+            $('.centerbox .question .select-styled').css('color', value);
+            $('.centerbox .question .select-options').css('color', value);
+
         });
 
-        $('.rightside').on('input', '.colorpickselect input[type=color]', function(e){
-            $(this).next('input').val($(this).val());
+        $('.rightside').on('input', '.colorpickselect input[type=text]', function(e){
             var value = $(this).val();
             $(this).parents('.colorpick').find('.square').css( 'background', value);
             $('head style[title=colorpickselectstyle]').remove();
@@ -97,8 +121,7 @@ jQuery(function ($) {
             $('head').append(style);
         });
 
-        $('.rightside').on('input', '.colorpickinput input[type=color]', function(e){
-            $(this).next('input').val($(this).val());
+        $('.rightside').on('input', '.colorpickinput input[type=text]', function(e){
             var value = $(this).val();
             $(this).parents('.colorpick').find('.square').css( 'background', value);
             $('.centerbox .question input[type=text]').css('color', value);
@@ -107,8 +130,7 @@ jQuery(function ($) {
             $('.centerbox .question textarea').css('color', value);
         });
 
-        $('.rightside').on('input', '.colorpickbackground input[type=color]', function(e){
-            $(this).next('input').val($(this).val());
+        $('.rightside').on('input', '.colorpickbackground input[type=text]', function(e){
             var value = $(this).val();
             $(this).parents('.colorpick').find('.square').css( 'background', value);
             $('.centerbox').css('background', value);
@@ -121,36 +143,39 @@ jQuery(function ($) {
         }
         //color set 
         //color 1 level
-        $('.centerbox .question .name').css('color', $('.rightside .colorpick1level input[type=color]').val());
-        $('.centerbox .question .question-name').css('color', $('.rightside .colorpick1level input[type=color]').val());
+        $('.centerbox .question .name').css('color', $('.rightside .colorpick1level input[type=text]').val());
+        $('.centerbox .question .question-name').css('color', $('.rightside .colorpick1level input[type=text]').val());
 
         //color 2 level
-        $('.centerbox .question label').css('color', $('.rightside .colorpick2level input[type=color]').val());
-        $('.centerbox .question p').css('color', $('.rightside .colorpick2level input[type=color]').val());
-        $('.centerbox .question .description').css('color', $('.rightside .colorpick2level input[type=color]').val());
-        $('.centerbox .question .text').css('color', $('.rightside .colorpick2level input[type=color]').val());
-        $('.centerbox .question .matrix-table .value').css('color', $('.rightside .colorpick2level input[type=color]').val());
+        $('.centerbox .question label').css('color', $('.rightside .colorpick2level input[type=text]').val());
+        $('.centerbox .question p').css('color', $('.rightside .colorpick2level input[type=text]').val());
+        $('.centerbox .question .description').css('color', $('.rightside .colorpick2level input[type=text]').val());
+        $('.centerbox .question .text').css('color', $('.rightside .colorpick2level input[type=text]').val());
+        $('.centerbox .question .matrix-table .value').css('color', $('.rightside .colorpick2level input[type=text]').val());
+
+        $('.centerbox .question .select-styled').css('color', $('.rightside .colorpick2level input[type=text]').val());
+        $('.centerbox .question .select-options').css('color', $('.rightside .colorpick2level input[type=text]').val());
 
         //color pick
         var style =  
         '<style title="colorpickselectstyle">'
         +'    .construcot-container .centerbox input[type=checkbox]:checked + label::before,'
         +'    .construcot-container .centerbox input[type=radio]:checked + label::before {'
-        +'    background: ' + $('.rightside .colorpickselect input[type=color]').val() + ';'
+        +'    background: ' + $('.rightside .colorpickselect input[type=text]').val() + ';'
         +'    }'
         +'     .construcot-container .centerbox input[type=checkbox] + label::before,'
         +'    .construcot-container .centerbox input[type=radio] + label::before {'
-        +'    border-color: ' + $('.rightside .colorpickselect input[type=color]').val() + ';'
+        +'    border-color: ' + $('.rightside .colorpickselect input[type=text]').val() + ';'
         +'    }'
         '</style>';
         $('head').append(style);
 
         //color input
-        $('.centerbox .question input[type=text]').css('color', $('.rightside .colorpickinput input[type=color]').val());
-        $('.centerbox .question input[type=email]').css('color', $('.rightside .colorpickinput input[type=color]').val());
-        $('.centerbox .question input[type=tel]').css('color', $('.rightside .colorpickinput input[type=color]').val());
-        $('.centerbox .question textarea').css('color', $('.rightside .colorpickinput input[type=color]').val());
-        $('.centerbox').css('background', $('.rightside .colorpickbackground input[type=color]').val());
+        $('.centerbox .question input[type=text]').css('color', $('.rightside .colorpickinput input[type=text]').val());
+        $('.centerbox .question input[type=email]').css('color', $('.rightside .colorpickinput input[type=text]').val());
+        $('.centerbox .question input[type=tel]').css('color', $('.rightside .colorpickinput input[type=text]').val());
+        $('.centerbox .question textarea').css('color', $('.rightside .colorpickinput input[type=text]').val());
+        $('.centerbox').css('background', $('.rightside .colorpickbackground input[type=text]').val());
 
         //position
         if($('.rightside .position-text input[type=radio]:checked').length>0){
@@ -163,13 +188,14 @@ jQuery(function ($) {
         //font
         $('.centerbox').addClass('font' + $('.fontselect').val());
         //bg for text
-        if($('.colorpickbgtext input[type=color]').val() && $('.opacitybgtext').find('input').val()){
-            var value = $('.colorpickbgtext input[type=color]').val();
-            var opacity = parseInt($('.opacitybgtext').find('input').val())/100;
-            var rgbaCol = 'rgba(' + parseInt(value.slice(-6, -4), 16) + ',' + parseInt(value.slice(-4, -2), 16) + ',' + parseInt(value.slice(-2), 16) + ',' + opacity + ')';
+        if($('.colorpickbgtext input[type=text]').val() && $('.opacitybgtext').find('input').val()){
+            var value = $('.colorpickbgtext input[type=text]').val();
+            // var opacity = parseInt($('.opacitybgtext').find('input').val())/100;
+            var rgbaCol = value;
             $('.construcot-container .centerbox .questions-box.bg-image .question').css('background', rgbaCol);
             $('.construcot-container .centerbox .questions-box.bg-image .question .mediablock .textblock').css('background', rgbaCol);
             $('.construcot-container .centerbox .questions-box.bg-image .question .answer .dropdown-list .dropdown-block').css('background', rgbaCol);
+            $('.construcot-container .centerbox .questions-box.bg-image .question .selectdropdown .select-options').css('background', rgbaCol);
         }
 
         //add backgground picture
@@ -179,12 +205,13 @@ jQuery(function ($) {
         //remove background 
         $('.page-content').on('click', '.filerow .removepicture', function(e){
             $('.questions-box').css('background-image', '');
-            $('.questions-box').removeClass('bg-image');
+            // $('.questions-box').removeClass('bg-image');
             $('.addpicture').removeClass('active');
             $('.construcot-container .centerbox .questions-box .question').css('background', 'transparent');
             $('.construcot-container .centerbox .questions-box .question .mediablock .textblock').css('background', 'transparent');
             $('.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block').css('background', 'transparent');
-            $('.bgsettings').parents('.form-group').remove();
+            // $('.bgsettings').parents('.form-group').remove();
+            $(this).remove();
         });
         //change input for file
         $('.page-content').on('change', '.pictureforpage', function(e){
@@ -198,8 +225,10 @@ jQuery(function ($) {
                 reader.readAsDataURL(e.target.files[0]);
             }
             $('.addpicture').addClass('active');
-            $('.addpicture').parents('.filerow').append('<div class="removepicture"></div>');
-            AddSettingsBackground();
+            if($('.addpicture').parents('.filerow').find('.removepicture').length==0){
+                $('.addpicture').parents('.filerow').append('<div class="removepicture"></div>');
+            }
+            // AddSettingsBackground();
         });
         function AddSettingsBackground() {
             var settings = 
@@ -235,24 +264,20 @@ jQuery(function ($) {
             $(this).prev('input').click();
         });
         //change bg for text
-        $('.rightside').on('input', '.colorpickbgtext input[type=color]', function(e){
-            $(this).next('input').val($(this).val());
+        $('.rightside').on('input', '.colorpickbgtext input[type=text]', function(e){
             var value = $(this).val();
             $(this).parents('.colorpickbgtext').find('.square').css( 'background', value);
-            var opacity = 0;
-            if($('.opacitybgtext').find('input').val() > 0){
-                opacity = parseInt($('.opacitybgtext').find('input').val())/100;
-            }
-            var rgbaCol = 'rgba(' + parseInt(value.slice(-6, -4), 16) + ',' + parseInt(value.slice(-4, -2), 16) + ',' + parseInt(value.slice(-2), 16) + ',' + opacity + ')';
+            var rgbaCol = value;
             $('.construcot-container .centerbox .questions-box.bg-image .question').css('background', rgbaCol);
             $('.construcot-container .centerbox .questions-box.bg-image .question .mediablock .textblock').css('background', rgbaCol);
             $('.construcot-container .centerbox .questions-box.bg-image .question .answer .dropdown-list .dropdown-block').css('background', rgbaCol);
+            $('.construcot-container .centerbox .questions-box.bg-image .question .selectdropdown .select-options').css('background', rgbaCol);
         });
         //change bg opacity for text
         $('.rightside').on('change', '.opacitybgtext input', function(e){
-            var value = $('.colorpickbgtext input[type=color]').val();
+            var value = $('.colorpickbgtext input[type=text]').val();
             var opacity = parseInt($(this).val())/100;
-            var rgbaCol = 'rgba(' + parseInt(value.slice(-6, -4), 16) + ',' + parseInt(value.slice(-4, -2), 16) + ',' + parseInt(value.slice(-2), 16) + ',' + opacity + ')';
+            var rgbaCol = value;
             $('.construcot-container .centerbox .questions-box.bg-image .question').css('background', rgbaCol);
             $('.construcot-container .centerbox .questions-box.bg-image .question .mediablock .textblock').css('background', rgbaCol);
             $('.construcot-container .centerbox .questions-box.bg-image .question .answer .dropdown-list .dropdown-block').css('background', rgbaCol);

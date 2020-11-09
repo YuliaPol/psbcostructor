@@ -2870,7 +2870,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .hidden-question .hidden-question-answer input::-moz-placeholder,
@@ -2880,7 +2880,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .hidden-question .hidden-question-answer input:-ms-input-placeholder,
@@ -2890,7 +2890,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .hidden-question .hidden-question-answer input::-ms-input-placeholder,
@@ -2900,7 +2900,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .hidden-question .hidden-question-answer input::placeholder,
@@ -2910,7 +2910,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .name {
@@ -2963,7 +2963,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .answer.freeanswer input::-moz-placeholder {
@@ -2972,7 +2972,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .answer.freeanswer input:-ms-input-placeholder {
@@ -2981,7 +2981,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .answer.freeanswer input::-ms-input-placeholder {
@@ -2990,7 +2990,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .answer.freeanswer input::placeholder {
@@ -2999,7 +2999,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .scaleanswer {
@@ -3685,7 +3685,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .email-answer .col-email input::-moz-placeholder {
@@ -3694,7 +3694,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .email-answer .col-email input:-ms-input-placeholder {
@@ -3703,7 +3703,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .email-answer .col-email input::-ms-input-placeholder {
@@ -3712,7 +3712,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .email-answer .col-email input::placeholder {
@@ -3721,7 +3721,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .phone-answer {
@@ -3826,7 +3826,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone input::-moz-placeholder {
@@ -3835,7 +3835,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone input:-ms-input-placeholder {
@@ -3844,7 +3844,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone input::-ms-input-placeholder {
@@ -3853,7 +3853,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .phone-answer .col-phone input::placeholder {
@@ -3862,7 +3862,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .name-answer,
@@ -3925,7 +3925,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .name-answer .col-date input::-moz-placeholder,
@@ -3935,7 +3935,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .name-answer .col-date input:-ms-input-placeholder,
@@ -3945,7 +3945,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .name-answer .col-date input::-ms-input-placeholder,
@@ -3955,7 +3955,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .name-answer .col-date input::placeholder,
@@ -3965,7 +3965,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .name-answer .col-name,
@@ -4006,7 +4006,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .name-answer .col-name input::-moz-placeholder,
@@ -4016,7 +4016,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .name-answer .col-name input:-ms-input-placeholder,
@@ -4026,7 +4026,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .name-answer .col-name input::-ms-input-placeholder,
@@ -4036,7 +4036,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .name-answer .col-name input::placeholder,
@@ -4046,7 +4046,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .multipleanswer .item {
@@ -6061,7 +6061,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-moz-placeholder,
@@ -6077,7 +6077,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question:-ms-input-placeholder,
@@ -6093,7 +6093,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-ms-input-placeholder,
@@ -6109,7 +6109,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question::placeholder,
@@ -6125,7 +6125,7 @@ table {
   font-weight: 300;
   font-size: 10px;
   line-height: 12px;
-  color: #A4A2A2;
+  color: inherit;
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar-track,
