@@ -5903,6 +5903,35 @@ table {
   color: #563BC2;
 }
 
+.construcot-container .rightside .default .text-aside .requiredinput,
+.construcot-container .rightside .optionbox .text-aside .requiredinput {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-bottom: 15px;
+  padding-top: 10px;
+}
+
+.construcot-container .rightside .default .text-aside .requiredinput .namelabel,
+.construcot-container .rightside .optionbox .text-aside .requiredinput .namelabel {
+  width: calc(100% - 25px);
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #563BC2;
+}
+
 .construcot-container .rightside .default .text-aside .dropdown-options .top-row,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .top-row {
   position: relative;
@@ -9746,7 +9775,9 @@ html .ui-button.ui-state-disabled:active {
   .construcot-container .rightside .default .text-aside .form-group label,
   .construcot-container .rightside .optionbox .text-aside .form-group label,
   .construcot-container .rightside .default .text-aside .dropdown-options .top-row .namelabel,
-  .construcot-container .rightside .optionbox .text-aside .dropdown-options .top-row .namelabel {
+  .construcot-container .rightside .optionbox .text-aside .dropdown-options .top-row .namelabel,
+  .construcot-container .rightside .default .text-aside .requiredinput .namelabel,
+  .construcot-container .rightside .optionbox .text-aside .requiredinput .namelabel {
     font-size: 12px;
     line-height: 14px;
   }
@@ -9769,7 +9800,7 @@ html .ui-button.ui-state-disabled:active {
   }
   .construcot-container .rightside .default .text-aside .form-group label, .construcot-container .rightside .optionbox .text-aside .form-group label,
   .construcot-container .rightside .default .header-aside, .construcot-container .rightside .optionbox .header-aside {
-    font-size: 122x;
+    font-size: 12px;
     line-height: 14px;
   }
   .modal-content .text {
