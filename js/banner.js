@@ -240,89 +240,20 @@ jQuery(function ($) {
             }
         });
         // change input for file
+        // image as background
         $('.page-content').on('change', '.pictureforpage', function(e){
             var fileName = e.target.files[0].name;
-            console.log(fileName);
             if($('.dropzone-file').length>0) {
                 $('.dropzone-file').remove();
             }
-            console.log($('.bannercontainer .dragimage'));
-            if($('.bannercontainer .dragimage').length==0){
-                if(!$('.imagerow .setbackground input[type=radio]').is(':checked')){
-                    var image = 
-                    '<div class="drag dragimage newimage" id="image" style="width: 300px; top: 50px;"">'
-                    +'    <div class="remove-picture "></div>'
-                    +'    <img src="./img/hellopage_pic_1.png" alt="">'
-                    +'</div>';
-                }
-                
-                var imageSetings = 
-                '<div class="imagerow">'
-                +'    <div class="filename">'+ fileName + '</div>'
-                +'    <input type="hidden" name="imagetop">'
-                +'    <input type="hidden" name="imageleft">'
-                +'    <input type="hidden" name="imagewidth">'
-                +'    <input type="hidden" name="imageheight">'
-                +'  <div class="removeimage">'
-                +'      <div class="icon-remove"></div>'
-                +'      <div class="tooltip">Удалить изображение</div>'
-                +'  </div>'
-                +'  <div class="setbackground">'
-                +'      <input type="radio" name="setbackground" id="setbackground" value="'+ fileName +'">'
-                +'      <label for="setbackground"></label>'
-                +'      <div class="tooltip">Сделать фоновым рисунком</div>'
-                +'  </div>'
-                +'</div>';
-
-                $('.filerow .imagelist').append(imageSetings);
-                $('.bannercontainer').append(image);
-            }
-            else {
-                $('.filerow .imagelist').find('.filename').html(fileName);
-                $('.filerow .setbackground').find('input[type=radio]').val(fileName);
-            }
-
             if (e.target.files && e.target.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function (e) {
-                    if(!$('.imagerow .setbackground input[type=radio]').is(':checked')){
-                        $('.dragimage img').attr('src', e.target.result);
-                    }
-                    else {
-                        $('.bannercontainer').css('background', 'none');
-                        $('.bannercontainer').css('background-image', 'url(' + e.target.result + ')');
-                        $('.bannercontainer').css('background-position', 'center');
-                        $('.bannercontainer').css('background-repeat', 'no-repeat');
-                        $('.bannercontainer').css('background-size', 'cover');
-                    }
+                    $('.bannercontainer').css('background-image', 'url(' + e.target.result + ')');
                 }
                 reader.readAsDataURL(e.target.files[0]);
             }
-            //resize image
-            $( ".dragimage" ).resizable({
-                containment: ".dragable",
-                // grid: [ 10, 10 ],
-                aspectRatio: true,
-                handles: "n, e, s, w",
-                stop: function( event, ui ) {
-                    var top = ui.position.top;
-                    var left = ui.position.left;
-                    SetPositionOfElement(event.target, top, left);
-                }
-            });
-            //Make element draggable
-            $(".drag").draggable({
-                appendTo: ".dragable",
-                containment: ".dragable",
-                // grid: [ 10, 10 ],
-                stop: function( event, ui ) {
-                    var top = ui.position.top;
-                    var left = ui.position.left;
-                    SetPositionOfElement(event.target, top, left);
-                }
-            });
         });
-        
         //remove picture
         $('.page-content').on('click', '.remove-picture', function(e){
             $('.imagerow').remove();
@@ -807,7 +738,7 @@ jQuery(function ($) {
                         width = parseInt($('.imagelist input[name=imagewidth]').val());
                         height = parseInt($('.imagelist input[name=imageheight]').val());
                     }
-                    if( width && top) {
+                    if( width !== undefined && top !== undefined) {
                         var smwidth = prevwidth;
                         var prevleft = (100 * left)/smwidth;
                         var smwidthnew = parseInt($('.bannercontainer').outerWidth());

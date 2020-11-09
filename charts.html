@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Баннер</title>
+    <title>Все опросы</title>
 
-    <link rel="stylesheet" href="./css/style.css?5465465">
-    <link rel="stylesheet" href="./css/jquery-ui.css">
+    <link rel="stylesheet" href="./css/style.css">
 
     <script src="./js/jquery-3.5.1.min.js"></script>
-    <script src="./js//jquery-ui.js"></script>
-    <script src="./js/dropzone.js"></script>
-    <script src="./js/jscolor.js"></script>
-    <script src="./js/charts.js"></script>
-    <script src="./js/script.js?87654"></script>
+    <script src="./js/script.js"></script>
 </head>
-
 <body>
-    <header class="header header-bt-menu">
+    <header class="header  sm-header">
         <div class="header-row">
-            <div class="linkback linkback-big">
-                <a href="#" class="arrow-back"></a>
-                <a href="#">Обслуживание удовлетворенности клиентов</a>
+            <div class="panelmenu">
+                <ul>
+                    <li class="active">
+                        <a href="#">Все опросы</a>
+                    </li>
+                    <li>
+                        <a href="#">Архив</a>
+                    </li>
+                </ul>
             </div>
             <div class="navbar-user">
                 <div class="user">
@@ -42,33 +41,58 @@
                 </div>
             </div>
         </div>
-        <div class="header-bottom">
-            <div class="bottom-menu">
-                <ul>
-                    <li>
-                        <a href="#">Вопросы</a>
-                    </li>
-                    <li>
-                        <a href="#">Дизайн</a>
-                    </li>
-                    <li class="active">
-                        <a href="#">Cтраница приветствия</a>
-                    </li>
-                    <li>
-                        <a href="#">Cтраница с благодарностью</a>
-                    </li>
-                    <li>
-                        <a href="#">Опции</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
     </header>
-    <div class="page-content">
-        <div class="construcot-container">
-            <div class="charts-conatiner"></div> 
+    <div class="charts-content">
+        <div class="charts-header">
+            Отчётность / Тестирование идейной составляющей
+        </div>
+        <div class="chart-row">
+            <div class="chart-box full-width">
+                <div class="chart-header">
+                    1 . Насколько Вам в целом нравится эта идея?
+                </div>
+                <div class="chart-content">
+                    <div class="horizonatal-line">
+                        <div class="item">
+                            <div class="labels">
+                                <div class="name">
+                                    Ответы на оценку 
+                                    <span class="bold">0 - 6 </span>
+                                </div>
+                                <div class="values">20% / 20 шт</div>
+                            </div>
+                            <div class="line">
+                                <div class="line-active" style="width: 20%"></div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="labels">
+                                <div class="name">
+                                    Ответы на оценку
+                                    <span class="bold"> 7 - 8</span>
+                                </div>
+                                <div class="values">30% / 30 шт</div>
+                            </div>
+                            <div class="line">
+                                <div class="line-active" style="width: 30%"></div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="labels">
+                                <div class="name">
+                                    Ответы на оценку
+                                    <span class="bold"> 9 - 10 </span>
+                                </div>
+                                <div class="values">50% / 50 шт</div>
+                            </div>
+                            <div class="line">
+                                <div class="line-active" style="width: 50%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
-
 </html>
