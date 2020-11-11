@@ -47,6 +47,61 @@ jQuery(function ($) {
             });
         };
 
+        function ClearAll(){
+            var parentsoption = $('.rightside');
+            console.log(parentsoption);
+            parentsoption.find('.textasettings .position-text input[value=left]').prop('checked', true);
+            parentsoption.find('.textasettings .select-options li[rel=Montserrat]').click();
+            var text1 = parentsoption.find('.textasettings .textlevel1').parents('.form-group');
+            text1.find('input').val('');
+            text1.find('.colorpick input').val('#4D4D4D');
+            text1.find('.colorpick .square').css('background', '#4D4D4D');
+            text1.find('textarea').val('');
+            text1.find('.fontsize .select-options li[rel=44]').click();
+            texts2 = parentsoption.find('.textasettings .textlevelsecond');
+            if(texts2.length>0){
+                texts2.each(function (index, textitem) {
+
+                    var text2 = $(textitem).parents('.form-group');
+                    if(index == 0){
+                        text2.find('input').val('');
+                        text2.find('.colorpick input').val('#4D4D4D');
+                        text2.find('.colorpick .square').css('background', '#4D4D4D');
+                        text2.find('textarea').val('');
+                        text2.find('.fontsize .select-options li[rel=26]').click();
+                    }
+                    else {
+                        text2.remove();
+                    }
+                });
+            }
+            if($('.btn-options').find('.btn-remove').length>0){
+                $('.btn-options').find('.btn-remove').click();
+            }
+            $('.bannercontainer').css('background-image', 'none');
+            $('.bannercontainer .drag').remove();
+        }
+        //clear form 
+        $('.page-content').on('click', '.clear-header', function(e){
+            var pollid = $('#quiz-id').val();
+            if(pollid){
+                $.ajax ({
+                    type: 'POST',
+                    url: "/admin/poll/delete-header",
+                    dataType: "json",
+                    data: { 
+                        id: pollid
+                    },
+                }).done(function (data) {
+                    ClearAll();
+                    console.log('Данные удалены');
+                }).fail(function (data) {
+                    // не удалось выполнить запрос к серверу
+                    console.log(data);
+                    console.log('Запрос не принят');
+                });
+            }
+        });
         //Make element draggable
         $(".drag").draggable({
             appendTo: ".dragable",

@@ -338,6 +338,35 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
         z-index: 1;
     }
     .btn-wrapper {
+        &.btn-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            & > .btn-default,
+            & > .btn-default {
+                width: calc(50% - 10px);
+                min-width: calc(50% - 10px);
+            }
+        }
+        .btn-white {
+            display: inline-block;
+            padding: 10px 15px;
+            font-family: $fontpage;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 14px;
+            line-height: 16px;
+            color: $voilet;
+            background: #ffffff;
+            border: 1px solid $voilet;
+            border-radius: 30px;
+            text-decoration: none;
+            outline: none;
+            cursor: pointer;
+            min-width: 130px;
+            transition: all 0.3s ease-in;
+            text-align: center;
+        }
         .btn-default {
             display: inline-block;
             padding: 10px 15px;
@@ -356,9 +385,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
             transition: background 0.3s ease-in;
             text-align: center;
             border: none;
-            &:hover {
-                background: #563BC2;
-            }
         }
     }
     .switch {
@@ -6450,6 +6476,19 @@ html .ui-button.ui-state-disabled:active {
     }
 }
 @media screen and (max-width: 1000px) {
+    .page-content .btn-wrapper.btn-flex {
+        flex-direction: column;
+        & > .btn-default,
+        & > .btn-white {
+            margin-top: 15px;
+            max-width: 100%;
+            min-width: auto;
+            width: 150px;
+            font-size: 12px;
+            line-height: 14px;
+            padding: 8px 8px;
+        }
+    }
     .construcot-container .centerbox .questions-box .question .answer .email-answer .col-email {
         width: 100%;
     }

@@ -1,3 +1,23 @@
+jscolor.presets.default = {
+    position: 'bottom',
+    width: 181,
+    height: 100,
+    padding: 10,
+    sliderSize: 25,
+    borderRadius: 0,
+    borderWidth: 0,
+    controlBorderWidth: 1,
+    pointerBorderWidth: 1,
+    borderColor: '#000',
+    controlBorderColor: '#CCC',
+    backgroundColor: '#fff',
+    format: 'rgba',
+    controlBorderColor: '#ccc',
+    crossSize: 5,
+    pointerBorderColor: '#fff',
+    pointerBorderWidth: 1,
+};
+
 jQuery(function ($) {
     $(document).ready(function () {
         $.fn.removeClassPrefix = function(prefix) {
@@ -25,6 +45,86 @@ jQuery(function ($) {
                 }
             });
         };
+
+        //plugin for colorpick
+        jscolor.install('.rightside');
+
+        function ClearAll(){
+            var parentsoption = $('.rightside');
+            console.log(parentsoption);
+            parentsoption.find('.textasettings .position-text input[value=left]').prop('checked', true);
+            parentsoption.find('.textasettings .select-options li[rel=Montserrat]').click();
+            var text1 = parentsoption.find('.textasettings .textlevel1').parents('.form-group');
+            text1.find('input').val('');
+            text1.find('.colorpick input').val('#4D4D4D');
+            text1.find('.colorpick .square').css('background', '#4D4D4D');
+            text1.find('textarea').val('');
+            text1.find('.fontsize .select-options li[rel=44]').click();
+            texts2 = parentsoption.find('.textasettings .textlevelsecond');
+            if(texts2.length>0){
+                texts2.each(function (index, textitem) {
+
+                    var text2 = $(textitem).parents('.form-group');
+                    if(index == 0){
+                        text2.find('input').val('');
+                        text2.find('.colorpick input').val('#4D4D4D');
+                        text2.find('.colorpick .square').css('background', '#4D4D4D');
+                        text2.find('textarea').val('');
+                        text2.find('.fontsize .select-options li[rel=26]').click();
+                    }
+                    else {
+                        text2.remove();
+                    }
+                });
+            }
+            if($('.btn-options').find('.btn-remove').length>0){
+                $('.btn-options').find('.btn-remove').click();
+            }
+            $('.hellopahecontainer').css('background-image', 'none');
+            $('.hellopahecontainer .drag').remove();
+        }
+        //clear form 
+        $('.page-content').on('click', '.clear-wellcome', function(e){
+            var pollid = $('#quiz-id').val();
+            if(pollid){
+                $.ajax ({
+                    type: 'POST',
+                    url: "/admin/poll/delete-wellcome",
+                    dataType: "json",
+                    data: { 
+                        id: pollid
+                    },
+                }).done(function (data) {
+                    ClearAll();
+                    console.log('Данные удалены');
+                }).fail(function (data) {
+                    // не удалось выполнить запрос к серверу
+                    console.log(data);
+                    console.log('Запрос не принят');
+                });
+            }
+        });
+        //clear form 
+        $('.page-content').on('click', '.clear-thanks', function(e){
+            var pollid = $('#quiz-id').val();
+            if(pollid){
+                $.ajax ({
+                    type: 'POST',
+                    url: "/admin/poll/delete-thanks",
+                    dataType: "json",
+                    data: { 
+                        id: pollid
+                    },
+                }).done(function (data) {
+                    ClearAll();
+                    console.log('Данные удалены');
+                }).fail(function (data) {
+                    // не удалось выполнить запрос к серверу
+                    console.log(data);
+                    console.log('Запрос не принят');
+                });
+            }
+        });
 
         //Make element draggable
         $(".drag").draggable({
@@ -166,7 +266,7 @@ jQuery(function ($) {
                 SetPositionOfElement($('.hellopahecontainer').find('.text1level'), top, left);
             }
             else {
-                var color = $('.textlevel1').parents('.blocktext').find('.colorpick1level input[type=color]').val();
+                var color = $('.textlevel1').parents('.blocktext').find('.colorpick1level input[type=text]').val();
                 var fontsize = $('.font1size').val() + "px";
                 var text1 = 
                 '<div class="drag dragtext text1level" style="left: 20px; top: 20px;">'
@@ -220,8 +320,7 @@ jQuery(function ($) {
         });
         
         //change of color second level 
-        $('.rightside').on('input', '.colorpicksecond input[type=color]', function(e){
-            $(this).next('input').val($(this).val());
+        $('.rightside').on('input', '.colorpicksecond input[type=text]', function(e){
             var value = $(this).val();
             var id = $(this).parents('.colorpick').find('input[type=text]').attr('name').split('_')[1];
             $(this).parents('.colorpick').find('.square').css( 'background', value);
@@ -244,7 +343,7 @@ jQuery(function ($) {
                 SetPositionOfElement($('#secondtext_' + id), top, left);
             }
             else {
-                var color = $(this).parents('.blocktext').find('.colorpick input[type=color]').val();
+                var color = $(this).parents('.blocktext').find('.colorpick input[type=text]').val();
                 var fontsize = $(this).parents('.blocktext').find('.font1size').val() + "px";
                 var text1 = 
                 '<div class="drag dragtext textsecond" id="secondtext_' + id + '" style="left: 20px; top: 20px;">'
@@ -311,8 +410,7 @@ jQuery(function ($) {
             +'        <div class="colorpick colorpicksecond">'
             +'            <div class="square" style="background: #4D4D4D;"></div>'
             +'            <div class="inputs">'
-            +'                <input type="color" value="#4D4D4D">'
-            +'                <input type="text" name="color_'+ id + '" id="color_'+ id + '" value="#4D4D4D">'
+            +'                <input type="text" name="color_'+ id + '" id="color_'+ id + '" value="#4D4D4D" data-jscolor="">'
             +'            </div>'
             +'            <div class="labelcolor">'
             +'           <label for="color_'+ id + '">Текст второго уровня</label>'
@@ -338,6 +436,8 @@ jQuery(function ($) {
             +'  </div>'
             +'</div>';
             $(newsecondtext).appendTo($('.rightside .text-aside .textasettings'));
+            //plugin for colorpick
+            jscolor.install('.rightside');
             customSelectActive();
         });
 
@@ -484,8 +584,7 @@ jQuery(function ($) {
             +'              <div class="color"'
             +'              style="background: #F26126"></div>'
             +'          </label>'
-            +'          <input type="color" class="hiddeninput hiddeninputcolor" value="#F26126">'
-            +'          <input class="btncolor" type="text"  name="btncolor"  id="btncolor" value="#F26126">'
+            +'          <input class="btncolor" type="text"  name="btncolor"  id="btncolor" value="#F26126" data-jscolor="">'
             +'      </div>'
             +'  </div>'
             +'    <div class="row-options">'
@@ -495,10 +594,8 @@ jQuery(function ($) {
             +'                background-color: #F26126;'
             +'                color: #ffffff;">T</div>'
             +'            </label>'
-            +'            <input type="color" class="hiddeninput hiddeninputtextcolor"'
-            +'                value="#ffffff">'
             +'            <input class="btntextcolor" type="text" name="btntextcolor" id="btntextcolor"'
-            +'                value="#ffffff">'
+            +'                value="#ffffff" data-jscolor="">'
             +'        </div>'
             +'    </div>'
             +'  <div class="form-group">'
@@ -521,6 +618,7 @@ jQuery(function ($) {
             +'</div>';
             $(btnel).appendTo($('.hellopahecontainer'));
             $(btnoptions).appendTo($('.rightside .text-aside .btn-options'));
+            jscolor.install('.rightside');
             //Make element draggable
             $(".drag").draggable({
                 appendTo: ".dragable",
@@ -636,11 +734,10 @@ jQuery(function ($) {
         });
 
         $('.rightside').on('click', '.colorpick .square', function(e){
-            $(this).parents('.colorpick').find('input[type=color]').click();
+            $(this).parents('.colorpick').find('input[type=text]').click();
         });
 
-        $('.rightside').on('input', '.colorpick1level input[type=color]', function(e){
-            $(this).next('input').val($(this).val());
+        $('.rightside').on('input', '.colorpick1level input[type=text]', function(e){
             var value = $(this).val();
             $(this).parents('.colorpick').find('.square').css( 'background', value);
             $('.centerbox .text1level .text').css('color', value);
@@ -883,7 +980,7 @@ jQuery(function ($) {
             SecondTexts.each(function (index, text) {
                 var id = $(text).find('input[type=text]').attr('name').split('_')[1];
                 var fontsize = $(text).find('.fontsecondsize').val() + "px";
-                var color = $(text).find('.colorpicksecond input[type=color]').val();
+                var color = $(text).find('.colorpicksecond input[type=text]').val();
                 $('#secondtext_' + id + ' .text').css('font-size', fontsize);
                 $('#secondtext_' + id + ' .text').css('color', color);
             });
@@ -920,7 +1017,7 @@ jQuery(function ($) {
         }
         //set header text
         if($('.rightside .textlevel1').val()){
-            var color = $('.textlevel1').parents('.blocktext').find('.colorpick1level input[type=color]').val();
+            var color = $('.textlevel1').parents('.blocktext').find('.colorpick1level input[type=text]').val();
             var fontsize = $('.font1size').val() + "px";
             var text1 = 
             '<div class="drag dragtext text1level" style="left: 20px; top: 20px;">'
@@ -934,7 +1031,7 @@ jQuery(function ($) {
             SecondTexts.each(function (index, text) {
                 if($(text).val()){
                     var id = $(text).attr('name').split('_')[1];
-                    var color = $(text).parents('.blocktext').find('.colorpick input[type=color]').val();
+                    var color = $(text).parents('.blocktext').find('.colorpick input[type=text]').val();
                     var fontsize = $(text).parents('.blocktext').find('.fontsecondsize').val() + "px";
                     var text1 = 
                     '<div class="drag dragtext textsecond" id="secondtext_' + id + '" style="left: 20px; top: 20px;">'
