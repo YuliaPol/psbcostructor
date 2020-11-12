@@ -11,7 +11,6 @@
     <script src="./js/jquery-3.5.1.min.js"></script>
     <script src="./js/script.js"></script>
     <script src="./js/jqueryRadialBarMultiple.js"></script>
-    <script src="./js/charts.js"></script>
 </head>
 <body>
     <header class="header  sm-header">
@@ -106,48 +105,95 @@
                         <div class="chart">
                             <div class="radialbarmultiple-1"></div>
                         </div>
-                        <div class="legennd"></div>
+                        <div class="legend">
+                            <div class="legend-list">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="chart-box width-50">
+                <div class="chart-header">
+                    3 . Насколько для Вас актуально и соответствует Вашим потребностям то, что дает данный продукт/услуга?
+                </div>
+                <div class="chart-content">
+                    <div class="simplebar">
+                        <div class="chart">
+                            <div class="simplebarChart simplebarChart-1">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <script type="text/javascript">
-		var data = [
-			{
-                background: "#7E80D7",
-                progress: "60",
-                labelText: "Ответы на оценку 5"
+        var chartData = [ //массив с данными для графиков типу круги в кругах
+            {
+                element: '.radialbarmultiple-1', // класс елемента
+                type: 'radialbar',               //тип графіка
+                data: [                          //данные графика      
+                    {
+                        background: "#7E80D7",
+                        progress: "50",
+                        labelText: "5"
+                    },
+                    {
+                        background: "#16CEB9",
+                        progress: "30",
+                        labelText: "4"
+                    },
+                    {
+                        background: "#2D99FF",
+                        progress: "20",
+                        labelText: "3"
+                    },
+                    {
+                        background: "#D68EE9",
+                        progress: "20",
+                        labelText: "2"
+                    },
+                    {
+                        background: "#F5ED9D",
+                        progress: "20",
+                        labelText: "1"
+                    }
+                ]
             },
-			{
-                background: "#16CEB9",
-                progress: "30",
-                labelText: "Ответы на оценку 4"
-            },
-			{
-                background: "#2D99FF",
-                progress: "20",
-                labelText: "Ответы на оценку 3"
-            },
-			{
-                background: "#D68EE9",
-                progress: "20",
-                labelText: "Ответы на оценку 2"
-            },
-			{
-                background: "#F5ED9D",
-                progress: "20",
-                labelText: "Ответы на оценку 1"
-            },
-		];
+            {
+                element: '.simplebarChart-1', // класс елемента
+                type: 'simpleBar',               //тип графіка
+                data: [                          //данные графика      
+                    {
+                        background: "#FE8F8F",
+                        progress: "10",
+                        labelText: "1"
+                    },
+                    {
+                        background: "#FFE789",
+                        progress: "30",
+                        labelText: "2"
+                    },
+                    {
+                        background: '#9BBCFF',
+                        progress: "20",
+                        labelText: "3"
+                    },
+                    {
+                        background: "#A89CF2",
+                        progress: "20",
+                        labelText: "4"
+                    },
+                    {
+                        background: "#76DDB2",
+                        progress: "20",
+                        labelText: "5"
+                    }
+                ]
+            }
+        ];
 
-		$(".radialbarmultiple-1").radialBar({
-			data: data,
-			width: "400",
-			height: "400",
-			strokeWidth: 12,
-		});
-
-	</script>
+    </script>
+    <script src="./js/charts.js"></script>
 </body>
 </html>
