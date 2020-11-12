@@ -49,6 +49,7 @@
 
             var r = self.radius = w / 3, paddingLabel = r + 20;
             var scale = "-"+ (r * 1.5) +" -"+ (r) +" "+ w +" "+ h +"";
+            
             var strokeWidth = self.strokeWidth = self.options.strokeWidth || 12;
 
             self._buildSvg(w, h, scale);
@@ -61,10 +62,18 @@
 
             for(var i = 0; i < length; i++){
                 var object = self.options["data"][i];
-                self._buildCircle(object, r);
+                var stroreWidth = 12;
+                if(i<6){
+                    stroreWidth = 12 - i;
+                    r = r + i;
+                }
+                else {
+                    stroreWidth = 12 - 6;
+                    r = r + 6;
+                }
+                self._buildCircle(object, r, stroreWidth);
                 self._buildLabel(object, paddingLabel);
                 paddingLabel += 20;
-
                 r = r - division;
             }
         },
@@ -93,9 +102,9 @@
             $(feDropShadow).appendTo(shadow);
             $(shadow).appendTo(self.svgContainer);
         },
-        _buildCircle: function(object, r){
+        _buildCircle: function(object, r, stroreWidth){
             var self = this;
-            var radius = r -10;
+            var radius = r - 10;
             var circumference = radius * 2 * Math.PI;
 
             var offset = circumference - object.progress / 100 * circumference;
@@ -104,7 +113,7 @@
             circle.setAttribute("cy", 0);
             circle.setAttribute("cx", 0);
             circle.setAttribute("r", radius);
-            circle.setAttribute("stroke-width", self.strokeWidth);
+            circle.setAttribute("stroke-width", stroreWidth);
             circle.setAttribute("fill", "none");
             circle.setAttribute("stroke", '#F5F7FA');
 
