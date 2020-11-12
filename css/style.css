@@ -1244,6 +1244,13 @@ table {
   opacity: 0;
 }
 
+.construcot-container .centerbox.bg-static {
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+          background-size: cover;
+}
+
 .construcot-container .centerbox.alignleft {
   text-align: left;
 }

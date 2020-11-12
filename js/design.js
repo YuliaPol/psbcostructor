@@ -133,7 +133,7 @@ jQuery(function ($) {
         $('.rightside').on('input', '.colorpickbackground input[type=text]', function(e){
             var value = $(this).val();
             $(this).parents('.colorpick').find('.square').css( 'background', value);
-            $('.centerbox').css('background', value);
+            $('.centerbox').css('background-color', value);
         });
 
 
@@ -175,7 +175,7 @@ jQuery(function ($) {
         $('.centerbox .question input[type=email]').css('color', $('.rightside .colorpickinput input[type=text]').val());
         $('.centerbox .question input[type=tel]').css('color', $('.rightside .colorpickinput input[type=text]').val());
         $('.centerbox .question textarea').css('color', $('.rightside .colorpickinput input[type=text]').val());
-        $('.centerbox').css('background', $('.rightside .colorpickbackground input[type=text]').val());
+        $('.centerbox').css('background-color', $('.rightside .colorpickbackground input[type=text]').val());
 
         //position
         if($('.rightside .position-text input[type=radio]:checked').length>0){
@@ -188,7 +188,7 @@ jQuery(function ($) {
         //font
         $('.centerbox').addClass('font' + $('.fontselect').val());
         //bg for text
-        if($('.colorpickbgtext input[type=text]').val() && $('.opacitybgtext').find('input').val()){
+        if($('.colorpickbgtext input[type=text]').val()){
             var value = $('.colorpickbgtext input[type=text]').val();
             // var opacity = parseInt($('.opacitybgtext').find('input').val())/100;
             var rgbaCol = value;
@@ -204,12 +204,12 @@ jQuery(function ($) {
         });
         //remove background 
         $('.page-content').on('click', '.filerow .removepicture', function(e){
-            $('.questions-box').css('background-image', '');
+            $('.bg-static').css('background-image', '');
             // $('.questions-box').removeClass('bg-image');
             $('.addpicture').removeClass('active');
-            $('.construcot-container .centerbox .questions-box .question').css('background', 'transparent');
-            $('.construcot-container .centerbox .questions-box .question .mediablock .textblock').css('background', 'transparent');
-            $('.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block').css('background', 'transparent');
+            // $('.construcot-container .centerbox .questions-box .question').css('background', 'transparent');
+            // $('.construcot-container .centerbox .questions-box .question .mediablock .textblock').css('background', 'transparent');
+            // $('.construcot-container .centerbox .questions-box .question .answer .dropdown-list .dropdown-block').css('background', 'transparent');
             // $('.bgsettings').parents('.form-group').remove();
             $(this).remove();
         });
@@ -219,8 +219,11 @@ jQuery(function ($) {
             if (e.target.files && e.target.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function (e) {
-                    $('.questions-box').css('background-image', 'url(' + e.target.result + ')');
-                    $('.questions-box').addClass('bg-image');
+                    $('.bg-static').css('background-image', 'url(' + e.target.result + ')');
+                    $('.bg-static').css('background-position', 'center');
+                    $('.bg-static').css('background-repeat', 'no-repeat');
+                    $('.bg-static').css('background-size', 'cover');
+                    $('.bg-static').addClass('bg-image');
                 }
                 reader.readAsDataURL(e.target.files[0]);
             }
@@ -339,6 +342,11 @@ jQuery(function ($) {
             }
         });
 
+
+        // $('.questions-box').css('background-size', $('.questions-box').outerWidth());
+        // $(window).resize(function() {
+        //     $('.questions-box').css('background-size', $('.questions-box').outerWidth());
+        // });
         ResizeImg();
         //resiz img
         function ResizeImg() {
