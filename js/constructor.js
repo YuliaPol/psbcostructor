@@ -5205,15 +5205,6 @@ jQuery(function ($) {
                 +'                Отправить'
                 +'            </button>'
                 +'        </div>'
-                +'            <div class="requiredinput">'
-                +'              <div class="namelabel">'
-                +'                  Обязательно к заполнению'
-                +'              </div>'
-                +'              <label class="switch" for="required_'+ id +'">'
-                +'                  <input type="checkbox" class="requiredonoff" name="required_'+ id +'" id="required_'+ id +'">'
-                +'                  <span class="slider round"></span>'
-                +'              </label>'
-                +'          </div>'
                 +'    </div>'
                 +'</div>';
                 option = 

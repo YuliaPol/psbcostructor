@@ -130,7 +130,7 @@ jQuery(function ($) {
         $(".drag").draggable({
             appendTo: ".dragable",
             containment: ".dragable",
-            grid: [ 20, 20 ],
+            // grid: [ 20, 20 ],
             stop: function( event, ui ) {
                 var top = ui.position.top;
                 var left = ui.position.left;
@@ -140,7 +140,7 @@ jQuery(function ($) {
         //resize image
         $( ".dragimage" ).resizable({
             containment: ".dragable",
-            grid: [ 20, 20 ],
+            // grid: [ 20, 20 ],
             aspectRatio: true,
             handles: "n, e, s, w",
             stop: function( event, ui ) {
@@ -153,7 +153,7 @@ jQuery(function ($) {
         $( ".dragtext" ).resizable({
             autoHide: false,
             containment: ".dragable",
-            grid: [ 20, 20 ],
+            // grid: [ 20, 20 ],
             handles: "n, e, s, w",
             stop: function( event, ui ) {
                 var top = ui.position.top;
@@ -279,7 +279,7 @@ jQuery(function ($) {
             $(".drag").draggable({
                 appendTo: ".dragable",
                 containment: ".dragable",
-                grid: [ 20, 20 ],
+                // grid: [ 20, 20 ],
                 stop: function( event, ui ) {
                     var top = ui.position.top;
                     var left = ui.position.left;
@@ -290,7 +290,7 @@ jQuery(function ($) {
             $( ".dragtext" ).resizable({
                 autoHide: false,
                 containment: ".dragable",
-                grid: [ 20, 20 ],
+                // grid: [ 20, 20 ],
                 handles: "n, e, s, w",
                 stop: function( event, ui ) {
                     var top = ui.position.top;
@@ -344,7 +344,7 @@ jQuery(function ($) {
             }
             else {
                 var color = $(this).parents('.blocktext').find('.colorpick input[type=text]').val();
-                var fontsize = $(this).parents('.blocktext').find('.font1size').val() + "px";
+                var fontsize = $(this).parents('.blocktext').find('.fontsecondsize').val() + "px";
                 var text1 = 
                 '<div class="drag dragtext textsecond" id="secondtext_' + id + '" style="left: 20px; top: 20px;">'
                 +'    <div class="text" style="color: ' + color + ';font-size: ' + fontsize + ';">'+ $(this).val() + '</div>'
@@ -356,7 +356,7 @@ jQuery(function ($) {
             $(".drag").draggable({
                 appendTo: ".dragable",
                 containment: ".dragable",
-                grid: [ 20, 20 ],
+                // grid: [ 20, 20 ],
                 stop: function( event, ui ) {
                     var top = ui.position.top;
                     var left = ui.position.left;
@@ -367,7 +367,7 @@ jQuery(function ($) {
             $( ".dragtext" ).resizable({
                 autoHide: false,
                 containment: ".dragable",
-                grid: [ 20, 20 ],
+                // grid: [ 20, 20 ],
                 handles: "n, e, s, w",
                 stop: function( event, ui ) {
                     var top = ui.position.top;
@@ -623,7 +623,7 @@ jQuery(function ($) {
             $(".drag").draggable({
                 appendTo: ".dragable",
                 containment: ".dragable",
-                grid: [ 20, 20 ],
+                // grid: [ 20, 20 ],
                 stop: function( event, ui ) {
                     var top = ui.position.top;
                     var left = ui.position.left;
@@ -1073,7 +1073,7 @@ jQuery(function ($) {
         $(".drag").draggable({
             appendTo: ".dragable",
             containment: ".dragable",
-            grid: [ 20, 20 ],
+            // grid: [ 20, 20 ],
             stop: function( event, ui ) {
                 var top = ui.position.top;
                 var left = ui.position.left;
@@ -1084,7 +1084,7 @@ jQuery(function ($) {
         $( ".dragtext" ).resizable({
             autoHide: false,
             containment: ".dragable",
-            grid: [ 20, 20 ],
+            // grid: [ 20, 20 ],
             handles: "n, e, s, w",
             stop: function( event, ui ) {
                 var top = ui.position.top;
