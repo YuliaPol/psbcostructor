@@ -17,6 +17,23 @@ if(chartData.length > 0){
             if(chartData[i].type == 'horizontalbar'){
                 drawHorizontalBar(chartData[i].element, data);
             }
+            if(chartData[i].type == 'dougnatSimple'){
+                drawDoughnatSimple(chartData[i].element, data);
+            }
+        }
+    }
+}
+function drawDoughnatSimple(element, data){
+    $(element).attr('data-legend', '1');
+    if($(element).length==1){
+        var newData = data;
+        for (let i = 0; i < data.length; i++) {
+            newData[i].title = data[i].labelText;
+            newData[i].color = data[i].background;
+            newData[i].value = parseInt(data[i].progress);
+        }
+        if(newData) {
+            $(element).drawDoughnutChart(newData);
         }
     }
 }
@@ -61,7 +78,7 @@ function drawSimpleBar(element, data) {
 function drawHorizontalBar(element, data){
     if($(element).length==1){
         var id = element.split('.')[1];
-        var canvas = '<canvas  id="' + id + '"></canvas>';
+        var canvas = '<canvas  id="' + id + '" style="height: 230px; width: 600px;"></canvas>';
         $(canvas).appendTo($(element));        
         var newData = new Array(data.length);
         var backgroundColor = new Array(data.length);

@@ -288,6 +288,153 @@
   padding-top: 15px;
 }
 
+.dougnat {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.dougnat .chart {
+  width: 50%;
+}
+
+.dougnat .chart > div {
+  width: 250px;
+  height: 250px;
+  max-width: 100%;
+}
+
+.dougnat .chart > div svg {
+  max-width: 100%;
+}
+
+.dougnat .legend {
+  width: 50%;
+  margin-right: -20px;
+}
+
+.dougnat .legend .legend-list {
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.dougnat .legend .legend-list .legend-item {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.dougnat .legend .legend-list .legend-item .col-square {
+  min-width: 20px;
+  max-width: 20px;
+}
+
+.dougnat .legend .legend-list .legend-item .col-square .square {
+  width: 15px;
+  height: 15px;
+  background: #A9DDD6;
+  margin: auto;
+}
+
+.dougnat .legend .legend-list .legend-item .col-label {
+  width: calc(100% - 60px);
+  min-width: calc(100% - 60px);
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #605A5A;
+  padding-left: 10px;
+}
+
+.dougnat .legend .legend-list .legend-item .col-value {
+  min-width: 40px;
+  width: 40px;
+  padding: 5px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+  color: #4F4141;
+  background: #FDF9F9;
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-bottom: 15px;
+}
+
+.dougnat .legend .legend-list .legend-item:first-child .col-value,
+.dougnat .legend .legend-list .legend-item:first-child .col-label,
+.dougnat .legend .legend-list .legend-item:first-child .col-square {
+  padding-top: 20px;
+}
+
+.dougnat .legend .legend-list .legend-item:last-child .col-value,
+.dougnat .legend .legend-list .legend-item:last-child .col-label,
+.dougnat .legend .legend-list .legend-item:last-child .col-square {
+  padding-bottom: 20px;
+}
+
+.doughnutTip {
+  background: #F1F1F0;
+  mix-blend-mode: normal;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  padding: 7px 5px;
+  font-family: Arial;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+  color: #777676;
+  position: absolute;
+}
+
 @media screen and (max-width: 1100px) {
   .radialbarmultiple .legend .legend-list .legend-row {
     -webkit-box-orient: vertical;
@@ -323,6 +470,21 @@
 }
 
 @media screen and (max-width: 500px) {
+  .dougnat {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .dougnat .chart > div {
+    margin: auto;
+  }
+  .dougnat .chart,
+  .dougnat .legend {
+    width: 100%;
+    margin: 0px;
+  }
   .charts-content {
     padding-left: 15px;
     padding-right: 15px;

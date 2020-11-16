@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Все опросы</title>
+    <title>Отчётность / Тестирование идейной составляющей</title>
 
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/charts.css">
@@ -14,6 +14,7 @@
     <script src="./js/jqueryRadialBarMultiple.js"></script>
     <script src="./js/Chart.min.js"></script>
     <script src="./js/Chart.roundedBarCharts.js"></script>
+    <script src="./js/jquery.drawDoughnutChart.js"></script>
 </head>
 <body>
     <header class="header  sm-header">
@@ -136,7 +137,22 @@
                     <div class="horizonatlbar">
                         <div class="chart">
                             <div class="horizonatlbar-1"></div>
-                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="chart-box width-50">
+                <div class="chart-header">
+                    5 . Оцените Ваше желание воспользоваться продуктом/услугой, указанным в акции?
+                </div>
+                <div class="chart-content">
+                    <div class="dougnat">
+                        <div class="chart">
+                            <div class="dougnat-1"></div>
+                        </div>
+                        <div class="legend">
+                            <div class="legend-list">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -238,10 +254,38 @@
                     }
                 ]
             },
+            {
+                element: '.dougnat-1', // класс елемента
+                type: 'dougnatSimple',               //тип графіка
+                data: [                          //данные графика      
+                    {
+                        background: "#A9DDD6",
+                        progress: "20",
+                        labelText: "5"
+                    },
+                    {
+                        background: "#FADA99",
+                        progress: "20",
+                        labelText: "4"
+                    },
+                    {
+                        background: "#FFF386",
+                        progress: "20",
+                        labelText: "3"
+                    },
+                    {
+                        background: "#F69394",
+                        progress: "30",
+                        labelText: "2"
+                    },
+                    {
+                        background: "#8ED995",
+                        progress: "50",
+                        labelText: "1"
+                    }
+                ]
+            }
         ];
-
-
-
     </script>
     <script src="./js/charts.js"></script>
 </body>

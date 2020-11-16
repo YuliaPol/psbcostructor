@@ -217,6 +217,105 @@ $blue: #4A52F7;
         }
     }
 }
+.dougnat {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .chart {
+        width: 50%;
+        & > div {
+            width: 250px;
+            height: 250px;
+            max-width: 100%;
+            svg {
+                max-width: 100%;
+            }
+        }
+    }
+    .legend {
+        width: 50%;
+        margin-right: -20px;
+        .legend-list {
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-direction: column;
+            .legend-item {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                .col-square {
+                    min-width: 20px;
+                    max-width: 20px;
+                    .square {
+                        width: 15px;
+                        height: 15px;
+                        background: #A9DDD6;
+                        margin: auto;
+                    }
+                }
+                .col-label {
+                    width: calc(100% - 60px);
+                    min-width: calc(100% - 60px);
+                    font-family: $fontpage;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 12px;
+                    line-height: 15px;
+                    color: #605A5A;
+                    padding-left: 10px;
+                }
+                .col-value {
+                    min-width: 40px;
+                    width: 40px;
+                    padding: 5px;
+                    font-family: $fontpage;
+                    font-style: normal;
+                    font-weight: bold;
+                    font-size: 12px;
+                    line-height: 14px;
+                    color: #4F4141;
+                    background: #FDF9F9;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    padding-bottom: 15px;
+                }
+                &:first-child {
+                    .col-value,
+                    .col-label,
+                    .col-square {
+                        padding-top: 20px;
+                    }
+                }
+                &:last-child {
+                    .col-value,
+                    .col-label,
+                    .col-square {
+                        padding-bottom: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+.doughnutTip {
+    background: #F1F1F0;
+    mix-blend-mode: normal;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    padding: 7px 5px;
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 14px;
+    color: #777676;
+    position: absolute;
+}
 @media screen and (max-width: 1100px) {
     .radialbarmultiple .legend .legend-list .legend-row {
         flex-direction: column;
@@ -244,6 +343,19 @@ $blue: #4A52F7;
     }
 }
 @media screen and (max-width: 500px) {
+    .dougnat {
+        flex-direction: column;
+        .chart {
+            & > div {
+                margin: auto;
+            }
+        }
+        .chart,
+        .legend {
+            width: 100%;
+            margin: 0px;
+        }
+    }
     .charts-content {
         padding-left: 15px;
         padding-right: 15px;

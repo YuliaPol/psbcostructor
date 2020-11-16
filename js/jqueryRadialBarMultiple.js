@@ -5,7 +5,6 @@
  *Licensed MIT 
 -----------------------------------------------------------------------*/
 
-;(function ($) {
     "use strict";
 
     var pluginName = 'radialBar';
@@ -218,4 +217,3 @@
     };
 
     $.fn[pluginName].Constructor = RadialBar;
-}(jQuery));
