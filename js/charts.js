@@ -1,11 +1,19 @@
+var RadilaBars;
+
 
 if(chartData.length > 0){
+    DrawCharts(chartData);
+}
+$( window ).resize(function() {
+    ClearChart(chartData);
+    DrawCharts(chartData);
+});
+function DrawCharts(chartData){
     for(let i = 0; i < chartData.length; i++){
         if(chartData[i].element && chartData[i].data){
-            var data = chartData[i].data;
             if(chartData[i].type == 'radialbar'){
-                $(chartData[i].element).radialBar({
-                    data: data,
+                RadilaBar  = $(chartData[i].element).radialBar({
+                    data: chartData[i].data,
                     width: "250",
                     height: "250",
                     padding: 10,
@@ -23,6 +31,19 @@ if(chartData.length > 0){
             if(chartData[i].type == 'pieSimple'){
                 drawPieSimple(chartData[i].element, data);
             }
+            if(chartData[i].type == 'verticalBar'){
+                drawVerticalBar(chartData[i].element, data);
+            }
+        }
+    }
+}
+
+function ClearChart(chartData){
+    // $('.chart-content .chart').children().html(' ');
+    $('.chart-content .legend .legend-list').html(' ');
+    for(let i = 0; i < chartData.length; i++){
+        if(chartData[i].type !== 'radialbar'){
+            $(chartData[i].element).html(' ');
         }
     }
 }
@@ -53,6 +74,106 @@ function drawPieSimple(element, data){
             $(element).drawPieChart(newData);
             DrawLegend1(element, data);
         }
+    }
+}
+function drawVerticalBar(element, data) {
+    if($(element).length==1){
+        var id = element.split('.')[1];
+        var width = 200;
+        var height = 300;
+        if(window.screen.width > 768 && window.screen.width < 992){
+            width = 350;
+            height = 200;
+        }
+        else if(window.screen.width > 500 && window.screen.width <= 768) {
+            width = 750;
+            height = 250;
+        }
+        else if(window.screen.width <= 500) {
+            width = 350;
+            height = 200;
+        }
+        var canvas = '<canvas  id="' + id + '" style="height: '+ height + 'px; width: '+ width +'px;"></canvas>';
+        $(canvas).appendTo($(element));     
+        data.reverse();   
+        var newData = new Array(data.length);
+        var backgroundColor = new Array(data.length);
+        var labels = new Array(data.length);
+        for (let i = 0; i < data.length; i++) {
+            labels[i] = 'Оценка ' + data[i].labelText;
+            backgroundColor[i] = data[i].background;
+            newData[i] = data[i].progress;
+        }
+
+        var ChartData = {
+            labels: labels,
+            datasets: [{
+                data: newData,
+                backgroundColor: backgroundColor,
+                hoverBackgroundColor: backgroundColor,
+                borderWidth: 0
+            }]
+        };
+
+        var vertical = document.getElementById(id).getContext('2d');
+        var myBarChart = new Chart(vertical, {
+            type: 'bar',
+            data: ChartData,
+            options: {
+                tooltips: {
+                    enabled: true,
+                    mode: 'point',
+                    backgroundColor: '#C9C9C9',
+                    titleFontSize: 8,
+                    titleAlign: 'center',
+                    xPadding: 10,
+                    yPadding: 5,
+                    cornerRadius: 10,
+                    displayColors: false,
+                    callbacks: {
+                        title: function() {},
+                        label: function(tooltipItem, data) {
+                            var values = data.datasets[tooltipItem.datasetIndex].data;
+                            var total = 0;
+                            for(let i = 0; i < values.length; i++){
+                                total += parseInt(values[i]);
+                            }
+                            var percent = Math.round((100/total)*data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]);
+                            var label = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] || '';
+                            label =  percent + '% / '+ label + ' шт';
+                            return label;
+                        }
+                    }
+                },
+                hover: {mode: null},
+                legend: {
+                    display: false,
+                },
+                scales: {
+                    xAxes: [{
+                        gridLines: {
+                            color: '#fff',
+                            lineWidth: 0
+                        },
+                        ticks: {
+                            fontSize: 10,
+                            min: 0,
+                        }
+                    }],
+                    yAxes: [{
+                        gridLines: {
+                            color: '#D5D3D3',
+                            lineWidth: 1
+                        },
+                        ticks: {
+                            min: 0,
+                            fontSize: 10,
+                            padding: 10
+                        }
+                    }],
+                },
+            }
+        });
     }
 }
 function drawSimpleBar(element, data) {
@@ -128,7 +249,21 @@ function DrawLegend1(element, data) {
 function drawHorizontalBar(element, data){
     if($(element).length==1){
         var id = element.split('.')[1];
-        var canvas = '<canvas  id="' + id + '" style="height: 230px; width: 600px;"></canvas>';
+        var width = 600;
+        var height = 230;
+        if(window.screen.width > 768 && window.screen.width < 992){
+            width = 600;
+            height = 230;
+        }
+        else if(window.screen.width > 500 && window.screen.width <= 768) {
+            width = 750;
+            height = 250;
+        }
+        else if(window.screen.width <= 500) {
+            width = 350;
+            height = 200;
+        }
+        var canvas = '<canvas  id="' + id + '" style="height: '+ height + 'px; width: '+ width +'px;"></canvas>';
         $(canvas).appendTo($(element));        
         var newData = new Array(data.length);
         var backgroundColor = new Array(data.length);
@@ -221,3 +356,4 @@ function drawHorizontalBar(element, data){
         });
     }
 }
+

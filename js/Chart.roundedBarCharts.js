@@ -61,11 +61,21 @@ Chart.elements.Rectangle.prototype.draw = function() {
     }
 
     ctx.beginPath();
-    var grd = ctx.createLinearGradient(0, 0, right, 0);
-    grd.addColorStop(0.5, vm.backgroundColor);
-    var backgroundColorEnd = vm.backgroundColor + '55';
-    grd.addColorStop(1, backgroundColorEnd);
-    ctx.fillStyle = grd;
+    if(vm.horizontal == true){
+        var grd = ctx.createLinearGradient(0, 0, right, 0);
+        grd.addColorStop(0.5, vm.backgroundColor);
+        var backgroundColorEnd = vm.backgroundColor + '55';
+        grd.addColorStop(1, backgroundColorEnd);
+        ctx.fillStyle = grd;
+    }
+    else {
+        var topGradient = bottom + top;
+        var grd = ctx.createLinearGradient(0, 0, 0, topGradient);
+        var backgroundColorEnd = '#fff';
+        grd.addColorStop(1, vm.backgroundColor);
+        grd.addColorStop(0, backgroundColorEnd);
+        ctx.fillStyle = grd;
+    }
     ctx.strokeStyle = vm.borderColor;
     ctx.lineWidth = borderWidth;
 

@@ -37,6 +37,9 @@ $blue: #4A52F7;
             &.width-50 {
                 width: calc(50% - 10px);
             }
+            &.width-33 {
+                width: calc(33% - 10px);
+            }
             .chart-header {
                 font-family: $fontpage;
                 font-style: normal;
@@ -440,9 +443,18 @@ $blue: #4A52F7;
             }
         }
     }
+    .charts-content .chart-row .chart-box.width-33 {
+        width: 50%;
+    }
+}
+@media screen and (max-width: 768px) {
+    .charts-content .chart-row .chart-box.width-33 {
+        width: 100%;
+    }
 }
 @media screen and (max-width: 500px) {
-    .dougnat {
+    .dougnat,
+    .pieChart {
         flex-direction: column;
         .chart {
             & > div {

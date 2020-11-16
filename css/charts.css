@@ -52,6 +52,10 @@
   width: calc(50% - 10px);
 }
 
+.charts-content .chart-row .chart-box.width-33 {
+  width: calc(33% - 10px);
+}
+
 .charts-content .chart-row .chart-box .chart-header {
   font-family: "Montserrat";
   font-style: normal;
@@ -613,21 +617,34 @@
   .charts-content .chart-row .chart-box.width-50:last-child {
     margin-bottom: 0px;
   }
+  .charts-content .chart-row .chart-box.width-33 {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .charts-content .chart-row .chart-box.width-33 {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 500px) {
-  .dougnat {
+  .dougnat,
+  .pieChart {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  .dougnat .chart > div {
+  .dougnat .chart > div,
+  .pieChart .chart > div {
     margin: auto;
   }
   .dougnat .chart,
-  .dougnat .legend {
+  .dougnat .legend,
+  .pieChart .chart,
+  .pieChart .legend {
     width: 100%;
     margin: 0px;
   }
