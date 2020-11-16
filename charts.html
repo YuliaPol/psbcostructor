@@ -181,7 +181,8 @@
                 <div class="chart-content">
                     <div class="lineChart">
                         <div class="chart">
-                            <div class="line-1"></div>
+                            <div class="line-1">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -341,6 +342,33 @@
                     {
                         background: "#85D2F0",
                         progress: "50",
+                        labelText: "1"
+                    }
+                ]
+            },
+            {
+                element: '.line-1', // класс елемента
+                type: 'shadowLine',               //тип графіка
+                borderColor: '#BDA0FF',
+                data: [                          //данные графика      
+                    {
+                        progress: "200",
+                        labelText: "5"
+                    },
+                    {
+                        progress: "150",
+                        labelText: "4"
+                    },
+                    {
+                        progress: "40",
+                        labelText: "3"
+                    },
+                    {
+                        progress: "150",
+                        labelText: "2"
+                    },
+                    {
+                        progress: "260",
                         labelText: "1"
                     }
                 ]

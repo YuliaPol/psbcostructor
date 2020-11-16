@@ -1,5 +1,3 @@
-var RadilaBars;
-
 
 if(chartData.length > 0){
     DrawCharts(chartData);
@@ -20,24 +18,26 @@ function DrawCharts(chartData){
                 });
             }
             if(chartData[i].type == 'simpleBar'){
-                drawSimpleBar($(chartData[i].element), data);
+                drawSimpleBar($(chartData[i].element), chartData[i].data);
             }
             if(chartData[i].type == 'horizontalbar'){
-                drawHorizontalBar(chartData[i].element, data);
+                drawHorizontalBar(chartData[i].element, chartData[i].data);
             }
             if(chartData[i].type == 'dougnatSimple'){
-                drawDoughnatSimple(chartData[i].element, data);
+                drawDoughnatSimple(chartData[i].element, chartData[i].data);
             }
             if(chartData[i].type == 'pieSimple'){
-                drawPieSimple(chartData[i].element, data);
+                drawPieSimple(chartData[i].element, chartData[i].data);
             }
             if(chartData[i].type == 'verticalBar'){
-                drawVerticalBar(chartData[i].element, data);
+                drawVerticalBar(chartData[i].element, chartData[i].data);
+            }
+            if(chartData[i].type == 'shadowLine'){
+                drawShadowLine(chartData[i].element, chartData[i].data, chartData[i].borderColor);
             }
         }
     }
 }
-
 function ClearChart(chartData){
     // $('.chart-content .chart').children().html(' ');
     $('.chart-content .legend .legend-list').html(' ');
@@ -45,6 +45,171 @@ function ClearChart(chartData){
         if(chartData[i].type !== 'radialbar'){
             $(chartData[i].element).html(' ');
         }
+    }
+}
+function drawShadowLine(element, data, borderColor) {
+    //type shadowLine
+    (function()
+    {
+        var ShadowLineElement = Chart.elements.Line.extend({
+            draw: function()
+            {
+                var ctx = this._chart.ctx;
+                var vm = this._view;
+                var borderColor = vm.borderColor;
+                var originalStroke = ctx.stroke;
+                ctx.stroke = function()
+                {
+                    ctx.save();
+                    ctx.shadowColor = borderColor;
+                    ctx.shadowBlur = 4;
+                    ctx.shadowOffsetX = 0;
+                    ctx.shadowOffsetY = 0;
+                    originalStroke.apply(this, arguments);
+                    ctx.restore();
+                };
+                Chart.elements.Line.prototype.draw.apply(this, arguments);
+                ctx.stroke = originalStroke;
+            }
+        });
+        Chart.defaults.ShadowLine = Chart.defaults.line;
+        Chart.controllers.ShadowLine = Chart.controllers.line.extend({
+            datasetElementType: ShadowLineElement
+        });
+    })();
+
+    if($(element).length==1){
+        var id = element.split('.')[1];
+        var width = 500;
+        var height = 200;
+        if(window.screen.width > 992 && window.screen.width <= 1200) {
+            width = 600;
+            height = 350;
+        }
+        else if(window.screen.width > 768 && window.screen.width <= 992){
+            width = 600;
+            height = 200;
+        }
+        else if(window.screen.width > 500 && window.screen.width <= 768) {
+            width = 750;
+            height = 250;
+        }
+        else if(window.screen.width <= 500) {
+            width = 350;
+            height = 200;
+        }
+        var canvas = '<canvas  id="' + id + '" style="height: '+ height + 'px; width: '+ width +'px;"></canvas>';
+        $(canvas).appendTo($(element));
+        data.reverse();   
+        var newData = new Array(data.length);
+        var backgroundColor = new Array(data.length);
+        var labels = new Array(data.length);
+        var maxValue = data[0].progress;
+        for (let i = 0; i < data.length; i++) {
+            labels[i] = 'Оценка ' + data[i].labelText;
+            backgroundColor[i] = data[i].background;
+            newData[i] = data[i].progress;
+            if(maxValue<data[i].progress){
+                maxValue = data[i].progress;
+            }
+        }
+        maxValue = parseInt(maxValue) + 10;
+        var shadowLineEl = document.getElementById(id).getContext('2d');
+        gradient = shadowLineEl.createLinearGradient(0, 0, 0, height);
+        gradient.addColorStop(0, borderColor);
+        gradient.addColorStop(0.5, borderColor + '55');
+        gradient.addColorStop(0.9, borderColor + '00');
+
+        var ChartData = {
+            labels: labels,
+            datasets: [{
+                data: newData,
+                backgroundColor: gradient,
+                pointBackgroundColor: 'white',
+                borderWidth: 2,
+                borderColor: borderColor,
+            }]
+        };
+
+        //options team Chart
+        var optionsLine = {
+            responsive: true,
+            maintainAspectRatio: true,
+            cutoutPercentage: 70,
+            animation: {
+                easing: 'easeInOutQuad',
+                duration: 520
+            },
+            hover: {mode: null},
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        color: '#D5D3D3',
+                        lineWidth: 1
+                    },
+                    ticks: {
+                        fontSize: 10
+                    }
+                }],
+                yAxes: [{
+                    barPercentage: 1.0,
+                    weight: 100,
+                    gridLines: {
+                        color: '#D5D3D3',
+                        lineWidth: 1
+                    },
+                    ticks: {
+                        min: 0,
+                        padding: 10,
+                    }
+                }],
+            },
+            elements: {
+                line: {
+                    tension: 0.4,
+                }
+            },
+            legend: {
+                display: false
+            },
+            point: {
+                backgroundColor: 'white'
+            },
+            tooltips: {
+                mode: 'nearest',
+                backgroundColor: borderColor,
+                titleFontSize: 8,
+                titleAlign: 'center',
+                position: 'average',
+                xPadding: 10,
+                yPadding: 5,
+                cornerRadius: 10,
+                displayColors: false,
+                // yAlign: 'bottom',
+                // xAlign: 'center',
+                callbacks: {
+                    title: function() {},
+                    label: function(tooltipItem, data) {
+                        var values = data.datasets[tooltipItem.datasetIndex].data;
+                        var total = 0;
+                        for(let i = 0; i < values.length; i++){
+                            total += parseInt(values[i]);
+                        }
+                        var percent = Math.round((100/total)*data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]);
+                        var label = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] || '';
+                        label =  percent + '% / '+ label + ' шт';
+                        return label;
+                    }
+                }
+            }
+        };
+        chartInstanceTeam = new Chart(shadowLineEl, {
+            type: 'ShadowLine',
+            data: ChartData,
+            responsive: true,
+            options: optionsLine
+        });
+
     }
 }
 function drawDoughnatSimple(element, data){
@@ -79,8 +244,8 @@ function drawPieSimple(element, data){
 function drawVerticalBar(element, data) {
     if($(element).length==1){
         var id = element.split('.')[1];
-        var width = 200;
-        var height = 300;
+        var width = 300;
+        var height = 200;
         if(window.screen.width > 768 && window.screen.width < 992){
             width = 350;
             height = 200;
@@ -94,7 +259,7 @@ function drawVerticalBar(element, data) {
             height = 200;
         }
         var canvas = '<canvas  id="' + id + '" style="height: '+ height + 'px; width: '+ width +'px;"></canvas>';
-        $(canvas).appendTo($(element));     
+        $(canvas).appendTo($(element));
         data.reverse();   
         var newData = new Array(data.length);
         var backgroundColor = new Array(data.length);
