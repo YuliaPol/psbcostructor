@@ -15,6 +15,7 @@
     <script src="./js/Chart.min.js"></script>
     <script src="./js/Chart.roundedBarCharts.js"></script>
     <script src="./js/jquery.drawDoughnutChart.js"></script>
+    <script src="./js/jquery.drawPieChart.js"></script>
 </head>
 <body>
     <header class="header  sm-header">
@@ -157,6 +158,22 @@
                     </div>
                 </div>
             </div>
+            <div class="chart-box width-50">
+                <div class="chart-header">
+                    6 . Вы бы обратили внимание на данный продукт/услугу, если бы случайно увидели/услышали о нем?
+                </div>
+                <div class="chart-content">
+                    <div class="pieChart">
+                        <div class="chart">
+                            <div class="pie-1"></div>
+                        </div>
+                        <div class="legend">
+                            <div class="legend-list">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script type="text/javascript">
@@ -280,6 +297,37 @@
                     },
                     {
                         background: "#8ED995",
+                        progress: "50",
+                        labelText: "1"
+                    }
+                ]
+            },
+            {
+                element: '.pie-1', // класс елемента
+                type: 'pieSimple',               //тип графіка
+                data: [                          //данные графика      
+                    {
+                        background: "#C6B7E8",
+                        progress: "20",
+                        labelText: "5"
+                    },
+                    {
+                        background: "#7EA7E0",
+                        progress: "20",
+                        labelText: "4"
+                    },
+                    {
+                        background: "#FFE700",
+                        progress: "20",
+                        labelText: "3"
+                    },
+                    {
+                        background: "#EE8E7B",
+                        progress: "30",
+                        labelText: "2"
+                    },
+                    {
+                        background: "#85D2F0",
                         progress: "50",
                         labelText: "1"
                     }

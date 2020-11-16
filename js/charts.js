@@ -20,6 +20,9 @@ if(chartData.length > 0){
             if(chartData[i].type == 'dougnatSimple'){
                 drawDoughnatSimple(chartData[i].element, data);
             }
+            if(chartData[i].type == 'pieSimple'){
+                drawPieSimple(chartData[i].element, data);
+            }
         }
     }
 }
@@ -34,6 +37,21 @@ function drawDoughnatSimple(element, data){
         }
         if(newData) {
             $(element).drawDoughnutChart(newData);
+            DrawLegend1(element, data);
+        }
+    }
+}
+function drawPieSimple(element, data){
+    if($(element).length==1){
+        var newData = data;
+        for (let i = 0; i < data.length; i++) {
+            newData[i].title = data[i].labelText;
+            newData[i].color = data[i].background;
+            newData[i].value = parseInt(data[i].progress);
+        }
+        if(newData) {
+            $(element).drawPieChart(newData);
+            DrawLegend1(element, data);
         }
     }
 }
@@ -74,6 +92,38 @@ function drawSimpleBar(element, data) {
         element.addClass('varticalbarChart');
         $(elements).appendTo(element);
     }
+}
+function DrawLegend1(element, data) {
+    var legend = $(element).parents('.chart-content').find('.legend .legend-list');
+    var segmentTotal = 0;
+    for (var i = 0, len = data.length; i < len; i++){
+        if(data[i].value) {
+            segmentTotal += data[i].value;
+        }
+    }
+    //percent for each value
+    for (var i = 0, len = data.length; i < len; i++){
+        if(data[i].value) {
+            data[i].percent = Math.round((100/segmentTotal)*data[i].value);
+        }
+    }
+    for (var i = 0, len = data.length; i < len; i++){
+        if( data[i].value) {
+          var legendRow = 
+          '<div class="legend-item">'
+          +'    <div class="col-square">'
+          +'      <div class="square" style="background: '+ data[i].color +'"></div>'
+          +'  </div>'
+          +'  <div class="col-label">'
+          +'      Оценка <span class="bold">' + data[i].title + '</span>'
+          +'  </div>'
+          +'  <div class="col-value">'
+          +'      ' + data[i].percent + '%'
+          +'  </div>'
+          +'</div>';
+          $(legendRow).appendTo(legend);
+        }
+      }
 }
 function drawHorizontalBar(element, data){
     if($(element).length==1){

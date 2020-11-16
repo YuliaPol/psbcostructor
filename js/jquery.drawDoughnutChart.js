@@ -168,32 +168,9 @@
           data[i].percent = Math.round((100/segmentTotal)*data[i].value);
         }
       }
-      var legend = $(this).parents('.dougnat').find('.legend .legend-list');
-      if($(this).attr('data-legend') == '1'){
-        DrawLegend1(legend);
-      }
       //Animation start
       animationLoop(drawPieSegments);
 
-      function DrawLegend1(legend){
-        for (var i = 0, len = data.length; i < len; i++){
-          if( data[i].value) {
-            var legendRow = 
-            '<div class="legend-item">'
-            +'    <div class="col-square">'
-            +'      <div class="square" style="background: '+ data[i].color +'"></div>'
-            +'  </div>'
-            +'  <div class="col-label">'
-            +'      Оценка <span class="bold">' + data[i].title + '</span>'
-            +'  </div>'
-            +'  <div class="col-value">'
-            +'      ' + data[i].percent + '%'
-            +'  </div>'
-            +'</div>';
-            $(legendRow).appendTo(legend);
-          }
-        }
-      }
       function pathMouseEnter(e){
         var order = $(this).data().order;
         $tip.text(data[order].percent + '%')
