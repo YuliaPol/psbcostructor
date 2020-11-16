@@ -17,6 +17,16 @@ function DrawCharts(chartData){
                     padding: 10,
                 });
             }
+            if(chartData[i].type == 'radialBar2'){
+                RadilaBar  = $(chartData[i].element).radialBar({
+                    data: chartData[i].data,
+                    width: "250",
+                    height: "250",
+                    padding: 10,
+                    strokeCloneCircle: 1,
+                    round: false,
+                });
+            }
             if(chartData[i].type == 'simpleBar'){
                 drawSimpleBar($(chartData[i].element), chartData[i].data);
             }
@@ -42,7 +52,7 @@ function ClearChart(chartData){
     // $('.chart-content .chart').children().html(' ');
     $('.chart-content .legend .legend-list').html(' ');
     for(let i = 0; i < chartData.length; i++){
-        if(chartData[i].type !== 'radialbar'){
+        if(chartData[i].type !== 'radialbar' || chartData[i].type !== 'radialBar2'){
             $(chartData[i].element).html(' ');
         }
     }

@@ -67,11 +67,24 @@
                     </div>
                 </div>
             </div>
+            <div class="chart-box width-33">
+                <div class="chart-header">
+                    2 . Насколько понятно, что это?
+                </div>
+                <div class="chart-content">
+                    <div class="radialBar2">
+                        <div class="chart">
+                            <div class="radialbar-1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script type="text/javascript">
         var chartData = [ //массив с данными для графиков типу круги в кругах
-        {
+            {
                 element: '.verticalBar-1', // класс елемента
                 type: 'verticalBar',               //тип графіка
                 data: [                          //данные графика      
@@ -100,7 +113,38 @@
                         progress: "95",
                         labelText: "5"
                     }
-                ]
+                ],
+            },
+            {
+                element: '.radialbar-1', // класс елемента
+                type: 'radialBar2',               //тип графіка
+                data: [                          //данные графика      
+                    {
+                        background: "#B3FFDF",
+                        progress: "35",
+                        labelText: "1"
+                    },
+                    {
+                        background: "#8CF0C6",
+                        progress: "44",
+                        labelText: "2"
+                    },
+                    {
+                        background: "#3FECA3",
+                        progress: "65",
+                        labelText: "3"
+                    },
+                    {
+                        background: "#33C186",
+                        progress: "80",
+                        labelText: "4"
+                    },
+                    {
+                        background: "#34A475",
+                        progress: "95",
+                        labelText: "5"
+                    }
+                ],
             }
         ];
     </script>

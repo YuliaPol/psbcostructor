@@ -74,6 +74,11 @@ RadialBar.prototype = {
         var length = self.options["data"].length;
         var padding = self.options.padding || 20;
         var division = (r - padding) / length;
+        var strokeCloneCircle = self.strokeWidth - 3;
+        if(self.options["strokeCloneCircle"]){
+            strokeCloneCircle = self.options["strokeCloneCircle"];
+        }
+        
         var maxValue = 0;
         for (let i = 0; i < length; i++) {
             if(parseInt(data[i].progress) > maxValue){
@@ -91,7 +96,7 @@ RadialBar.prototype = {
             else {
                 stroreWidth = 12 - 6;
             }
-            self._buildCircle(object, raiusCircle, stroreWidth, maxValue);
+            self._buildCircle(object, raiusCircle, stroreWidth, maxValue, strokeCloneCircle);
             self._buildLabel(object, paddingLabel, percent);
             paddingLabel += 20;
             r = r - division;
@@ -123,11 +128,10 @@ RadialBar.prototype = {
         $(feDropShadow).appendTo(shadow);
         $(shadow).appendTo(self.svgContainer);
     },
-    _buildCircle: function(object, r, stroreWidth, maxValue){
+    _buildCircle: function(object, r, stroreWidth, maxValue, strokeCloneCircle){
         var self = this;
         var radius = r - 10;
         var circumference = radius * 2 * Math.PI;
-
         // var offset = circumference - object.progress / 100 * circumference;
         var offset = circumference - object.progress / maxValue * 0.9 * circumference;
 
@@ -135,16 +139,19 @@ RadialBar.prototype = {
         circle.setAttribute("cy", 0);
         circle.setAttribute("cx", 0);
         circle.setAttribute("r", radius);
-        circle.setAttribute("stroke-width", stroreWidth);
+        circle.setAttribute("stroke-width", strokeCloneCircle);
         circle.setAttribute("fill", "none");
-        circle.setAttribute("stroke", '#F5F7FA');
+        circle.setAttribute("stroke", '#F3F3F3');
 
         var clonedCircle = $(circle).clone()[0];
+        clonedCircle.setAttribute("stroke-width", stroreWidth);
         clonedCircle.setAttribute("stroke", object.background);
         clonedCircle.setAttribute("transform", "rotate(-90 0 0)")
         clonedCircle.setAttribute("stroke-dasharray", circumference+" "+circumference);
         clonedCircle.setAttribute("stroke-dashoffset", offset);
-        clonedCircle.setAttribute("stroke-linecap", "round");
+        if(self.options["round"] !== false){
+            clonedCircle.setAttribute("stroke-linecap", "round");
+        }
         clonedCircle.setAttribute("style", "transition: stroke-dashoffset 1s ease-out 0s; filter: url(#boxshadow);");
 
         self.svgContainer.appendChild(circle);
@@ -160,29 +167,6 @@ RadialBar.prototype = {
         +'    <div class="legend-label">Ответы на оценку <span class="bold">'+ object.labelText + '</span></div>'
         +'</div>';
         $(legendRow).appendTo(legend);
-        // var circle = document.createElementNS(svgNS,"circle");
-        // circle.setAttribute("cy", padding);
-        // circle.setAttribute("cx", -self.radius);
-        // circle.setAttribute("r", 5);
-        // circle.setAttribute("stroke-width", 8);
-        // circle.setAttribute("fill", "none");
-        // circle.setAttribute("stroke", '#F5F7FA');
-
-        // var clonedCircle = $(circle).clone()[0];
-        // clonedCircle.setAttribute("stroke", object.background);
-        // clonedCircle.setAttribute("r", 3);
-        // clonedCircle.setAttribute("fill", object.background);
-
-        // var text = document.createElementNS(svgNS,"text");
-        // text.setAttribute("y", padding + 5);
-        // text.setAttribute("x", -self.radius + 10);
-        // text.setAttribute("font-size", 12);
-        // var textNode = document.createTextNode(object.labelText);
-        // text.appendChild(textNode);
-
-        // self.svgContainer.appendChild(circle);
-        // self.svgContainer.appendChild(clonedCircle);
-        // self.svgContainer.appendChild(text);
     },
 
     destroy: function() {
