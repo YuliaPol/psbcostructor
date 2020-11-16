@@ -24,12 +24,13 @@ $blue: #4A52F7;
         display: flex;
         align-items: stretch;
         justify-content: space-between;
-        padding-bottom: 20px;
+        flex-wrap: wrap;
         .chart-box {
             background: #FFFFFF;
             box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
             border-radius: 2px;
             padding: 20px;
+            margin-bottom: 20px;
             &.full-width {
                 width: 100%;
             }
@@ -156,15 +157,14 @@ $blue: #4A52F7;
         }
     }
 }
-.simplebar {
-    .simplebarChart {
+.varticalbar {
+    .varticalbarChart {
         width: 100%;
         .barlist {
             display: flex;
             align-items: flex-end;
             justify-content: stretch;
             .baritem {
-                min-width: 45px;
                 max-width: calc(100%/5);
                 width: calc(100%/5);
                 .barcol {
@@ -180,7 +180,6 @@ $blue: #4A52F7;
                         left: 0px;
                         right: 0px;
                         width: 60%;
-                        min-width: 50px;
                         top: 90%;
                         margin: auto;
                     }
@@ -188,14 +187,16 @@ $blue: #4A52F7;
                         font-family: $fontpage;
                         font-style: normal;
                         font-weight: bold;
-                        font-size: 8px;
-                        line-height: 8px;
+                        font-size: 10px;
+                        line-height: 10px;
                         text-align: center;
                         color: #FFFFFF;
                         position: absolute;
                         bottom: 5px;
                         left: 5px;
                         right: 5px;
+                        width: 60%;
+                        margin: auto;
                     }
                 }
                 .label {
@@ -204,12 +205,12 @@ $blue: #4A52F7;
                     font-family: $fontpage;
                     font-style: normal;
                     font-weight: normal;
-                    font-size: 8px;
+                    font-size: 10px;
                     line-height: 10px;
                     color: #000000;
                     text-align: center;
-                    padding-left: 10px;
-                    padding-right: 10px;
+                    padding-left: 5px;
+                    padding-right: 5px;
                     padding-top: 15px;
                 }
             }
@@ -224,6 +225,10 @@ $blue: #4A52F7;
             padding-top: 10px;
             white-space: nowrap;
         }
+    }
+    .varticalbar .varticalbarChart .barlist .baritem .barcol .value,
+    .varticalbar .varticalbarChart .barlist .baritem .label {
+        font-size: 8px;
     }
 }
 @media screen and (max-width: 900px) {
@@ -249,7 +254,7 @@ $blue: #4A52F7;
     .radialbarmultiple .legend {
         padding-top: 15px;
     }
-    .simplebar .simplebarChart .barlist .baritem .barcol .barcolFill {
+    .varticalbar .varticalbarChart .barlist .baritem .barcol .barcolFill {
         width: 90%;
         min-width: 90%;
     }
