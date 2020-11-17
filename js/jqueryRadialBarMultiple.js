@@ -69,8 +69,9 @@ RadialBar.prototype = {
 
         self._buildSvg(w, h, scale);
         self._addShadow();
-
-        
+        if(self.options["tooltip"] == true){
+            self._buildTip();
+        }
         var length = self.options["data"].length;
         var padding = self.options.padding || 20;
         var division = (r - padding) / length;
@@ -96,14 +97,33 @@ RadialBar.prototype = {
             else {
                 stroreWidth = 12 - 6;
             }
-            self._buildCircle(object, raiusCircle, stroreWidth, maxValue, strokeCloneCircle);
-            self._buildLabel(object, paddingLabel, percent);
+            self._buildCircle(object, raiusCircle, stroreWidth, maxValue, strokeCloneCircle, percent);
+            if(self.options["legend"] == 'square'){
+                self._buildLabelSquare(object, paddingLabel, percent);
+            }
+            else if(self.options["legend"] == 'circle'){
+                self._buildLabelCircle(object, paddingLabel, percent);
+            }
             paddingLabel += 20;
             r = r - division;
             raiusCircle = raiusCircle - division;
         }
     },
 
+    _buildTip: function(width, height, scale){
+        var self = this;
+        //Set up tooltip
+        var $tip = $('<div class="radialTip" />').appendTo('body').hide(),
+        tipW = $tip.width(),
+        tipH = $tip.height();
+
+        $('.chart-content')
+        .on("mouseenter", 'circle', radialMouseEnter)
+        .on("mouseleave", 'circle', radialMouseLeave)
+        .on("mousemove", 'circle', radialMouseMove);
+    },
+    
+    
     _buildSvg: function(width, height, scale){
         var self = this;
         var svgElem = self.svgContainer = document.createElementNS(svgNS, "svg");
@@ -128,13 +148,12 @@ RadialBar.prototype = {
         $(feDropShadow).appendTo(shadow);
         $(shadow).appendTo(self.svgContainer);
     },
-    _buildCircle: function(object, r, stroreWidth, maxValue, strokeCloneCircle){
+    _buildCircle: function(object, r, stroreWidth, maxValue, strokeCloneCircle, percent){
         var self = this;
         var radius = r - 10;
         var circumference = radius * 2 * Math.PI;
         // var offset = circumference - object.progress / 100 * circumference;
         var offset = circumference - object.progress / maxValue * 0.9 * circumference;
-
         var circle = document.createElementNS(svgNS,"circle");
         circle.setAttribute("cy", 0);
         circle.setAttribute("cx", 0);
@@ -142,6 +161,8 @@ RadialBar.prototype = {
         circle.setAttribute("stroke-width", strokeCloneCircle);
         circle.setAttribute("fill", "none");
         circle.setAttribute("stroke", '#F3F3F3');
+        circle.setAttribute("data-value", object.progress);
+        circle.setAttribute("data-percent", percent);
 
         var clonedCircle = $(circle).clone()[0];
         clonedCircle.setAttribute("stroke-width", stroreWidth);
@@ -153,14 +174,13 @@ RadialBar.prototype = {
             clonedCircle.setAttribute("stroke-linecap", "round");
         }
         clonedCircle.setAttribute("style", "transition: stroke-dashoffset 1s ease-out 0s; filter: url(#boxshadow);");
-
         self.svgContainer.appendChild(circle);
         self.svgContainer.appendChild(clonedCircle);
     },
 
-    _buildLabel: function(object, padding, percent){
+    _buildLabelSquare: function(object, padding, percent){
         var self = this;
-        var legend = $(self.element).parents('.radialbarmultiple').find('.legend .legend-list');
+        var legend = $(self.element).parents('.chart-content').find('.legend .legend-list');
         var legendRow = 
         '<div class="legend-row">'
         +'    <div class="legend-value" style="background-color: ' + object.background + ';">'+ percent + '% / ' + object.progress + ' шт</div>'
@@ -169,6 +189,16 @@ RadialBar.prototype = {
         $(legendRow).appendTo(legend);
     },
 
+    _buildLabelCircle: function(object, padding, percent){
+        var self = this;
+        var legend = $(self.element).parents('.chart-content').find('.legend .legend-list');
+        var legendRow = 
+        '<div class="legend-row">'
+        +'    <div class="circle" style="border-color: ' + object.background + '"></div>'
+        +'  <div class="value">- ' + object.labelText + '</div>'
+        +'</div>';
+        $(legendRow).appendTo(legend);
+    },
     destroy: function() {
     },
 
@@ -200,3 +230,23 @@ $.fn[pluginName].defaults = {
 };
 
 $.fn[pluginName].Constructor = RadialBar;
+
+function radialMouseEnter(e){
+    var value = $(this).data().value;
+    var percent = $(this).data().percent;
+    var $tip = $('.radialTip');
+    if(value && percent){
+        $tip.text(percent + '%  / ' + value + " шт").fadeIn(200);
+    }
+}
+function radialMouseLeave(e){
+    var $tip = $('.radialTip');
+    $tip.hide();
+}
+function radialMouseMove(e){
+    var $tip = $('.radialTip');
+    $tip.css({
+        top: e.pageY - 30,
+        left: e.pageX - $tip.width() / 2 - 6
+    });
+}

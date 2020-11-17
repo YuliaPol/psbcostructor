@@ -10,21 +10,28 @@ function DrawCharts(chartData){
     for(let i = 0; i < chartData.length; i++){
         if(chartData[i].element && chartData[i].data){
             if(chartData[i].type == 'radialbar'){
+                var Radialdata = chartData[i].data;
+                Radialdata.reverse();
                 RadilaBar  = $(chartData[i].element).radialBar({
-                    data: chartData[i].data,
+                    data: Radialdata,
                     width: "250",
                     height: "250",
                     padding: 10,
+                    legend: 'square'
                 });
             }
             if(chartData[i].type == 'radialBar2'){
+                var Radialdata = chartData[i].data;
+                Radialdata.reverse();
                 RadilaBar  = $(chartData[i].element).radialBar({
-                    data: chartData[i].data,
+                    data: Radialdata,
                     width: "250",
                     height: "250",
                     padding: 10,
                     strokeCloneCircle: 1,
                     round: false,
+                    tooltip: true,
+                    legend: 'circle'
                 });
             }
             if(chartData[i].type == 'simpleBar'){

@@ -420,6 +420,67 @@ $blue: #4A52F7;
 .pieTip {
     display: none !important;
 }
+.radialBar2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .chart {
+        width: calc(100% - 60px);
+        svg {
+            max-width: 100%;
+        }
+    }
+    .legend {
+        width: 50px;
+        .legend-list {
+            .legend-row {
+                padding-bottom: 4px;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                .circle {
+                    width: 21px;
+                    height: 21px;
+                    border: 2px solid #B2FFDF;
+                    border-radius: 50%;
+                }
+                .value {
+                    font-family: $fontpage;
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 12px;
+                    line-height: 15px;
+                    color: #898585;
+                    padding-left: 5px;
+                }
+            }
+        }
+    }
+}
+.radialTip {
+    position: absolute;
+    background: #C9C9C9;
+    padding: 6px 7px;
+    border-radius: 10px;
+    font-family: $fontpage;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 8px;
+    line-height: 10px;
+    color: #FFFFFF;
+    &::after {
+        content: "";
+        position: absolute;
+        left: calc(50% - 2.5px);
+        top: 100%;
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid #C9C9C9;
+        clear: both;
+    }
+}
 @media screen and (max-width: 1100px) {
     .radialbarmultiple .legend .legend-list .legend-row {
         flex-direction: column;
