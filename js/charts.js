@@ -58,10 +58,17 @@ function DrawCharts(chartData){
             if(chartData[i].type == 'lineDot'){
                 drawLineDot(chartData[i].element, chartData[i].data, chartData[i].dotColor);
             }
+            if(chartData[i].type == 'pyramid'){
+                DrawPyramide(chartData[i].element, chartData[i].data);
+            }
         }
     }
 }
 function ClearChart(chartData){
+    $('.doughnutTipExpand').remove();
+    $('.pyraamidTip').remove();
+    $('.doughnutTip').remove();
+    $('.pieTip').remove();
     for(let i = 0; i < chartData.length; i++){
         if(chartData[i].type !== 'radialbar' && chartData[i].type !== 'radialBar2'){
             $(chartData[i].element).html(' ');
@@ -686,5 +693,137 @@ function drawLineDot(element, data, dotColor) {
         str += '</div>';
         str += '</div>';
         $(element).append(str);
+    }
+}
+function DrawPyramide(element, data){
+    function trapezoidPath (height, topBase, bottomBase) {
+        const
+            topBaseOffset = (100 - topBase) / 2,
+            bottomBaseOffset = (100 - bottomBase) / 2
+
+        const
+            topRule = topBaseOffset === 0 ? '50% 0' : `${topBaseOffset}% 0%, ${100 - topBaseOffset}% 0%`,
+            bottomRule = `${100 - bottomBaseOffset}% 100%, ${bottomBaseOffset}% 100%`
+
+        return `polygon(${topRule}, ${bottomRule})`
+    }
+    function calculateStyles (data) {
+        var prevSizesCoef = 0;
+        var areaAcc = 0;
+        var returnStr = new Array(data.length);
+        var total = 0;
+        for (let i = 0; i < data.length; i++) {
+            total += parseInt(data[i].value);
+        }
+        for (let i = 0; i < data.length; i++) {
+            areaAcc = areaAcc + (total/data.length);
+            var areaRatio = areaAcc / total;
+            var sizesCoef = areaRatio;
+            var sliceHeight = 100/data.length;
+            var path = trapezoidPath(sliceHeight * 100, prevSizesCoef * 100, sizesCoef * 100)
+            prevSizesCoef = sizesCoef
+            returnStr[i] = 
+            'clip-path: '+ path + ';'
+            +'height: '+sliceHeight*100 + '%;'
+            +'width: 100%;'
+            +'background:'+data[i].background + ';';
+        }
+        return returnStr;
+    }
+
+    function Pyramid(dataPyramid) {
+        var styles = calculateStyles(dataPyramid);
+        var containerStyle =
+            'height: 100%;'
+            +'width: 100%;'
+            +'display: flex;'
+            +'flex-direction: column;'
+            +'justify-content: center;'
+            +'align-items: center;'
+            +'box-sizing: border-box;';
+        var template = 
+        '<div class="pyramid-chart-container" style="' + containerStyle + '">';
+            for (let i = 0; i < dataPyramid.length; i++) {
+                template +=
+                '    <div class="pyramid-chart-slice"'
+                +'      data-value="' + dataPyramid[i].value +'шт"'
+                +'      data-label="' + dataPyramid[i].title +'"'
+                +'      data-percent="' + dataPyramid[i].percent +'%"'
+                +'      style="' + styles[i] +'">'
+                +'   </div>';
+            }
+        template +='</div>';
+        return template
+    }
+    var summary = 0;
+    var maxValue = 0;
+    for (let i = 0; i < data.length; i++) {
+        summary = summary + parseInt(data[i].progress);
+        if(parseInt(data[i].progress) > maxValue){
+            maxValue = parseInt(data[i].progress);
+        }
+    }
+
+    var percent = new Array(data.length);
+    var relative = 100 / summary;
+    for (let i = 0; i < data.length; i++) {
+        percent[i] = Math.round(relative*data[i].progress);
+    }
+
+    var dataPyramid = new Array(data.length);
+    for (let i = 0; i < data.length; i++) {
+        dataPyramid[i] = {
+            value: parseInt(data[i].progress),
+            title: data[i].labelText,
+            background: data[i].background,
+            percent: percent[i],
+        }
+    }
+    if(dataPyramid[0].title !== '1'){
+        dataPyramid.reverse()
+    }
+    $(element).html(Pyramid(dataPyramid));
+
+    //legend
+    DrawLegendPyramide(element, data);
+    //tooltip
+    var tip = 
+    '<div class="pyraamidTip" style="display:none;">'
+    +'    <div class="tip-cont">'
+    +'      <div class="label"> Оценка - </div>'
+    +'      <div class="value">% / шт</div>'
+    +'  </div>'
+    +'</div>';
+    $(tip).appendTo('body');
+    $(element).on('mouseenter', '.pyramid-chart-slice', function(e){
+        var label = $(this).attr('data-label');
+        var value = $(this).attr('data-value');
+        var percent = $(this).attr('data-percent');
+        $('.pyraamidTip .label').html('Оценка - ' + label );
+        $('.pyraamidTip .value').html(percent + ' / ' + value);
+        $('.pyraamidTip').fadeIn(0);
+    });
+    $(element).on('mouseleave', '.pyramid-chart-slice', function(e){
+        $('.pyraamidTip').fadeOut(0);
+    });
+    $(element).on('mousemove', '.pyramid-chart-slice', function(e){
+        $('.pyraamidTip').css({
+            top: e.pageY - 50,
+            left: e.pageX - $('.pyraamidTip').width() / 2 -5
+        });
+    });
+}
+function DrawLegendPyramide(element, data) {
+    var legend = $(element).parents('.chart-content').find('.legend .legend-list');
+    if(data[0].labelText !== '5'){
+        data.reverse();
+    }
+    for (var i = 0, len = data.length; i < len; i++){
+        var legendRow = 
+        '<div class="legend-item">'
+        +'   <div class="square" style="background: '+ data[i].background +'"></div>'
+        +'   <div class="label">- ' + data[i].labelText + '</div>'
+        +'</div>';
+        $(legendRow).appendTo(legend);
     }
 }

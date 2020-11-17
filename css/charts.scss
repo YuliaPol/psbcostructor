@@ -361,7 +361,8 @@ $blue: #4A52F7;
     color: #777676;
     position: absolute;
 }
-.doughnutTipExpand {
+.doughnutTipExpand,
+.pyraamidTip {
     background: rgba(201,201,201, 0.7);
     border-radius: 4px;
     padding: 7px 5px;
@@ -660,6 +661,56 @@ $blue: #4A52F7;
             line-height: 10px;
             color: #898585;
             text-align: center;
+        }
+    }
+}
+.pyramid {
+    .chart {
+        padding-top: 15px;
+        border-bottom: 1px solid #E1DDDD;
+        & > div {
+            height: 180px;
+            width: 100%;
+            max-width: 280px;
+            margin: auto;
+            filter: drop-shadow(-1px 6px 6px rgba(50, 50, 0, 0.3));
+            .pyramid-chart-slice {
+                box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.1);
+                &:first-child {
+                    box-shadow: none;
+                }
+            }
+        }
+    }
+    .legend {
+        width: 100%;
+        padding-top: 15px;
+        .legend-list {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center; 
+            flex-wrap: wrap;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 7px;
+            .square {
+                width: 15px;
+                height: 15px;
+                background: #916AEA;
+            }
+            .label {
+                font-family: $fontpage;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 12px;
+                line-height: 15px;
+                color: #605A5A;
+                padding-left: 5px;
+            }
         }
     }
 }
