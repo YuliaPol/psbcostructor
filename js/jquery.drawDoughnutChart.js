@@ -129,10 +129,16 @@
       $pathGroup[0].setAttribute("opacity",0);
 
       //Set up tooltip
-
-      var $tip = $('<div class="' + settings.tipClass + '" />').appendTo('body').hide(),
+      if($this.attr('data-tooltip') == 'expand'){
+        var $tip = $('<div class="doughnutTipExpand" />').appendTo('body').hide(),
         tipW = $tip.width(),
         tipH = $tip.height();
+      }
+      else {
+        var $tip = $('<div class="' + settings.tipClass + '" />').appendTo('body').hide(),
+        tipW = $tip.width(),
+        tipH = $tip.height();
+      }
 
       //Set up center text area
       var summarySize = (cutoutRadius - (doughnutRadius - cutoutRadius)) * 2,
@@ -157,9 +163,10 @@
           p.setAttribute("data-order", i);
           $paths[i] = $(p).appendTo($pathGroup);
           $paths[i]
-            .on("mouseenter", pathMouseEnter)
-            .on("mouseleave", pathMouseLeave)
-            .on("mousemove", pathMouseMove);
+            .on('mouseenter', pathMouseEnter)
+            .on('mouseleave', pathMouseLeave)
+            .on('mousemove', pathMouseMove);
+            $paths[i].hover(pathHover, pathUnHover);
         }
       }
       //percent for each value
@@ -170,36 +177,58 @@
       }
       //Animation start
       animationLoop(drawPieSegments);
-
-      function pathMouseEnter(e){
-        var order = $(this).data().order;
-        $tip.text(data[order].percent + '%')
-          .fadeIn(200);
-        settings.onPathEnter.apply($(this),[e,data]);
-
-        if($(this).parents('svg').parent().attr('data-increase')){
+      function pathHover(e){
+        if($(this).parents('svg').parent().attr('data-increase') && !$(this).hasClass('increase') ){
           var newD = $(this).attr('data-increase');
           var oldD = $(this).attr('d');
           $(this).attr('data-increase', oldD)
           $(this).attr('d', newD);
+          $(this).addClass('increase');
         }
+      }
+      function pathUnHover(e){
+        if($(this).parents('svg').parent().attr('data-increase') && $(this).hasClass('increase')){
+          var newD = $(this).attr('data-increase');
+          var oldD = $(this).attr('d');
+          $(this).attr('data-increase', oldD)
+          $(this).attr('d', newD);
+          $(this).removeClass('increase');
+        }
+      }
+      function pathMouseEnter(e){
+        var order = $(this).data().order;
+        if($this.attr('data-tooltip') == 'expand'){
+          var str = 
+          '<div class="tip-cont">'
+          +'  <div class="label"> Оценка - ' + data[order].labelText + '</div>'
+          +'  <div class="value">' + data[order].percent + '% / ' + data[order].progress + 'шт</div>'
+          +'</div>';
+          $tip.html(str);
+          $tip.fadeIn(200);
+        }
+        else {
+          $tip.text(data[order].percent + '%')
+          .fadeIn(200);
+        }
+        settings.onPathEnter.apply($(this),[e,data]);
       }
       function pathMouseLeave(e){
         $tip.hide();
         settings.onPathLeave.apply($(this),[e,data]);
-
-        if($(this).parents('svg').parent().attr('data-increase')){
-          var newD = $(this).attr('data-increase');
-          var oldD = $(this).attr('d');
-          $(this).attr('data-increase', oldD)
-          $(this).attr('d', newD);
-        }
       }
       function pathMouseMove(e){
-        $tip.css({
-          top: e.pageY + settings.tipOffsetY,
-          left: e.pageX - $tip.width() / 2 + settings.tipOffsetX
-        });
+        if($this.attr('data-tooltip') == 'expand'){
+          $tip.css({
+            top: e.pageY - 50,
+            left: e.pageX - $tip.width() / 2 + settings.tipOffsetX
+          });
+        }
+        else {
+          $tip.css({
+            top: e.pageY + settings.tipOffsetY,
+            left: e.pageX - $tip.width() / 2 + settings.tipOffsetX
+          });
+        }
       }
       function drawPieSegments (animationDecimal){
         var startRadius = -Math.PI/2,//-90 degree

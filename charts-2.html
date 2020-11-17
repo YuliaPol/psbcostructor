@@ -84,6 +84,35 @@
                     </div>
                 </div>
             </div>
+            <div class="chart-box width-33">
+                <div class="chart-header">
+                    3 . Насколько вам в целом нравится этот товар/ продукт/ прототип?
+                </div>
+                <div class="chart-content">
+                    <div class="lineDot">
+                        <div class="chart">
+                            <div class="lineDot-1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="chart-box width-33">
+                <div class="chart-header">
+                    4 . Насколько этот товар/прооукт/ прототип уникален?
+                </div>
+                <div class="chart-content">
+                    <div class="dougnat">
+                        <div class="chart">
+                            <div class="dougnat-2"></div>
+                        </div>
+                        <div class="legend">
+                            <div class="legend-list">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script type="text/javascript">
@@ -149,6 +178,74 @@
                         labelText: "5"
                     }
                 ],
+            },
+            {
+                element: '.lineDot-1', // класс елемента
+                type: 'lineDot',               //тип графіка
+                dotColor: '#FFD1E2',
+                data: [                          //данные графика      
+                    {
+                        backgroundStart: "#FFD3E4",
+                        backgroundEnd: "#FFD1E2",
+                        progress: "150",
+                        labelText: "1"
+                    },
+                    {
+                        backgroundStart: "#FFA2C6",
+                        backgroundEnd: "#FFD1E2",
+                        progress: "200",
+                        labelText: "2"
+                    },
+                    {
+                        backgroundStart: "#F14D8D",
+                        backgroundEnd: "#FFD1E2",
+                        progress: "60",
+                        labelText: "3"
+                    },
+                    {
+                        backgroundStart: "#F7669E",
+                        backgroundEnd: "#FFD1E2",
+                        progress: "30",
+                        labelText: "4"
+                    },
+                    {
+                        backgroundStart: "#FD2679",
+                        backgroundEnd: "#FFD1E2",
+                        progress: "100",
+                        labelText: "5"
+                    }
+                ],
+            },
+            {
+                element: '.dougnat-2', // класс елемента
+                type: 'dougnatIncrease',               //тип графіка
+                data: [                          //данные графика      
+                    {
+                        background: "#FFCF53",
+                        progress: "20",
+                        labelText: "1"
+                    },
+                    {
+                        background: "#FFBA53",
+                        progress: "20",
+                        labelText: "2"
+                    },
+                    {
+                        background: "#FFCC80",
+                        progress: "20",
+                        labelText: "3"
+                    },
+                    {
+                        background: "#FFF380",
+                        progress: "20",
+                        labelText: "4"
+                    },
+                    {
+                        background: "#FFE700",
+                        progress: "20",
+                        labelText: "5"
+                    },
+                ]
             }
         ];
     </script>

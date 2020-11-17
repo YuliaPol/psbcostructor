@@ -222,16 +222,56 @@ $blue: #4A52F7;
         }
     }
 }
+.radia-bar-container {
+    display: flex;
+    align-items: center;
+    svg {
+        margin: auto;
+    }
+}
 .dougnat {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    &.smalllegend {
+        .chart {
+            width: calc(100% - 90px);
+            & > div {
+                margin: auto;
+                display: flex;
+                align-items: center;
+            }
+        }
+        .legend {
+            width: 90px;
+            margin: 0px;
+            .legend-list {
+                .legend-item {
+                    padding-bottom: 13px;
+                    .col-square {
+                        padding: 0px !important;
+                    }
+                    .col-label {
+                        width: calc(100% - 20px);
+                        min-width: calc(100% - 20px);
+                        padding: 0px !important;
+                        padding-left: 10px !important;
+                    }
+                }
+            }
+        }
+    }
     .chart {
         width: 50%;
         & > div {
             width: 250px;
             height: 250px;
             max-width: 100%;
+            &.addShadow {
+                path:hover {
+                    filter: url(#boxshadow);
+                }
+            }
             svg {
                 max-width: 100%;
             }
@@ -320,6 +360,46 @@ $blue: #4A52F7;
     line-height: 14px;
     color: #777676;
     position: absolute;
+}
+.doughnutTipExpand {
+    background: rgba(201,201,201, 0.7);
+    border-radius: 4px;
+    padding: 7px 5px;
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 10px;
+    line-height: 10px;
+    color: #FFFFFF;
+    position: absolute; 
+    &::after {
+        content: "";
+        position: absolute;
+        left: calc(50% - 2.5px);
+        top: 100%;
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid rgba(201,201,201, 0.7);
+        clear: both;
+    }
+    .tip-cont {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        .label {
+            padding-bottom: 3px;
+            text-align: center;
+            width: 100%;
+            border-bottom: 1px solid #FFFFFF;
+        }
+        .value {
+            padding-top: 3px;
+        }
+    }
 }
 .pieChart {
     display: flex;
@@ -481,6 +561,108 @@ $blue: #4A52F7;
         clear: both;
     }
 }
+.lineDotcont {
+    padding-top: 20px;
+    .lineDotlist {
+        .lineDotRow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .label {
+                width: 45px;
+                min-width: 45px;
+                padding-right: 5px;
+                font-family: $fontpage;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 8px;
+                line-height: 8px;
+                color: #898585;
+                text-align: left;
+            }
+            .line-col {
+                width: calc(100% - 45px);
+                padding-top: 10px;
+                padding-bottom: 10px;
+                border-bottom: 1px solid #F3F3F3;
+                .line {
+                    background: linear-gradient(90deg, #FD2679 0%, #FFD1E2 100%);
+                    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
+                    height: 6px;
+                    position: relative;
+                    .dot {
+                        position: absolute;
+                        width: 14px;
+                        height: 14px;
+                        background: #FFFFFF;
+                        border: 3px solid #FFD1E2;
+                        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+                        border-radius: 50%;
+                        top: -4px;
+                        left: calc(50% - 7px);
+                        z-index: 100;
+                        &:hover {
+                            & + .tooltip {
+                                opacity: 1;
+                                z-index: 150;
+                                transition: opacity 0.3s ease-in;
+                            }
+                        }
+                    }
+                    .tooltip {
+                        z-index: 50;
+                        width: 70px;
+                        position: absolute;
+                        background: #C9C9C9;
+                        padding: 6px 7px;
+                        border-radius: 10px;
+                        font-family: $fontpage;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 8px;
+                        line-height: 10px;
+                        color: #FFFFFF;
+                        text-align: center;
+                        top: -35px;
+                        left: calc(50% - 30px);
+                        opacity: 0;
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            left: calc(50% - 2.5px);
+                            top: 100%;
+                            width: 0;
+                            height: 0;
+                            border-left: 5px solid transparent;
+                            border-right: 5px solid transparent;
+                            border-top: 5px solid #C9C9C9;
+                            clear: both;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+    .y-axis {
+        margin-left: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 5px;
+        .axis-item {
+            max-width: calc(100% / 9);
+            width: auto;
+            font-family: $fontpage;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 8px;
+            line-height: 10px;
+            color: #898585;
+            text-align: center;
+        }
+    }
+}
 @media screen and (max-width: 1100px) {
     .radialbarmultiple .legend .legend-list .legend-row {
         flex-direction: column;
@@ -501,21 +683,28 @@ $blue: #4A52F7;
         .chart-box.width-50 {
             width: 100%;
             margin-bottom: 20px;
+            margin-left: 0px;
+            margin-right: 0px;    
             &:last-child {
                 margin-bottom: 0px;
             }
         }
     }
     .charts-content .chart-row .chart-box.width-33 {
-        width: 50%;
+        width: calc(50% - 10px);
     }
 }
 @media screen and (max-width: 768px) {
     .charts-content .chart-row .chart-box.width-33 {
         width: 100%;
+        margin-left: 0px;
+        margin-right: 0px;
     }
 }
 @media screen and (max-width: 500px) {
+    .dougnat.smalllegend .chart {
+        width: 100%;
+    }
     .dougnat,
     .pieChart {
         flex-direction: column;

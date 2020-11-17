@@ -43,6 +43,9 @@ function DrawCharts(chartData){
             if(chartData[i].type == 'dougnatSimple'){
                 drawDoughnatSimple(chartData[i].element, chartData[i].data);
             }
+            if(chartData[i].type == 'dougnatIncrease'){
+                drawDoughnatIncrease(chartData[i].element, chartData[i].data);
+            }
             if(chartData[i].type == 'pieSimple'){
                 drawPieSimple(chartData[i].element, chartData[i].data);
             }
@@ -52,15 +55,17 @@ function DrawCharts(chartData){
             if(chartData[i].type == 'shadowLine'){
                 drawShadowLine(chartData[i].element, chartData[i].data, chartData[i].borderColor);
             }
+            if(chartData[i].type == 'lineDot'){
+                drawLineDot(chartData[i].element, chartData[i].data, chartData[i].dotColor);
+            }
         }
     }
 }
 function ClearChart(chartData){
-    // $('.chart-content .chart').children().html(' ');
-    $('.chart-content .legend .legend-list').html(' ');
     for(let i = 0; i < chartData.length; i++){
-        if(chartData[i].type !== 'radialbar' || chartData[i].type !== 'radialBar2'){
+        if(chartData[i].type !== 'radialbar' && chartData[i].type !== 'radialBar2'){
             $(chartData[i].element).html(' ');
+            $(chartData[i].element).parents('.chart-content').find('.legend .legend-list').html(' ');
         }
     }
 }
@@ -95,7 +100,7 @@ function drawShadowLine(element, data, borderColor) {
         });
     })();
 
-    if($(element).length==1){
+    if($(element).length==1 && data.length > 0){
         var id = element.split('.')[1];
         var width = 500;
         var height = 200;
@@ -230,9 +235,12 @@ function drawShadowLine(element, data, borderColor) {
     }
 }
 function drawDoughnatSimple(element, data){
-    $(element).attr('data-legend', '1');
-    if($(element).length==1){
+    if($(element).length==1 && data.length > 0){
+        $(element).attr('data-legend', '1');
         var newData = data;
+        if(data[0].labelText !== '5') {
+            newData.reverse();
+        }
         for (let i = 0; i < data.length; i++) {
             newData[i].title = data[i].labelText;
             newData[i].color = data[i].background;
@@ -244,8 +252,28 @@ function drawDoughnatSimple(element, data){
         }
     }
 }
+function drawDoughnatIncrease(element, data){
+    if($(element).length==1 && data.length > 0){
+        $(element).attr('data-increase', 'true');
+        $(element).attr('data-tooltip', 'expand');
+        $(element).addClass('addShadow');
+        var newData = data;
+        if(data[0].labelText !== '5') {
+            newData.reverse();
+        }
+        for (let i = 0; i < data.length; i++) {
+            newData[i].title = data[i].labelText;
+            newData[i].color = data[i].background;
+            newData[i].value = parseInt(data[i].progress);
+        }
+        if(newData) {
+            $(element).drawDoughnutChart(newData);
+            DrawLegend2(element, data);
+        }
+    }
+}
 function drawPieSimple(element, data){
-    if($(element).length==1){
+    if($(element).length==1 && data.length > 0){
         var newData = data;
         for (let i = 0; i < data.length; i++) {
             newData[i].title = data[i].labelText;
@@ -259,10 +287,13 @@ function drawPieSimple(element, data){
     }
 }
 function drawVerticalBar(element, data) {
-    if($(element).length==1){
+    if($(element).length==1 && data.length > 0){
         var id = element.split('.')[1];
         var width = 300;
         var height = 200;
+        if(data[0].labelText !== '5') {
+            data.reverse();
+        }
         if(window.screen.width > 768 && window.screen.width < 992){
             width = 350;
             height = 200;
@@ -277,7 +308,6 @@ function drawVerticalBar(element, data) {
         }
         var canvas = '<canvas  id="' + id + '" style="height: '+ height + 'px; width: '+ width +'px;"></canvas>';
         $(canvas).appendTo($(element));
-        data.reverse();   
         var newData = new Array(data.length);
         var backgroundColor = new Array(data.length);
         var labels = new Array(data.length);
@@ -428,8 +458,26 @@ function DrawLegend1(element, data) {
         }
       }
 }
+function DrawLegend2(element, data) {
+    $(element).parents('.chart-content').find('.dougnat').addClass('smalllegend');
+    var legend = $(element).parents('.chart-content').find('.legend .legend-list');
+    for (var i = 0, len = data.length; i < len; i++){
+        if( data[i].value) {
+          var legendRow = 
+          '<div class="legend-item">'
+          +'    <div class="col-square">'
+          +'      <div class="square" style="background: '+ data[i].color +'"></div>'
+          +'  </div>'
+          +'  <div class="col-label">'
+          +'      Оценка <span class="bold">' + data[i].title + '</span>'
+          +'  </div>'
+          +'</div>';
+          $(legendRow).appendTo(legend);
+        }
+      }
+}
 function drawHorizontalBar(element, data){
-    if($(element).length==1){
+    if($(element).length==1 && data.length > 0){
         var id = element.split('.')[1];
         var width = 600;
         var height = 230;
@@ -538,4 +586,105 @@ function drawHorizontalBar(element, data){
         });
     }
 }
-
+function drawLineDot(element, data, dotColor) {
+    if(data.length > 0 && $(element).length>0) {
+        var maxValue = parseInt(data[0].progress);
+        var minValue = parseInt(data[0].progress);
+        var total = 0;
+        for (let i = 0; i < data.length; i++) {
+            total += parseInt(data[i].progress);
+            if(maxValue<data[i].progress){
+                maxValue = parseInt(data[i].progress);
+            }
+            if(minValue>data[i].progress){
+                minValue = parseInt(data[i].progress);
+            }
+        }
+        var maxAxes = 1;
+        var minAxes = 0;
+        var axes = new Array();
+        var step = 1;
+        if(maxValue < 1) {
+            maxAxes = Math.round(maxValue*10)/10 + 0.1;
+            step = 0.1;
+        }
+        else if(maxValue < 10) {
+            maxAxes = Math.round(maxValue)/ + 1;
+            step = 1;
+        }
+        else {
+            step = 5;
+            while ((maxValue + step)/step > 9 || step>10000){
+                if(step >=200) {
+                    step += 100;
+                }
+                else if(step >=50) {
+                    step += 50;
+                }
+                else if(step >=30) {
+                    step += 10;
+                }
+                else {
+                    step += 5;
+                }
+            }
+            maxAxes = maxValue + step;
+            if(minValue > step && maxAxes > 100){
+                minAxes = step;
+            }
+        }
+        var axesValue = minAxes;
+        for (let i = 0; axesValue < maxAxes + step; i++) {
+            axes.push(axesValue);
+            axesValue = axesValue + step;
+        }
+    
+        var percentValue = new Array(data.length);
+        var percentPosition = new Array(data.length);
+    
+        var minValuePosition = axes[0];
+        var maxValuePosition = axes[axes.length-1];
+        var axesRange = maxValuePosition - minValuePosition;
+        var positionPercent = 100/axesRange;
+        var valuePercent = 100/total;
+    
+        for (let i = 0; i < data.length; i++) {
+            percentValue[i] = Math.round(valuePercent*parseInt(data[i].progress));
+            percentPosition[i] = Math.round(positionPercent*(parseInt(data[i].progress) - minValuePosition));
+        }
+    
+        var str = '<div class="lineDotcont">';
+        str += '<div class="lineDotlist">';
+        for (let i = 0; i < data.length; i++) {
+            var label = 'баллов';
+            if(data[i].labelText == '1'){
+                label = 'балла';
+            }
+            else if(data[i].labelText == '2' || data[i].labelText == '3' || data[i].labelText == '4'){
+                label = 'балл';
+            }
+            str += 
+            '<div class="lineDotRow">'
+            +'    <div class="label">' + data[i].labelText + ' ' + label + '</div>'
+            +'  <div class="line-col">'
+            +'      <div class="line" style="background: linear-gradient(90deg, '+ data[i].backgroundStart + ' 0%, '+ data[i].backgroundEnd + ' 100%);">'
+            +'          <div class="dot" style="left: calc('+ percentPosition[i] + '% - 7px);"></div>'
+            +'          <div class="tooltip" style="left: calc('+ percentPosition[i] + '% - 37px);">' + percentValue[i] + '% / ' + data[i].progress + ' шт</div>'
+            +'      </div>'
+            +'  </div>'
+            +'</div>';
+        }
+        str += '</div>';
+        str += '<div class="y-axis">';
+        for (let i = 0; i < axes.length; i++) {
+            str +=
+            '<div class="axis-item">'
+            +'    ' + axes[i] + '<br>'
+            +'  шт'
+            +'</div>';
+        }
+        str += '</div>';
+        str += '</div>';
+        $(element).append(str);
+    }
+}
