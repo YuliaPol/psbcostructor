@@ -498,6 +498,27 @@ $blue: #4A52F7;
         }
     }
 }
+.pieRound {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .rounded {
+        path {
+            stroke-linejoin: round;
+        }
+    }
+    .chart {
+        width: calc(100% - 100px);
+        & > div {
+            width: 250px;
+            height: 250px;
+            max-width: 100%;
+            svg {
+                max-width: 100%;
+            }
+        }
+    }
+}
 .pieTip {
     display: none !important;
 }
@@ -714,6 +735,55 @@ $blue: #4A52F7;
         }
     }
 }
+.varticalBarShadowList {
+    padding-top: 20px;
+    height: 240px;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    .vertical-item {
+        width: 55px;
+        max-width: 19%;
+        .vertical-bar {
+            background: #F3F3F3;
+            box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 10px 10px 0px 0px;
+            position: relative;
+            height: calc(100% - 35px);
+            .vertical-full {
+                position: absolute;
+                background: #ED874D;
+                left: 0px;
+                right: 0px;
+                bottom: 0px;
+                top: 80%;
+            }
+            .vertical-value {
+                font-family: $fontpage;
+                font-style: normal;
+                font-weight: 600;
+                font-size: 8px;
+                line-height: 10px;
+                color: #FFFFFF;
+                position: absolute;
+                left: 2px;
+                right: 2px;
+                bottom: 3px;
+                text-align: center;
+            }
+        }
+        .vertical-label {
+            padding-top: 10px;
+            font-family: $fontpage;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 10px;
+            line-height: 12px;
+            color: #605A5A;
+            text-align: center;
+        }
+    }
+}
 @media screen and (max-width: 1100px) {
     .radialbarmultiple .legend .legend-list .legend-row {
         flex-direction: column;
@@ -753,6 +823,17 @@ $blue: #4A52F7;
     }
 }
 @media screen and (max-width: 500px) {
+    .varticalBarShadowList .vertical-item {
+        min-width: 20px;
+        padding-left: 5px;
+        padding-right: 5px;
+        &:first-child {
+            padding-left: 0px;
+        }
+        &:last-child {
+            padding-right: 0px;
+        }
+    }
     .dougnat.smalllegend .chart {
         width: 100%;
     }

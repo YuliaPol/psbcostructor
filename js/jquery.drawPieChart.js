@@ -25,7 +25,7 @@
         segmentStrokeWidth : 0,
         baseColor: "#fff",
         baseOffset: 13,
-        edgeOffset: 20,//offset from edge of $this
+        edgeOffset: 30,//offset from edge of $this
         pieSegmentGroupClass: "pieSegmentGroup",
         pieSegmentClass: "pieSegment",
         lightPiesOffset: 12,//lighten pie's width
@@ -90,6 +90,7 @@
     var $pathGroup = $(pathGroup).appendTo($wrapper);
     $pathGroup[0].setAttribute("opacity",0);
 
+
     //Set up tooltip
     var $tip = $('<div class="' + settings.tipClass + '" />').appendTo('body').hide(),
       tipW = $tip.width(),
@@ -145,32 +146,64 @@
         .on("click", pathClick);
 
       var p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      p.setAttribute("data-value", data[i].value);
-      p.setAttribute("stroke-width", settings.segmentStrokeWidth);
-      p.setAttribute("stroke", settings.segmentStrokeColor);
-      p.setAttribute("stroke-miterlimit", 2);
-      p.setAttribute("fill", data[i].color);
-      p.setAttribute("class", settings.pieSegmentClass);
-      $pies[i] = $(p).appendTo($groups[i]);
-
       var lp = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      lp.setAttribute("stroke-width", settings.segmentStrokeWidth);
-      lp.setAttribute("stroke", settings.segmentStrokeColor);
-      lp.setAttribute("stroke-miterlimit", 0);
-      lp.setAttribute("fill", data[i].color);
-      lp.setAttribute("opacity", settings.lightPiesOpacity);
-      lp.setAttribute("class", settings.lightPieClass);
-      $lightPies[i] = $(lp).appendTo($groups[i]);
-
-
+      var testp = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       var shadowp = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      shadowp.setAttribute("stroke-width", settings.segmentStrokeWidth);
-      shadowp.setAttribute("stroke", settings.segmentStrokeColor);
-      shadowp.setAttribute("stroke-miterlimit", 0);
-      shadowp.setAttribute("fill", data[i].color);
-      shadowp.setAttribute("opacity", settings.lightPiesOpacity);
-      shadowp.setAttribute("class", "shadowPie");
-      $shadowPies[i] = $(shadowp).appendTo($groups[i]);
+      if($this.hasClass('rounded')){
+        settings.segmentStrokeWidth = 10;
+        p.setAttribute("data-value", data[i].value);
+        p.setAttribute("stroke-width", settings.segmentStrokeWidth);
+        p.setAttribute("stroke", data[i].color);
+        p.setAttribute("stroke-miterlimit", 2);
+        p.setAttribute("fill", data[i].color);
+        p.setAttribute("class", settings.pieSegmentClass);
+        $pies[i] = $(p).appendTo($groups[i]);
+  
+        lp.setAttribute("stroke-width", settings.segmentStrokeWidth);
+        lp.setAttribute("stroke", data[i].color);
+        lp.setAttribute("stroke-miterlimit", 0);
+        lp.setAttribute("fill", data[i].color);
+        lp.setAttribute("opacity", settings.lightPiesOpacity);
+        lp.setAttribute("class", settings.lightPieClass);
+        $lightPies[i] = $(lp).appendTo($groups[i]);
+  
+  
+        shadowp.setAttribute("stroke-width", settings.segmentStrokeWidth);
+        shadowp.setAttribute("stroke", data[i].color);
+        shadowp.setAttribute("stroke-miterlimit", 0);
+        shadowp.setAttribute("fill", data[i].color);
+        shadowp.setAttribute("opacity", settings.lightPiesOpacity);
+        shadowp.setAttribute("class", "shadowPie");
+        $shadowPies[i] = $(shadowp).appendTo($groups[i]);
+      }
+      else{
+        settings.segmentStrokeWidth = 0;
+        p.setAttribute("data-value", data[i].value);
+        p.setAttribute("stroke-width", settings.segmentStrokeWidth);
+        p.setAttribute("stroke", settings.segmentStrokeColor);
+        p.setAttribute("stroke-miterlimit", 2);
+        p.setAttribute("fill", data[i].color);
+        p.setAttribute("class", settings.pieSegmentClass);
+        $pies[i] = $(p).appendTo($groups[i]);
+  
+        lp.setAttribute("stroke-width", settings.segmentStrokeWidth);
+        lp.setAttribute("stroke", settings.segmentStrokeColor);
+        lp.setAttribute("stroke-miterlimit", 0);
+        lp.setAttribute("fill", data[i].color);
+        lp.setAttribute("opacity", settings.lightPiesOpacity);
+        lp.setAttribute("class", settings.lightPieClass);
+        $lightPies[i] = $(lp).appendTo($groups[i]);
+  
+  
+        shadowp.setAttribute("stroke-width", settings.segmentStrokeWidth);
+        shadowp.setAttribute("stroke", settings.segmentStrokeColor);
+        shadowp.setAttribute("stroke-miterlimit", 0);
+        shadowp.setAttribute("fill", data[i].color);
+        shadowp.setAttribute("opacity", settings.lightPiesOpacity);
+        shadowp.setAttribute("class", "shadowPie");
+        $shadowPies[i] = $(shadowp).appendTo($groups[i]);
+      }
+
 
 
       var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
@@ -243,76 +276,152 @@
 
       //draw each path
       for (var i = 0, len = data.length; i < len; i++){
-        var segmentAngle = rotateAnimation * ((data[i].value/segmentTotal) * (PI*2)),//start radian
-            endRadius = startRadius + segmentAngle,
-            largeArc = ((endRadius - startRadius) % (PI * 2)) > PI ? 1 : 0,
-            startX = centerX + cos(startRadius) * pieRadius,
-            startY = centerY + sin(startRadius) * pieRadius,
-            endX = centerX + cos(endRadius) * pieRadius,
-            endY = centerY + sin(endRadius) * pieRadius,
-            startX2 = centerX + cos(startRadius) * (pieRadius + settings.lightPiesOffset),
-            startY2 = centerY + sin(startRadius) * (pieRadius + settings.lightPiesOffset),
-            endX2 = centerX + cos(endRadius) * (pieRadius + settings.lightPiesOffset),
-            endY2 = centerY + sin(endRadius) * (pieRadius + settings.lightPiesOffset);
-        var cmd = [
-          'M', startX, startY,//Move pointer
-          'A', pieRadius, pieRadius, 0, largeArc, 1, endX, endY,//Draw outer arc path
-          'L', centerX, centerY,//Draw line to the center.
-          'Z'//Cloth path
-        ];
-        var cmd2 = [
-          'M', startX2, startY2,
-          'A', pieRadius + settings.lightPiesOffset, pieRadius + settings.lightPiesOffset, 0, largeArc, 1, endX2, endY2,//Draw outer arc path
-          'L', centerX, centerY,
-          'Z'
-        ];
-        var textX = 0;
-        var textY  = 0;
-        if(Math.round((data[i].value*100)/segmentTotal) > 0){
-          if(Math.round((data[i].value*100)/segmentTotal) < 8 && Math.round((data[i].value*100)/segmentTotal) > 3){
-            if((pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX > 90 && (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX < 180){
-              textX = (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX + 5;
-              textY = (pieRadius/1.5)*sin(startRadius + segmentAngle/2) + centerY;
+        if($this.hasClass('rounded')){
+          var segmentAngle = rotateAnimation * ((data[i].value/segmentTotal) * (PI*2)),//start radian
+          endRadius = startRadius + segmentAngle,
+          largeArc = ((endRadius - startRadius) % (PI * 2)) > PI ? 1 : 0;
+          var startX = centerX + cos(startRadius) * pieRadius;
+          var startY = centerY + sin(startRadius) * pieRadius;
+          var endX = centerX + cos(endRadius) * pieRadius;
+          var endY = centerY + sin(endRadius) * pieRadius;
+          var startX2 = centerX + cos(startRadius) * (pieRadius + settings.lightPiesOffset),
+          startY2 = centerY + sin(startRadius) * (pieRadius + settings.lightPiesOffset),
+          endX2 = centerX + cos(endRadius) * (pieRadius + settings.lightPiesOffset),
+          endY2 = centerY + sin(endRadius) * (pieRadius + settings.lightPiesOffset);
+          var cmd = [
+            'M', startX, startY,//Move pointer
+            'A', pieRadius, pieRadius , 0, largeArc, 1, endX, endY,//Draw outer arc path
+            'L', centerX , centerY,//Draw line to the center.
+            'Z'//Cloth path
+          ];
+          var cmd2 = [
+            'M', startX2, startY2,
+            'A', pieRadius + settings.lightPiesOffset, pieRadius + settings.lightPiesOffset, 0, largeArc, 1, endX2, endY2,//Draw outer arc path
+            'L', centerX , centerY ,//Draw line to the center.
+            'Z'
+          ];
+          var textX = 0;
+          var textY  = 0;
+          if(Math.round((data[i].value*100)/segmentTotal) > 0){
+            if(Math.round((data[i].value*100)/segmentTotal) < 8 && Math.round((data[i].value*100)/segmentTotal) > 3){
+              if((pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX > 90 && (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX < 180){
+                textX = (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX + 5;
+                textY = (pieRadius/1.5)*sin(startRadius + segmentAngle/2) + centerY;
+              }
+              else if ((pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX < 90){
+                textX = (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX + 5;
+                textY = (pieRadius/1.5)*sin(startRadius + segmentAngle/2) + centerY;
+              }
+              else {
+                textX = (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX - 5;
+                textY = (pieRadius/1.5)*sin(startRadius + segmentAngle/2) + centerY;
+              }
             }
-            else if ((pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX < 90){
-              textX = (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX + 5;
-              textY = (pieRadius/1.5)*sin(startRadius + segmentAngle/2) + centerY;
+            else if(Math.round((data[i].value*100)/segmentTotal) < 4){
+              if((pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX > 90 && (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX < 120){
+                textX = (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX + 15;
+                textY = (pieRadius/1.5)*sin(startRadius + segmentAngle/2) + centerY;
+              }
+              else if ((pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX < 90 && (pieRadius/1.5)*sin(startRadius + segmentAngle/2) + centerY > 150){
+                textX = (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX + 15;
+                textY = (pieRadius/1.5)*sin(startRadius + segmentAngle/2) + centerY + 5;
+              }
+              else if ((pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX < 90){
+                textX = (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX - 15;
+                textY = (pieRadius/1.5)*sin(startRadius + segmentAngle/2) + centerY; 
+              }
+              else {
+                textX = (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX + 5;
+                textY = (pieRadius/1.5)*sin(startRadius + segmentAngle/2) + centerY;
+              }
             }
             else {
-              textX = (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX - 5;
+              textX = (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX;
               textY = (pieRadius/1.5)*sin(startRadius + segmentAngle/2) + centerY;
             }
+            $texts[i][0].setAttribute('x', textX);
+            $texts[i][0].setAttribute('y', textY);
+            $texts[i][0].innerHTML = Math.round((data[i].value*100)/segmentTotal) + '%';
           }
-          else if(Math.round((data[i].value*100)/segmentTotal) < 4){
-            if((pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX > 90 && (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX < 120){
-              textX = (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX + 15;
-              textY = (pieRadius/1.5)*sin(startRadius + segmentAngle/2) + centerY;
-            }
-            else if ((pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX < 90 && (pieRadius/1.5)*sin(startRadius + segmentAngle/2) + centerY > 150){
-              textX = (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX + 15;
-              textY = (pieRadius/1.5)*sin(startRadius + segmentAngle/2) + centerY + 5;
-            }
-            else if ((pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX < 90){
-              textX = (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX - 15;
-              textY = (pieRadius/1.5)*sin(startRadius + segmentAngle/2) + centerY; 
-            }
-            else {
-              textX = (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX + 5;
-              textY = (pieRadius/1.5)*sin(startRadius + segmentAngle/2) + centerY;
-            }
-          }
-          else {
-            textX = (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX;
-            textY = (pieRadius/1.5)*sin(startRadius + segmentAngle/2) + centerY;
-          }
-          $texts[i][0].setAttribute('x', textX);
-          $texts[i][0].setAttribute('y', textY);
-          $texts[i][0].innerHTML = Math.round((data[i].value*100)/segmentTotal) + '%';
+          $pies[i][0].setAttribute("d",cmd.join(' '));
+          $lightPies[i][0].setAttribute("d", cmd2.join(' '));
+          $shadowPies[i][0].setAttribute("d", cmd2.join(' '));
+          startRadius += segmentAngle;
         }
-        $pies[i][0].setAttribute("d",cmd.join(' '));
-        $lightPies[i][0].setAttribute("d", cmd2.join(' '));
-        $shadowPies[i][0].setAttribute("d", cmd2.join(' '));
-        startRadius += segmentAngle;
+        else {
+          var segmentAngle = rotateAnimation * ((data[i].value/segmentTotal) * (PI*2)),//start radian
+          endRadius = startRadius + segmentAngle,
+          largeArc = ((endRadius - startRadius) % (PI * 2)) > PI ? 1 : 0;
+          var startX = centerX + cos(startRadius) * pieRadius;
+          var startY = centerY + sin(startRadius) * pieRadius;
+          var endX = centerX + cos(endRadius) * pieRadius;
+          var endY = centerY + sin(endRadius) * pieRadius;
+          var startX2 = centerX + cos(startRadius) * (pieRadius + settings.lightPiesOffset),
+          startY2 = centerY + sin(startRadius) * (pieRadius + settings.lightPiesOffset),
+          endX2 = centerX + cos(endRadius) * (pieRadius + settings.lightPiesOffset),
+          endY2 = centerY + sin(endRadius) * (pieRadius + settings.lightPiesOffset);
+          var mincxneterX = 0; 
+          var mincxneterY = 0;     
+          var cmd = [
+            'M', startX, startY,//Move pointer
+            'A', pieRadius, pieRadius , 0, largeArc, 1, endX, endY,//Draw outer arc path
+            'L', centerX + mincxneterX , centerY + mincxneterY,//Draw line to the center.
+            'Z'//Cloth path
+          ];
+          var cmd2 = [
+            'M', startX2, startY2,
+            'A', pieRadius + settings.lightPiesOffset, pieRadius + settings.lightPiesOffset, 0, largeArc, 1, endX2, endY2,//Draw outer arc path
+            'L', centerX + mincxneterX , centerY + mincxneterY,//Draw line to the center.
+            'Z'
+          ];
+          var textX = 0;
+          var textY  = 0;
+          if(Math.round((data[i].value*100)/segmentTotal) > 0){
+            if(Math.round((data[i].value*100)/segmentTotal) < 8 && Math.round((data[i].value*100)/segmentTotal) > 3){
+              if((pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX > 90 && (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX < 180){
+                textX = (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX + 5;
+                textY = (pieRadius/1.5)*sin(startRadius + segmentAngle/2) + centerY;
+              }
+              else if ((pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX < 90){
+                textX = (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX + 5;
+                textY = (pieRadius/1.5)*sin(startRadius + segmentAngle/2) + centerY;
+              }
+              else {
+                textX = (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX - 5;
+                textY = (pieRadius/1.5)*sin(startRadius + segmentAngle/2) + centerY;
+              }
+            }
+            else if(Math.round((data[i].value*100)/segmentTotal) < 4){
+              if((pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX > 90 && (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX < 120){
+                textX = (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX + 15;
+                textY = (pieRadius/1.5)*sin(startRadius + segmentAngle/2) + centerY;
+              }
+              else if ((pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX < 90 && (pieRadius/1.5)*sin(startRadius + segmentAngle/2) + centerY > 150){
+                textX = (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX + 15;
+                textY = (pieRadius/1.5)*sin(startRadius + segmentAngle/2) + centerY + 5;
+              }
+              else if ((pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX < 90){
+                textX = (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX - 15;
+                textY = (pieRadius/1.5)*sin(startRadius + segmentAngle/2) + centerY; 
+              }
+              else {
+                textX = (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX + 5;
+                textY = (pieRadius/1.5)*sin(startRadius + segmentAngle/2) + centerY;
+              }
+            }
+            else {
+              textX = (pieRadius/1.5)*cos(startRadius + segmentAngle/2) + centerX;
+              textY = (pieRadius/1.5)*sin(startRadius + segmentAngle/2) + centerY;
+            }
+            $texts[i][0].setAttribute('x', textX);
+            $texts[i][0].setAttribute('y', textY);
+            $texts[i][0].innerHTML = Math.round((data[i].value*100)/segmentTotal) + '%';
+          }
+          $pies[i][0].setAttribute("d",cmd.join(' '));
+          $lightPies[i][0].setAttribute("d", cmd2.join(' '));
+          $shadowPies[i][0].setAttribute("d", cmd2.join(' '));
+          startRadius += segmentAngle;
+        }
       }
     }
 

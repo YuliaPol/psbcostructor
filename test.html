@@ -4,125 +4,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cтраница с благодарностью</title>
-
-    <link rel="stylesheet" href="./css/style.css?5465465">
-    <link rel="stylesheet" href="./css/jquery-ui.css">
-
-    <script src="./js/jquery-3.5.1.min.js"></script>
-    <style>
-        #root {
-            height: 300px;
-            width: 300px;
-            margin: 0 auto;
-        }
-
-        .pyramid-chart-slice {
-            background: greenyellow;
-        }
-
-        .pyramid-chart-slice:nth-child(odd) {
-            background: orangered;
-        }
-    </style>
+    <title>Document</title>
 </head>
 
 <body>
-    <div id='root'></div>
-    <script>
-        function trapezoidPath(height, topBase, bottomBase) {
-            const
-                topBaseOffset = (100 - topBase) / 2,
-                bottomBaseOffset = (100 - bottomBase) / 2
 
-            const
-                topRule = topBaseOffset === 0 ? '50% 0' : `${topBaseOffset}% 0%, ${100 - topBaseOffset}% 0%`,
-                bottomRule = `${100 - bottomBaseOffset}% 100%, ${bottomBaseOffset}% 100%`
-
-            return `polygon(${topRule}, ${bottomRule})`
-        }
-
-        function calculateStyles(data) {
-            const totalArea = data.reduce((acc, entry) => acc + entry.value, 0)
-
-            // At each iteration of data, we calculate a triangle sizes; this triangle is
-            // the sum of the slices that we already iterated from top to bottom of our "pyramid"
-            //
-            // ````/\ 
-            // ```/..\ - first slice --> triangle
-            // ``/....\- second slice + first --> triangle
-            // `/______\ - third slice + first + second --> triangle
-            // 
-            // To find the sizes of each individual slice, we will just substract
-            // the current triangle size from the previous value
-            let
-                areaAcc = 0,
-                prevSizesCoef = 0
-
-            // Create the style data for each item
-            const styles = data.map(item => {
-                // Calculate the area ratio of current triangle
-                areaAcc = areaAcc + item.value
-                const areaRatio = areaAcc / totalArea
-
-                // Calculate the slice sizes coefficient
-                const sizesCoef = Math.sqrt(areaRatio)
-                const sliceHeight = sizesCoef - prevSizesCoef
-
-                // Calculate path style
-                const path = trapezoidPath(sliceHeight * 100, prevSizesCoef * 100, sizesCoef * 100)
-
-                // Update
-                prevSizesCoef = sizesCoef
-
-                return (
-                    `clip-path: ${path};
-      height: ${sliceHeight * 100}%;
-      width: 100%;`
-                )
-            })
-
-            return styles
-        }
-
-        function Pyramid(data) {
-            const styles = calculateStyles(data)
-            console.log(styles);
-
-            const containerStyle = (
-                `height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;`
-            )
-
-            const template = (
-                `<div class="pyramid-chart-container" style="${containerStyle}">
-    ${data.map((entry, index) =>
-                    `<div class="pyramid-chart-slice"
-          title="${entry.title}"
-          style="${styles[index]}">
-    </div>`).join('')}
-  </div>`)
-
-            return template
-        }
-
-        const data = [
-            { value: 11, title: 'Grains' },
-            { value: 9, title: 'Fruit & Vegetables' },
-            { value: 6, title: 'Diary & Meat' },
-            { value: 2, title: 'Grass, Oil & Sweets' },
-            { value: 2, title: 'Grass, Oil & Sweets' }
-        ]
-
-        data.reverse()
-
-        document.getElementById('root').innerHTML = Pyramid(data)
-    </script>
+    <svg width="250" height="250" viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+        <circle cx="125" cy="125" r="118" fill="#fff"></circle>
+        <g opacity="0.9999998780673678">
+            <g data-order="0" class="pieSegmentGroup">
+                <path data-value="20" stroke-width="10" stroke="#F18586" stroke-miterlimit="2" fill="#F18586"
+                    class="pieSegment"
+                    d="M 125 20 A 105 105 0 0 1 200.1464407396536 51.66506668604839 L 126.95457853557316 123.44127528143143 Z">
+                </path>
+                <path stroke-width="10" stroke="#F18586" stroke-miterlimit="0" fill="#F18586" opacity="0"
+                    class="lightPie"
+                    d="M 125.00000000000001 8 A 117 117 0 0 1 208.734605395614 43.28393145016821 L 126.95457853557316 123.44127528143143 Z">
+                </path>
+                <path stroke-width="10" stroke="#F18586" stroke-miterlimit="0" fill="#F18586" opacity="0"
+                    class="shadowPie"
+                    d="M 125.00000000000001 8 A 117 117 0 0 1 208.734605395614 43.28393145016821 L 126.95457853557316 123.44127528143143 Z">
+                </path><text width="50" class="percent-text" text-anchor="middle"
+                    style="fill: white; font-family: Arial; font-size: 14px;" x="155.37185828695368"
+                    y="61.93217758478416">14%</text>
+            </g>
+            <g data-order="1" class="pieSegmentGroup">
+                <path data-value="20" stroke-width="10" stroke="#FEDD88" stroke-miterlimit="2" fill="#FEDD88"
+                    class="pieSegment"
+                    d="M 207.09229849407274 59.533561820119914 A 105 105 0 0 1 229.1886005025942 138.02825872136523 L 127.43731990222516 125.55630180137865 Z">
+                </path>
+                <path stroke-width="10" stroke="#FEDD88" stroke-miterlimit="0" fill="#FEDD88" opacity="0"
+                    class="lightPie"
+                    d="M 216.4742754648239 52.051683170990756 A 117 117 0 0 1 241.0958691314621 139.51720257523556 L 127.43731990222516 125.55630180137865 Z">
+                </path>
+                <path stroke-width="10" stroke="#FEDD88" stroke-miterlimit="0" fill="#FEDD88" opacity="0"
+                    class="shadowPie"
+                    d="M 216.4742754648239 52.051683170990756 A 117 117 0 0 1 241.0958691314621 139.51720257523556 L 127.43731990222516 125.55630180137865 Z">
+                </path><text width="50" class="percent-text" text-anchor="middle"
+                    style="fill: white; font-family: Arial; font-size: 14px;" x="193.24495129554288"
+                    y="109.42352341930378">14%</text>
+            </g>
+            <g data-order="2" class="pieSegmentGroup">
+                <path data-value="20" stroke-width="10" stroke="#FCFF6E" stroke-miterlimit="2" fill="#FCFF6E"
+                    class="pieSegment"
+                    d="M 227.3674358934567 148.3646756579036 A 105 105 0 0 1 179.77463685751417 214.58090844107048 L 126.08471008735283 127.25242181360308 Z">
+                </path>
+                <path stroke-width="10" stroke="#FCFF6E" stroke-miterlimit="0" fill="#FCFF6E" opacity="0"
+                    class="lightPie"
+                    d="M 239.06657142413746 151.03492430452116 A 117 117 0 0 1 186.03459535551576 224.81872654862138 L 126.08471008735283 127.25242181360308 Z">
+                </path>
+                <path stroke-width="10" stroke="#FCFF6E" stroke-miterlimit="0" fill="#FCFF6E" opacity="0"
+                    class="shadowPie"
+                    d="M 239.06657142413746 151.03492430452116 A 117 117 0 0 1 186.03459535551576 224.81872654862138 L 126.08471008735283 127.25242181360308 Z">
+                </path><text width="50" class="percent-text" text-anchor="middle"
+                    style="fill: white; font-family: Arial; font-size: 14px;" x="179.72821571454318"
+                    y="168.64427115558726">14%</text>
+            </g>
+            <g data-order="3" class="pieSegmentGroup">
+                <path data-value="30" stroke-width="10" stroke="#80FEAE" stroke-miterlimit="2" fill="#80FEAE"
+                    class="pieSegment"
+                    d="M 170.55782366881908 219.6017161713295 A 105 105 0 0 1 49.85358735222668 198.33496209974186 L 123.04542206151622 126.55872546729452 Z">
+                </path>
+                <path stroke-width="10" stroke="#80FEAE" stroke-miterlimit="0" fill="#80FEAE" opacity="0"
+                    class="lightPie"
+                    d="M 175.7644320881127 230.41334087662432 A 117 117 0 0 1 41.26542590676688 206.71610062542663 L 123.04542206151622 126.55872546729452 Z">
+                </path>
+                <path stroke-width="10" stroke="#80FEAE" stroke-miterlimit="0" fill="#80FEAE" opacity="0"
+                    class="shadowPie"
+                    d="M 175.7644320881127 230.41334087662432 A 117 117 0 0 1 41.26542590676688 206.71610062542663 L 123.04542206151622 126.55872546729452 Z">
+                </path><text width="50" class="percent-text" text-anchor="middle"
+                    style="fill: white; font-family: Arial; font-size: 14px;" x="109.42356263244538"
+                    y="193.2449602456815">21%</text>
+            </g>
+            <g data-order="4" class="pieSegmentGroup">
+                <path data-value="50" stroke-width="10" stroke="#82F886" stroke-miterlimit="2" fill="#82F886"
+                    class="pieSegment"
+                    d="M 42.90772658368135 190.46646962636964 A 105 105 0 0 1 114.51741121080794 20.524570676753356 L 124.9999980846867 122.50000000000074 Z">
+                </path>
+                <path stroke-width="10" stroke="#82F886" stroke-miterlimit="0" fill="#82F886" opacity="0"
+                    class="lightPie"
+                    d="M 33.52575247895922 197.94835186938334 A 117 117 0 0 1 113.31940106347169 8.584521611239452 L 124.9999980846867 122.50000000000074 Z">
+                </path>
+                <path stroke-width="10" stroke="#82F886" stroke-miterlimit="0" fill="#82F886" opacity="0"
+                    class="shadowPie"
+                    d="M 33.52575247895922 197.94835186938334 A 117 117 0 0 1 113.31940106347169 8.584521611239452 L 124.9999980846867 122.50000000000074 Z">
+                </path><text width="50" class="percent-text" text-anchor="middle"
+                    style="fill: white; font-family: Arial; font-size: 14px;" x="61.93216013330724"
+                    y="94.62817795144323">36%</text>
+            </g>
+        </g>
+        <g opacity="0.9999998780673678" width="50%" height="50%">
+            <g data-order="0" class="pieSegmentGroup"><path data-value="20" stroke-width="0" stroke="#F18586" stroke-miterlimit="2" fill="#F18586" class="pieSegment" d="M 125 30 A 95 95 0 0 1 199.2739843517801 65.76846069439421 L 125 125 Z"></path><path stroke-width="0" stroke="#F18586" stroke-miterlimit="0" fill="#F18586" opacity="0" class="lightPie" d="M 125 18 A 107 107 0 0 1 208.65596132253128 58.28658204526505 L 125 125 Z"></path><path stroke-width="0" stroke="#F18586" stroke-miterlimit="0" fill="#F18586" opacity="0" class="shadowPie" d="M 125 18 A 107 107 0 0 1 208.65596132253128 58.28658204526505 L 125 125 Z"></path><text width="50" class="percent-text" text-anchor="middle" style="fill: white; font-family: Arial; font-size: 14px;" x="152.47930035486286" y="67.93863686242375">14%</text></g><g data-order="1" class="pieSegmentGroup"><path data-value="20" stroke-width="0" stroke="#FEDD88" stroke-miterlimit="2" fill="#FEDD88" class="pieSegment" d="M 199.2739843517801 65.76846069439421 A 95 95 0 0 1 217.61815628455605 146.13946845238897 L 125 125 Z"></path><path stroke-width="0" stroke="#FEDD88" stroke-miterlimit="0" fill="#FEDD88" opacity="0" class="lightPie" d="M 208.65596132253128 58.28658204526505 A 107 107 0 0 1 229.31729181523684 148.80971709900652 L 125 125 Z"></path><path stroke-width="0" stroke="#FEDD88" stroke-miterlimit="0" fill="#FEDD88" opacity="0" class="shadowPie" d="M 208.65596132253128 58.28658204526505 A 107 107 0 0 1 229.31729181523684 148.80971709900652 L 125 125 Z"></path><text width="50" class="percent-text" text-anchor="middle" style="fill: white; font-family: Arial; font-size: 14px;" x="186.7454321245388" y="110.90699737937008">14%</text></g><g data-order="2" class="pieSegmentGroup"><path data-value="20" stroke-width="0" stroke="#FCFF6E" stroke-miterlimit="2" fill="#FCFF6E" class="pieSegment" d="M 217.61815628455605 146.13946845238897 A 95 95 0 0 1 166.21898331940776 210.59202891691717 L 125 125 Z"></path><path stroke-width="0" stroke="#FCFF6E" stroke-miterlimit="0" fill="#FCFF6E" opacity="0" class="lightPie" d="M 229.31729181523684 148.80971709900652 A 107 107 0 0 1 171.42559173870137 221.40365362221198 L 125 125 Z"></path><path stroke-width="0" stroke="#FCFF6E" stroke-miterlimit="0" fill="#FCFF6E" opacity="0" class="shadowPie" d="M 229.31729181523684 148.80971709900652 A 107 107 0 0 1 171.42559173870137 221.40365362221198 L 125 125 Z"></path><text width="50" class="percent-text" text-anchor="middle" style="fill: white; font-family: Arial; font-size: 14px;" x="174.5160046941105" y="164.4876739026742">14%</text></g><g data-order="3" class="pieSegmentGroup"><path data-value="30" stroke-width="0" stroke="#80FEAE" stroke-miterlimit="2" fill="#80FEAE" class="pieSegment" d="M 166.21898331940776 210.59202891691717 A 95 95 0 0 1 50.72603833761646 184.2315677571916 L 125 125 Z"></path><path stroke-width="0" stroke="#80FEAE" stroke-miterlimit="0" fill="#80FEAE" opacity="0" class="lightPie" d="M 171.42559173870137 221.40365362221198 A 107 107 0 0 1 41.344064232894326 191.71345000020528 L 125 125 Z"></path><path stroke-width="0" stroke="#80FEAE" stroke-miterlimit="0" fill="#80FEAE" opacity="0" class="shadowPie" d="M 171.42559173870137 221.40365362221198 A 107 107 0 0 1 41.344064232894326 191.71345000020528 L 125 125 Z"></path><text width="50" class="percent-text" text-anchor="middle" style="fill: white; font-family: Arial; font-size: 14px;" x="110.90703285792677" y="186.74544022228326">21%</text></g><g data-order="4" class="pieSegmentGroup"><path data-value="50" stroke-width="0" stroke="#82F886" stroke-miterlimit="2" fill="#82F886" class="pieSegment" d="M 50.72603833761646 184.2315677571916 A 95 95 0 0 1 124.99992721809429 30.00000000002788 L 125 125 Z"></path><path stroke-width="0" stroke="#82F886" stroke-miterlimit="0" fill="#82F886" opacity="0" class="lightPie" d="M 41.344064232894326 191.71345000020528 A 107 107 0 0 1 124.9999180245904 18.000000000031392 L 125 125 Z"></path><path stroke-width="0" stroke="#82F886" stroke-miterlimit="0" fill="#82F886" opacity="0" class="shadowPie" d="M 41.344064232894326 191.71345000020528 A 107 107 0 0 1 124.9999180245904 18.000000000031392 L 125 125 Z"></path><text width="50" class="percent-text" text-anchor="middle" style="fill: white; font-family: Arial; font-size: 14px;" x="67.93862107299226" y="97.52073243225816">36%</text></g></g>
+        <filter id="boxshadow" x="-40%" y="-40%" height="200%" width="200%" opacity="0.25">
+            <feOffset result="offOut" in="SourceAlpha" dx="2" dy="4"></feOffset>
+            <feGaussianBlur result="blurOut" in="offOut" stdDeviation="5"></feGaussianBlur>
+            <feBlend in="SourceGraphic" in2="blurOut" mode="normal"></feBlend>
+            <feComponentTransfer>
+                <feFuncA type="linear" slope="0.25"></feFuncA>
+            </feComponentTransfer>
+        </filter>
+    </svg>
 </body>
 
 </html>

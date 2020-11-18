@@ -49,6 +49,9 @@ function DrawCharts(chartData){
             if(chartData[i].type == 'pieSimple'){
                 drawPieSimple(chartData[i].element, chartData[i].data);
             }
+            if(chartData[i].type == 'pieRound'){
+                drawPieRound(chartData[i].element, chartData[i].data);
+            }
             if(chartData[i].type == 'verticalBar'){
                 drawVerticalBar(chartData[i].element, chartData[i].data);
             }
@@ -60,6 +63,9 @@ function DrawCharts(chartData){
             }
             if(chartData[i].type == 'pyramid'){
                 DrawPyramide(chartData[i].element, chartData[i].data);
+            }
+            if(chartData[i].type == 'varticalBarShadow'){
+                DrawVerticalBarShadow(chartData[i].element, chartData[i].data);
             }
         }
     }
@@ -106,26 +112,47 @@ function drawShadowLine(element, data, borderColor) {
             datasetElementType: ShadowLineElement
         });
     })();
-
     if($(element).length==1 && data.length > 0){
         var id = element.split('.')[1];
         var width = 500;
         var height = 200;
-        if(window.screen.width > 992 && window.screen.width <= 1200) {
-            width = 600;
-            height = 350;
+        if($(element).parents('.width-50').length>0){
+            if(window.screen.width > 992 && window.screen.width <= 1200) {
+                width = 600;
+                height = 350;
+            }
+            else if(window.screen.width > 768 && window.screen.width <= 992){
+                width = 600;
+                height = 200;
+            }
+            else if(window.screen.width > 500 && window.screen.width <= 768) {
+                width = 750;
+                height = 250;
+            }
+            else if(window.screen.width <= 500) {
+                width = 350;
+                height = 200;
+            }
         }
-        else if(window.screen.width > 768 && window.screen.width <= 992){
-            width = 600;
+        else if($(element).parents('.width-33').length>0){ 
+            width = 300;
             height = 200;
-        }
-        else if(window.screen.width > 500 && window.screen.width <= 768) {
-            width = 750;
-            height = 250;
-        }
-        else if(window.screen.width <= 500) {
-            width = 350;
-            height = 200;
+            if(window.screen.width > 992 && window.screen.width <= 1200) {
+                width = 200;
+                height = 150;
+            }
+            else if(window.screen.width > 768 && window.screen.width <= 992){
+                width = 500;
+                height = 300;
+            }
+            else if(window.screen.width > 500 && window.screen.width <= 768) {
+                width = 750;
+                height = 350;
+            }
+            else if(window.screen.width <= 500) {
+                width = 350;
+                height = 200;
+            }
         }
         var canvas = '<canvas  id="' + id + '" style="height: '+ height + 'px; width: '+ width +'px;"></canvas>';
         $(canvas).appendTo($(element));
@@ -177,7 +204,7 @@ function drawShadowLine(element, data, borderColor) {
                         lineWidth: 1
                     },
                     ticks: {
-                        fontSize: 10
+                        fontSize: 10,
                     }
                 }],
                 yAxes: [{
@@ -290,6 +317,21 @@ function drawPieSimple(element, data){
         if(newData) {
             $(element).drawPieChart(newData);
             DrawLegend1(element, data);
+        }
+    }
+}
+function drawPieRound(element, data){
+    if($(element).length==1 && data.length > 0){
+        var newData = data;
+        $(element).addClass('rounded');
+        for (let i = 0; i < data.length; i++) {
+            newData[i].title = data[i].labelText;
+            newData[i].color = data[i].background;
+            newData[i].value = parseInt(data[i].progress);
+        }
+        if(newData) {
+            $(element).drawPieChart(newData);
+            DrawLegend2(element, data);
         }
     }
 }
@@ -488,17 +530,39 @@ function drawHorizontalBar(element, data){
         var id = element.split('.')[1];
         var width = 600;
         var height = 230;
-        if(window.screen.width > 768 && window.screen.width < 992){
-            width = 600;
-            height = 230;
+        if($(element).parents('.width-50').length>0){
+            if(window.screen.width > 768 && window.screen.width < 992){
+                width = 600;
+                height = 230;
+            }
+            else if(window.screen.width > 500 && window.screen.width <= 768) {
+                width = 750;
+                height = 250;
+            }
+            else if(window.screen.width <= 500) {
+                width = 350;
+                height = 200;
+            }
         }
-        else if(window.screen.width > 500 && window.screen.width <= 768) {
-            width = 750;
-            height = 250;
-        }
-        else if(window.screen.width <= 500) {
-            width = 350;
+        else if($(element).parents('.width-33').length>0){ 
+            width = 300;
             height = 200;
+            if(window.screen.width > 992 && window.screen.width <= 1200) {
+                width = 200;
+                height = 150;
+            }
+            else if(window.screen.width > 768 && window.screen.width <= 992){
+                width = 500;
+                height = 300;
+            }
+            else if(window.screen.width > 500 && window.screen.width <= 768) {
+                width = 750;
+                height = 350;
+            }
+            else if(window.screen.width <= 500) {
+                width = 350;
+                height = 200;
+            }
         }
         var canvas = '<canvas  id="' + id + '" style="height: '+ height + 'px; width: '+ width +'px;"></canvas>';
         $(canvas).appendTo($(element));        
@@ -537,7 +601,7 @@ function drawHorizontalBar(element, data){
                 },
                 layout: {
                     padding: {
-                        left: 50//for text-align
+                        left: 50,//for text-align
                     }
                 }, 
                 scales: {
@@ -549,6 +613,14 @@ function drawHorizontalBar(element, data){
                         ticks: {
                             fontSize: 10,
                             min: 0,
+                            callback: function(value, index, values) {
+                                if(index==values.length-1){
+                                    return ' ';
+                                }
+                                else {
+                                    return [ '      ' + value, '       ' +  'шт'];
+                                }
+                            },
                         }
                     }],
                     yAxes: [{
@@ -568,7 +640,9 @@ function drawHorizontalBar(element, data){
                 afterDraw: function(horizontal){    
                     var ctx = horizontal.chart.ctx; 
                     var yAxis = horizontal.scales['y-axis-0'];
+                    var xAxis = horizontal.scales['x-axis-0'];
                     var bottom = yAxis.bottom;
+                    //y-axis line
                     for (var index = 0; index < yAxis.ticks.length; index++) {
                         var y = yAxis.getPixelForTick(index);  
                         if (!window.document.documentMode) {
@@ -580,6 +654,14 @@ function drawHorizontalBar(element, data){
                                 ctx.strokeStyle = "#D5D3D3";
                                 ctx.stroke();
                             }
+                            else {
+                                ctx.beginPath();
+                                ctx.moveTo(15,  y + 0.5);
+                                ctx.lineTo(yAxis.right,  y + 0.5);
+                                ctx.lineWidth = 5;
+                                ctx.strokeStyle = "#fff";
+                                ctx.stroke();
+                            }
                         }
                     }
                     ctx.beginPath();
@@ -588,6 +670,29 @@ function drawHorizontalBar(element, data){
                     ctx.lineWidth = 1;
                     ctx.strokeStyle = "#D5D3D3";
                     ctx.stroke();
+
+                    //x-axis line
+                    for (var index = 0; index < xAxis.ticks.length; index++) {
+                        var x = xAxis.getPixelForTick(index);
+                        if (!window.document.documentMode) {
+                            if(index != xAxis.ticks.length - 1){
+                                ctx.beginPath();
+                                ctx.moveTo(x + 0.5,  xAxis.bottom - 38);
+                                ctx.lineTo(x + 0.5,  xAxis.bottom - 5);
+                                ctx.lineWidth = 1;
+                                ctx.strokeStyle = "#D5D3D3";
+                                ctx.stroke();
+                            }
+                            else {
+                                ctx.beginPath();
+                                ctx.moveTo(x + 0.5,  xAxis.bottom - 38);
+                                ctx.lineTo(x + 0.5,  xAxis.bottom);
+                                ctx.lineWidth = 5;
+                                ctx.strokeStyle = "#fff";
+                                ctx.stroke();
+                            }
+                        }
+                    }
                 }
             }],
         });
@@ -675,7 +780,7 @@ function drawLineDot(element, data, dotColor) {
             +'    <div class="label">' + data[i].labelText + ' ' + label + '</div>'
             +'  <div class="line-col">'
             +'      <div class="line" style="background: linear-gradient(90deg, '+ data[i].backgroundStart + ' 0%, '+ data[i].backgroundEnd + ' 100%);">'
-            +'          <div class="dot" style="left: calc('+ percentPosition[i] + '% - 7px);"></div>'
+            +'          <div class="dot" style="left: calc('+ percentPosition[i] + '% - 7px);border-color: '+ dotColor +'"></div>'
             +'          <div class="tooltip" style="left: calc('+ percentPosition[i] + '% - 37px);">' + percentValue[i] + '% / ' + data[i].progress + ' шт</div>'
             +'      </div>'
             +'  </div>'
@@ -825,5 +930,45 @@ function DrawLegendPyramide(element, data) {
         +'   <div class="label">- ' + data[i].labelText + '</div>'
         +'</div>';
         $(legendRow).appendTo(legend);
+    }
+}
+function DrawVerticalBarShadow(element, data){
+    if(data.length > 0){
+        if(data[0].labelText !== '5') {
+            data.reverse();
+        }
+        var percent = new Array(data.length);
+        var summary = 0;
+        var maxValue = 0;
+        for (let i = 0; i < data.length; i++) {
+            summary = summary + parseInt(data[i].progress);
+            if(parseInt(data[i].progress) > maxValue){
+                maxValue = parseInt(data[i].progress);
+            }
+        }
+
+        var relativeFill = 100 / maxValue;
+            
+        var relative = 100 / summary;
+        for (let i = 0; i < data.length; i++) {
+            percent[i] = Math.round(relative*data[i].progress);
+        }
+        var elements = '<div class="varticalBarShadowList">';
+        var width = parseInt(data.length);
+        for (let i = 0; i < data.length; i++) {
+            var top = 100 - percent[i];
+            elements = elements + 
+            '<div class="vertical-item">'
+            +'    <div class="vertical-bar">'
+            +'      <div class="vertical-full" style="background-color: '+ data[i].background + '; top: ' + top + '%"></div>'
+            +'      <div class="vertical-value">' + percent[i] + '% / '+ data[i].progress + ' шт</div>'
+            +'  </div>'
+            +'  <div class="vertical-label">'
+            +'      Оценка <span class="bold">' + data[i].labelText + '</span>'
+            +'  </div>'
+            +'</div>';
+        }
+        var elements = elements + '</div>';
+        $(elements).appendTo(element);
     }
 }

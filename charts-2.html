@@ -132,6 +132,59 @@
                     </div>
                 </div>
             </div>
+            <div class="chart-box width-33">
+                <div class="chart-header">
+                    7 . Оцените Ваше желание узнать больше об этом товаре/ продукте/ прототипе?
+                </div>
+                <div class="chart-content">
+                    <div class="varticalBarShadow">
+                        <div class="chart">
+                            <div class="verticalBar-2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="chart-box width-33">
+                <div class="chart-header">
+                    7 . Оцените Ваше желание узнать больше  об этом товаре/ продукте/ прототипе?
+                </div>
+                <div class="chart-content">
+                    <div class="lineChart">
+                        <div class="chart">
+                            <div class="line-1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="chart-box width-33">
+                <div class="chart-header">
+                    8 . Оцените Ваше желание купить этот товар
+                    /продукт прототип по цене/дать возможность 
+                    вставить цену/?
+                </div>
+                <div class="chart-content">
+                    <div class="horizonatlbar">
+                        <div class="chart">
+                            <div class="horizonatlbar-1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="chart-box width-33">
+                <div class="chart-header">
+                    9 . Вы бы рассказали об этом товаре своим 
+                    друзьям, если бы увидели его в реальной жизни?
+                </div>
+                <div class="chart-content">
+                    <div class="pieRound">
+                        <div class="chart">
+                            <div class="pieround-1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script type="text/javascript">
@@ -296,7 +349,127 @@
                         labelText: "5"
                     },
                 ]
-            }
+            },
+            {
+                element: '.verticalBar-2', // класс елемента
+                type: 'varticalBarShadow',               //тип графіка
+                data: [                          //данные графика      
+                    {
+                        background: "#ECC68E",
+                        progress: "50",
+                        labelText: "1"
+                    },
+                    {
+                        background: "#ECAF8E",
+                        progress: "20",
+                        labelText: "2"
+                    },
+                    {
+                        background: "#ECC08E",
+                        progress: "20",
+                        labelText: "3"
+                    },
+                    {
+                        background: "#FFA573",
+                        progress: "20",
+                        labelText: "4"
+                    },
+                    {
+                        background: "#ED874D",
+                        progress: "20",
+                        labelText: "5"
+                    },
+                ]
+            },
+            {
+                element: '.line-1', // класс елемента
+                type: 'shadowLine',               //тип графіка
+                borderColor: '#BDA0FF',
+                data: [                          //данные графика      
+                    {
+                        progress: "200",
+                        labelText: "5"
+                    },
+                    {
+                        progress: "150",
+                        labelText: "4"
+                    },
+                    {
+                        progress: "40",
+                        labelText: "3"
+                    },
+                    {
+                        progress: "150",
+                        labelText: "2"
+                    },
+                    {
+                        progress: "260",
+                        labelText: "1"
+                    }
+                ]
+            },
+            {
+                element: '.horizonatlbar-1', // класс елемента
+                type: 'horizontalbar',               //тип графіка
+                data: [                          //данные графика      
+                    {
+                        background: "#FFA2C6",
+                        progress: "20",
+                        labelText: "5 баллов"
+                    },
+                    {
+                        background: "#00D2FB",
+                        progress: "20",
+                        labelText: "4 балла"
+                    },
+                    {
+                        background: "#FFEDAB",
+                        progress: "20",
+                        labelText: "3 балла"
+                    },
+                    {
+                        background: "#78F3EF",
+                        progress: "30",
+                        labelText: "2 балла"
+                    },
+                    {
+                        background: "#F3D0FF",
+                        progress: "50",
+                        labelText: "1 балл"
+                    }
+                ]
+            },
+            {
+                element: '.pieround-1', // класс елемента
+                type: 'pieRound',               //тип графіка
+                data: [                          //данные графика      
+                    {
+                        background: "#F18586",
+                        progress: "20",
+                        labelText: "1"
+                    },
+                    {
+                        background: "#FEDD88",
+                        progress: "20",
+                        labelText: "2"
+                    },
+                    {
+                        background: "#FCFF6E",
+                        progress: "20",
+                        labelText: "3"
+                    },
+                    {
+                        background: "#80FEAE",
+                        progress: "300",
+                        labelText: "4"
+                    },
+                    {
+                        background: "#82F886",
+                        progress: "50",
+                        labelText: "5"
+                    }
+                ]
+            },
         ];
     </script>
     <script src="./js/charts.js"></script>
