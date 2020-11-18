@@ -199,7 +199,7 @@ Chart.elements.Rectangle.prototype.draw = function() {
                 }
 
                 //add shadow
-                ctx.shadowColor = 'rgba(0, 0, 0, 0.07)';
+                ctx.shadowColor = 'rgba(0, 0, 0, 0.1)';
                 ctx.shadowBlur = 4;
                 ctx.shadowOffsetX = 0;
                 ctx.shadowOffsetY = 4;

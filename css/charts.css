@@ -495,6 +495,7 @@
   line-height: 14px;
   color: #777676;
   position: absolute;
+  pointer-events: none;
 }
 
 .doughnutTipExpand,
@@ -509,6 +510,7 @@
   line-height: 10px;
   color: #FFFFFF;
   position: absolute;
+  pointer-events: none;
 }
 
 .doughnutTipExpand::after,
@@ -931,7 +933,7 @@
 }
 
 .radialBar2 .legend {
-  width: 50px;
+  width: 45px;
 }
 
 .radialBar2 .legend .legend-list .legend-row {
@@ -944,10 +946,10 @@
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .radialBar2 .legend .legend-list .legend-row .circle {
@@ -978,6 +980,7 @@
   font-size: 8px;
   line-height: 10px;
   color: #FFFFFF;
+  pointer-events: none;
 }
 
 .radialTip::after {
@@ -1123,7 +1126,7 @@
   font-size: 8px;
   line-height: 10px;
   color: #898585;
-  text-align: center;
+  text-align: left;
 }
 
 .pyramid .chart {

@@ -1,7 +1,12 @@
 
-if(chartData.length > 0){
-    DrawCharts(chartData);
-}
+
+jQuery(function ($) {
+    $(document).ready(function () {
+        if(chartData.length > 0){
+            DrawCharts(chartData);
+        }
+    });
+});
 $( window ).resize(function() {
     ClearChart(chartData);
     DrawCharts(chartData);
@@ -113,6 +118,9 @@ function drawShadowLine(element, data, borderColor) {
         });
     })();
     if($(element).length==1 && data.length > 0){
+        if(data[0].labelText !== '5') {
+            data.reverse();
+        }
         var id = element.split('.')[1];
         var width = 500;
         var height = 200;
@@ -308,6 +316,9 @@ function drawDoughnatIncrease(element, data){
 }
 function drawPieSimple(element, data){
     if($(element).length==1 && data.length > 0){
+        if(data[0].labelText !== '5') {
+            data.reverse();
+        }
         var newData = data;
         for (let i = 0; i < data.length; i++) {
             newData[i].title = data[i].labelText;
@@ -532,6 +543,9 @@ function DrawLegend2(element, data) {
 }
 function drawHorizontalBar(element, data){
     if($(element).length==1 && data.length > 0){
+        if(data[0].labelText !== '5') {
+            data.reverse();
+        }
         var id = element.split('.')[1];
         var width = 600;
         var height = 230;
@@ -574,12 +588,30 @@ function drawHorizontalBar(element, data){
         var newData = new Array(data.length);
         var backgroundColor = new Array(data.length);
         var labels = new Array(data.length);
+        var maxValue = parseInt(data[0].progress);
         for (let i = 0; i < data.length; i++) {
-            labels[i] = data[i].labelText;
+            var label = 'баллов';
+            if(data[i].labelText == '1'){
+                label = 'балл';
+            }
+            else if(data[i].labelText == '2' || data[i].labelText == '3' || data[i].labelText == '4'){
+                label = 'балла';
+            }
+
+            labels[i] = data[i].labelText + ' ' + label;
             backgroundColor[i] = data[i].background;
             newData[i] = data[i].progress;
+            if(maxValue<parseInt(data[i].progress)) {
+                maxValue = parseInt(data[i].progress);
+            }
         }
-
+        maxValue = Math.round(maxValue + maxValue/5);
+        if(maxValue>500){
+            maxValue = Math.round(maxValue*100)/100;
+        }
+        else if(maxValue>100){
+            maxValue = Math.round(maxValue*50)/50;
+        }
         var ChartData = {
             labels: labels,
             datasets: [{
@@ -618,12 +650,13 @@ function drawHorizontalBar(element, data){
                         ticks: {
                             fontSize: 10,
                             min: 0,
+                            max: maxValue,
                             callback: function(value, index, values) {
                                 if(index==values.length-1){
                                     return ' ';
                                 }
                                 else {
-                                    return [ '      ' + value, '       ' +  'шт'];
+                                    return [ '         ' + value, '         ' +  'шт'];
                                 }
                             },
                         }
@@ -775,10 +808,10 @@ function drawLineDot(element, data, dotColor) {
         for (let i = 0; i < data.length; i++) {
             var label = 'баллов';
             if(data[i].labelText == '1'){
-                label = 'балла';
+                label = 'балл';
             }
             else if(data[i].labelText == '2' || data[i].labelText == '3' || data[i].labelText == '4'){
-                label = 'балл';
+                label = 'балла';
             }
             str += 
             '<div class="lineDotRow">'

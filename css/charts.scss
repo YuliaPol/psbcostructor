@@ -360,6 +360,7 @@ $blue: #4A52F7;
     line-height: 14px;
     color: #777676;
     position: absolute;
+    pointer-events: none;
 }
 .doughnutTipExpand,
 .pyraamidTip {
@@ -373,6 +374,7 @@ $blue: #4A52F7;
     line-height: 10px;
     color: #FFFFFF;
     position: absolute; 
+    pointer-events: none;
     &::after {
         content: "";
         position: absolute;
@@ -650,13 +652,13 @@ $blue: #4A52F7;
         }
     }
     .legend {
-        width: 50px;
+        width: 45px;
         .legend-list {
             .legend-row {
                 padding-bottom: 4px;
                 display: flex;
                 align-items: center;
-                justify-content: flex-end;
+                justify-content: space-between;
                 .circle {
                     width: 21px;
                     height: 21px;
@@ -687,6 +689,7 @@ $blue: #4A52F7;
     font-size: 8px;
     line-height: 10px;
     color: #FFFFFF;
+    pointer-events: none;
     &::after {
         content: "";
         position: absolute;
@@ -798,7 +801,7 @@ $blue: #4A52F7;
             font-size: 8px;
             line-height: 10px;
             color: #898585;
-            text-align: center;
+            text-align: left;
         }
     }
 }
