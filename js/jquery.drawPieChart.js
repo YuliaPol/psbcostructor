@@ -69,6 +69,7 @@
         $lightPies = [],
         $shadowPies = [],        
         $texts = [],
+        $groupsTexts = [],
         easingFunction = animationOptions[settings.animationEasing],
         pieRadius = Min([H/2,W/2]) - settings.edgeOffset,
         segmentTotal = 0,
@@ -90,6 +91,10 @@
     var $pathGroup = $(pathGroup).appendTo($wrapper);
     $pathGroup[0].setAttribute("opacity",0);
 
+    //Set up pie segments wrapper
+    var pathGroupText = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    pathGroupText.setAttribute("class", 'groupTextSegment');
+    var $pathGroupText = $(pathGroupText).appendTo($wrapper);
 
     //Set up tooltip
     var $tip = $('<div class="' + settings.tipClass + '" />').appendTo('body').hide(),
@@ -138,19 +143,27 @@
       var g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
       g.setAttribute("data-order", i);
       g.setAttribute("class", settings.pieSegmentGroupClass);
+
+      var g2 = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      g2.setAttribute("data-order", i);
+      g2.setAttribute("class", 'textSegment');
+
       $groups[i] = $(g).appendTo($pathGroup);
+
+      $groupsTexts[i] = $(g2).appendTo($pathGroupText);
+
       $groups[i]
         .on("mouseenter", pathMouseEnter)
         .on("mouseleave", pathMouseLeave)
-        .on("mousemove", pathMouseMove)
-        .on("click", pathClick);
+        .on("mousemove", pathMouseMove);
+        // .on("click", pathClick);
 
       var p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       var lp = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       var testp = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       var shadowp = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       if($this.hasClass('rounded')){
-        settings.segmentStrokeWidth = 10;
+        settings.segmentStrokeWidth = 5;
         p.setAttribute("data-value", data[i].value);
         p.setAttribute("stroke-width", settings.segmentStrokeWidth);
         p.setAttribute("stroke", data[i].color);
@@ -213,7 +226,7 @@
       text.style.fill = 'white';
       text.style.fontFamily = 'Arial';
       text.style.fontSize = '14';
-      $texts[i] = $(text).appendTo($groups[i]);
+      $texts[i] = $(text).appendTo($groupsTexts[i]);
     }
 
     //Animation start
@@ -278,7 +291,7 @@
       for (var i = 0, len = data.length; i < len; i++){
         if($this.hasClass('rounded')){
           var segmentAngle = rotateAnimation * ((data[i].value/segmentTotal) * (PI*2)),//start radian
-          endRadius = startRadius + segmentAngle,
+          endRadius = startRadius + segmentAngle - 0.05,
           largeArc = ((endRadius - startRadius) % (PI * 2)) > PI ? 1 : 0;
           var startX = centerX + cos(startRadius) * pieRadius;
           var startY = centerY + sin(startRadius) * pieRadius;

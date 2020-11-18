@@ -509,7 +509,12 @@ function DrawLegend1(element, data) {
 }
 function DrawLegend2(element, data) {
     $(element).parents('.chart-content').find('.dougnat').addClass('smalllegend');
+    $(element).parents('.chart-content').find('.pieRound').addClass('smalllegend');
     var legend = $(element).parents('.chart-content').find('.legend .legend-list');
+
+    if(data[0].title !== '5'){
+        data.reverse()
+    }
     for (var i = 0, len = data.length; i < len; i++){
         if( data[i].value) {
           var legendRow = 
@@ -972,3 +977,14 @@ function DrawVerticalBarShadow(element, data){
         $(elements).appendTo(element);
     }
 }
+
+//show(hide) text on pie chart
+$('.charts-content').on('mouseenter', '.pieSegmentGroup', function(e){
+    var order = $(this).attr('data-order');
+    $(this).parents('svg').find('.textSegment[data-order='+ order +']').addClass('active');
+});
+$('.charts-content').on('mouseleave', '.pieSegmentGroup', function(e){
+    var order = $(this).attr('data-order');
+    $(this).parents('svg').find('.textSegment[data-order='+ order +']').removeClass('active');
+});
+

@@ -414,6 +414,16 @@ $blue: #4A52F7;
             max-width: 100%;
             svg {
                 max-width: 100%;
+                .groupTextSegment {
+                    pointer-events: none;
+                }
+                .textSegment {
+                    opacity: 0;
+                    transition: opacity 0.3s ease-in;
+                    &.active {
+                        opacity: 1;
+                    }
+                }
                 .pieSegmentGroup {
                     .percent-text {
                         opacity: 0;
@@ -502,6 +512,103 @@ $blue: #4A52F7;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    &.smalllegend {
+        .chart {
+            width: calc(100% - 90px);
+            & > div {
+                margin: auto;
+                display: flex;
+                align-items: center;
+            }
+        }
+        .legend {
+            width: 50%;
+            margin-right: -20px;
+            .legend-list {
+                height: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                flex-direction: column;
+                .legend-item {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: space-between;
+                    .col-square {
+                        min-width: 20px;
+                        max-width: 20px;
+                        .square {
+                            width: 15px;
+                            height: 15px;
+                            background: #A9DDD6;
+                            margin: auto;
+                        }
+                    }
+                    .col-label {
+                        width: calc(100% - 60px);
+                        min-width: calc(100% - 60px);
+                        font-family: $fontpage;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 12px;
+                        line-height: 15px;
+                        color: #605A5A;
+                        padding-left: 10px;
+                    }
+                    .col-value {
+                        min-width: 40px;
+                        width: 40px;
+                        padding: 5px;
+                        font-family: $fontpage;
+                        font-style: normal;
+                        font-weight: bold;
+                        font-size: 12px;
+                        line-height: 14px;
+                        color: #4F4141;
+                        background: #FDF9F9;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        padding-bottom: 15px;
+                    }
+                    &:first-child {
+                        .col-value,
+                        .col-label,
+                        .col-square {
+                            padding-top: 20px;
+                        }
+                    }
+                    &:last-child {
+                        .col-value,
+                        .col-label,
+                        .col-square {
+                            padding-bottom: 20px;
+                        }
+                    }
+                }
+            }
+        }
+        .legend {
+            width: 90px;
+            margin: 0px;
+            .legend-list {
+                .legend-item {
+                    padding-bottom: 13px;
+                    .col-square {
+                        padding: 0px !important;
+                    }
+                    .col-label {
+                        width: calc(100% - 20px);
+                        min-width: calc(100% - 20px);
+                        padding: 0px !important;
+                        padding-left: 10px !important;
+                    }
+                }
+            }
+        }
+    }
     .rounded {
         path {
             stroke-linejoin: round;
@@ -509,6 +616,16 @@ $blue: #4A52F7;
     }
     .chart {
         width: calc(100% - 100px);
+        .groupTextSegment {
+            pointer-events: none;
+        }
+        .textSegment {
+            opacity: 0;
+            transition: opacity 0.3s ease-in;
+            &.active {
+                opacity: 1;
+            }
+        }
         & > div {
             width: 250px;
             height: 250px;

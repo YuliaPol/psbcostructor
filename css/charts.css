@@ -589,6 +589,21 @@
   max-width: 100%;
 }
 
+.pieChart .chart > div svg .groupTextSegment {
+  pointer-events: none;
+}
+
+.pieChart .chart > div svg .textSegment {
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease-in;
+  -o-transition: opacity 0.3s ease-in;
+  transition: opacity 0.3s ease-in;
+}
+
+.pieChart .chart > div svg .textSegment.active {
+  opacity: 1;
+}
+
 .pieChart .chart > div svg .pieSegmentGroup .percent-text {
   opacity: 0;
   -webkit-transition: opacity 0.3s ease-in;
@@ -717,12 +732,165 @@
           justify-content: space-between;
 }
 
+.pieRound.smalllegend .chart {
+  width: calc(100% - 90px);
+}
+
+.pieRound.smalllegend .chart > div {
+  margin: auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.pieRound.smalllegend .legend {
+  width: 50%;
+  margin-right: -20px;
+}
+
+.pieRound.smalllegend .legend .legend-list {
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.pieRound.smalllegend .legend .legend-list .legend-item {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.pieRound.smalllegend .legend .legend-list .legend-item .col-square {
+  min-width: 20px;
+  max-width: 20px;
+}
+
+.pieRound.smalllegend .legend .legend-list .legend-item .col-square .square {
+  width: 15px;
+  height: 15px;
+  background: #A9DDD6;
+  margin: auto;
+}
+
+.pieRound.smalllegend .legend .legend-list .legend-item .col-label {
+  width: calc(100% - 60px);
+  min-width: calc(100% - 60px);
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #605A5A;
+  padding-left: 10px;
+}
+
+.pieRound.smalllegend .legend .legend-list .legend-item .col-value {
+  min-width: 40px;
+  width: 40px;
+  padding: 5px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+  color: #4F4141;
+  background: #FDF9F9;
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-bottom: 15px;
+}
+
+.pieRound.smalllegend .legend .legend-list .legend-item:first-child .col-value,
+.pieRound.smalllegend .legend .legend-list .legend-item:first-child .col-label,
+.pieRound.smalllegend .legend .legend-list .legend-item:first-child .col-square {
+  padding-top: 20px;
+}
+
+.pieRound.smalllegend .legend .legend-list .legend-item:last-child .col-value,
+.pieRound.smalllegend .legend .legend-list .legend-item:last-child .col-label,
+.pieRound.smalllegend .legend .legend-list .legend-item:last-child .col-square {
+  padding-bottom: 20px;
+}
+
+.pieRound.smalllegend .legend {
+  width: 90px;
+  margin: 0px;
+}
+
+.pieRound.smalllegend .legend .legend-list .legend-item {
+  padding-bottom: 13px;
+}
+
+.pieRound.smalllegend .legend .legend-list .legend-item .col-square {
+  padding: 0px !important;
+}
+
+.pieRound.smalllegend .legend .legend-list .legend-item .col-label {
+  width: calc(100% - 20px);
+  min-width: calc(100% - 20px);
+  padding: 0px !important;
+  padding-left: 10px !important;
+}
+
 .pieRound .rounded path {
   stroke-linejoin: round;
 }
 
 .pieRound .chart {
   width: calc(100% - 100px);
+}
+
+.pieRound .chart .groupTextSegment {
+  pointer-events: none;
+}
+
+.pieRound .chart .textSegment {
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease-in;
+  -o-transition: opacity 0.3s ease-in;
+  transition: opacity 0.3s ease-in;
+}
+
+.pieRound .chart .textSegment.active {
+  opacity: 1;
 }
 
 .pieRound .chart > div {
