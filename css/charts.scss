@@ -4,6 +4,12 @@ $darkblue: #323242;
 $voilet: #563BC2;
 $blue: #4A52F7;
 
+$anket-color1: #A71E4E;
+$anket-color2: #F43469;
+$anket-color3: #FDD18F;
+$anket-color4: #74D977;
+$anket-color5: #5EAE61;
+
 .charts-content {
     padding-left: 30px;
     padding-right: 30px;
@@ -901,6 +907,177 @@ $blue: #4A52F7;
             line-height: 12px;
             color: #605A5A;
             text-align: center;
+        }
+    }
+}
+.anket-box {
+    background: #FEFDFD;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    padding: 10px 17px;
+    .anket-row {
+        padding-bottom: 25px;
+        .question {
+            font-family: $fontpage;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 17px;
+            color: #605A5A;
+            padding-bottom: 13px;
+        }
+        .results {
+            position: relative;
+            .line {
+                display: flex;
+                align-items: center;
+                justify-content: stretch;
+                height: 18px;
+                border-radius: 9px;
+                overflow: hidden;
+                .result-1 {
+                    background-color: $anket-color1;
+                    height: 100%;
+                }
+                .result-2 {
+                    background-color: $anket-color2;
+                    height: 100%;
+                }
+                .result-3 {
+                    background-color: $anket-color3;
+                    height: 100%;
+                }
+                .result-4 {
+                    background-color: $anket-color4;
+                    height: 100%;
+                }
+                .result-5 {
+                    background-color: $anket-color5;
+                    height: 100%;
+                }
+            }
+            .tooltip {
+                position: absolute;
+                background: #251F3F;
+                border-radius: 4px;
+                padding: 15px 10px;
+                width: 160px;
+                pointer-events: none;
+                display: none;
+                z-index: 100;
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: calc(50% - 12px);
+                    left: -12px;
+                    width: 0;
+                    height: 0;
+                    border-left: 8px solid transparent;
+                    border-right: 8px solid transparent;
+                    border-top: 8px solid #251F3F;
+                    transform: rotate(90deg);
+                    clear: both;
+                }
+                &.right {
+                    &::before {
+                        display: none;
+                    }
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        top: calc(50% - 12px);
+                        right: -12px;
+                        width: 0;
+                        height: 0;
+                        border-left: 8px solid transparent;
+                        border-right: 8px solid transparent;
+                        border-top: 8px solid #251F3F;
+                        transform: rotate(-90deg);
+                        clear: both;
+                    }
+                }
+                .results-list {
+                    width: 100%;
+                    padding-bottom: 5px;
+                    padding-left: 5px;
+                    padding-right: 5px;
+                    border-bottom: 1px solid #3F4357;;
+                    .results-col {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding-bottom: 10px;
+                        .name {
+                            font-family: $fontpage;
+                            font-style: normal;
+                            font-weight: normal;
+                            font-size: 10px;
+                            line-height: 12px;
+                            color: #FFFFFF;
+                            .circle-1 {
+                                display: inline-block;
+                                width: 8px;
+                                height: 8px;
+                                border-radius: 50%;
+                                background: $anket-color1;
+                                margin-right: 7px;
+                            }
+                            .circle-2 {
+                                display: inline-block;
+                                width: 8px;
+                                height: 8px;
+                                border-radius: 50%;
+                                background: $anket-color2;
+                                margin-right: 7px;
+                            }
+                            .circle-3 {
+                                display: inline-block;
+                                width: 8px;
+                                height: 8px;
+                                border-radius: 50%;
+                                background: $anket-color3;
+                                margin-right: 7px;
+                            }
+                            .circle-4 {
+                                display: inline-block;
+                                width: 8px;
+                                height: 8px;
+                                border-radius: 50%;
+                                background: $anket-color4;
+                                margin-right: 7px;
+                            }
+                            .circle-5 {
+                                display: inline-block;
+                                width: 8px;
+                                height: 8px;
+                                border-radius: 50%;
+                                background: $anket-color5;
+                                margin-right: 7px;
+                            }
+                        }
+                        .value {
+                            font-family: $fontpage;
+                            font-style: normal;
+                            font-weight: normal;
+                            font-size: 10px;
+                            line-height: 12px;
+                            color: #FFFFFF;
+                        }
+                    }
+                }
+                .results-all {
+                    padding-left: 5px;
+                    padding-right: 5px;
+                    padding-top: 9px;
+                    text-align: center; 
+                    font-family: $fontpage;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 10px;
+                    line-height: 12px;
+                    color: #FFFFFF;
+                }
+            }
         }
     }
 }

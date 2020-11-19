@@ -1,15 +1,19 @@
-
-
 jQuery(function ($) {
     $(document).ready(function () {
-        if(chartData.length > 0){
-            DrawCharts(chartData);
+        if(typeof chartData != 'undefined'){
+            if(chartData.length > 0){
+                DrawCharts(chartData);
+            }
         }
     });
 });
 $( window ).resize(function() {
-    ClearChart(chartData);
-    DrawCharts(chartData);
+    if(typeof chartData != 'undefined'){
+        if(chartData.length > 0){
+            ClearChart(chartData);
+            DrawCharts(chartData);
+        }
+    }
 });
 function DrawCharts(chartData){
     for(let i = 0; i < chartData.length; i++){
@@ -1021,3 +1025,39 @@ $('.charts-content').on('mouseleave', '.pieSegmentGroup', function(e){
     $(this).parents('svg').find('.textSegment[data-order='+ order +']').removeClass('active');
 });
 
+//show(hide) tooltip on anket
+$('.charts-content').on('mouseenter', '.results .line', function(e){
+    var left = parseInt(e.clientX) - 17 - 15;
+    var tWidth = parseInt($(this).parents('.results').find('.tooltip').outerWidth());
+    var tHeight = parseInt($(this).parents('.results').find('.tooltip').outerHeight()) / 2 - 16;
+    if((left + tWidth) > parseInt($(this).outerWidth())){
+        $(this).parents('.results').find('.tooltip').addClass('right');
+        left = left - tWidth - 17;
+    }
+    else {
+        $(this).parents('.results').find('.tooltip').removeClass('right');
+    }
+    $(this).parents('.results').find('.tooltip').css('left', left + 'px');
+    $(this).parents('.results').find('.tooltip').css('top', -tHeight + 'px');
+    $(this).parents('.results').find('.tooltip').fadeIn(100);
+});
+
+$('.charts-content').on('mousemove', '.results .line', function(e){
+    var left = parseInt(e.clientX) - 17 - 15;
+    var tWidth = parseInt($(this).parents('.results').find('.tooltip').outerWidth());
+    var tHeight = parseInt($(this).parents('.results').find('.tooltip').outerHeight()) / 2 - 16;
+    if((left + tWidth) > parseInt($(this).outerWidth())){
+        $(this).parents('.results').find('.tooltip').addClass('right');
+        left = left - tWidth - 17;
+    }
+    else {
+        $(this).parents('.results').find('.tooltip').removeClass('right');
+    }
+    $(this).parents('.results').find('.tooltip').css('left', left + 'px');
+    $(this).parents('.results').find('.tooltip').css('top', -tHeight + 'px');
+});
+
+$('.charts-content').on('mouseleave', '.results .line', function(e){
+    $(this).parents('.results').find('.tooltip').removeClass('right');
+    $(this).parents('.results').find('.tooltip').fadeOut(0);
+});
