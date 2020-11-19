@@ -1030,12 +1030,20 @@ $('.charts-content').on('mouseenter', '.results .line', function(e){
     var left = parseInt(e.clientX) - 17 - 15;
     var tWidth = parseInt($(this).parents('.results').find('.tooltip').outerWidth());
     var tHeight = parseInt($(this).parents('.results').find('.tooltip').outerHeight()) / 2 - 16;
+
+    var magleft = parseInt($('.charts-content').css('margin-left'));
+    var magright = parseInt($('.charts-content').css('margin-right'));
+
+    $(this).parents('.results').find('.tooltip').attr('data-left', magleft);
+    $(this).parents('.results').find('.tooltip').attr('data-right', magright);
+
     if((left + tWidth) > parseInt($(this).outerWidth())){
         $(this).parents('.results').find('.tooltip').addClass('right');
-        left = left - tWidth - 17;
+        left = left - tWidth - 17 - magright;
     }
     else {
         $(this).parents('.results').find('.tooltip').removeClass('right');
+        left = left - magleft;
     }
     $(this).parents('.results').find('.tooltip').css('left', left + 'px');
     $(this).parents('.results').find('.tooltip').css('top', -tHeight + 'px');
@@ -1043,14 +1051,17 @@ $('.charts-content').on('mouseenter', '.results .line', function(e){
 });
 
 $('.charts-content').on('mousemove', '.results .line', function(e){
+    var magleft = parseInt($(this).parents('.results').find('.tooltip').attr('data-left'));
+    var magright = parseInt($(this).parents('.results').find('.tooltip').attr('data-right'));
     var left = parseInt(e.clientX) - 17 - 15;
     var tWidth = parseInt($(this).parents('.results').find('.tooltip').outerWidth());
     var tHeight = parseInt($(this).parents('.results').find('.tooltip').outerHeight()) / 2 - 16;
     if((left + tWidth) > parseInt($(this).outerWidth())){
         $(this).parents('.results').find('.tooltip').addClass('right');
-        left = left - tWidth - 17;
+        left = left - tWidth - 17 - magright;
     }
     else {
+        left = left - magleft;
         $(this).parents('.results').find('.tooltip').removeClass('right');
     }
     $(this).parents('.results').find('.tooltip').css('left', left + 'px');
