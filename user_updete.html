@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание опроса</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+
+    <script src="./js/jquery-3.5.1.min.js"></script>
+    <script src="./js/dropzone.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js"></script> -->
+
+    <script src="./js/script.js"></script>
+
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-row">
+            <div class="linkback">
+                <a href="#">Все опросы</a>
+            </div>
+            <div class="navbar-user">
+                <div class="user">
+                    <div class="user-wrapper show-user-dropdown">
+                        <div class="user-name">Alexander Pierce</div>
+                        <div class="icon-user">
+                            <img src="./img/user.png" alt="Alexander Pierce">
+                        </div>
+                    </div>
+                    <div class="dropdown-user">
+                        <ul>
+                            <li>
+                                <a href="#" class="logout">Выход </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="page-content">
+        <form action="#" class="form-valid">
+            <div class="box-wrapper">
+                <div class="box-form">
+                    <div class="form-group">
+                        <label>
+                            <div class="question">
+                                1. Введите имя пользователя
+                            </div>
+                            <div class="form-group field-user-username">
+
+                                <input type="text" id="user-username" class="form-control" name="User[username]"
+                                    value="superadmin" placeholder="Имя пользователя">
+
+                                <div class="help-block"></div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <div class="question">
+                                2. Введите пароль
+                            </div>
+                            <div class="form-group field-user-password required">
+
+                                <input type="text" id="user-password" class="form-control" name="User[password]"
+                                    placeholder="Пароль пользователя" aria-required="true">
+
+                                <div class="help-block"></div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <div class="question">
+                                3. Введите e-mail
+                            </div>
+                            <div class="form-group field-user-email">
+
+                                <input type="text" id="user-email" class="form-control" name="User[email]"
+                                    value="b-dmitry@mail.ru" placeholder="e-mail пользователя">
+
+                                <div class="help-block"></div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <div class="question">
+                            4. Роль пользователя
+                        </div>
+                        <div class="select customselectparents">
+                            <div class="form-group field-user-role">
+
+                                <select id="user-role" class="form-control" name="User[role]">
+                                    <option value="admin">Администратор</option>
+                                    <option value="user">Пользователь</option>
+                                    <option value="superadmin" selected="">Суперадмин</option>
+                                </select>
+
+                                <div class="help-block"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="question">
+                            5. Компания пользователя
+                        </div>
+                        <div class="select customselectparents">
+                            <div class="form-group field-user-company_id">
+                                <select id="user-company_id" class="form-control" name="User[company_id]">
+                                    <option value="9" selected="">4service</option>
+                                    <option value="14">ПСБ</option>
+                                </select>
+                                <div class="help-block"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <div class="question question-file">
+                                6. Выберите аватар пользователя
+                            </div>
+                            <div class="field-user-imagefile ">
+                                <input type="hidden" name="User[imageFile]" value="">
+                                <input type="file" id="user-imagefile" name="User[imageFile]">
+                                <div class="help-block"></div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="question">
+                            6. Статус
+                        </div>
+                        <div class="select customselectparents">
+                            <div class="form-group field-user-status">
+                                <select id="user-status" class="form-control" name="User[status]">
+                                    <option value="10" selected="">Активный</option>
+                                    <option value="9">Скрыть</option>
+                                </select>
+                                <div class="help-block"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-wrapper">
+                    <button type="submit" class="btn-default ">Сохранить</button>
+                </div>
+                <!-- <div class="btn-wrapper">
+                    <button type="submit" id="sendfile" class="btn-default sendfile valid-form-send">Далее</button>
+                </div> -->
+            </div>
+        </form>
+    </div>
+    <script>
+
+        $('.upload-file-test').click(function () {
+            $('.realfileinputtest').click();
+        });
+
+        $('.realfileinputtest').change(function (e) {
+            var fileName = e.target.files[0].name;
+            if ($(this).parents('.file-upload-froup').find('.file-name').length > 0) {
+                $(this).parents('.file-upload-froup').find('.file-name').remove();
+            }
+            var filenameblock = '<div class="file-name">' + fileName + '</div>';
+            $(this).parents('.file-upload-froup').append(filenameblock);
+        });
+
+        // Dropzone.autoDiscover = false;
+        var drop = $('#dz-preview-template').html();
+        $('.upload-file').click(function () {
+            $('.realfileinput').click();
+        });
+
+        $('.realfileinput').change(function (e) {
+            var fileName = e.target.files[0].name;
+            if (e.target.files && e.target.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('.preview-picture').css('background-image', 'url(' + e.target.result + ')');
+                    $('.preview-picture').addClass('active');
+                    $('.preview-picture').css('background-position', 'center');
+                    $('.preview-picture').css('background-repeat', 'no-repeat');
+                    $('.preview-picture').css('background-size', 'contain');
+                }
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        });
+       
+
+        
+        // var myDropzone = new Dropzone('.dropzone', {
+        //     url: "#urlforfile",
+        //     dictDefaultMessage: 'Перетащите картинку сюда, либо нажмите на скрепку',
+        //     previewTemplate: drop,
+        //     thumbnailWidth: 416,
+        //     thumbnailHeight: 176,
+        //     thumbnailMethod: 'contain',
+        //     maxFiles: 1,
+        //     autoProcessQueue: false,
+        //     addRemoveLinks: false,
+        //     init: function() {
+        //         dzClosure = this; // Makes sure that 'this' is understood inside the functions below.
+        //         // for Dropzone to process the queue (instead of default form behavior):
+        //         document.getElementById('sendfile').addEventListener("click", function(e) {
+        //             // Make sure that the form isn't actually being sent.
+        //             e.preventDefault();
+        //             e.stopPropagation();
+        //             dzClosure.processQueue();
+        //         });
+
+        //         //send all the form data along with the files:
+        //         this.on('sendingmultiple', function(data, xhr, formData) {
+        //             formData.append('firstname', jQuery(".pollName").val());
+        //         });
+        //     }
+        // });
+
+    </script>
+</body>
+
+</html>

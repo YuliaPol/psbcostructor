@@ -1170,3 +1170,8 @@ $anket-color5: #5EAE61;
         }
     }
 }
+@media screen and (max-width: 380px) {
+    .anket-box .anket-row .results .tooltip {
+        width: 130px;
+    }
+}
