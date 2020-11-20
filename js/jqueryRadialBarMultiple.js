@@ -47,7 +47,12 @@ RadialBar.prototype = {
             }
             var relative = 100 / summary;
             for (let i = 0; i < length; i++) {
-                percent[i] = Math.round(relative*data[i].progress);
+                if(parseInt(data[i].progress)>0){
+                    percent[i] = Math.round(relative*parseInt(data[i].progress));
+                }
+                else {
+                    percent[i] = 0;
+                }
             }
             self.options["percent"] = percent;
         }
@@ -68,7 +73,6 @@ RadialBar.prototype = {
         var strokeWidth = self.strokeWidth = self.options.strokeWidth || 12;
 
         self._buildSvg(w, h, scale);
-        self._addShadow();
         if(self.options["tooltip"] == true){
             self._buildTip();
         }
@@ -108,6 +112,7 @@ RadialBar.prototype = {
             r = r - division;
             raiusCircle = raiusCircle - division;
         }
+        // self._addShadow();
     },
 
     _buildTip: function(width, height, scale){
@@ -153,7 +158,13 @@ RadialBar.prototype = {
         var radius = r - 10;
         var circumference = radius * 2 * Math.PI;
         // var offset = circumference - object.progress / 100 * circumference;
-        var offset = circumference - object.progress / maxValue * 0.9 * circumference;
+        var offset;
+        if(parseInt(object.progress) > 0){
+            offset = circumference - object.progress / maxValue * 0.9 * circumference;
+        }
+        else {
+            offset = 0;
+        }
         var circle = document.createElementNS(svgNS,"circle");
         circle.setAttribute("cy", 0);
         circle.setAttribute("cx", 0);
@@ -165,15 +176,22 @@ RadialBar.prototype = {
         circle.setAttribute("data-percent", percent);
 
         var clonedCircle = $(circle).clone()[0];
-        clonedCircle.setAttribute("stroke-width", stroreWidth);
+        if(parseInt(object.progress) > 0){
+            clonedCircle.setAttribute("stroke-width", stroreWidth);
+        }
+        else {
+            clonedCircle.setAttribute("stroke-width", 0);
+        }
         clonedCircle.setAttribute("stroke", object.background);
         clonedCircle.setAttribute("transform", "rotate(-90 0 0)")
         clonedCircle.setAttribute("stroke-dasharray", circumference+" "+circumference);
         clonedCircle.setAttribute("stroke-dashoffset", offset);
+        
         if(self.options["round"] !== false){
             clonedCircle.setAttribute("stroke-linecap", "round");
         }
-        clonedCircle.setAttribute("style", "transition: stroke-dashoffset 1s ease-out 0s; filter: url(#boxshadow);");
+        // clonedCircle.setAttribute("style", "transition: stroke-dashoffset 1s ease-out 0s; filter: url(#boxshadow);");
+        clonedCircle.setAttribute("style", "transition: stroke-dashoffset 1s ease-out 0s;");
         self.svgContainer.appendChild(circle);
         self.svgContainer.appendChild(clonedCircle);
     },

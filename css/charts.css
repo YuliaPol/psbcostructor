@@ -279,6 +279,10 @@
   margin: auto;
 }
 
+.varticalbar .varticalbarChart .barlist .baritem .barcol .value.blackcolor {
+  color: #000000;
+}
+
 .varticalbar .varticalbarChart .barlist .baritem .label {
   border-top: 1px solid #F3F3F3;
   height: 20px;
@@ -368,11 +372,6 @@
   width: 250px;
   height: 250px;
   max-width: 100%;
-}
-
-.dougnat .chart > div.addShadow path:hover {
-  -webkit-filter: url(#boxshadow);
-          filter: url(#boxshadow);
 }
 
 .dougnat .chart > div svg {
@@ -1261,6 +1260,10 @@
   right: 2px;
   bottom: 3px;
   text-align: center;
+}
+
+.varticalBarShadowList .vertical-item .vertical-bar .vertical-value.blackcolor {
+  color: #605A5A;
 }
 
 .varticalBarShadowList .vertical-item .vertical-label {

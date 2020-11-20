@@ -137,21 +137,16 @@
       $(feComponentTransfer).appendTo(shadow);
       
       $(shadow).appendTo($wrapper);
-
     for (var i = 0, len = data.length; i < len; i++){
-      segmentTotal += data[i].value;
+      segmentTotal += parseInt(data[i].value);
       var g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
       g.setAttribute("data-order", i);
       g.setAttribute("class", settings.pieSegmentGroupClass);
-
       var g2 = document.createElementNS('http://www.w3.org/2000/svg', 'g');
       g2.setAttribute("data-order", i);
       g2.setAttribute("class", 'textSegment');
-
       $groups[i] = $(g).appendTo($pathGroup);
-
       $groupsTexts[i] = $(g2).appendTo($pathGroupText);
-
       $groups[i]
         .on("mouseenter", pathMouseEnter)
         .on("mouseleave", pathMouseLeave)
@@ -163,30 +158,55 @@
       var testp = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       var shadowp = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       if($this.hasClass('rounded')){
-        settings.segmentStrokeWidth = 5;
+        if( parseInt(data[i].value)>0) {
+          settings.segmentStrokeWidth = 5;
+        }
+        else {
+          settings.segmentStrokeWidth = 0;
+        }
+
+
         p.setAttribute("data-value", data[i].value);
-        p.setAttribute("stroke-width", settings.segmentStrokeWidth);
+        if( parseInt(data[i].value)>0) {
+          p.setAttribute("stroke-width", settings.segmentStrokeWidth);
+        }
+        else {
+          p.setAttribute("stroke-width", '0');
+        }
         p.setAttribute("stroke", data[i].color);
         p.setAttribute("stroke-miterlimit", 2);
         p.setAttribute("fill", data[i].color);
         p.setAttribute("class", settings.pieSegmentClass);
         $pies[i] = $(p).appendTo($groups[i]);
-  
-        lp.setAttribute("stroke-width", settings.segmentStrokeWidth);
+
+        if( parseInt(data[i].value)>0) {
+          lp.setAttribute("stroke-width", settings.segmentStrokeWidth);
+        }
+        else {
+          lp.setAttribute("stroke-width", '0');
+        }
+
         lp.setAttribute("stroke", data[i].color);
         lp.setAttribute("stroke-miterlimit", 0);
         lp.setAttribute("fill", data[i].color);
         lp.setAttribute("opacity", settings.lightPiesOpacity);
         lp.setAttribute("class", settings.lightPieClass);
+
         $lightPies[i] = $(lp).appendTo($groups[i]);
-  
-  
-        shadowp.setAttribute("stroke-width", settings.segmentStrokeWidth);
+
+
         shadowp.setAttribute("stroke", data[i].color);
         shadowp.setAttribute("stroke-miterlimit", 0);
         shadowp.setAttribute("fill", data[i].color);
         shadowp.setAttribute("opacity", settings.lightPiesOpacity);
         shadowp.setAttribute("class", "shadowPie");
+        if(parseInt(data[i].value)>0) {
+          shadowp.setAttribute("stroke-width", settings.segmentStrokeWidth);
+        }
+        else {
+          shadowp.setAttribute("stroke-width", '0');
+        }
+
         $shadowPies[i] = $(shadowp).appendTo($groups[i]);
       }
       else{
@@ -215,10 +235,8 @@
         shadowp.setAttribute("opacity", settings.lightPiesOpacity);
         shadowp.setAttribute("class", "shadowPie");
         $shadowPies[i] = $(shadowp).appendTo($groups[i]);
+
       }
-
-
-
       var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
       text.setAttribute('width', 50);
       text.setAttribute('class', 'percent-text');
@@ -284,14 +302,18 @@
       if (settings.animation) {
         rotateAnimation = animationDecimal;//count up between0~1
       }
-
       $pathGroup[0].setAttribute("opacity",animationDecimal);
-
       //draw each path
       for (var i = 0, len = data.length; i < len; i++){
         if($this.hasClass('rounded')){
-          var segmentAngle = rotateAnimation * ((data[i].value/segmentTotal) * (PI*2)),//start radian
-          endRadius = startRadius + segmentAngle - 0.05,
+          var segmentAngle = rotateAnimation * ((data[i].value/segmentTotal) * (PI*2));//start radian
+          var endRadius;
+          if(parseInt(data[i].value)>0){
+            endRadius = startRadius + segmentAngle - 0.05;
+          }
+          else {
+            endRadius = startRadius + segmentAngle;
+          }
           largeArc = ((endRadius - startRadius) % (PI * 2)) > PI ? 1 : 0;
           var startX = centerX + cos(startRadius) * pieRadius;
           var startY = centerY + sin(startRadius) * pieRadius;

@@ -205,7 +205,6 @@ function drawShadowLine(element, data, borderColor) {
             }]
         };
 
-        //options team Chart
         var optionsLine = {
             responsive: true,
             maintainAspectRatio: true,
@@ -223,6 +222,7 @@ function drawShadowLine(element, data, borderColor) {
                     },
                     ticks: {
                         fontSize: 10,
+                        min: 0
                     }
                 }],
                 yAxes: [{
@@ -235,6 +235,7 @@ function drawShadowLine(element, data, borderColor) {
                     ticks: {
                         min: 0,
                         padding: 10,
+                        beginAtZero: true,
                     }
                 }],
             },
@@ -269,7 +270,13 @@ function drawShadowLine(element, data, borderColor) {
                         for(let i = 0; i < values.length; i++){
                             total += parseInt(values[i]);
                         }
-                        var percent = Math.round((100/total)*data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]);
+                        var percent;
+                        if(parseInt(data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index])>0){
+                            percent = Math.round((100/total)*data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]);
+                        }
+                        else {
+                            percent = 0;
+                        }
                         var label = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] || '';
                         label =  percent + '% / '+ label + ' шт';
                         return label;
@@ -330,13 +337,17 @@ function drawPieSimple(element, data){
             data.reverse();
         }
         var newData = data;
+        var total = 0;
         for (let i = 0; i < data.length; i++) {
             newData[i].title = data[i].labelText;
             newData[i].color = data[i].background;
             newData[i].value = parseInt(data[i].progress);
+            total = total + parseInt(data[i].progress);
         }
         if(newData) {
-            $(element).drawPieChart(newData);
+            if(total > 0) {
+                $(element).drawPieChart(newData);
+            }
             DrawLegend1(element, data);
         }
     }
@@ -344,14 +355,18 @@ function drawPieSimple(element, data){
 function drawPieRound(element, data){
     if($(element).length==1 && data.length > 0){
         var newData = data;
+        var total = 0;
         $(element).addClass('rounded');
         for (let i = 0; i < data.length; i++) {
             newData[i].title = data[i].labelText;
             newData[i].color = data[i].background;
             newData[i].value = parseInt(data[i].progress);
+            total = total + parseInt(data[i].progress);
         }
         if(newData) {
-            $(element).drawPieChart(newData);
+            if(total > 0) {
+                $(element).drawPieChart(newData);
+            }
             DrawLegend2(element, data);
         }
     }
@@ -420,7 +435,13 @@ function drawVerticalBar(element, data) {
                             for(let i = 0; i < values.length; i++){
                                 total += parseInt(values[i]);
                             }
-                            var percent = Math.round((100/total)*data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]);
+                            var percent;
+                            if(parseInt(data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index])) {
+                                percent = Math.round((100/total)*data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]);
+                            }
+                            else {
+                                percent = 0;
+                            }
                             var label = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] || '';
                             label =  percent + '% / '+ label + ' шт';
                             return label;
@@ -450,7 +471,8 @@ function drawVerticalBar(element, data) {
                         ticks: {
                             min: 0,
                             fontSize: 10,
-                            padding: 10
+                            padding: 10,
+                            beginAtZero: true
                         }
                     }],
                 },
@@ -475,8 +497,14 @@ function drawSimpleBar(element, data) {
             
         var relative = 100 / summary;
         for (let i = 0; i < data.length; i++) {
-            percent[i] = Math.round(relative*data[i].progress);
-            percentFill[i] = Math.round(relativeFill*data[i].progress*0.9);
+            if(parseInt(data[i].progress) > 0){
+                percent[i] = Math.round(relative*parseInt(data[i].progress));
+                percentFill[i] = Math.round(relativeFill*parseInt(data[i].progress)*0.9);
+            }
+            else {
+                percent[i] = 0;
+                percentFill[i] = 0;
+            }
         }
         var elements = '<div class="barlist">';
         var width = parseInt(data.length);
@@ -494,6 +522,14 @@ function drawSimpleBar(element, data) {
         var elements = elements + '</div>';
         element.addClass('varticalbarChart');
         $(elements).appendTo(element);
+        var bars = $(element).find('.baritem');
+        for (let i = 0; i < bars.length; i++) {
+            let barHeight = parseInt($(bars[i]).find('.barcolFill').outerHeight());
+            let textHeight = parseInt($(bars[i]).find('.barcol .value').outerHeight());
+            if(textHeight > barHeight){
+                $(bars[i]).find('.barcol .value').addClass('blackcolor');
+            }
+        }
     }
 }
 function DrawLegend1(element, data) {
@@ -509,9 +545,12 @@ function DrawLegend1(element, data) {
         if(data[i].value) {
             data[i].percent = Math.round((100/segmentTotal)*data[i].value);
         }
+        else {
+            data[i].percent = 0;
+        }
     }
     for (var i = 0, len = data.length; i < len; i++){
-        if( data[i].value) {
+        // if( data[i].value) {
           var legendRow = 
           '<div class="legend-item">'
           +'    <div class="col-square">'
@@ -525,31 +564,34 @@ function DrawLegend1(element, data) {
           +'  </div>'
           +'</div>';
           $(legendRow).appendTo(legend);
-        }
+        // }
       }
 }
 function DrawLegend2(element, data) {
     $(element).parents('.chart-content').find('.dougnat').addClass('smalllegend');
     $(element).parents('.chart-content').find('.pieRound').addClass('smalllegend');
     var legend = $(element).parents('.chart-content').find('.legend .legend-list');
-
-    if(data[0].title !== '5'){
-        data.reverse()
+    var dataLegend = new Array(data.length);
+    for (var i = 0, len = dataLegend.length; i < len; i++){
+        dataLegend[i] = data[i];
     }
-    for (var i = 0, len = data.length; i < len; i++){
-        if( data[i].value) {
+    if(dataLegend[0].title !== '5'){
+        dataLegend.reverse()
+    }
+    for (var i = 0, len = dataLegend.length; i < len; i++){
+        // if(data[i].value) {
           var legendRow = 
           '<div class="legend-item">'
           +'    <div class="col-square">'
-          +'      <div class="square" style="background: '+ data[i].color +'"></div>'
+          +'      <div class="square" style="background: '+ dataLegend[i].color +'"></div>'
           +'  </div>'
           +'  <div class="col-label">'
-          +'      Оценка <span class="bold">' + data[i].title + '</span>'
+          +'      Оценка <span class="bold">' + dataLegend[i].title + '</span>'
           +'  </div>'
           +'</div>';
           $(legendRow).appendTo(legend);
-        }
-      }
+        // }
+    }
 }
 function drawHorizontalBar(element, data){
     if($(element).length==1 && data.length > 0){
@@ -560,7 +602,11 @@ function drawHorizontalBar(element, data){
         var width = 600;
         var height = 230;
         if($(element).parents('.width-50').length>0){
-            if(window.screen.width > 768 && window.screen.width < 992){
+            if(window.screen.width > 992 && window.screen.width <= 1200){
+                width = 400;
+                height = 240;
+            }
+            else if(window.screen.width > 768 && window.screen.width <= 992){
                 width = 600;
                 height = 230;
             }
@@ -570,7 +616,7 @@ function drawHorizontalBar(element, data){
             }
             else if(window.screen.width <= 500) {
                 width = 350;
-                height = 200;
+                height = 350;
             }
         }
         else if($(element).parents('.width-33').length>0){ 
@@ -661,12 +707,14 @@ function drawHorizontalBar(element, data){
                             fontSize: 10,
                             min: 0,
                             max: maxValue,
+                            beginAtZero: true,
                             callback: function(value, index, values) {
+                                var axesValue = Math.round(value*10)/10;
                                 if(index==values.length-1){
                                     return ' ';
                                 }
                                 else {
-                                    return [ '         ' + value, '         ' +  'шт'];
+                                    return [' ' , axesValue,  'шт'];
                                 }
                             },
                         }
@@ -702,14 +750,14 @@ function drawHorizontalBar(element, data){
                                 ctx.strokeStyle = "#D5D3D3";
                                 ctx.stroke();
                             }
-                            else {
-                                ctx.beginPath();
-                                ctx.moveTo(15,  y + 0.5);
-                                ctx.lineTo(yAxis.right,  y + 0.5);
-                                ctx.lineWidth = 5;
-                                ctx.strokeStyle = "#fff";
-                                ctx.stroke();
-                            }
+                            // else {
+                            //     ctx.beginPath();
+                            //     ctx.moveTo(15,  y + 0.5);
+                            //     ctx.lineTo(yAxis.right,  y + 0.5);
+                            //     ctx.lineWidth = 5;
+                            //     ctx.strokeStyle = "#fff";
+                            //     ctx.stroke();
+                            // }
                         }
                     }
                     ctx.beginPath();
@@ -719,28 +767,28 @@ function drawHorizontalBar(element, data){
                     ctx.strokeStyle = "#D5D3D3";
                     ctx.stroke();
 
-                    //x-axis line
-                    for (var index = 0; index < xAxis.ticks.length; index++) {
-                        var x = xAxis.getPixelForTick(index);
-                        if (!window.document.documentMode) {
-                            if(index != xAxis.ticks.length - 1){
-                                ctx.beginPath();
-                                ctx.moveTo(x + 0.5,  xAxis.bottom - 38);
-                                ctx.lineTo(x + 0.5,  xAxis.bottom - 5);
-                                ctx.lineWidth = 1;
-                                ctx.strokeStyle = "#D5D3D3";
-                                ctx.stroke();
-                            }
-                            else {
-                                ctx.beginPath();
-                                ctx.moveTo(x + 0.5,  xAxis.bottom - 38);
-                                ctx.lineTo(x + 0.5,  xAxis.bottom);
-                                ctx.lineWidth = 5;
-                                ctx.strokeStyle = "#fff";
-                                ctx.stroke();
-                            }
-                        }
-                    }
+                    // //x-axis line
+                    // for (var index = 0; index < xAxis.ticks.length; index++) {
+                    //     var x = xAxis.getPixelForTick(index);
+                    //     if (!window.document.documentMode) {
+                    //         if(index != xAxis.ticks.length - 1){
+                    //             ctx.beginPath();
+                    //             ctx.moveTo(x + 0.5,  xAxis.bottom - 38);
+                    //             ctx.lineTo(x + 0.5,  xAxis.bottom - 5);
+                    //             ctx.lineWidth = 1;
+                    //             ctx.strokeStyle = "#D5D3D3";
+                    //             ctx.stroke();
+                    //         }
+                    //         else {
+                    //             ctx.beginPath();
+                    //             ctx.moveTo(x + 0.5,  xAxis.bottom - 38);
+                    //             ctx.lineTo(x + 0.5,  xAxis.bottom);
+                    //             ctx.lineWidth = 5;
+                    //             ctx.strokeStyle = "#fff";
+                    //             ctx.stroke();
+                    //         }
+                    //     }
+                    // }
                 }
             }],
         });
@@ -809,8 +857,14 @@ function drawLineDot(element, data, dotColor) {
         var valuePercent = 100/total;
     
         for (let i = 0; i < data.length; i++) {
-            percentValue[i] = Math.round(valuePercent*parseInt(data[i].progress));
-            percentPosition[i] = Math.round(positionPercent*(parseInt(data[i].progress) - minValuePosition));
+            if(parseInt(data[i].progress) > 0){
+                percentValue[i] = Math.round(valuePercent*parseInt(data[i].progress));
+                percentPosition[i] = Math.round(positionPercent*(parseInt(data[i].progress) - minValuePosition));
+            }
+            else {
+                percentValue[i] = 0;
+                percentPosition[i] = 0;
+            }
         }
     
         var str = '<div class="lineDotcont">';
@@ -868,6 +922,9 @@ function DrawPyramide(element, data){
         for (let i = 0; i < data.length; i++) {
             total += parseInt(data[i].value);
         }
+        if(total == 0) {
+            total = 1;
+        }
         for (let i = 0; i < data.length; i++) {
             areaAcc = areaAcc + (total/data.length);
             var areaRatio = areaAcc / total;
@@ -883,7 +940,6 @@ function DrawPyramide(element, data){
         }
         return returnStr;
     }
-
     function Pyramid(dataPyramid) {
         var styles = calculateStyles(dataPyramid);
         var containerStyle =
@@ -908,6 +964,7 @@ function DrawPyramide(element, data){
         template +='</div>';
         return template
     }
+
     var summary = 0;
     var maxValue = 0;
     for (let i = 0; i < data.length; i++) {
@@ -920,10 +977,16 @@ function DrawPyramide(element, data){
     var percent = new Array(data.length);
     var relative = 100 / summary;
     for (let i = 0; i < data.length; i++) {
-        percent[i] = Math.round(relative*data[i].progress);
+        if(parseInt(data[i].progress)){
+            percent[i] = Math.round(relative*parseInt(data[i].progress));
+        }
+        else {
+            percent[i] = 0;
+        }
     }
 
     var dataPyramid = new Array(data.length);
+
     for (let i = 0; i < data.length; i++) {
         dataPyramid[i] = {
             value: parseInt(data[i].progress),
@@ -932,6 +995,8 @@ function DrawPyramide(element, data){
             percent: percent[i],
         }
     }
+    dataPyramid.sort((a, b) => parseInt(b.value) - parseInt(a.value));
+
     if(dataPyramid[0].title !== '1'){
         dataPyramid.reverse()
     }
@@ -999,7 +1064,12 @@ function DrawVerticalBarShadow(element, data){
             
         var relative = 100 / summary;
         for (let i = 0; i < data.length; i++) {
-            percent[i] = Math.round(relative*data[i].progress);
+            if(parseInt(data[i].progress)){
+                percent[i] = Math.round(relative*parseInt(data[i].progress));
+            }
+            else {
+                percent[i] = 0;
+            }
         }
         var elements = '<div class="varticalBarShadowList">';
         var width = parseInt(data.length);
@@ -1018,6 +1088,16 @@ function DrawVerticalBarShadow(element, data){
         }
         var elements = elements + '</div>';
         $(elements).appendTo(element);
+
+        var bars = $(element).find('.vertical-item');
+        for (let i = 0; i < bars.length; i++) {
+            let barHeight = parseInt($(bars[i]).find('.vertical-full').outerHeight());
+            let textHeight = parseInt($(bars[i]).find('.vertical-bar .vertical-value').outerHeight());
+            if(textHeight > barHeight){
+                $(bars[i]).find('.vertical-bar .vertical-value').addClass('blackcolor');
+            }
+        }
+
     }
 }
 function DrawHorizontalLines(element, data){
@@ -1033,7 +1113,12 @@ function DrawHorizontalLines(element, data){
         }
         var relative = 100 / summary;
         for (let i = 0; i < data.length; i++) {
-            percent[i] = Math.round(relative*parseInt(data[i].progress));
+            if(parseInt(data[i].progress)>0){
+                percent[i] = Math.round(relative*parseInt(data[i].progress));
+            }
+            else {
+                percent[i] = 0;
+            }
         }
         var elements = '<div class="horizonatal-line">';
         for (let i = 0; i < data.length; i++) {
@@ -1070,7 +1155,12 @@ function DrawLongLine(element, data){
         }
         var relative = 100 / summary;
         for (let i = 0; i < data.length; i++) {
-            percent[i] = Math.round(relative*parseInt(data[i].progress));
+            if(parseInt(data[i].progress) > 0){
+                percent[i] = Math.round(relative*parseInt(data[i].progress));
+            }
+            else {
+                percent[i] = Math.round(relative*parseInt(data[i].progress));
+            }
         }
         var line = '<div class="line">';
         var tooltip = '<div class="tooltip"><div class="results-list">';

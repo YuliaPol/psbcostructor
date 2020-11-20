@@ -208,6 +208,9 @@ $anket-color5: #5EAE61;
                         right: 5px;
                         width: 60%;
                         margin: auto;
+                        &.blackcolor {
+                            color: #000000;
+                        }
                     }
                 }
                 .label {
@@ -273,11 +276,11 @@ $anket-color5: #5EAE61;
             width: 250px;
             height: 250px;
             max-width: 100%;
-            &.addShadow {
-                path:hover {
-                    filter: url(#boxshadow);
-                }
-            }
+            // &.addShadow {
+            //     path:hover {
+            //         filter: url(#boxshadow);
+            //     }
+            // }
             svg {
                 max-width: 100%;
             }
@@ -896,6 +899,9 @@ $anket-color5: #5EAE61;
                 right: 2px;
                 bottom: 3px;
                 text-align: center;
+                &.blackcolor {
+                    color: #605A5A;
+                }
             }
         }
         .vertical-label {
