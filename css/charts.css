@@ -1318,6 +1318,11 @@
   overflow: hidden;
 }
 
+.anket-box .anket-row .results .line .result {
+  background-color: #FFFFFF;
+  height: 100%;
+}
+
 .anket-box .anket-row .results .line .result-1 {
   background-color: #A71E4E;
   height: 100%;
@@ -1423,6 +1428,15 @@
   font-size: 10px;
   line-height: 12px;
   color: #FFFFFF;
+}
+
+.anket-box .anket-row .results .tooltip .results-list .results-col .name .circle {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  margin-right: 7px;
 }
 
 .anket-box .anket-row .results .tooltip .results-list .results-col .name .circle-1 {

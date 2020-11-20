@@ -76,6 +76,12 @@ function DrawCharts(chartData){
             if(chartData[i].type == 'varticalBarShadow'){
                 DrawVerticalBarShadow(chartData[i].element, chartData[i].data);
             }
+            if(chartData[i].type == 'HorizontalLines'){
+                DrawHorizontalLines(chartData[i].element, chartData[i].data);
+            }
+            if(chartData[i].type == 'longLine'){
+                DrawLongLine(chartData[i].element, chartData[i].data);
+            }
         }
     }
 }
@@ -1011,6 +1017,93 @@ function DrawVerticalBarShadow(element, data){
             +'</div>';
         }
         var elements = elements + '</div>';
+        $(elements).appendTo(element);
+    }
+}
+function DrawHorizontalLines(element, data){
+    if(data.length > 0){
+        var percent = new Array(data.length);
+        var summary = 0;
+        var maxValue = 0;
+        for (let i = 0; i < data.length; i++) {
+            summary = summary + parseInt(data[i].progress);
+            if(parseInt(data[i].progress) > maxValue){
+                maxValue = parseInt(data[i].progress);
+            }
+        }
+        var relative = 100 / summary;
+        for (let i = 0; i < data.length; i++) {
+            percent[i] = Math.round(relative*parseInt(data[i].progress));
+        }
+        var elements = '<div class="horizonatal-line">';
+        for (let i = 0; i < data.length; i++) {
+            var top = 100 - percent[i];
+            elements = elements + 
+            '<div class="item">'
+            +'    <div class="labels">'
+            +'      <div class="name">'
+            +'          Ответы на оценку' 
+            +'          <span class="bold">' + data[i].labelText + '</span>'
+            +'      </div>'
+            +'      <div class="values">' + percent[i] + '% /  ' + data[i].progress + ' шт</div>'
+            +'  </div>'
+            +'  <div class="line">'
+            +'      <div class="line-active" style="background-color: '+ data[i].background + '; width: ' + percent[i] + '%"></div>'
+            +'  </div>'
+            +'</div>';
+        }
+        var elements = elements + '</div>';
+        $(elements).appendTo(element);
+    }
+}
+function DrawLongLine(element, data){
+    if(data.length > 0){
+        $(element).addClass('results');
+        var percent = new Array(data.length);
+        var summary = 0;
+        var maxValue = 0;
+        for (let i = 0; i < data.length; i++) {
+            summary = summary + parseInt(data[i].progress);
+            if(parseInt(data[i].progress) > maxValue){
+                maxValue = parseInt(data[i].progress);
+            }
+        }
+        var relative = 100 / summary;
+        for (let i = 0; i < data.length; i++) {
+            percent[i] = Math.round(relative*parseInt(data[i].progress));
+        }
+        var line = '<div class="line">';
+        var tooltip = '<div class="tooltip"><div class="results-list">';
+        for (let i = 0; i < data.length; i++) {
+
+            var label = 'баллов';
+            if(data[i].labelText == '1'){
+                label = 'балл';
+            }
+            else if(data[i].labelText == '2' || data[i].labelText == '3' || data[i].labelText == '4'){
+                label = 'балла';
+            }
+
+            line = line + 
+                '<div class="result" style="background-color: '+ data[i].background + ';width: ' + percent[i] + '%"></div>';
+            tooltip = tooltip + 
+                '<div class="results-col">'
+                +'    <div class="name">'
+                +'      <div class="circle" style="background-color: '+ data[i].background + ';"></div>'
+                +'      ' + data[i].labelText + ' ' + label
+                +'  </div>'
+                +'  <div class="value">' + data[i].progress + ' шт/' + percent[i] + '%</div>'
+                +'</div>';
+        }
+        tooltip = tooltip + 
+            '</div>'
+            +'<div class="results-all">'
+            +'  Всего ответов - '+ summary + ' шт'
+            +'</div>';
+        line = line + '</div>';
+        tooltip = tooltip + '</div>';
+
+        var elements = line + tooltip;
         $(elements).appendTo(element);
     }
 }

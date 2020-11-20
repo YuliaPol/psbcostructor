@@ -935,6 +935,10 @@ $anket-color5: #5EAE61;
                 height: 18px;
                 border-radius: 9px;
                 overflow: hidden;
+                .result {
+                    background-color: #FFFFFF;
+                    height: 100%;
+                }
                 .result-1 {
                     background-color: $anket-color1;
                     height: 100%;
@@ -1014,6 +1018,14 @@ $anket-color5: #5EAE61;
                             font-size: 10px;
                             line-height: 12px;
                             color: #FFFFFF;
+                            .circle {
+                                display: inline-block;
+                                width: 8px;
+                                height: 8px;
+                                border-radius: 50%;
+                                background: #FFFFFF;
+                                margin-right: 7px;
+                            }
                             .circle-1 {
                                 display: inline-block;
                                 width: 8px;

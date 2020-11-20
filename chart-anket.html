@@ -49,6 +49,9 @@
             </div>
         </div>
     </header>
+    <script>
+        var chartData = new Array();
+    </script>
     <div class="charts-content">
         <div class="charts-header">
             Отчётность / Тестирование текстовой составляющей
@@ -56,548 +59,377 @@
         <div class="anket-box">
             <div class="anket-row">
                 <div class="question">1 . Насколько это сообщение вызвало у Вас интерес?</div>
-                <div class="results">
-                    <dib class="line">
-                        <div class="result-1" style="width: 15%"></div>
-                        <div class="result-2" style="width: 20%"></div>
-                        <div class="result-3" style="width: 10%"></div>
-                        <div class="result-4" style="width: 30%"></div>
-                        <div class="result-5" style="width: 25%"></div>
-                    </dib>
-                    <div class="tooltip">
-                        <div class="results-list">
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-1"></div>
-                                    1 балл
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-2"></div>
-                                     2 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-3"></div>
-                                    3 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-4"></div>
-                                    4 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-5"></div>
-                                    5 баллов
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                        </div>
-                        <div class="results-all">
-                            Всего ответов - 300 шт
-                        </div>
-                    </div>
-                </div>
+                <div class="longLine-1"></div>
+                <script>
+                    chartData.push({
+                        element: '.longLine-1', // класс елемента
+                        type: 'longLine',               //тип графіка
+                        data: [                          //данные графика      
+                            {
+                                background: '#A71E4E',
+                                progress: "100",
+                                labelText: "1"
+                            },
+                            {
+                                background: '#F43469',
+                                progress: "50",
+                                labelText: "2"
+                            },
+                            {
+                                background: '#FDD18F',
+                                progress: "250",
+                                labelText: "3"
+                            },
+                            {
+                                background: '#74D977',
+                                progress: "500",
+                                labelText: "4"
+                            },
+                            {
+                                background: '#5EAE61',
+                                progress: "200",
+                                labelText: "5"
+                            }
+                        ]
+                    });
+                </script>
             </div>
-
             <div class="anket-row">
                 <div class="question">2 . Насколько понятно это сообщение?</div>
-                <div class="results">
-                    <dib class="line">
-                        <div class="result-1" style="width: 15%"></div>
-                        <div class="result-2" style="width: 20%"></div>
-                        <div class="result-3" style="width: 10%"></div>
-                        <div class="result-4" style="width: 30%"></div>
-                        <div class="result-5" style="width: 25%"></div>
-                    </dib>
-                    <div class="tooltip">
-                        <div class="results-list">
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-1"></div>
-                                    1 балл
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-2"></div>
-                                     2 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-3"></div>
-                                    3 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-4"></div>
-                                    4 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-5"></div>
-                                    5 баллов
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                        </div>
-                        <div class="results-all">
-                            Всего ответов - 300 шт
-                        </div>
-                    </div>
-                </div>
+                <div class="longLine-2"></div>
+                <script>
+                    chartData.push({
+                        element: '.longLine-2', // класс елемента
+                        type: 'longLine',               //тип графіка
+                        data: [                          //данные графика      
+                            {
+                                background: '#A71E4E',
+                                progress: "200",
+                                labelText: "1"
+                            },
+                            {
+                                background: '#F43469',
+                                progress: "200",
+                                labelText: "2"
+                            },
+                            {
+                                background: '#FDD18F',
+                                progress: "200",
+                                labelText: "3"
+                            },
+                            {
+                                background: '#74D977',
+                                progress: "200",
+                                labelText: "4"
+                            },
+                            {
+                                background: '#5EAE61',
+                                progress: "200",
+                                labelText: "5"
+                            }
+                        ]
+                    });
+                </script>
             </div>
             <div class="anket-row">
                 <div class="question">3 . Насколько Вам, в целом, нравится данный слоган?</div>
-                <div class="results">
-                    <dib class="line">
-                        <div class="result-1" style="width: 15%"></div>
-                        <div class="result-2" style="width: 20%"></div>
-                        <div class="result-3" style="width: 10%"></div>
-                        <div class="result-4" style="width: 30%"></div>
-                        <div class="result-5" style="width: 25%"></div>
-                    </dib>
-                    <div class="tooltip">
-                        <div class="results-list">
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-1"></div>
-                                    1 балл
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-2"></div>
-                                     2 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-3"></div>
-                                    3 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-4"></div>
-                                    4 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-5"></div>
-                                    5 баллов
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                        </div>
-                        <div class="results-all">
-                            Всего ответов - 300 шт
-                        </div>
-                    </div>
-                </div>
+                <div class="longLine-3"></div>
+                <script>
+                    chartData.push({
+                        element: '.longLine-3', // класс елемента
+                        type: 'longLine',               //тип графіка
+                        data: [                          //данные графика      
+                            {
+                                background: '#A71E4E',
+                                progress: "150",
+                                labelText: "1"
+                            },
+                            {
+                                background: '#F43469',
+                                progress: "250",
+                                labelText: "2"
+                            },
+                            {
+                                background: '#FDD18F',
+                                progress: "250",
+                                labelText: "3"
+                            },
+                            {
+                                background: '#74D977',
+                                progress: "300",
+                                labelText: "4"
+                            },
+                            {
+                                background: '#5EAE61',
+                                progress: "250",
+                                labelText: "5"
+                            }
+                        ]
+                    });
+                </script>
             </div>
             <div class="anket-row">
                 <div class="question">4 . Насколько это сообщение уникально?</div>
-                <div class="results">
-                    <dib class="line">
-                        <div class="result-1" style="width: 15%"></div>
-                        <div class="result-2" style="width: 20%"></div>
-                        <div class="result-3" style="width: 10%"></div>
-                        <div class="result-4" style="width: 30%"></div>
-                        <div class="result-5" style="width: 25%"></div>
-                    </dib>
-                    <div class="tooltip">
-                        <div class="results-list">
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-1"></div>
-                                    1 балл
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-2"></div>
-                                     2 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-3"></div>
-                                    3 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-4"></div>
-                                    4 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-5"></div>
-                                    5 баллов
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                        </div>
-                        <div class="results-all">
-                            Всего ответов - 300 шт
-                        </div>
-                    </div>
-                </div>
+                <div class="longLine-4"></div>
+                <script>
+                    chartData.push({
+                        element: '.longLine-4', // класс елемента
+                        type: 'longLine',               //тип графіка
+                        data: [                          //данные графика      
+                            {
+                                background: '#A71E4E',
+                                progress: "150",
+                                labelText: "1"
+                            },
+                            {
+                                background: '#F43469',
+                                progress: "50",
+                                labelText: "2"
+                            },
+                            {
+                                background: '#FDD18F',
+                                progress: "300",
+                                labelText: "3"
+                            },
+                            {
+                                background: '#74D977',
+                                progress: "250",
+                                labelText: "4"
+                            },
+                            {
+                                background: '#5EAE61',
+                                progress: "150",
+                                labelText: "5"
+                            }
+                        ]
+                    });
+                </script>
             </div>
             <div class="anket-row">
                 <div class="question">5 . Насколько для Вас актуально и соответствует Вашим потребностям то, о чем говорится в сообщении?</div>
-                <div class="results">
-                    <dib class="line">
-                        <div class="result-1" style="width: 15%"></div>
-                        <div class="result-2" style="width: 20%"></div>
-                        <div class="result-3" style="width: 10%"></div>
-                        <div class="result-4" style="width: 30%"></div>
-                        <div class="result-5" style="width: 25%"></div>
-                    </dib>
-                    <div class="tooltip">
-                        <div class="results-list">
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-1"></div>
-                                    1 балл
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-2"></div>
-                                     2 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-3"></div>
-                                    3 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-4"></div>
-                                    4 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-5"></div>
-                                    5 баллов
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                        </div>
-                        <div class="results-all">
-                            Всего ответов - 300 шт
-                        </div>
-                    </div>
-                </div>
+                <div class="longLine-5"></div>
+                <script>
+                    chartData.push({
+                        element: '.longLine-5', // класс елемента
+                        type: 'longLine',               //тип графіка
+                        data: [                          //данные графика      
+                            {
+                                background: '#A71E4E',
+                                progress: "20",
+                                labelText: "1"
+                            },
+                            {
+                                background: '#F43469',
+                                progress: "50",
+                                labelText: "2"
+                            },
+                            {
+                                background: '#FDD18F',
+                                progress: "120",
+                                labelText: "3"
+                            },
+                            {
+                                background: '#74D977',
+                                progress: "300",
+                                labelText: "4"
+                            },
+                            {
+                                background: '#5EAE61',
+                                progress: "200",
+                                labelText: "5"
+                            }
+                        ]
+                    });
+                </script>
             </div>
             <div class="anket-row">
                 <div class="question">6 . Насколько это сообщение вызывает у Вас доверие?</div>
-                <div class="results">
-                    <dib class="line">
-                        <div class="result-1" style="width: 15%"></div>
-                        <div class="result-2" style="width: 20%"></div>
-                        <div class="result-3" style="width: 10%"></div>
-                        <div class="result-4" style="width: 30%"></div>
-                        <div class="result-5" style="width: 25%"></div>
-                    </dib>
-                    <div class="tooltip">
-                        <div class="results-list">
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-1"></div>
-                                    1 балл
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-2"></div>
-                                     2 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-3"></div>
-                                    3 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-4"></div>
-                                    4 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-5"></div>
-                                    5 баллов
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                        </div>
-                        <div class="results-all">
-                            Всего ответов - 300 шт
-                        </div>
-                    </div>
-                </div>
+                <div class="longLine-6"></div>
+                <script>
+                    chartData.push({
+                        element: '.longLine-6', // класс елемента
+                        type: 'longLine',               //тип графіка
+                        data: [                          //данные графика      
+                            {
+                                background: '#A71E4E',
+                                progress: "400",
+                                labelText: "1"
+                            },
+                            {
+                                background: '#F43469',
+                                progress: "500",
+                                labelText: "2"
+                            },
+                            {
+                                background: '#FDD18F',
+                                progress: "450",
+                                labelText: "3"
+                            },
+                            {
+                                background: '#74D977',
+                                progress: "600",
+                                labelText: "4"
+                            },
+                            {
+                                background: '#5EAE61',
+                                progress: "550",
+                                labelText: "5"
+                            }
+                        ]
+                    });
+                </script>
             </div>
             <div class="anket-row">
                 <div class="question">7 . Оцените Ваше желание узнать больше о том, о чем рассказывает сообщение?</div>
-                <div class="results">
-                    <dib class="line">
-                        <div class="result-1" style="width: 15%"></div>
-                        <div class="result-2" style="width: 20%"></div>
-                        <div class="result-3" style="width: 10%"></div>
-                        <div class="result-4" style="width: 30%"></div>
-                        <div class="result-5" style="width: 25%"></div>
-                    </dib>
-                    <div class="tooltip">
-                        <div class="results-list">
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-1"></div>
-                                    1 балл
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-2"></div>
-                                     2 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-3"></div>
-                                    3 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-4"></div>
-                                    4 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-5"></div>
-                                    5 баллов
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                        </div>
-                        <div class="results-all">
-                            Всего ответов - 300 шт
-                        </div>
-                    </div>
-                </div>
+                <div class="longLine-7"></div>
+                <script>
+                    chartData.push({
+                        element: '.longLine-7', // класс елемента
+                        type: 'longLine',               //тип графіка
+                        data: [                          //данные графика      
+                            {
+                                background: '#A71E4E',
+                                progress: "150",
+                                labelText: "1"
+                            },
+                            {
+                                background: '#F43469',
+                                progress: "120",
+                                labelText: "2"
+                            },
+                            {
+                                background: '#FDD18F',
+                                progress: "180",
+                                labelText: "3"
+                            },
+                            {
+                                background: '#74D977',
+                                progress: "160",
+                                labelText: "4"
+                            },
+                            {
+                                background: '#5EAE61',
+                                progress: "190",
+                                labelText: "5"
+                            }
+                        ]
+                    });
+                </script>
             </div>
             <div class="anket-row">
                 <div class="question">8 . Оцените Ваше желание воспользоваться тем, о чем говорит это сообщение?</div>
-                <div class="results">
-                    <dib class="line">
-                        <div class="result-1" style="width: 15%"></div>
-                        <div class="result-2" style="width: 20%"></div>
-                        <div class="result-3" style="width: 10%"></div>
-                        <div class="result-4" style="width: 30%"></div>
-                        <div class="result-5" style="width: 25%"></div>
-                    </dib>
-                    <div class="tooltip">
-                        <div class="results-list">
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-1"></div>
-                                    1 балл
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-2"></div>
-                                     2 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-3"></div>
-                                    3 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-4"></div>
-                                    4 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-5"></div>
-                                    5 баллов
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                        </div>
-                        <div class="results-all">
-                            Всего ответов - 300 шт
-                        </div>
-                    </div>
-                </div>
+                <div class="longLine-8"></div>
+                <script>
+                    chartData.push({
+                        element: '.longLine-8', // класс елемента
+                        type: 'longLine',               //тип графіка
+                        data: [                          //данные графика      
+                            {
+                                background: '#A71E4E',
+                                progress: "250",
+                                labelText: "1"
+                            },
+                            {
+                                background: '#F43469',
+                                progress: "240",
+                                labelText: "2"
+                            },
+                            {
+                                background: '#FDD18F',
+                                progress: "250",
+                                labelText: "3"
+                            },
+                            {
+                                background: '#74D977',
+                                progress: "260",
+                                labelText: "4"
+                            },
+                            {
+                                background: '#5EAE61',
+                                progress: "270",
+                                labelText: "5"
+                            }
+                        ]
+                    });
+                </script>
             </div>
             <div class="anket-row">
                 <div class="question">9 . Вы бы рассказали об этом своим друзьям, если бы увидели рекламу с таким сообщением в реальной жизни?
                 </div>
-                <div class="results">
-                    <dib class="line">
-                        <div class="result-1" style="width: 15%"></div>
-                        <div class="result-2" style="width: 20%"></div>
-                        <div class="result-3" style="width: 10%"></div>
-                        <div class="result-4" style="width: 30%"></div>
-                        <div class="result-5" style="width: 25%"></div>
-                    </dib>
-                    <div class="tooltip">
-                        <div class="results-list">
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-1"></div>
-                                    1 балл
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-2"></div>
-                                     2 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-3"></div>
-                                    3 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-4"></div>
-                                    4 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-5"></div>
-                                    5 баллов
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                        </div>
-                        <div class="results-all">
-                            Всего ответов - 300 шт
-                        </div>
-                    </div>
-                </div>
+                <div class="longLine-9"></div>
+                <script>
+                    chartData.push({
+                        element: '.longLine-9', // класс елемента
+                        type: 'longLine',               //тип графіка
+                        data: [                          //данные графика      
+                            {
+                                background: '#A71E4E',
+                                progress: "120",
+                                labelText: "1"
+                            },
+                            {
+                                background: '#F43469',
+                                progress: "220",
+                                labelText: "2"
+                            },
+                            {
+                                background: '#FDD18F',
+                                progress: "120",
+                                labelText: "3"
+                            },
+                            {
+                                background: '#74D977',
+                                progress: "150",
+                                labelText: "4"
+                            },
+                            {
+                                background: '#5EAE61',
+                                progress: "260",
+                                labelText: "5"
+                            }
+                        ]
+                    });
+                </script>
             </div>
             <div class="anket-row">
                 <div class="question">10 . Насколько это сообщение подходит для рекламы Банка ПСБ?</div>
-                <div class="results">
-                    <dib class="line">
-                        <div class="result-1" style="width: 15%"></div>
-                        <div class="result-2" style="width: 20%"></div>
-                        <div class="result-3" style="width: 10%"></div>
-                        <div class="result-4" style="width: 30%"></div>
-                        <div class="result-5" style="width: 25%"></div>
-                    </dib>
-                    <div class="tooltip">
-                        <div class="results-list">
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-1"></div>
-                                    1 балл
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-2"></div>
-                                     2 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-3"></div>
-                                    3 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-4"></div>
-                                    4 балла
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                            <div class="results-col">
-                                <div class="name">
-                                    <div class="circle-5"></div>
-                                    5 баллов
-                                </div>
-                                <div class="value">20 шт/20%</div>
-                            </div>
-                        </div>
-                        <div class="results-all">
-                            Всего ответов - 300 шт
-                        </div>
-                    </div>
-                </div>
+                <div class="longLine-10"></div>
+                <script>
+                    chartData.push({
+                        element: '.longLine-10', // класс елемента
+                        type: 'longLine',               //тип графіка
+                        data: [                          //данные графика      
+                            {
+                                background: '#A71E4E',
+                                progress: "320",
+                                labelText: "1"
+                            },
+                            {
+                                background: '#F43469',
+                                progress: "480",
+                                labelText: "2"
+                            },
+                            {
+                                background: '#FDD18F',
+                                progress: "390",
+                                labelText: "3"
+                            },
+                            {
+                                background: '#74D977',
+                                progress: "555",
+                                labelText: "4"
+                            },
+                            {
+                                background: '#5EAE61',
+                                progress: "780",
+                                labelText: "5"
+                            }
+                        ]
+                    });
+                </script>
             </div>
         </div>
     </div>
-    <script src="./js/charts.js?875454545"></script>
+    <script src="./js/charts.js?267898786576453465786798"></script>
 </body>
 </html>

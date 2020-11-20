@@ -48,6 +48,9 @@
             </div>
         </div>
     </header>
+    <script>
+        var chartData = new Array();
+    </script>
     <div class="charts-content">
         <div class="charts-header">
             Отчётность / Тестирование идейной составляющей
@@ -58,48 +61,32 @@
                     1 . Насколько Вам в целом нравится эта идея?
                 </div>
                 <div class="chart-content">
-                    <div class="horizonatal-line">
-                        <div class="item">
-                            <div class="labels">
-                                <div class="name">
-                                    Ответы на оценку 
-                                    <span class="bold">0 - 6 </span>
-                                </div>
-                                <div class="values">20% / 20 шт</div>
-                            </div>
-                            <div class="line">
-                                <div class="line-active" style="width: 20%"></div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="labels">
-                                <div class="name">
-                                    Ответы на оценку
-                                    <span class="bold"> 7 - 8</span>
-                                </div>
-                                <div class="values">30% / 30 шт</div>
-                            </div>
-                            <div class="line">
-                                <div class="line-active" style="width: 30%"></div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="labels">
-                                <div class="name">
-                                    Ответы на оценку
-                                    <span class="bold"> 9 - 10 </span>
-                                </div>
-                                <div class="values">50% / 50 шт</div>
-                            </div>
-                            <div class="line">
-                                <div class="line-active" style="width: 50%"></div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="horizonatal-line-1"></div>
+                    <script>
+                        chartData.push({
+                            element: '.horizonatal-line-1', // класс елемента
+                            type: 'HorizontalLines',               //тип графіка
+                            data: [                          //данные графика      
+                                {
+                                    background: "#EE9382",
+                                    progress: "200",
+                                    labelText: "0 - 6"
+                                },
+                                {
+                                    background: "#009FEF",
+                                    progress: "150",
+                                    labelText: "7 - 8"
+                                },
+                                {
+                                    background: "#00C67B",
+                                    progress: "390",
+                                    labelText: "9 - 10"
+                                }
+                            ]
+                        });
+                    </script>
                 </div>
             </div>
-        </div>
-        <div class="chart-row">
             <div class="chart-box width-50">
                 <div class="chart-header">
                     2 . Лично Вы согласились бы принять участие в подобной акции?
@@ -114,6 +101,41 @@
                             </div>
                         </div>
                     </div>
+                    <script>
+                        var element = 
+                        {
+                            element: '.radialbarmultiple-1', // класс елемента
+                            type: 'radialbar',               //тип графіка
+                            data: [                          //данные графика      
+                                {
+                                    background: "#F5ED9D",
+                                    progress: "200",
+                                    labelText: "1"
+                                },
+                                {
+                                    background: "#D68EE9",
+                                    progress: "150",
+                                    labelText: "2"
+                                },
+                                {
+                                    background: "#2D99FF",
+                                    progress: "390",
+                                    labelText: "3"
+                                },
+                                {
+                                    background: "#16CEB9",
+                                    progress: "470",
+                                    labelText: "4"
+                                },
+                                {
+                                    background: "#7E80D7",
+                                    progress: "460",
+                                    labelText: "5"
+                                },
+                            ]
+                        };
+                        chartData.push(element);
+                    </script>
                 </div>
             </div>
             <div class="chart-box width-50">
@@ -190,38 +212,7 @@
     </div>
     <script src="./js/charts.js?875454545"></script>
     <script type="text/javascript">
-        var chartData = [ //массив с данными для графиков типу круги в кругах
-            {
-                element: '.radialbarmultiple-1', // класс елемента
-                type: 'radialbar',               //тип графіка
-                data: [                          //данные графика      
-                    {
-                        background: "#F5ED9D",
-                        progress: "200",
-                        labelText: "1"
-                    },
-                    {
-                        background: "#D68EE9",
-                        progress: "150",
-                        labelText: "2"
-                    },
-                    {
-                        background: "#2D99FF",
-                        progress: "390",
-                        labelText: "3"
-                    },
-                    {
-                        background: "#16CEB9",
-                        progress: "470",
-                        labelText: "4"
-                    },
-                    {
-                        background: "#7E80D7",
-                        progress: "460",
-                        labelText: "5"
-                    },
-                ]
-            },
+        chartData.push( //массив с данными для графиков типу круги в кругах
             {
                 element: '.varticalbarChart-1', // класс елемента
                 type: 'simpleBar',               //тип графіка
@@ -373,7 +364,7 @@
                     }
                 ]
             }
-        ];
+        );
     </script>
 </body>
 </html>
