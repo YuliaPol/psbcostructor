@@ -1222,7 +1222,7 @@ $('.charts-content').on('mouseenter', '.results .line', function(e){
 
     if((left + tWidth) > parseInt($(this).outerWidth())){
         $(this).parents('.results').find('.tooltip').addClass('right');
-        left = left - tWidth - 17 - magright;
+        left = left - tWidth - 20 - magright;
     }
     else {
         $(this).parents('.results').find('.tooltip').removeClass('right');
@@ -1241,7 +1241,7 @@ $('.charts-content').on('mousemove', '.results .line', function(e){
     var tHeight = parseInt($(this).parents('.results').find('.tooltip').outerHeight()) / 2 - 16;
     if((left + tWidth) > parseInt($(this).outerWidth())){
         $(this).parents('.results').find('.tooltip').addClass('right');
-        left = left - tWidth - 17 - magright;
+        left = left - tWidth - 20 - magright;
     }
     else {
         left = left - magleft;
