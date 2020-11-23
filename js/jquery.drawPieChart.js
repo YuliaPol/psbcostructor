@@ -137,6 +137,28 @@
       $(feComponentTransfer).appendTo(shadow);
       
       $(shadow).appendTo($wrapper);
+
+      var rounded = document.createElementNS('http://www.w3.org/2000/svg', 'filter');
+      rounded.setAttribute('id', 'goo');
+
+      var rfeGaussianBlur = document.createElementNS('http://www.w3.org/2000/svg', 'feGaussianBlur');
+      rfeGaussianBlur.setAttribute('in', 'SourceGraphic');
+      rfeGaussianBlur.setAttribute('stdDeviation', '3');
+      rfeGaussianBlur.setAttribute('result', 'blur');
+
+      $(rfeGaussianBlur).appendTo(rounded);
+
+
+      var feColorMatrix = document.createElementNS('http://www.w3.org/2000/svg', 'feColorMatrix');
+      feColorMatrix.setAttribute('in', 'blur');
+      feColorMatrix.setAttribute('mode', 'matrix');
+      feColorMatrix.setAttribute('values', '1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7');
+      feColorMatrix.setAttribute('result', 'goo');
+      $(feColorMatrix).appendTo(rounded);
+      $(rounded).appendTo($wrapper);
+
+
+
     for (var i = 0, len = data.length; i < len; i++){
       segmentTotal += parseInt(data[i].value);
       var g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
@@ -155,11 +177,10 @@
 
       var p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       var lp = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      var testp = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       var shadowp = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       if($this.hasClass('rounded')){
         if( parseInt(data[i].value)>0) {
-          settings.segmentStrokeWidth = 5;
+          settings.segmentStrokeWidth = 0;
         }
         else {
           settings.segmentStrokeWidth = 0;
@@ -236,6 +257,7 @@
         shadowp.setAttribute("class", "shadowPie");
         $shadowPies[i] = $(shadowp).appendTo($groups[i]);
 
+        
       }
       var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
       text.setAttribute('width', 50);
@@ -308,12 +330,7 @@
         if($this.hasClass('rounded')){
           var segmentAngle = rotateAnimation * ((data[i].value/segmentTotal) * (PI*2));//start radian
           var endRadius;
-          if(parseInt(data[i].value)>0){
-            endRadius = startRadius + segmentAngle - 0.05;
-          }
-          else {
-            endRadius = startRadius + segmentAngle;
-          }
+          endRadius = startRadius + segmentAngle;
           largeArc = ((endRadius - startRadius) % (PI * 2)) > PI ? 1 : 0;
           var startX = centerX + cos(startRadius) * pieRadius;
           var startY = centerY + sin(startRadius) * pieRadius;

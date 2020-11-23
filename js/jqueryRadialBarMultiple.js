@@ -254,12 +254,13 @@ function radialMouseEnter(e){
     var percent = $(this).data().percent;
     var $tip = $('.radialTip');
     if(value && percent){
-        $tip.text(percent + '%  / ' + value + " шт").fadeIn(200);
+        $tip.text(percent + '%  / ' + value + " шт");
+        $tip.fadeIn(0)
     }
 }
 function radialMouseLeave(e){
     var $tip = $('.radialTip');
-    $tip.hide();
+    $tip.fadeOut(0);
 }
 function radialMouseMove(e){
     var $tip = $('.radialTip');

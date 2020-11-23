@@ -166,8 +166,12 @@
             .on('mouseenter', pathMouseEnter)
             .on('mouseleave', pathMouseLeave)
             .on('mousemove', pathMouseMove);
-            $paths[i].hover(pathHover, pathUnHover);
+            setTimeout(addHover( $paths[i]), 1000);
         }
+      }
+
+      function addHover(el){
+        el.hover(pathHover, pathUnHover);
       }
       //percent for each value
       for (var i = 0, len = data.length; i < len; i++){

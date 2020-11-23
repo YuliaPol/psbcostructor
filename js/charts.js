@@ -333,22 +333,31 @@ function drawDoughnatIncrease(element, data){
 }
 function drawPieSimple(element, data){
     if($(element).length==1 && data.length > 0){
-        if(data[0].labelText !== '5') {
-            data.reverse();
-        }
-        var newData = data;
+        var newData = new Array();
         var total = 0;
         for (let i = 0; i < data.length; i++) {
-            newData[i].title = data[i].labelText;
-            newData[i].color = data[i].background;
-            newData[i].value = parseInt(data[i].progress);
+            var temp = {
+                title: data[i].labelText,
+                color: data[i].background,
+                value: parseInt(data[i].progress)
+            }
             total = total + parseInt(data[i].progress);
+            newData.push(temp);
         }
+        if(newData[0].title !== '5') {
+            newData.reverse();
+        }
+        // var newData = new Array(tempData.length);
+        // for (let i = 0; i < tempData.length; i++) {
+        //     newData[i].title = tempData[i].labelText;
+        //     newData[i].color = tempData[i].background;
+        //     newData[i].value = parseInt(tempData[i].progress);
+        // }
         if(newData) {
             if(total > 0) {
                 $(element).drawPieChart(newData);
             }
-            DrawLegend1(element, data);
+            DrawLegend1(element, newData);
         }
     }
 }

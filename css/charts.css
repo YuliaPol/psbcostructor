@@ -749,6 +749,10 @@
           align-items: center;
 }
 
+.pieRound.smalllegend .chart svg {
+  width: 100%;
+}
+
 .pieRound.smalllegend .legend {
   width: 50%;
   margin-right: -20px;
@@ -873,6 +877,8 @@
 
 .pieRound .rounded path {
   stroke-linejoin: round;
+  -webkit-filter: url(#goo);
+          filter: url(#goo);
 }
 
 .pieRound .chart {

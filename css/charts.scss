@@ -531,6 +531,9 @@ $anket-color5: #5EAE61;
                 display: flex;
                 align-items: center;
             }
+            svg {
+                width: 100%;
+            }
         }
         .legend {
             width: 50%;
@@ -623,6 +626,7 @@ $anket-color5: #5EAE61;
     .rounded {
         path {
             stroke-linejoin: round;
+            filter: url(#goo);
         }
     }
     .chart {
