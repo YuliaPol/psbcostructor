@@ -534,7 +534,7 @@ function drawSimpleBar(element, data) {
         var bars = $(element).find('.baritem');
         for (let i = 0; i < bars.length; i++) {
             let barHeight = parseInt($(bars[i]).find('.barcolFill').outerHeight());
-            let textHeight = parseInt($(bars[i]).find('.barcol .value').outerHeight());
+            let textHeight = parseInt($(bars[i]).find('.barcol .value').outerHeight()) + 3;
             if(textHeight > barHeight){
                 $(bars[i]).find('.barcol .value').addClass('blackcolor');
             }
@@ -1101,7 +1101,7 @@ function DrawVerticalBarShadow(element, data){
         var bars = $(element).find('.vertical-item');
         for (let i = 0; i < bars.length; i++) {
             let barHeight = parseInt($(bars[i]).find('.vertical-full').outerHeight());
-            let textHeight = parseInt($(bars[i]).find('.vertical-bar .vertical-value').outerHeight());
+            let textHeight = parseInt($(bars[i]).find('.vertical-bar .vertical-value').outerHeight()) + 3;
             if(textHeight > barHeight){
                 $(bars[i]).find('.vertical-bar .vertical-value').addClass('blackcolor');
             }
