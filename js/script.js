@@ -21,6 +21,13 @@ jQuery(function ($) {
         $('.page-content').on('click', '.edit-menu .showhide', function(e){
             if(!$(this).parents('.edit-menu').hasClass('active')){
                 $(this).parents('.edit-menu').addClass('active');
+                let heightMenu = $(this).parents('.edit-menu').find('.dropdownmenu').height();
+                let posTop = $(this).parents('tr').offset().top + 50 + heightMenu;
+                if($( window ).height() < posTop){
+                    console.log('to-top');
+                    $(this).parents('.edit-menu').find('.dropdownmenu').addClass('to-top');
+
+                }
                 $(this).parents('.edit-menu').find('.dropdownmenu').fadeIn(300);
                 $(this).parents('tr').on('mouseleave', function () {
                     $(this).find('.edit-menu').removeClass('active');

@@ -688,6 +688,13 @@ table {
   padding-right: 40px;
 }
 
+.page-content .content-wrapper .table-wrapper table tbody tr td .data-label {
+  max-width: 80px;
+  white-space: normal;
+  display: block;
+  text-align: center;
+}
+
 .page-content .content-wrapper .table-wrapper table tbody tr td .user {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -820,6 +827,11 @@ table {
   border-radius: 2px;
   top: 12px;
   right: 12px;
+}
+
+.page-content .content-wrapper .table-wrapper table tbody tr td .edit-menu .dropdownmenu.to-top {
+  bottom: 12px;
+  top: auto;
 }
 
 .page-content .content-wrapper .table-wrapper table tbody tr td .edit-menu .dropdownmenu ul {
@@ -7840,6 +7852,7 @@ table {
   max-width: 100px;
   top: 20px;
   left: 20px;
+  display: none;
 }
 
 .bannercontainer .logo img {

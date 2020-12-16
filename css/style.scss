@@ -548,6 +548,12 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                 padding-right: 40px;
                                 // position: relative;
                             }
+                            .data-label {
+                                max-width: 80px;
+                                white-space: normal;
+                                display: block;
+                                text-align: center;
+                            }
                             .user {
                                 display: inline-flex;
                                 align-items: center;
@@ -638,6 +644,10 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                     border-radius: 2px;
                                     top: 12px;
                                     right: 12px;
+                                    &.to-top {
+                                        bottom: 12px;
+                                        top: auto;
+                                    }
                                     ul {
                                         padding: 0px;
                                         margin: 0px;
@@ -4903,6 +4913,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
         max-width: 100px;
         top: 20px;
         left: 20px;
+        display: none;//template-hidden
         img {
             max-width: 100%;
         }

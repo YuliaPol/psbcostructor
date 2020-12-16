@@ -31,6 +31,7 @@ var jsc = {
 	register : function () {
 		document.addEventListener('DOMContentLoaded', jsc.init, false);
 		document.addEventListener('mousedown', jsc.onDocumentMouseDown, false);
+		document.addEventListener('click', jsc.onDocumentMouseDown, false);
 		document.addEventListener('keyup', jsc.onDocumentKeyUp, false);
 		window.addEventListener('resize', jsc.onWindowResize, false);
 	},
@@ -1030,8 +1031,12 @@ var jsc = {
 
 
 	onDocumentMouseDown : function (e) {
+		console.log('onDocumentMouseDown');
 		var target = e.target || e.srcElement;
-
+		if($(e.target).parents('.colorpick').length>0){
+			target = $(e.target).parents('.colorpick').find('input.jscolor')[0];
+		}
+		console.log(target);
 		if (target.jscolor && target.jscolor instanceof jsc.pub) { // clicked targetElement -> show picker
 			if (target.jscolor.showOnClick && !target.disabled) {
 				target.jscolor.show();

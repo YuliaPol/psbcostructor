@@ -16,6 +16,7 @@ jscolor.presets.default = {
     crossSize: 5,
     pointerBorderColor: '#fff',
     pointerBorderWidth: 1,
+    showOnClick: true,
 };
 
 jQuery(function ($) {
@@ -80,6 +81,7 @@ jQuery(function ($) {
         $('.rightside').on('click', '.colorpick .square', function(e){
             $(this).parents('.colorpick').find('input[type=text]').click();
         });
+
 
         $('.rightside').on('input', '.colorpick1level input[type=text]', function(e){
             var value = $(this).val();
