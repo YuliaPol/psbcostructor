@@ -229,6 +229,8 @@ jQuery(function ($) {
         $( ".listbox li" ).draggable({
             helper: "clone",
             cursor: "move",
+            connectToSortable: ".centerboxs",
+            containment: '.construcot-container'
         });
         $('.date-answer input').datepicker();
         $('.centerbox').on('click', '.date-answer .icon-date', function(e){
