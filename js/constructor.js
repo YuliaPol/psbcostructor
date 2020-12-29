@@ -5717,13 +5717,14 @@ jQuery(function ($) {
             }
         }
         $('.questions-box .ranging-list').sortable({});
-        
-        $('.questions-box').sortable({
-            deactivate: function (event, ui) {
-                RefreshItems();
-                $('.optionsblock .default').addClass('active');
-            }
-        });
+        if($( window ).width() > 700) {
+            $('.questions-box').sortable({
+                deactivate: function (event, ui) {
+                    RefreshItems();
+                    $('.optionsblock .default').addClass('active');
+                }
+            });
+        }
 
         //customselect
         customSelectActive();
