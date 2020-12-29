@@ -6648,7 +6648,7 @@ html .ui-button.ui-state-disabled:active {
 
     @for $i from 0 to $elements {
         .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(#{$i + 1}) {
-            z-index: 120 + $i;
+            z-index: 120 - $i;
         }
     }      
     .construcot-container .centerbox .filter-block .filter-list .filter-box .dropdownfilter {
@@ -6727,6 +6727,24 @@ html .ui-button.ui-state-disabled:active {
         padding-left: 15px;
         padding-right: 15px;
     }
+    .page-content {
+        & > form {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+    }
+    .header {
+        height: auto;
+    }
+    .header .header-row .linkback.linkback-big a,
+    .header .header-row .linkback.linkback-big {
+        font-size: 10px;
+        line-height: 12px;
+    }
+    .header .header-row .linkback.linkback-big {
+        padding-bottom: 15px;
+        padding-top: 10px;
+    }
 }
 @media screen and (max-width: 500px) {
     .page-content .content-wrapper .company-list .company-wrapper {
@@ -6759,9 +6777,6 @@ html .ui-button.ui-state-disabled:active {
         .navbar-user {
             padding-top: 10px;
         }
-    }
-    .header .header-row .linkback {
-        display: none;
     }
 
     .page-content .content-wrapper .top-row {

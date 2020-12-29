@@ -9993,46 +9993,46 @@ html .ui-button.ui-state-disabled:active {
     z-index: 120;
   }
   .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(2) {
-    z-index: 121;
+    z-index: 119;
   }
   .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(3) {
-    z-index: 122;
+    z-index: 118;
   }
   .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(4) {
-    z-index: 123;
+    z-index: 117;
   }
   .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(5) {
-    z-index: 124;
+    z-index: 116;
   }
   .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(6) {
-    z-index: 125;
+    z-index: 115;
   }
   .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(7) {
-    z-index: 126;
+    z-index: 114;
   }
   .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(8) {
-    z-index: 127;
+    z-index: 113;
   }
   .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(9) {
-    z-index: 128;
+    z-index: 112;
   }
   .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(10) {
-    z-index: 129;
+    z-index: 111;
   }
   .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(11) {
-    z-index: 130;
+    z-index: 110;
   }
   .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(12) {
-    z-index: 131;
+    z-index: 109;
   }
   .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(13) {
-    z-index: 132;
+    z-index: 108;
   }
   .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(14) {
-    z-index: 133;
+    z-index: 107;
   }
   .construcot-container .centerbox .filter-block .filter-list .filter-box:nth-child(15) {
-    z-index: 134;
+    z-index: 106;
   }
   .construcot-container .centerbox .filter-block .filter-list .filter-box .dropdownfilter {
     top: 38px;
@@ -10111,6 +10111,22 @@ html .ui-button.ui-state-disabled:active {
     padding-left: 15px;
     padding-right: 15px;
   }
+  .page-content > form {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  .header {
+    height: auto;
+  }
+  .header .header-row .linkback.linkback-big a,
+  .header .header-row .linkback.linkback-big {
+    font-size: 10px;
+    line-height: 12px;
+  }
+  .header .header-row .linkback.linkback-big {
+    padding-bottom: 15px;
+    padding-top: 10px;
+  }
 }
 
 @media screen and (max-width: 500px) {
@@ -10153,9 +10169,6 @@ html .ui-button.ui-state-disabled:active {
   }
   .header .header-row .navbar-user {
     padding-top: 10px;
-  }
-  .header .header-row .linkback {
-    display: none;
   }
   .page-content .content-wrapper .top-row {
     -webkit-box-orient: vertical;
