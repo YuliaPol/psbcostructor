@@ -3909,31 +3909,68 @@ jQuery(function ($) {
                 var id;
                 var type = $(ui.draggable).attr('data-type');
                 var pollid = $('#quiz-id').val();
-                // if(type && pollid){
-                //     AddQuestion(type, Math.random().toString(36).substr(2, 9), appendInde);
-                // }
                 if(type && pollid){
-                    $.ajax ({
-                        type: 'POST',
-                        url: "/admin/poll/create-question",
-                        dataType: "json",
-                        data: { 
-                            questiontype: type,
-                            quizid: pollid
-                        },
-                    }).done(function (data) {
-                        // данные сохранены
-                        AddQuestion(type, data, appendInde);
-                        console.log('Вопрос создан');
-                    }).fail(function (data) {
-                        // не удалось выполнить запрос к серверу
-                        console.log(data);
-                        console.log('Запрос не принят');
-                    });
+                    AddQuestion(type, Math.random().toString(36).substr(2, 9), appendInde);
                 }
+                // if(type && pollid){
+                //     $.ajax ({
+                //         type: 'POST',
+                //         url: "/admin/poll/create-question",
+                //         dataType: "json",
+                //         data: { 
+                //             questiontype: type,
+                //             quizid: pollid
+                //         },
+                //     }).done(function (data) {
+                //         // данные сохранены
+                //         AddQuestion(type, data, appendInde);
+                //         console.log('Вопрос создан');
+                //     }).fail(function (data) {
+                //         // не удалось выполнить запрос к серверу
+                //         console.log(data);
+                //         console.log('Запрос не принят');
+                //     });
+                // }
             }
         });
         
+
+        ///drag and drop on mobile
+
+        // if($( window ).width() < 768){
+        //     document.addEventListener('DOMContentLoaded', (event) => {
+        //         function handleDragStart(e) {
+        //           this.style.opacity = '0.4';
+        //         }
+        //         function handleDragEnd(e) {
+        //           this.style.opacity = '1';
+              
+        //           items.forEach(function (item) {
+        //             item.classList.remove('over');
+        //           });
+        //         }
+        //         function handleDragOver(e) {
+        //           if (e.preventDefault) {
+        //             e.preventDefault();
+        //           }
+        //           return false;
+        //         }
+        //         function handleDragEnter(e) {
+        //           this.classList.add('over');
+        //         }
+        //         function handleDragLeave(e) {
+        //           this.classList.remove('over');
+        //         }
+        //         let items = document.querySelectorAll('.container .box');
+        //         items.forEach(function(item) {
+        //           item.addEventListener('dragstart', handleDragStart, false);
+        //           item.addEventListener('dragover', handleDragOver, false);
+        //           item.addEventListener('dragenter', handleDragEnter, false);
+        //           item.addEventListener('dragleave', handleDragLeave, false);
+        //           item.addEventListener('dragend', handleDragEnd, false);
+        //         });
+        //       });
+        // }
 
         function AddQuestion(type, id, appendInde){
             if (type === "single"){
