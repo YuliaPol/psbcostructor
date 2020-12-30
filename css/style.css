@@ -342,6 +342,7 @@ table {
           box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.5);
   width: 200px;
   display: none;
+  z-index: 100;
 }
 
 .header .header-row .navbar-user .dropdown-user ul {
@@ -844,7 +845,8 @@ table {
   margin: 0px;
 }
 
-.page-content .content-wrapper .table-wrapper table tbody tr td .edit-menu .dropdownmenu ul li a {
+.page-content .content-wrapper .table-wrapper table tbody tr td .edit-menu .dropdownmenu ul li a,
+.page-content .content-wrapper .table-wrapper table tbody tr td .edit-menu .dropdownmenu ul li .delete-test {
   display: inline-block;
   font-family: "Montserrat";
   font-style: normal;
@@ -858,9 +860,11 @@ table {
   outline: none;
   text-align: left;
   width: 100%;
+  cursor: pointer;
 }
 
-.page-content .content-wrapper .table-wrapper table tbody tr td .edit-menu .dropdownmenu ul li a:hover {
+.page-content .content-wrapper .table-wrapper table tbody tr td .edit-menu .dropdownmenu ul li a:hover,
+.page-content .content-wrapper .table-wrapper table tbody tr td .edit-menu .dropdownmenu ul li .delete-test:hover {
   text-decoration: underline;
 }
 
@@ -1320,6 +1324,70 @@ table {
   line-height: 45px;
   text-align: center;
   color: #000000;
+}
+
+.confirm-delete .modal-content {
+  max-width: 400px;
+}
+
+.confirm-delete .modal-content .text {
+  padding: 20px 10px;
+}
+
+.confirm-delete .modal-header {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.confirm-delete .btn-wrapper {
+  padding-top: 30px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+
+.confirm-delete .btn-wrapper .btn-default {
+  display: inline-block;
+  padding: 10px 15px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  color: #FFFFFF;
+  background: #563BC2;
+  border-radius: 30px;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+  width: 130px;
+  max-width: 40%;
+  -webkit-transition: background 0.3s ease-in;
+  -o-transition: background 0.3s ease-in;
+  transition: background 0.3s ease-in;
+  text-align: center;
+  border: none;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  max-width: 40%;
+}
+
+.confirm-delete .btn-wrapper .btn-default:nth-child(2) {
+  color: #563BC2;
+  background: #ffffff;
+  border: 1px solid #563BC2;
 }
 
 /* The Close Button */
@@ -10068,6 +10136,30 @@ html .ui-button.ui-state-disabled:active {
 }
 
 @media screen and (max-width: 768px) {
+  .construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont label .text {
+    font-size: 8px;
+    line-height: 10px;
+  }
+  .page-content .content-wrapper .table-wrapper table tbody tr td .edit-menu {
+    right: 10px;
+  }
+  .header.header-bt-menu {
+    position: relative;
+    padding-bottom: 50px;
+  }
+  .header .header-row .linkback.linkback-big {
+    position: absolute;
+    bottom: 0px;
+  }
+  .page-content .content-wrapper .table-wrapper table tbody tr:hover td .edit-menu.active {
+    z-index: 200;
+  }
+  .page-content .content-wrapper .table-wrapper table tbody tr td .edit-menu {
+    opacity: 1;
+  }
+  .page-content .content-wrapper .table-wrapper table {
+    position: relative;
+  }
   .page-content .content-wrapper .company-list .company-wrapper {
     width: 50%;
   }
@@ -10161,14 +10253,27 @@ html .ui-button.ui-state-disabled:active {
     height: auto;
   }
   .header .header-row {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  .header .header-row .navbar-user {
+    padding-top: 10px;
+  }
+  .header.sm-header .header-row,
+  .header.header-bt-menu .header-row {
     -webkit-box-orient: vertical;
     -webkit-box-direction: reverse;
     -webkit-flex-direction: column-reverse;
         -ms-flex-direction: column-reverse;
             flex-direction: column-reverse;
   }
-  .header .header-row .navbar-user {
+  .header.sm-header .header-row .navbar-user,
+  .header.header-bt-menu .header-row .navbar-user {
     padding-top: 10px;
+    padding-left: 20px;
   }
   .page-content .content-wrapper .top-row {
     -webkit-box-orient: vertical;

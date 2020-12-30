@@ -64,6 +64,21 @@ jQuery(function ($) {
             }
         });
 
+        //open delete test modal
+        $('.page-content').on('click', '.delete-test', function(e){
+            let url = $(this).attr('data-href');
+            let name = $(this).parents('tr').find('td .user .name').html();
+            if(url) {
+                $('#confirm-delete').find('.submit-remove-test').attr('href', url);
+            }
+            if(name) {
+                $('#confirm-delete').find('.modal-header .test-name').html('"'+ name +'"');
+            }
+            else {
+                $('#confirm-delete').find('.modal-header .name').html(' ');
+            }
+            $('#confirm-delete').fadeIn(300);
+        });
         //filter
         $('.filter-box .filter-name').click(function(e){
             if(!$(this).hasClass('active')){

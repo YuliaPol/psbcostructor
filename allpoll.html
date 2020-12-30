@@ -1299,7 +1299,7 @@
                                                     <a href="#">Просмотреть ответы</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">Удалить</a>
+                                                    <div class="delete-test" data-href="/allpoll/delete?id=84">Удалить</div>
                                                 </li>
                                             </ul>
                                         </div>
@@ -1312,6 +1312,22 @@
             </div>
         </div>
         <div class="bg-top"></div>
+    </div>
+    <!-- The Modal -->
+    <div id="confirm-delete" class="modal confirm-delete">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="text">
+                <div class="modal-header">
+                    Вы действительно хотите удалить опрос <span class="test-name"></span> ?
+                </div>
+                <div class="btn-wrapper">
+                    <a href="#" class="submit-remove-test close btn-default">Да</a>
+                    <div class="close btn-default">Нет</div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
