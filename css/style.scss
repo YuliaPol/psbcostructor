@@ -4677,7 +4677,11 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
             line-height: 12px;
             color: #37353F;
             transition: background 0.3s ease-in;
-            cursor: pointer;
+            cursor: grab;
+            &:active,
+            &.ui-draggable-dragging {
+                cursor: grabbing;
+            }
             &.icon::before {
                 content: "";
                 display: inline-block;
@@ -4803,7 +4807,13 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                 background: #EBEBEC;
             }
         }
+        .ui-draggable-dragging {
+            cursor: grabbing !important;
+        }
     }
+}
+body ul li.ui-draggable-dragging {
+    cursor: grabbing !important;
 }
 .hellopage {
     display: flex;

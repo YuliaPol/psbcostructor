@@ -7561,7 +7561,13 @@ table {
   -webkit-transition: background 0.3s ease-in;
   -o-transition: background 0.3s ease-in;
   transition: background 0.3s ease-in;
-  cursor: pointer;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.construcot-container .listbox li:active, .construcot-container .listbox li.ui-draggable-dragging {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
 }
 
 .construcot-container .listbox li.icon::before {
@@ -7722,6 +7728,16 @@ table {
 
 .construcot-container .listbox li:hover {
   background: #EBEBEC;
+}
+
+.construcot-container .listbox .ui-draggable-dragging {
+  cursor: -webkit-grabbing !important;
+  cursor: grabbing !important;
+}
+
+body ul li.ui-draggable-dragging {
+  cursor: -webkit-grabbing !important;
+  cursor: grabbing !important;
 }
 
 .hellopage {
