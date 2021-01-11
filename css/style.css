@@ -897,6 +897,7 @@ table {
   -webkit-flex-wrap: wrap;
       -ms-flex-wrap: wrap;
           flex-wrap: wrap;
+  margin: auto;
 }
 
 .page-content .content-wrapper .company-list .company-wrapper {
