@@ -4375,6 +4375,7 @@ table {
 
 .construcot-container .centerbox .questions-box .question .answer .range-list .range-row .range-question {
   width: calc(100% - 200px);
+  font-family: "Montserrat";
 }
 
 .construcot-container .centerbox .questions-box .question .answer .range-list .range-row .range {
