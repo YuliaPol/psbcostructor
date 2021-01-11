@@ -2887,6 +2887,7 @@ table {
   color: #989797;
   padding-right: 15px;
   text-align: center;
+  cursor: pointer;
 }
 
 .construcot-container .centerbox .filter-block .filter-list .filter-box .filter-name::after {
@@ -2972,7 +2973,7 @@ table {
 
 .construcot-container .centerbox .questions-box {
   width: 100%;
-  min-height: 100%;
+  min-height: calc(100% - 50px);
   -webkit-transition: background 0.3s ease-in;
   -o-transition: background 0.3s ease-in;
   transition: background 0.3s ease-in;
@@ -5190,6 +5191,7 @@ table {
   height: 11px;
   background: #000000;
   border: 0.5px solid #E2E0E0;
+  cursor: pointer;
 }
 
 .construcot-container .rightside .designoptions .colorpick .inputs {
@@ -5209,6 +5211,7 @@ table {
   color: #000000;
   border: none;
   outline: none;
+  cursor: pointer;
 }
 
 .construcot-container .rightside .designoptions .colorpick .inputs input[type=color] {
@@ -8372,6 +8375,7 @@ table {
   width: 11px;
   height: 11px;
   background: #000000;
+  cursor: pointer;
 }
 
 .hellopage_options .colorpick .inputs,
@@ -8393,6 +8397,7 @@ table {
   color: #000000;
   border: none;
   outline: none;
+  cursor: pointer;
 }
 
 .hellopage_options .colorpick .inputs input[type=color],
