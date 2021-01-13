@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сводная информация</title>
+
+    <link rel="stylesheet" href="./css/daterangepicker.css">
+    <link rel="stylesheet" href="./css/daterangepicker-kv.css">
+
+    <link rel="stylesheet" href="./css/style.css">
+
+    <script src="./js/jquery-3.5.1.min.js"></script>
+    <script src="./js/script.js"></script>
+</head>
+
+<body>
+    <header class="header  sm-header">
+        <div class="header-row">
+            <div class="panelmenu">
+                <ul>
+                    <li>
+                        <a href="#">Все опросы</a>
+                    </li>
+                    <li>
+                        <a href="#">Архив</a>
+                    </li>
+                    <li class="active">
+                        <a href="#">Сводная информация</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="navbar-user">
+                <div class="user">
+                    <div class="user-wrapper show-user-dropdown">
+                        <div class="user-name">Alexander Pierce</div>
+                        <div class="icon-user">
+                            <img src="./img/user.png" alt="Alexander Pierce">
+                        </div>
+                    </div>
+                    <div class="dropdown-user">
+                        <ul>
+                            <li>
+                                <a href="#" class="logout">Выход </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="anket-content">
+        <form id="selector-filter" method="post" data-pjax="1">
+            <div class="filter-wrapper">
+                <div class="box">
+                    <h6>Период</h6>
+                    <div class="drp-container form-group field-filter-date drp-container-selectdata">
+                        <input type="text" id="filter-date" class="form-control" value="">
+                        <div class="select-caret"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" style="visibility: hidden">Подобрать</button>
+                </div>
+            </div>
+        </form>
+        <div class="row-ankets">
+            <div class="row btns-info">
+                <div class="container-ii">
+                    <div class="blue show-block">
+                        <div class="frist-block">
+                            <div class="img-wrp">
+                                <img src="./img/alert-1.svg" alt="">
+                            </div>
+                        </div>
+                        <div class="second-block">
+                            <div class="top-block">11175</div>
+                            <div class="bot-block">
+                                <span>
+                                    Всего анкет
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-ii">
+                    <div class="green  wb show-block">
+                        <div class="frist-block">
+                            <div class="img-wrp">
+                                <img src="./img/alert-2.svg" alt="">
+                            </div>
+                        </div>
+                        <div class="second-block">
+                            <div class="top-block">5.7%</div>
+                            <div class="bot-block">
+                                <span>
+                                    Доля алертов
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-ii">
+                    <div class="orange wb show-block">
+                        <div class="frist-block">
+                            <div class="img-wrp">
+                                <div class="top-block"></div>
+                                <img src="./img/alert-3.svg" alt="">
+                            </div>
+                        </div>
+                        <div class="second-block">
+                            <div class="top-block"></div>
+                            <div class="top-block">0</div>
+                            <div class="bot-block right30">
+                                <span>
+                                    Просроченные
+                                </span>
+                                <span>
+                                    алерты
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-ii">
+                    <div class="yellow wb show-block">
+                        <div class="frist-block">
+                            <div class="img-wrp">
+                                <img src="./img/alert-4.svg" alt="">
+                            </div>
+                        </div>
+                        <div class="second-block">
+                            <div class="top-block">35</div>
+                            <div class="bot-block">
+                                <span>
+                                    Новые алерты
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-ii">
+                    <div class="wb show-block" style="background-color: #4692e6;display: flex; ">
+                        <div class="frist-block">
+                            <div class="img-wrp">
+                                <img src="./img/alert-5.png" alt="">
+                            </div>
+                        </div>
+                        <div class="second-block">
+                            <div class="top-block">21</div>
+                            <div class="bot-block">
+                                <span>
+                                    алерты в работе
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="searh-row">
+            <div class="search-form">
+                <div class="title">
+                    Поиск анкеты по региону
+                </div>
+                <form action="">
+                    <div class="input-search">
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="submit-search">
+                        <input type="submit" value="Поиск" class="btn btn-search">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="table-row">
+            <div class="table-content">
+                <div class="table-wrapper ankets-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    №
+                                </th>
+                                <th>
+                                    Название опроса
+                                </th>
+                                <th>
+                                    Дата
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    1.
+                                </td>
+                                <td>
+                                    <a href="#">Тестирование идейной составляющей</a>
+                                </td>
+                                <td>
+                                    12.05.2020
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    1.
+                                </td>
+                                <td>
+                                    Тестирование идейной составляющей
+                                </td>
+                                <td>
+                                    12.05.2020
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    1.
+                                </td>
+                                <td>
+                                    Тестирование идейной составляющей
+                                </td>
+                                <td>
+                                    12.05.2020
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    1.
+                                </td>
+                                <td>
+                                    Тестирование идейной составляющей
+                                </td>
+                                <td>
+                                    12.05.2020
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    1.
+                                </td>
+                                <td>
+                                    Тестирование идейной составляющей
+                                </td>
+                                <td>
+                                    12.05.2020
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    1.
+                                </td>
+                                <td>
+                                    Тестирование идейной составляющей
+                                </td>
+                                <td>
+                                    12.05.2020
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    1.
+                                </td>
+                                <td>
+                                    Тестирование идейной составляющей
+                                </td>
+                                <td>
+                                    12.05.2020
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    1.
+                                </td>
+                                <td>
+                                    Тестирование идейной составляющей
+                                </td>
+                                <td>
+                                    12.05.2020
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/moment.js"></script>
+    <script src="./js/daterangepicker.js"></script>
+    <script>
+        jQuery(function ($) {
+            $(document).ready(function () {
+                $('.field-filter-date input').daterangepicker({
+                    opens: 'rigth',
+                    locale: {
+                        format: 'DD-MM-YYYY',
+                        applyLabel: 'Принять',
+                        cancelLabel: 'Отмена',
+                        invalidDateLabel: 'Выберите дату',
+                        daysOfWeek: ['Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс', 'Пн'],
+                        monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+                        firstDay: 1
+                    }
+                }, function (start, end, label) {
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

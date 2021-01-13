@@ -1282,6 +1282,634 @@ table {
   text-align: center;
 }
 
+.anket-content {
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 50px;
+  padding-top: 40px;
+  max-width: 1440px;
+  margin: auto;
+  background: #EDEEF2;
+  max-width: 100%;
+  overflow: hidden;
+  min-height: calc(100vh - 80px);
+}
+
+.anket-content .anket-detail {
+  max-width: 1440px;
+  margin: auto;
+}
+
+.anket-content .anket-detail .infoclient {
+  background: #FFFFFF;
+  border: 1px solid #CCCBCB;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.05);
+          box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.anket-content .anket-detail .infoclient .infoclientrow {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  padding: 0px 25px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.anket-content .anket-detail .infoclient .infoclientrow .infoclientcol {
+  width: 100%;
+  padding: 18px 0px;
+}
+
+.anket-content .anket-detail .infoclient .info-cnt-flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.anket-content .anket-detail .infoclient .info-cnt-flex > div {
+  width: 50%;
+}
+
+.anket-content .anket-detail .infoclient .info-cnt-flex .info-block {
+  padding: 0px 35px;
+}
+
+.anket-content .anket-detail .infoclient .info-cnt-flex .info-block:first-child {
+  position: relative;
+}
+
+.anket-content .anket-detail .infoclient .info-cnt-flex .info-block:first-child::after {
+  content: " ";
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 1px;
+  width: 1px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.anket-content .anket-detail .infoclient .infoheader {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 23px;
+  text-transform: uppercase;
+  color: #563BC2;
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.anket-content .anket-detail .infoclient .info-row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-bottom: 15px;
+}
+
+.anket-content .anket-detail .infoclient .info-row .label {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000000;
+}
+
+.anket-content .anket-detail .infoclient .info-row .value {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 24px;
+  color: #605A5A;
+  width: 200px;
+  text-align: left;
+  width: 50%;
+  min-width: 50%;
+}
+
+.anket-content .anket-detail .infopoll {
+  background: #FFFFFF;
+  -webkit-box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.05);
+          box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  padding: 30px;
+  margin-top: 35px;
+}
+
+.anket-content .anket-detail .infopoll .infopoll_table {
+  width: 100%;
+}
+
+.anket-content .anket-detail .infopoll .infopoll_table .table-wrapper {
+  max-width: 100%;
+  overflow-y: auto;
+}
+
+.anket-content .anket-detail .infopoll .infopoll_table .table-wrapper table {
+  width: calc(100% - 2px);
+}
+
+.anket-content .anket-detail .infopoll .infopoll_table .table-wrapper table thead tr th {
+  padding: 30px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #453A3A;
+  text-align: left;
+}
+
+.anket-content .anket-detail .infopoll .infopoll_table .table-wrapper table thead tr th:first-child {
+  padding-left: 45px;
+}
+
+.anket-content .anket-detail .infopoll .infopoll_table .table-wrapper table thead tr th:last-child {
+  padding-right: 45px;
+}
+
+.anket-content .anket-detail .infopoll .infopoll_table .table-wrapper table tbody {
+  border: 1px solid #F0F0F0;
+  border-radius: 5px;
+}
+
+.anket-content .anket-detail .infopoll .infopoll_table .table-wrapper table tbody tr td {
+  padding: 30px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+}
+
+.anket-content .anket-detail .infopoll .infopoll_table .table-wrapper table tbody tr td:nth-child(1) {
+  width: 30%;
+}
+
+.anket-content .anket-detail .infopoll .infopoll_table .table-wrapper table tbody tr td:nth-child(2) {
+  width: 30%;
+}
+
+.anket-content .anket-detail .infopoll .infopoll_table .table-wrapper table tbody tr td:nth-child(3) {
+  width: 40%;
+}
+
+.anket-content .anket-detail .infopoll .infopoll_table .table-wrapper table tbody tr td:first-child {
+  padding-left: 45px;
+}
+
+.anket-content .anket-detail .infopoll .infopoll_table .table-wrapper table tbody tr td:last-child {
+  padding-right: 45px;
+}
+
+.anket-content .anket-detail .infopoll .infopoll_header {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 24px;
+  text-transform: uppercase;
+  color: #453A3A;
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.anket-content .filter-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+
+.anket-content .filter-wrapper .box {
+  width: calc(20% - 20px);
+  background: #ffffff;
+  border-radius: 10px;
+  margin: 10px;
+  position: relative;
+  border: 1px solid #BEBEBE;
+  max-width: 350px;
+}
+
+.anket-content .filter-wrapper .box h6 {
+  padding: 10px 0;
+  margin: 0 15px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 18px;
+  color: #797777;
+  margin-bottom: 2px !important;
+  border-bottom: 1px solid #BEBEBE;
+}
+
+.anket-content .filter-wrapper .box input, .anket-content .filter-wrapper .box select {
+  border-color: rgba(0, 0, 0, 0);
+  padding: 0px !important;
+  height: 24px !important;
+  max-width: 90% !important;
+  width: 90%;
+  margin: 0 15px 5px 15px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 18px;
+  color: #383232;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.anket-content .filter-wrapper .box .drp-container-selectdata {
+  width: 100%;
+}
+
+.anket-content .filter-wrapper .box .drp-container-selectdata input:focus ~ .select-caret {
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+       -o-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.anket-content .filter-wrapper .box .drp-container-selectdata .select-caret {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 10px;
+  height: 10px;
+  background: url(./../img/arrow-select.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-background-size: 100% 100%;
+          background-size: 100%;
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  -o-transition: -o-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease, -o-transform 0.3s ease;
+  z-index: 100;
+}
+
+.anket-content .filter-wrapper .box select {
+  border: none !important;
+  background: transparent;
+  -webkit-appearance: none !important;
+     -moz-appearance: none !important;
+          appearance: none !important;
+}
+
+.anket-content .filter-wrapper .box select:focus ~ .select-caret {
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+       -o-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.anket-content .filter-wrapper .box select ~ .select-caret {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 10px;
+  height: 10px;
+  background: url(./../img/arrow-select.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-background-size: 100% 100%;
+          background-size: 100%;
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  -o-transition: -o-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease, -o-transform 0.3s ease;
+}
+
+.anket-content .row-ankets {
+  padding-top: 15px;
+  padding-bottom: 25px;
+  width: 100%;
+  position: relative;
+}
+
+.anket-content .row-ankets::after {
+  content: " ";
+  position: absolute;
+  bottom: 0px;
+  left: -60px;
+  right: -60px;
+  height: 1px;
+  background: #BEBEBE;
+  display: block;
+}
+
+.anket-content .row-ankets .row.btns-info {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-pack: start !important;
+  -webkit-justify-content: start !important;
+      -ms-flex-pack: start !important;
+          justify-content: start !important;
+}
+
+.anket-content .row-ankets .row.btns-info .container-ii {
+  width: 20% !important;
+  min-width: 220px;
+  padding: 10px;
+  max-width: 250px;
+}
+
+.anket-content .row-ankets .row.btns-info .container-ii .show-block {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  padding: 10px;
+}
+
+.anket-content .row-ankets .row.btns-info .container-ii .show-block .frist-block {
+  padding-right: 10px;
+  margin-right: 15px;
+  border-right: 2px solid #ffffff;
+}
+
+.anket-content .row-ankets .row.btns-info .container-ii .show-block .frist-block .img-wrp img {
+  min-width: 50px;
+  max-width: 50px;
+}
+
+.anket-content .row-ankets .row.btns-info .container-ii .show-block .second-block .top-block {
+  font-size: 20px;
+  color: #ffffff;
+  padding-bottom: 3px;
+}
+
+.anket-content .row-ankets .row.btns-info .container-ii .show-block .second-block .bot-block {
+  font-size: 12px;
+  color: #ffffff;
+  height: 30px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-transform: uppercase;
+  padding-right: 10px;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  line-height: 1.2;
+}
+
+.anket-content .row-ankets .row.btns-info .container-ii .show-block .second-block .bot-block span {
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+}
+
+.anket-content .row-ankets .row.btns-info .container-ii .show-block .second-block .bot-block span:nth-child(2) {
+  text-align: right;
+}
+
+.anket-content .row-ankets .row.btns-info .container-ii .show-block.blue {
+  background-color: #4cafd1;
+}
+
+.anket-content .row-ankets .row.btns-info .container-ii .show-block.green {
+  background-color: #4fa049;
+}
+
+.anket-content .row-ankets .row.btns-info .container-ii .show-block.yellow {
+  background-color: #f2b526;
+}
+
+.anket-content .row-ankets .row.btns-info .container-ii .show-block.red {
+  background-color: #df4d50;
+}
+
+.anket-content .row-ankets .row.btns-info .container-ii .show-block.orange {
+  background-color: #df4d50;
+}
+
+.anket-content .searh-row {
+  padding-top: 45px;
+  padding-bottom: 45px;
+}
+
+.anket-content .searh-row .search-form .title {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 24px;
+  color: #605A5A;
+  padding-bottom: 15px;
+}
+
+.anket-content .searh-row .search-form .input-search {
+  display: inline-block;
+}
+
+.anket-content .searh-row .search-form .input-search input {
+  max-width: 100%;
+  background: #FFFFFF;
+  -webkit-box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.15);
+          box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.15);
+  font-family: "Montserrat";
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 16px;
+  color: #605A5A;
+  outline: none;
+  border: none;
+  height: 37px;
+  width: 325px;
+  padding: 5px 15px;
+}
+
+.anket-content .searh-row .search-form .submit-search {
+  padding-left: 15px;
+  display: inline-block;
+}
+
+.anket-content .searh-row .search-form .submit-search .btn-search {
+  padding: 10px 12px;
+  background: #563BC2;
+  border-radius: 10px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 18px;
+  color: #FFFFFF;
+  border: none;
+  outline: none;
+  height: 37px;
+  cursor: pointer;
+}
+
+.anket-content .table-content {
+  width: 100%;
+}
+
+.anket-content .table-content .ankets-table thead th:nth-child(1) {
+  max-width: 100px;
+}
+
+.anket-content .table-content .ankets-table thead th:nth-child(3) {
+  max-width: 200px;
+}
+
+.anket-content .table-content .ankets-table table a {
+  color: inherit;
+  text-decoration: none;
+  outline: none;
+}
+
+.anket-content .table-content .table-wrapper {
+  max-width: 100%;
+  overflow-y: auto;
+  background: #FFFFFF;
+  border: 1px solid #D6D4D4;
+  border-radius: 5px;
+  padding-bottom: 20px;
+}
+
+.anket-content .table-content .table-wrapper table {
+  width: 100%;
+}
+
+.anket-content .table-content .table-wrapper table thead th {
+  padding: 35px 25px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  color: #453A3A;
+  text-align: left;
+}
+
+.anket-content .table-content .table-wrapper table thead th:first-child {
+  color: #563BC2;
+}
+
+.anket-content .table-content .table-wrapper table tbody tr {
+  border-top: 1px solid #EEEDF1;
+  -webkit-transition: background 0.3s ease-in;
+  -o-transition: background 0.3s ease-in;
+  transition: background 0.3s ease-in;
+}
+
+.anket-content .table-content .table-wrapper table tbody tr:hover {
+  background: #EBEBEC50;
+}
+
+.anket-content .table-content .table-wrapper table tbody tr td {
+  padding: 25px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  color: #453A3A;
+}
+
+.anket-content .table-content .table-wrapper table tbody tr td:first-child {
+  color: #563BC2;
+}
+
+.daterangepicker .drp-buttons .btn {
+  background: #563BC2;
+  border-radius: 30px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 16px;
+  color: #FFFFFF;
+  border: none;
+  outline: none;
+  padding: 5px 10px;
+  margin-bottom: 5px;
+}
+
+.daterangepicker td.active,
+.daterangepicker td.active:hover {
+  background: #563BC2;
+}
+
 /* The Modal (background) */
 .modal {
   display: none;
@@ -7950,6 +8578,7 @@ body ul li.ui-draggable-dragging {
   max-width: 100px;
   top: 20px;
   left: 20px;
+  display: none;
 }
 
 .bannercontainer .logo img {
@@ -9949,6 +10578,9 @@ html .ui-button.ui-state-disabled:active {
 }
 
 @media screen and (min-width: 1500px) {
+  .anket-content .filter-wrapper .box {
+    width: calc(25% - 20px);
+  }
   .header.sm-header .panelmenu ul li a {
     font-size: 16px;
     line-height: 18px;
@@ -10002,6 +10634,16 @@ html .ui-button.ui-state-disabled:active {
 }
 
 @media screen and (max-width: 1200px) {
+  .anket-content {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .anket-content .filter-wrapper .box {
+    width: calc(33% - 20px);
+  }
+  .anket-content .anket-detail .infoclient .infoclientrow {
+    padding: 0px;
+  }
   .page-content {
     padding-left: 15px;
     padding-right: 15px;
@@ -10020,6 +10662,17 @@ html .ui-button.ui-state-disabled:active {
 }
 
 @media screen and (max-width: 1000px) {
+  .anket-content .filter-wrapper .box {
+    width: calc(50% - 20px);
+  }
+  .anket-content .anket-detail .infoclient .info-cnt-flex .info-block {
+    padding: 0px 15px;
+  }
+  .anket-content .anket-detail .infoclient .info-row .label,
+  .anket-content .anket-detail .infoclient .info-row .value {
+    font-size: 14px;
+    line-height: 18px;
+  }
   .page-content .content-wrapper .company-list .company-wrapper {
     width: 33%;
   }
@@ -10158,6 +10811,61 @@ html .ui-button.ui-state-disabled:active {
 }
 
 @media screen and (max-width: 768px) {
+  .anket-content {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .anket-content .table-content .table-wrapper table thead th {
+    padding: 15px 10px;
+  }
+  .anket-content .table-content .table-wrapper table tbody tr td {
+    padding: 10px;
+  }
+  .anket-content .anket-detail .infopoll .infopoll_table .table-wrapper table thead tr th {
+    padding: 15px;
+    font-size: 14px;
+    line-height: 16px;
+  }
+  .anket-content .anket-detail .infopoll .infopoll_table .table-wrapper table thead tr th:first-child {
+    padding-left: 25x;
+  }
+  .anket-content .anket-detail .infopoll .infopoll_table .table-wrapper table thead tr th:last-child {
+    padding-right: 25px;
+  }
+  .anket-content .anket-detail .infopoll .infopoll_table .table-wrapper table tbody tr td {
+    padding: 15px;
+    font-size: 12px;
+    line-height: 14px;
+  }
+  .anket-content .anket-detail .infopoll .infopoll_table .table-wrapper table tbody tr td:nth-child(1) {
+    width: 30%;
+  }
+  .anket-content .anket-detail .infopoll .infopoll_table .table-wrapper table tbody tr td:nth-child(2) {
+    width: 30%;
+  }
+  .anket-content .anket-detail .infopoll .infopoll_table .table-wrapper table tbody tr td:nth-child(3) {
+    width: 40%;
+  }
+  .anket-content .anket-detail .infopoll .infopoll_table .table-wrapper table tbody tr td:first-child {
+    padding-left: 25px;
+  }
+  .anket-content .anket-detail .infopoll .infopoll_table .table-wrapper table tbody tr td:last-child {
+    padding-right: 25px;
+  }
+  .anket-content .anket-detail .infoclient .info-cnt-flex {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .anket-content .anket-detail .infoclient .info-cnt-flex .info-block {
+    width: 100%;
+    padding: 0px;
+  }
+  .anket-content .anket-detail .infoclient .info-cnt-flex .info-block:first-child::after {
+    display: none;
+  }
   .construcot-container .centerbox .questions-box .question .answer.answer-ratings5 .radio-wrapper .radio-cont label .text {
     font-size: 8px;
     line-height: 10px;
@@ -10244,6 +10952,53 @@ html .ui-button.ui-state-disabled:active {
 }
 
 @media screen and (max-width: 500px) {
+  .anket-content .searh-row .search-form .submit-search {
+    padding-top: 20px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: end;
+    -webkit-align-items: flex-end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+  }
+  .anket-content .searh-row .search-form .input-search {
+    display: block;
+  }
+  .anket-content .searh-row .search-form .input-search input {
+    width: 100%;
+  }
+  .anket-content .filter-wrapper .box {
+    margin: 0px;
+    width: 100%;
+  }
+  .anket-content .row-ankets .row.btns-info .container-ii {
+    min-width: 50%;
+  }
+  .anket-content .row-ankets .row.btns-info .container-ii .show-block .frist-block .img-wrp img {
+    min-width: 20px;
+    max-width: 20px;
+  }
+  .anket-content .row-ankets .row.btns-info .container-ii .show-block .frist-block {
+    padding-right: 5px;
+    margin-right: 5px;
+  }
+  .anket-content .row-ankets .row.btns-info .container-ii .show-block .second-block .top-block {
+    font-size: 12px;
+    padding-bottom: 0px;
+  }
+  .anket-content .row-ankets .row.btns-info .container-ii .show-block .second-block .bot-block {
+    font-size: 8px;
+    height: 20px;
+  }
+  .anket-content .row-ankets .row.btns-info .container-ii .show-block .second-block .bot-block span:nth-child(2) {
+    text-align: left;
+  }
   .page-content .content-wrapper .company-list .company-wrapper {
     width: 100%;
   }

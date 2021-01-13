@@ -917,11 +917,10 @@ function DrawPyramide(element, data){
             topBaseOffset = (100 - topBase) / 2,
             bottomBaseOffset = (100 - bottomBase) / 2
 
-        const
-            topRule = topBaseOffset === 0 ? '50% 0' : `${topBaseOffset}% 0%, ${100 - topBaseOffset}% 0%`,
-            bottomRule = `${100 - bottomBaseOffset}% 100%, ${bottomBaseOffset}% 100%`
+            var topRule = topBaseOffset === 0 ? '50% 0' : "".concat(topBaseOffset, "% 0%, ").concat(100 - topBaseOffset, "% 0%"),
+            bottomRule = "".concat(100 - bottomBaseOffset, "% 100%, ").concat(bottomBaseOffset, "% 100%");
 
-        return `polygon(${topRule}, ${bottomRule})`
+        return "polygon(".concat(topRule, ", ").concat(bottomRule, ")");
     }
     function calculateStyles (data) {
         var prevSizesCoef = 0;
@@ -1004,7 +1003,9 @@ function DrawPyramide(element, data){
             percent: percent[i],
         }
     }
-    dataPyramid.sort((a, b) => parseInt(b.value) - parseInt(a.value));
+    dataPyramid.sort(function (a, b) {
+        return parseInt(b.value) - parseInt(a.value);
+    });
 
     if(dataPyramid[0].title !== '1'){
         dataPyramid.reverse()
