@@ -2534,67 +2534,62 @@ jQuery(function ($) {
             }
         });
         function AddQuestionBranching(type, id){
-            // if(type == "single"){
-            //     var points = $("#option_" + id).find('.inputtables').children();
-            //     var subpointsstr = '';
-            //     var answerstr = '';
-            //     points.each(function (index, subpoint) {
-            //         var index = index + 1;
-            //         var text = $(subpoint).find('.question_points').val();
-            //         subpointsstr = subpointsstr
-            //         +'<div class="questionPoint" id="questionPoint_' + id + '_'+ index + '">'
-            //         +'  <input class="branching_points" readonly name="groupname_' + id + '_'+ index + '" id="groupname_' + id + '_'+ index + '" readonly type="text"'
-            //         +'      value="'+ text + '">'
-            //         +'  <div class="branching-list">'
-            //         +'    <div class="branching-group">'
-            //         +'        <input type="text" name="branchingpoint_' + id + '_'+ index + '" id="branchingpoint_' + id + '_'+ index + '" placeholder="Введите вопрос">'
-            //         +'    </div>'
-            //         +'  </div>'
-            //         +'</div>';
-            //         answerstr = answerstr 
-            //         +'<div class="branching-group">'
-            //         +'  <div class="group-name">'+ text +'</div>'
-            //         +'  <div class="question-group">'
-            //         +'        <div class="branching-question">'
-            //         +'            <div class="name">'
-            //         +'                Вопрос'
-            //         +'            </div>'
-            //         +'            <div class="hidden-question-answer">'
-            //         +'                <div class="form-group">'
-            //         +'                    <input type="text" name="hiddenquestionanswer_' + id + '_'+ index + '_1"'
-            //         +'                        id="hiddenquestionanswer_' + id + '_'+ index + '_1" placeholder="Ваш ответ">'
-            //         +'                </div>'
-            //         +'            </div>'
-            //         +'        </div>' 
-            //         +'  </div>'
-            //         +'</div>';
-            //     });
-            //     var option = 
-            //     '<div class="branchingoptionbox" id="branchinoption_' + id + '">'
-            //     +'    <div class="header-aside">'
-            //     +'        Настройки'
-            //     +'    </div>'
-            //     +'     <div class="text-aside">'
-            //     +'        <div class="form-group">'
-            //     +'            <p>Варианты ответов</p>'
-            //     +'            <div class="inputtables" id="branchingtables_' + id + '">'
-            //     +               subpointsstr
-            //     +'            </div>'
-            //     +'        </div>'
-            //     +'    </div>'
-            //     +'</div>';
+            if(type == "single"){
+                var points = $("#option_" + id).find('.inputtables').children();
+                var subpointsstr = '';
+                var answerstr = '';
+                points.each(function (index, subpoint) {
+                    var index = index + 1;
+                    var text = $(subpoint).find('.question_points').val();
+                    subpointsstr = subpointsstr
+                    +'                <div class="questionPoint" id="questionPoint_' + id + '_'+ index + '">'
+                    +'                    <input class="branching_points hidden" readonly name="groupname_' + id + '_' + index + '" id="groupname_' + id + '_'+ index + '" type="text" value="'+ text +'">'
+                    +'                      <div class="branching_points_circle"></div>'
+                    +'                    <div class="branching-list">'
+                    +'                       <div class="branching-group">'
+                    +'                            <input type="text" name="branchingpoint_' + id + '_'+ index + '" id="branchingpoint_' + id + '_'+ index + '" placeholder="Введите вопрос">'
+                    +'                            <div class="add-multiplescalerow"></div>'
+                    +'                      </div>'
+                    +'                    </div>'
+                    +'                </div>';
+                    answerstr = answerstr 
+                    +'<div class="branching-group">'
+                    +'  <div class="group-name">'+ text +'</div>'
+                    +'  <div class="question-group">'
+                    +'        <div class="branching-question">'
+                    +'            <div class="name">'
+                    +'                Вопрос'
+                    +'            </div>'
+                    +'            <div class="hidden-question-answer">'
+                    +'                <div class="form-group">'
+                    +'                    <input type="text" name="hiddenquestionanswer_' + id + '_'+ index + '_1"'
+                    +'                        id="hiddenquestionanswer_' + id + '_'+ index + '_1" placeholder="Ваш ответ">'
+                    +'                </div>'
+                    +'            </div>'
+                    +'        </div>' 
+                    +'  </div>'
+                    +'</div>';
+                });
+                var option = 
+                '        <div class="form-group branchingoptionbox">'
+                +'            <p>Вопросы ветвление</p>'
+                +'            <div class="inputtables branchingForSingle" id="branchingtables_' + id + '">'
+                +               subpointsstr
+                +'            </div>'
+                +'        </div>';
     
-            //     var el =
-            //     '<div class="subquestion branchingquestion" data-optionid="' + id + '">'
-            //     +'    <div class="close-question"></div>'
-            //     +'       <div class="name">Ветвление ответа</div>'
-            //     +'    <div class="answer" id="questionbrnaching_' + id + '">'
-            //     +      answerstr
-            //     +'    </div>'
-            //     +'</div>';
-            //     $('#questionanswers_' + id).parents('.question').append(el);
-            //     $('.optionsblock .eloptions').append(option);
-            // }
+                var el =
+                '<div class="subquestion branchingquestion" data-optionid="' + id + '">'
+                +'       <div class="name">Ветвление ответа</div>'
+                +'    <div class="answer" id="questionbrnaching_' + id + '">'
+                +      answerstr
+                +'    </div>'
+                +'    </div>'
+                +'</div>';
+                $('#questionanswers_' + id).parents('.question').append(el);
+                $(option).insertAfter($('#option_' + id).find('.multityperow'));
+                // $('.optionsblock .eloptions').append(option);
+            }
             if(type == "scale"){
                 var typescale = $("#option_" + id).find('.scale-radio input[type=radio]:checked').val();
                 if(typescale == 4 ){
@@ -3662,7 +3657,7 @@ jQuery(function ($) {
                     +'</div>';
                     $(newQuestion).appendTo($('#questionanswers_' + id));
                     if($('#option_' + id).find('.brnachingonoff:checked')){
-                        SetPointOfQuestionBranchingSingle(id,number);
+                        SetPointOfQuestionBranchingSingle(id, number);
                     }
                 }
             }
@@ -3670,7 +3665,7 @@ jQuery(function ($) {
         
         //set points of question
         function SetPointOfQuestionBranchingSingle(id, number) {
-            var questionPoints = $('#optionbox' + id).find('.branchingoptionbox .questionPoint');
+            var questionPoints = $('#option_' + id).find('.branchingForSingle .questionPoint');
             questionPoints.each(function (index, question) {
                 if((index + 1) > number) {
                     $(question).remove();
@@ -3682,14 +3677,16 @@ jQuery(function ($) {
                 while (currentId != number){
                     currentId++;
                     var newQuestion = 
-                    '<div class="questionPoint" id="questionPoint_'+ id + '_' + currentId +'">'
-                    +'    <input class="branching_points" readonly name="groupname_'+ id + '_' + currentId +'" id="groupname_'+ id + '_' + currentId +'" type="text" placeholder="Вариант ответа">'
-                    +'    <div class="branching-list">'
-                    +'        <div class="branching-group">'
-                    +'            <input type="text" name="branchingpoint_'+ id + '_' + currentId +'" id="branchingpoint_'+ id + '_' + currentId +'" placeholder="Введите вопрос">'
-                    +'      </div>'
-                    +'  </div>'
-                    +'</div>';
+                     '                <div class="questionPoint" id="questionPoint_' + id + '_'+ currentId + '">'
+                    +'                    <input class="branching_points hidden" readonly name="groupname_' + id + '_' + currentId +'" id="groupname_' + id + '_'+ currentId + '" type="text" value="">'
+                    +'                      <div class="branching_points_circle"></div>'
+                    +'                    <div class="branching-list">'
+                    +'                       <div class="branching-group">'
+                    +'                            <input type="text" name="branchingpoint_' + id + '_'+ currentId + '" id="branchingpoint_' + id + '_'+ currentId + '" placeholder="Введите вопрос">'
+                    +'                            <div class="add-multiplescalerow"></div>'
+                    +'                      </div>'
+                    +'                    </div>'
+                    +'                </div>';
                     $(newQuestion).appendTo($('#branchingtables_' + id));
                 }
             }
@@ -3700,7 +3697,7 @@ jQuery(function ($) {
                     $(question).remove();
                     if($('#option_'+ id).find('.brnachingonoff:checked')){
                         var questionId = id;
-                        var questionPointsId = number;
+                        var questionPointsId = index + 1;
                         
                         if($('#option_' + questionId).find('.branchingoptionbox').find('.inputtables .questionPoint:nth-child('+ questionPointsId + ')').length>0) {
                             $('#option_' + questionId).find('.branchingoptionbox').find('.inputtables .questionPoint:nth-child('+ questionPointsId + ') .branching_points').remove();
@@ -3909,28 +3906,28 @@ jQuery(function ($) {
                 var id;
                 var type = $(ui.draggable).attr('data-type');
                 var pollid = $('#quiz-id').val();
-                // if(type && pollid){
-                //     AddQuestion(type, Math.random().toString(36).substr(2, 9), appendInde);
-                // }
                 if(type && pollid){
-                    $.ajax ({
-                        type: 'POST',
-                        url: "/admin/poll/create-question",
-                        dataType: "json",
-                        data: { 
-                            questiontype: type,
-                            quizid: pollid
-                        },
-                    }).done(function (data) {
-                        // данные сохранены
-                        AddQuestion(type, data, appendInde);
-                        console.log('Вопрос создан');
-                    }).fail(function (data) {
-                        // не удалось выполнить запрос к серверу
-                        console.log(data);
-                        console.log('Запрос не принят');
-                    });
+                    AddQuestion(type, Math.floor(Math.random() * 100000), appendInde);
                 }
+                // if(type && pollid){
+                //     $.ajax ({
+                //         type: 'POST',
+                //         url: "/admin/poll/create-question",
+                //         dataType: "json",
+                //         data: { 
+                //             questiontype: type,
+                //             quizid: pollid
+                //         },
+                //     }).done(function (data) {
+                //         // данные сохранены
+                //         AddQuestion(type, data, appendInde);
+                //         console.log('Вопрос создан');
+                //     }).fail(function (data) {
+                //         // не удалось выполнить запрос к серверу
+                //         console.log(data);
+                //         console.log('Запрос не принят');
+                //     });
+                // }
             }
         });
         
@@ -5477,6 +5474,158 @@ jQuery(function ($) {
                     +'      </div>'
                     +'  </div>'
                     +'</div>';
+            }
+            if (type === 'singleBranching') {
+                el =
+                '<div class="question active"  data-optionId="'+ id +'">'
+                +'    <div class="close-question"></div>'
+                +'    <div class="name" id="questionName_'+ id +'">'
+                +'        Вопрос '
+                +'    </div>'
+                +'       <div class="answer flex-30" id="questionanswers_'+ id +'">'
+                +'          <div class="form-group" id="questionformAnswer_'+ id +'_1">'
+                +'              <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_1">'
+                +'              <label id="questionpointsanswer_'+ id +'_1" for="questionanswer_'+ id +'_1">'
+                +'                  Ответ </label>'
+                +'              </div>'
+                +'          <div class="form-group" id="questionformAnswer_'+ id +'_2">'
+                +'              <input type="radio" name="questionanswer_'+ id +'" id="questionanswer_'+ id +'_2">'
+                +'              <label id="questionpointsanswer_'+ id +'_2" for="questionanswer_'+ id +'_2">'
+                +'                  Ответ'
+                +'              </label>'
+                +'          </div>'
+                +'      </div>'
+                +'      <div class="subquestion branchingquestion" data-optionid="'+ id +'">'
+                +'          <div class="name">Ветвление ответа</div>'
+                +'          <div class="answer" id="questionbrnaching_'+ id +'">'
+                +'              <div class="branching-group">'
+                +'                  <div class="group-name">Ответ</div>'
+                +'                  <div class="question-group">'
+                +'                      <div class="branching-question">'
+                +'                          <div class="name"> Вопрос </div>'
+                +'                          <div class="hidden-question-answer">'
+                +'                              <div class="form-group">'
+                +'                                  <input type="text" name="hiddenquestionanswer_'+ id +'_1_1" id="hiddenquestionanswer_'+ id +'_1_1" placeholder="Ваш ответ">'
+                +'                              </div>'
+                +'                          </div>'
+                +'                      </div>'
+                +'                  </div>'
+                +'              </div>'
+                +'              <div class="branching-group">'
+                +'                  <div class="group-name">Ответ</div>'
+                +'                  <div class="question-group">'
+                +'                      <div class="branching-question">'
+                +'                          <div class="name"> Вопрос </div>'
+                +'                          <div class="hidden-question-answer">'
+                +'                              <div class="form-group">'
+                +'                                  <input type="text" name="hiddenquestionanswer_'+ id +'_2_1" id="hiddenquestionanswer_'+ id +'_2_1" placeholder="Ваш ответ">'
+                +'                              </div>'
+                +'                          </div>'
+                +'                      </div>'
+                +'                  </div>'
+                +'              </div>'
+                +'          </div>'
+                +'      </div>'
+                +'</div>'
+                ;
+                option = 
+                '<div class="optionbox active option_single" id="option_'+ id +'">'
+                +'<input type="hidden" name="questiontype_'+ id +'" value="single" >'
+                +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
+                +'    <div class="header-aside">'
+                +'        Настройки'
+                +'    </div>'
+                +'    <div class="text-aside">'
+                +'        <div class="filerow">'
+                +'            <div class="uploadpicture">'
+                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_1"'
+                +'                    value="image">'
+                +'            </div>'
+                +'            <input class="uploadpictureinput" type="file"'
+                +'                name="uploadimage_'+ id +'[]" multiple="multiple"'
+                +'                accept="image/x-png,image/gif,image/jpeg">'
+                +'            <div class="uploadvideo">'
+                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_2"'
+                +'                    value="video">'
+                +'            </div>'
+                +'            <input class="uploadvideoinput" type="file" name="uploadvideo_'+ id +'" id="uploadvideo_'+ id +'"'
+                +'            accept="video/mp4,video/x-m4v,video/*">'
+                +'            <div class="uploadaudio">'
+                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_3"'
+                +'                    value="audio">'
+                +'            </div>'
+                +'            <input  class="uploadaudioinput" type="file" name="uploadaudio_'+ id +'" id="uploadaudio_'+ id +'"'
+                +'            accept="audio/*">'
+                +'            <div class="uploadtext">'
+                +'                <input type="radio" name="typeuploadfile_'+ id +'" id="typeuploadfile_'+ id +'_4"'
+                +'                    value="text">'
+                +'            </div>'
+                +'        </div>'
+                +'            <div class="requiredinput">'
+                +'              <div class="namelabel">'
+                +'                  Обязательно к заполнению'
+                +'              </div>'
+                +'              <label class="switch" for="required_'+ id +'">'
+                +'                  <input type="checkbox" class="requiredonoff" name="required_'+ id +'" id="required_'+ id +'">'
+                +'                  <span class="slider round"></span>'
+                +'              </label>'
+                +'          </div>'
+                +'          <div class="multityperow">'
+                +'              <div class="namelabel"> Ветвление ответа </div>'
+                +'              <label class="switch" for="branchingonoff_'+ id +'">'
+                +'                  <input type="checkbox" class="brnachingonoff" name="branchingonoff_'+ id +'" id="branchingonoff_'+ id +'" checked="checked">'
+                +'                  <span class="slider round"></span>'
+                +'              </label>'
+                +'          </div>'
+                +'          <div class="form-group branchingoptionbox">'
+                +'              <p>Вопросы ветвление</p>'
+                +'              <div class="inputtables branchingForSingle" id="branchingtables_'+ id +'">'
+                +'                  <div class="questionPoint" id="questionPoint_'+ id +'_1">'
+                +'                      <input class="branching_points hidden" readonly="" name="groupname_'+ id +'_1" id="groupname_'+ id +'_1" type="text" value="Да">'
+                +'                      <div class="branching_points_circle"></div>'
+                +'                      <div class="branching-list">'
+                +'                          <div class="branching-group">'
+                +'                              <input type="text" name="branchingpoint_'+ id +'_1" id="branchingpoint_'+ id +'_1" placeholder="Введите вопрос">'
+                +'                              <div class="add-multiplescalerow"></div>'
+                +'                          </div>'
+                +'                      </div>'
+                +'                  </div>'
+                +'                  <div class="questionPoint" id="questionPoint_'+ id +'_2">'
+                +'                      <input class="branching_points hidden" readonly="" name="groupname_'+ id +'_2" id="groupname_'+ id +'_2" type="text" value="Нет">'
+                +'                      <div class="branching_points_circle"></div>'
+                +'                      <div class="branching-list">'
+                +'                          <div class="branching-group">'
+                +'                              <input type="text" name="branchingpoint_'+ id +'_2" id="branchingpoint_'+ id +'_2" placeholder="Введите вопрос">'
+                +'                              <div class="add-multiplescalerow"></div>'
+                +'                          </div>'
+                +'                      </div>'
+                +'                  </div>'
+                +'              </div>'
+                +'          </div>'
+                +'        <div class="form-group">'
+                +'            <label for="question_'+ id +'">Вопрос</label>'
+                +'            <textarea class="question_name" name="question_'+ id +'" id="question_'+ id +'" placeholder="Введите вопрос"></textarea>'
+                +'        </div>'
+                +'        <div class="form-group spinner-wrapper">'
+                +'           <label for="number_'+ id +'">Колличество пунктов </label>'
+                +'           <input  class="question_number spinner" name="number_'+ id +'" id="number_'+ id +'" type="text" value="2">'
+                +'       </div>'
+                +'       <div class="form-group">'
+                +'           <p>Варианты ответов</p>'
+                +'           <div class="inputtables" id="inputtables_'+ id +'">'
+                +'               <div class="questionPoint" id="questionPoint_'+ id +'_1">'
+                +'                   <label for="inputpoint_'+ id +'_1">1</label>'
+                +'                   <input class="question_points" name="inputpoint_'+ id +'_1" id="inputpoint_'+ id +'_1" type="text" placeholder="Вариант ответа">'
+                +'               </div>'
+                +'               <div class="questionPoint" id=" questionPoint_'+ id +'_2">'
+                +'                   <label for="inputpoint_'+ id +'_2">2</label>'
+                +'                   <input class="question_points" name="inputpoint_'+ id +'_2" id="inputpoint_'+ id +'_2" type="text" placeholder="Вариант ответа">'
+                +'               </div>'
+                +'           </div>'
+                +'       </div>'
+                +'   </div>'
+                +'</div>'
+                ;
             }
             var children = $('.questions-box').children();
 

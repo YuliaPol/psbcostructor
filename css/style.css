@@ -5432,6 +5432,30 @@ table {
   width: 50%;
 }
 
+.construcot-container .centerbox .questions-box .question .flex-30 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+
+.construcot-container .centerbox .questions-box .question .flex-30 > div {
+  width: auto;
+  min-width: 20%;
+  padding-right: 20px;
+}
+
 .construcot-container .rightside {
   background: #FEFDFD;
   -webkit-box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.1);
@@ -7878,14 +7902,42 @@ table {
   margin-top: 8px;
 }
 
-.construcot-container .rightside .default .text-aside .form-group .inputtables.branchingForScale .questionPoint input.branching_points,
-.construcot-container .rightside .optionbox .text-aside .form-group .inputtables.branchingForScale .questionPoint input.branching_points {
+.construcot-container .rightside .default .text-aside .form-group .inputtables.branchingForScale .hidden, .construcot-container .rightside .default .text-aside .form-group .inputtables.branchingForSingle .hidden,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables.branchingForScale .hidden,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables.branchingForSingle .hidden {
+  display: none !important;
+}
+
+.construcot-container .rightside .default .text-aside .form-group .inputtables.branchingForScale .questionPoint .branching_points_circle, .construcot-container .rightside .default .text-aside .form-group .inputtables.branchingForSingle .questionPoint .branching_points_circle,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables.branchingForScale .questionPoint .branching_points_circle,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables.branchingForSingle .questionPoint .branching_points_circle {
+  width: 30px;
+  padding: 10px 5px 5px;
+  background: transparent;
+}
+
+.construcot-container .rightside .default .text-aside .form-group .inputtables.branchingForScale .questionPoint .branching_points_circle::after, .construcot-container .rightside .default .text-aside .form-group .inputtables.branchingForSingle .questionPoint .branching_points_circle::after,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables.branchingForScale .questionPoint .branching_points_circle::after,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables.branchingForSingle .questionPoint .branching_points_circle::after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border: 0.5px solid #C4C4C4;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.construcot-container .rightside .default .text-aside .form-group .inputtables.branchingForScale .questionPoint input.branching_points, .construcot-container .rightside .default .text-aside .form-group .inputtables.branchingForSingle .questionPoint input.branching_points,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables.branchingForScale .questionPoint input.branching_points,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables.branchingForSingle .questionPoint input.branching_points {
   width: 30px;
   padding: 10px 5px 5px;
 }
 
-.construcot-container .rightside .default .text-aside .form-group .inputtables.branchingForScale .questionPoint .branching-group,
-.construcot-container .rightside .optionbox .text-aside .form-group .inputtables.branchingForScale .questionPoint .branching-group {
+.construcot-container .rightside .default .text-aside .form-group .inputtables.branchingForScale .questionPoint .branching-group, .construcot-container .rightside .default .text-aside .form-group .inputtables.branchingForSingle .questionPoint .branching-group,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables.branchingForScale .questionPoint .branching-group,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables.branchingForSingle .questionPoint .branching-group {
   width: 100% !important;
   border-bottom: none !important;
   padding: 10px 5px 5px !important;
@@ -7894,8 +7946,9 @@ table {
   position: relative;
 }
 
-.construcot-container .rightside .default .text-aside .form-group .inputtables.branchingForScale .questionPoint .branching-group .add-multiplescalerow,
-.construcot-container .rightside .optionbox .text-aside .form-group .inputtables.branchingForScale .questionPoint .branching-group .add-multiplescalerow {
+.construcot-container .rightside .default .text-aside .form-group .inputtables.branchingForScale .questionPoint .branching-group .add-multiplescalerow, .construcot-container .rightside .default .text-aside .form-group .inputtables.branchingForSingle .questionPoint .branching-group .add-multiplescalerow,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables.branchingForScale .questionPoint .branching-group .add-multiplescalerow,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables.branchingForSingle .questionPoint .branching-group .add-multiplescalerow {
   position: absolute;
   top: 10px;
   right: 5px;
@@ -7909,18 +7962,21 @@ table {
   cursor: pointer;
 }
 
-.construcot-container .rightside .default .text-aside .form-group .inputtables.branchingForScale .questionPoint .branching-group input,
-.construcot-container .rightside .optionbox .text-aside .form-group .inputtables.branchingForScale .questionPoint .branching-group input {
+.construcot-container .rightside .default .text-aside .form-group .inputtables.branchingForScale .questionPoint .branching-group input, .construcot-container .rightside .default .text-aside .form-group .inputtables.branchingForSingle .questionPoint .branching-group input,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables.branchingForScale .questionPoint .branching-group input,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables.branchingForSingle .questionPoint .branching-group input {
   padding: 0px !important;
 }
 
-.construcot-container .rightside .default .text-aside .form-group .inputtables.branchingForScale .questionPoint .branching-group::before,
-.construcot-container .rightside .optionbox .text-aside .form-group .inputtables.branchingForScale .questionPoint .branching-group::before {
+.construcot-container .rightside .default .text-aside .form-group .inputtables.branchingForScale .questionPoint .branching-group::before, .construcot-container .rightside .default .text-aside .form-group .inputtables.branchingForSingle .questionPoint .branching-group::before,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables.branchingForScale .questionPoint .branching-group::before,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables.branchingForSingle .questionPoint .branching-group::before {
   display: none;
 }
 
-.construcot-container .rightside .default .text-aside .form-group .inputtables.branchingForScale .questionPoint,
-.construcot-container .rightside .optionbox .text-aside .form-group .inputtables.branchingForScale .questionPoint {
+.construcot-container .rightside .default .text-aside .form-group .inputtables.branchingForScale .questionPoint, .construcot-container .rightside .default .text-aside .form-group .inputtables.branchingForSingle .questionPoint,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables.branchingForScale .questionPoint,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables.branchingForSingle .questionPoint {
   -webkit-flex-wrap: wrap;
       -ms-flex-wrap: wrap;
           flex-wrap: wrap;
