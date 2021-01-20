@@ -98,10 +98,100 @@
                     <div class="form-group">
                         <div class="file-upload-froup">
                             <div class="question question-file">
-                                4. Добавить файл для опроса
+                                4. Добавить файлы для опроса
                                 <div class="clip upload-file-test"></div>
                             </div>
-                            <input type="file" id="test_fileInput" class="realfileinputtest" name="test_file"/>
+                            <input type="file" id="test_fileInput" class="realfileinputtest" name="test_file" multiple="multiple"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="question">
+                            5. Возраст
+                        </div>
+                        <div class="select">
+                            <select  name="age" class="customselect" multiple="multiple">
+                                <option value="all">Все</option>
+                                <option value="18-25">18-25</option>
+                                <option value="26-35">26-35</option>
+                                <option value="36-45">36-45</option>
+                                <option value="46-60">46-60</option>
+                                <option value="старше 60 лет">старше 60 лет</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="question">
+                            5. Пол
+                        </div>
+                        <div class="select">
+                            <select  name="gender" class="customselect">
+                                <option value="all">Все</option>
+                                <option value="Мужской">Мужской</option>
+                                <option value="Женский">Женский</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="question">
+                            5. Тип населенного пункта
+                        </div>
+                        <div class="select">
+                            <select  name="age" class="customselect" multiple="multiple">
+                                <option value="all">Все</option>
+                                <option value="от 100 000 жителей"> от 100 000 жителей</option>
+                                <option value="от 100 000 до 249 999 жителей включительно">
+                                    от 100 000 до 249 999 жителей  включительно
+                                </option>
+                                <option value="от 250 000 до 499 999 жителей включительно"> от 250 000 до 499 999 жителей включительно</option>
+                                <option value="от 500 000 до 999 999 жителей включительно">от 500 000 до 999 999 жителей включительно</option>
+                                <option value="свыше 1 000 000 жителей">свыше 1 000 000 жителей</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="question">
+                            6. Федеральный округ Российской Федерации
+                        </div>
+                        <div class="select">
+                            <select  name="districts" class="customselect" multiple="multiple">
+                                <option value="all">Все</option>
+                                <option value="Центральный">Центральный</option>
+                                <option value="Северо-Западный">Северо-Западный</option>
+                                <option value="Южный">Южный</option>
+                                <option value="Северо-Кавказский">Северо-Кавказский</option>
+                                <option value="Приволжский">Приволжский</option>
+                                <option value="Уральский">Уральский</option>
+                                <option value="Сибирский">Сибирский</option>
+                                <option value="Дальневосточный">Дальневосточный</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="question">
+                            7. Категория услуг
+                        </div>
+                        <div class="select">
+                            <select  name="category" class="customselect" multiple="multiple">
+                                <option value="all">Все участники Интернет панели	</option>
+                                <option value="Пользователи хотя бы одной категории из списка">Пользователи хотя бы одной категории из списка</option>
+                                <option value="Пользователи категории Посылочные услуги">Пользователи категории "Посылочные услуги"	</option>
+                                <option value="Пользователи категории Курьерские услуги">Пользователи категории "Курьерские услуги"</option>
+                                <option value="Клиенты АО «Почта России», пользователи хотя бы одной категории из списка">Клиенты АО «Почта России», пользователи хотя бы одной категории из списка</option>
+                                <option value="Клиенты АО  Почта России , пользователи категории  Посылочные услуги">Клиенты АО "Почта России", пользователи категории "Посылочные услуги" </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="question">
+                            8. Размер выборки
+                        </div>
+                        <div class="select">
+                            <select  name="category" class="customselect" multiple="multiple">
+                                <option value="200">200</option>
+                                <option value="400">400</option>
+                                <option value="800">800</option>
+                                <option value="1000">1000</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -118,11 +208,15 @@
         });
 
         $('.realfileinputtest').change(function(e){
-            var fileName = e.target.files[0].name;
+            let files =  e.target.files;
+            let filenameblock = "";
+            for (var i = 0; i < files.length; i++) {
+                let fileName = files[i].name;
+                filenameblock +=  '<div class="file-name">'+ fileName +'</div>';
+            }
             if($(this).parents('.file-upload-froup').find('.file-name').length>0){
                 $(this).parents('.file-upload-froup').find('.file-name').remove();
             }
-            var filenameblock = '<div class="file-name">'+ fileName +'</div>';
             $(this).parents('.file-upload-froup').append(filenameblock);
         });
 
@@ -178,59 +272,184 @@
             $(document).ready(function () {
                  //customselect
                 customSelectActive();
+
+ 
                 function customSelectActive(){
                     $('.customselect').each(function(){
                         if(!$(this).hasClass('select-hidden')){
-                            $(this).parent().addClass('customselect-wrapper');
-                            var $this = $(this),
-                            numberOfOptions = $(this).children('option').length;
-                            $this.addClass('select-hidden'); 
-                            $this.wrap('<div class="select"></div>');
-                            $this.after('<div class="select-styled"></div>');
-                            var $styledSelect = $this.next('div.select-styled');
-                            if($this.find('option:selected').length>0){
-                                $styledSelect.text($this.find('option:selected').text());
+                            if($(this).attr('multiple')){
+                                $(this).parent().addClass('customselect-wrapper');
+                                var $this = $(this),
+                                numberOfOptions = $(this).children('option').length;
+                                $this.addClass('select-hidden'); 
+                                $this.wrap('<div class="select"></div>');
+                                $this.after('<div class="select-styled"></div>');
+                                var $styledSelect = $this.next('div.select-styled');
+                                if($this.find('option:selected').length == 0){
+                                    $styledSelect.html('<div class="default">Выберите ответ</div>');
+                                }
+                            
+                                var $list = $('<ul />', {
+                                    'class': 'select-options'
+                                }).insertAfter($styledSelect);
+                                for (var i = 0; i < numberOfOptions; i++) {
+                                    var lioption;
+                                    var id = Math.floor(Math.random() * 100000);
+                                    $this.children('option').eq(i).attr('data-id', id);
+                                    if($this.children('option').eq(i)[0].selected){
+                                        $styledSelect.append('<div class="selectvalue" data-value="' + $this.children('option').eq(i).text() + '" data-id="'+ id + '">' + $this.children('option').eq(i).text() + '</div>');
+                                        lioption = '<li rel="'+ $this.children('option').eq(i).val() + '" data-id="'+ id + '"><div class="checked active"></div><div class="text">'+ $this.children('option').eq(i).text() + '</div></li>';
+                                    }
+                                    else {
+                                        lioption = '<li rel="'+ $this.children('option').eq(i).val() + '" data-id="'+ id + '" ><div class="checked"></div><div class="text">'+ $this.children('option').eq(i).text() + '</div></li>';
+                                    }
+                                    $(lioption).appendTo($list);
+                                }
+                            
+                                var $listItems = $list.children('li');
+                            
+                                $styledSelect.click(function(e) {
+                                    e.stopPropagation();
+                                    $('div.select-styled.active').not(this).each(function(){
+                                        $(this).removeClass('active').next('ul.select-options').hide();
+                                    });
+                                    $(this).toggleClass('active').next('ul.select-options').toggle();
+                                });
+                            
+                                $listItems.click(function(e) {
+                                    e.stopPropagation();
+                                    if($(e.currentTarget).find('.checked').hasClass('active')) {
+                                        $(e.currentTarget).find('.checked').removeClass('active');
+                                        var id = $(e.currentTarget).attr('data-id');
+                                        $styledSelect.find('.selectvalue[data-id="' + id + '"]').remove();
+                                        if($styledSelect.find('.selectvalue').length == 0){
+                                            $styledSelect.html('<div class="default">Выберите ответ</div>');
+                                        }
+                                        $this.find('option[value="' + $(e.currentTarget).attr('rel') + '"][data-id="' + id + '"]').prop("selected", false)
+                                    }
+                                    else {
+                                        $(e.currentTarget).find('.checked').addClass('active');
+                                        var id = $(e.currentTarget).attr('data-id');
+                                        if($styledSelect.find('.default').length > 0){
+                                            $styledSelect.find('.default').remove();
+                                        }
+                                        if($(e.currentTarget).attr('rel') !== 'all'){
+                                            $styledSelect.append('<div class="selectvalue" data-value="' + $(e.currentTarget).attr('rel') + '" data-id="'+ id + '">' + $(e.currentTarget).find('.text').html() + '</div>');
+                                        }
+                                        else {
+
+                                        }
+                                        $this.find('option[value="' + $(e.currentTarget).attr('rel') + '"][data-id="' + id + '"]').prop("selected", true)
+                                    }
+                                    $this.change();
+                                });
+
+                                $(document).mousedown(function(e) {
+                                    if($(e.target).parents('.customselect-wrapper').length == 0) {
+                                        $styledSelect.removeClass('active');
+                                        $list.hide();
+                                    }
+                                });
+
+                                $(document).click(function(e) {
+                                    if(!$(e.target).hasClass('country')){
+                                        $styledSelect.removeClass('active');
+                                        $list.hide();
+                                    }
+                                });
                             }
                             else {
-                                $styledSelect.text($this.children('option').eq(0).text());
-                            }
-                        
-                            var $list = $('<ul />', {
-                                'class': 'select-options'
-                            }).insertAfter($styledSelect);
-                        
-                            for (var i = 0; i < numberOfOptions; i++) {
-                                $('<li />', {
-                                    text: $this.children('option').eq(i).text(),
-                                    rel: $this.children('option').eq(i).val()
-                                }).appendTo($list);
-                            }
-                        
-                            var $listItems = $list.children('li');
-                        
-                            $styledSelect.click(function(e) {
-                                e.stopPropagation();
-                                $('div.select-styled.active').not(this).each(function(){
-                                    $(this).removeClass('active').next('ul.select-options').hide();
+                                $(this).parent().addClass('customselect-wrapper');
+                                var $this = $(this),
+                                numberOfOptions = $(this).children('option').length;
+                                $this.addClass('select-hidden'); 
+                                $this.wrap('<div class="select"></div>');
+                                $this.after('<div class="select-styled"></div>');
+                                var $styledSelect = $this.next('div.select-styled');
+                                if($this.find('option:selected').length>0){
+                                    $styledSelect.text($this.find('option:selected').text());
+                                }
+                                else {
+                                    $styledSelect.text('Выберите ответ');
+                                }
+                            
+                                var $list = $('<ul />', {
+                                    'class': 'select-options'
+                                }).insertAfter($styledSelect);
+                            
+                                for (var i = 0; i < numberOfOptions; i++) {
+                                    var id = Math.floor(Math.random() * 100000);
+                                    $this.children('option').eq(i).attr('data-id', id);
+                                    lioption = '<li rel="'+ $this.children('option').eq(i).val() + '" data-id="'+ id + '">'+ $this.children('option').eq(i).text() + '</li>';
+                                    $(lioption).appendTo($list);
+                                }
+                            
+                                var $listItems = $list.children('li');
+                            
+                                $styledSelect.click(function(e) {
+                                    e.stopPropagation();
+                                    $('div.select-styled.active').not(this).each(function(){
+                                        $(this).removeClass('active').next('ul.select-options').hide();
+                                    });
+                                    $(this).toggleClass('active').next('ul.select-options').toggle();
                                 });
-                                $(this).toggleClass('active').next('ul.select-options').toggle();
-                            });
-                        
-                            $listItems.click(function(e) {
-                                e.stopPropagation();
-                                $styledSelect.text($(this).text()).removeClass('active');
-                                $this.val($(this).attr('rel'));
-                                $list.hide();
-                                $this.change();
-                            });
-                        
-                            $(document).click(function() {
-                                $styledSelect.removeClass('active');
-                                $list.hide();
-                            });
+                            
+                                $listItems.click(function(e) {
+                                    e.stopPropagation();
+                                    $styledSelect.text($(this).text()).removeClass('active');
+                                    $this.val($(this).attr('rel'));
+                                    $list.hide();
+                                    $this.change();
+                                });
+                                $(document).mousedown(function(e) {
+                                    if($(e.target).parents('.customselect-wrapper').length == 0) {
+                                        $styledSelect.removeClass('active');
+                                        $list.hide();
+                                    }
+                                });
+                                $(document).click(function() {
+                                    $styledSelect.removeClass('active');
+                                    $list.hide();
+                                });
+                            }
                         }
-                    });   
+                    });
+                    
+                    //change select custom select
+                    $('.page-content').on('change', '.customselect', function(e){
+                        let multiple = $(this).attr('multiple');
+                        if(multiple) {
+                            var thisval =  $(this).val();
+                            var thisSelect = this;//thisSelect
+                            if(thisval.includes('all') && !$(thisSelect).hasClass('checkedall')){
+                                var lielements = $(thisSelect).parents('.select').find('.select-options li');
+                                lielements.each(function (index, el) {
+                                    if(!$(el).find('.checked').hasClass('active')) {
+                                        $(el).click();
+                                    }
+                                });
+                                $(thisSelect).addClass('checkedall');
+                            }
+                            else {
+                                if($(thisSelect).hasClass('checkedall') && !thisval.includes('all')){
+                                    var lielements = $(thisSelect).parents('.select').find('.select-options li');
+                                    lielements.each(function (index, el) {
+                                        if($(el).find('.checked').hasClass('active')) {
+                                            $(el).click();
+                                        }
+                                    });
+                                }
+                                $(thisSelect).removeClass('checkedall');
+                                if(thisval.includes('all')) {
+                                    $(thisSelect).parents('.select').find('.select-options li[rel=all]').click();
+                                }
+                            }
+                        }
+
+                    });
+                
                 }
+                
             });
         });
         // var myDropzone = new Dropzone('.dropzone', {

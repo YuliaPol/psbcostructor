@@ -2534,7 +2534,7 @@ jQuery(function ($) {
             }
         });
         function AddQuestionBranching(type, id){
-            if(type == "single"){
+            if(type == "single" || type == "singleBranching"){
                 var points = $("#option_" + id).find('.inputtables').children();
                 var subpointsstr = '';
                 var answerstr = '';
@@ -3906,28 +3906,28 @@ jQuery(function ($) {
                 var id;
                 var type = $(ui.draggable).attr('data-type');
                 var pollid = $('#quiz-id').val();
-                if(type && pollid){
-                    AddQuestion(type, Math.floor(Math.random() * 100000), appendInde);
-                }
                 // if(type && pollid){
-                //     $.ajax ({
-                //         type: 'POST',
-                //         url: "/admin/poll/create-question",
-                //         dataType: "json",
-                //         data: { 
-                //             questiontype: type,
-                //             quizid: pollid
-                //         },
-                //     }).done(function (data) {
-                //         // данные сохранены
-                //         AddQuestion(type, data, appendInde);
-                //         console.log('Вопрос создан');
-                //     }).fail(function (data) {
-                //         // не удалось выполнить запрос к серверу
-                //         console.log(data);
-                //         console.log('Запрос не принят');
-                //     });
+                //     AddQuestion(type, Math.floor(Math.random() * 100000), appendInde);
                 // }
+                if(type && pollid){
+                    $.ajax ({
+                        type: 'POST',
+                        url: "/admin/poll/create-question",
+                        dataType: "json",
+                        data: { 
+                            questiontype: type,
+                            quizid: pollid
+                        },
+                    }).done(function (data) {
+                        // данные сохранены
+                        AddQuestion(type, data, appendInde);
+                        console.log('Вопрос создан');
+                    }).fail(function (data) {
+                        // не удалось выполнить запрос к серверу
+                        console.log(data);
+                        console.log('Запрос не принят');
+                    });
+                }
             }
         });
         
@@ -5530,7 +5530,7 @@ jQuery(function ($) {
                 ;
                 option = 
                 '<div class="optionbox active option_single" id="option_'+ id +'">'
-                +'<input type="hidden" name="questiontype_'+ id +'" value="single" >'
+                +'<input type="hidden" name="questiontype_'+ id +'" value="singleBranching" >'
                 +'<input type="hidden"  class="orderinput" name="questionorder_'+ id +'" value="'+ id +'" >'
                 +'    <div class="header-aside">'
                 +'        Настройки'

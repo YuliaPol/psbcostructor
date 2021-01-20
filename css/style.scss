@@ -6834,12 +6834,14 @@ html .ui-button.ui-state-disabled:active {
         margin-right: 5px;
         transition: background 0.3s ease-in;
         cursor: pointer;
+        vertical-align: top;
         &.active {
             background: #C4C4C4;
         }
     }
     .text {
         display: inline-block;
+        max-width: calc(100% - 60px);
     }
     .select-hidden {
         display: none;
@@ -6914,6 +6916,8 @@ html .ui-button.ui-state-disabled:active {
         background: #ffffff;
         border-right: 1px solid #EEEFF3;
         border-left: 1px solid #EEEFF3;
+        max-height: 160px;
+        overflow-y: auto;
         li {
             margin: 0;
             transition: all 0.2s ease-in;
