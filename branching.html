@@ -302,9 +302,17 @@
                                                 Вопрос
                                             </div>
                                             <div class="multipleanswer">
-                                                <div class="item">Ответ 1</div>
-                                                <div class="item">Ответ 2</div>
-                                                <div class="item">Ответ 3</div>
+                                                <div class="item">
+                                                    <div class="value">Ответ 1
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <div class="value">Ответ 2
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <div class="value">Ответ 3</div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -516,12 +524,20 @@
                                                     <div class="multiple-row">
                                                         <div class="option-row-name">
                                                             <p>Множественный выбор</p>
-                                                            <div class="remobe-multiple-row"></div>
+                                                            <div class="remobe-multiple-row">
+                                                                <div class="tooltip">Удалить вопросы</div>
+                                                            </div>
+                                                            <div class="add-multiple-row">
+                                                                <div class="tooltip">Добавить вопрос</div>
+                                                            </div>
                                                         </div>
                                                         <div class="dropdown-options">
                                                             <div class="form-group">
-                                                                <label for="multiplequestion_5_1">Вопрос</label>
-                                                                <textarea class="multiplequestion_name" name="multiplequestion_5_1" id="multiplequestion_5_1" placeholder="Введите вопрос"></textarea>
+                                                                <div class="top-row">
+                                                                    <label for="multiplequestion_5_1_1">Вопрос</label>
+                                                                    <div class="remove-brn-mtp-qst"></div>
+                                                                </div>
+                                                                <textarea class="multiplequestion_name" name="multiplequestion_5_1_1" id="multiplequestion_5_1_1" placeholder="Введите вопрос"></textarea>
                                                             </div>
                                                             <div class="top-row">
                                                                 <div class="namelabel">Ответы</div>
@@ -530,21 +546,48 @@
                                                             <div class="optionsdropdownlist">
                                                                 <div class="option-group">
                                                                     <div class="inputstables">
-                                                                        <textarea class="multiplescale-question" name="multipleanswer_5_1_1" id="multipleanswer_5_1_1" placeholder="Введите ответ">Ответ 1</textarea>
+                                                                        <textarea class="multiplescale-question" name="multipleanswer_5_1_1_1" id="multipleanswer_5_1_1_1" placeholder="Введите ответ">Ответ 1</textarea>
                                                                     </div>
                                                                     <div class="remove-multiplescale"></div>
+                                                                    <div class="change-type-multiplescale">
+                                                                        <input type="checkbox" name="multipleanswertextbox_5_1_1_1" id="multipleanswertextbox_5_1_1_1">
+                                                                        <div class="tooltip tooltip-checkbox">Сделать отрытым вопросом</div>
+                                                                        <div class="tooltip tooltip-textbox">Сделать выбором из множества</div>
+                                                                    </div>
+                                                                    <div class="add-second-mlt-qst">
+                                                                        <div class="tooltip tooltip-add">Добавить множественный выбор</div>
+                                                                        <div class="tooltip tooltip-remove">Удалить множественный выбор</div>
+                                                                    </div>
                                                                 </div>
                                                                 <div class="option-group">
                                                                     <div class="inputstables">
-                                                                        <textarea class="multiplescale-question" name="multipleanswer_5_1_2" id="multipleanswer_5_1_2" placeholder="Введите ответ">Ответ 2</textarea>
+                                                                        <textarea class="multiplescale-question" name="multipleanswer_5_1_1_2" id="multipleanswer_5_1_1_2" placeholder="Введите ответ">Ответ 2</textarea>
                                                                     </div>
                                                                     <div class="remove-multiplescale"></div>
+                                                                    <div class="change-type-multiplescale">
+                                                                        <input type="checkbox" name="multipleanswertextbox_5_1_1_1" id="multipleanswertextbox_5_1_1_1">
+                                                                        <div class="tooltip tooltip-checkbox">Сделать отрытым вопросом</div>
+                                                                        <div class="tooltip tooltip-textbox">Сделать выбором из множества</div>
+                                                                    </div>
+                                                                    <div class="add-second-mlt-qst">
+                                                                        <div class="tooltip tooltip-add">Добавить множественный выбор</div>
+                                                                        <div class="tooltip tooltip-remove">Удалить множественный выбор</div>
+                                                                    </div>
                                                                 </div>
                                                                 <div class="option-group">
                                                                     <div class="inputstables">
-                                                                        <textarea class="multiplescale-question" name="multipleanswer_5_1_3"  id="multipleanswer_5_1_3" placeholder="Введите ответ">Ответ 3</textarea>
+                                                                        <textarea class="multiplescale-question" name="multipleanswer_5_1_1_3"  id="multipleanswer_5_1_1_3" placeholder="Введите ответ">Ответ 3</textarea>
                                                                     </div>
                                                                     <div class="remove-multiplescale"></div>
+                                                                    <div class="change-type-multiplescale">
+                                                                        <input type="checkbox" name="multipleanswertextbox_5_1_1_1" id="multipleanswertextbox_5_1_1_1">
+                                                                        <div class="tooltip tooltip-checkbox">Сделать отрытым вопросом</div>
+                                                                        <div class="tooltip tooltip-textbox">Сделать выбором из множества</div>
+                                                                    </div>
+                                                                    <div class="add-second-mlt-qst">
+                                                                        <div class="tooltip tooltip-add">Добавить множественный выбор</div>
+                                                                        <div class="tooltip tooltip-remove">Удалить множественный выбор</div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -790,14 +833,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="branchingoptionbox" id="branchinoption_123">
-                                <div class="header-aside">
-                                    Настройки
-                                </div>
-                                <div class="text-aside">
-
-                                </div>
-                            </div> -->
                         </div>
                     </div>
                     <div class="btn-wrapper">

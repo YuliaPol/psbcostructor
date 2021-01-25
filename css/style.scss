@@ -2270,6 +2270,9 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                 }
                 .branching-group {
                     padding-bottom: 15px;
+                    .multiple-group {
+                        padding-bottom: 20px;
+                    }
                     .group-name {
                         width: 100%;
                         font-family: "Montserrat";
@@ -3018,6 +3021,9 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                             transition: all 0.3s ease-in;
                             margin-bottom: 5px;
                             max-width: 500px;
+                        }
+                        .multiple-second-group {
+                            padding: 30px 15px 10px;
                         }
                     }
                     .range-list {
@@ -4322,6 +4328,20 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                     }
                 }
                 .dropdown-options {
+                    .remove-brn-mtp-qst,
+                    .remove-brn-mtp-qst-2 {
+                        width: 8px;
+                        height: 8px;
+                        background-image: url(./../img/minus.svg);
+                        background-position: center;
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        cursor: pointer;
+                        margin-right: 5px;
+                        position: absolute;
+                        right: 0px;
+                        top: calc(50% - 4px);
+                    }
                     .top-row {
                         position: relative;
                         .namelabel {
@@ -4336,7 +4356,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                         .add-dropdown,
                         .add-multiple,
                         .add-multiplescale,
-                        .add-range {
+                        .add-range,
+                        .add-multiplescale-2 {
                             position: absolute;
                             top: calc(50% - 4px);
                             right: 0px;
@@ -4355,6 +4376,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                         align-items: flex-start;
                         justify-content: space-between;
                         position: relative;
+                        flex-wrap: wrap;
                         &:hover {
                             .adddropdownsubpoints {
                                 background: url(./../img/grey-plus-a.svg);
@@ -4368,6 +4390,11 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                 background-size: contain;
                                 background-repeat: no-repeat;
                             }
+                        }
+                        .second-options {
+                            padding: 10px;
+                            padding-left: 20px;
+                            width: 100%;
                         }
                         .adddropdownsubpoints {
                             width: 8px;
@@ -4404,7 +4431,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                             .dropdown-question,
                             .multiple-question,
                             .multiplescale-question,
-                            .range-question {
+                            .range-question,
+                            .multiplescale-question-2 {
                                 font-family: $fontpage;
                                 font-style: normal;
                                 font-weight: 500;
@@ -4501,7 +4529,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                         .remove-dropdown,
                         .remove-multiple,
                         .remove-multiplescale,
-                        .remove-rangin {
+                        .remove-rangin,
+                        .remove-multiplescale-2 {
                             width: 8px;
                             height: 8px;
                             background-image: url(./../img/minus.svg);
@@ -4509,6 +4538,137 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                             background-size: contain;
                             background-repeat: no-repeat;
                             cursor: pointer;
+                        }
+                        .change-type-multiplescale,
+                        .change-type-multiplescale-2 {
+                            width: 8px;
+                            height: 8px;
+                            background-image: url(./../img/icon-checkbox.svg);
+                            background-position: center;
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                            cursor: pointer; 
+                            position: absolute;
+                            right: 0px;
+                            top: 25px;
+                            &:hover {
+                                .tooltip-checkbox {
+                                    opacity: 1;
+                                }
+                                .tooltip-textbox {
+                                    opacity: 0;
+                                }
+                            }
+                            &.textbox {
+                                background-image: url(./../img/icon-textarea.svg);
+                                & ~ {
+                                    .add-second-mlt-qst {
+                                        display: none;
+                                    }
+                                }
+                                &:hover {
+                                    .tooltip-checkbox {
+                                        opacity: 0;
+                                    }
+                                    .tooltip-textbox {
+                                        opacity: 1;
+                                    }
+                                }
+                            }
+                            input[type=checkbox] {
+                                display: none;
+                            }
+                            .tooltip {
+                                position: absolute;
+                                opacity: 0;
+                                padding: 5px;
+                                font-family: "Montserrat";
+                                font-size: 10px;
+                                line-height: 12px;
+                                color: #37353f;
+                                transition: opacity 0.3s ease-in 0s;
+                                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+                                background: #fff;
+                                border-radius: 5px;
+                                bottom: 20px;
+                                pointer-events: none;
+                                left: -90px;
+                                width: 110px;
+                                &::after{
+                                    content: '';
+                                    position: absolute;
+                                    right: 10px;
+                                    top: 100%;
+                                    width: 0;
+                                    height: 0;
+                                    border-left: 5px solid transparent;
+                                    border-right: 5px solid transparent;
+                                    border-top: 5px solid #ffffff;
+                                    clear: both;
+                                    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+                                }
+                            }
+                        }
+                        .add-second-mlt-qst {
+                            display: block;
+                            width: 8px;
+                            height: 8px;
+                            background-image: url(./../img/icon-dropdownmt.svg);
+                            background-position: center;
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                            cursor: pointer; 
+                            position: absolute;
+                            right: 0px;
+                            top: 40px;
+                            &.active {
+                                &:hover {
+                                    .tooltip-add {
+                                        opacity: 0;
+                                    }
+                                    .tooltip-remove {
+                                        opacity: 1;
+                                    }
+                                }
+                            }
+                            &:hover {
+                                .tooltip-add {
+                                    opacity: 1;
+                                }
+                                .tooltip-remove {
+                                    opacity: 0;
+                                }
+                            }
+                            .tooltip {
+                                position: absolute;
+                                opacity: 0;
+                                padding: 5px;
+                                font-family: "Montserrat";
+                                font-size: 10px;
+                                line-height: 12px;
+                                color: #37353f;
+                                transition: opacity 0.3s ease-in 0s;
+                                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+                                background: #fff;
+                                border-radius: 5px;
+                                bottom: 20px;
+                                pointer-events: none;
+                                left: -90px;
+                                width: 110px;
+                                &::after{
+                                    content: '';
+                                    position: absolute;
+                                    right: 10px;
+                                    top: 100%;
+                                    width: 0;
+                                    height: 0;
+                                    border-left: 5px solid transparent;
+                                    border-right: 5px solid transparent;
+                                    border-top: 5px solid #ffffff;
+                                    clear: both;
+                                    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+                                }
+                            }
                         }
                     }
                 }
@@ -5050,15 +5210,68 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                                     display: flex;
                                     align-items: center;
                                     justify-content: space-between;
+                                    p {
+                                        width: calc(100% - 25px);
+                                    }
+                                    .tooltip {
+                                        position: absolute;
+                                        opacity: 0;
+                                        padding: 5px;
+                                        font-family: $fontpage;
+                                        font-size: 10px;
+                                        line-height: 12px;
+                                        color: rgb(55, 53, 63);
+                                        transition: opacity 0.3s ease-in 0s;
+                                        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+                                        background: #fff;
+                                        border-radius: 5px;
+                                        bottom: 20px;
+                                        pointer-events: none;
+                                        left: -40px;
+                                        &::after{
+                                            content: '';
+                                            position: absolute;
+                                            left: 40px;
+                                            top: 100%;
+                                            width: 0;
+                                            height: 0;
+                                            border-left: 5px solid transparent;
+                                            border-right: 5px solid transparent;
+                                            border-top: 5px solid #ffffff;
+                                            clear: both;
+                                            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+                                        }
+                                    }
                                     .remobe-multiple-row {
                                         width: 8px;
                                         height: 8px;
                                         background-image: url(./../img/minus.svg);
                                         background-position: center;
-                                        -webkit-background-size: contain;
                                         background-size: contain;
                                         background-repeat: no-repeat;
                                         cursor: pointer;
+                                        margin-right: 5px;
+                                        position: relative;
+                                        &:hover {
+                                            .tooltip {
+                                                opacity: 1;
+                                            }
+                                        }
+                                    }
+                                    .add-multiple-row {
+                                        width: 8px;
+                                        height: 8px;
+                                        background-image: url(./../img/plus.svg);
+                                        background-position: center;
+                                        background-size: contain;
+                                        background-repeat: no-repeat;
+                                        cursor: pointer;
+                                        position: relative;
+                                        &:hover {
+                                            .tooltip {
+                                                opacity: 1;
+                                            }
+                                        }
                                     }
                                 }
                                 .dropdown-options {

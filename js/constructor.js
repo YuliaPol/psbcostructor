@@ -1024,8 +1024,53 @@ jQuery(function ($) {
         $('.rightside').on('change, keypress, keydown, keyup', '.multiplequestion_name', function(e){
             var idQuestion = $(this).attr('name').split('_')[1];
             var idMultiple = $(this).attr('name').split('_')[2];
-            $('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.multiple-group .name').html($(this).val());
+            var idMultiplePoint = $(this).attr('name').split('_')[3];
+            if($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')')){
+                let multipeQuestions = $('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.multiple-group');
+                if(multipeQuestions[idMultiplePoint-1]){
+                    $(multipeQuestions[idMultiplePoint-1]).find('.name').html($(this).val());
+                }
+            }
+            // $('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.multiple-group .name')
             // $('#questionName_' + id).html($(this).val());
+        });
+        
+        //change name of multiple question in scale
+        $('.rightside').on('change, keypress, keydown, keyup', '.multiplequestion_name_2', function(e){
+            var namequestion = $(this).attr('name').split('_');
+            var idQuestion = namequestion[1];
+            var idMultiple = namequestion[2];
+            var idMultiplePoint = namequestion[3];
+            var idPoint = parseInt(namequestion[4]);
+            if($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.item:nth-child('+ idPoint +')').length>0){
+                if($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')')){
+                    let multipeQuestions = $('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.multiple-group');
+                    if(multipeQuestions[idMultiplePoint-1]){
+                        $(multipeQuestions[idMultiplePoint-1]).find('.item:nth-child('+ idPoint +')').find('.multiple-second-group .name').html($(this).val());
+                    }
+                }
+            }
+        });
+
+        //change name of multiple question in scale
+        $('.rightside').on('change, keypress, keydown, keyup', '.multiplescale-question-2', function(e){
+            var namequestion = $(this).attr('name').split('_');
+            var idQuestion = namequestion[1];
+            var idMultiple = namequestion[2];
+            var idMultiplePoint = namequestion[3];
+            var idPoint = parseInt(namequestion[4]);
+            var idSecondPoint = parseInt(namequestion[5]);
+            if($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.item:nth-child('+ idPoint +')').length>0){
+                if($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')')){
+                    let multipeQuestions = $('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.multiple-group');
+                    if(multipeQuestions[idMultiplePoint-1]){
+                        let multi2 = $(multipeQuestions[idMultiplePoint-1]).find('.item:nth-child('+ idPoint +')').find('.multiple-second-group .item');
+                        if(multi2[idSecondPoint-1]){
+                            $(multi2[idSecondPoint-1]).html($(this).val());
+                        }
+                    }
+                }
+            }
         });
         
         //change description of question
@@ -1544,7 +1589,7 @@ jQuery(function ($) {
         $('.rightside').on('change, keypress, keydown, keyup', '.multiple-question', function(e){
             var name = $(this).attr('name').split('_');
             if($('#questionanswers_'+ name[1]).find('.multipleanswer .item:nth-child('+ name[2] +')').length>0){
-                $('#questionanswers_'+ name[1]).find('.multipleanswer .item:nth-child('+ name[2] +')').html($(this).val());
+                $('#questionanswers_'+ name[1]).find('.multipleanswer .item:nth-child('+ name[2] +') .value').html($(this).val());
             }
         });
 
@@ -1552,9 +1597,16 @@ jQuery(function ($) {
             var name = $(this).attr('name').split('_');
             var idQuestion = name[1];
             var idMultiple = name[2];
-            var idPoint = name[3];
-            if($('#questionbrnaching_'+ idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.item:nth-child('+ idPoint +')').length>0){
-                $('#questionbrnaching_'+ idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.item:nth-child('+ idPoint +')').html($(this).val());
+            var idMultiplePoint = $(this).attr('name').split('_')[3];
+            var idPoint = name[4];
+            if($('#questionbrnaching_'+ idQuestion).find('.branching-group:nth-child('+ idMultiple +')')){
+                if($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')')){
+                    let multipeQuestions = $('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.multiple-group');
+                    if(multipeQuestions[idMultiplePoint-1]){
+                        $($(multipeQuestions[idMultiplePoint-1]).find('.item:nth-child('+ idPoint +') .value')[0]).html($(this).val());
+                    }
+                }
+                // $('#questionbrnaching_'+ idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.item:nth-child('+ idPoint +')').html($(this).val());
             }
         });
 
@@ -1606,7 +1658,7 @@ jQuery(function ($) {
                 +'    <div class="remove-multiple"></div>'
                 +'</div>';
             $(newOptionel).appendTo($(this).parents('.dropdown-options').find('.optionsdropdownlist'));
-            var newitem = '<div class="item">Ответ</div>';
+            var newitem = '<div class="item"><div class="value">Ответ</div></div>';
             $(newitem).appendTo($('#questionanswers_' + idQuestion).find('.multipleanswer'));
         });
 
@@ -1618,17 +1670,20 @@ jQuery(function ($) {
             var idQuestion;
             var idPoint;
             var idMultiple;
+            var idMultiplePoint;
             if(namequestion){
                 idQuestion = namequestion[1];
                 idMultiple = namequestion[2];
+                idMultiplePoint = namequestion[3];
             }
             else {
                 idQuestion = $(this).parents('.questionPoint').find('.branching_points ').attr('name').split('_')[1];
                 idMultiple = $(this).parents('.questionPoint').find('.branching_points ').attr('name').split('_')[2];
+                idMultiplePoint = $(this).parents('.dropdown-options').find('.multiplequestion_name ').attr('name').split('_')[3];
             }
 
             if(namequestion){
-                idPoint = parseInt(namequestion[3]) + 1;
+                idPoint = parseInt(namequestion[4]) + 1;
             }
             else {
                 idPoint = 1;
@@ -1636,16 +1691,99 @@ jQuery(function ($) {
             var newOptionel = 
                 '<div class="option-group">'
                 +'    <div class="inputstables">'
-                +'       <textarea class="multiplescale-question" name="multipleanswer_'+ idQuestion + '_'+ idMultiple + '_'+ idPoint +'" id="multipleanswer_'+ idQuestion + '_'+ idMultiple + '_'+ idPoint +'" placeholder="Введите ответ"></textarea>'
+                +'       <textarea class="multiplescale-question" name="multipleanswer_'+ idQuestion + '_'+ idMultiple + '_' + idMultiplePoint + '_' + idPoint +'" id="multipleanswer_'+ idQuestion + '_'+ idMultiple + '_'  + idMultiplePoint + '_'+ idPoint +'" placeholder="Введите ответ"></textarea>'
                 +'  </div>'
                 +'  <div class="remove-multiplescale"></div>'
+                +'      <div class="change-type-multiplescale">'
+                +'          <input type="checkbox" name="multipleanswertextbox_'+ idQuestion + '_'+ idMultiple + '_' + idMultiplePoint + '_' + idPoint +'" id="multipleanswertextbox_'+ idQuestion + '_'+ idMultiple + '_' + idMultiplePoint + '_' + idPoint +'">'
+                +'          <div class="tooltip tooltip-checkbox">Сделать отрытым вопросом</div>'
+                +'           <div class="tooltip tooltip-textbox">Сделать выбором из множества</div>'
+                +'      </div>'
+                +'                <div class="add-second-mlt-qst">'
+                +'                  <div class="tooltip tooltip-add">Добавить множественный выбор</div>'
+                +'                  <div class="tooltip tooltip-remove">Удалить множественный выбор</div>'
+                +'              </div>'
                 +'</div>';
-            $(newOptionel).appendTo($(this).parents('.dropdown-options').find('.optionsdropdownlist'));
-            var newitem = '<div class="item">Ответ</div>';
-            $(newitem).appendTo($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.multiple-group .multipleanswer'));
+            $(newOptionel).appendTo($($(this).parents('.dropdown-options').find('.optionsdropdownlist')[0]));
+            var newitem = '<div class="item"><div class="value">Ответ</div></div>';
+            let multipeQuestions = $('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.multiple-group');
+            if(multipeQuestions[idMultiplePoint-1]){
+                $(newitem).appendTo($($(multipeQuestions[idMultiplePoint-1]).find('.multipleanswer')[0]));
+            }
+            // $(newitem).appendTo($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.multiple-group .multipleanswer'));
         });
         
+        $('.rightside').on('click', '.dropdown-options .add-multiplescale-2', function(e){
+            var namequestion ;
+            if($(this).parents('.second-options').find('.option-group:last-child .multiplescale-question-2').length>0){
+                namequestion = $(this).parents('.second-options').find('.option-group:last-child .multiplescale-question-2').attr('name').split('_');
+            }
+            var idQuestion;
+            var idMultiple;
+            var idMultiplePoint;
+            var idMultiplePointSecond;
+            var idPoint;
+            if(namequestion){
+                idQuestion = namequestion[1];
+                idMultiple = namequestion[2];
+                idMultiplePoint = namequestion[3];
+                idMultiplePointSecond = namequestion[4];
+            }
+            else {
+                let nameQuestion2 = $(this).parents('.second-options').find('.multiplequestion_name_2').attr('name').split('_');
+                idQuestion = nameQuestion2[1];
+                idMultiple = nameQuestion2[2];
+                idMultiplePoint = nameQuestion2[3];
+                idMultiplePointSecond = namequestion[4];
+            }
+
+            if(namequestion){
+                idPoint = parseInt(namequestion[5]) + 1;
+            }
+            else {
+                idPoint = 1;
+            }
+            var newOptionel = 
+                '<div class="option-group">'
+                +'    <div class="inputstables">'
+                +'       <textarea class="multiplescale-question-2" name="multipleanswer2_'+ idQuestion + '_'+ idMultiple + '_' + idMultiplePoint + '_' + idMultiplePointSecond + '_' + idPoint +'" id="multipleanswer2_'+ idQuestion + '_'+ idMultiple + '_'  + idMultiplePoint  + '_' + idMultiplePointSecond + '_'+ idPoint +'" placeholder="Введите ответ"></textarea>'
+                +'  </div>'
+                +'  <div class="remove-multiplescale-2"></div>'
+                +'      <div class="change-type-multiplescale-2">'
+                +'          <input type="checkbox" name="multipleanswertextbox2_'+ idQuestion + '_'+ idMultiple + '_' + idMultiplePoint + '_' + idMultiplePointSecond + '_' + idPoint +'" id="multipleanswertextbox_'+ idQuestion + '_'+ idMultiple + '_' + idMultiplePoint  + '_' + idMultiplePointSecond  + '_' + idPoint +'">'
+                +'          <div class="tooltip tooltip-checkbox">Сделать отрытым вопросом</div>'
+                +'           <div class="tooltip tooltip-textbox">Сделать выбором из множества</div>'
+                +'      </div>'
+                +'</div>';
+            $(newOptionel).appendTo($($(this).parents('.second-options').find('.optionsdropdownlist')[0]));
+            var newitem = '<div class="item"><div class="value">Ответ</div></div>';
+            let multipeQuestions = $('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.multiple-group');
+            if(multipeQuestions[idMultiplePoint-1]){
+                $(newitem).appendTo($(multipeQuestions[idMultiplePoint-1]).find('.item:nth-child('+ idMultiplePointSecond +')').find('.multiple-second-group'));
+            }
+        });
         
+        $('.rightside').on('click', '.dropdown-options .change-type-multiplescale-2', function(e){
+            $(this).toggleClass('textbox');
+            if($(this).find('input[type=checkbox]').is(":checked")){
+                $(this).find('input[type=checkbox]').prop('checked', false );
+            }
+            else {
+                $(this).find('input[type=checkbox]').prop('checked', true );
+            }
+        });
+        $('.rightside').on('click', '.dropdown-options .change-type-multiplescale', function(e){
+            $(this).toggleClass('textbox');
+            if($(this).find('input[type=checkbox]').is(":checked")){
+                $(this).find('input[type=checkbox]').prop('checked', false );
+            }
+            else {
+                $(this).find('input[type=checkbox]').prop('checked', true );
+                if($(this).parents('.option-group').find('.add-second-mlt-qst').hasClass('active')){
+                    $(this).parents('.option-group').find('.add-second-mlt-qst').click();
+                }
+            }
+        });
         $('.rightside').on('click', '.dropdown-options .add-dropdown', function(e){
             var namequestion ;
             if($(this).parents('.dropdown-options').find('.option-group:last-child .dropdown-question').length>0){
@@ -2243,9 +2381,15 @@ jQuery(function ($) {
             var namequestion = $(this).parents('.option-group').find('.multiplescale-question').attr('name').split('_');
             var idQuestion = namequestion[1];
             var idMultiple = namequestion[2];
-            var idPoint = parseInt(namequestion[3]);
+            var idMultiplePoint = namequestion[3];
+            var idPoint = parseInt(namequestion[4]);
             if($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.item:nth-child('+ idPoint +')').length>0){
-                $('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.item:nth-child('+ idPoint +')').remove();
+                if($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')')){
+                    let multipeQuestions = $('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.multiple-group');
+                    if(multipeQuestions[idMultiplePoint-1]){
+                        $(multipeQuestions[idMultiplePoint-1]).find('.item:nth-child('+ idPoint +')').remove();
+                    }
+                }
             }
             $(this).parents('.option-group').remove();
             var Subpoints = parents.children();
@@ -2256,13 +2400,13 @@ jQuery(function ($) {
                     inputs.each(function (index, input) {
                         if($(input).attr('name')){
                             prevId = $(input).attr('name').split("_");
-                            prevId[3] = id;
+                            prevId[4] = id;
                             newId = prevId.join('_');
                             $(input).attr('name', newId);
                         }
                         if($(input).attr('id')){
                             prevId = $(input).attr('id').split("_");
-                            prevId[3] = id;
+                            prevId[4] = id;
                             newId = prevId.join('_');
                             $(input).attr('id', newId);
                         }
@@ -2272,13 +2416,72 @@ jQuery(function ($) {
                     textareas.each(function (index, textarea) {
                         if($(textarea).attr('name')){
                             prevId = $(textarea).attr('name').split("_");
-                            prevId[3] = id;
+                            prevId[4] = id;
                             newId = prevId.join('_');
                             $(textarea).attr('name', newId);
                         }
                         if($(textarea).attr('id')){
                             prevId = $(textarea).attr('id').split("_");
-                            prevId[3] = id;
+                            prevId[4] = id;
+                            newId = prevId.join('_');
+                            $(textarea).attr('id', newId);
+                        }
+                    });
+                });
+            }
+        });
+
+        $('.rightside').on('click', '.dropdown-options .remove-multiplescale-2', function(e){
+            var parents = $(this).parents('.second-options');
+            var namequestion = $($(this).parents('.option-group')[0]).find('.multiplescale-question-2').attr('name').split('_');
+            var idQuestion = namequestion[1];
+            var idMultiple = namequestion[2];
+            var idMultiplePoint = namequestion[3];
+            var idPoint = parseInt(namequestion[4]);
+            var idPointSecond = parseInt(namequestion[5]);
+            if($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.item:nth-child('+ idPoint +')').length>0){
+                if($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')')){
+                    let multipeQuestions = $('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.multiple-group');
+                    if(multipeQuestions[idMultiplePoint-1]){
+                        let multi2 = $(multipeQuestions[idMultiplePoint-1]).find('.item:nth-child('+ idPoint +')').find('.multiple-second-group .item');
+                        if(multi2[idPointSecond-1]){
+                            $(multi2[idPointSecond-1]).remove();
+                        }
+                    }
+                }
+            }
+            $($(this).parents('.option-group')[0]).remove();
+            var Subpoints = parents.find('.optionsdropdownlist').children();
+            if(Subpoints.length>0){
+                Subpoints.each(function (index, subpoint) {
+                    var id = index + 1;
+                    var inputs = $(subpoint).find('input');
+                    inputs.each(function (index, input) {
+                        if($(input).attr('name')){
+                            prevId = $(input).attr('name').split("_");
+                            prevId[5] = id;
+                            newId = prevId.join('_');
+                            $(input).attr('name', newId);
+                        }
+                        if($(input).attr('id')){
+                            prevId = $(input).attr('id').split("_");
+                            prevId[5] = id;
+                            newId = prevId.join('_');
+                            $(input).attr('id', newId);
+                        }
+                    });
+
+                    var textareas = $(subpoint).find('textarea');
+                    textareas.each(function (index, textarea) {
+                        if($(textarea).attr('name')){
+                            prevId = $(textarea).attr('name').split("_");
+                            prevId[5] = id;
+                            newId = prevId.join('_');
+                            $(textarea).attr('name', newId);
+                        }
+                        if($(textarea).attr('id')){
+                            prevId = $(textarea).attr('id').split("_");
+                            prevId[5] = id;
                             newId = prevId.join('_');
                             $(textarea).attr('id', newId);
                         }
@@ -2297,22 +2500,106 @@ jQuery(function ($) {
                 parents.remove();
             }
         });
-        $('.rightside').on('click', '.branchingoptionbox .add-multiplescalerow', function(e){
-            if($(this).parents('.questionPoint').find('.multiple-row').length == 0){
-                var name = $(this).parents('.questionPoint').find('.branching_points ').attr('name').split('_');
-                var idQuestion = name[1];
-                var idMultiple = name[2];
+        $('.rightside').on('click', '.multiple-row .add-second-mlt-qst', function(e){
+            if($(this).hasClass('active')){
+                $(this).removeClass('active');
+                var namequestion = $(this).parents('.option-group').find('.multiplescale-question').attr('name').split('_');
+                var idQuestion = namequestion[1];
+                var idMultiple = namequestion[2];
+                var idMultiplePoint = namequestion[3];
+                var idPoint = namequestion[4];
+                $(this).parents('.option-group').find('.second-options').remove();
+                if($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')')){
+                    let multipeQuestions = $('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.multiple-group');
+                    if(multipeQuestions[idMultiplePoint-1]){
+                        $(multipeQuestions[idMultiplePoint-1]).find('.item:nth-child('+ idPoint +')').find('.multiple-second-group').remove();
+                    }
+                }
+            }
+            else {
+                $(this).addClass('active');
+                var namequestion = $(this).parents('.option-group').find('.multiplescale-question').attr('name').split('_');
+                var idQuestion = namequestion[1];
+                var idMultiple = namequestion[2];
+                var idMultiplePoint = namequestion[3];
+                var idPoint = namequestion[4];
+                if(idQuestion && idMultiple && idMultiplePoint){
+                    let newOption = 
+                        '  <div class="dropdown-options second-options">'
+                        +'      <div class="form-group">'
+                        +'          <div class="top-row">'
+                        +'              <label for="multiplequestion2_'+ idQuestion +'_'+ idMultiple + '_'+ idMultiplePoint + '">Вопрос</label>'
+                        +'              <div class="remove-brn-mtp-qst-2"></div>'
+                        +'          </div>'
+                        +'          <textarea class="multiplequestion_name_2" name="multiplequestion2_'+ idQuestion +'_'+ idMultiple + '_'+ idMultiplePoint + '_' + idPoint + '" id="multiplequestion2_'+ idQuestion +'_'+ idMultiple + '_'+ idMultiplePoint + '_' + idPoint  + '" placeholder="Введите вопрос"></textarea>'
+                        +'      </div>'
+                        +'      <div class="top-row">'
+                        +'          <div class="namelabel">Ответы</div>'
+                        +'          <div class="add-multiplescale-2"></div>'
+                        +'      </div>'
+                        +'      <div class="optionsdropdownlist">'
+                        +'          <div class="option-group">'
+                        +'              <div class="inputstables">'
+                        +'                  <textarea class="multiplescale-question-2" name="multipleanswer2_'+ idQuestion +'_'+ idMultiple + '_'+ idMultiplePoint + '_' + idPoint + '_1" id="multipleanswer2_'+ idQuestion +'_'+ idMultiple + '_'+ idMultiplePoint + '_' + idPoint + '_1" placeholder="Введите ответ"></textarea>'
+                        +'              </div>'
+                        +'              <div class="remove-multiplescale-2"></div>'
+                        +'                <div class="change-type-multiplescale-2">'
+                        +'                  <input type="checkbox" name="multipleanswertextbox2_'+ idQuestion +'_'+ idMultiple + '_'+ idMultiplePoint + '_' + idPoint + '_1" id="multipleanswertextbox2_'+ idQuestion +'_'+ idMultiple + '_'+ idMultiplePoint + '_' + idPoint + '_1">'
+                        +'                  <div class="tooltip tooltip-checkbox">Сделать отрытым вопросом</div>'
+                        +'                  <div class="tooltip tooltip-textbox">Сделать выбором из множества</div>'
+                        +'              </div>'
+                        +'          </div>'
+                        +'          <div class="option-group">'
+                        +'              <div class="inputstables">'
+                        +'                  <textarea class="multiplescale-question-2" name="multipleanswer2_'+ idQuestion +'_'+ idMultiple + '_'+ idMultiplePoint + '_' + idPoint + '_2" id="multipleanswer2_'+ idQuestion +'_'+ idMultiple + '_'+ idMultiplePoint + '_' + idPoint + '_2" placeholder="Введите ответ"></textarea>'
+                        +'              </div>'
+                        +'              <div class="remove-multiplescale-2"></div>'
+                        +'                <div class="change-type-multiplescale-2">'
+                        +'                  <input type="checkbox" name="multipleanswertextbox2_'+ idQuestion +'_'+ idMultiple + '_'+ idMultiplePoint+ '_' + idPoint + '_2" id="multipleanswertextbox2_'+ idQuestion +'_'+ idMultiple + '_'+ idMultiplePoint + '_' + idPoint + '_2">'
+                        +'                  <div class="tooltip tooltip-checkbox">Сделать отрытым вопросом</div>'
+                        +'                  <div class="tooltip tooltip-textbox">Сделать выбором из множества</div>'
+                        +'              </div>'
+                        +'          </div>'
+                        +'      </div>'
+                        +'</div>';
+        
+                    var newEl = 
+                        '<div class="multiple-second-group">'
+                        +'    <div class="name">'
+                        +'      Вопрос'
+                        +'  </div>'
+                        +'  <div class="multipleanswer">'
+                        +'      <div class="item"><div class="value">Ответ</div></div>'
+                        +'      <div class="item"><div class="value">Ответ</div></div>'
+                        +'  </div>'
+                        +'</div>';
     
-                var newOption = 
-                    '<div class="multiple-row">'
-                    +'    <div class="option-row-name">'
-                    +'       <p>Множественный выбор</p>'
-                    +'      <div class="remobe-multiple-row"></div>'
-                    +'  </div>'
-                    +'  <div class="dropdown-options">'
+                    $(newOption).appendTo($(this).parents('.option-group'));
+                    if($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')')){
+                        let multipeQuestions = $('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.multiple-group');
+                        if(multipeQuestions[idMultiplePoint-1]){
+                            $(newEl).appendTo($(multipeQuestions[idMultiplePoint-1]).find('.item:nth-child('+ idPoint +')'));
+                        }
+                    }
+                }
+            }
+        });
+        
+        $('.rightside').on('click', '.multiple-row .add-multiple-row', function(e){
+            var parents = $(this).parents('.multiple-row');
+            var namequestion = $(this).parents('.questionPoint').find('.branching-list .branching-group input').attr('name').split('_');
+            var idQuestion = namequestion[1];
+            var idMultiple = namequestion[2];
+            var idMultiplePoint = parents.children('.dropdown-options').length + 1;
+            if(idQuestion && idMultiple && idMultiplePoint){
+                let newOption = 
+                    '  <div class="dropdown-options">'
                     +'      <div class="form-group">'
-                    +'          <label for="multiplequestion_'+ idQuestion +'_'+ idMultiple + '">Вопрос</label>'
-                    +'          <textarea class="multiplequestion_name" name="multiplequestion_'+ idQuestion +'_'+ idMultiple + '" id="multiplequestion_'+ idQuestion +'_'+ idMultiple + '" placeholder="Введите вопрос"></textarea>'
+                    +'          <div class="top-row">'
+                    +'              <label for="multiplequestion_'+ idQuestion +'_'+ idMultiple + '_'+ idMultiplePoint + '">Вопрос</label>'
+                    +'              <div class="remove-brn-mtp-qst"></div>'
+                    +'          </div>'
+                    +'          <textarea class="multiplequestion_name" name="multiplequestion_'+ idQuestion +'_'+ idMultiple + '_'+ idMultiplePoint + '" id="multiplequestion_'+ idQuestion +'_'+ idMultiple + '_'+ idMultiplePoint  + '" placeholder="Введите вопрос"></textarea>'
                     +'      </div>'
                     +'      <div class="top-row">'
                     +'          <div class="namelabel">Ответы</div>'
@@ -2321,15 +2608,173 @@ jQuery(function ($) {
                     +'      <div class="optionsdropdownlist">'
                     +'          <div class="option-group">'
                     +'              <div class="inputstables">'
-                    +'                  <textarea class="multiplescale-question" name="multipleanswer_'+ idQuestion +'_'+ idMultiple + '_1" id="multipleanswer_'+ idQuestion +'_'+ idMultiple + '_1" placeholder="Введите ответ"></textarea>'
+                    +'                  <textarea class="multiplescale-question" name="multipleanswer_'+ idQuestion +'_'+ idMultiple + '_'+ idMultiplePoint + '_1" id="multipleanswer_'+ idQuestion +'_'+ idMultiple + '_'+ idMultiplePoint + '_1" placeholder="Введите ответ"></textarea>'
                     +'              </div>'
                     +'              <div class="remove-multiplescale"></div>'
+                    +'                <div class="change-type-multiplescale">'
+                    +'                  <input type="checkbox" name="multipleanswertextbox_'+ idQuestion +'_'+ idMultiple + '_'+ idMultiplePoint + '_1" id="multipleanswertextbox_'+ idQuestion +'_'+ idMultiple + '_'+ idMultiplePoint + '_1">'
+                    +'                  <div class="tooltip tooltip-checkbox">Сделать отрытым вопросом</div>'
+                    +'                  <div class="tooltip tooltip-textbox">Сделать выбором из множества</div>'
+                    +'              </div>'
+                    +'                <div class="add-second-mlt-qst">'
+                    +'                  <div class="tooltip tooltip-add">Добавить множественный выбор</div>'
+                    +'                  <div class="tooltip tooltip-remove">Удалить множественный выбор</div>'
+                    +'              </div>'
                     +'          </div>'
                     +'          <div class="option-group">'
                     +'              <div class="inputstables">'
-                    +'                  <textarea class="multiplescale-question" name="multipleanswer_'+ idQuestion +'_'+ idMultiple + '_2" id="multipleanswer_'+ idQuestion +'_'+ idMultiple + '_2" placeholder="Введите ответ"></textarea>'
+                    +'                  <textarea class="multiplescale-question" name="multipleanswer_'+ idQuestion +'_'+ idMultiple + '_'+ idMultiplePoint + '_2" id="multipleanswer_'+ idQuestion +'_'+ idMultiple + '_'+ idMultiplePoint + '_2" placeholder="Введите ответ"></textarea>'
                     +'              </div>'
                     +'              <div class="remove-multiplescale"></div>'
+                    +'                <div class="change-type-multiplescale">'
+                    +'                  <input type="checkbox" name="multipleanswertextbox_'+ idQuestion +'_'+ idMultiple + '_'+ idMultiplePoint + '_2" id="multipleanswertextbox_'+ idQuestion +'_'+ idMultiple + '_'+ idMultiplePoint + '_2">'
+                    +'                  <div class="tooltip tooltip-checkbox">Сделать отрытым вопросом</div>'
+                    +'                  <div class="tooltip tooltip-textbox">Сделать выбором из множества</div>'
+                    +'              </div>'
+                    +'                <div class="add-second-mlt-qst">'
+                    +'                  <div class="tooltip tooltip-add">Добавить множественный выбор</div>'
+                    +'                  <div class="tooltip tooltip-remove">Удалить множественный выбор</div>'
+                    +'              </div>'
+                    +'          </div>'
+                    +'      </div>'
+                    +'</div>';
+    
+                var newEl = 
+                    '<div class="multiple-group">'
+                    +'    <div class="name">'
+                    +'      Вопрос'
+                    +'  </div>'
+                    +'  <div class="multipleanswer">'
+                    +'      <div class="item"><div class="value">Ответ</div></div>'
+                    +'      <div class="item"><div class="value">Ответ</div></div>'
+                    +'  </div>'
+                    +'</div>';
+
+                $(newOption).appendTo(parents);
+                $(newEl).appendTo($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')'));
+            }
+        });
+        $('.rightside').on('click', '.multiple-row .remove-brn-mtp-qst', function(e){
+            var parents = $(this).parents('.dropdown-options');
+            var parentsMultiple = $(this).parents('.multiple-row');
+            var namequestion = $(this).parents('.dropdown-options').find('.multiplequestion_name').attr('name').split('_');
+            var idQuestion = namequestion[1];
+            var idMultiple = namequestion[2];
+            var idMultiplePoint = namequestion[3];
+            if($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.multiple-group').length>0){
+                let multipleGropus = $('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.multiple-group');
+                if(multipleGropus[idMultiplePoint-1]) {
+                    multipleGropus[idMultiplePoint-1].remove();
+                }
+                parents.remove();
+                let multipleQuestions = parentsMultiple.find('.dropdown-options');
+                if(multipleQuestions.length>0){
+                    RefrestBranchingMultiple(multipleQuestions);
+                }
+            }
+        });
+        function RefrestBranchingMultiple(multipleQuestions){
+            multipleQuestions.each(function (index, question) {
+                let id = index + 1;
+                var inputs = $(question).find('input');
+                inputs.each(function (index, input) {
+                    if($(input).attr('name')){
+                        prevId = $(input).attr('name').split("_");
+                        prevId[3] = id;
+                        newId = prevId.join('_');
+                        $(input).attr('name', newId);
+                    }
+                    if($(input).attr('id')){
+                        prevId = $(input).attr('id').split("_");
+                        prevId[3] = id;
+                        newId = prevId.join('_');
+                        $(input).attr('id', newId);
+                    }
+                });
+                var textareas = $(question).find('textarea');
+                textareas.each(function (index, textarea) {
+                    if($(textarea).attr('name')){
+                        prevId = $(textarea).attr('name').split("_");
+                        prevId[3] = id;
+                        newId = prevId.join('_');
+                        $(textarea).attr('name', newId);
+                    }
+                    if($(textarea).attr('id')){
+                        prevId = $(textarea).attr('id').split("_");
+                        prevId[3] = id;
+                        newId = prevId.join('_');
+                        $(textarea).attr('id', newId);
+                    }
+                });
+                var labels = $(question).find('label');
+                labels.each(function (index, label) {
+                    if($(label).attr('for')){
+                        prevId = $(label).attr('for').split("_");
+                        prevId[3] = id;
+                        newId = prevId.join('_');
+                        $(label).attr('for', newId);
+                    }
+                });
+            }); 
+        }
+        $('.rightside').on('click', '.branchingoptionbox .add-multiplescalerow', function(e){
+            if($(this).parents('.questionPoint').find('.multiple-row').length == 0){
+                var name = $(this).parents('.questionPoint').find('.branching_points ').attr('name').split('_');
+                var idQuestion = name[1];
+                var idMultiple = name[2];
+                var idMultiplePoint = 1;
+
+                var newOption = 
+                    '<div class="multiple-row">'
+                    +'    <div class="option-row-name">'
+                    +'       <p>Множественный выбор</p>'
+                    +'      <div class="remobe-multiple-row"></div>'
+                    +'        <div class="add-multiple-row">'
+                    +'          <div class="tooltip">Добавить вопрос</div>'
+                    +'      </div>'
+                    +'  </div>'
+                    +'  <div class="dropdown-options">'
+                    +'      <div class="form-group">'
+                    +'          <div class="top-row">'
+                    +'              <label for="multiplequestion_'+ idQuestion +'_'+ idMultiple + '_'+ idMultiplePoint + '">Вопрос</label>'
+                    +'              <div class="remove-brn-mtp-qst"></div>'
+                    +'          </div>'
+                    +'          <textarea class="multiplequestion_name" name="multiplequestion_'+ idQuestion +'_'+ idMultiple+ '_'+ idMultiplePoint + '" id="multiplequestion_'+ idQuestion +'_'+ idMultiple+ '_'+ idMultiplePoint + '" placeholder="Введите вопрос"></textarea>'
+                    +'      </div>'
+                    +'      <div class="top-row">'
+                    +'          <div class="namelabel">Ответы</div>'
+                    +'          <div class="add-multiplescale"></div>'
+                    +'      </div>'
+                    +'      <div class="optionsdropdownlist">'
+                    +'          <div class="option-group">'
+                    +'              <div class="inputstables">'
+                    +'                  <textarea class="multiplescale-question" name="multipleanswer_'+ idQuestion +'_'+ idMultiple+ '_'+ idMultiplePoint + '_1" id="multipleanswer_'+ idQuestion +'_'+ idMultiple+ '_'+ idMultiplePoint + '_1" placeholder="Введите ответ"></textarea>'
+                    +'              </div>'
+                    +'              <div class="remove-multiplescale"></div>'
+                    +'                <div class="change-type-multiplescale">'
+                    +'                  <input type="checkbox" name="multipleanswertextbox_'+ idQuestion +'_'+ idMultiple + '_'+ idMultiplePoint + '_1" id="multipleanswertextbox_'+ idQuestion +'_'+ idMultiple + '_'+ idMultiplePoint + '_1">'
+                    +'                  <div class="tooltip tooltip-checkbox">Сделать отрытым вопросом</div>'
+                    +'                  <div class="tooltip tooltip-textbox">Сделать выбором из множества</div>'
+                    +'              </div>'
+                    +'                <div class="add-second-mlt-qst">'
+                    +'                  <div class="tooltip tooltip-add">Добавить множественный выбор</div>'
+                    +'                  <div class="tooltip tooltip-remove">Удалить множественный выбор</div>'
+                    +'              </div>'
+                    +'          </div>'
+                    +'          <div class="option-group">'
+                    +'              <div class="inputstables">'
+                    +'                  <textarea class="multiplescale-question" name="multipleanswer_'+ idQuestion +'_'+ idMultiple + '_'+ idMultiplePoint + '_2" id="multipleanswer_'+ idQuestion +'_'+ idMultiple + '_'+ idMultiplePoint + '_2" placeholder="Введите ответ"></textarea>'
+                    +'              </div>'
+                    +'              <div class="remove-multiplescale"></div>'
+                    +'                <div class="change-type-multiplescale">'
+                    +'                  <input type="checkbox" name="multipleanswertextbox_'+ idQuestion +'_'+ idMultiple + '_' + idMultiplePoint + '_2" id="multipleanswertextbox_'+ idQuestion +'_'+ idMultiple + '_'+ idMultiplePoint + '_2">'
+                    +'                  <div class="tooltip tooltip-checkbox">Сделать отрытым вопросом</div>'
+                    +'                  <div class="tooltip tooltip-textbox">Сделать выбором из множества</div>'
+                    +'              </div>'
+                    +'                <div class="add-second-mlt-qst">'
+                    +'                  <div class="tooltip tooltip-add">Добавить множественный выбор</div>'
+                    +'                  <div class="tooltip tooltip-remove">Удалить множественный выбор</div>'
+                    +'              </div>'
                     +'          </div>'
                     +'      </div>'
                     +'  </div>'
@@ -2341,8 +2786,8 @@ jQuery(function ($) {
                     +'      Вопрос'
                     +'  </div>'
                     +'  <div class="multipleanswer">'
-                    +'      <div class="item">Ответ</div>'
-                    +'      <div class="item">Ответ</div>'
+                    +'      <div class="item"><div class="value">Ответ</div></div>'
+                    +'      <div class="item"><div class="value">Ответ</div></div>'
                     +'  </div>'
                     +'</div>';
                 $(newOption).appendTo($(this).parents('.questionPoint'));
@@ -4577,8 +5022,8 @@ jQuery(function ($) {
                 +'    <div class="name " id="questionName_'+ id +'"> Вопрос </div>'
                 +'    <div class="answer" id="questionanswers_'+ id +'">'
                 +'        <div class="multipleanswer">'
-                +'            <div class="item">Ответ 1</div>'
-                +'            <div class="item">Ответ 2</div>'
+                +'            <div class="item"><div class="value">Ответ 1</div></div>'
+                +'            <div class="item"><div class="value">Ответ 2</div></div>'
                 +'        </div>'
                 +'    </div>'
                 +'</div>';

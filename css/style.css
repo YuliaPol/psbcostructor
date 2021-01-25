@@ -3722,6 +3722,10 @@ table {
   padding-bottom: 15px;
 }
 
+.construcot-container .centerbox .questions-box .question .branching-group .multiple-group {
+  padding-bottom: 20px;
+}
+
 .construcot-container .centerbox .questions-box .question .branching-group .group-name {
   width: 100%;
   font-family: "Montserrat";
@@ -4983,6 +4987,10 @@ table {
   transition: all 0.3s ease-in;
   margin-bottom: 5px;
   max-width: 500px;
+}
+
+.construcot-container .centerbox .questions-box .question .answer .multipleanswer .multiple-second-group {
+  padding: 30px 15px 10px;
 }
 
 .construcot-container .centerbox .questions-box .question .answer .range-list .range-row {
@@ -6878,6 +6886,24 @@ table {
   color: #563BC2;
 }
 
+.construcot-container .rightside .default .text-aside .dropdown-options .remove-brn-mtp-qst,
+.construcot-container .rightside .default .text-aside .dropdown-options .remove-brn-mtp-qst-2,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .remove-brn-mtp-qst,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .remove-brn-mtp-qst-2 {
+  width: 8px;
+  height: 8px;
+  background-image: url(./../img/minus.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  margin-right: 5px;
+  position: absolute;
+  right: 0px;
+  top: calc(50% - 4px);
+}
+
 .construcot-container .rightside .default .text-aside .dropdown-options .top-row,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .top-row {
   position: relative;
@@ -6898,10 +6924,12 @@ table {
 .construcot-container .rightside .default .text-aside .dropdown-options .top-row .add-multiple,
 .construcot-container .rightside .default .text-aside .dropdown-options .top-row .add-multiplescale,
 .construcot-container .rightside .default .text-aside .dropdown-options .top-row .add-range,
+.construcot-container .rightside .default .text-aside .dropdown-options .top-row .add-multiplescale-2,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .top-row .add-dropdown,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .top-row .add-multiple,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .top-row .add-multiplescale,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .top-row .add-range {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .top-row .add-range,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .top-row .add-multiplescale-2 {
   position: absolute;
   top: calc(50% - 4px);
   right: 0px;
@@ -6931,6 +6959,9 @@ table {
       -ms-flex-pack: justify;
           justify-content: space-between;
   position: relative;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group:hover .adddropdownsubpoints,
@@ -6949,6 +6980,13 @@ table {
   -webkit-background-size: contain;
           background-size: contain;
   background-repeat: no-repeat;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .second-options,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .second-options {
+  padding: 10px;
+  padding-left: 20px;
+  width: 100%;
 }
 
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .adddropdownsubpoints,
@@ -7005,10 +7043,12 @@ table {
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiple-question,
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiplescale-question,
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .range-question,
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiplescale-question-2,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiple-question,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiplescale-question,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .range-question {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .range-question,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiplescale-question-2 {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
@@ -7027,10 +7067,12 @@ table {
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiple-question::-webkit-input-placeholder,
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiplescale-question::-webkit-input-placeholder,
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .range-question::-webkit-input-placeholder,
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiplescale-question-2::-webkit-input-placeholder,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-input-placeholder,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiple-question::-webkit-input-placeholder,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiplescale-question::-webkit-input-placeholder,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .range-question::-webkit-input-placeholder {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .range-question::-webkit-input-placeholder,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiplescale-question-2::-webkit-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -7043,10 +7085,12 @@ table {
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiple-question::-moz-placeholder,
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiplescale-question::-moz-placeholder,
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .range-question::-moz-placeholder,
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiplescale-question-2::-moz-placeholder,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-moz-placeholder,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiple-question::-moz-placeholder,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiplescale-question::-moz-placeholder,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .range-question::-moz-placeholder {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .range-question::-moz-placeholder,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiplescale-question-2::-moz-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -7059,10 +7103,12 @@ table {
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiple-question:-ms-input-placeholder,
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiplescale-question:-ms-input-placeholder,
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .range-question:-ms-input-placeholder,
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiplescale-question-2:-ms-input-placeholder,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question:-ms-input-placeholder,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiple-question:-ms-input-placeholder,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiplescale-question:-ms-input-placeholder,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .range-question:-ms-input-placeholder {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .range-question:-ms-input-placeholder,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiplescale-question-2:-ms-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -7075,10 +7121,12 @@ table {
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiple-question::-ms-input-placeholder,
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiplescale-question::-ms-input-placeholder,
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .range-question::-ms-input-placeholder,
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiplescale-question-2::-ms-input-placeholder,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-ms-input-placeholder,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiple-question::-ms-input-placeholder,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiplescale-question::-ms-input-placeholder,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .range-question::-ms-input-placeholder {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .range-question::-ms-input-placeholder,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiplescale-question-2::-ms-input-placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -7091,10 +7139,12 @@ table {
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiple-question::placeholder,
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiplescale-question::placeholder,
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .range-question::placeholder,
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiplescale-question-2::placeholder,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::placeholder,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiple-question::placeholder,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiplescale-question::placeholder,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .range-question::placeholder {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .range-question::placeholder,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiplescale-question-2::placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;
@@ -7107,10 +7157,12 @@ table {
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiple-question::-webkit-scrollbar-track,
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiplescale-question::-webkit-scrollbar-track,
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .range-question::-webkit-scrollbar-track,
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiplescale-question-2::-webkit-scrollbar-track,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar-track,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiple-question::-webkit-scrollbar-track,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiplescale-question::-webkit-scrollbar-track,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .range-question::-webkit-scrollbar-track {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .range-question::-webkit-scrollbar-track,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiplescale-question-2::-webkit-scrollbar-track {
   width: 0px;
 }
 
@@ -7118,10 +7170,12 @@ table {
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiple-question::-webkit-scrollbar,
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiplescale-question::-webkit-scrollbar,
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .range-question::-webkit-scrollbar,
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiplescale-question-2::-webkit-scrollbar,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiple-question::-webkit-scrollbar,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiplescale-question::-webkit-scrollbar,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .range-question::-webkit-scrollbar {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .range-question::-webkit-scrollbar,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiplescale-question-2::-webkit-scrollbar {
   width: 0px;
 }
 
@@ -7129,10 +7183,12 @@ table {
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiple-question::-webkit-scrollbar-thumb,
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiplescale-question::-webkit-scrollbar-thumb,
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .range-question::-webkit-scrollbar-thumb,
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .inputstables .multiplescale-question-2::-webkit-scrollbar-thumb,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .dropdown-question::-webkit-scrollbar-thumb,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiple-question::-webkit-scrollbar-thumb,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiplescale-question::-webkit-scrollbar-thumb,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .range-question::-webkit-scrollbar-thumb {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .range-question::-webkit-scrollbar-thumb,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .inputstables .multiplescale-question-2::-webkit-scrollbar-thumb {
   width: 0px;
 }
 
@@ -7217,10 +7273,12 @@ table {
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .remove-multiple,
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .remove-multiplescale,
 .construcot-container .rightside .default .text-aside .dropdown-options .option-group .remove-rangin,
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .remove-multiplescale-2,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .remove-dropdown,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .remove-multiple,
 .construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .remove-multiplescale,
-.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .remove-rangin {
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .remove-rangin,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .remove-multiplescale-2 {
   width: 8px;
   height: 8px;
   background-image: url(./../img/minus.svg);
@@ -7229,6 +7287,188 @@ table {
           background-size: contain;
   background-repeat: no-repeat;
   cursor: pointer;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .change-type-multiplescale,
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .change-type-multiplescale-2,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .change-type-multiplescale,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .change-type-multiplescale-2 {
+  width: 8px;
+  height: 8px;
+  background-image: url(./../img/icon-checkbox.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  position: absolute;
+  right: 0px;
+  top: 25px;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .change-type-multiplescale:hover .tooltip-checkbox,
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .change-type-multiplescale-2:hover .tooltip-checkbox,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .change-type-multiplescale:hover .tooltip-checkbox,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .change-type-multiplescale-2:hover .tooltip-checkbox {
+  opacity: 1;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .change-type-multiplescale:hover .tooltip-textbox,
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .change-type-multiplescale-2:hover .tooltip-textbox,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .change-type-multiplescale:hover .tooltip-textbox,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .change-type-multiplescale-2:hover .tooltip-textbox {
+  opacity: 0;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .change-type-multiplescale.textbox,
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .change-type-multiplescale-2.textbox,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .change-type-multiplescale.textbox,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .change-type-multiplescale-2.textbox {
+  background-image: url(./../img/icon-textarea.svg);
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .change-type-multiplescale.textbox ~ .add-second-mlt-qst,
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .change-type-multiplescale-2.textbox ~ .add-second-mlt-qst,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .change-type-multiplescale.textbox ~ .add-second-mlt-qst,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .change-type-multiplescale-2.textbox ~ .add-second-mlt-qst {
+  display: none;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .change-type-multiplescale.textbox:hover .tooltip-checkbox,
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .change-type-multiplescale-2.textbox:hover .tooltip-checkbox,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .change-type-multiplescale.textbox:hover .tooltip-checkbox,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .change-type-multiplescale-2.textbox:hover .tooltip-checkbox {
+  opacity: 0;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .change-type-multiplescale.textbox:hover .tooltip-textbox,
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .change-type-multiplescale-2.textbox:hover .tooltip-textbox,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .change-type-multiplescale.textbox:hover .tooltip-textbox,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .change-type-multiplescale-2.textbox:hover .tooltip-textbox {
+  opacity: 1;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .change-type-multiplescale input[type=checkbox],
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .change-type-multiplescale-2 input[type=checkbox],
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .change-type-multiplescale input[type=checkbox],
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .change-type-multiplescale-2 input[type=checkbox] {
+  display: none;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .change-type-multiplescale .tooltip,
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .change-type-multiplescale-2 .tooltip,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .change-type-multiplescale .tooltip,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .change-type-multiplescale-2 .tooltip {
+  position: absolute;
+  opacity: 0;
+  padding: 5px;
+  font-family: "Montserrat";
+  font-size: 10px;
+  line-height: 12px;
+  color: #37353f;
+  -webkit-transition: opacity 0.3s ease-in 0s;
+  -o-transition: opacity 0.3s ease-in 0s;
+  transition: opacity 0.3s ease-in 0s;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+  background: #fff;
+  border-radius: 5px;
+  bottom: 20px;
+  pointer-events: none;
+  left: -90px;
+  width: 110px;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .change-type-multiplescale .tooltip::after,
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .change-type-multiplescale-2 .tooltip::after,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .change-type-multiplescale .tooltip::after,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .change-type-multiplescale-2 .tooltip::after {
+  content: '';
+  position: absolute;
+  right: 10px;
+  top: 100%;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #ffffff;
+  clear: both;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .add-second-mlt-qst,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .add-second-mlt-qst {
+  display: block;
+  width: 8px;
+  height: 8px;
+  background-image: url(./../img/icon-dropdownmt.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  position: absolute;
+  right: 0px;
+  top: 40px;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .add-second-mlt-qst.active:hover .tooltip-add,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .add-second-mlt-qst.active:hover .tooltip-add {
+  opacity: 0;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .add-second-mlt-qst.active:hover .tooltip-remove,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .add-second-mlt-qst.active:hover .tooltip-remove {
+  opacity: 1;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .add-second-mlt-qst:hover .tooltip-add,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .add-second-mlt-qst:hover .tooltip-add {
+  opacity: 1;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .add-second-mlt-qst:hover .tooltip-remove,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .add-second-mlt-qst:hover .tooltip-remove {
+  opacity: 0;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .add-second-mlt-qst .tooltip,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .add-second-mlt-qst .tooltip {
+  position: absolute;
+  opacity: 0;
+  padding: 5px;
+  font-family: "Montserrat";
+  font-size: 10px;
+  line-height: 12px;
+  color: #37353f;
+  -webkit-transition: opacity 0.3s ease-in 0s;
+  -o-transition: opacity 0.3s ease-in 0s;
+  transition: opacity 0.3s ease-in 0s;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+  background: #fff;
+  border-radius: 5px;
+  bottom: 20px;
+  pointer-events: none;
+  left: -90px;
+  width: 110px;
+}
+
+.construcot-container .rightside .default .text-aside .dropdown-options .option-group .add-second-mlt-qst .tooltip::after,
+.construcot-container .rightside .optionbox .text-aside .dropdown-options .option-group .add-second-mlt-qst .tooltip::after {
+  content: '';
+  position: absolute;
+  right: 10px;
+  top: 100%;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #ffffff;
+  clear: both;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
 }
 
 .construcot-container .rightside .default .text-aside .scale-option,
@@ -8059,6 +8299,48 @@ table {
           justify-content: space-between;
 }
 
+.construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint .multiple-row .option-row-name p,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .multiple-row .option-row-name p {
+  width: calc(100% - 25px);
+}
+
+.construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint .multiple-row .option-row-name .tooltip,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .multiple-row .option-row-name .tooltip {
+  position: absolute;
+  opacity: 0;
+  padding: 5px;
+  font-family: "Montserrat";
+  font-size: 10px;
+  line-height: 12px;
+  color: #37353f;
+  -webkit-transition: opacity 0.3s ease-in 0s;
+  -o-transition: opacity 0.3s ease-in 0s;
+  transition: opacity 0.3s ease-in 0s;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+  background: #fff;
+  border-radius: 5px;
+  bottom: 20px;
+  pointer-events: none;
+  left: -40px;
+}
+
+.construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint .multiple-row .option-row-name .tooltip::after,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .multiple-row .option-row-name .tooltip::after {
+  content: '';
+  position: absolute;
+  left: 40px;
+  top: 100%;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #ffffff;
+  clear: both;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+}
+
 .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint .multiple-row .option-row-name .remobe-multiple-row,
 .construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .multiple-row .option-row-name .remobe-multiple-row {
   width: 8px;
@@ -8066,9 +8348,34 @@ table {
   background-image: url(./../img/minus.svg);
   background-position: center;
   -webkit-background-size: contain;
-  background-size: contain;
+          background-size: contain;
   background-repeat: no-repeat;
   cursor: pointer;
+  margin-right: 5px;
+  position: relative;
+}
+
+.construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint .multiple-row .option-row-name .remobe-multiple-row:hover .tooltip,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .multiple-row .option-row-name .remobe-multiple-row:hover .tooltip {
+  opacity: 1;
+}
+
+.construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint .multiple-row .option-row-name .add-multiple-row,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .multiple-row .option-row-name .add-multiple-row {
+  width: 8px;
+  height: 8px;
+  background-image: url(./../img/plus.svg);
+  background-position: center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  position: relative;
+}
+
+.construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint .multiple-row .option-row-name .add-multiple-row:hover .tooltip,
+.construcot-container .rightside .optionbox .text-aside .form-group .inputtables .questionPoint .multiple-row .option-row-name .add-multiple-row:hover .tooltip {
+  opacity: 1;
 }
 
 .construcot-container .rightside .default .text-aside .form-group .inputtables .questionPoint .multiple-row .dropdown-options label,
