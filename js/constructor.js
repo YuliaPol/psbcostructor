@@ -1731,10 +1731,11 @@ jQuery(function ($) {
             }
             else {
                 let nameQuestion2 = $(this).parents('.second-options').find('.multiplequestion_name_2').attr('name').split('_');
+                console.log(nameQuestion2);
                 idQuestion = nameQuestion2[1];
                 idMultiple = nameQuestion2[2];
                 idMultiplePoint = nameQuestion2[3];
-                idMultiplePointSecond = namequestion[4];
+                idMultiplePointSecond = nameQuestion2[4];
             }
 
             if(namequestion){
