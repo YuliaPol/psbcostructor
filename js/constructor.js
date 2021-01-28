@@ -2388,7 +2388,10 @@ jQuery(function ($) {
                 if($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')')){
                     let multipeQuestions = $('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.multiple-group');
                     if(multipeQuestions[idMultiplePoint-1]){
-                        $(multipeQuestions[idMultiplePoint-1]).find('.item:nth-child('+ idPoint +')').remove();
+                        // $(multipeQuestions[idMultiplePoint-1]).find('.item:nth-child('+ idPoint +')').remove();
+                        let multipeItems = $(multipeQuestions[idMultiplePoint-1]).find('.multipleanswer').children();
+                        $(multipeItems[idPoint-1]).remove();
+
                     }
                 }
             }
@@ -2502,7 +2505,7 @@ jQuery(function ($) {
             }
         });
         $('.rightside').on('click', '.multiple-row .add-second-mlt-qst', function(e){
-            if($(this).hasClass('active')){
+            if($(this).hasClass('active') || $($(this).parents('.option-group')[0]).find('.second-options').length>0 ){
                 $(this).removeClass('active');
                 var namequestion = $(this).parents('.option-group').find('.multiplescale-question').attr('name').split('_');
                 var idQuestion = namequestion[1];
@@ -2519,7 +2522,7 @@ jQuery(function ($) {
             }
             else {
                 $(this).addClass('active');
-                var namequestion = $(this).parents('.option-group').find('.multiplescale-question').attr('name').split('_');
+                var namequestion = $($(this).parents('.option-group')[0]).find('.multiplescale-question').attr('name').split('_');
                 var idQuestion = namequestion[1];
                 var idMultiple = namequestion[2];
                 var idMultiplePoint = namequestion[3];
@@ -2575,11 +2578,12 @@ jQuery(function ($) {
                         +'  </div>'
                         +'</div>';
     
-                    $(newOption).appendTo($(this).parents('.option-group'));
+                    $(newOption).appendTo($($(this).parents('.option-group')[0]));
                     if($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')')){
                         let multipeQuestions = $('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.multiple-group');
                         if(multipeQuestions[idMultiplePoint-1]){
-                            $(newEl).appendTo($(multipeQuestions[idMultiplePoint-1]).find('.item:nth-child('+ idPoint +')'));
+                            let multipeItems = $(multipeQuestions[idMultiplePoint-1]).find('.multipleanswer').children();
+                            $(newEl).appendTo($(multipeItems[idPoint-1]));
                         }
                     }
                 }
@@ -2653,6 +2657,21 @@ jQuery(function ($) {
 
                 $(newOption).appendTo(parents);
                 $(newEl).appendTo($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')'));
+            }
+        });
+        
+        $('.rightside').on('click', '.multiple-row .remove-brn-mtp-qst-2', function(e){
+            var parents = $(this).parents('.second-options');
+            var namequestion = $(this).parents('.second-options').find('.multiplequestion_name_2').attr('name').split('_');
+            var idQuestion = namequestion[1];
+            var idMultiple = namequestion[2];
+            var idMultiplePoint = namequestion[3];
+            if($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.multiple-group').length>0){
+                let multipleGropus = $('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.multiple-group');
+                if(multipleGropus[idMultiplePoint-1]) {
+                    $(multipleGropus[idMultiplePoint-1]).find('.multiple-second-group').remove();
+                }
+                parents.remove();
             }
         });
         $('.rightside').on('click', '.multiple-row .remove-brn-mtp-qst', function(e){
@@ -3839,7 +3858,6 @@ jQuery(function ($) {
                 }
             }
         });
-
 
         // $(".spinner").inputFilter(function(value) {
         //     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 15);
