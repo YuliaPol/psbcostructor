@@ -1226,6 +1226,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
             display: flex;
             flex-wrap: wrap;
             justify-content: start !important;
+            align-items: stretch;
             .container-ii {
                 width: 20% !important;
                 min-width: 220px;
@@ -1236,6 +1237,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                     align-items: center;
                     justify-content: flex-start;
                     padding: 10px;
+                    height: 100%;
                     .frist-block {
                         padding-right: 10px;
                         margin-right: 15px;
@@ -1256,19 +1258,25 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                         .bot-block {
                             font-size: 12px;
                             color: #ffffff;
-                            height: 30px;
+                            // height: 30px;
                             display: flex;
                             align-items: flex-start;
                             justify-content: center;
                             text-transform: uppercase;
                             padding-right: 10px;
                             flex-wrap: wrap;
-                            flex-direction: column;
+                            flex-direction: row;
                             line-height: 1.2;
+                            align-items: center;
+                            justify-content: flex-start;
+                            flex-wrap: wrap;
                             span {
                                 display: inline-block;
                                 width: 100%;
+                                font-size: 11px;
                                 text-align: left;
+                                width: auto;
+                                padding-right: 10px;
                                 &:nth-child(2) {
                                     text-align: right;
                                 }
@@ -1293,6 +1301,39 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                 }
               }
           }
+    }
+    .flex-row {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        .download-exel-wrapper {
+            padding-top: 45px;
+            padding-bottom: 45px;
+            a {
+                text-decoration: none;
+                outline: none;
+                color: inherit;
+            }
+            .label {
+                display: inline-block;
+                padding-right: 15px;
+                font-family: $fontpage;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 20px;
+                line-height: 24px;
+                color: #605A5A;
+                vertical-align: middle;
+            }
+            .picture {
+                display: inline-block;
+                width: 50px;
+                vertical-align: middle;
+                img {
+                    max-width: 100%;
+                }
+            }
+        }
     }
     .searh-row {
         padding-top: 45px;
@@ -2295,6 +2336,25 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                         line-height: 18px;
                         color: #000000;
                         padding-bottom: 15px;
+                    }
+                    .form-group {
+                        input[type=text] {
+                            border-top: 0px;
+                            border-left: 0px;
+                            border-right: 0px;
+                            border-bottom: 1px solid #A4A2A2;
+                            width: 100%;
+                            padding-bottom: 10px;
+                            padding-top: 10px;
+                            outline: none;
+                            background: transparent;
+                            font-family: "Montserrat";
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 12px;
+                            line-height: 15px;
+                            color: #37353F;
+                        }
                     }
                 }
                 .hidden-question,
@@ -7323,7 +7383,104 @@ html .ui-button.ui-state-disabled:active {
         margin-bottom: 20px;
     }
 }
-
+ul.pagination {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    &.bg-white {
+        background-color: #ffffff;
+    }
+    li {
+        padding: 0px 5px;
+        a,
+        span {
+            margin: 20px 0px;
+            padding: 6px 12px;
+            background: #FBFBFB;
+            color: #000000;
+            border: none;
+            border-right: none;
+            text-decoration: none;
+            border-radius: 3px;
+            font-family: $fontpage;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 18px;
+            color: #605A5A;
+            border: 1px solid $voilet;
+            transition: background-color 0.3s ease-in;
+            &:hover {
+                background-color: $voilet !important;
+                color: #FFFFFF !important;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            }
+        }
+        &.active {
+            a {
+                background-color: $voilet !important;
+                color: #FFFFFF !important;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            }
+        }
+    }
+    .prev {
+        span {
+            border: 1px solid $voilet;
+            border-radius: 4px;
+            padding: 6px 12px;
+            background-color: $voilet;
+            font-family: $fontpage;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 13px;
+            line-height: 15px;
+            color: #FFFFFF;
+        }
+        a {
+            border: 1px solid $voilet;
+            border-radius: 4px;
+            padding: 6px 12px;
+            background-color: $voilet;
+            font-family: $fontpage;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 13px;
+            line-height: 15px;
+            color: #FFFFFF;
+        }
+    }
+    .next {
+        span {
+            border: 1px solid $voilet;
+            border-radius: 4px;
+            padding: 6px 12px;
+            background-color: $voilet;
+            font-family: $fontpage;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 13px;
+            line-height: 15px;
+            color: #FFFFFF;
+        }
+        a {
+            border: 1px solid $voilet;
+            border-radius: 4px;
+            padding: 6px 12px;
+            background-color: $voilet;
+            font-family: $fontpage;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 13px;
+            line-height: 15px;
+            color: #FFFFFF;
+        }
+    }
+}
 @media screen and (min-width: 1500px) {
     .anket-content {
         .filter-wrapper .box {
@@ -7517,6 +7674,14 @@ html .ui-button.ui-state-disabled:active {
     .anket-content {
         padding-left: 20px;
         padding-right: 20px;
+        .flex-row {
+            flex-direction: column;
+            align-items: flex-start;
+            .download-exel-wrapper {
+                padding-top: 0px;
+                padding-bottom: 20px;
+            }
+        }
         .table-content {
             .table-wrapper {
                 table {

@@ -1661,6 +1661,10 @@ table {
   -webkit-justify-content: start !important;
       -ms-flex-pack: start !important;
           justify-content: start !important;
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
 }
 
 .anket-content .row-ankets .row.btns-info .container-ii {
@@ -1684,6 +1688,7 @@ table {
       -ms-flex-pack: start;
           justify-content: flex-start;
   padding: 10px;
+  height: 100%;
 }
 
 .anket-content .row-ankets .row.btns-info .container-ii .show-block .frist-block {
@@ -1706,7 +1711,6 @@ table {
 .anket-content .row-ankets .row.btns-info .container-ii .show-block .second-block .bot-block {
   font-size: 12px;
   color: #ffffff;
-  height: 30px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1724,18 +1728,30 @@ table {
   -webkit-flex-wrap: wrap;
       -ms-flex-wrap: wrap;
           flex-wrap: wrap;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
   line-height: 1.2;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .anket-content .row-ankets .row.btns-info .container-ii .show-block .second-block .bot-block span {
   display: inline-block;
   width: 100%;
+  font-size: 11px;
   text-align: left;
+  width: auto;
+  padding-right: 10px;
 }
 
 .anket-content .row-ankets .row.btns-info .container-ii .show-block .second-block .bot-block span:nth-child(2) {
@@ -1760,6 +1776,54 @@ table {
 
 .anket-content .row-ankets .row.btns-info .container-ii .show-block.orange {
   background-color: #df4d50;
+}
+
+.anket-content .flex-row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.anket-content .flex-row .download-exel-wrapper {
+  padding-top: 45px;
+  padding-bottom: 45px;
+}
+
+.anket-content .flex-row .download-exel-wrapper a {
+  text-decoration: none;
+  outline: none;
+  color: inherit;
+}
+
+.anket-content .flex-row .download-exel-wrapper .label {
+  display: inline-block;
+  padding-right: 15px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 24px;
+  color: #605A5A;
+  vertical-align: middle;
+}
+
+.anket-content .flex-row .download-exel-wrapper .picture {
+  display: inline-block;
+  width: 50px;
+  vertical-align: middle;
+}
+
+.anket-content .flex-row .download-exel-wrapper .picture img {
+  max-width: 100%;
 }
 
 .anket-content .searh-row {
@@ -3748,6 +3812,24 @@ table {
   line-height: 18px;
   color: #000000;
   padding-bottom: 15px;
+}
+
+.construcot-container .centerbox .questions-box .question .multiple-group .form-group input[type=text] {
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 1px solid #A4A2A2;
+  width: 100%;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  outline: none;
+  background: transparent;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #37353F;
 }
 
 .construcot-container .centerbox .questions-box .question .hidden-question,
@@ -10944,6 +11026,119 @@ html .ui-button.ui-state-disabled:active {
   margin-bottom: 20px;
 }
 
+ul.pagination {
+  padding: 0;
+  margin: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  list-style: none;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+ul.pagination.bg-white {
+  background-color: #ffffff;
+}
+
+ul.pagination li {
+  padding: 0px 5px;
+}
+
+ul.pagination li a,
+ul.pagination li span {
+  margin: 20px 0px;
+  padding: 6px 12px;
+  background: #FBFBFB;
+  color: #000000;
+  border: none;
+  border-right: none;
+  text-decoration: none;
+  border-radius: 3px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 18px;
+  color: #605A5A;
+  border: 1px solid #563BC2;
+  -webkit-transition: background-color 0.3s ease-in;
+  -o-transition: background-color 0.3s ease-in;
+  transition: background-color 0.3s ease-in;
+}
+
+ul.pagination li a:hover,
+ul.pagination li span:hover {
+  background-color: #563BC2 !important;
+  color: #FFFFFF !important;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+ul.pagination li.active a {
+  background-color: #563BC2 !important;
+  color: #FFFFFF !important;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+ul.pagination .prev span {
+  border: 1px solid #563BC2;
+  border-radius: 4px;
+  padding: 6px 12px;
+  background-color: #563BC2;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 15px;
+  color: #FFFFFF;
+}
+
+ul.pagination .prev a {
+  border: 1px solid #563BC2;
+  border-radius: 4px;
+  padding: 6px 12px;
+  background-color: #563BC2;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 15px;
+  color: #FFFFFF;
+}
+
+ul.pagination .next span {
+  border: 1px solid #563BC2;
+  border-radius: 4px;
+  padding: 6px 12px;
+  background-color: #563BC2;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 15px;
+  color: #FFFFFF;
+}
+
+ul.pagination .next a {
+  border: 1px solid #563BC2;
+  border-radius: 4px;
+  padding: 6px 12px;
+  background-color: #563BC2;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 15px;
+  color: #FFFFFF;
+}
+
 @media screen and (min-width: 1500px) {
   .anket-content .filter-wrapper .box {
     width: calc(25% - 20px);
@@ -11181,6 +11376,21 @@ html .ui-button.ui-state-disabled:active {
   .anket-content {
     padding-left: 20px;
     padding-right: 20px;
+  }
+  .anket-content .flex-row {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+  .anket-content .flex-row .download-exel-wrapper {
+    padding-top: 0px;
+    padding-bottom: 20px;
   }
   .anket-content .table-content .table-wrapper table thead th {
     padding: 15px 10px;

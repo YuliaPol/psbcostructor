@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,6 +17,7 @@
     <script src="./js/jquery.drawDoughnutChart.js"></script>
     <script src="./js/jquery.drawPieChart.js"></script>
 </head>
+
 <body>
     <header class="header  sm-header">
         <div class="header-row">
@@ -48,10 +50,13 @@
             </div>
         </div>
     </header>
-    <div class="charts-content">
+    <div class="charts-content form-html">
         <div class="charts-header">
             Отчётность / Тестирование дизайна
         </div>
+        <li>
+            <a title="Download" id="create_pdf">PDF</a>
+        </li>
         <div class="chart-row">
             <div class="chart-box width-33">
                 <div class="chart-header">
@@ -114,8 +119,8 @@
             </div>
             <div class="chart-box width-33">
                 <div class="chart-header">
-                    5 . Насколько для Вас актуален и соответствует 
-                    Вашим потребностям этот товар/ 
+                    5 . Насколько для Вас актуален и соответствует
+                    Вашим потребностям этот товар/
                     продукт/ прототип?
                 </div>
                 <div class="chart-content">
@@ -146,7 +151,7 @@
             </div>
             <div class="chart-box width-33">
                 <div class="chart-header">
-                    7 . Оцените Ваше желание узнать больше  об этом товаре/ продукте/ прототипе?
+                    7 . Оцените Ваше желание узнать больше об этом товаре/ продукте/ прототипе?
                 </div>
                 <div class="chart-content">
                     <div class="lineChart">
@@ -160,7 +165,7 @@
             <div class="chart-box width-33">
                 <div class="chart-header">
                     8 . Оцените Ваше желание купить этот товар
-                    /продукт прототип по цене/дать возможность 
+                    /продукт прототип по цене/дать возможность
                     вставить цену/?
                 </div>
                 <div class="chart-content">
@@ -173,7 +178,7 @@
             </div>
             <div class="chart-box width-33">
                 <div class="chart-header">
-                    9 . Вы бы рассказали об этом товаре своим 
+                    9 . Вы бы рассказали об этом товаре своим
                     друзьям, если бы увидели его в реальной жизни?
                 </div>
                 <div class="chart-content">
@@ -191,8 +196,6 @@
         </div>
     </div>
     <script src="./js/charts.js?4898765454"></script>
-
-    
     <script type="text/javascript">
         var chartData = [ //массив с данными для графиков типу круги в кругах
             {
@@ -407,7 +410,7 @@
                     {
                         progress: "450",
                         labelText: "4"
-                    },    
+                    },
                     {
                         progress: "560",
                         labelText: "5"
@@ -479,5 +482,65 @@
             },
         ];
     </script>
+    <script src="./js/html2canvas.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script>
+        jQuery(function ($) {
+            $(document).ready(function () {
+                (function () {
+                    var
+                        form = $('.form-html'),
+                        cache_width = form.width(),
+                        a4 = [1100.28, 580.89];  // for a4 size paper width and height
+
+                    $('#create_pdf').on('click', function () {
+                        $('body').scrollTop(0);
+                        createPDF();
+                    });
+                    //create pdf
+                    function createPDF() {
+                        getCanvas().then(function (canvas) {
+                            var imgData = canvas.toDataURL('image/png');
+                            /*
+                            Here are the numbers (paper width and height) that I found to work.
+                            It still creates a little overlap part between the pages, but good enough for me.
+                            if you can find an official number from jsPDF, use them.
+                            */
+                            var imgWidth = 210;
+                            var pageHeight = 295;
+                            var imgHeight = canvas.height * imgWidth / canvas.width;
+                            var heightLeft = imgHeight;
+
+                            var doc = new jsPDF('p', 'mm');
+                            var position = 0;
+
+                            doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                            heightLeft -= pageHeight;
+
+                            while (heightLeft >= 0) {
+                                position = heightLeft - imgHeight;
+                                doc.addPage();
+                                doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                                heightLeft -= pageHeight;
+                            }
+                            doc.save('datamagnified_AE.pdf');
+                        });
+                    }
+
+
+                    // create canvas object
+                    function getCanvas() {
+                        form.width((a4[0] * 1.33333) - 80).css('max-width', 'none');
+                        return html2canvas(form[0], {
+                            imageTimeout: 2000,
+                            removeContainer: true
+                        });
+                    }
+
+                }());
+            });
+        });
+    </script>
 </body>
+
 </html>

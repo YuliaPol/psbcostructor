@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отчётность / Тестирование идейной составляющей</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/charts.css">
+
+    <script src="./js/jquery-3.5.1.min.js"></script>
+    <script src="./js/script.js"></script>
+    <script src="./js/jqueryRadialBarMultiple.js"></script>
+    <script src="./js/Chart.min.js"></script>
+    <script src="./js/Chart.roundedBarCharts.js"></script>
+    <script src="./js/jquery.drawDoughnutChart.js"></script>
+    <script src="./js/jquery.drawPieChart.js"></script>
+</head>
+<body>
+    <header class="header  sm-header">
+        <div class="header-row">
+            <div class="panelmenu">
+                <ul>
+                    <li class="active">
+                        <a href="#">Все опросы</a>
+                    </li>
+                    <li>
+                        <a href="#">Архив</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="navbar-user">
+                <div class="user">
+                    <div class="user-wrapper show-user-dropdown">
+                        <div class="user-name">Alexander Pierce</div>
+                        <div class="icon-user">
+                            <img src="./img/user.png" alt="Alexander Pierce">
+                        </div>
+                    </div>
+                    <div class="dropdown-user">
+                        <ul>
+                            <li>
+                                <a href="#" class="logout">Выход </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <script>
+        var chartData = new Array();
+    </script>
+    <style>
+        .download-pdf {
+            padding-bottom: 20px;
+            padding-top: 10px;
+        }
+        .download-pdf a {
+            font-size: 18px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+    <div class="charts-content form-html">
+        <div class="download-pdf">
+            <a title="Download" id="create_pdf">PDF</a>
+        </div>
+        <div class="charts-header">
+            Отчётность / Тестирование идейной составляющей
+        </div>
+        <div class="chart-row">
+            <div class="chart-box full-width">
+                <div class="chart-header">
+                    1 . Насколько Вам в целом нравится эта идея?
+                </div>
+                <div class="chart-content">
+                    <div class="horizonatal-line-1"></div>
+                    <script>
+                        chartData.push({
+                            element: '.horizonatal-line-1', // класс елемента
+                            type: 'HorizontalLines',               //тип графіка
+                            data: [                          //данные графика      
+                                {
+                                    background: "#EE9382",
+                                    progress: "200",
+                                    labelText: "0 - 6"
+                                },
+                                {
+                                    background: "#009FEF",
+                                    progress: "150",
+                                    labelText: "7 - 8"
+                                },
+                                {
+                                    background: "#00C67B",
+                                    progress: "390",
+                                    labelText: "9 - 10"
+                                }
+                            ]
+                        });
+                    </script>
+                </div>
+            </div>
+            <div class="chart-box width-50">
+                <div class="chart-header">
+                    2 . Лично Вы согласились бы принять участие в подобной акции?
+                </div>
+                <div class="chart-content">
+                    <div class="radialbarmultiple">
+                        <div class="chart">
+                            <div class="radialbarmultiple-1"></div>
+                        </div>
+                        <div class="legend">
+                            <div class="legend-list">
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        var element = 
+                        {
+                            element: '.radialbarmultiple-1', // класс елемента
+                            type: 'radialbar',               //тип графіка
+                            data: [                          //данные графика      
+                                {
+                                    background: "#F5ED9D",
+                                    progress: "200",
+                                    labelText: "1"
+                                },
+                                {
+                                    background: "#D68EE9",
+                                    progress: "150",
+                                    labelText: "2"
+                                },
+                                {
+                                    background: "#2D99FF",
+                                    progress: "390",
+                                    labelText: "3"
+                                },
+                                {
+                                    background: "#16CEB9",
+                                    progress: "470",
+                                    labelText: "4"
+                                },
+                                {
+                                    background: "#7E80D7",
+                                    progress: "460",
+                                    labelText: "5"
+                                },
+                            ]
+                        };
+                        chartData.push(element);
+                    </script>
+                </div>
+            </div>
+            <div class="chart-box width-50">
+                <div class="chart-header">
+                    3 . Насколько для Вас актуально и соответствует Вашим потребностям то, что дает данный продукт/услуга?
+                </div>
+                <div class="chart-content">
+                    <div class="varticalbar">
+                        <div class="chart">
+                            <div class=" varticalbarChart-1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="chart-box width-50">
+                <div class="chart-header">
+                    4 . Насколько выгодной кажется Вам данная акция?
+                </div>
+                <div class="chart-content">
+                    <div class="horizonatlbar">
+                        <div class="chart">
+                            <div class="horizonatlbar-1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="chart-box width-50">
+                <div class="chart-header">
+                    5 . Оцените Ваше желание воспользоваться продуктом/услугой, указанным в акции?
+                </div>
+                <div class="chart-content">
+                    <div class="dougnat">
+                        <div class="chart">
+                            <div class="dougnat-1"></div>
+                        </div>
+                        <div class="legend">
+                            <div class="legend-list">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="chart-box width-50">
+                <div class="chart-header">
+                    6 . Вы бы обратили внимание на данный продукт/услугу, если бы случайно увидели/услышали о нем?
+                </div>
+                <div class="chart-content">
+                    <div class="pieChart">
+                        <div class="chart">
+                            <div class="pie-1"></div>
+                        </div>
+                        <div class="legend">
+                            <div class="legend-list">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="chart-box width-50">
+                <div class="chart-header">
+                    7 . Вы бы рассказали о данном продукте/услуге своим друзьям, если бы узнали о нем в реальной жизни?
+                </div>
+                <div class="chart-content">
+                    <div class="lineChart">
+                        <div class="chart">
+                            <div class="line-1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/charts.js?875454545"></script>
+    <script type="text/javascript">
+        chartData.push( //массив с данными для графиков типу круги в кругах
+            {
+                element: '.varticalbarChart-1', // класс елемента
+                type: 'simpleBar',               //тип графіка
+                data: [                          //данные графика      
+                    {
+                        background: "#FE8F8F",
+                        progress: "100",
+                        labelText: "1"
+                    },
+                    {
+                        background: "#FFE789",
+                        progress: "350",
+                        labelText: "2"
+                    },
+                    {
+                        background: '#9BBCFF',
+                        progress: "280",
+                        labelText: "3"
+                    },
+                    {
+                        background: "#A89CF2",
+                        progress: "470",
+                        labelText: "4"
+                    },
+                    {
+                        background: "#76DDB2",
+                        progress: "560",
+                        labelText: "5"
+                    }
+                ]
+            },
+            {
+                element: '.horizonatlbar-1', // класс елемента
+                type: 'horizontalbar',               //тип графіка
+                data: [                          //данные графика   
+                    {
+                        background: "#F3D0FF",
+                        progress: "500",
+                        labelText: "1"
+                    },   
+                    {
+                        background: "#78F3EF",
+                        progress: "400",
+                        labelText: "2"
+                    },
+                    {
+                        background: "#FFEDAB",
+                        progress: "250",
+                        labelText: "3"
+                    },
+                    {
+                        background: "#00D2FB",
+                        progress: "300",
+                        labelText: "4"
+                    },
+                    {
+                        background: "#FFA2C6",
+                        progress: "200",
+                        labelText: "5"
+                    }
+                ]
+            },
+            {
+                element: '.dougnat-1', // класс елемента
+                type: 'dougnatSimple',               //тип графіка
+                data: [                          //данные графика      
+                    {
+                        background: "#8ED995",
+                        progress: "250",
+                        labelText: "1"
+                    },
+                    {
+                        background: "#F69394",
+                        progress: "300",
+                        labelText: "2"
+                    },  
+                    {
+                        background: "#FFF386",
+                        progress: "480",
+                        labelText: "3"
+                    },  
+                    {
+                        background: "#FADA99",
+                        progress: "340",
+                        labelText: "4"
+                    },
+                    {
+                        background: "#A9DDD6",
+                        progress: "580",
+                        labelText: "5"
+                    },
+                ]
+            },
+            {
+                element: '.pie-1', // класс елемента
+                type: 'pieSimple',               //тип графіка
+                data: [                          //данные графика    
+                    {
+                        background: "#85D2F0",
+                        progress: "10",
+                        labelText: "1"
+                    },
+                    {
+                        background: "#EE8E7B",
+                        progress: "115",
+                        labelText: "2"
+                    },
+                    {
+                        background: "#FFE700",
+                        progress: "230",
+                        labelText: "3"
+                    }, 
+                    {
+                        background: "#7EA7E0",
+                        progress: "280",
+                        labelText: "4"
+                    }, 
+                    {
+                        background: "#C6B7E8",
+                        progress: "350",
+                        labelText: "5"
+                    }
+                ]
+            },
+            {
+                element: '.line-1', // класс елемента
+                type: 'shadowLine',               //тип графіка
+                borderColor: '#BDA0FF',
+                data: [                          //данные графика      
+                    {
+                        progress: "310",
+                        labelText: "1"
+                    },
+                    {
+                        progress: "380",
+                        labelText: "2"
+                    },
+                    {
+                        progress: "320",
+                        labelText: "3"
+                    },
+                    {
+                        progress: "560",
+                        labelText: "4"
+                    },
+                    {
+                        progress: "500",
+                        labelText: "5"
+                    }
+                ]
+            }
+        );
+    </script>
+    <script src="./js/html2canvas.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+     <script>
+        jQuery(function ($) {
+            $(document).ready(function () {
+                (function () {
+                    var
+                        form = $('.form-html'),
+                        cache_width = form.width(),
+                        a4 = [1100.28, 580.89];  // for a4 size paper width and height
+
+                    $('#create_pdf').on('click', function () {
+                        $('body').scrollTop(0);
+                        createPDF();
+                    });
+                    //create pdf
+                    function createPDF() {
+                        getCanvas().then(function (canvas) {
+                            var imgData = canvas.toDataURL('image/png');
+                            /*
+                            Here are the numbers (paper width and height) that I found to work.
+                            It still creates a little overlap part between the pages, but good enough for me.
+                            if you can find an official number from jsPDF, use them.
+                            */
+                            var imgWidth = 210;
+                            var pageHeight = 295;
+                            var imgHeight = canvas.height * imgWidth / canvas.width;
+                            var heightLeft = imgHeight;
+
+                            var doc = new jsPDF('p', 'mm');
+                            var position = 0;
+
+                            doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                            heightLeft -= pageHeight;
+
+                            while (heightLeft >= 0) {
+                                position = heightLeft - imgHeight;
+                                doc.addPage();
+                                doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                                heightLeft -= pageHeight;
+                            }
+                            doc.save('datamagnified_AE.pdf');
+                        });
+                    }
+
+
+                    // create canvas object
+                    function getCanvas() {
+                        form.width((a4[0] * 1.33333) - 80).css('max-width', 'none');
+                        return html2canvas(form[0], {
+                            imageTimeout: 2000,
+                            removeContainer: true
+                        });
+                    }
+
+                }());
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1768,21 +1768,108 @@ jQuery(function ($) {
             $(this).toggleClass('textbox');
             if($(this).find('input[type=checkbox]').is(":checked")){
                 $(this).find('input[type=checkbox]').prop('checked', false );
+
+                
+                var namequestion = $($(this).parents('.option-group')[0]).find('.multiplescale-question-2').attr('name').split('_');
+                var idQuestion = namequestion[1];
+                var idMultiple = namequestion[2];
+                var idMultiplePoint = namequestion[3];
+                var idPoint = parseInt(namequestion[4]);
+                var idPointSecond = parseInt(namequestion[5]);
+                if($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.item:nth-child('+ idPoint +')').length>0){
+                    if($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')')){
+                        let multipeQuestions = $('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.multiple-group');
+                        if(multipeQuestions[idMultiplePoint-1]){
+                            let multi2 = $(multipeQuestions[idMultiplePoint-1]).find('.item:nth-child('+ idPoint +')').find('.multiple-second-group .item');
+                            if(multi2[idPointSecond-1]){
+                                let name = $(multi2[idPointSecond-1]).find('.name').html();
+                                let newHtml = name;
+                                $(multi2[idPointSecond-1]).html(newHtml);
+                            }
+                        }
+                    }
+                }
+
             }
             else {
                 $(this).find('input[type=checkbox]').prop('checked', true );
+
+
+                var namequestion = $($(this).parents('.option-group')[0]).find('.multiplescale-question-2').attr('name').split('_');
+                var idQuestion = namequestion[1];
+                var idMultiple = namequestion[2];
+                var idMultiplePoint = namequestion[3];
+                var idPoint = parseInt(namequestion[4]);
+                var idPointSecond = parseInt(namequestion[5]);
+                if($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.item:nth-child('+ idPoint +')').length>0){
+                    if($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')')){
+                        let multipeQuestions = $('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.multiple-group');
+                        if(multipeQuestions[idMultiplePoint-1]){
+                            let multi2 = $(multipeQuestions[idMultiplePoint-1]).find('.item:nth-child('+ idPoint +')').find('.multiple-second-group .item');
+                            if(multi2[idPointSecond-1]){
+                                let name = $(multi2[idPointSecond-1]).html();
+                                let newHtml = 
+                                '<div class="name">'+ name +'</div>'
+                                +'<div class="form-group">'
+                                +'    <input type="text" name="brnchmultibllockanswer_' + idQuestion + '_' + idMultiple +'_' + idMultiplePoint  + '_' + idPoint + '_' + idPointSecond + '"'
+                                +'    id="brnchmultibllockanswer_' + idQuestion + '_' + idMultiple +'_' + idMultiplePoint  + '_' + idPoint + '_' + idPointSecond + '" placeholder="Ваш ответ">'
+                                +'</div>';
+                                $(multi2[idPointSecond-1]).html(newHtml);
+                            }
+                        }
+                    }
+                }
             }
         });
         $('.rightside').on('click', '.dropdown-options .change-type-multiplescale', function(e){
             $(this).toggleClass('textbox');
             if($(this).find('input[type=checkbox]').is(":checked")){
                 $(this).find('input[type=checkbox]').prop('checked', false );
+                var namequestion = $(this).parents('.option-group').find('.multiplescale-question').attr('name').split('_');
+                var idQuestion = namequestion[1];
+                var idMultiple = namequestion[2];
+                var idMultiplePoint = namequestion[3];
+                var idPoint = parseInt(namequestion[4]);
+                if($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.item:nth-child('+ idPoint +')').length>0){
+                    if($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')')){
+                        let multipeQuestions = $('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.multiple-group');
+                        if(multipeQuestions[idMultiplePoint-1]){
+                            let multipeItems = $(multipeQuestions[idMultiplePoint-1]).find('.multipleanswer').children();
+                            let name = $(multipeItems[idPoint-1]).find('.value .name').html();
+                            let newHtml = name;
+                            $(multipeItems[idPoint-1]).find('.value').html(newHtml);
+                        }
+                    }
+                }
             }
             else {
                 $(this).find('input[type=checkbox]').prop('checked', true );
                 if($(this).parents('.option-group').find('.add-second-mlt-qst').hasClass('active')){
                     $(this).parents('.option-group').find('.add-second-mlt-qst').click();
                 }
+
+                var namequestion = $(this).parents('.option-group').find('.multiplescale-question').attr('name').split('_');
+                var idQuestion = namequestion[1];
+                var idMultiple = namequestion[2];
+                var idMultiplePoint = namequestion[3];
+                var idPoint = parseInt(namequestion[4]);
+                if($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.item:nth-child('+ idPoint +')').length>0){
+                    if($('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')')){
+                        let multipeQuestions = $('#questionbrnaching_' + idQuestion).find('.branching-group:nth-child('+ idMultiple +')').find('.multiple-group');
+                        if(multipeQuestions[idMultiplePoint-1]){
+                            let multipeItems = $(multipeQuestions[idMultiplePoint-1]).find('.multipleanswer').children();
+                            let name = $(multipeItems[idPoint-1]).find('.value').html();
+                            let newHtml = 
+                            '<div class="name">'+ name +'</div>'
+                            +'<div class="form-group">'
+                            +'    <input type="text" name="brnchmultibllockanswer_' + idQuestion + '_' + idMultiple +'_' + idMultiplePoint  + '_' + idPoint + '"'
+                            +'    id="brnchmultibllockanswer_' + idQuestion + '_' + idMultiple +'_' + idMultiplePoint  + '_' + idPoint + '" placeholder="Ваш ответ">'
+                            +'</div>';
+                            $(multipeItems[idPoint-1]).find('.value').html(newHtml);
+                        }
+                    }
+                }
+
             }
         });
         $('.rightside').on('click', '.dropdown-options .add-dropdown', function(e){
