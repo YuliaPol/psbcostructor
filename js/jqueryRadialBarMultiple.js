@@ -102,7 +102,7 @@ RadialBar.prototype = {
                 stroreWidth = 12 - 6;
             }
             self._buildCircle(object, raiusCircle, stroreWidth, maxValue, strokeCloneCircle, percent);
-            if(self.options["legend"] == 'square'){
+            if(self.options["legend"] == 'square' || $(self.element).parents('.charts-for-pdf').length > 0){
                 self._buildLabelSquare(object, paddingLabel, percent);
             }
             else if(self.options["legend"] == 'circle'){

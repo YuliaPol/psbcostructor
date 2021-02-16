@@ -50,23 +50,23 @@
             </div>
         </div>
     </header>
-    <style>
-        .download-pdf {
-            padding-bottom: 20px;
-            padding-top: 10px;
-        }
-        .download-pdf a {
-            font-size: 18px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-    </style>
-    <div class="charts-content form-html">
+    <div class="download-pdf">
+        <a title="Download" id="create_pdf">
+            <div class="label">Выгрузка</div>
+            <div class="picture">
+                <img src="./img/icons-pdf.png" alt="">
+            </div>
+        </a>
+    </div>
+    <div class="charts-for-pdf-wrapper">
+        <div class="charts-for-pdf">
+
+        </div>
+    </div>
+
+    <div class="charts-content ">
         <div class="charts-header">
             Отчётность / Тестирование дизайна
-        </div>
-        <div class="download-pdf">
-            <a title="Download" id="create_pdf">PDF</a>
         </div>
         <div class="chart-row">
             <div class="chart-box width-33">
@@ -495,63 +495,6 @@
     </script>
     <script src="./js/html2canvas.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
-    <script>
-        jQuery(function ($) {
-            $(document).ready(function () {
-                (function () {
-                    var
-                        form = $('.form-html'),
-                        cache_width = form.width(),
-                        a4 = [1100.28, 580.89];  // for a4 size paper width and height
-
-                    $('#create_pdf').on('click', function () {
-                        $('body').scrollTop(0);
-                        createPDF();
-                    });
-                    //create pdf
-                    function createPDF() {
-                        getCanvas().then(function (canvas) {
-                            var imgData = canvas.toDataURL('image/png');
-                            /*
-                            Here are the numbers (paper width and height) that I found to work.
-                            It still creates a little overlap part between the pages, but good enough for me.
-                            if you can find an official number from jsPDF, use them.
-                            */
-                            var imgWidth = 210;
-                            var pageHeight = 295;
-                            var imgHeight = canvas.height * imgWidth / canvas.width;
-                            var heightLeft = imgHeight;
-
-                            var doc = new jsPDF('p', 'mm');
-                            var position = 0;
-
-                            doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-                            heightLeft -= pageHeight;
-
-                            while (heightLeft >= 0) {
-                                position = heightLeft - imgHeight;
-                                doc.addPage();
-                                doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-                                heightLeft -= pageHeight;
-                            }
-                            doc.save('datamagnified_AE.pdf');
-                        });
-                    }
-
-
-                    // create canvas object
-                    function getCanvas() {
-                        form.width((a4[0] * 1.33333) - 80).css('max-width', 'none');
-                        return html2canvas(form[0], {
-                            imageTimeout: 2000,
-                            removeContainer: true
-                        });
-                    }
-
-                }());
-            });
-        });
-    </script>
 </body>
 
 </html>

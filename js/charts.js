@@ -2,7 +2,77 @@ jQuery(function ($) {
     $(document).ready(function () {
         if(typeof chartData != 'undefined'){
             if(chartData.length > 0){
+                copyChartsForPdf();
+                function copyChartsForPdf(){
+                    var chartsElements = $('.charts-content').clone();
+                    $('.charts-for-pdf').append(chartsElements);
+                    for (let i = 0; i < chartData.length; i++) {
+                        let className = chartData[i].element.split('.')[1] + '-PDF';
+                        $('.charts-for-pdf').find(chartData[i].element).attr('class', className);
+                    }
+                }
+                function drawChartsForPDF() {
+                    var chartPDFData = new Array();
+                    for (let i = 0; i < chartData.length; i++) {
+                        let tempEl = chartData[i];
+                        tempEl.elementPDF = tempEl.element + '-PDF';
+                        chartPDFData.push(tempEl);
+                    }
+                    DrawChartsPDF(chartPDFData);
+                }
+
                 DrawCharts(chartData);
+                drawChartsForPDF();
+                $('#create_pdf').on('click', function () {
+                    // $('body').scrollTop(0);
+                    setTimeout(function(){ createPDF(); }, 1500);
+                });
+                var form = $('.charts-for-pdf'),
+                cache_width = form.width(),
+                a4 = [1100.28, 580.89];  // for a4 size paper width and height
+                //create pdf
+                function createPDF() {
+                    getCanvas().then(function (canvas) {
+                        var imgData = canvas.toDataURL('image/jpeg', 1.0);
+                        /*
+                        Here are the numbers (paper width and height) that I found to work.
+                        It still creates a little overlap part between the pages, but good enough for me.
+                        if you can find an official number from jsPDF, use them.
+                        */
+                        var imgWidth = 210;
+                        var pageHeight = 295;
+                        var imgHeight = canvas.height * imgWidth / canvas.width;
+                        var heightLeft = imgHeight;
+
+                        var doc = new jsPDF('p', 'mm');
+                        var position = 0;
+                        var today = new Date();
+                        var dd = String(today.getDate()).padStart(2, '0');
+                        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                        var yyyy = today.getFullYear();
+
+                        doc.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight, '', 'FAST');
+                        heightLeft -= pageHeight;
+                        while (heightLeft >= 0) {
+                            position = heightLeft - imgHeight;
+                            doc.addPage();
+                            doc.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight, '', 'FAST');
+                            heightLeft -= pageHeight;
+                        }
+
+                        doc.save('выгрузка-' + dd + '-' + mm + '-' + yyyy + '.pdf');
+                    });
+                }
+
+
+                // create canvas object
+                function getCanvas() {
+                    form.width(a4[0]);
+                    return html2canvas(form[0], {
+                        imageTimeout: 1000,
+                        removeContainer: true
+                    });
+                }
             }
         }
     });
@@ -20,7 +90,9 @@ function DrawCharts(chartData){
         if(chartData[i].element && chartData[i].data){
             if(chartData[i].type == 'radialbar'){
                 var Radialdata = chartData[i].data;
-                Radialdata.reverse();
+                if(Radialdata[0].labelText !== '5') {
+                    Radialdata.reverse();
+                }
                 RadilaBar  = $(chartData[i].element).radialBar({
                     data: Radialdata,
                     width: "250",
@@ -31,7 +103,9 @@ function DrawCharts(chartData){
             }
             if(chartData[i].type == 'radialBar2'){
                 var Radialdata = chartData[i].data;
-                Radialdata.reverse();
+                if(Radialdata[0].labelText !== '5') {
+                    Radialdata.reverse();
+                }
                 RadilaBar  = $(chartData[i].element).radialBar({
                     data: Radialdata,
                     width: "250",
@@ -85,6 +159,76 @@ function DrawCharts(chartData){
         }
     }
 }
+function DrawChartsPDF(chartData){
+    for(let i = 0; i < chartData.length; i++){
+        if(chartData[i].elementPDF && chartData[i].data){
+            if(chartData[i].type == 'radialbar'){
+                var Radialdata = chartData[i].data;
+                // Radialdata.reverse();
+                RadilaBar  = $(chartData[i].elementPDF).radialBar({
+                    data: Radialdata,
+                    width: "350",
+                    height: "350",
+                    padding: 10,
+                    legend: 'square'
+                });
+            }
+            if(chartData[i].type == 'radialBar2'){
+                var Radialdata = chartData[i].data;
+                // Radialdata.reverse();
+                RadilaBar  = $(chartData[i].elementPDF).radialBar({
+                    data: Radialdata,
+                    width: "350",
+                    height: "350",
+                    padding: 10,
+                    strokeCloneCircle: 1,
+                    round: false,
+                    tooltip: true,
+                    legend: 'circle'
+                });
+            }
+            if(chartData[i].type == 'simpleBar'){
+                drawSimpleBar($(chartData[i].elementPDF), chartData[i].data);
+            }
+            if(chartData[i].type == 'horizontalbar'){
+                drawHorizontalBar(chartData[i].elementPDF, chartData[i].data);
+            }
+            if(chartData[i].type == 'dougnatSimple'){
+                drawDoughnatSimple(chartData[i].elementPDF, chartData[i].data);
+            }
+            if(chartData[i].type == 'dougnatIncrease'){
+                drawDoughnatIncrease(chartData[i].elementPDF, chartData[i].data);
+            }
+            if(chartData[i].type == 'pieSimple'){
+                drawPieSimple(chartData[i].elementPDF, chartData[i].data);
+            }
+            if(chartData[i].type == 'pieRound'){
+                drawPieRound(chartData[i].elementPDF, chartData[i].data);
+            }
+            if(chartData[i].type == 'verticalBar'){
+                drawVerticalBar(chartData[i].elementPDF, chartData[i].data);
+            }
+            if(chartData[i].type == 'shadowLine'){
+                drawShadowLine(chartData[i].elementPDF, chartData[i].data, chartData[i].borderColor);
+            }
+            if(chartData[i].type == 'lineDot'){
+                drawLineDot(chartData[i].elementPDF, chartData[i].data, chartData[i].dotColor);
+            }
+            if(chartData[i].type == 'pyramid'){
+                DrawPyramide(chartData[i].elementPDF, chartData[i].data);
+            }
+            if(chartData[i].type == 'varticalBarShadow'){
+                DrawVerticalBarShadow(chartData[i].elementPDF, chartData[i].data);
+            }
+            if(chartData[i].type == 'HorizontalLines'){
+                DrawHorizontalLines(chartData[i].elementPDF, chartData[i].data);
+            }
+            if(chartData[i].type == 'longLine'){
+                DrawLongLine(chartData[i].elementPDF, chartData[i].data);
+            }
+        }
+    }
+}
 function ClearChart(chartData){
     $('.doughnutTipExpand').remove();
     $('.pyraamidTip').remove();
@@ -134,7 +278,11 @@ function drawShadowLine(element, data, borderColor) {
         var id = element.split('.')[1];
         var width = 500;
         var height = 200;
-        if($(element).parents('.width-50').length>0){
+        if($(element).parents('.charts-for-pdf').length>0){
+            width = 600;
+            height = 200;
+        } 
+        else if($(element).parents('.width-50').length>0){
             if(window.screen.width > 992 && window.screen.width <= 1200) {
                 width = 600;
                 height = 350;
@@ -193,7 +341,45 @@ function drawShadowLine(element, data, borderColor) {
         gradient.addColorStop(0, borderColor);
         gradient.addColorStop(0.5, borderColor + '55');
         gradient.addColorStop(0.9, borderColor + '00');
-
+        Chart.plugins.register({
+            beforeRender: function(chart) {
+                if (chart.config.options.showAllTooltips) {
+                // create an array of tooltips, 
+                // we can't use the chart tooltip because there is only one tooltip per chart
+                chart.pluginTooltips = [];
+                chart.config.data.datasets.forEach(function(dataset, i) {
+                    chart.getDatasetMeta(i).data.forEach(function(sector, j) {
+                    chart.pluginTooltips.push(new Chart.Tooltip({
+                        _chart: chart.chart,
+                        _chartInstance: chart,
+                        _data: chart.data,
+                        _options: chart.options.tooltips,
+                        _active: [sector]
+                    }, chart));
+                    });
+                });      
+                chart.options.tooltips.enabled = false; // turn off normal tooltips
+                }
+            },
+            afterDraw: function(chart, easing) {
+                if (chart.config.options.showAllTooltips) {
+                if (!chart.allTooltipsOnce) {
+                    if (easing !== 1) {
+                    return;
+                    }
+                    chart.allTooltipsOnce = true;
+                }
+                chart.options.tooltips.enabled = true;
+                Chart.helpers.each(chart.pluginTooltips, function(tooltip) {
+                    tooltip.initialize();
+                    tooltip.update();
+                    tooltip.pivot();
+                    tooltip.transition(easing).draw();
+                });
+                chart.options.tooltips.enabled = false;
+                }
+            }
+        });
         var ChartData = {
             labels: labels,
             datasets: [{
@@ -204,7 +390,14 @@ function drawShadowLine(element, data, borderColor) {
                 borderColor: borderColor,
             }]
         };
-
+        var fontSize = 10;
+        if($(element).parents('.charts-for-pdf').length>0){
+            fontSize = 14;
+        } 
+        let showAllTooltips = false;
+        if($(element).parents('.charts-for-pdf').length > 0){
+            showAllTooltips = true;
+        }
         var optionsLine = {
             responsive: true,
             maintainAspectRatio: true,
@@ -221,7 +414,7 @@ function drawShadowLine(element, data, borderColor) {
                         lineWidth: 1
                     },
                     ticks: {
-                        fontSize: 10,
+                        fontSize: fontSize,
                         min: 0
                     }
                 }],
@@ -236,6 +429,7 @@ function drawShadowLine(element, data, borderColor) {
                         min: 0,
                         padding: 10,
                         beginAtZero: true,
+                        fontSize: fontSize,
                     }
                 }],
             },
@@ -260,6 +454,7 @@ function drawShadowLine(element, data, borderColor) {
                 yPadding: 5,
                 cornerRadius: 10,
                 displayColors: false,
+                fontSize: fontSize,
                 // yAlign: 'bottom',
                 // xAlign: 'center',
                 callbacks: {
@@ -282,7 +477,8 @@ function drawShadowLine(element, data, borderColor) {
                         return label;
                     }
                 }
-            }
+            },
+            showAllTooltips: showAllTooltips
         };
         chartInstanceTeam = new Chart(shadowLineEl, {
             type: 'ShadowLine',
@@ -347,12 +543,6 @@ function drawPieSimple(element, data){
         if(newData[0].title !== '5') {
             newData.reverse();
         }
-        // var newData = new Array(tempData.length);
-        // for (let i = 0; i < tempData.length; i++) {
-        //     newData[i].title = tempData[i].labelText;
-        //     newData[i].color = tempData[i].background;
-        //     newData[i].value = parseInt(tempData[i].progress);
-        // }
         if(newData) {
             if(total > 0) {
                 $(element).drawPieChart(newData);
@@ -388,7 +578,11 @@ function drawVerticalBar(element, data) {
         if(data[0].labelText !== '5') {
             data.reverse();
         }
-        if(window.screen.width > 768 && window.screen.width < 992){
+        if($(element).parents('.charts-for-pdf').length>0){
+            width = 600;
+            height = 200;
+        } 
+        else if(window.screen.width > 768 && window.screen.width < 992){
             width = 350;
             height = 200;
         }
@@ -421,7 +615,55 @@ function drawVerticalBar(element, data) {
             }]
         };
 
+        var fontSize = 10;
+        if($(element).parents('.charts-for-pdf').length>0){
+            fontSize = 14;
+        } 
+      
+        Chart.plugins.register({
+            beforeRender: function(chart) {
+                if (chart.config.options.showAllTooltips) {
+                // create an array of tooltips, 
+                // we can't use the chart tooltip because there is only one tooltip per chart
+                chart.pluginTooltips = [];
+                chart.config.data.datasets.forEach(function(dataset, i) {
+                    chart.getDatasetMeta(i).data.forEach(function(sector, j) {
+                    chart.pluginTooltips.push(new Chart.Tooltip({
+                        _chart: chart.chart,
+                        _chartInstance: chart,
+                        _data: chart.data,
+                        _options: chart.options.tooltips,
+                        _active: [sector]
+                    }, chart));
+                    });
+                });      
+                chart.options.tooltips.enabled = false; // turn off normal tooltips
+                }
+            },
+            afterDraw: function(chart, easing) {
+                if (chart.config.options.showAllTooltips) {
+                if (!chart.allTooltipsOnce) {
+                    if (easing !== 1) {
+                    return;
+                    }
+                    chart.allTooltipsOnce = true;
+                }
+                chart.options.tooltips.enabled = true;
+                Chart.helpers.each(chart.pluginTooltips, function(tooltip) {
+                    tooltip.initialize();
+                    tooltip.update();
+                    tooltip.pivot();
+                    tooltip.transition(easing).draw();
+                });
+                chart.options.tooltips.enabled = false;
+                }
+            }
+        });
         var vertical = document.getElementById(id).getContext('2d');
+        let showAllTooltips = false;
+        if($(element).parents('.charts-for-pdf').length > 0 ){
+            showAllTooltips = true;
+        }
         var myBarChart = new Chart(vertical, {
             type: 'bar',
             data: ChartData,
@@ -468,7 +710,7 @@ function drawVerticalBar(element, data) {
                             lineWidth: 0
                         },
                         ticks: {
-                            fontSize: 10,
+                            fontSize: fontSize,
                             min: 0,
                         }
                     }],
@@ -479,12 +721,13 @@ function drawVerticalBar(element, data) {
                         },
                         ticks: {
                             min: 0,
-                            fontSize: 10,
+                            fontSize: fontSize,
                             padding: 10,
                             beginAtZero: true
                         }
                     }],
                 },
+                showAllTooltips: showAllTooltips
             }
         });
     }
@@ -581,21 +824,30 @@ function DrawLegend2(element, data) {
     $(element).parents('.chart-content').find('.pieRound').addClass('smalllegend');
     var legend = $(element).parents('.chart-content').find('.legend .legend-list');
     var dataLegend = new Array(data.length);
+    var summary = 0;
     for (var i = 0, len = dataLegend.length; i < len; i++){
         dataLegend[i] = data[i];
+        summary += parseInt(data[i].progress);
     }
     if(dataLegend[0].title !== '5'){
         dataLegend.reverse()
     }
+    let percent = 0;
+    if(summary > 0){
+        percent = 100/summary;
+    }
     for (var i = 0, len = dataLegend.length; i < len; i++){
-        // if(data[i].value) {
+        let addValues = ' ';
+        if($(element).parents('.charts-for-pdf').length > 0){
+            addValues = '<br> (' + Math.round(percent*parseInt(data[i].progress)) +  '% / ' + data[i].progress +' шт)';
+        }
           var legendRow = 
           '<div class="legend-item">'
           +'    <div class="col-square">'
           +'      <div class="square" style="background: '+ dataLegend[i].color +'"></div>'
           +'  </div>'
           +'  <div class="col-label">'
-          +'      Оценка <span class="bold">' + dataLegend[i].title + '</span>'
+          +'      Оценка <span class="bold">' + dataLegend[i].title + '</span>' + addValues
           +'  </div>'
           +'</div>';
           $(legendRow).appendTo(legend);
@@ -610,7 +862,11 @@ function drawHorizontalBar(element, data){
         var id = element.split('.')[1];
         var width = 600;
         var height = 230;
-        if($(element).parents('.width-50').length>0){
+        if($(element).parents('.charts-for-pdf').length>0){
+            width = 600;
+            height = 200;
+        } 
+        else if($(element).parents('.width-50').length>0){
             if(window.screen.width > 992 && window.screen.width <= 1200){
                 width = 400;
                 height = 240;
@@ -688,6 +944,10 @@ function drawHorizontalBar(element, data){
         };
 
         var horizontal = document.getElementById(id).getContext('2d');
+        var fontSize = 10;
+        if($(element).parents('.charts-for-pdf').length>0){
+            fontSize = 12;
+        } 
         var myBarChart = new Chart(horizontal, {
             type: 'horizontalBar',
             data: ChartData,
@@ -713,7 +973,7 @@ function drawHorizontalBar(element, data){
                             lineWidth: 1
                         },
                         ticks: {
-                            fontSize: 10,
+                            fontSize: fontSize,
                             min: 0,
                             max: maxValue,
                             beginAtZero: true,
@@ -734,7 +994,7 @@ function drawHorizontalBar(element, data){
                             lineWidth: 1
                         },
                         ticks: {
-                            fontSize: 10,
+                            fontSize: fontSize,
                             mirror: true,//for text-align
                             padding: 50//for text-align
                         }
@@ -875,7 +1135,8 @@ function drawLineDot(element, data, dotColor) {
                 percentPosition[i] = 0;
             }
         }
-    
+
+        let tooltipValue = ' ';
         var str = '<div class="lineDotcont">';
         str += '<div class="lineDotlist">';
         for (let i = 0; i < data.length; i++) {
@@ -886,9 +1147,14 @@ function drawLineDot(element, data, dotColor) {
             else if(data[i].labelText == '2' || data[i].labelText == '3' || data[i].labelText == '4'){
                 label = 'балла';
             }
+            if($(element).parents('.charts-for-pdf').length > 0){
+                tooltipValue = '<div class="tooltip-value">' + percentValue[i] + '% / ' + data[i].progress + ' шт</div>';
+            }
             str += 
             '<div class="lineDotRow">'
-            +'    <div class="label">' + data[i].labelText + ' ' + label + '</div>'
+            +'    <div class="label">' + data[i].labelText + ' ' + label
+            + tooltipValue
+            +'</div>'
             +'  <div class="line-col">'
             +'      <div class="line" style="background: linear-gradient(90deg, '+ data[i].backgroundStart + ' 0%, '+ data[i].backgroundEnd + ' 100%);">'
             +'          <div class="dot" style="left: calc('+ percentPosition[i] + '% - 7px);border-color: '+ dotColor +'"></div>'
@@ -941,36 +1207,29 @@ function DrawPyramide(element, data){
             var path = trapezoidPath(sliceHeight * 100, prevSizesCoef * 100, sizesCoef * 100)
             prevSizesCoef = sizesCoef
             returnStr[i] = 
-            'clip-path: '+ path + ';'
-            +'height: '+sliceHeight*100 + '%;'
-            +'width: 100%;'
-            +'background:'+data[i].background + ';';
+            'clip-path: '+ path + ';';
         }
         return returnStr;
     }
-    function Pyramid(dataPyramid) {
+    function Pyramid(dataPyramid, element) {
         var styles = calculateStyles(dataPyramid);
-        var containerStyle =
-            'height: 100%;'
-            +'width: 100%;'
-            +'display: flex;'
-            +'flex-direction: column;'
-            +'justify-content: center;'
-            +'align-items: center;'
-            +'box-sizing: border-box;';
-        var template = 
-        '<div class="pyramid-chart-container" style="' + containerStyle + '">';
+        var W = 280;
+        var H = 36*dataPyramid.length;
+        var $svg = $('<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"></svg>').appendTo($(element));
             for (let i = 0; i < dataPyramid.length; i++) {
-                template +=
-                '    <div class="pyramid-chart-slice"'
-                +'      data-value="' + dataPyramid[i].value +'шт"'
-                +'      data-label="' + dataPyramid[i].title +'"'
-                +'      data-percent="' + dataPyramid[i].percent +'%"'
-                +'      style="' + styles[i] +'">'
-                +'   </div>';
+                var pyramidSlice = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+                pyramidSlice.setAttribute('class', 'pyramid-chart-slice');
+                pyramidSlice.setAttribute('width', '280');
+                pyramidSlice.setAttribute('height', '36');
+                pyramidSlice.setAttribute('x', '0');
+                pyramidSlice.setAttribute('y', 36*i);
+                pyramidSlice.setAttribute('fill', dataPyramid[i].background);
+                pyramidSlice.setAttribute('data-value', dataPyramid[i].value);
+                pyramidSlice.setAttribute('data-label', dataPyramid[i].title);
+                pyramidSlice.setAttribute('data-percent', dataPyramid[i].percent);
+                pyramidSlice.setAttribute('style', styles[i]);
+                $(pyramidSlice).appendTo($svg);
             }
-        template +='</div>';
-        return template
     }
 
     var summary = 0;
@@ -1010,7 +1269,7 @@ function DrawPyramide(element, data){
     if(dataPyramid[0].title !== '1'){
         dataPyramid.reverse()
     }
-    $(element).html(Pyramid(dataPyramid));
+    Pyramid(dataPyramid, element);
 
     //legend
     DrawLegendPyramide(element, data);
@@ -1028,7 +1287,7 @@ function DrawPyramide(element, data){
         var value = $(this).attr('data-value');
         var percent = $(this).attr('data-percent');
         $('.pyraamidTip .label').html('Оценка - ' + label );
-        $('.pyraamidTip .value').html(percent + ' / ' + value);
+        $('.pyraamidTip .value').html(percent + '% / ' + value + ' шт');
         $('.pyraamidTip').fadeIn(0);
     });
     $(element).on('mouseleave', '.pyramid-chart-slice', function(e){
@@ -1046,11 +1305,25 @@ function DrawLegendPyramide(element, data) {
     if(data[0].labelText !== '5'){
         data.reverse();
     }
+    let summary = 0;
+    if($(element).parents('.charts-for-pdf').length > 0){
+        for (var i = 0, len = data.length; i < len; i++){
+            summary += parseInt(data[i].progress);
+        }
+    }
+    let percent = 0;
+    if(summary > 0) {
+        percent = 100/summary;
+    }
     for (var i = 0, len = data.length; i < len; i++){
+        let tooltipValue = ' ';
+        if($(element).parents('.charts-for-pdf').length > 0){
+            tooltipValue = '<span class="tooltip-value"> (' + Math.round(percent * parseInt(data[i].progress) ) + ' % / '+ data[i].progress + ' шт) </span>';
+        }
         var legendRow = 
         '<div class="legend-item">'
         +'   <div class="square" style="background: '+ data[i].background +'"></div>'
-        +'   <div class="label">- ' + data[i].labelText + '</div>'
+        +'   <div class="label">- ' + data[i].labelText + tooltipValue +  '</div>'
         +'</div>';
         $(legendRow).appendTo(legend);
     }

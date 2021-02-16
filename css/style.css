@@ -11139,6 +11139,322 @@ ul.pagination .next a {
   color: #FFFFFF;
 }
 
+.pdf-download .varticalBarShadowList .vertical-item .vertical-bar {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.charts-for-pdf-wrapper {
+  max-height: 0px;
+  overflow: hidden;
+  z-index: -1;
+  position: relative;
+}
+
+.charts-for-pdf {
+  width: 1100.28px;
+  margin: auto;
+}
+
+.charts-for-pdf .charts-content {
+  padding-bottom: 0px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box {
+  width: 100% !important;
+  height: 515px;
+  margin: 0px;
+  padding-top: 40px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box:nth-child(1) {
+  height: 453px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .chart-header {
+  font-size: 16px;
+  line-height: 18px;
+  padding-bottom: 20px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .chart-content .horizonatal-line {
+  padding-top: 20px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .chart-content .horizonatal-line .item {
+  padding-bottom: 30px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .chart-content .horizonatal-line .item .labels {
+  padding-bottom: 10px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .chart-content .horizonatal-line .item .labels .name,
+.charts-for-pdf .charts-content .chart-row .chart-box .chart-content .horizonatal-line .item .labels .values {
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .chart-content .horizonatal-line .item .line {
+  height: 10px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .chart-content .horizonatal-line .item .line .line-active {
+  height: 13px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .radialBar2 .legend {
+  width: 50%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .radialBar2 .legend .legend-list {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .radialBar2 .legend .legend-list .legend-row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-bottom: 15px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .radialBar2 .legend .legend-list .legend-row .legend-value {
+  min-width: 120px;
+  background: #7E80D7;
+  border-radius: 20px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  color: #000;
+  padding: 5px 7px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .radialBar2 .legend .legend-list .legend-row .legend-label {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 15px;
+  color: #000000;
+  padding-left: 10px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .pieRound .chart .textSegment,
+.charts-for-pdf .charts-content .chart-row .chart-box .pieChart .chart > div svg .textSegment {
+  opacity: 1;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .radialbarmultiple .legend .legend-list .legend-row .legend-value {
+  font-size: 14px;
+  line-height: 16px;
+  min-width: 150px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .radialbarmultiple .legend .legend-list .legend-row .legend-label {
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .pieChart .chart > div {
+  width: 350px;
+  height: 350px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .pieChart .chart > div svg {
+  width: 100%;
+  height: 100%;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .dougnat .legend .legend-list,
+.charts-for-pdf .charts-content .chart-row .chart-box .pieChart .legend .legend-list {
+  max-width: 200px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .varticalbar .varticalbarChart .barlist .baritem .barcol {
+  min-height: 300px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .varticalbar .varticalbarChart .barlist .baritem .barcol .value,
+.charts-for-pdf .charts-content .chart-row .chart-box .varticalbar .varticalbarChart .barlist .baritem .label {
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .dougnat .chart > div {
+  width: 350px;
+  height: 350px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .lineDotcont .lineDotlist .lineDotRow .label {
+  font-size: 12px;
+  line-height: 14px;
+  width: 100px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .lineDotcont .lineDotlist .lineDotRow .line-col {
+  width: calc(100% - 100px);
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .lineDotcont .y-axis {
+  margin-left: 100px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .lineDotcont .y-axis .axis-item {
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .lineDotcont .lineDotlist .lineDotRow .line-col {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .lineDotcont .lineDotlist .lineDotRow .line-col .line {
+  height: 10px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .lineDotcont .lineDotlist .lineDotRow .line-col .line .dot {
+  width: 20px;
+  height: 20px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .pyramid .chart > div {
+  max-width: 500px;
+  width: 500px;
+  height: auto;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .pyramid .chart > div svg {
+  width: 100%;
+  height: 100%;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .pyramid .legend .legend-item .label {
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .varticalBarShadowList {
+  height: 350px;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .varticalBarShadowList .vertical-item {
+  width: 100px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .varticalBarShadowList .vertical-item .vertical-label {
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .varticalBarShadowList .vertical-item .vertical-bar .vertical-value {
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .pieRound .chart > div {
+  width: 350px;
+  height: 350px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .pieRound.smalllegend .legend .legend-list .legend-item .col-label,
+.charts-for-pdf .charts-content .chart-row .chart-box .dougnat .legend .legend-list .legend-item .col-label {
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .pieRound.smalllegend .legend,
+.charts-for-pdf .charts-content .chart-row .chart-box .dougnat.smalllegend .legend {
+  width: 200px;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .radia-bar-container {
+  width: 350px;
+  margin: auto;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .radia-bar-container svg {
+  width: 100%;
+}
+
+.charts-for-pdf .charts-content .chart-row .chart-box .varticalBarShadowList .vertical-item .vertical-bar {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.download-pdf {
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  max-width: 1440px;
+  margin: auto;
+  text-align: right;
+}
+
+.download-pdf a {
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
+}
+
+.download-pdf .label {
+  display: inline-block;
+  padding-right: 15px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 24px;
+  color: #605A5A;
+  vertical-align: middle;
+}
+
+.download-pdf .picture {
+  display: inline-block;
+  width: 50px;
+  vertical-align: middle;
+}
+
+.download-pdf .picture img {
+  max-width: 100%;
+}
+
 @media screen and (min-width: 1500px) {
   .anket-content .filter-wrapper .box {
     width: calc(25% - 20px);

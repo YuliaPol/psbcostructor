@@ -32,7 +32,7 @@
         lightPiesOpacity: 0,//lighten pie's default opacity
         lightPieClass: "lightPie",
         animation : true,
-        animationSteps : 90,
+        animationSteps : 50,
         animationEasing : "easeInOutExpo",
         tipOffsetX: -15,
         tipOffsetY: -45,
