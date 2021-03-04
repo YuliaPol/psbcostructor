@@ -3069,6 +3069,29 @@ jQuery(function ($) {
             }
         });
 
+        $('.rightside').on('change', '.multionoff', function(e){
+            var id = $(this).attr('name').split('_')[1];
+            console.log('id:' + id);
+            if(id){
+                $.ajax ({
+                    type: 'POST',
+                    url: "/admin/ajax/make-question-multy",
+                    dataType: "json",
+                    data: { 
+                        id: id
+                    },
+                }).done(function (data) {
+                    // данные сохранены
+                    console.log(data);
+                    console.log('Множественный выбор изменен');
+                }).fail(function (data) {
+                    // не удалось выполнить запрос к серверу
+                    console.log(data);
+                    console.log('Запрос не принят');
+                });
+            }
+        });
+
         $('.rightside').on('change', '.requiredinput .requiredonoff', function(e){
             if($(this).is(':checked')){
                 var id = $(this).attr('name').split('_')[1];
@@ -6161,6 +6184,13 @@ jQuery(function ($) {
                 +'           <label for="number_'+ id +'">Колличество пунктов </label>'
                 +'           <input  class="question_number spinner" name="number_'+ id +'" id="number_'+ id +'" type="text" value="2">'
                 +'       </div>'
+                +'        <div class="multityperow">'
+                +'          <div class="namelabel">Множественный выбор</div>'
+                +'          <label class="switch" for="multionoff_'+ id +'">'
+                +'              <input type="checkbox" class="multionoff" name="multionoff_'+ id +'" id="multionoff_'+ id +'">'
+                +'              <span class="slider round"></span>'
+                +'          </label>'
+                +'      </div>'
                 +'       <div class="form-group">'
                 +'           <p>Варианты ответов</p>'
                 +'           <div class="inputtables" id="inputtables_'+ id +'">'
