@@ -390,8 +390,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     }
     .switch {
         position: relative;
-        display: inline-block;
-        width: 34px;
+        display: inline-block !important;
+        width: 34px !important;
         height: 17px;
         input {
             opacity: 0;
@@ -407,6 +407,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
             bottom: 0;
             background-color: #D4D4D7;
             transition: .4s;
+            margin: 0px;
             &:before {
                 position: absolute;
                 content: "";
@@ -4361,6 +4362,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                     justify-content: space-between;
                     padding-bottom: 15px;
                     padding-top: 10px;
+                    position: relative;
                     .namelabel {
                         width: calc(100% - 25px);
                         font-family: $fontpage;
@@ -4369,6 +4371,43 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
                         font-size: 10px;
                         line-height: 12px;
                         color: #563BC2;
+                    }
+                    .switch {
+                        &:hover {
+                            .tooltip {
+                                opacity: 1;
+                            }
+                        }
+                        .tooltip {
+                            position: absolute;
+                            opacity: 0;
+                            padding: 5px;
+                            font-family: $fontpage;
+                            font-size: 10px;
+                            line-height: 12px;
+                            color: rgb(55, 53, 63);
+                            transition: opacity 0.3s ease-in 0s;
+                            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+                            background: #fff;
+                            border-radius: 5px;
+                            bottom: 30px;
+                            pointer-events: none;
+                            right: 0px;
+                            width: 100px;
+                            &::after{
+                                content: '';
+                                position: absolute;
+                                right: 10px;
+                                top: 100%;
+                                width: 0;
+                                height: 0;
+                                border-left: 5px solid transparent;
+                                border-right: 5px solid transparent;
+                                border-top: 5px solid #ffffff;
+                                clear: both;
+                                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+                            }
+                        }
                     }
                 }
                 .requiredinput {

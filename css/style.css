@@ -473,8 +473,8 @@ table {
 
 .page-content .switch {
   position: relative;
-  display: inline-block;
-  width: 34px;
+  display: inline-block !important;
+  width: 34px !important;
   height: 17px;
 }
 
@@ -495,6 +495,7 @@ table {
   -webkit-transition: .4s;
   -o-transition: .4s;
   transition: .4s;
+  margin: 0px;
 }
 
 .page-content .switch .slider:before {
@@ -6926,6 +6927,7 @@ table {
           justify-content: space-between;
   padding-bottom: 15px;
   padding-top: 10px;
+  position: relative;
 }
 
 .construcot-container .rightside .default .text-aside .multityperow .namelabel,
@@ -6937,6 +6939,49 @@ table {
   font-size: 10px;
   line-height: 12px;
   color: #563BC2;
+}
+
+.construcot-container .rightside .default .text-aside .multityperow .switch:hover .tooltip,
+.construcot-container .rightside .optionbox .text-aside .multityperow .switch:hover .tooltip {
+  opacity: 1;
+}
+
+.construcot-container .rightside .default .text-aside .multityperow .switch .tooltip,
+.construcot-container .rightside .optionbox .text-aside .multityperow .switch .tooltip {
+  position: absolute;
+  opacity: 0;
+  padding: 5px;
+  font-family: "Montserrat";
+  font-size: 10px;
+  line-height: 12px;
+  color: #37353f;
+  -webkit-transition: opacity 0.3s ease-in 0s;
+  -o-transition: opacity 0.3s ease-in 0s;
+  transition: opacity 0.3s ease-in 0s;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+  background: #fff;
+  border-radius: 5px;
+  bottom: 30px;
+  pointer-events: none;
+  right: 0px;
+  width: 100px;
+}
+
+.construcot-container .rightside .default .text-aside .multityperow .switch .tooltip::after,
+.construcot-container .rightside .optionbox .text-aside .multityperow .switch .tooltip::after {
+  content: '';
+  position: absolute;
+  right: 10px;
+  top: 100%;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #ffffff;
+  clear: both;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
 }
 
 .construcot-container .rightside .default .text-aside .requiredinput,
