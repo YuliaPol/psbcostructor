@@ -18,14 +18,15 @@ jQuery(function ($) {
                 var emails = $('.content-list').find('.content-item.active').find('input[type=email]');
                 for (let index = 0; index < emails.length; index++) {
                     if($(emails[index]).val()){
-                        if(!validateEmail($(emails[index]).val()))
-                        erroreArrayElemnts.push($(emails[index]));
-                        $(emails[index]).parents('.input-col').addClass('has-error');
-                        $(emails[index]).parents('.input-row').append('<div class="error-text">Неверный email</div>');
-                        $(emails[index]).focus(function (e) {
-                            $(e.target).parents('.input-col').removeClass('has-error');
-                            $(el[index]).parents('.input-row').find('.error-text').remove();
-                        });
+                        if(!validateEmail($(emails[index]).val())){
+                            erroreArrayElemnts.push($(emails[index]));
+                            $(emails[index]).parents('.input-col').addClass('has-error');
+                            $(emails[index]).parents('.input-row').append('<div class="error-text">Неверный email</div>');
+                            $(emails[index]).focus(function (e) {
+                                $(e.target).parents('.input-col').removeClass('has-error');
+                                $(el[index]).parents('.input-row').find('.error-text').remove();
+                            });
+                        }
                     }
                 }
                 if(erroreArrayElemnts.length == 0){
