@@ -9,25 +9,23 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="././css/login.css">
+    <link rel="stylesheet" href="././css/login.css?5498465468487854">
 
     <script src="./js/jquery-3.5.1.min.js"></script>
-    <script src="./js/registration.js"></script>
+    <script src="./js/registration.js?49876846846846884"></script>
 </head>
 
 <body>
     <div class="registation-page">
-        <div class="logo">
-            <img src="./img/logo.svg" alt="PSB">
-        </div>
         <div class="registation-wrapper">
             <div class="registation-box">
-                <form action="#">
+                <form action="./registration-done.html">
                     <div class="registration-content">
                         <div class="panels-list">
                             <div class="panel-item active" data-content="panel-content-1">Запуск</div>
-                            <div class="panel-item"  data-content="panel-content-2">Контактная информация</div>
-                            <div class="panel-item"  data-content="panel-content-3">Подробнее</div>
+                            <div class="panel-item" data-content="panel-content-2">Контактная информация</div>
+                            <div class="panel-item" data-content="panel-content-3">Подробнее</div>
+                            <div class="panel-item" data-content="panel-content-4">Еще</div>
                         </div>
                         <div class="content-wrapper">
                             <div class="content-list">
@@ -37,7 +35,7 @@
                                             <div class="label-col">Электронная почта</div>
                                             <div class="input-col">
                                                 <div class="input-group">
-                                                    <input type="email" name="email">
+                                                    <input type="email" name="email" data-reqired="reqired">
                                                 </div>
                                             </div>
                                         </div>
@@ -47,15 +45,15 @@
                                                 <div class="input-group">
                                                     <select class="customselect" name="country">
                                                         <option value="" class="default">Выберите страну</option>
-                                                        <option value="ru" >Россия</option>
+                                                        <option value="ru">Россия</option>
                                                         <option value="by">Белоруссия</option>
                                                         <option value="ua">Украина</option>
                                                         <option value="kz">Казахстан</option>
-                                                        <option value="tj">Таджикистан  </option>
-                                                        <option value="tm">Туркменистан  </option>
-                                                        <option value="uz">Узбекистан  </option>
-                                                        <option value="kg">Киргизстан  </option>
-                                                        <option value="az">Азербайджан  </option>
+                                                        <option value="tj">Таджикистан </option>
+                                                        <option value="tm">Туркменистан </option>
+                                                        <option value="uz">Узбекистан </option>
+                                                        <option value="kg">Киргизстан </option>
+                                                        <option value="az">Азербайджан </option>
                                                         <option value="md">Молдова</option>
                                                     </select>
                                                 </div>
@@ -82,7 +80,7 @@
                                             <div class="label-col">Имя</div>
                                             <div class="input-col">
                                                 <div class="input-group">
-                                                    <input type="text" name="name">
+                                                    <input type="text" name="name"  data-reqired="reqired">
                                                 </div>
                                             </div>
                                         </div>
@@ -90,7 +88,7 @@
                                             <div class="label-col">Фамилия</div>
                                             <div class="input-col">
                                                 <div class="input-group">
-                                                    <input type="text" name="surname">
+                                                    <input type="text" name="surname"  data-reqired="reqired">
                                                 </div>
                                             </div>
                                         </div>
@@ -159,15 +157,15 @@
                                                 <div class="input-group">
                                                     <select class="customselect" name="country2">
                                                         <option value="" class="default">Выберите ответ</option>
-                                                        <option value="ru" >Россия</option>
+                                                        <option value="ru">Россия</option>
                                                         <option value="by">Белоруссия</option>
                                                         <option value="ua">Украина</option>
                                                         <option value="kz">Казахстан</option>
-                                                        <option value="tj">Таджикистан  </option>
-                                                        <option value="tm">Туркменистан  </option>
-                                                        <option value="uz">Узбекистан  </option>
-                                                        <option value="kg">Киргизстан  </option>
-                                                        <option value="az">Азербайджан  </option>
+                                                        <option value="tj">Таджикистан </option>
+                                                        <option value="tm">Туркменистан </option>
+                                                        <option value="uz">Узбекистан </option>
+                                                        <option value="kg">Киргизстан </option>
+                                                        <option value="az">Азербайджан </option>
                                                         <option value="md">Молдова</option>
                                                     </select>
                                                 </div>
@@ -227,88 +225,140 @@
                                                 <div class="input-group">
                                                     <select class="customselect" name="timezone">
                                                         <option value="" class="default">Выберите ответ</option>
-                                                        <option value="Etc/GMT+12">(GMT-12:00) International Date Line West</option>
-                                                        <option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
+                                                        <option value="Etc/GMT+12">(GMT-12:00) International Date Line
+                                                            West</option>
+                                                        <option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa
+                                                        </option>
                                                         <option value="Pacific/Honolulu">(GMT-10:00) Hawaii</option>
                                                         <option value="US/Alaska">(GMT-09:00) Alaska</option>
-                                                        <option value="America/Los_Angeles">(GMT-08:00) Pacific Time (US & Canada)</option>
-                                                        <option value="America/Tijuana">(GMT-08:00) Tijuana, Baja California</option>
+                                                        <option value="America/Los_Angeles">(GMT-08:00) Pacific Time (US
+                                                            & Canada)</option>
+                                                        <option value="America/Tijuana">(GMT-08:00) Tijuana, Baja
+                                                            California</option>
                                                         <option value="US/Arizona">(GMT-07:00) Arizona</option>
-                                                        <option value="America/Chihuahua">(GMT-07:00) Chihuahua, La Paz, Mazatlan</option>
-                                                        <option value="US/Mountain">(GMT-07:00) Mountain Time (US & Canada)</option>
-                                                        <option value="America/Managua">(GMT-06:00) Central America</option>
-                                                        <option value="US/Central">(GMT-06:00) Central Time (US & Canada)</option>
-                                                        <option value="America/Mexico_City">(GMT-06:00) Guadalajara, Mexico City, Monterrey</option>
-                                                        <option value="Canada/Saskatchewan">(GMT-06:00) Saskatchewan</option>
-                                                        <option value="America/Bogota">(GMT-05:00) Bogota, Lima, Quito, Rio Branco</option>
-                                                        <option value="US/Eastern">(GMT-05:00) Eastern Time (US & Canada)</option>
-                                                        <option value="US/East-Indiana">(GMT-05:00) Indiana (East)</option>
-                                                        <option value="Canada/Atlantic">(GMT-04:00) Atlantic Time (Canada)</option>
-                                                        <option value="America/Caracas">(GMT-04:00) Caracas, La Paz</option>
+                                                        <option value="America/Chihuahua">(GMT-07:00) Chihuahua, La Paz,
+                                                            Mazatlan</option>
+                                                        <option value="US/Mountain">(GMT-07:00) Mountain Time (US &
+                                                            Canada)</option>
+                                                        <option value="America/Managua">(GMT-06:00) Central America
+                                                        </option>
+                                                        <option value="US/Central">(GMT-06:00) Central Time (US &
+                                                            Canada)</option>
+                                                        <option value="America/Mexico_City">(GMT-06:00) Guadalajara,
+                                                            Mexico City, Monterrey</option>
+                                                        <option value="Canada/Saskatchewan">(GMT-06:00) Saskatchewan
+                                                        </option>
+                                                        <option value="America/Bogota">(GMT-05:00) Bogota, Lima, Quito,
+                                                            Rio Branco</option>
+                                                        <option value="US/Eastern">(GMT-05:00) Eastern Time (US &
+                                                            Canada)</option>
+                                                        <option value="US/East-Indiana">(GMT-05:00) Indiana (East)
+                                                        </option>
+                                                        <option value="Canada/Atlantic">(GMT-04:00) Atlantic Time
+                                                            (Canada)</option>
+                                                        <option value="America/Caracas">(GMT-04:00) Caracas, La Paz
+                                                        </option>
                                                         <option value="America/Manaus">(GMT-04:00) Manaus</option>
                                                         <option value="America/Santiago">(GMT-04:00) Santiago</option>
-                                                        <option value="Canada/Newfoundland">(GMT-03:30) Newfoundland</option>
+                                                        <option value="Canada/Newfoundland">(GMT-03:30) Newfoundland
+                                                        </option>
                                                         <option value="America/Sao_Paulo">(GMT-03:00) Brasilia</option>
-                                                        <option value="America/Argentina/Buenos_Aires">(GMT-03:00) Buenos Aires, Georgetown</option>
+                                                        <option value="America/Argentina/Buenos_Aires">(GMT-03:00)
+                                                            Buenos Aires, Georgetown</option>
                                                         <option value="America/Godthab">(GMT-03:00) Greenland</option>
-                                                        <option value="America/Montevideo">(GMT-03:00) Montevideo</option>
-                                                        <option value="America/Noronha">(GMT-02:00) Mid-Atlantic</option>
-                                                        <option value="Atlantic/Cape_Verde">(GMT-01:00) Cape Verde Is.</option>
+                                                        <option value="America/Montevideo">(GMT-03:00) Montevideo
+                                                        </option>
+                                                        <option value="America/Noronha">(GMT-02:00) Mid-Atlantic
+                                                        </option>
+                                                        <option value="Atlantic/Cape_Verde">(GMT-01:00) Cape Verde Is.
+                                                        </option>
                                                         <option value="Atlantic/Azores">(GMT-01:00) Azores</option>
-                                                        <option value="Africa/Casablanca">(GMT+00:00) Casablanca, Monrovia, Reykjavik</option>
-                                                        <option value="Etc/Greenwich">(GMT+00:00) Greenwich Mean Time : Dublin, Edinburgh, Lisbon, London</option>
-                                                        <option value="Europe/Amsterdam">(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</option>
-                                                        <option value="Europe/Belgrade">(GMT+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague</option>
-                                                        <option value="Europe/Brussels">(GMT+01:00) Brussels, Copenhagen, Madrid, Paris</option>
-                                                        <option value="Europe/Sarajevo">(GMT+01:00) Sarajevo, Skopje, Warsaw, Zagreb</option>
-                                                        <option value="Africa/Lagos">(GMT+01:00) West Central Africa</option>
+                                                        <option value="Africa/Casablanca">(GMT+00:00) Casablanca,
+                                                            Monrovia, Reykjavik</option>
+                                                        <option value="Etc/Greenwich">(GMT+00:00) Greenwich Mean Time :
+                                                            Dublin, Edinburgh, Lisbon, London</option>
+                                                        <option value="Europe/Amsterdam">(GMT+01:00) Amsterdam, Berlin,
+                                                            Bern, Rome, Stockholm, Vienna</option>
+                                                        <option value="Europe/Belgrade">(GMT+01:00) Belgrade,
+                                                            Bratislava, Budapest, Ljubljana, Prague</option>
+                                                        <option value="Europe/Brussels">(GMT+01:00) Brussels,
+                                                            Copenhagen, Madrid, Paris</option>
+                                                        <option value="Europe/Sarajevo">(GMT+01:00) Sarajevo, Skopje,
+                                                            Warsaw, Zagreb</option>
+                                                        <option value="Africa/Lagos">(GMT+01:00) West Central Africa
+                                                        </option>
                                                         <option value="Asia/Amman">(GMT+02:00) Amman</option>
-                                                        <option value="Europe/Athens">(GMT+02:00) Athens, Bucharest, Istanbul</option>
+                                                        <option value="Europe/Athens">(GMT+02:00) Athens, Bucharest,
+                                                            Istanbul</option>
                                                         <option value="Asia/Beirut">(GMT+02:00) Beirut</option>
                                                         <option value="Africa/Cairo">(GMT+02:00) Cairo</option>
-                                                        <option value="Africa/Harare">(GMT+02:00) Harare, Pretoria</option>
-                                                        <option value="Europe/Helsinki">(GMT+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius</option>
+                                                        <option value="Africa/Harare">(GMT+02:00) Harare, Pretoria
+                                                        </option>
+                                                        <option value="Europe/Helsinki">(GMT+02:00) Helsinki, Kyiv,
+                                                            Riga, Sofia, Tallinn, Vilnius</option>
                                                         <option value="Asia/Jerusalem">(GMT+02:00) Jerusalem</option>
                                                         <option value="Europe/Minsk">(GMT+02:00) Minsk</option>
                                                         <option value="Africa/Windhoek">(GMT+02:00) Windhoek</option>
-                                                        <option value="Asia/Kuwait">(GMT+03:00) Kuwait, Riyadh, Baghdad</option>
-                                                        <option value="Europe/Moscow">(GMT+03:00) Moscow, St. Petersburg, Volgograd</option>
+                                                        <option value="Asia/Kuwait">(GMT+03:00) Kuwait, Riyadh, Baghdad
+                                                        </option>
+                                                        <option value="Europe/Moscow">(GMT+03:00) Moscow, St.
+                                                            Petersburg, Volgograd</option>
                                                         <option value="Africa/Nairobi">(GMT+03:00) Nairobi</option>
                                                         <option value="Asia/Tbilisi">(GMT+03:00) Tbilisi</option>
                                                         <option value="Asia/Tehran">(GMT+03:30) Tehran</option>
-                                                        <option value="Asia/Muscat">(GMT+04:00) Abu Dhabi, Muscat</option>
+                                                        <option value="Asia/Muscat">(GMT+04:00) Abu Dhabi, Muscat
+                                                        </option>
                                                         <option value="Asia/Baku">(GMT+04:00) Baku</option>
                                                         <option value="Asia/Yerevan">(GMT+04:00) Yerevan</option>
                                                         <option value="Asia/Kabul">(GMT+04:30) Kabul</option>
-                                                        <option value="Asia/Yekaterinburg">(GMT+05:00) Yekaterinburg</option>
-                                                        <option value="Asia/Karachi">(GMT+05:00) Islamabad, Karachi, Tashkent</option>
-                                                        <option value="Asia/Calcutta">(GMT+05:30) Chennai, Kolkata, Mumbai, New Delhi</option>
-                                                        <option value="Asia/Calcutta">(GMT+05:30) Sri Jayawardenapura</option>
+                                                        <option value="Asia/Yekaterinburg">(GMT+05:00) Yekaterinburg
+                                                        </option>
+                                                        <option value="Asia/Karachi">(GMT+05:00) Islamabad, Karachi,
+                                                            Tashkent</option>
+                                                        <option value="Asia/Calcutta">(GMT+05:30) Chennai, Kolkata,
+                                                            Mumbai, New Delhi</option>
+                                                        <option value="Asia/Calcutta">(GMT+05:30) Sri Jayawardenapura
+                                                        </option>
                                                         <option value="Asia/Katmandu">(GMT+05:45) Kathmandu</option>
-                                                        <option value="Asia/Almaty">(GMT+06:00) Almaty, Novosibirsk</option>
+                                                        <option value="Asia/Almaty">(GMT+06:00) Almaty, Novosibirsk
+                                                        </option>
                                                         <option value="Asia/Dhaka">(GMT+06:00) Astana, Dhaka</option>
-                                                        <option value="Asia/Rangoon">(GMT+06:30) Yangon (Rangoon)</option>
-                                                        <option value="Asia/Bangkok">(GMT+07:00) Bangkok, Hanoi, Jakarta</option>
-                                                        <option value="Asia/Krasnoyarsk">(GMT+07:00) Krasnoyarsk</option>
-                                                        <option value="Asia/Hong_Kong">(GMT+08:00) Beijing, Chongqing, Hong Kong, Urumqi</option>
-                                                        <option value="Asia/Kuala_Lumpur">(GMT+08:00) Kuala Lumpur, Singapore</option>
-                                                        <option value="Asia/Irkutsk">(GMT+08:00) Irkutsk, Ulaan Bataar</option>
+                                                        <option value="Asia/Rangoon">(GMT+06:30) Yangon (Rangoon)
+                                                        </option>
+                                                        <option value="Asia/Bangkok">(GMT+07:00) Bangkok, Hanoi, Jakarta
+                                                        </option>
+                                                        <option value="Asia/Krasnoyarsk">(GMT+07:00) Krasnoyarsk
+                                                        </option>
+                                                        <option value="Asia/Hong_Kong">(GMT+08:00) Beijing, Chongqing,
+                                                            Hong Kong, Urumqi</option>
+                                                        <option value="Asia/Kuala_Lumpur">(GMT+08:00) Kuala Lumpur,
+                                                            Singapore</option>
+                                                        <option value="Asia/Irkutsk">(GMT+08:00) Irkutsk, Ulaan Bataar
+                                                        </option>
                                                         <option value="Australia/Perth">(GMT+08:00) Perth</option>
                                                         <option value="Asia/Taipei">(GMT+08:00) Taipei</option>
-                                                        <option value="Asia/Tokyo">(GMT+09:00) Osaka, Sapporo, Tokyo</option>
+                                                        <option value="Asia/Tokyo">(GMT+09:00) Osaka, Sapporo, Tokyo
+                                                        </option>
                                                         <option value="Asia/Seoul">(GMT+09:00) Seoul</option>
                                                         <option value="Asia/Yakutsk">(GMT+09:00) Yakutsk</option>
                                                         <option value="Australia/Adelaide">(GMT+09:30) Adelaide</option>
                                                         <option value="Australia/Darwin">(GMT+09:30) Darwin</option>
                                                         <option value="Australia/Brisbane">(GMT+10:00) Brisbane</option>
-                                                        <option value="Australia/Canberra">(GMT+10:00) Canberra, Melbourne, Sydney</option>
+                                                        <option value="Australia/Canberra">(GMT+10:00) Canberra,
+                                                            Melbourne, Sydney</option>
                                                         <option value="Australia/Hobart">(GMT+10:00) Hobart</option>
-                                                        <option value="Pacific/Guam">(GMT+10:00) Guam, Port Moresby</option>
-                                                        <option value="Asia/Vladivostok">(GMT+10:00) Vladivostok</option>
-                                                        <option value="Asia/Magadan">(GMT+11:00) Magadan, Solomon Is., New Caledonia</option>
-                                                        <option value="Pacific/Auckland">(GMT+12:00) Auckland, Wellington</option>
-                                                        <option value="Pacific/Fiji">(GMT+12:00) Fiji, Kamchatka, Marshall Is.</option>
-                                                        <option value="Pacific/Tongatapu">(GMT+13:00) Nuku'alofa</option>
+                                                        <option value="Pacific/Guam">(GMT+10:00) Guam, Port Moresby
+                                                        </option>
+                                                        <option value="Asia/Vladivostok">(GMT+10:00) Vladivostok
+                                                        </option>
+                                                        <option value="Asia/Magadan">(GMT+11:00) Magadan, Solomon Is.,
+                                                            New Caledonia</option>
+                                                        <option value="Pacific/Auckland">(GMT+12:00) Auckland,
+                                                            Wellington</option>
+                                                        <option value="Pacific/Fiji">(GMT+12:00) Fiji, Kamchatka,
+                                                            Marshall Is.</option>
+                                                        <option value="Pacific/Tongatapu">(GMT+13:00) Nuku'alofa
+                                                        </option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -480,8 +530,8 @@
                                             <div class="input-col">
                                                 <div class="input-group">
                                                     <select class="customselect" name="nationality">
-                                                        <option value="" >Без ответа</option>
-                                                        <option value="ru" >Русский</option>
+                                                        <option value="">Без ответа</option>
+                                                        <option value="ru">Русский</option>
                                                         <option value="ua">Украинец</option>
                                                         <option value="bu">Белорус</option>
                                                     </select>
@@ -493,8 +543,8 @@
                                             <div class="input-col">
                                                 <div class="input-group">
                                                     <select class="customselect" name="nationality">
-                                                        <option value="" >Без ответа</option>
-                                                        <option value="60-90" >60-90 тыс. руб.</option>
+                                                        <option value="">Без ответа</option>
+                                                        <option value="60-90">60-90 тыс. руб.</option>
                                                         <option value="90–120">90–120 тыс. руб.</option>
                                                         <option value="120+">более 120 тыс. руб.</option>
                                                     </select>
@@ -506,9 +556,9 @@
                                             <div class="input-col">
                                                 <div class="input-group">
                                                     <select class="customselect" name="education">
-                                                        <option value="" >Без ответа</option>
-                                                        <option value="1" >Начальное образование </option>
-                                                        <option value="2" >Среднее образование </option>
+                                                        <option value="">Без ответа</option>
+                                                        <option value="1">Начальное образование </option>
+                                                        <option value="2">Среднее образование </option>
                                                         <option value="3">Высшее образование</option>
                                                         <option value="4">Послевузовское образование</option>
                                                     </select>
@@ -520,8 +570,8 @@
                                             <div class="input-col">
                                                 <div class="input-group">
                                                     <select class="customselect" name="haircolor">
-                                                        <option value="" >Без ответа</option>
-                                                        <option value="Светлый" >Светлый</option>
+                                                        <option value="">Без ответа</option>
+                                                        <option value="Светлый">Светлый</option>
                                                         <option value="Русый">Русый</option>
                                                         <option value="Рыжий">Рыжий</option>
                                                         <option value="Коричневый">Коричневый</option>
@@ -551,9 +601,10 @@
                                             <div class="input-col">
                                                 <div class="input-group">
                                                     <select class="customselect" name="maritalstatus">
-                                                        <option value="" >Без ответа</option>
+                                                        <option value="">Без ответа</option>
                                                         <option value="женат(замужем)">женат(замужем)</option>
-                                                        <option value="не женат(не замужем)">не женат(не замужем)</option>
+                                                        <option value="не женат(не замужем)">не женат(не замужем)
+                                                        </option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -563,15 +614,21 @@
                                             <div class="input-col">
                                                 <div class="input-group">
                                                     <select class="customselect" name="industrycategory">
-                                                        <option value="" >Без ответа</option>
-                                                        <option value="IT, компьютеры, интернет">IT, компьютеры, интернет</option>
-                                                        <option value="Администрация, руководство среднего звена">Администрация, руководство среднего звена</option>
+                                                        <option value="">Без ответа</option>
+                                                        <option value="IT, компьютеры, интернет">IT, компьютеры,
+                                                            интернет</option>
+                                                        <option value="Администрация, руководство среднего звена">
+                                                            Администрация, руководство среднего звена</option>
                                                         <option value="Бухгалтерия, аудит">Бухгалтерия, аудит</option>
-                                                        <option value="Гостинично-ресторанный бизнес, туризм">Гостинично-ресторанный бизнес, туризм</option>
+                                                        <option value="Гостинично-ресторанный бизнес, туризм">
+                                                            Гостинично-ресторанный бизнес, туризм</option>
                                                         <option value="Дизайн, творчество">Дизайн, творчество</option>
-                                                        <option value="Красота, фитнес, спорт">Красота, фитнес, спорт</option>
-                                                        <option value="Культура, музыка, шоу-бизнес">Культура, музыка, шоу-бизнес</option>
-                                                        <option value="Логистика, склад, ВЭД">Логистика, склад, ВЭД</option>
+                                                        <option value="Красота, фитнес, спорт">Красота, фитнес, спорт
+                                                        </option>
+                                                        <option value="Культура, музыка, шоу-бизнес">Культура, музыка,
+                                                            шоу-бизнес</option>
+                                                        <option value="Логистика, склад, ВЭД">Логистика, склад, ВЭД
+                                                        </option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -589,7 +646,7 @@
                                             <div class="input-col">
                                                 <div class="input-group">
                                                     <select class="customselect" name="taxtype">
-                                                        <option value="" >Без ответа</option>
+                                                        <option value="">Без ответа</option>
                                                         <option value="1">Тип идентификатора налога 1</option>
                                                         <option value="2">Тип идентификатора налога 2</option>
                                                         <option value="3">Тип идентификатора налога 3</option>
@@ -610,7 +667,7 @@
                                             <div class="input-col">
                                                 <div class="input-group">
                                                     <select class="customselect" name="certificatemsp">
-                                                        <option value="" >Без ответа</option>
+                                                        <option value="">Без ответа</option>
                                                         <option value="1">Сертификат MSP 1</option>
                                                         <option value="2">Сертификат MSP 2</option>
                                                     </select>
@@ -630,7 +687,7 @@
                                             <div class="input-col">
                                                 <div class="input-group">
                                                     <select class="customselect" name="distance">
-                                                        <option value="" >Без ответа</option>
+                                                        <option value="">Без ответа</option>
                                                         <option value="1">расстояние 1</option>
                                                         <option value="2">расстояние 2</option>
                                                     </select>
@@ -653,7 +710,7 @@
                                             <div class="input-col">
                                                 <div class="input-group">
                                                     <select class="customselect" name="equipment-1">
-                                                        <option value="" >Без ответа</option>
+                                                        <option value="">Без ответа</option>
                                                         <option value="1">Есть</option>
                                                         <option value="2">Нет</option>
                                                     </select>
@@ -665,7 +722,7 @@
                                             <div class="input-col">
                                                 <div class="input-group">
                                                     <select class="customselect" name="equipment-2">
-                                                        <option value="" >Без ответа</option>
+                                                        <option value="">Без ответа</option>
                                                         <option value="1">Разрешение 1</option>
                                                         <option value="2">Разрешение 2</option>
                                                     </select>
@@ -677,7 +734,7 @@
                                             <div class="input-col">
                                                 <div class="input-group">
                                                     <select class="customselect" name="equipment-3">
-                                                        <option value="" >Без ответа</option>
+                                                        <option value="">Без ответа</option>
                                                         <option value="1">PDA 1</option>
                                                         <option value="2">PDA 2</option>
                                                     </select>
@@ -689,7 +746,7 @@
                                             <div class="input-col">
                                                 <div class="input-group">
                                                     <select class="customselect" name="equipment-4">
-                                                        <option value="" >Без ответа</option>
+                                                        <option value="">Без ответа</option>
                                                         <option value="1">Есть</option>
                                                         <option value="2">Нет</option>
                                                     </select>
@@ -701,7 +758,7 @@
                                             <div class="input-col">
                                                 <div class="input-group">
                                                     <select class="customselect" name="equipment-5">
-                                                        <option value="" >Без ответа</option>
+                                                        <option value="">Без ответа</option>
                                                         <option value="1">Есть</option>
                                                         <option value="2">Нет</option>
                                                     </select>
@@ -713,7 +770,7 @@
                                             <div class="input-col">
                                                 <div class="input-group">
                                                     <select class="customselect" name="equipment-6">
-                                                        <option value="" >Без ответа</option>
+                                                        <option value="">Без ответа</option>
                                                         <option value="1">Есть</option>
                                                         <option value="2">Нет</option>
                                                     </select>
@@ -725,7 +782,7 @@
                                             <div class="input-col">
                                                 <div class="input-group">
                                                     <select class="customselect" name="equipment-7">
-                                                        <option value="" >Без ответа</option>
+                                                        <option value="">Без ответа</option>
                                                         <option value="1">Есть</option>
                                                         <option value="2">Нет</option>
                                                     </select>
@@ -734,7 +791,585 @@
                                         </div>
                                     </div>
                                     <div class="brn-wrapper">
-                                        <button  class="btn-default">
+                                        <div class="btn-default next-step">
+                                            Следующий шаг
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content-item panel-content-4">
+                                    <div class="input-list">
+                                        <p class="info-text">
+                                            Данные покупателя хранятся в тайне. Заполнение вашего профиля гарантирует,
+                                            что вы участвуете в проектах «Тайный покупатель», которые соответствуют
+                                            вашему профилю. Спасибо!
+                                        </p>
+                                        <div class="input-item">
+                                            <div class="label-col">Адрес электронной почты PayPal</div>
+                                            <div class="input-col">
+                                                <div class="input-group">
+                                                    <input type="email" name="emailpaypal">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-item">
+                                            <div class="label-col">Пожалуйста, повторно введите свой адрес электронной
+                                                почты PayPal для проверки</div>
+                                            <div class="input-col">
+                                                <div class="input-group">
+                                                    <input type="email" name="emailpaypal2">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-item">
+                                            <div class="label-col">Как вы узнали он нас</div>
+                                            <div class="input-col">
+                                                <div class="input-group radio-group">
+                                                    <div class="radio-input">
+                                                        <input type="radio" name="q-1" id="howtoknow-1">
+                                                        <label for="howtoknow-1">iShop для веб-сайта Ipsos</label>
+                                                    </div>
+                                                    <div class="radio-input">
+                                                        <input type="radio" name="q-1" id="howtoknow-2">
+                                                        <label for="howtoknow-2">MSPA</label>
+                                                    </div>
+                                                    <div class="radio-input">
+                                                        <input type="radio" name="q-1" id="howtoknow-3">
+                                                        <label for="howtoknow-3">Shadow Shopper</label>
+                                                    </div>
+                                                    <div class="radio-input">
+                                                        <input type="radio" name="q-1" id="howtoknow-4">
+                                                        <label for="howtoknow-4">Facebook</label>
+                                                    </div>
+                                                    <div class="radio-input">
+                                                        <input type="radio" name="q-1" id="howtoknow-5">
+                                                        <label for="howtoknow-5">Твиттер</label>
+                                                    </div>
+                                                    <div class="radio-input">
+                                                        <input type="radio" name="q-1" id="howtoknow-6">
+                                                        <label for="howtoknow-6">Друг или родственник</label>
+                                                    </div>
+                                                    <div class="radio-input">
+                                                        <input type="radio" name="q-1" id="howtoknow-8">
+                                                        <label for="howtoknow-8">Веб-сайт колледжа</label>
+                                                    </div>
+                                                    <div class="radio-input">
+                                                        <input type="radio" name="q-1" id="howtoknow-9">
+                                                        <label for="howtoknow-9">Блог или форум Mystery Shopping</label>
+                                                    </div>
+                                                    <div class="radio-input">
+                                                        <input type="radio" name="q-1" id="howtoknow-7" class="show-hidden" data-hiddenblock=".hidden-getKnowAboutUs">
+                                                        <label for="howtoknow-7">
+                                                            Другое или направление (укажите)</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="hidden-block hidden-getKnowAboutUs">
+                                            <div class="input-item">
+                                                <div class="input-col">
+                                                    <div class="input-group">
+                                                        <input type="text" name="q-1-another">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-item">
+                                            <div class="label-col">У вас есть смартфон или есть к нема доступ?</div>
+                                            <div class="input-col">
+                                                <div class="input-group radio-group flex-30">
+                                                    <div class="radio-input">
+                                                        <input type="radio" name="q-2" id="smartphone-1"
+                                                            class="show-hidden" data-hiddenblock=".hidden-smartphone">
+                                                        <label for="smartphone-1">Да</label>
+                                                    </div>
+                                                    <div class="radio-input">
+                                                        <input type="radio" name="q-2" id="smartphone-2">
+                                                        <label for="smartphone-2">Нет</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="hidden-block hidden-smartphone">
+                                            <div class="input-item">
+                                                <div class="label-col">Если у вас есть смартфон или у вас есть доступ к
+                                                    нема, какой марки вы владеете или имеете доступ к использованию?
+                                                    <p class="text-italic">
+                                                        Выбрать все, что подходит
+                                                    </p>
+                                                </div>
+                                                <div class="input-col">
+                                                    <div class="input-group radio-group flex-30">
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="phoneBrand-1"
+                                                                id="phoneBrand-1">
+                                                            <label for="phoneBrand-1">Яблоко</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="phoneBrand-2"
+                                                                id="phoneBrand-2">
+                                                            <label for="phoneBrand-2">Ежевика</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="phoneBrand-3"
+                                                                id="phoneBrand-3">
+                                                            <label for="phoneBrand-3">Google</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="phoneBrand-4"
+                                                                id="phoneBrand-4">
+                                                            <label for="phoneBrand-4">HTC</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="phoneBrand-5"
+                                                                id="phoneBrand-5">
+                                                            <label for="phoneBrand-5">Kyocera</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="phoneBrand-6"
+                                                                id="phoneBrand-6">
+                                                            <label for="phoneBrand-6">Lenovo</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="phoneBrand-7"
+                                                                id="phoneBrand-7">
+                                                            <label for="phoneBrand-7">LG</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="phoneBrand-8"
+                                                                id="phoneBrand-8">
+                                                            <label for="phoneBrand-8">Motorola</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="phoneBrand-9"
+                                                                id="phoneBrand-9">
+                                                            <label for="phoneBrand-9">Nexus</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="phoneBrand-10"
+                                                                id="phoneBrand-10">
+                                                            <label for="phoneBrand-10">Nokia</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="phoneBrand-11"
+                                                                id="phoneBrand-11">
+                                                            <label for="phoneBrand-11">Samsung</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="phoneBrand-12"
+                                                                id="phoneBrand-12">
+                                                            <label for="phoneBrand-12">Sony</label>
+                                                        </div>
+                                                        <div class="radio-input mobile-width">
+                                                            <input type="checkbox" name="phoneBrand-13"
+                                                                id="phoneBrand-13" class="show-hidden" data-hiddenblock=".hidden-phoneBrand">
+                                                            <label for="phoneBrand-13">
+                                                                Другое (объясните, пожалуйста)</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="hidden-block hidden-phoneBrand">
+                                                <div class="input-item">
+                                                    <div class="input-col">
+                                                        <div class="input-group">
+                                                            <input type="text" name="phoneBrand-another">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="input-item">
+                                                <div class="label-col">Если у вас есть смартфон, кто ваш оператор
+                                                    беспроводной связи?</div>
+                                                <div class="input-col">
+                                                    <div class="input-group">
+                                                        <select class="customselect" name="mobileoperator">
+                                                            <option value="" class="default">Выберете ответ</option>
+                                                            <option value="МТС">МТС</option>
+                                                            <option value="МегаФон">МегаФон</option>
+                                                            <option value="Билайн">Билайн</option>
+                                                            <option value="Tele2">Tele2</option>
+                                                            <option value="Другие операторы">Другие операторы</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-item">
+                                            <div class="label-col">У вас есть умные часы?</div>
+                                            <div class="input-col">
+                                                <div class="input-group radio-group flex-30">
+                                                    <div class="radio-input">
+                                                        <input type="radio" name="q-3" id="smartwatch-1">
+                                                        <label for="smartwatch-1">Да</label>
+                                                    </div>
+                                                    <div class="radio-input">
+                                                        <input type="radio" name="q-3" id="smartwatch-2">
+                                                        <label for="smartwatch-2">Нет</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-item">
+                                            <div class="label-col">Владеете ли вы автомобилем или имеете к нему доступ?
+                                            </div>
+                                            <div class="input-col">
+                                                <div class="input-group radio-group flex-30">
+                                                    <div class="radio-input">
+                                                        <input type="radio" name="q-4" id="car-1" class="show-hidden"
+                                                            data-hiddenblock=".hidden-car">
+                                                        <label for="car-1">Да</label>
+                                                    </div>
+                                                    <div class="radio-input">
+                                                        <input type="radio" name="q-4" id="car-2">
+                                                        <label for="car-2">Нет</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="hidden-block hidden-car">
+                                            <div class="input-item">
+                                                <div class="label-col">Если у вас есть автомобиль или у вас есть доступ
+                                                    к нему, какой марки вы владеете или имеете доступ к использованию?
+                                                    <p class="text-italic">
+                                                        Выбрать все, что подходит
+                                                    </p>
+                                                </div>
+                                                <div class="input-col">
+                                                    <div class="input-group radio-group flex-30">
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-1" id="carBrand-1">
+                                                            <label for="carBrand-1">Acura</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-2" id="carBrand-2">
+                                                            <label for="carBrand-2">Hyundai</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-3" id="carBrand-3">
+                                                            <label for="carBrand-3">Mitsubishi</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-4" id="carBrand-4">
+                                                            <label for="carBrand-4">Audi</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-5" id="carBrand-5">
+                                                            <label for="carBrand-5">Infiniti</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-6" id="carBrand-6">
+                                                            <label for="carBrand-6">Nissan</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-7" id="carBrand-7">
+                                                            <label for="carBrand-7">BMW</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-8" id="carBrand-8">
+                                                            <label for="carBrand-8">Ягуар</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-9" id="carBrand-9">
+                                                            <label for="carBrand-9">Понтиак</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-10" id="carBrand-10">
+                                                            <label for="carBrand-10">Бьюик</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-11" id="carBrand-11">
+                                                            <label for="carBrand-11">Джип</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-12" id="carBrand-12">
+                                                            <label for="carBrand-12">Saab</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-13" id="carBrand-13">
+                                                            <label for="carBrand-13">Кадиллак</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-14" id="carBrand-14">
+                                                            <label for="carBrand-14">Kia</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-15" id="carBrand-15">
+                                                            <label for="carBrand-15">Сатурн</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-16" id="carBrand-16">
+                                                            <label for="carBrand-16">Шевроле</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-17" id="carBrand-17">
+                                                            <label for="carBrand-17">Land Rover</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-18" id="carBrand-18">
+                                                            <label for="carBrand-18">Subaru</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-19" id="carBrand-19">
+                                                            <label for="carBrand-19">Крайслер</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-20" id="carBrand-20">
+                                                            <label for="carBrand-20">Лексус</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-21" id="carBrand-21">
+                                                            <label for="carBrand-21">Тойота</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-22" id="carBrand-22">
+                                                            <label for="carBrand-22">Линкольн</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-23" id="carBrand-23">
+                                                            <label for="carBrand-23">VW</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-24" id="carBrand-24">
+                                                            <label for="carBrand-24">Форд</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-25" id="carBrand-25">
+                                                            <label for="carBrand-25">Mazda</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-26" id="carBrand-26">
+                                                            <label for="carBrand-26">Вольво</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-27" id="carBrand-27">
+                                                            <label for="carBrand-27">GMC</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-28" id="carBrand-28">
+                                                            <label for="carBrand-28">Мерседес-Бенц</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-29" id="carBrand-29">
+                                                            <label for="carBrand-29">Хонда</label>
+                                                        </div>
+                                                        <div class="radio-input">
+                                                            <input type="checkbox" name="carBrand-30" id="carBrand-30">
+                                                            <label for="carBrand-30">МИНИ</label>
+                                                        </div>
+                                                        <div class="radio-input mobile-width">
+                                                            <input type="checkbox" name="carBrand-31" id="carBrand-31"  class="show-hidden" data-hiddenblock=".hidden-carBrand">
+                                                            <label for="carBrand-31">
+                                                                Другое (объясните, пожалуйста)</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="hidden-block hidden-carBrand">
+                                                <div class="input-item">
+                                                    <div class="input-col">
+                                                        <div class="input-group">
+                                                            <input type="text" name="carBrand-another">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-item">
+                                            <div class="label-col">В каком банке у вас в настоящее время есть текущий
+                                                счет и/или сберегательный счет?
+                                                <p class="text-italic">
+                                                    Выбрать все, что подходит
+                                                </p>
+                                            </div>
+                                            <div class="input-col">
+                                                <div class="input-group radio-group">
+                                                    <div class="radio-input">
+                                                        <input type="checkbox" name="q-5-1" id="bank1-1">
+                                                        <label for="bank1-1">Банк Америки</label>
+                                                    </div>
+                                                    <div class="radio-input">
+                                                        <input type="checkbox" name="q-5-2" id="bank1-2">
+                                                        <label for="bank1-2">Гнаться</label>
+                                                    </div>
+                                                    <div class="radio-input">
+                                                        <input type="checkbox" name="q-5-3" id="bank1-3">
+                                                        <label for="bank1-3">Citi</label>
+                                                    </div>
+                                                    <div class="radio-input">
+                                                        <input type="checkbox" name="q-5-4" id="bank1-4">
+                                                        <label for="bank1-4">HSBC</label>
+                                                    </div>
+                                                    <div class="radio-input">
+                                                        <input type="checkbox" name="q-5-5" id="bank1-5">
+                                                        <label for="bank1-5">PNC</label>
+                                                    </div>
+                                                    <div class="radio-input">
+                                                        <input type="checkbox" name="q-5-6" id="bank1-6">
+                                                        <label for="bank1-6">ТД Банк</label>
+                                                    </div>
+                                                    <div class="radio-input">
+                                                        <input type="checkbox" name="q-5-7" id="bank1-7">
+                                                        <label for="bank1-7">Truist (SunTrust / BB&T)</label>
+                                                    </div>
+                                                    <div class="radio-input">
+                                                        <input type="checkbox" name="q-5-8" id="bank1-8">
+                                                        <label for="bank1-8">Уэлс Фарго</label>
+                                                    </div>
+                                                    <div class="radio-input">
+                                                        <input type="checkbox" name="q-5-9" id="bank1-9">
+                                                        <label for="bank1-9">У меня нет текущего или сберегательного
+                                                            счета</label>
+                                                    </div>
+                                                    <div class="radio-input">
+                                                        <input type="checkbox" name="q-5-10" id="bank1-10"  class="show-hidden" data-hiddenblock=".hidden-bank">
+                                                        <label for="bank1-10">Другое (укажите)</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="hidden-block hidden-bank">
+                                            <div class="input-item">
+                                                <div class="input-col">
+                                                    <div class="input-group">
+                                                        <input type="text" name="q-5-another">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-item">
+                                            <div class="label-col">Какую из следующих платформ вы использовали за
+                                                последний месяц для оформления заказа на еду/продукты для самовывоза или
+                                                доставки?
+                                                <p class="text-italic">
+                                                    Выбрать все, что подходит
+                                                </p>
+                                            </div>
+                                            <div class="input-col">
+                                                <div class="input-group radio-group">
+                                                    <div class="radio-input">
+                                                        <input type="checkbox" name="q-6-1" id="deliveryservice-1">
+                                                        <label for="deliveryservice-1">AmazonFresh</label>
+                                                    </div>
+                                                    <div class="radio-input">
+                                                        <input type="checkbox" name="q-6-2" id="deliveryservice-2">
+                                                        <label for="deliveryservice-2">Дверь Даш</label>
+                                                    </div>
+                                                    <div class="radio-input">
+                                                        <input type="checkbox" name="q-6-3" id="deliveryservice-3">
+                                                        <label for="deliveryservice-3">Grubhub</label>
+                                                    </div>
+                                                    <div class="radio-input">
+                                                        <input type="checkbox" name="q-6-4" id="deliveryservice-4">
+                                                        <label for="deliveryservice-4">Instacart</label>
+                                                    </div>
+                                                    <div class="radio-input">
+                                                        <input type="checkbox" name="q-6-5" id="deliveryservice-5">
+                                                        <label for="deliveryservice-5">Заказывается прямо с веб-сайта
+                                                            бакалейщика/ресторана или из приложения</label>
+                                                    </div>
+                                                    <div class="radio-input">
+                                                        <input type="checkbox" name="q-6-6" id="deliveryservice-6">
+                                                        <label for="deliveryservice-6">Почтальоны</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-item">
+                                            <div class="label-col">Вы ветеран вооруженных сил США?</div>
+                                            <div class="input-col">
+                                                <div class="input-group radio-group flex-30">
+                                                    <div class="radio-input">
+                                                        <input type="radio" name="q-7" id="veteran-1">
+                                                        <label for="veteran-1">Да</label>
+                                                    </div>
+                                                    <div class="radio-input">
+                                                        <input type="radio" name="q-7" id="veteran-2">
+                                                        <label for="veteran-2">Нет</label>
+                                                    </div>
+                                                    <div class="radio-input mobile-width">
+                                                        <input type="radio" name="q-7" id="veteran-3">
+                                                        <label for="veteran-3">Отказаться от ответа</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-item">
+                                            <div class="label-col">У вас есть доступ к военной базе?</div>
+                                            <div class="input-col">
+                                                <div class="input-group radio-group flex-30">
+                                                    <div class="radio-input">
+                                                        <input type="radio" name="q-8" id="militaryBase-1">
+                                                        <label for="militaryBase-1">Да</label>
+                                                    </div>
+                                                    <div class="radio-input">
+                                                        <input type="radio" name="q-8" id="militaryBase-2">
+                                                        <label for="militaryBase-2">Нет</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-item">
+                                            <div class="label-col">Сколько у вас опыта тайных покупок?</div>
+                                            <div class="input-col">
+                                                <div class="input-group">
+                                                    <select class="customselect" name="q-9">
+                                                        <option value="" class="default">Выберете ответ</option>
+                                                        <option value="1-5">1-5</option>
+                                                        <option value="6-10">6-10</option>
+                                                        <option value="11-20">11-20</option>
+                                                        <option value="20+">20+</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-item">
+                                            <div class="label-col">Какой у вас опыт аудита?</div>
+                                            <div class="input-col">
+                                                <div class="input-group">
+                                                    <select class="customselect" name="q-10">
+                                                        <option value="" class="default">Выберете ответ</option>
+                                                        <option value="большой опыт">большой опыт</option>
+                                                        <option value="нет опыта">нет опыта</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-item">
+                                            <div class="label-col">Владеете ли вы оборудованием для записи видео или
+                                                имеете доступ к нема для целей тайного покупателя?</div>
+                                            <div class="input-col">
+                                                <div class="input-group radio-group flex-30">
+                                                    <div class="radio-input">
+                                                        <input type="radio" name="q-11" id="accesToVideo-1">
+                                                        <label for="accesToVideo-1">Да</label>
+                                                    </div>
+                                                    <div class="radio-input">
+                                                        <input type="radio" name="q-11" id="accesToVideo-2">
+                                                        <label for="accesToVideo-2">Нет</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-item">
+                                            <div class="label-col">Хотели бы вы получать текстовые сообщения, чтобы
+                                                предупреждать вас о возможностях совершения покупок в вашем районе?
+                                            </div>
+                                            <div class="input-col">
+                                                <div class="input-group radio-group flex-30">
+                                                    <div class="radio-input">
+                                                        <input type="radio" name="q-12" id="getMessages-1">
+                                                        <label for="getMessages-1">Да</label>
+                                                    </div>
+                                                    <div class="radio-input">
+                                                        <input type="radio" name="q-12" id="getMessages-2">
+                                                        <label for="getMessages-2">Нет</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="brn-wrapper">
+                                        <button class="btn-default">
                                             Отправить
                                         </button>
                                     </div>

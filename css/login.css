@@ -375,12 +375,162 @@ table {
   padding-bottom: 50px;
 }
 
+.registation-page .registation-wrapper .registation-box .content-wrapper .header-thanks {
+  font-size: 16px;
+  line-height: 18px;
+  font-family: "Roboto", sans-serif;
+  color: #37353F;
+  font-weight: bold;
+  padding-bottom: 15px;
+}
+
+.registation-page .registation-wrapper .registation-box .content-wrapper .thanks-text {
+  font-size: 14px;
+  line-height: 16px;
+  font-family: "Roboto", sans-serif;
+  color: #37353F;
+}
+
+.registation-page .registation-wrapper .registation-box .content-wrapper .hidden-block {
+  display: none;
+}
+
+.registation-page .registation-wrapper .registation-box .content-wrapper .error-text {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  line-height: 14px;
+  padding-top: 5px;
+  width: 100%;
+  color: red;
+}
+
 .registation-page .registation-wrapper .registation-box .content-wrapper .content-list .content-item {
   display: none;
 }
 
 .registation-page .registation-wrapper .registation-box .content-wrapper .content-list .content-item.active {
   display: block;
+}
+
+.registation-page .registation-wrapper .registation-box .content-wrapper .content-list .radio-input {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+.registation-page .registation-wrapper .registation-box .content-wrapper .content-list .radio-input label {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  line-height: 16px;
+  color: #37353F;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.registation-page .registation-wrapper .registation-box .content-wrapper .content-list .radio-input input[type=checkbox],
+.registation-page .registation-wrapper .registation-box .content-wrapper .content-list .radio-input input[type=radio] {
+  display: none;
+}
+
+.registation-page .registation-wrapper .registation-box .content-wrapper .content-list .radio-input input[type=checkbox]:checked + label::before,
+.registation-page .registation-wrapper .registation-box .content-wrapper .content-list .radio-input input[type=radio]:checked + label::before {
+  background: #4A52F7;
+}
+
+.registation-page .registation-wrapper .registation-box .content-wrapper .content-list .radio-input input[type=checkbox] + label,
+.registation-page .registation-wrapper .registation-box .content-wrapper .content-list .radio-input input[type=radio] + label {
+  cursor: pointer;
+}
+
+.registation-page .registation-wrapper .registation-box .content-wrapper .content-list .radio-input input[type=checkbox] + label::before,
+.registation-page .registation-wrapper .registation-box .content-wrapper .content-list .radio-input input[type=radio] + label::before {
+  content: "";
+  display: inline-block;
+  width: 15px;
+  min-width: 15px;
+  height: 15px;
+  border: 1px solid #C4C4C4;
+  border-radius: 50%;
+  margin-right: 5px;
+  -webkit-transition: background 0.3s ease-in;
+  -o-transition: background 0.3s ease-in;
+  transition: background 0.3s ease-in;
+  cursor: pointer;
+}
+
+.registation-page .registation-wrapper .registation-box .content-wrapper .content-list .input-item {
+  padding-bottom: 20px;
+}
+
+.registation-page .registation-wrapper .registation-box .content-wrapper .content-list .input-item .label-col {
+  background: #e2e2e2;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+  color: #37353F;
+  padding: 10px 15px;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.registation-page .registation-wrapper .registation-box .content-wrapper .content-list .input-item .label-col .text-italic {
+  font-style: italic;
+  text-transform: none;
+}
+
+.registation-page .registation-wrapper .registation-box .content-wrapper .content-list .input-item .input-col {
+  width: 100%;
+}
+
+.registation-page .registation-wrapper .registation-box .content-wrapper .content-list .input-item .input-col.has-error input {
+  border-color: red !important;
+}
+
+.registation-page .registation-wrapper .registation-box .content-wrapper .content-list .input-item .input-col .input-group {
+  width: 100%;
+  height: 100%;
+}
+
+.registation-page .registation-wrapper .registation-box .content-wrapper .content-list .input-item .input-col .input-group.flex-30 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+
+.registation-page .registation-wrapper .registation-box .content-wrapper .content-list .input-item .input-col .input-group.flex-30 .radio-input {
+  width: 33.3%;
+}
+
+.registation-page .registation-wrapper .registation-box .content-wrapper .content-list .input-item .input-col .input-group input {
+  height: 100%;
+  width: 100%;
+  border: 1px solid #D4D4D7;
+  background: #ffffff;
+  outline: none;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  color: #37353F;
+  padding: 10px 15px;
 }
 
 .registation-page .registation-wrapper .registation-box .content-wrapper .content-list .input-row {
@@ -397,6 +547,9 @@ table {
       -ms-flex-pack: justify;
           justify-content: space-between;
   padding-bottom: 5px;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
 }
 
 .registation-page .registation-wrapper .registation-box .content-wrapper .content-list .input-row .label-col {
@@ -416,6 +569,10 @@ table {
 
 .registation-page .registation-wrapper .registation-box .content-wrapper .content-list .input-row .input-col {
   width: 60%;
+}
+
+.registation-page .registation-wrapper .registation-box .content-wrapper .content-list .input-row .input-col.has-error input {
+  border-color: red !important;
 }
 
 .registation-page .registation-wrapper .registation-box .content-wrapper .content-list .input-row .input-col .customselect-wrapper {
@@ -476,6 +633,16 @@ table {
 
 .registation-page .registation-wrapper .registation-box .content-wrapper .content-list .input-row .birthday-row .birthday-col.customselect-wrapper .select-styled {
   border-left: none;
+}
+
+.registation-page .registation-wrapper .registation-box .content-wrapper .info-text {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+  color: #37353F;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  font-weight: bold;
 }
 
 .registation-page .registation-wrapper .registation-box .content-wrapper .section-header {
@@ -661,7 +828,8 @@ table {
 @media screen and (max-width: 992px) {
   .registation-page .registation-wrapper .registation-box .content-wrapper .content-list .input-row .label-col,
   .customselect-wrapper .select-styled,
-  .registation-page .registation-wrapper .registation-box .content-wrapper .content-list .input-row .input-col .input-group input {
+  .registation-page .registation-wrapper .registation-box .content-wrapper .content-list .input-row .input-col .input-group input,
+  .registation-page .registation-wrapper .registation-box .content-wrapper .content-list .input-item .label-col {
     font-size: 12px;
     line-height: 16px;
   }
@@ -669,7 +837,8 @@ table {
     padding-left: 20px;
     padding-right: 20px;
   }
-  .registation-page .registation-wrapper .registation-box .content-wrapper .content-list .input-row .label-col {
+  .registation-page .registation-wrapper .registation-box .content-wrapper .content-list .input-row .label-col,
+  .registation-page .registation-wrapper .registation-box .content-wrapper .content-list .input-item .label-col {
     padding-left: 10px;
     padding-right: 10px;
   }
@@ -680,6 +849,12 @@ table {
 }
 
 @media screen and (max-width: 768px) {
+  .registation-page .registation-wrapper .registation-box .content-wrapper .content-list .input-item .input-col .input-group.flex-30 .radio-input {
+    width: 50%;
+  }
+  .registation-page .registation-wrapper .registation-box .content-wrapper .content-list .input-item .input-col .input-group.flex-30 .radio-input.mobile-width {
+    width: 100%;
+  }
   .registation-page .registation-wrapper .registation-box .panels-list .panel-item {
     padding-left: 5px;
     padding-right: 5px;

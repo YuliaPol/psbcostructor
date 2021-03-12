@@ -3,15 +3,46 @@ jQuery(function ($) {
     $(document).ready(function () {
         $('.panel-item').click(function(e){
             if(!$(this).hasClass('active')){
-                $(this).parents('.panels-list').find('.panel-item').removeClass('active');
-                $(this).addClass('active');
-                let content = '.'+ $(this).attr('data-content');
-                $('.content-list').find('.content-item.active').fadeOut(0);
-                $('.content-list').find('.content-item.active').removeClass('active');
-                $(content).fadeIn(300);
-                $(content).addClass('active');
+                // valid 
+                var el = $('.content-list').find('.content-item.active').find('input[data-reqired]');
+                var erroreArrayElemnts = [];
+                for (let index = 0; index < el.length; index++) {
+                    if(!$(el[index]).val()){
+                        erroreArrayElemnts.push($(el[index]));
+                        $(el[index]).parents('.input-col').addClass('has-error');
+                        $(el[index]).focus(function (e) {
+                            $(e.target).parents('.input-col').removeClass('has-error');
+                        });
+                    }
+                }
+                var emails = $('.content-list').find('.content-item.active').find('input[type=email]');
+                for (let index = 0; index < emails.length; index++) {
+                    if($(emails[index]).val()){
+                        if(!validateEmail($(emails[index]).val()))
+                        erroreArrayElemnts.push($(emails[index]));
+                        $(emails[index]).parents('.input-col').addClass('has-error');
+                        $(emails[index]).parents('.input-row').append('<div class="error-text">Неверный email</div>');
+                        $(emails[index]).focus(function (e) {
+                            $(e.target).parents('.input-col').removeClass('has-error');
+                            $(el[index]).parents('.input-row').find('.error-text').remove();
+                        });
+                    }
+                }
+                if(erroreArrayElemnts.length == 0){
+                    $(this).parents('.panels-list').find('.panel-item').removeClass('active');
+                    $(this).addClass('active');
+                    let content = '.'+ $(this).attr('data-content');
+                    $('.content-list').find('.content-item.active').fadeOut(0);
+                    $('.content-list').find('.content-item.active').removeClass('active');
+                    $(content).fadeIn(300);
+                    $(content).addClass('active');
+                }
             };
         });
+        function validateEmail($email) {
+            var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+            return emailReg.test( $email );
+        }
         $('.next-step').click(function(e){
             $('.panels-list').find('.panel-item.active').next().click();
         });
@@ -160,6 +191,36 @@ jQuery(function ($) {
                 }
             });   
         }
+        $('.radio-group input[type=radio]').change(function(e){
+            if($(this).parents('.radio-group').find('.show-hidden').length>0){
+                let openHidden = $(this).parents('.radio-group').find('.show-hidden');
+                for (let index = 0; index < openHidden.length; index++) {
+                    if($(openHidden[index]).is(':checked')){
+                        let hiddenBlock = $(openHidden[index]).attr('data-hiddenblock');
+                        $(hiddenBlock).fadeIn(300);
+                    }
+                    else {
+                        let hiddenBlock = $(openHidden[index]).attr('data-hiddenblock');
+                        $(hiddenBlock).fadeOut(300);
+                    }
+                }
+            }
+        });
+        $('.radio-group input[type=checkbox]').change(function(e){
+            if($(this).parents('.radio-group').find('.show-hidden').length>0){
+                let openHidden = $(this).parents('.radio-group').find('.show-hidden');
+                for (let index = 0; index < openHidden.length; index++) {
+                    if($(openHidden[index]).is(':checked')){
+                        let hiddenBlock = $(openHidden[index]).attr('data-hiddenblock');
+                        $(hiddenBlock).fadeIn(300);
+                    }
+                    else {
+                        let hiddenBlock = $(openHidden[index]).attr('data-hiddenblock');
+                        $(hiddenBlock).fadeOut(300);
+                    }
+                }
+            }
+        });
         //validation
         var formValid = document.getElementsByClassName('form-valid')[0];
         $('.valid-form-send').click(function () {
