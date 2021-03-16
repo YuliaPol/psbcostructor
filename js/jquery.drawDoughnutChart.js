@@ -202,9 +202,16 @@
       function pathMouseEnter(e){
         var order = $(this).data().order;
         if($this.attr('data-tooltip') == 'expand'){
+          let label = " "
+          if($.isNumeric(data[order].labelText)) {
+            label = 'Оценка - ' + data[order].labelText;
+          }
+          else {
+            label = data[order].labelText;
+          }
           var str = 
           '<div class="tip-cont">'
-          +'  <div class="label"> Оценка - ' + data[order].labelText + '</div>'
+          +'  <div class="label">' + label + '</div>'
           +'  <div class="value">' + data[order].percent + '% / ' + data[order].progress + 'шт</div>'
           +'</div>';
           $tip.html(str);

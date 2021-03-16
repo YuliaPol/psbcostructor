@@ -328,7 +328,13 @@ function drawShadowLine(element, data, borderColor) {
         var labels = new Array(data.length);
         var maxValue = data[0].progress;
         for (let i = 0; i < data.length; i++) {
-            labels[i] = 'Оценка ' + data[i].labelText;
+            if($.isNumeric(data[i].labelText)) {
+                labels[i] = 'Оценка ' + data[i].labelText;
+            }
+            else {
+                labels[i] = data[i].labelText;
+            }
+
             backgroundColor[i] = data[i].background;
             newData[i] = data[i].progress;
             if(maxValue<data[i].progress){
@@ -600,7 +606,12 @@ function drawVerticalBar(element, data) {
         var backgroundColor = new Array(data.length);
         var labels = new Array(data.length);
         for (let i = 0; i < data.length; i++) {
-            labels[i] = 'Оценка ' + data[i].labelText;
+            if($.isNumeric(data[i].labelText)) {
+                labels[i] = 'Оценка ' + data[i].labelText;
+            }
+            else {
+                labels[i] = data[i].labelText;
+            }
             backgroundColor[i] = data[i].background;
             newData[i] = data[i].progress;
         }
@@ -762,13 +773,21 @@ function drawSimpleBar(element, data) {
         var width = parseInt(data.length);
         for (let i = 0; i < data.length; i++) {
             var top = 100 - percentFill[i];
+            let label = data[i].labelText;
+            let labelText = '';
+            if($.isNumeric(label)) {
+                labelText = 'оценкa <span class="bold">' + data[i].labelText + '</span>';
+            }
+            else {
+                labelText = data[i].labelText;
+            }
             elements = elements + 
             '<div class="baritem" style="max-width: calc(100%/' + width +');width: calc(100%/' + width +');">'
             +'    <div class="barcol">'
             +'      <div class="barcolFill" style="background-color: '+ data[i].background + '; top: ' + top + '%"></div>'
             +'      <div class="value">' + percent[i] + '% / '+ data[i].progress + ' шт</div>'
             +'  </div>'
-            +'  <div class="label">оценкa <span class="bold">' + data[i].labelText + '</span></div>'
+            +'  <div class="label">'+ labelText +'</div>'
             +'</div>';
         }
         var elements = elements + '</div>';
@@ -802,14 +821,20 @@ function DrawLegend1(element, data) {
         }
     }
     for (var i = 0, len = data.length; i < len; i++){
-        // if( data[i].value) {
+          let label = " ";
+          if($.isNumeric(data[i].title)) {
+            label = 'Оценка <span class="bold">' + data[i].title + '</span>';
+          }
+          else {
+            label = data[i].title;
+          }
           var legendRow = 
           '<div class="legend-item">'
           +'    <div class="col-square">'
           +'      <div class="square" style="background: '+ data[i].color +'"></div>'
           +'  </div>'
           +'  <div class="col-label">'
-          +'      Оценка <span class="bold">' + data[i].title + '</span>'
+          + label
           +'  </div>'
           +'  <div class="col-value">'
           +'      ' + data[i].percent + '%'
@@ -841,13 +866,20 @@ function DrawLegend2(element, data) {
         if($(element).parents('.charts-for-pdf').length > 0){
             addValues = '<br> (' + Math.round(percent*parseInt(data[i].progress)) +  '% / ' + data[i].progress +' шт)';
         }
+        let label = ' ';
+        if($.isNumeric(dataLegend[i].title)) {
+            label = 'Оценка <span class="bold">' + dataLegend[i].title + '</span>' + addValues;
+          }
+          else {
+            label = dataLegend[i].title + addValues;
+        }
           var legendRow = 
           '<div class="legend-item">'
           +'    <div class="col-square">'
           +'      <div class="square" style="background: '+ dataLegend[i].color +'"></div>'
           +'  </div>'
           +'  <div class="col-label">'
-          +'      Оценка <span class="bold">' + dataLegend[i].title + '</span>' + addValues
+          + label
           +'  </div>'
           +'</div>';
           $(legendRow).appendTo(legend);
@@ -912,11 +944,16 @@ function drawHorizontalBar(element, data){
         var maxValue = parseInt(data[0].progress);
         for (let i = 0; i < data.length; i++) {
             var label = 'баллов';
-            if(data[i].labelText == '1'){
-                label = 'балл';
+            if($.isNumeric(data[i].labelText)) {
+                if(data[i].labelText == '1'){
+                    label = 'балл';
+                }
+                else if(data[i].labelText == '2' || data[i].labelText == '3' || data[i].labelText == '4'){
+                    label = 'балла';
+                }
             }
-            else if(data[i].labelText == '2' || data[i].labelText == '3' || data[i].labelText == '4'){
-                label = 'балла';
+            else {
+                label = ' ';
             }
 
             labels[i] = data[i].labelText + ' ' + label;
@@ -1141,11 +1178,16 @@ function drawLineDot(element, data, dotColor) {
         str += '<div class="lineDotlist">';
         for (let i = 0; i < data.length; i++) {
             var label = 'баллов';
-            if(data[i].labelText == '1'){
-                label = 'балл';
+            if($.isNumeric(data[i].labelText)) {
+                if(data[i].labelText == '1'){
+                    label = 'балл';
+                }
+                else if(data[i].labelText == '2' || data[i].labelText == '3' || data[i].labelText == '4'){
+                    label = 'балла';
+                }
             }
-            else if(data[i].labelText == '2' || data[i].labelText == '3' || data[i].labelText == '4'){
-                label = 'балла';
+            else {
+                label = ' ';
             }
             if($(element).parents('.charts-for-pdf').length > 0){
                 tooltipValue = '<div class="tooltip-value">' + percentValue[i] + '% / ' + data[i].progress + ' шт</div>';
@@ -1255,6 +1297,7 @@ function DrawPyramide(element, data){
     var dataPyramid = new Array(data.length);
 
     for (let i = 0; i < data.length; i++) {
+
         dataPyramid[i] = {
             value: parseInt(data[i].progress),
             title: data[i].labelText,
@@ -1286,7 +1329,13 @@ function DrawPyramide(element, data){
         var label = $(this).attr('data-label');
         var value = $(this).attr('data-value');
         var percent = $(this).attr('data-percent');
-        $('.pyraamidTip .label').html('Оценка - ' + label );
+        if($.isNumeric(label)) {
+            $('.pyraamidTip .label').html('Оценка - ' + label );
+        }
+        else {
+            $('.pyraamidTip .label').html(label );
+        }
+
         $('.pyraamidTip .value').html(percent + '% / ' + value + ' шт');
         $('.pyraamidTip').fadeIn(0);
     });
@@ -1358,6 +1407,13 @@ function DrawVerticalBarShadow(element, data){
         var width = parseInt(data.length);
         for (let i = 0; i < data.length; i++) {
             var top = 100 - percent[i];
+            let labelText = "";
+            if($.isNumeric(data[i].labelText)) {
+                labelText = 'Оценка <span class="bold">' + data[i].labelText + '</span>';
+            }
+            else {
+                labelText = data[i].labelText;
+            }
             elements = elements + 
             '<div class="vertical-item">'
             +'    <div class="vertical-bar">'
@@ -1365,7 +1421,7 @@ function DrawVerticalBarShadow(element, data){
             +'      <div class="vertical-value">' + percent[i] + '% / '+ data[i].progress + ' шт</div>'
             +'  </div>'
             +'  <div class="vertical-label">'
-            +'      Оценка <span class="bold">' + data[i].labelText + '</span>'
+            + labelText
             +'  </div>'
             +'</div>';
         }
@@ -1406,11 +1462,18 @@ function DrawHorizontalLines(element, data){
         var elements = '<div class="horizonatal-line">';
         for (let i = 0; i < data.length; i++) {
             var top = 100 - percent[i];
+            labelText = " ";
+            if($.isNumeric(data[i].labelText)) {
+                labelText = 'Ответы на оценку';
+            }
+            else {
+                labelText = 'Ответы';
+            }
             elements = elements + 
             '<div class="item">'
             +'    <div class="labels">'
             +'      <div class="name">'
-            +'          Ответы на оценку' 
+            + labelText 
             +'          <span class="bold">' + data[i].labelText + '</span>'
             +'      </div>'
             +'      <div class="values">' + percent[i] + '% /  ' + data[i].progress + ' шт</div>'
@@ -1450,13 +1513,17 @@ function DrawLongLine(element, data){
         for (let i = 0; i < data.length; i++) {
 
             var label = 'баллов';
-            if(data[i].labelText == '1'){
-                label = 'балл';
+            if($.isNumeric(data[i].labelText)) {
+                if(data[i].labelText == '1'){
+                    label = 'балл';
+                }
+                else if(data[i].labelText == '2' || data[i].labelText == '3' || data[i].labelText == '4'){
+                    label = 'балла';
+                }
             }
-            else if(data[i].labelText == '2' || data[i].labelText == '3' || data[i].labelText == '4'){
-                label = 'балла';
+            else {
+                label = ' ';
             }
-
             line = line + 
                 '<div class="result" style="background-color: '+ data[i].background + ';width: ' + percent[i] + '%"></div>';
             tooltip = tooltip + 

@@ -74,6 +74,9 @@
 
 .charts-content .chart-row .chart-box .chart-content .horizonatal-line {
   padding-top: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 15px;
 }
 
 .charts-content .chart-row .chart-box .chart-content .horizonatal-line .item {

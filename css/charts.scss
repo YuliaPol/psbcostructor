@@ -63,6 +63,9 @@ $anket-color5: #5EAE61;
                 }
                 .horizonatal-line {
                     padding-top: 10px;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    padding-right: 15px;
                     .item {
                         padding-bottom: 20px;
                         &:nth-child(1){

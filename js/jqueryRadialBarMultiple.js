@@ -199,10 +199,17 @@ RadialBar.prototype = {
     _buildLabelSquare: function(object, padding, percent){
         var self = this;
         var legend = $(self.element).parents('.chart-content').find('.legend .legend-list');
+        let label = ' ';
+        if($.isNumeric(object.labelText)) {
+            label = 'Ответы на оценку <span class="bold">'+ object.labelText;
+        }
+        else {
+            label = object.labelText;
+        }
         var legendRow = 
         '<div class="legend-row">'
         +'    <div class="legend-value" style="background-color: ' + object.background + ';">'+ percent + '% / ' + object.progress + ' шт</div>'
-        +'    <div class="legend-label">Ответы на оценку <span class="bold">'+ object.labelText + '</span></div>'
+        +'    <div class="legend-label">' + label + '</div>'
         +'</div>';
         $(legendRow).appendTo(legend);
     },
