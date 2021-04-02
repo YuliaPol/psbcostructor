@@ -132,9 +132,15 @@ $anket-color5: #5EAE61;
     svg {
         max-width: 100%;
     }
+    .chart {
+        width: 50%;
+    }
     .legend {
+        width: 50%;
         padding-left: 10px;
         padding-right: 10px;
+        max-height: 300px;
+        overflow-y: auto;
         .legend-list {
             display: flex;
             flex-direction: column;
@@ -178,9 +184,13 @@ $anket-color5: #5EAE61;
             display: flex;
             align-items: flex-end;
             justify-content: stretch;
+            max-width: 100%;
+            overflow-y: auto;
+            padding-bottom: 20px;
             .baritem {
                 max-width: calc(100%/5);
                 width: calc(100%/5);
+                min-width: 100px;
                 .barcol {
                     background-position: bottom;
                     background-size: 100% 10%;
@@ -257,6 +267,8 @@ $anket-color5: #5EAE61;
         .legend {
             width: 90px;
             margin: 0px;
+            max-height: 300px;
+            overflow-y: auto;
             .legend-list {
                 .legend-item {
                     padding-bottom: 13px;
@@ -292,6 +304,8 @@ $anket-color5: #5EAE61;
     .legend {
         width: 50%;
         margin-right: -20px;
+        max-height: 300px;
+        overflow-y: auto;
         .legend-list {
             height: 100%;
             display: flex;
@@ -455,6 +469,8 @@ $anket-color5: #5EAE61;
     .legend {
         width: 50%;
         margin-right: -20px;
+        max-height: 300px;
+        overflow-y: auto;
         .legend-list {
             height: 100%;
             display: flex;
@@ -541,6 +557,8 @@ $anket-color5: #5EAE61;
         .legend {
             width: 50%;
             margin-right: -20px;
+            max-height: 300px;
+            overflow-y: auto;
             .legend-list {
                 height: 100%;
                 display: flex;
@@ -610,6 +628,8 @@ $anket-color5: #5EAE61;
         .legend {
             width: 90px;
             margin: 0px;
+            max-height: 300px;
+            overflow-y: auto;
             .legend-list {
                 .legend-item {
                     padding-bottom: 13px;
@@ -669,6 +689,8 @@ $anket-color5: #5EAE61;
     }
     .legend {
         width: 45px;
+        max-height: 300px;
+        overflow-y: auto;
         .legend-list {
             .legend-row {
                 padding-bottom: 4px;
@@ -842,6 +864,8 @@ $anket-color5: #5EAE61;
     .legend {
         width: 100%;
         padding-top: 15px;
+        max-height: 300px;
+        overflow-y: auto;
         .legend-list {
             width: 100%;
             display: flex;
@@ -1138,6 +1162,10 @@ $anket-color5: #5EAE61;
     }
 }
 @media screen and (max-width: 768px) {
+    .radialbarmultiple .chart,
+    .radialbarmultiple .legend {
+        width: 100%;
+    }
     .charts-content .chart-row .chart-box.width-33 {
         width: 100%;
         margin-left: 0px;

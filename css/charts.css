@@ -156,9 +156,16 @@
   max-width: 100%;
 }
 
+.radialbarmultiple .chart {
+  width: 50%;
+}
+
 .radialbarmultiple .legend {
+  width: 50%;
   padding-left: 10px;
   padding-right: 10px;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .radialbarmultiple .legend .legend-list {
@@ -238,11 +245,15 @@
   -webkit-justify-content: stretch;
       -ms-flex-pack: stretch;
           justify-content: stretch;
+  max-width: 100%;
+  overflow-y: auto;
+  padding-bottom: 20px;
 }
 
 .varticalbar .varticalbarChart .barlist .baritem {
   max-width: calc(100%/5);
   width: calc(100%/5);
+  min-width: 100px;
 }
 
 .varticalbar .varticalbarChart .barlist .baritem .barcol {
@@ -350,6 +361,8 @@
 .dougnat.smalllegend .legend {
   width: 90px;
   margin: 0px;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .dougnat.smalllegend .legend .legend-list .legend-item {
@@ -384,6 +397,8 @@
 .dougnat .legend {
   width: 50%;
   margin-right: -20px;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .dougnat .legend .legend-list {
@@ -622,6 +637,8 @@
 .pieChart .legend {
   width: 50%;
   margin-right: -20px;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .pieChart .legend .legend-list {
@@ -759,6 +776,8 @@
 .pieRound.smalllegend .legend {
   width: 50%;
   margin-right: -20px;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .pieRound.smalllegend .legend .legend-list {
@@ -861,6 +880,8 @@
 .pieRound.smalllegend .legend {
   width: 90px;
   margin: 0px;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .pieRound.smalllegend .legend .legend-list .legend-item {
@@ -942,6 +963,8 @@
 
 .radialBar2 .legend {
   width: 45px;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .radialBar2 .legend .legend-list .legend-row {
@@ -1164,6 +1187,8 @@
 .pyramid .legend {
   width: 100%;
   padding-top: 15px;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .pyramid .legend .legend-list {
@@ -1558,6 +1583,10 @@
 }
 
 @media screen and (max-width: 768px) {
+  .radialbarmultiple .chart,
+  .radialbarmultiple .legend {
+    width: 100%;
+  }
   .charts-content .chart-row .chart-box.width-33 {
     width: 100%;
     margin-left: 0px;

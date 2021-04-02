@@ -1703,6 +1703,10 @@ jQuery(function ($) {
                 +'                  <div class="tooltip tooltip-add">Добавить множественный выбор</div>'
                 +'                  <div class="tooltip tooltip-remove">Удалить множественный выбор</div>'
                 +'              </div>'
+                +'    <div class="add-stop-question">'
+                +'        <input type="checkbox" name="stopquestion_'+ idQuestion + '_'+ idMultiple + '_' + idMultiplePoint + '_' + idPoint +'" id="stopquestion_'+ idQuestion + '_'+ idMultiple + '_' + idMultiplePoint + '_' + idPoint +'">'
+                +'        <div class="tooltip">Сделать стоп вопросом</div>'
+                +'   </div>'
                 +'</div>';
             $(newOptionel).appendTo($($(this).parents('.dropdown-options').find('.optionsdropdownlist')[0]));
             var newitem = '<div class="item"><div class="value">Ответ</div></div>';
@@ -2883,6 +2887,10 @@ jQuery(function ($) {
                     +'                  <div class="tooltip tooltip-add">Добавить множественный выбор</div>'
                     +'                  <div class="tooltip tooltip-remove">Удалить множественный выбор</div>'
                     +'              </div>'
+                    +'              <div class="add-stop-question">'
+                    +'                  <input type="checkbox" name="stopquestion_'+ idQuestion + '_'+ idMultiple + '_' + idMultiplePoint + '" id="stopquestion_'+ idQuestion + '_'+ idMultiple + '_' + idMultiplePoint +'">'
+                    +'                  <div class="tooltip">Сделать стоп вопросом</div>'
+                    +'              </div>'
                     +'          </div>'
                     +'          <div class="option-group">'
                     +'              <div class="inputstables">'
@@ -2897,6 +2905,10 @@ jQuery(function ($) {
                     +'                <div class="add-second-mlt-qst">'
                     +'                  <div class="tooltip tooltip-add">Добавить множественный выбор</div>'
                     +'                  <div class="tooltip tooltip-remove">Удалить множественный выбор</div>'
+                    +'              </div>'
+                    +'              <div class="add-stop-question">'
+                    +'                  <input type="checkbox" name="stopquestion_'+ idQuestion + '_'+ idMultiple + '_' + idMultiplePoint + '" id="stopquestion_'+ idQuestion + '_'+ idMultiple + '_' + idMultiplePoint +'">'
+                    +'                  <div class="tooltip">Сделать стоп вопросом</div>'
                     +'              </div>'
                     +'          </div>'
                     +'      </div>'
@@ -6406,7 +6418,16 @@ jQuery(function ($) {
         //         $('.optionsblock #branchinoption_' + id ).addClass('active');
         //     }
         // });
-        
+        $('.rightside').on('click', '.add-stop-question', function(e){
+            if(!$(this).hasClass('active')){
+                $(this).addClass('active');
+                $(this).find('input').prop('checked', true);
+            }
+            else {
+                $(this).removeClass('active');
+                $(this).find('input').prop('checked', false);
+            }
+        });
         function getAppendIndex(arr, top, offsetY) {
             if( arr.length === 0 ) {
                 return 'last';

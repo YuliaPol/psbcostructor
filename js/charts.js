@@ -327,20 +327,38 @@ function drawShadowLine(element, data, borderColor) {
         var backgroundColor = new Array(data.length);
         var labels = new Array(data.length);
         var maxValue = data[0].progress;
+        var longLabels;
         for (let i = 0; i < data.length; i++) {
             if($.isNumeric(data[i].labelText)) {
-                labels[i] = 'Оценка ' + data[i].labelText;
+                longLabels = 'Оценка ' + data[i].labelText;
             }
             else {
-                labels[i] = data[i].labelText;
+                let labels = data[i].labelText.split(' ');
+                let labelsLong = new Array();
+                if (labels.length > 3){
+                    for (let index = 0; index < labels.length;) {
+                        let labelItem = labels[index];
+                        let index2 = index + 1;
+                        if(labels.length > index2){
+                            labelItem += ' ' + labels[index2];
+                        }
+                        labelsLong.push(labelItem);
+                        index = index + 2;
+                    }
+                    longLabels = labelsLong;
+                }
+                else {
+                    longLabels =  data[i].labelText;
+                }
             }
-
+            labels[i] = longLabels;
             backgroundColor[i] = data[i].background;
             newData[i] = data[i].progress;
             if(maxValue<data[i].progress){
                 maxValue = data[i].progress;
             }
         }
+        console.log(labels);
         maxValue = parseInt(maxValue) + 10;
         var shadowLineEl = document.getElementById(id).getContext('2d');
         gradient = shadowLineEl.createLinearGradient(0, 0, 0, height);
