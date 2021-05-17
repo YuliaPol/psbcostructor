@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cтраница приветствия</title>
+
+    <link rel="stylesheet" href="./css/style.css?5465465">
+    <link rel="stylesheet" href="./css/jquery-ui.css">
+
+    <script src="./js/jquery-3.5.1.min.js"></script>
+    <script src="./js//jquery-ui.js"></script>
+    <script src="./js/dropzone.js"></script>
+    <script src="./js/jscolor.js"></script>
+    <script src="./js/hellopage.js"></script>
+    <script src="./js/script.js?87654"></script>
+</head>
+
+<body>
+    <header class="header header-bt-menu">
+        <div class="header-row">
+            <div class="linkback linkback-big">
+                <a href="#" class="arrow-back"></a>
+                <a href="#">Обслуживание удовлетворенности клиентов</a>
+            </div>
+            <div class="navbar-user">
+                <div class="user">
+                    <div class="user-wrapper show-user-dropdown">
+                        <div class="user-name">Alexander Pierce</div>
+                        <div class="icon-user">
+                            <img src="./img/user.png" alt="Alexander Pierce">
+                        </div>
+                    </div>
+                    <div class="dropdown-user">
+                        <ul>
+                            <li>
+                                <a href="#" class="logout">Выход </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom">
+            <div class="bottom-menu">
+                <ul>
+                    <li>
+                        <a href="#">Вопросы</a>
+                    </li>
+                    <li>
+                        <a href="#">Дизайн</a>
+                    </li>
+                    <li class="active">
+                        <a href="#">Cтраница приветствия</a>
+                    </li>
+                    <li>
+                        <a href="#">Cтраница с благодарностью</a>
+                    </li>
+                    <li>
+                        <a href="#">Опции</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="page-content">
+        <form action="#">
+            <!-- <table> -->
+            <div class="construcot-container">
+                <div class="centerbox full-width fontMonserat">
+                    <input id="quiz-id" type="hidden" value="1">
+                    <div class="hellopage">
+                        <div class="hellopahecontainer dragable">
+                            <div id="dropContainer" class="dropzone-file">
+                                <div class="file-btn">
+                                    Перетащите сюда <br>
+                                    нужную фотографию
+                                </div>
+                                <div class="preview-picture"></div>
+                             </div>
+                            <!-- <div class="drag dragtext text1level" style="left: 20px; top: 20px;">
+                                <div class="text">Header</div>
+                            </div> -->
+                            <!-- <div class="drag dragbtn" style="top: 20px; left: 20px;">
+                                <div class="btn-cont" style="text-align: center;">
+                                    <button class="btn" type="submit"
+                                        style="
+                                        background: #F26126;
+                                        width: 150px;
+                                        height: 36px;
+                                        border-radius: 30px;">
+                                        Пройти опрос
+                                    </button>
+                                </div>
+                            </div> -->
+                            <!-- <div class="drag dragimage">
+                                <div class="remove-picture "></div>
+                                <input type="hidden" name="picture" value="562">
+                                <img src="./img/hellopage_pic_1.png" alt="">
+                            </div> -->
+                        </div>
+                    </div>       
+                </div>
+                <aside class="rightside">
+                    <!-- <form action="#" class="rightsidefrom"> -->
+                    <div class="optionsblock">
+                        <div class="default hellopage_options active">
+                            <div class="header-aside">
+                                Настройки
+                            </div>
+                            <div class="filerow">
+                                <div class="addpicture">
+                                    Добавить фото
+                                </div>
+                                <input type="file" id="fileInput" name="pictures[]" class="realfileinput pictureforpage" />
+                            </div>
+                            <div class="text-aside">
+                                <input type="hidden" name="widthscreen">
+                                <input type="hidden" name="heightscreen">
+                                <div class="textasettings">
+                                    <p class="pad-bt-15">Текст</p>
+                                    <div class="position position-text">
+                                        <div class="left">
+                                            <input type="radio" value="left" name="settings_1" id="settingsposition_1" checked>
+                                            <label for="settingsposition_1"> 
+                                            </label>
+                                        </div>
+                                        <div class="center">
+                                            <input type="radio" value="center" name="settings_1" id="settingsposition_2">
+                                            <label for="settingsposition_2">
+                                            </label>
+                                        </div>
+                                        <div class="right">
+                                            <input type="radio" value="right" name="settings_1" id="settingsposition_3">
+                                            <label for="settingsposition_3">
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <select name="settings_2" class="customselect fontselect">
+                                            <option value="Montserrat">Montserrat</option>
+                                            <option value="Arial">Arial</option>
+                                            <option value="Tahoma">Tahoma</option>
+                                            <option value="Lucida">Lucida</option>
+                                            <option value="Courier">Courier</option>
+                                            <option value="Georgia">Georgia</option>
+                                            <option value="TimesNewRoman">Times New Roman</option>
+                                            <option value="Roboto">Roboto</option>
+                                            <option value="Tahoma">Tahoma</option>
+                                            <option value="OpenSans">Open Sans</option>
+                                            <option value="Piazzolla">Piazzolla</option>
+                                            <option value="Oswald">Oswald</option>
+                                            <option value="Ubuntu">Ubuntu</option>
+                                            <option value="NotoSans">Noto Sans</option>
+                                            <option value="PTSans">PT Sans</option>
+                                            <option value="Lora">Lora</option>
+                                        </select> 
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="hidden" name="texttop_1">
+                                        <input type="hidden" name="textleft_1">
+                                        <input type="hidden" name="textwidth_1">
+                                        <input type="hidden" name="textheight_1">
+                                        <input type="hidden" name="texttype_1" value="1">
+                                        <div class="blocktext">
+                                            <div class="colorpick colorpick1level">
+                                                <div class="square" style="background: #4D4D4D;"></div>
+                                                <div class="inputs">
+                                                    <input type="text" name="color_1" id="color_1" value="#4D4D4D" data-jscolor="">
+                                                </div>
+                                                <div class="labelcolor">
+                                                   <label for="color_1">Текст первого уровня</label>
+                                                </div>
+                                            </div>
+                                            <div class="fontsize smallselect-wrapper">
+                                                <select name="fontsize_1" class="customselect font1size ">
+                                                    <option value="50" selected>50</option>
+                                                    <option value="44">44</option>
+                                                    <option value="36">36</option>
+                                                    <option value="28">28</option>
+                                                    <option value="24">24</option>
+                                                    <option value="18">18</option>
+                                                </select>
+                                            </div>
+                                            <div class="textblock">
+                                                <textarea name="textlevel_1" class="textlevel1" placeholder="Введите текст"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group secondtextgroup">
+                                        <input type="hidden" name="texttop_2">
+                                        <input type="hidden" name="textleft_2">
+                                        <input type="hidden" name="textwidth_2">
+                                        <input type="hidden" name="textheight_2">
+                                        <input type="hidden" name="texttype_2" value="2">
+                                        <div class="top-col">
+                                            <div class="addsecondtext"></div>
+                                            <div class="removesecondtext"></div>
+                                        </div>
+                                        <div class="blocktext">
+                                            <div class="colorpick colorpicksecond">
+                                                <div class="square" style="background: #4D4D4D;"></div>
+                                                <div class="inputs">
+                                                    <input type="text" name="color_2" id="color_2" value="#4D4D4D" data-jscolor="">
+                                                </div>
+                                                <div class="labelcolor">
+                                                   <label for="color_2">Текст второго уровня</label>
+                                                </div>
+                                            </div>
+                                            <div class="fontsize smallselect-wrapper">
+                                                <select name="fontsize_2" class="customselect fontsecondsize ">
+                                                    <option value="44">44</option>
+                                                    <option value="36">36</option>
+                                                    <option value="36">32</option>
+                                                    <option value="28" selected>28</option>
+                                                    <option value="28">26</option>
+                                                    <option value="24">24</option>
+                                                    <option value="18">18</option>
+                                                    <option value="16">16</option>
+                                                    <option value="14">14</option>
+                                                    <option value="12">12</option>
+                                                </select>
+                                            </div>
+                                            <div class="textblock">
+                                                <textarea name="textlevel_2" class="textlevelsecond" placeholder="Введите текст"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-options">
+                                    <div class="btn-top-col">
+                                        <p>Кнопка</p>
+                                        <div class="btn-add"></div>
+                                    </div>
+                                    <!-- <div class="btn-options-group">
+                                            <input type="hidden" name="pbtntop">
+                                            <input type="hidden" name="pbtnleft">
+                                            <input type="hidden" name="pbtnwidth">
+                                            <input type="hidden" name="pbtnheight">
+                                        <div class="position">
+                                            <div class="left">
+                                                <input type="radio" value="left" name="btnposition" id="btnposition_1">
+                                                <label for="btnposition_1">
+                                                </label>
+                                            </div>
+                                            <div class="center">
+                                                <input type="radio" value="center" name="btnposition" id="btnposition_2" checked>
+                                                <label for="btnposition_2">
+                                                </label>
+                                            </div>
+                                            <div class="right">
+                                                <input type="radio" value="right" name="btnposition" id="btnposition_3">
+                                                <label for="btnposition_3">
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="row-options">
+                                            <div class="optionbtngroup">
+                                                <label for="btnwidth">W</label>
+                                                <input class="btnwidth" type="text"  name="btnwidth"  id="btnwidth" value="150">
+                                            </div>
+                                            <div class="optionbtngroup">
+                                                <label for="inputpoint_1_3">H</label>
+                                                <input class="btnheight" type="text"  name="btnheight"  id="btnheight" value="36">
+                                            </div>
+                                        </div>
+                                        <div class="row-options">
+                                            <div class="optionbtngroup">
+                                                <label for="inputpoint_1_4">
+                                                    <div class="radius"></div>
+                                                </label>
+                                                <input class="btnradius" type="text"  name="btnradius"  id="btnradius" value="30">
+                                            </div>
+                                            <div class="optionbtngroup">
+                                                <label for="inputpoint_1_5">
+                                                    <div class="color"
+                                                    style="background: #F26126"></div>
+                                                </label>
+                                                <input type="color" class="hiddeninput hiddeninputcolor" value="#F26126">
+                                                <input class="btncolor" type="text"  name="btncolor"  id="btncolor" value="#F26126">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="btnname">Текст кнопки</label>
+                                            <input class="btn_name" name="btnname" id="btnname" value="Пройти опрос">
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-wrapper btn-flex">
+                        <!-- <div class="btn-default submitform">Сохранить</div> -->
+                        <input class="btn-default" type='submit' value=" Сохранить">
+                        <div class="btn-white clear-wellcome">Очистить</div>
+                    </div>
+                </aside>
+
+            </div>
+            <!-- </table> -->
+        </form>
+    </div>
+
+    <script>
+        if($('#dropContainer').length>0){
+            // Dropzone.autoDiscover = false;
+            var drop = $('#dz-preview-template').html();
+            $('.upload-file').click(function () {
+                $('.realfileinput').click();
+            });
+
+            // dragover and dragenter events need to have 'preventDefault' called
+            // in order for the 'drop' event to register. 
+            // See: https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Drag_operations#droptargets
+            dropContainer.ondragover = dropContainer.ondragenter = function(evt) {
+                evt.preventDefault();
+            };
+
+            dropContainer.ondrop = function(evt) {
+            // pretty simple -- but not for IE :(
+                fileInput.files = evt.dataTransfer.files;
+                // If you want to use some of the dropped files
+                const dT = new DataTransfer();
+                dT.items.add(evt.dataTransfer.files[0]);
+                fileInput.files = dT.files;
+                evt.preventDefault();
+                $('.pictureforpage').change();
+            };
+        }
+    </script>
+    <!-- <script src="./js/constructor.js?6876546"></script> -->
+
+    <!-- <script>
+        $('form').submit(function(e){
+            e.preventDefault();
+            console.log($(this).serializeArray());
+        });
+    </script> -->
+</body>
+
+</html>
